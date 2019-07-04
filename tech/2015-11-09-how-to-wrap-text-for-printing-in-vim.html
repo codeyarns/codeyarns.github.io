@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to wrap text for printing in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to wrap text for printing in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-11-09 12:45:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><strong>Vim</strong> can be used to <strong>print</strong> a text file using your printer. The font and font size used for printing can be configured in Vim. Depending on the font and font size used you may find that the width of the paper is not enough to accommodate the width of the text. Parts of the lines longer than the paper width are simply not printed!</p>
+<h1 id="solution">Solution</h1>
+<p>Vim can be requested to <strong>wrap</strong> the text using <code>:set wrap</code> command. However, this is only for display and the text width used for wrapping is the width of the terminal or window that Vim is using. This has no effect on printing.</p>
+<p>What we need to do is to set a <strong>text width</strong> and <strong>reformat</strong> the text by enforcing this text width. Note that you will need to check how many columns of text width will fit into the printed page for your font, font size and paper size.</p>
+<ul>
+<li>First, we set the text width. Let me assume that 80 columns works for my setup:</li>
+</ul>
+<pre><code>:set textwidth=80</code></pre>
+<ul>
+<li>Next, we ask Vim to reformat the entire text file by enforcing this text width:</li>
+</ul>
+<pre><code>gg
+gq
+G</code></pre>
+<p>The breakdown of this command is: <code>gg</code> moves cursor to first line of file. <code>gq</code> is the command to reformat all text from current position to the position specified after this. <code>G</code> is the command to move to last line of file. When applied after <code>gq</code>, this reformats the entire file from first line to last line, enforcing the text width we specified earlier.</p>
+<p>The formatted file can now be printed. After printing, you can undo this reformatting if it is not needed.</p>
+<p>For more details about these commands:</p>
+<pre><code>:help textwidth
+:help gq
+:help wrap</code></pre>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

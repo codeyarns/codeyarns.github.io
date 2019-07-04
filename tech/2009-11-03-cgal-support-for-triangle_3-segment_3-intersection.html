@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CGAL: Support for Triangle_3 &amp; Segment_3 intersection</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CGAL: Support for Triangle_3 &amp; Segment_3 intersection</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2009-11-03 06:20:34+00:00</h3>
+</div>
+<p>CGAL 3.5 is the latest version of the library, but it still does not include support for <em>intersection</em> between <code>Triangle_3</code> and <code>Segment_3</code>. I recently requested for this with the CGAL team on their <em>cgal-discuss</em> mailing list. <a href="http://www-sop.inria.fr/members/Pierre.Alliez/">Pierre Alliez</a>, the INRIA researcher who is working on this was kind enough to share his WIP code on this with me. It supports intersection between the following entities:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>Triangle_3</code> and <code>Segment_3</code></p></li>
+<li><p><code>Triangle_3</code> and <code>Line_3</code></p></li>
+<li><p><code>Triangle_3</code> and <code>Ray_3</code></p></li>
+<li><p><code>Triangle_3</code> and <code>Plane_3</code></p></li>
+</ol>
+<p>I have made available this code <a href="https://bitbucket.org/ashwin/intersections3">here</a>. This code is still not release ready, so if you run into any problems please email Pierre with your feedback.</p>
+<p>Here is how to use it:</p>
+<ol style="list-style-type: decimal">
+<li><p>Unzip the 4 header files into your <code>$(CGAL_DIR)\include\CGAL\Intersections_3</code> directory.</p></li>
+<li><p>Open your <code>$(CGAL_DIR)\include\CGAL\intersection_3_1.h</code> file in any editor.</p></li>
+<li><p>At the end of the file (just before the last <code>#endif</code>) add the following includes: <code>cpp #include &lt;CGAL/Intersections_3/Triangle_3_segment_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_line_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_ray_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_plane_3_intersection.h&gt;</code></p></li>
+</ol>
+<p>You should be able to successfully intersect these geometrical entities in your CGAL code after this.</p>
+</body>
+</html>

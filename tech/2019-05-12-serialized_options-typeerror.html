@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>serialized_options TypeError</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">serialized_options TypeError</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-12 20:58:05+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I built and installed Caffe2. Running a simple Caffe2 Python call, gave this error:</p>
+<pre><code>$ python -c &quot;from caffe2.python import core&quot;
+Traceback (most recent call last):
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/usr/local/lib/python2.7/dist-packages/caffe2/python/__init__.py&quot;, line 2, in &lt;module&gt;
+    from caffe2.proto import caffe2_pb2
+  File &quot;/usr/local/lib/python2.7/dist-packages/caffe2/proto/__init__.py&quot;, line 11, in &lt;module&gt;
+    from caffe2.proto import caffe2_pb2, metanet_pb2, torch_pb2
+  File &quot;/usr/local/lib/python2.7/dist-packages/caffe2/proto/caffe2_pb2.py&quot;, line 23, in &lt;module&gt;
+    \x44\x65viceTypeProto\x12\r\n\tPROTO_CPU\x10\x00\x12\x0e\n\nPROTO_CUDA\x10\x01\x12\x10\n\x0cPROTO_MKLDNN\x10\x02\x12\x10\n\x0cPROTO_OPENGL\x10\x03\x12\x10\n\x0cPROTO_OPENCL\x10\x04\x12\x0f\n\x0bPROTO_IDEEP\x10\x05\x12\r\n\
+tPROTO_HIP\x10\x06\x12\x0e\n\nPROTO_FPGA\x10\x07\x12\x0f\n\x0bPROTO_MSNPU\x10\x08\x12\r\n\tPROTO_XLA\x10\t\x12\&#39;\n#PROTO_COMPILE_TIME_MAX_DEVICE_TYPES\x10\n\x12\x19\n\x13PROTO_ONLY_FOR_TEST\x10\xa5\xa3\x01&#39;)
+TypeError: __new__() got an unexpected keyword argument &#39;serialized_options&#39;</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This is caused by an older version of Protobuf. Updating that solved the problem:</p>
+<pre><code>$ pip install -U protobuf</code></pre>
+<p><strong>Tried with:</strong> Raspbian 9</p>
+</body>
+</html>

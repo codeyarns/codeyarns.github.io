@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to natural sort in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to natural sort in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-23 12:52:10+00:00</h3>
+</div>
+<p>A lot of sources generate filenames or strings numbered naturally: <code>bat_1, ... bat_9, bat_10</code>. The <code>sort</code> in Python is lexicographic and does not result in a natural ordering of such strings.</p>
+<p>The <a href="https://pypi.python.org/pypi/natsort"><strong>natsort</strong></a> Python package can be used to sort such strings naturally.</p>
+<p>Installation for Python 3.x:</p>
+<pre><code>$ sudo pip3 install natsort</code></pre>
+<p>Usage is simple:</p>
+<pre><code>import natsort
+out_list = natsort.natsorted(fname_list)</code></pre>
+<p>Other uses of this package can be found <a href="https://pypi.python.org/pypi/natsort">here</a>.</p>
+<p><strong>Tried with:</strong> natsort 3.5.2, Python 3.4 and Ubuntu 14.04</p>
+</body>
+</html>

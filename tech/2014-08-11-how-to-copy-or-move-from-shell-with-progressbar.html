@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to copy or move from shell with progressbar</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to copy or move from shell with progressbar</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-11 02:20:09+00:00</h3>
+</div>
+<p>When I am copying or moving a big file or a large number of small files, I wish I could see some progress of the operation and the speed at which the operation is being performed. This can be done by using the <strong>Advanced Copy</strong> mod of the cp and mv commands, which have been patched to display a progressbar with all this information during the operation. You can either get the source code or pre-built binaries from <a href="http://www.beatex.org/web/advancedcopy.html">here</a>.</p>
+<p>I like to use these commands by default, so I move them to <code>/usr/local/bin</code>:</p>
+<pre><code>$ sudo cp ./cp /usr/local/bin
+$ sudo cp ./mv /usr/local/bin</code></pre>
+<p>Typically, your <code>PATH</code> puts <code>/usr/local/bin</code> ahead of <code>/bin</code>, so the patched versions of the commands will be executed now. Else, change your <code>PATH</code> to accomplish this.</p>
+<p>To view the progressbar for a operation, use the <code>-g</code> option:</p>
+<pre><code>$ cp -g -R foo-big-file.bin /media/joe/backup/</code></pre>
+<p>I use the fish shell, where I have added aliases for both of these commands with progressbar display:</p>
+<pre><code>function cpg
+    cp -g $argv
+end
+
+function mvg
+    mv -g $argv
+end</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

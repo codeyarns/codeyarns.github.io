@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to check colors supported by terminal</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to check colors supported by terminal</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-18 12:53:32+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>On the surface it seems like a simple question: how many <strong>colors</strong> are supported by a <strong>terminal</strong> you are using? This is important when configuring or debugging color problems in terminal programs like Vim.</p>
+<h1 id="solution-1">Solution 1</h1>
+<p>The answer should be simple: just query the <strong>terminfo</strong> database. The easiest way to query the terminfo database to find this out is:</p>
+<pre><code>$ tput colors</code></pre>
+<p>The problem? The answer reported by this program is wrong! Under a <strong>GNOME Terminal</strong> which I can see rendering 256 colors, this reports 8 as the answer!</p>
+<p>Why is it reporting the wrong answer? It seems to be misled by the <code>TERM</code> environment variable. For reasons which only the Ubuntu/GNOME Gods can answer, the <code>TERM</code> for GNOME Terminal is set to <code>xterm</code> instead of <code>xterm-256color</code>. If you set this manually to <code>xterm-256color</code>, then <code>tput</code> reports 256 correctly. But then what is the point of that?</p>
+<h1 id="solution-2">Solution 2</h1>
+<p>[caption id=&quot;attachment_6365&quot; align=&quot;aligncenter&quot; width=&quot;529&quot;][<img src="https://codeyarns.files.wordpress.com/2015/03/20150318_terminal_colors.png" alt="Left: terminalcolors.py reporting 8 colors for xterm Right: For xterm-256color" />](https://codeyarns.files.wordpress.com/2015/03/20150318_terminal_colors.png) Left: terminalcolors.py reporting 8 colors for xterm Right: For xterm-256color[/caption]</p>
+<p>Another solution is to run the <code>terminalcolors.py</code> Python script from <a href="https://github.com/incitat/eran-dotfiles/blob/master/bin/terminalcolors.py">here</a>. This beautifully renders the colors in the shell. However, it also falls for the <code>TERM</code>. Only if it is set to <code>xterm-256color</code> can I see 256 colors rendered. Else only the first 8 colors are shown and the rest are in grey.</p>
+<p>A similar output and behavior is seen by running <code>msgcat --color=test</code>.</p>
+<h1 id="solution-3">Solution 3</h1>
+<p>[caption id=&quot;attachment_6364&quot; align=&quot;aligncenter&quot; width=&quot;788&quot;][<img src="https://codeyarns.files.wordpress.com/2015/03/20150318_xterm_color_count.png" alt="xterm-color-count reporting colors correctly (well almost)" />](https://codeyarns.files.wordpress.com/2015/03/20150318_xterm_color_count.png) xterm-color-count reporting colors correctly (well almost)[/caption]</p>
+<p>The final solution that worked for me was <a href="https://github.com/l0b0/xterm-color-count"><strong>xterm-color-count</strong></a>. This Bash script actually tries all the <a href="http://www.xfree86.org/current/ctlseqs.html"><strong>XTerm Control Sequences</strong></a> and examines their responses to report the colors. This script was the only one which reported back 256 correctly for me for <code>xterm</code>.</p>
+<p><strong>Tried with:</strong> GNOME Terminal 3.6.2 and Ubuntu 14.04</p>
+</body>
+</html>

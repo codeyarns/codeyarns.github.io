@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get correct scope of LaTeX tags in Tagbar</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get correct scope of LaTeX tags in Tagbar</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-14 16:05:09+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p><a href="2013/02/17/tagbar-plugin-for-vim/"><strong>Tagbar</strong></a> is a useful plugin for <strong>Vim</strong> that displays <strong>tags</strong> of a source file ordered by their <strong>scope</strong> in a split window. However, if you open a <strong>LaTeX</strong> file in Vim, the Tagbar shows its chapters, sections and paragraphs correctly but they are not ordered by scope. Instead, all the chapters appear together, all the sections together and so on.</p>
+<p><strong>Solution</strong></p>
+<p>This is not a problem with Tagbar, but with the <a href="2013/02/02/how-to-use-exuberant-ctags/"><strong>ctags</strong></a> program which is used by Tagbar to generate the tags. As of this writing, the ctags that ships with Ubuntu 12.04 LTS is a really old version that does not generate scope information for the tags of a LaTeX file. Thankfully, the tag scope feature for LaTeX files has been added to the main branch of ctags in 2012. Getting Tagbar to use the new version of ctags is easy:</p>
+<ol style="list-style-type: decimal">
+<li><p>Uninstall the <strong>exuberant-ctags</strong> package from your Ubuntu system.</p></li>
+<li><p>Get the latest source code of ctags from either their <a href="http://sourceforge.net/scm/?type=svn&amp;group_id=6556">SVN repository</a> or this <a href="https://github.com/majutsushi/ctags">Github mirror</a>. (The other Github clones of ctags source code do not seem to have this LaTeX fix.)</p></li>
+<li><p>Compile ctags by using these commands:</p></li>
+</ol>
+<pre><code>$ autoheader
+$ autoconf
+$ ./configure
+$ make
+$ sudo make install</code></pre>
+<p>Now open the LaTeX file in Ubuntu and its tags should be displayed with correct scoping in Tagbar.</p>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
+</body>
+</html>

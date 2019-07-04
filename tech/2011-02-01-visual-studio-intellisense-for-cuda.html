@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual Studio: Intellisense for CUDA</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual Studio: Intellisense for CUDA</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-02-01 05:44:41+00:00</h3>
+</div>
+<p><strong>Why?</strong></p>
+<p>It is convenient to have <strong>Intellisense</strong> turned on for <strong>CUDA</strong> source files in <strong>Visual Studio</strong>. This enables <strong>autocompletion</strong> while typing code and <strong>navigation</strong> while investigating code. The navigation is especially useful since the programmer can seamlessly navigate between C/C++ and CUDA code using <strong>Go to Definition</strong> and similar commands.</p>
+<p><strong>How?</strong></p>
+<p>To turn on Intellisense in Visual Studio 2008 for CUDA source files:</p>
+<ol style="list-style-type: decimal">
+<li><p>Close all instances of Visual Studio.</p></li>
+<li><p>Open Registry Editor and navigate to <code>HKEY_CURRENT_USER\Software\Microsoft\VisualStudio\9.0\Languages\Language Services\C/C++</code></p></li>
+<li><p>In the value of the name <code>NCB Default C/C++ Extensions</code>, append the text <code>.cu;.cuh;.cl;</code> This instructs Intellisense to build its database for CUDA source files too.</p></li>
+<li><p>Delete the <code>.ncb</code> file in your Visual Studio project directory. Open your CUDA project in Visual Studio, Intellisense will rebuild its database, this time it will include the CUDA source files.</p></li>
+</ol>
+<p>Clicking <strong>Go to Definition</strong> or <strong>F12</strong> on a CUDA runtime function call (like <code>cudaMalloc</code>) may not work. If you want such functionality, include the CUDA header file that has those declarations. For example, <code>cuda_runtime.h</code> needs to be included for most runtime calls.</p>
+<p><strong>Note</strong>: Related information and files can be found in the <code>%CUDA_PATH%\extras\visual_studio_integration</code> directory.</p>
+<p><strong>Tried with</strong>: Visual Studio 2008</p>
+</body>
+</html>

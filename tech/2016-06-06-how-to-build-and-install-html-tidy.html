@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build and install HTML Tidy</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build and install HTML Tidy</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-06-06 15:35:36+00:00</h3>
+</div>
+<p><a href="http://www.html-tidy.org/"><strong>HTML Tidy</strong></a> is an old and classic program that can be used to fix errors and correct indentation of a HTML file.</p>
+<p>It can be installed easily in Ubuntu:</p>
+<pre><code>$ sudo apt install tidy</code></pre>
+<p>However, the version from Ubuntu is extremely old and does not support HTML5. It is pretty pointless to install and use this ancient version today.</p>
+<p>To download and build the latest HTML Tidy, try these commands:</p>
+<pre><code>$ git clone https://github.com/htacg/tidy-html5.git
+$ cd tidy-html5
+$ cd build/cmake
+$ cmake ../..
+$ cmake --build . --config Release</code></pre>
+<p>To install it:</p>
+<pre><code>$ sudo make install</code></pre>
+<p><strong>Tried with:</strong> HTML Tidy 5.2.0 and Ubuntu 14.04</p>
+</body>
+</html>

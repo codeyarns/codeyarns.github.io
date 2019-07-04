@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use themes in Airline</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use themes in Airline</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-18 12:43:53+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_6355&quot; align=&quot;aligncenter&quot; width=&quot;576&quot;][<img src="https://codeyarns.files.wordpress.com/2015/03/20150318_airline_molokai.png" alt="Molokai theme for Airline in Vim" />](https://codeyarns.files.wordpress.com/2015/03/20150318_airline_molokai.png) Molokai theme for Airline in Vim[/caption]</p>
+<p>The <strong>Vim-Airline</strong> plugin adds support for customizing the colors and format of the <strong>statusline</strong> in <strong>Vim</strong>. For more information on installing and using it, see <a href="2013/07/12/how-to-install-and-use-the-vim-airline-plugin-for-vim/">this post</a>.</p>
+<ul>
+<li><p>Airline ships with many themes and other themes can also be added to it. If you are using a plugin manager, then the directory containing the themes can be found in <code>vim-airline/autoload/airline/themes</code>. Each theme is contained in a single file with extension <code>.vim</code> here. If you want to add a theme file, just copy it to this directory.</p></li>
+<li><p>A theme can be applied at runtime inside Vim. For example, to apply the <code>molokai</code> theme, use the command <code>:AirlineTheme molokai</code>.</p></li>
+<li><p>To apply a theme at startup, set the <code>g:airline_theme</code> variable in your <code>.vimrc</code>. For example, to apply the <code>molokai</code> theme at startup, add this line to <code>.vimrc</code>: <code>let g:airline_theme='molokai'</code></p></li>
+<li><p>The default theme that is used by Airline is <code>dark</code> or <code>light</code>, depending on whether the <code>background</code> in your Vim is set to <code>dark</code> or <code>light</code>.</p></li>
+<li><p>If you are using Vim at a <strong>virtual terminal (VT)</strong>, then you might have only 8 color support in that terminal. Most of the Airline themes, including the default ones look horrible in it. I have personally found that the <code>hybrid</code> theme works the best in VT. Other themes that work in VT are <code>tomorrow</code> and <code>zenburn</code>. The themes <code>base16</code>, <code>jellybeans</code> and <code>lucius</code> work partially. All the rest of the themes do not work in VT.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

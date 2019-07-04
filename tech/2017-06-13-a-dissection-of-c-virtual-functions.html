@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>A dissection of C++ virtual functions</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">A dissection of C++ virtual functions</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-06-13 14:51:37+00:00</h3>
+</div>
+<p><strong>Virtual functions</strong> are a key feature of C++ to enable runtime polymorphism. This post is my attempt in understanding how they are implemented and executed at runtime. The compiler used is GCC 5.4.0 on Ubuntu 16.04.</p>
+<p>Here is a simple program that uses virtual functions that we will use as an example:</p>
+<p>https://gist.github.com/ashwin/970b18c10c885c0856b5beee1112050c</p>
+<p>To aid us in understanding what this code is compiled into, we request GCC to add debugging information (using option <code>-g</code>) when we compile it:</p>
+<p>[code lang=&quot;text&quot;] $ g++ -g virtual_function_example.cpp $ ./a.out In B</p>
+<pre><code>
+Almost all C++ compilers implement virtual functions by using **virtual tables**, more commonly called as **vtables**. This is a table of function addresses, one for each virtual function in the class. One virtual table is created for each class that has virtual functions.
+
+We can see the existence of the methods and virtual tables of each class and their addresses by examining the binary:
+
+[code lang=&quot;text&quot;]
+$ readelf --symbols a.out | c++filt | grep -E &quot;vtable|A::|B::&quot;
+
+    86: 0000000000400936    11 FUNC    WEAK   DEFAULT   14 A::do_something()
+    81: 0000000000400942    30 FUNC    WEAK   DEFAULT   14 A::do_something2()
+    87: 0000000000400960    11 FUNC    WEAK   DEFAULT   14 B::do_something()
+    84: 000000000040096c    30 FUNC    WEAK   DEFAULT   14 B::do_something2()
+    60: 000000000040098a    23 FUNC    WEAK   DEFAULT   14 A::A()
+    69: 00000000004009a2    39 FUNC    WEAK   DEFAULT   14 B::B()
+    92: 0000000000400a68    32 OBJECT  WEAK   DEFAULT   16 vtable for B
+    63: 0000000000400a88    32 OBJECT  WEAK   DEFAULT   16 vtable for A</code></pre>
+<p>Here we use the <strong>readelf</strong> program to extract the symbols from the binary. The symbols are in mangled form that is difficult to decipher for humans. So, we pipe it through a demangler.</p>
+<p>Here is the output I got on my computer:</p>
+<p>[caption id=&quot;attachment_9093&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2017/06/20170613_readelf.png" />](http://codeyarns.com/2017/06/13/an-examination-of-c-virtual-functions/20170613_readelf/) (Click to enlarge)[/caption]</p>
+<p>We can check which sections of virtual memory the class methods and virtual tables will be loaded into by examining the sections of the binary:</p>
+<p>[code lang=&quot;text&quot;] $ readelf --sections a.out There are 37 section headers, starting at offset 0x6b78:</p>
+<p>Section Headers: [Nr] Name Type Address Off Size ES Flg Lk Inf Al [..][14] .text PROGBITS 00000000004007a0 0007a0 0002a2 00 AX 0 0 16 [..][16] .rodata PROGBITS 0000000000400a50 000a50 00008b 00 A 0 0 8 [..]</p>
+<p>Key to Flags: W (write), A (alloc), X (execute), M (merge), S (strings), l (large) I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown) O (extra OS processing required) o (OS specific), p (processor specific)</p>
+<pre><code>
+We can cross-examine the addresses of the class methods and virtual tables with the starting addresses and sizes of the sections. We see that the class methods will be loaded into the `.text` section and the virtual tables into the `.rodata` segment. The flags of these sections indicate that only the `.text` section is executable, as it should be.
+
+[caption id=&quot;attachment_9094&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][![](https://codeyarns.files.wordpress.com/2017/06/20170703_readelf_2.png)](http://codeyarns.com/2017/06/13/an-examination-of-c-virtual-functions/20170703_readelf_2/) (Click to enlarge)[/caption]
+
+Finally, let us examine how the virtual tables are used at runtime to determine which method to execute. To do this, we disassemble the binary instructions in the binary:
+
+[code lang=&quot;text&quot;]
+$ objdump --disassemble --demangle --source a.out
+
+int main()
+{
+  400896:       55                      push   %rbp
+  400897:       48 89 e5                mov    %rsp,%rbp
+  40089a:       53                      push   %rbx
+  40089b:       48 83 ec 18             sub    $0x18,%rsp
+    A* a = new B();
+  40089f:       bf 08 00 00 00          mov    $0x8,%edi
+  4008a4:       e8 d7 fe ff ff          callq  400780 &lt;operator new(unsigned long)@plt&gt;
+  4008a9:       48 89 c3                mov    %rax,%rbx
+  4008ac:       48 c7 03 00 00 00 00    movq   $0x0,(%rbx)
+  4008b3:       48 89 df                mov    %rbx,%rdi
+  4008b6:       e8 e7 00 00 00          callq  4009a2 &lt;B::B()&gt;
+  4008bb:       48 89 5d e8             mov    %rbx,-0x18(%rbp)
+    a-&gt;do_something2();
+  4008bf:       48 8b 45 e8             mov    -0x18(%rbp),%rax
+  4008c3:       48 8b 00                mov    (%rax),%rax
+  4008c6:       48 83 c0 08             add    $0x8,%rax
+  4008ca:       48 8b 00                mov    (%rax),%rax
+  4008cd:       48 8b 55 e8             mov    -0x18(%rbp),%rdx
+  4008d1:       48 89 d7                mov    %rdx,%rdi
+  4008d4:       ff d0                   callq  *%rax
+
+  4008d6:       b8 00 00 00 00          mov    $0x0,%eax
+    return 0;
+  4008db:       48 83 c4 18             add    $0x18,%rsp
+  4008df:       5b                      pop    %rbx
+  4008e0:       5d                      pop    %rbp
+  4008e1:       c3                      retq</code></pre>
+<p>From the output of <strong>objdump</strong>, only the disassembly of the main function is shown above. In the above command, we have requested objdump to <code>--disassemble</code> the binary code to assembly code, to <code>--demangle</code> the symbol names to human readable form and to annotate the disassembly with the original C++ <code>--source</code> statements.</p>
+<p>By examining the disassembled code, the runtime mystery is revealed. We need to note that every object of a class, that has virtual methods, stores a pointer to its class virtual table. On a 64-bit computer, this means that objects of such classes need extra space of 8 bytes. This pointer is placed at the beginning of the memory layout of the object, even before other members of the object.</p>
+<p>When you call a virtual method in C++ code, the compiler generates these instructions:</p>
+<ul>
+<li><p>Jump to the beginning of the object. This is a location on the <strong>heap</strong> or <strong>stack</strong>, depending on how the object was created. This is where a pointer to its class virtual table is stored.</p></li>
+<li><p>Jump to the start of the class virtual table. This is a location in the <code>.rodata</code> section of the process virtual memory, as we noted earlier.</p></li>
+<li><p>Depending on which virtual method is needed, jump to that entry in the virtual table. This entry has the address of that virtual method.</p></li>
+<li><p>Finally, jump to the address of the virtual method and start executing its instructions. This is in the <code>.text</code> section of the process virtual memory.</p></li>
+</ul>
+<p>Here is an illustration of the code disassembly:</p>
+<p>[caption id=&quot;attachment_9095&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2017/06/20170703_objdump.png" />](http://codeyarns.com/2017/06/13/an-examination-of-c-virtual-functions/20170703_objdump/) (Click to enlarge)[/caption]</p>
+</body>
+</html>

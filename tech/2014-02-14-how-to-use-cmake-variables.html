@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use CMake variables</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use CMake variables</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-14 05:32:45+00:00</h3>
+</div>
+<p><strong>CMake</strong> uses many <strong>variables</strong> that are officially documented. These have default values or values that are based on your project environment. You are allowed to change the value of these variables in your <code>CMakeLists.txt</code>. In addition, you can also define any variables you need. In fact, defining your own custom variables makes your CMakeLists.txt file easy to read and maintain.</p>
+<p>To list all the variables that are defined and their current values, try this in a directory that has a CMakeLists.txt file:</p>
+<pre><code>$ cmake -LAH</code></pre>
+<p>A list of common variables used internally by CMake can be seen <a href="http://www.cmake.org/Wiki/CMake_Useful_Variables">here</a>. You can change the value of these variables in your CMakeLists.txt to modify the behavior of CMake for your project. See below for how to set variables.</p>
+<p>To set a variable to a single value in your CMakeLists.txt file:</p>
+<pre><code>set(JoeLibraries -lfoo)</code></pre>
+<p>A variable can be set a list of values:</p>
+<pre><code>set(JoeLibraries -lfoo -lbar -lstarwars)</code></pre>
+<p>It can also be indented in different ways for ease of reading:</p>
+<pre><code>set(
+    JoeLibraries
+    -lfoo
+    -lbar
+    -lstarwars
+    )</code></pre>
+<p>To use a variable in another command:</p>
+<pre><code>target_link_libraries(
+    helloworld
+    ${JoeLibraries}
+    )</code></pre>
+<p>A variable can also be used to in setting the value of another variable:</p>
+<pre><code>set(
+    BruceLibraries
+    -lkungfu
+    ${JoeLibraries}
+    )</code></pre>
+<p>Strings can be appended naturally to variables:</p>
+<pre><code>set(CurDir /home/joe/helloworld)
+set(BinDir ${CurDir}/bin)</code></pre>
+<p>To check if a variable exists:</p>
+<pre><code>if(CurDir)
+    message(&quot;CurDir variable exists&quot;)
+endif(CurDir)</code></pre>
+<p>To check if a variable does not exist:</p>
+<pre><code>if(NOT CurDir)
+    message(&quot;CurDir variable does not exist&quot;)
+endif(NOT CurDir)</code></pre>
+<p>To check if variable value is equal to a string:</p>
+<pre><code>if(CMAKE_BUILD_TYPE STREQUAL &quot;Debug&quot;)
+    message(&quot;Build is Debug type&quot;)
+endif(CMAKE_BUILD_TYPE STREQUAL &quot;Debug&quot;)</code></pre>
+<p>Note that the comparison is case-sensitive.</p>
+<p>If you want case-insensitive compare, you will need to convert the variable value to lowercase, store it in a new variable and compare that:</p>
+<pre><code>STRING(TOLOWER &quot;${CMAKE_BUILD_TYPE}&quot; CMAKE_BUILD_TYPE_LOWER)
+if(CMAKE_BUILD_TYPE_LOWER STREQUAL &quot;debug&quot;)
+    message(&quot;Build is debug type&quot;)
+endif()</code></pre>
+<p><strong>Tried with:</strong> CMake 2.8.7 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

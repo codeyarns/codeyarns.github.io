@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to tile PDF using PDFPoster</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to tile PDF using PDFPoster</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-08 12:05:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I have a <strong>PDF</strong> file with a single page that I want to print as a <strong>large poster</strong> (say size A1). However, I do not have an A1 printer. I only have the common A4 printer.</p>
+<p>So, I would like to cut up the PDF page into multiple smaller pages so that I can print them out on my A4 printer and paste them together into a A1 poster.</p>
+<h1 id="solution">Solution</h1>
+<p>This seems like a messy problem requiring grunt work. Thankfully, there is a simple tool that solves this problem: <strong>PDFPoster</strong>!</p>
+<ul>
+<li>Installing it is easy:</li>
+</ul>
+<pre><code>$ sudo apt install pdfposter</code></pre>
+<ul>
+<li>Just specify the size of your printer and the intended size for your PDF and it does the job. For example, say I have an <strong>A4 printer</strong> but I need to print an <strong>A1 size</strong> poster:</li>
+</ul>
+<pre><code>$ pdfposter -mA4 -pA1 in.pdf out.pdf</code></pre>
+<p>The output PDF contains 9 pages that I can print on A4 pages, arrange as a 3x3 grid to get my A1 poster! 😄</p>
+<p><strong>Tried with:</strong> PDFPoster 0.6.0-1 and Ubuntu 14.04</p>
+</body>
+</html>

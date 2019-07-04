@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to register class method as C callback</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to register class method as C callback</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-01 12:42:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>A typical problem when using a C library with your own C++ code: the library requires a <strong>C callback</strong> function pointer, but you want to pass your C++ class method (that is non-static) to it.</p>
+<p>I face this problem when using C libraries like <strong>GLFW</strong> or <strong>GLUT</strong>, which provide an interface to <strong>OpenGL</strong>, which is also a C library. For example, say I want to register a C++ class method with GLFW as callback for mouse button event. GLFW expects me to pass it a C function pointer with this signature:</p>
+<pre><code>void ButtonCallback(GLFWwindow*, int, int, int);
+
+// Register above function as callback
+glfwSetMouseButtonCallback(window, ButtonCallback);</code></pre>
+<p>I want to register this C++ class method as the callback:</p>
+<pre><code>class Foo
+{
+public:
+    Foo()
+    {
+        // Error!
+        glfwSetMouseButtonCallback(window, FooButtonCallback);
+    }
+
+    void FooButtonCallback(GLFWwindow*, int, int, int)
+    { /* something */ }
+};</code></pre>
+<p>No pointer trickery can make it work because the signature of a C++ class non-static method is different from a C callback.</p>
+<h1 id="solution">Solution</h1>
+<p>One solution is to only use C++ class <strong>static methods</strong> as callback. These can be passed as C callback because these are nothing but C functions with a glorified name. However, this causes serious problems later when you want update some class variable with the data received from the callback.</p>
+<p>The solution I use in such a scenario is an ugly hack called <strong>trampoline</strong>. The idea is to create a global C function which can be passed as callback and inside it call the C++ method by using its object pointer:</p>
+<pre><code>Foo* g_foo_ptr = nullptr;
+void TrampButtonCallback(GLFWwindow* a, int b, int c, int d)
+{
+    if (g_foo_ptr) // Check before calling
+        g_foo_ptr-&gt;FooButtonCallback(a, b, c, d);
+}
+
+class Foo
+{
+public:
+    Foo()
+    {
+        g_foo_ptr = this; // Store global
+        glfwSetMouseButtonCallback(window, TrampButtonCallback);
+    }
+
+    void FooButtonCallback(GLFWwindow*, int, int, int)
+    { /* something */ }
+};</code></pre>
+</body>
+</html>

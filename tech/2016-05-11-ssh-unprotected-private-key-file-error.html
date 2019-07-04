@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>SSH unprotected private key file error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">SSH unprotected private key file error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-11 12:12:48+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to <strong>SSH</strong> to a server using a private key file and got this error:</p>
+<pre><code>$ ssh -i myprivate.key 10.0.0.100
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0664 for &#39;/home/joe/myprivate.key&#39; are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+bad permissions: ignore key: /home/joe/myprivate.key</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This key file strangely had access permissions by all to read, write and execute! SSH was complaining that such a file is too open and could be compromised. I reduced the access permissions to just read by me:</p>
+<pre><code>$ chmod 0400 myprivate.key</code></pre>
+<p>SSH worked after this change :-)</p>
+<p><strong>Tried with:</strong> SSH 6.6 and Ubuntu 14.04</p>
+</body>
+</html>

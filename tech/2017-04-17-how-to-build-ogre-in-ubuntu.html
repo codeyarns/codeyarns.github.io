@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build OGRE in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build OGRE in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-04-17 15:27:51+00:00</h3>
+</div>
+<p><strong>Ubuntu</strong> ships with a particular version of <strong>OGRE</strong> that can be installed easily. For example, on Ubuntu 16.04:</p>
+<pre><code>$ sudo apt install libogre-1.9-dev</code></pre>
+<p>However, if you need to use an older or newer version of OGRE then you might need to build it yourself. This is not so hard on Linux, as it is on Windows.</p>
+<ul>
+<li>Install the essential packages needed for building OGRE:</li>
+</ul>
+<pre><code>$ sudo apt install build-essential automake libtool libfreetype6-dev libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libpoco-dev libtbb-dev doxygen libcppunit-dev</code></pre>
+<ul>
+<li><p>Download the OGRE version you want as a ZIP file from its Mercurial repository on Bitbucket <a href="https://bitbucket.org/sinbad/ogre/downloads/?tab=branches">here</a>.</p></li>
+<li><p>Unzip the file and build OGRE:</p></li>
+</ul>
+<pre><code>$ mkdir build
+$ cd build
+$ cmake ..
+$ make</code></pre>
+<ul>
+<li>To install OGRE to <code>/usr/local/lib/OGRE</code>:</li>
+</ul>
+<pre><code>$ sudo make install</code></pre>
+<p><strong>Tried with:</strong> OGRE 1.8 and Ubuntu 16.04</p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to wipe a SD card in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to wipe a SD card in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-25 00:19:48+00:00</h3>
+</div>
+<p><strong>Note:</strong> Unlike hard disks, SD cards cannot actually be securely wiped such that data is fully unrecoverable. The only way to do that would be using an erase functionality of its firmware, if it has one. Else physical destruction of the SD card! :-)</p>
+<p><strong>SD cards</strong> are commonly used in cameras and smartphones to store photos and other personal content. Even after these files are deleted they can be easily <a href="http://codeyarns.com/2010/04/02/ubuntu-recovering-photos-from-memory-cards/">recovered from the SD card</a>. So, it may be essential to completely erase the SD card such that data recovery is very difficult (but not impossible).</p>
+<ul>
+<li>Find out the <strong>partition</strong> the SD card is mounted as. For example, a SD card I use in my camera is formatted as a FAT32 partition. I plug it into my Ubuntu computer and it is mounted automatically. I can find out its partition by either of these commands:</li>
+</ul>
+<pre><code>$ sudo fdisk -l
+$ sudo blkid</code></pre>
+<ul>
+<li><p><strong>Unmount</strong> the SD card. (Note: Do not <strong>eject</strong> it.) If you do not unmount it you might get this error while wiping it: <code>failed to open for writing: Read-only file system</code></p></li>
+<li><p>Use the <strong>shred</strong> program to erase the SD card partition. For example, I find that the FAT32 partition on my SD card is at <code>/dev/sdb1</code>. I wipe the SD card partition using:</p></li>
+</ul>
+<pre><code>$ sudo shred -v /dev/sdb1</code></pre>
+<p>By default, shred will overwrite the entire partition 3 times, making it really difficult to recover any old content from it.</p>
+<p><strong>Tried with:</strong> CoreUtils 8.23 and Ubuntu 15.10</p>
+</body>
+</html>

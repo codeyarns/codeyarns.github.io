@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use smartctl</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use smartctl</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-12-21 15:27:45+00:00</h3>
+</div>
+<p><strong>smartctl</strong> is a commandline tool to view <strong>S.M.A.R.T.</strong> information of a storage device and to run SMART tests on it. This is the tool that is used by other GUI tools like GNOME Disks or GSmartControl.</p>
+<h1 id="installation">Installation</h1>
+<p>Installing it is easy:</p>
+<pre><code>$ sudo apt install smartmontools</code></pre>
+<h1 id="device-information">Device information</h1>
+<ul>
+<li>To print information about a storage device using its device path:</li>
+</ul>
+<pre><code>$ sudo smartctl --info /dev/sdb</code></pre>
+<ul>
+<li>Here is the output I got on my external hard disk:</li>
+</ul>
+<pre><code>$ sudo smartctl --info /dev/sdb
+
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF INFORMATION SECTION ===
+Model Family:     Seagate Momentus 5400.7
+Device Model:     ST9500320AS
+Serial Number:    5WX2QYSE
+LU WWN Device Id: 5 000c50 037f547bc
+Firmware Version: 0002BSM2
+User Capacity:    500,107,862,016 bytes [500 GB]
+Sector Size:      512 bytes logical/physical
+Rotation Rate:    5799 rpm
+Device is:        In smartctl database [for details use: -P show]
+ATA Version is:   ATA8-ACS T13/1699-D revision 4
+SATA Version is:  SATA 2.6, 1.5 Gb/s
+Local Time is:    Sun Dec 25 18:29:28 2016 SGT
+SMART support is: Available - device has SMART capability.
+SMART support is: Enabled</code></pre>
+<ul>
+<li><p>Note the last two lines. They indicate that this storage device has SMART support and that it is enabled.</p></li>
+<li><p>If the above command cannot print any SMART information, then it means that the program could not guess the device type correctly. In such a cause you will need to try some of the possible device types (see the <code>-d</code> option in manpage for this) and try each of them. For example, I could not view SMART info for a <strong>Toshiba Canvio USB 3.0</strong> drive. But, I could view the SMART info when I used this command:</p></li>
+</ul>
+<pre><code>$ sudo smartctl -d sat --info /dev/sdb</code></pre>
+<p>If a certain device type works, then you must remember to use that option all the time for this disk.</p>
+<ul>
+<li>If nothing works and you have been noticing errors on this hard disk, then it might already be too faulty to be diagnosed. It might be time to check if it can be returned for a replacement or else be discarded.</li>
+</ul>
+<h1 id="enable-or-disable-smart">Enable or disable SMART</h1>
+<p>I have come across drives where SMART is not turned on, so you may have to manually enable it.</p>
+<p>This is what I see when I enable SMART:</p>
+<pre><code>$ sudo smartctl --smart=on /dev/sdb
+
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF ENABLE/DISABLE COMMANDS SECTION ===
+SMART Enabled.</code></pre>
+<p>Once enabled, SMART should remain enabled through power-cycling. Use <code>off</code> instead of <code>on</code> to disable SMART. I cannot think of any reason why you would disable it cause keeping it enabled does not affect disk performance.</p>
+<h1 id="enable-or-disable-automatic-offline-test">Enable or disable automatic offline test</h1>
+<p>This is a test that SMART can perform every four hours to check for disk defects. Enabling this test can degrade disk performance and is <strong>obsoleted</strong>. Most recent disks will not enable this test even if you try to enable it. It is better to disable it in case it is enabled.</p>
+<p>This is what I see when I disable it:</p>
+<pre><code>$ sudo smartctl --offlineauto=off /dev/sdb
+
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF ENABLE/DISABLE COMMANDS SECTION ===
+SMART Automatic Offline Testing Disabled.</code></pre>
+<h1 id="capabilities">Capabilities</h1>
+<p>You can query and view the capabilities of the storage device. This includes the self-tests that SMART of this device can perform and the estimated time they will take.</p>
+<p>This is what I see when I view capabilities of my device:</p>
+<pre><code>$ sudo smartctl --capabilities /dev/sdb
+
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+General SMART Values:
+Offline data collection status:  (0x00) Offline data collection activity
+                    was never started.
+                    Auto Offline Data Collection: Disabled.
+Self-test execution status:      (   0) The previous self-test routine completed
+                    without error or no self-test has ever 
+                    been run.
+Total time to complete Offline 
+data collection:        (    0) seconds.
+Offline data collection
+capabilities:            (0x73) SMART execute Offline immediate.
+                    Auto Offline data collection on/off support.
+                    Suspend Offline collection upon new
+                    command.
+                    No Offline surface scan supported.
+                    Self-test supported.
+                    Conveyance Self-test supported.
+                    Selective Self-test supported.
+SMART capabilities:            (0x0003) Saves SMART data before entering
+                    power-saving mode.
+                    Supports SMART auto save timer.
+Error logging capability:        (0x01) Error logging supported.
+                    General Purpose Logging supported.
+Short self-test routine 
+recommended polling time:    (   1) minutes.
+Extended self-test routine
+recommended polling time:    ( 148) minutes.
+Conveyance self-test routine
+recommended polling time:    (   2) minutes.
+SCT capabilities:          (0x103b) SCT Status supported.
+                    SCT Error Recovery Control supported.
+                    SCT Feature Control supported.
+                    SCT Data Table supported.</code></pre>
+<p>For example, note how this device is telling me that performing a short self-test is estimated to take 1 minute.</p>
+<h1 id="attributes">Attributes</h1>
+<p>You can view the SMART attributes supported by the device and their values. With my device I get this output:</p>
+<pre><code>$ sudo smartctl --attributes /dev/sdb
+
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+SMART Attributes Data Structure revision number: 10
+Vendor Specific SMART Attributes with Thresholds:
+ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
+  1 Raw_Read_Error_Rate     0x000f   092   092   006    Pre-fail  Always       -       104646032
+  3 Spin_Up_Time            0x0003   097   093   000    Pre-fail  Always       -       0
+  4 Start_Stop_Count        0x0032   100   100   020    Old_age   Always       -       621
+  5 Reallocated_Sector_Ct   0x0033   045   045   036    Pre-fail  Always       -       1128
+  7 Seek_Error_Rate         0x000f   062   060   030    Pre-fail  Always       -       1606206
+  9 Power_On_Hours          0x0032   100   100   000    Old_age   Always       -       319
+ 10 Spin_Retry_Count        0x0013   100   099   097    Pre-fail  Always       -       0
+ 12 Power_Cycle_Count       0x0032   100   100   020    Old_age   Always       -       393
+184 End-to-End_Error        0x0032   100   100   099    Old_age   Always       -       0
+187 Reported_Uncorrect      0x0032   001   001   000    Old_age   Always       -       445
+188 Command_Timeout         0x0032   100   092   000    Old_age   Always       -       8590065680
+189 High_Fly_Writes         0x003a   100   100   000    Old_age   Always       -       0
+190 Airflow_Temperature_Cel 0x0022   066   050   045    Old_age   Always       -       34 (Min/Max 25/34)
+191 G-Sense_Error_Rate      0x0032   100   100   000    Old_age   Always       -       0
+192 Power-Off_Retract_Count 0x0032   100   100   000    Old_age   Always       -       257
+193 Load_Cycle_Count        0x0032   098   098   000    Old_age   Always       -       5170
+194 Temperature_Celsius     0x0022   034   050   000    Old_age   Always       -       34 (0 20 0 0 0)
+195 Hardware_ECC_Recovered  0x001a   049   046   000    Old_age   Always       -       104646032
+197 Current_Pending_Sector  0x0012   095   095   000    Old_age   Always       -       103
+198 Offline_Uncorrectable   0x0010   095   095   000    Old_age   Offline      -       103
+199 UDMA_CRC_Error_Count    0x003e   200   200   000    Old_age   Always       -       0
+254 Free_Fall_Sensor        0x0032   100   100   000    Old_age   Always       -       0</code></pre>
+<ul>
+<li><p>This table shows a list of attributes that the SMART of this device supports. By looking at the values in the <strong>ID</strong> column, we can see that a particular device will only support a small subset of all the attributes defined in the SMART standard.</p></li>
+<li><p>The attribute <strong>Type</strong> indicates whether the value of that attribute indicates imminent failure, like in next few hours (if it says <strong>Pre-fail</strong>) or indicates that the disk is getting old (if it says <strong>Old-age</strong>).</p></li>
+<li><p>The <strong>Value</strong> is a normalized value that has been converted from the <strong>Raw Value</strong> by the device firmware. Devices do not necessarily have to provide these values in a way that make sense to normal users. What we can do is to compare the value to the Threshold value and come to a decision.</p></li>
+<li><p><strong>Threshold</strong> is a value in the range 0-255. The most confusing part is that the attribute is said to have failed if the normalized value is less than the threshold (and not greater than as I assumed)! I know it does not make any sense, but that is how it is defined.</p></li>
+</ul>
+<h1 id="self-tests">Self tests</h1>
+<p>I found that the attribute values cannot always indicate there is a problem with your disk. For example, the above values are seem normal, but this disk already has bad sectors and is failing. The best way to be sure is to run the SMART self-tests available in the device firmware. These tests are designed such that they can be performed even if the device is mounted and being used. You might notice some IO performance degradation while the test is running.</p>
+<ul>
+<li>Here is how I ran a short self-test on my device:</li>
+</ul>
+<pre><code>$ sudo smartctl --test=short /dev/sdb
+
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF OFFLINE IMMEDIATE AND SELF-TEST SECTION ===
+Sending command: &quot;Execute SMART Short self-test routine immediately in off-line mode&quot;.
+Drive command &quot;Execute SMART Short self-test routine immediately in off-line mode&quot; successful.
+Testing has begun.
+Please wait 1 minutes for test to complete.
+Test will complete after Sun Dec 25 19:50:22 2016
+
+Use smartctl -X to abort test.</code></pre>
+<p>The command returns immediately, because the self-test will be run by the device in the background.</p>
+<ul>
+<li>If you just want to see if the self-test succeeded or failed, then query the capabilities and look at the value of the <strong>Self-test execution status</strong>.</li>
+</ul>
+<p>Here is what I see on a good drive:</p>
+<pre><code>$ sudo smartctl --capabilities /dev/sda
+
+Self-test execution status:      (   0) The previous self-test routine completed
+                    without error or no self-test has ever 
+                    been run.</code></pre>
+<p>Here is what I see on a failing device:</p>
+<pre><code>$ sudo smartctl --capabilities /dev/sda
+
+Self-test execution status:      ( 121) The previous self-test completed having
+                    the read element of the test failed.</code></pre>
+<ul>
+<li>To see the error log of the self-test, I use:</li>
+</ul>
+<pre><code>$ sudo smartctl --log=selftest /dev/sdb
+
+smartctl 6.5 2016-01-24 r4214 [x86_64-linux-4.4.0-47-generic] (local build)
+Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+SMART Self-test log structure revision number 1
+Num  Test_Description    Status                  Remaining  LifeTime(hours)  LBA_of_first_error
+# 1  Short offline       Completed: read failure       90%       319         849336942
+# 2  Short captive       Completed: read failure       90%       319         849336942
+# 3  Short offline       Completed: read failure       90%       319         849336942
+# 4  Short offline       Completed: read failure       90%       319         849336942
+# 5  Short offline       Completed: read failure       90%       318         849336942
+# 6  Short offline       Completed: read failure       90%       318         849336942
+# 7  Short offline       Completed: read failure       90%       318         849336942
+# 8  Conveyance offline  Completed: read failure       90%       318         849336942</code></pre>
+<p>We can see that there are failures, indicating that the disk is already failing.</p>
+<p><strong>Tried with:</strong> smartmontools 6.4 and Ubuntu 16.04</p>
+</body>
+</html>

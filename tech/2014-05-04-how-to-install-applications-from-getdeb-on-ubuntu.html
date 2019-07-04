@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install applications from GetDeb on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install applications from GetDeb on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-04 05:31:45+00:00</h3>
+</div>
+<p>The Ubuntu repositories provide a wide range of applications which can be directly installed from their servers. However, there are many other good applications which are not included in the repositories. <a href="http://www.getdeb.net/">GetDeb</a> is a popular service that makes many of these other applications available to install on Ubuntu. Installing an application from GetDeb is easy:</p>
+<ul>
+<li>Download and install the GetDeb package:</li>
+</ul>
+<pre><code>$ wget http://archive.getdeb.net/install_deb/getdeb-repository_0.1-1~getdeb1_all.deb
+$ sudo dpkg -i getdeb-repository_0.1-1~getdeb1_all.deb</code></pre>
+<ul>
+<li>Update the APT cache with the list of packages from GetDeb:</li>
+</ul>
+<pre><code>$ sudo apt-get update</code></pre>
+<ul>
+<li>You can now install any of the applications from GetDeb using <code>apt-get install</code> as usual.</li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

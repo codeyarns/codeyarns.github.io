@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>The two clipboards in Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">The two clipboards in Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-01-18 14:16:52+00:00</h3>
+</div>
+<p>If you have come to Linux from Windows or Mac, you might have observed some strange behavior when copying or pasting content. This confusing behavior is caused because there are usually <strong>two clipboards</strong> in Linux.</p>
+<h1 id="x-clipboard">X clipboard</h1>
+<p>The X window system has its own clipboard. It is also known as a cutbuffer. Any text or content you mark by highlighting with the mouse cursor is automatically copied to this clipboard. This is known as the <a href="https://wiki.archlinux.org/index.php/Xterm#Copy_and_paste"><strong>PRIMARY selection</strong></a> or <a href="https://en.wikipedia.org/wiki/X_Window_selection"><strong>X Window selection</strong></a> or just <strong>selection</strong> in X jargon. When you middle-click the mouse cursor at the destination location, this copied content is pasted there.</p>
+<h1 id="window-manager-clipboard">Window manager clipboard</h1>
+<p>In addition to the X clipboard, your window manager or desktop environment (like KDE or GNOME) typically maintains its own clipboard. It might even have a clipboard manager which can maintain a historical buffer of content copied to the clipboard.</p>
+<p>Typically, text or content is copied to this clipboard when you highlight it and use the keyboard shortcut <code>Ctrl+C</code> or right-click with mouse and choose <strong>Copy</strong>. Content from this clipboard is pasted when you use the keyboard shortcut <code>Ctrl+V</code> or right-click with mouse and choose <strong>Paste</strong>.</p>
+<h1 id="syncing-clipboards">Syncing clipboards</h1>
+<p>Typically, the window manager or its clipboard manager will have an option that allows you to sync this clipboard with the X window selection clipboard. That is, content copied in either clipboard appears in the other ready for pasting.</p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://specifications.freedesktop.org/clipboards-spec/clipboards-latest.txt">FreeDesktop clipboard specifications</a></li>
+</ul>
+</body>
+</html>

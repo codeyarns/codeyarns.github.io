@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>OpenGL functions not resolved in Eclipse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">OpenGL functions not resolved in Eclipse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-06 12:37:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>In <strong>Eclipse</strong>, I am able to build and run C++ code that calls <strong>OpenGL</strong> functions. However, most of the OpenGL calls are marked as <strong>could not be resolved</strong> by the <strong>Indexer</strong> in Eclipse.</p>
+<h1 id="solution">Solution</h1>
+<p>Almost all of the modern OpenGL functions are defined behind the <code>GL_GLEXT_PROTOTYPES</code> symbol in header files such as <code>gl.h</code> and <code>glext.h</code>. We need to define this <strong>symbol</strong> for the Indexer.</p>
+<p>Go to project Properties -&gt; C/C++ General -&gt; Paths and Symbols. Under the Symbols tab, add a new symbol with the <strong>Name</strong> as <code>GL_GLEXT_PROTOTYPES</code>. No value needs to be provided. Rebuild the index for the project and the unresolved indications for OpenGL functions should be gone!</p>
+<p><strong>Tried with:</strong> Eclipse 4.5 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to edit remote files using Remote VSCode</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to edit remote files using Remote VSCode</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-05-03 04:49:01+00:00</h3>
+</div>
+<p><strong>Visual Studio Code</strong> is a great editor for local files. <a href="https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode"><strong>Remote VSCode</strong></a> is an extension that enables editing files on remote systems in your local VSCode. Note that you will need to specify individual files on the remote computer and they will appear in your local VSCode. You cannot open a remote folder and expect all of the code there to be indexed for code browsing with this method.</p>
+<ul>
+<li>Install <strong>rmate</strong> on the remote computer. rmate has been ported from its original Ruby implementation to Python, Bash and other languages. I like to use <a href="https://github.com/sclukey/rmate-python"><strong>rmate-python</strong></a>. Installing it is easy:</li>
+</ul>
+<pre><code>$ sudo pip3 install rmate</code></pre>
+<ul>
+<li><p>On your local VSCode, install the <strong>Remote VSCode</strong> extension from <a href="https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode">here</a>.</p></li>
+<li><p>Open Preferences → Settings and in the User Settings window, add the following settings:</p></li>
+</ul>
+<pre><code>//-------- Remote VSCode configuration --------
+
+// Port number to use for connection.
+&quot;remote.port&quot;: 52698,
+
+// Launch the server on start up.
+&quot;remote.onstartup&quot;: true
+
+// Address to listen on.
+&quot;remote.host&quot;: &quot;127.0.0.1&quot;
+
+// If set to true, error for remote.port already in use won&#39;t be shown anymore.
+&quot;remote.dontShowPortAlreadyInUseError&quot;: false</code></pre>
+<ul>
+<li><p>Restart VSCode and run the command <strong>Remote: Start server</strong> by pressing F1.</p></li>
+<li><p>SSH to your remote machine with port tunneling:</p></li>
+</ul>
+<pre><code>$ ssh -R 52698:127.0.0.1:52698 yourlogin@remotecomputer</code></pre>
+<ul>
+<li>Once you are SSHed into the remote computer, run this command there:</li>
+</ul>
+<pre><code>$ rmate -p 52698 file/you/want/to/edit</code></pre>
+<p>The file will appear in your local VSCode for editing. The remote file will be updated with any changes you make locally after you save the file.</p>
+<p><strong>Tried with:</strong> Visual Studio Code 1.22.2 and Remote VSCode 1.1.0</p>
+</body>
+</html>

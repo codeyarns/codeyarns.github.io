@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get started with wxWidgets on Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get started with wxWidgets on Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-12-16 06:22:58+00:00</h3>
+</div>
+<p><a href="http://www.wxwidgets.org/"><strong>wxWidgets</strong></a> is a cross-platform GUI library, that is also available for Windows. You can get started with using wxWidgets in a few steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Download and install the Windows installer for the current stable release of wxWidgets from its <a href="http://www.wxwidgets.org/downloads/">download page</a>. It installs the source and build files in <code>C:</code>. For example, in <code>C:\wxWidgets-3.0.0\</code></p></li>
+<li><p>wxWidgets needs to be built before it can be used with your application. Go to <code>C:\wxWidgets-3.0.0\build\msw</code> and open the <code>.sln</code> file that matches the Visual Studio version you intend to use for your application. For example, I open <code>wx_vc10.sln</code> using Visual Studio 2010.</p></li>
+<li><p>Choose one of the build types: <code>Debug</code>, <code>Release</code>, <code>DLL Debug</code> or <code>DLL Release</code> and build the solution. The resulting <code>.lib</code> files are placed in <code>C:\wxWidgets-3.0.0\lib\vc_lib</code></p></li>
+<li><p>Create a new Visual Studio solution for your C++ application. Remember that it has to be <code>Win32 Project</code>, not a <code>Win32 Console Project</code>. The difference is that the <code>main</code> function is defined inside wxWidgets and does not need to be defined in your application code.</p></li>
+<li><p>Add a <code>.cpp</code> file to your solution and copy the <a href="http://docs.wxwidgets.org/trunk/overview_helloworld.html">Hello World code</a> into it.</p></li>
+<li><p>Add <code>C:\wxWidgets-3.0.0\include</code> and <code>C:\wxWidgets-3.0.0\include\msvc</code> as additional include directories to the solution.</p></li>
+<li><p>Add <code>C:\wxWidgets-3.0.0\lib\vc_lib</code> as additional library directory to the solution.</p></li>
+<li><p>Build the solution and run it to see an empty wxWidgets window.</p></li>
+</ol>
+<p><strong>Tried with:</strong> wxWidgets 3.0.0, Visual Studio 2012 and Windows 7 x64</p>
+</body>
+</html>

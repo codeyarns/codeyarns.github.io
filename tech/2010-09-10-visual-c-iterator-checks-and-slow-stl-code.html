@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: Iterator Checks and Slow STL Code</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: Iterator Checks and Slow STL Code</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-09-10 03:25:58+00:00</h3>
+</div>
+<p>Visual C++ turns on a lot of <strong>checking</strong> on <strong>STL iterators</strong> when compiled in <strong>Debug</strong> mode. This is very helpful since any mistake with an iterator leads immediately to an exception with a helpful exception message. This can catch latent bugs much much earlier while programming.</p>
+<p>However, this huge amount of security is sometimes not tolerable by everyone. For certain applications the debug mode with all the iterator checking turned on can be extremely slow, to the point of being useless. I faced a similar problem and so had to investigate to find the reason for the slow behaviour. I discovered that there are 2 mutually exclusive checking mechanisms in the STL of Visual C++: checked iterators and iterator debugging.</p>
+<p><strong>Checked Iterators</strong></p>
+<p><strong><a href="http://msdn.microsoft.com/en-us/library/aa985965.aspx">Checked iterators</a></strong> is controlled by the preprocessor definition _SECURE_SCL. SCL is Microsoft jargon for Standard C++ Library. So, this is a feature by Microsoft to provide some amount of minimal security on the usage of STL iterators. The overhead of _SECURE_SCL is so low that by default it is ON for both Release and Debug modes. So, _SECURE_SCL is rarely the cause of your program being slow. It should be left at its default options.</p>
+<p><strong>Iterator Debugging</strong></p>
+<p><a href="http://msdn.microsoft.com/en-us/library/aa985982.aspx"><strong>Iterator debugging</strong></a> is a whole another beast. It involves a lot more intensive checking on the validity of iterators. It does this both when iterators are dereferenced and when containers change internally. This was implemented by Dinkumware, who are the creators of the STL implementation that Visual C++ ships with.</p>
+<p>By default, iterator debugging is turned ON for Debug mode and OFF for Release mode. Typically it is not slow for Debug mode, but if the C++ code has a lot of loops over STL containers and uses iterators heavily, then it can make everything very slow. How slow can it get? This is the difference I saw in one of my programs compiled in Debug mode:</p>
+<blockquote>
+Iterator Debugging ON: 51.83 sec Iterator Debugging OFF: 0.27 sec
+</blockquote>
+<p>Yes, iterator debugging was a jaw-dropping <strong>192</strong> times slower! Not just that, at ~52 seconds of execution, this program was unusable for my purpose!</p>
+<p>Iterator debugging is controlled by the preprocessor definition <strong><a href="http://msdn.microsoft.com/en-us/library/aa985939.aspx">_HAS_ITERATOR_DEBUGGING</a></strong>. To turn off iterator debugging, add <code>_HAS_ITERATOR_DEBUGGING=0</code> to the <em>Preprocessor Definitions</em> in <em>C++ → Preprocessor</em> section of the project properties.</p>
+<p><strong>References:</strong></p>
+<ul>
+<li><strong><a href="http://channel9.msdn.com/shows/Going+Deep/STL-Iterator-Debugging-and-Secure-SCL/">STL Iterator Debugging and Secure SCL</a></strong> video on Channel 9 by Stephan T. Lavavej. A must watch video for anyone using STL on Visual C++. Stephan explains both Secure SCL and Iterator Debugging and how they are implemented internally in the library. Also explained is when and which of these options to turn ON or OFF.</li>
+</ul>
+</body>
+</html>

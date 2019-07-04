@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to load core dump in GDB</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to load core dump in GDB</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-06 08:21:10+00:00</h3>
+</div>
+<p>Running an erroneous program may result it in exiting and dumping a <strong>core dump</strong> file named <code>core</code>. For example:</p>
+<pre><code>$ ./a.out
+./a.out terminated by signal SIGSEGV (Address boundary error)</code></pre>
+<p>We need to load the core dump file in <strong>GDB</strong> to begin investigating the cause of the error. This is typically done using the command:</p>
+<pre><code>$ gdb ./a.out core</code></pre>
+<p>GDB loads the program and using the information from the core dump, the program stack and other information is restored to the point where it encountered the error.</p>
+<p>A common first step in investigation is print the <strong>stack frames</strong> at this point:</p>
+<pre><code>(gdb) backtrace</code></pre>
+<p><strong>Tried with:</strong> GDB 7.7.1, GCC 5.1.0 and Ubuntu 14.04</p>
+</body>
+</html>

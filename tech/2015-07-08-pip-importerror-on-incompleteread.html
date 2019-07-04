@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Pip ImportError on IncompleteRead</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Pip ImportError on IncompleteRead</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-08 12:15:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I was using the <a href="2013/06/27/how-to-install-and-uninstall-python-packages-using-pip/"><strong>Pip</strong></a> from the Ubuntu repositories, installed using the package <code>python-pip</code>. I upgraded some Python packages using Pip and after one of them failed, invoking <code>pip</code> for any command gave this <code>ImportError</code> on the name <code>IncompleteRead</code>:</p>
+<pre><code>$ pip list
+Traceback (most recent call last):
+  File &quot;/usr/bin/pip&quot;, line 9, in &lt;module&gt;
+    load_entry_point(&#39;pip==1.5.4&#39;, &#39;console_scripts&#39;, &#39;pip&#39;)()
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 351, in load_entry_point
+    return get_distribution(dist).load_entry_point(group, name)
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2363, in load_entry_point
+    return ep.load()
+  File &quot;/usr/lib/python2.7/dist-packages/pkg_resources.py&quot;, line 2088, in load
+    entry = __import__(self.module_name, globals(),globals(), [&#39;__name__&#39;])
+  File &quot;/usr/lib/python2.7/dist-packages/pip/__init__.py&quot;, line 61, in &lt;module&gt;
+    from pip.vcs import git, mercurial, subversion, bazaar  # noqa
+  File &quot;/usr/lib/python2.7/dist-packages/pip/vcs/mercurial.py&quot;, line 9, in &lt;module&gt;
+    from pip.download import path_to_url
+  File &quot;/usr/lib/python2.7/dist-packages/pip/download.py&quot;, line 25, in &lt;module&gt;
+    from requests.compat import IncompleteRead
+ImportError: cannot import name IncompleteRead</code></pre>
+<h1 id="solution">Solution</h1>
+<p>The Pip from Ubuntu can be very old and trails the packages a lot. This problem went away when I removed this Pip and installed the latest one from PyPI:</p>
+<pre><code>$ sudo apt remove python-pip
+$ sudo easy_install pip</code></pre>
+<p><strong>Tried with:</strong> Pip 1.5.4 (old) and 7.1.0 (new) and Ubuntu 14.04</p>
+</body>
+</html>

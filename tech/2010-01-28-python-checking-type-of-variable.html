@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Python: Checking Type of Variable</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Python: Checking Type of Variable</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-01-28 10:36:50+00:00</h3>
+</div>
+<p><code>[isinstance](http://docs.python.org/library/functions.html#isinstance)()</code> seems to be the preferred way to check the <em>type</em> of a Python variable. It checks if the variable (object) is an instance of the class object being checked against.</p>
+<pre><code># Variables of different types
+i = 1
+f = 0.1
+s = &quot;Hell&quot;
+l = [0, 1, 2]
+d = {0:&quot;Zero&quot;, 1:&quot;One&quot;}
+t = (0, 1, 2)
+b = True
+n = None</code></pre>
+<p>All of the following return <code>True</code>:</p>
+<pre><code>isinstance(i, int)
+isinstance(f, float)
+isinstance(s, str)
+isinstance(l, list)
+isinstance(d, dict)
+isinstance(t, tuple)</code></pre>
+<p><code>True</code> and <code>False</code> are an instance of <code>bool</code>, so:</p>
+<pre><code>isinstance(b, bool)</code></pre>
+<p>What about <code>None</code>? For that, there is always:</p>
+<pre><code>n is None</code></pre>
+</body>
+</html>

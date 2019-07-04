@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Return Value versus Output Parameter</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Return Value versus Output Parameter</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-10-21 14:15:24+00:00</h3>
+</div>
+<p>The C++ programmer has to be constantly aware of the performance of the code he is writing. One conundrum that arises often is with the <strong>output</strong> of a function. If this output is an object of substantial size, is it better to return it as the <strong>return value</strong> or as an <strong>output parameter</strong>?</p>
+<p><strong>Question:</strong> Which of these functions is faster?</p>
+<pre><code>Foo Function1();
+void Function2( Foo&amp; );</code></pre>
+<p><strong>Answer:</strong> It depends. Typically it is Function2, sometimes both are comparable.</p>
+<ul>
+<li><p><strong>Function1</strong> looks elegant, both for a programmer and for a mathematician. However, it breaks down as soon as one wants to return <strong>multiple values</strong> from a function. One could use modern C++ constructs like <strong>pair</strong> or <strong>tuple</strong>, but that is extra machinery.</p></li>
+<li><p><strong>Function2</strong> does not look as elegant as Function1. One needs to be careful here to pass the output parameter as a reference (or pointer) parameter. However, this format can handle multiple output parameters easily.</p></li>
+<li><p>Returning built-in types (like integer) or tiny objects are easy for the C++ compiler to optimize. They should be equally fast with both Function1 and Function2.</p></li>
+<li><p>Function1 typically needs to <strong>construct</strong> the object it is returning. Depending on the class of the object, this might take substantial amount of time. After construction, it may need to modify or fill the object with data. <code>cpp Foo Function1() { Foo foo; // Construction cost foo.fillSomething(); return foo; }</code></p></li>
+<li><p>Function2 assumes that the parameter object is already created. It only modifies or fills the object with data.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Function1( Foo&amp; foo)
+{
+foo.fillSomething();
+<span class="cf">return</span>;
+}</code></pre></div></li>
+<li><p>The performance also depends on what is happening in the caller. The caller might be assigning the return value to initialize a new object or to an already existing object.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
+{
+<span class="co">// New object</span>
+Foo f1 = Function1();
+Foo f2;
+Function2( f2 );
+
+<span class="co">// Existing object</span>
+Foo f;
+<span class="cf">while</span> ( x )
+{
+    <span class="co">// Do something</span>
+    f = Function1();
+    <span class="co">// Do something</span>
+    f.clear();
+    Function2( f );
+}
+
+<span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div></li>
+<li><p>Function1 involves <strong>one object creation</strong> inside the function and <strong>one copy</strong> of this object to the destination object. That looks very expensive! However, all modern C++ compilers perform <a href="http://en.wikipedia.org/wiki/Return_value_optimization"><strong>Return Value Optimization (RVO)</strong></a> that eliminates the expensive copy operation.</p></li>
+<li><p>Note that RVO cannot always be applied by the compiler. When this happens, Function1 becomes all the more expensive.</p></li>
+</ul>
+<p>I conducted a simple test using the STL <strong>vector</strong> as the return object. The code used for this can be seen <a href="https://gist.github.com/4432707">here</a>. The code was compiled using the <strong>Visual C++ 2010</strong> compiler (16.00.30319.01) in Release mode.</p>
+<pre><code>New object ...
+Function1: 1.753
+Function2: 1.615
+
+Existing object ...
+Function1: 1.671
+Function2: 1.035</code></pre>
+<p>The results clearly show that <strong>output parameter</strong> is always <strong>faster</strong>. When assigning to a new object, the speed difference is negligible. However, when reusing an existing object, the speed difference is substantial! :-)</p>
+</body>
+</html>

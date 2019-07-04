@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to disable autoselect in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to disable autoselect in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-20 08:49:54+00:00</h3>
+</div>
+<p>When you visually mark or yank any text in terminal Vim, you may find that it is copied to the clipboard in your desktop. In GUI Vim, you may find that any text you mark with the mouse is also copied to the desktop clipboard. (This is different from marking and then explicitly choosing Copy from the toolbar). This is true for most modern compilations of Vim which are compiled with the <code>+xterm_clipboard</code> feature. This behavior of Vim is called <strong>autoselect</strong>.</p>
+<p>If you use a clipboard manager, like Diodon for example, you may find that any editing session in Vim quickly overwrites everything in the clipboard manager. Thankfully, this autoselect behavior of Vim can be turned off.</p>
+<p>To disable the automatic selection and copying of text in terminal Vim, add this line to your vimrc file:</p>
+<pre><code>set clipboard-=autoselect</code></pre>
+<p>To disable the automatic selection and copying of text in GUI Vim, add these lines to your vimrc file:</p>
+<pre><code>set guioptions-=a
+set guioptions-=A
+set guioptions-=aA</code></pre>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Static Class Definition</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Static Class Definition</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-01-10 05:52:40+00:00</h3>
+</div>
+<p>In <strong>C++</strong>, the <code>static</code> specifier is only meaningful when applied on functions and variables. But surprisingly, C++ allows <code>static</code> to be used on a class definition:</p>
+<pre><code>static class Car
+{
+    int _speed;
+};</code></pre>
+<p>This specifier is useless on the class definition since it does not mean anything! This compiles successfully with with Visual C++, only generating a <a href="http://msdn.microsoft.com/en-us/library/eehkcz60.aspx">C4091</a> warning:</p>
+<pre><code>warning C4091: &#39;static &#39; : ignored on left of &#39;Car&#39; when no variable is declared</code></pre>
+<p>This hints at the reason why C++ allows <code>static</code> on a class definition. It is to support the definition of a class and the creation of a static object of that class in a single statement:</p>
+<pre><code>static class Car { int _speed } fooCar;</code></pre>
+<p>The above is equivalent to:</p>
+<pre><code>class Car
+{
+    int _speed;
+};
+
+static Car fooCar;</code></pre>
+</body>
+</html>

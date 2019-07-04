@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use ExtDiff extension of Mercurial</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use ExtDiff extension of Mercurial</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-04-11 09:48:18+00:00</h3>
+</div>
+<p>Mercurial is very convenient to use at the commandline. However, there are certain operations that are better with the GUI. For example, I prefer to use a GUI to go through the diff of uncommitted changes. The <a href="http://mercurial.selenic.com/wiki/ExtdiffExtension">ExtDiff</a> extension can be used to launch a GUI Diff tool to view the diff of a single file or across the entire repository.</p>
+<ul>
+<li>To enable the ExtDiff extension, add this line to your hgrc:</li>
+</ul>
+<pre><code>[extensions]
+hgext.extdiff =</code></pre>
+<ul>
+<li>To view the diff of a particular file using a GUI diff program, for example meld:</li>
+</ul>
+<pre><code>$ hg extdiff -p meld src/bar/foo.cpp</code></pre>
+<ul>
+<li>To view the diff of all uncommitted files using a GUI diff program, for example meld:</li>
+</ul>
+<pre><code>$ hg extdiff -p meld</code></pre>
+<p>Make sure that the GUI diff program you use has the ability to show the diff of multiple files in a directory hierarchy.</p>
+<ul>
+<li>If you want to always launch a particular GUI diff program, then it is better to add a custom command for it. For example, to launch meld using a new command named vdiff, add this line to your hgrc:</li>
+</ul>
+<pre><code>[extdiff]
+cmd.vdiff = meld</code></pre>
+<p>After this, you can view the diff using the vdiff command:</p>
+<pre><code>$ hg vdiff src/bar/foo.cpp
+$ hg vdiff</code></pre>
+<p><strong>Tried with:</strong> Mercurial 2.8.2 and Ubuntu 12.04</p>
+</body>
+</html>

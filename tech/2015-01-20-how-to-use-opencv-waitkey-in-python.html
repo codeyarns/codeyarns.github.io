@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use OpenCV waitKey in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use OpenCV waitKey in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-20 12:21:25+00:00</h3>
+</div>
+<p>The <code>cv::waitKey(n)</code> function in <strong>OpenCV</strong> is used to introduce a delay of <code>n</code> milliseconds while rendering images to windows. When used as <code>cv::waitKey(0)</code> it returns the key pressed by the user on the active window. This is typically used for keyboard input from user in OpenCV programs.</p>
+<pre><code>char c = cv::waitKey(0);
+if (&#39;q&#39; == c)
+    QuitProgram();</code></pre>
+<p>The above function is available in the <strong>Python</strong> API of OpenCV. However, it seems to return an integer value that cannot be compared to a <code>char</code> like above. In fact, it is an ASCII value only in the last 8 bits. To use it to compare with a <code>char</code> first mask everything but the first 8 bits and then convert it using the <code>chr</code> builtin method of Python:</p>
+<pre><code>c = cv2.waitKey(0)
+if &#39;q&#39; == chr(c &amp; 255):
+    QuitProgram()</code></pre>
+<p><strong>Tried with:</strong> OpenCV 2.4.9, Python 2.7.3 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use ya-todo-py</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use ya-todo-py</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-12-24 12:26:00+00:00</h3>
+</div>
+<p><a href="http://todotxt.com/"><strong>todo.txt</strong></a> is a simple and popular method to manage your todo list. I like this method because it uses a simple text file and so simple scripts or programs can be used as TODO list managers. This method was popularized by <strong>Gina Trapani</strong>, who also created a <code>todo.sh</code> shell script to manage the todo list. I found the shell script a bit wanting in features, so I use ya-todo-py instead.</p>
+<p><strong>ya-todo-py</strong> is a todo.txt manager written in Python. You can get it from its Github repository <a href="https://github.com/abztrakt/ya-todo-py">here</a>. You can either run its setup.py script to install it or just stash it somewhere.</p>
+<ul>
+<li>To run the <code>todo.py</code> script, provide the location of a directory where it can store its <code>todo.txt</code> files:</li>
+</ul>
+<pre><code>$ todo.py --todo-dir /path/to/todotxt/dir</code></pre>
+<p>By default, this will list the items in your todo list sorted alphabetically.</p>
+<ul>
+<li>Tasks sorted by name is useless for me. So, I view the todo list items sorted by number:</li>
+</ul>
+<pre><code>$ todo.py --todo-dir /path/to/todotxt/dir -n</code></pre>
+<ul>
+<li>For ease of use, you may want to make an <strong>alias</strong> of your command with all the options. For the Fish shell, I added this alias:</li>
+</ul>
+<pre><code>function todo
+    todo.py --todo-dir /path/to/todotxt/dir -n $argv
+end</code></pre>
+<ul>
+<li>Operations I commonly use:</li>
+</ul>
+<pre><code># List tasks
+$ todo
+
+# Add task
+$ todo add &quot;Pick up bread and milk&quot;
+
+# Complete task 4
+$ todo do 4
+
+# Remove task 3
+$ todo rm 3</code></pre>
+<ul>
+<li>You can add tags, categories or projects to a task, by using your own convention. You can do this by using special characters. For example, I use <strong>plus</strong> symbol for tagging:</li>
+</ul>
+<pre><code># Add task with read tag
+$ todo add &quot;Study Nature paper +read&quot;
+
+# To list all tasks with +read
+$ todo ls +read</code></pre>
+<ul>
+<li>The script has other command options, which can be seen by using the <code>--help</code> option.</li>
+</ul>
+<p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

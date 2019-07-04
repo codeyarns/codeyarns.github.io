@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDA: Occupancy Calculator</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDA: Occupancy Calculator</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-06-27 06:51:57+00:00</h3>
+</div>
+<p>The <strong>CUDA Occupancy Calculator</strong> is an Excel spreadsheet that ships with the CUDA Toolkit. It can be used to determine if the number of threads per block being used to launch a kernel is optimal. This spreadsheet can be found at <code>%ProgramData%\NVIDIA Corporation\GPU SDK\C\tools</code></p>
+<p>The spreadsheet requires 4 inputs from you specific to the kernel you are analyzing:</p>
+<ol style="list-style-type: decimal">
+<li><p>The compute capability of the CUDA device</p></li>
+<li><p>Threads per block you are using for the kernel</p></li>
+<li><p>Registers per thread for the kernel</p></li>
+<li><p>Shared memory per block</p></li>
+</ol>
+<p>You already know (1) and (2) since you are the author of the kernel. (3) and (4) can be found by compiling the code with the option <code>--ptxas-options=-v</code>. This information can be found in the Output window of Visual Studio during compilation. Another alternative is to run the CUDA program with the <strong>Compute Visual Profiler</strong> and this information can be found in the <strong>Profiler Output</strong> sheet.</p>
+<p>Once the above 4 numbers are entered, the 3 charts on the spreadsheet update to show the position of your kernel on them. The 3 charts deal with the parameters threads per block, registers per block and shared memory respectively. Look for the red triangle on the chart whose parameter you have the flexibility to change.</p>
+<p><a href="http://codeyarns.files.wordpress.com/2011/06/20110627-cuda-occupancy.png"><img src="http://codeyarns.files.wordpress.com/2011/06/20110627-cuda-occupancy.png" /></a></p>
+<p>For example, say for a given kernel I have no say in the number of registers and shared memory it uses. However, I have the ability to change the number of threads per block it launches with. Assume that I am currently using 200 threads per block for this kernel. For this case, I look at Chart 1 (Varying Block Size), and check if the red triangle is on any of the global maxima of the curve. If it is not, I look at the threads per block that will put this kernel at the global maxima and try my kernel with that (say 256). In most cases, my CUDA program should execute a bit faster due to this change since the occupancy of the GPU by the threads of this kernel has been improved.</p>
+<p><strong>Tried with</strong>: CUDA 4.0</p>
+</body>
+</html>

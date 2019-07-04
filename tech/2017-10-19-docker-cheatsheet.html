@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Docker cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Docker cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-19 15:23:55+00:00</h3>
+</div>
+<ul>
+<li>To view Docker images available on your local computer:</li>
+</ul>
+<pre><code>$ docker images</code></pre>
+<ul>
+<li>By default, only the images that you pulled by name are displayed. To view all images on your local computer, including the unnamed intermediate images that were pulled down to compose the named images that you pulled:</li>
+</ul>
+<pre><code>$ docker images -a</code></pre>
+<ul>
+<li>To view the full repository name, tag name and ID of images, use the <code>--no-trunc</code> option:</li>
+</ul>
+<pre><code>$ docker images --no-trunc</code></pre>
+<ul>
+<li>To run a Docker image as a container:</li>
+</ul>
+<pre><code>$ docker run image_name</code></pre>
+<ul>
+<li>To run a Docker image as a container and get a shell into it:</li>
+</ul>
+<pre><code>$ docker run -it image_name /bin/bash</code></pre>
+<ul>
+<li>To view all running containers:</li>
+</ul>
+<pre><code>$ docker ps</code></pre>
+<ul>
+<li>To view all containers, not just the running ones:</li>
+</ul>
+<pre><code>$ docker ps -a</code></pre>
+<ul>
+<li>To view the full container ID, image name and command use the <code>--no-trunc</code> option:</li>
+</ul>
+<pre><code>$ docker ps --no-trunc</code></pre>
+<ul>
+<li>To stop a running Docker container provide its container name (not image name) or its container hash:</li>
+</ul>
+<pre><code>$ docker stop container_name</code></pre>
+<p><strong>Tried with:</strong> Docker 17.09 and Ubuntu 16.04</p>
+</body>
+</html>

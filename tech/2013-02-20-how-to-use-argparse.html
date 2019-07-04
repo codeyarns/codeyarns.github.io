@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use argparse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use argparse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-02-20 14:07:41+00:00</h3>
+</div>
+<p>The <strong>argparse</strong> module makes it really easy to read, parse and use the input arguments passed to a <strong>Python</strong> program.</p>
+<p>Usage is in 3 simple steps:</p>
+<ul>
+<li><p>Create an object of <code>ArgumentParser</code></p></li>
+<li><p>Add the arguments you want to parse one by one using <code>add_argument</code></p></li>
+<li><p>Parse the inputs and extract the arguments using <code>parse_args</code>. The arguments are returned in an object with the values available using the object members.</p></li>
+</ul>
+<p>Here is a simple program that illustrates usage of argparse with different types of input arguments:</p>
+<p>https://gist.github.com/ashwin/4995724</p>
+<h1 id="argumentparser">ArgumentParser</h1>
+<p>This call has many useful options, the only one I actually use is:</p>
+<ul>
+<li><code>description</code>: Specify what you want to be displayed about this program when it is invoked using <code>--help</code>.</li>
+</ul>
+<h1 id="add_argument">add_argument</h1>
+<p>This call has many useful options. Many of them are needed in most scripts:</p>
+<ul>
+<li><p>The first input is the option name. If the option is named without a single or double dash, as say <code>radius</code>, then it becomes a positional argument. So, you cannot invoke its option name, but can directly pass its value. For example: <code>./main.py 3.14</code></p></li>
+<li><p>An option can be specified with a single <code>-r</code> or double dash <code>--radius</code>. You can access the value of this option later in the argument object using <code>r</code> or <code>radius</code> member respectively.</p></li>
+<li><p>An option can be specified with both single and double dashes, just separate both the quoted strings by a comma. Note that you can only access the value later using the name provided to the double dash option <code>radius</code>.</p></li>
+<li><p>Input argument to a named option can be separated by a space <code>--radius 13</code> or using the equals symbol <code>--radius=13</code>.</p></li>
+<li><p><strong>action</strong> parameter: There are many strings that can be passed to this parameter indicating what to do when the option is invoked. The most typical usage is to set a True or False value for a boolean using <code>store_true</code> or <code>store_false</code> respectively.</p></li>
+<li><p><strong>default</strong> parameter: Specify the default value to be set if you do not provide a value for this option at the shell.</p></li>
+<li><p><strong>type</strong> parameter: Specify what type the input value should be interpreted as. If you do not specify this, then it will be stored as a string. An error will be thrown if the input you provide cannot be converted to this type.</p></li>
+<li><p><strong>required</strong> parameter: Set this to True if providing a value to this parameter is mandatory. An error is thrown at runtime if the value is not provided by user.</p></li>
+<li><p><strong>help</strong> parameter: Set the string to shown as documentation when the program is invoked with <code>--help</code>.</p></li>
+<li><p><strong>dest</strong> parameter: Specify the member name to be used to store the value passed to this option. By default it has the same name as the option name. If the option name had dashes, they are converted to underscores to create a valid member name.</p></li>
+<li><p>When the program is invoked with <code>-h</code> or <code>--help</code>, it will list the input options available and the documentation you have provided for each option.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Python 3.5 and Ubuntu 16.04</p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install FreeGLUT for Visual Studio 2012</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install FreeGLUT for Visual Studio 2012</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-04-28 14:07:04+00:00</h3>
+</div>
+<p><strong>FreeGLUT</strong> is an open-source library implementation of <strong>GLUT</strong>. These steps helped me install and use FreeGLUT with both <strong>Visual Studio 2012</strong> and <strong>Visual Studio Express 2012 for Windows Desktop</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Download a <strong>stable release</strong> of FreeGLUT from its <a href="http://freeglut.sourceforge.net/">webpage</a>.</p></li>
+<li><p>Unzip the downloaded FreeGLUT file to a directory. Inside it, go to <code>VisualStudio\2012</code> directory and open the <code>freeglut.sln</code> Visual Studio solution file. It opens in Visual Studio.</p></li>
+<li><p>In the toolbar, choose the Solution Configuration as <code>Release</code>. In Solution Explorer, right-click on the <code>freeglut</code> project and choose <code>Build</code>. It should build successfully.</p></li>
+<li><p>Create a new directory named <code>GL</code> in <code>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include</code> Copy all the header files in <code>include\GL</code> of FreeGLUT to this new directory.</p></li>
+<li><p>Copy <code>freeglut.lib</code> from <code>lib\x86</code> to <code>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\lib</code></p></li>
+<li><p>You want to use FreeGLUT to create OpenGL programs. After you build an OpenGL program, copy <code>freeglut.dll</code> from <code>lib\x86</code> to the directory that contains the exe file of this OpenGL program. Your program should now execute successfully.</p></li>
+</ol>
+<p><strong>Tried with:</strong> FreeGLUT 2.8.1, Visual Studio 2012, Visual Studio 2012 for Windows Desktop and Windows 8 x64</p>
+</body>
+</html>

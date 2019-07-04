@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to compile OpenCV with IPP support</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to compile OpenCV with IPP support</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-10-04 10:54:28+00:00</h3>
+</div>
+<p><strong>Intel IPP</strong> is supposed to speed up certain operations in <strong>OpenCV</strong>. To try that I compiled OpenCV with support for Intel IPP using these steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Download and install Intel IPP as explained <a href="/2013/10/04/how-to-install-intel-ipp-on-ubuntu/">here</a>. Make sure that the <code>IPPROOT</code> environment variable is set.</p></li>
+<li><p>Compile OpenCV from source as explained <a href="/2013/07/17/how-to-compile-opencv-on-ubuntu/">here</a>. Make sure to download the latest version of OpenCV from Github <a href="https://github.com/Itseez/opencv">here</a>.</p></li>
+<li><p>In the CMake compilation string, add the following option: <code>-D WITH_IPP=ON</code></p></li>
+</ol>
+<p>You should be able to compile OpenCV with IPP support now.</p>
+<p><strong>Note:</strong> I had tried to compile OpenCV with Intel IPP 8.0. But, I got a few undefined reference errors with those, which I could not resolve.</p>
+<p><strong>Tried with:</strong> OpenCV 2.4, Intel IPP 7.1 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to find which NVIDIA graphics card is in your Ubuntu system</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to find which NVIDIA graphics card is in your Ubuntu system</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-01-25 14:32:45+00:00</h3>
+</div>
+<p>Finding out which <strong>NVIDIA graphics card</strong> is being used inside a <strong>Ubuntu</strong> computer is easy using the <strong>lspci</strong> command:</p>
+<pre><code>$ lspci | grep -i nvidia</code></pre>
+<p>The <strong>lspci</strong> program lists all the <strong>PCI devices</strong> on the system. If there is a NVIDIA graphics card, it should be listed as a <strong>VGA compatible controller</strong> along with its model name.</p>
+<p>Instead of a model name, if you only see <strong>NVIDIA Corporation Device</strong>, then maybe you are using a card released recently. <a href="2013/01/25/how-to-update-pci-id-information-on-ubuntu/">Update the PCI ID information</a> on your computer and try the command again.</p>
+<p><strong>Tried with:</strong> lspci 3.1.8 and Ubuntu 12.04.1 LTS</p>
+</body>
+</html>

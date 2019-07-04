@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add Python 3 as interpreter in Eclipse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add Python 3 as interpreter in Eclipse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-08 14:18:19+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5427&quot; align=&quot;aligncenter&quot; width=&quot;930&quot;][<img src="https://codeyarns.files.wordpress.com/2015/01/20150108-python3-eclipse.png" alt="Python 3 as interpreter in Eclipse" />](https://codeyarns.files.wordpress.com/2015/01/20150108-python3-eclipse.png) Python 3 as interpreter in Eclipse[/caption]</p>
+<p>The <strong>PyDev</strong> plugin adds support for working with Python files to <strong>Eclipse</strong>. However, it is only auto-configured to work with a Python 2.x interpreter. Furthermore, Ubuntu installs Python 2.x by default and needs some manual work to work with Python 3.x.</p>
+<p>To use Python 3.x for your Python files in Eclipse:</p>
+<ul>
+<li>First install Python 3.x:</li>
+</ul>
+<pre><code>$ sudo apt install python3</code></pre>
+<ul>
+<li><p>This installs the Python 3.x interpreter as <code>/usr/bin/python3</code>. We will use this in Eclipse.</p></li>
+<li><p>In Eclipse, open Preferences -&gt; PyDev -&gt; Interpreters -&gt; Python Interpreter. Click <code>Add</code> and add <code>/usr/bin/python3</code>. The <code>Libraries</code> and other settings will be auto-discovered by PyDev.</p></li>
+<li><p>That is it! When you create a new Python project, in its dialog remember to pick <code>Grammar version</code> as <code>3.0</code> and the <code>Interpreter</code> as <code>Python3</code>.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Python 3.4.0, PyDev 3.9.0, Eclipse Luna 4.4.1 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to include or exclude files in Eclipse project</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to include or exclude files in Eclipse project</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-11 12:09:32+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5671&quot; align=&quot;aligncenter&quot; width=&quot;815&quot;][<img src="https://codeyarns.files.wordpress.com/2015/02/20150211_eclipse_filter.png" alt="Directories excluded from a project in Eclipse" />](https://codeyarns.files.wordpress.com/2015/02/20150211_eclipse_filter.png) Directories excluded from a project in Eclipse[/caption]</p>
+<p>You may sometimes need to selectively <strong>include</strong> or <strong>exclude</strong> certain files or directories in an <strong>Eclipse</strong> project. For example, I had a <code>data</code> subdirectory in my Eclipse project with thousands of files. Eclipse would spend lots of time needlessly indexing these files. This can be prevented by just excluding that directory from the project.</p>
+<ol style="list-style-type: decimal">
+<li><p>Right-click on the project and choose Properties. Choose Resource -&gt; Resource Filters.</p></li>
+<li><p>In the <strong>Resource Filters</strong> dialog, click Add and choose which files and directories to either <strong>Include Only</strong> or <strong>Exclude All</strong>. Only provide the file or directory name, not a relative path or absolute path!</p></li>
+<li><p>Refresh the project to update these settings. The excluded files or directories should disappear from the project.</p></li>
+</ol>
+<p>If you are curious, Eclipse puts this setting in the <code>.project</code> file for your project. For example, excluding a subdirectory named <code>zoomba</code> in a project, resulted in Eclipse adding this XML snippet to the <code>.project</code>:</p>
+<p>https://gist.github.com/ashwin/f28de6cd32f0ace0fd9f</p>
+<p><strong>Tried with:</strong> Eclipse Luna 4.4.2 and Ubuntu 14.04</p>
+</body>
+</html>

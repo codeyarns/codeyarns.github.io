@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Thrust: Compact Multiple Vectors Using Predicate</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Thrust: Compact Multiple Vectors Using Predicate</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-06-27 08:02:41+00:00</h3>
+</div>
+<p>From <a href="http://codeyarns.wordpress.com/2011/04/21/thrust-remove-duplicates-in-multiple-vectors/">this earlier post</a>, we can see that the <code>zip_iterator</code> makes it really easy to compact multiple vectors (of same size) based on the duplicate values in one of those vectors.</p>
+<p>Another scenario that arises frequently is the need to compact multiple vectors (of same size) based on testing the value in one of those vectors (using a predicate). We may want to remove all the elements for which the predicate is true.</p>
+<p>For example, say I have 2 vectors. A previous kernel might have invalidated some of the values in the first vector by setting them to <code>-1</code>. Now, I want to compact these 2 vectors such that the elements corresponding to <code>-1</code> in the first vector is removed from both vectors.</p>
+<p>The code required to the above compaction is very similar to that in the earlier blog post:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Many vectors</span>
+thrust::device_vector&lt; <span class="dt">int</span> &gt; vec0;
+thrust::device_vector&lt; <span class="dt">int</span> &gt; vec1;
+
+<span class="co">// Make zip_iterator easy to use</span>
+<span class="kw">typedef</span> thrust::device_vector&lt; <span class="dt">int</span> &gt;::iterator  IntDIter;
+<span class="kw">typedef</span> thrust::tuple&lt; IntDIter, IntDIter &gt;     IntDIterTuple2;
+<span class="kw">typedef</span> thrust::zip_iterator&lt; IntDIterTuple2 &gt;  ZipDIter;
+
+<span class="co">// Remove elements in many vectors if element in vec0 is negative</span>
+ZipDIter newEnd = thrust::remove_if(    thrust::make_zip_iterator( thrust::make_tuple( vec0.begin(), vec1.begin() ) ),
+                                        thrust::make_zip_iterator( thrust::make_tuple( vec0.end(), vec1.end() ) ),
+                                        isTuple2Negative() );
+
+<span class="co">// Erase the removed elements from the vectors</span>
+IntDIterTuple2 endTuple = newEnd.get_iterator_tuple();
+vec0.erase( thrust::get&lt;<span class="dv">0</span>&gt;( endTuple ), vec0.end() );
+vec1.erase( thrust::get&lt;<span class="dv">1</span>&gt;( endTuple ), vec1.end() );</code></pre></div>
+<p>The only extra work needed is to carefully write a predicate that does what we want:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Make predicate easy to write</span>
+<span class="kw">typedef</span> thrust::tuple&lt; <span class="dt">int</span>, <span class="dt">int</span> &gt; IntTuple2;
+
+<span class="co">// Predicate</span>
+<span class="kw">struct</span> isTuple<span class="er">2Negative</span>
+{
+    __host__ __device__ <span class="dt">bool</span> <span class="kw">operator</span>() ( <span class="at">const</span> IntTuple2&amp; tup )
+    {
+        <span class="at">const</span> <span class="dt">int</span> x = thrust::get&lt;<span class="dv">0</span>&gt;( tup );
+        <span class="cf">return</span> ( x &lt; <span class="dv">0</span> );
+    }
+};</code></pre></div>
+<p>That is it, the compaction works like magic! :-)</p>
+<p><strong>Tried with</strong>: CUDA 4.0 and Thrust 1.4.0</p>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Exuberant Ctags</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Exuberant Ctags</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-02-02 13:19:08+00:00</h3>
+</div>
+<p>Good tools to navigate and understand source code is essential when dealing with large projects. Such capabilities are built into IDEs like Visual Studio and Eclipse. However, if you are using Vim, one of the best options is <a href="http://ctags.sourceforge.net/"><strong>Exuberant Ctags</strong></a>.</p>
+<p>Exuberant Ctags provides the <strong>ctags</strong> program that can be used to generate a tag file containing tags for source files of a project. Editors like Vim can use this tags file to help you navigate through type, variable or function definitions of the source code.</p>
+<p>First, <a href="2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">install the package</a> using <strong>exuberant-ctags</strong> as the package name.</p>
+<p>Next, go to the directory with source code and use ctags to generate tags for the source files there. By default, it works on only the files in the current directory. Typically, you want it to chomp through files in all the subdirectories too. This can be done by using the <strong>recursive</strong> option:</p>
+<pre><code>$ ctags -R *</code></pre>
+<p>Now open any file of the project in Vim and indicate the location of the tags file:</p>
+<pre><code>:set tags=/path/to/tags-file</code></pre>
+<p>Congrats! Now you can jump back and forth to definitions. For help on this see <a href="http://vimdoc.sourceforge.net/htmldoc/tagsrch.html#tags">:help tags</a></p>
+<p><strong>Tried with:</strong> Vim 7.3, Exuberant Ctags 5.9 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to upgrade GCC on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to upgrade GCC on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-06 03:08:17+00:00</h3>
+</div>
+<p>As your Ubuntu installation gets older, you might be missing out on newer C++ features in the GCC compilers. You might want to try to upgrade the GCC compilers to a more recent version.</p>
+<p>This can be done by using the <code>ubuntu-toolchain-r/test</code> PPA. For example, on my Ubuntu 14.04 system which had GCC 4.8, I installed GCC 4.9 with these steps:</p>
+<pre><code>$ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+$ sudo apt-get update
+$ sudo apt-get install gcc-4.9 g++-4.9</code></pre>
+<p>The <strong>default</strong> GCC will still remain your original version. The newer version will have to be invoked explicitly, for example as <code>gcc-4.9</code>. If you wish to switch the default to the newer version, that is explained in <a href="2015/02/26/how-to-switch-gcc-version-using-update-alternatives/">this post</a>.</p>
+</body>
+</html>

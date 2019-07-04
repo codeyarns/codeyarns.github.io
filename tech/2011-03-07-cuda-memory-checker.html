@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDA: Memory Checker</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDA: Memory Checker</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-03-07 01:42:34+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2011/03/20110307_cuda_memcheck.png"><img src="http://codeyarns.files.wordpress.com/2011/03/20110307_cuda_memcheck.png" /></a></p>
+<p><strong>CUDA</strong> essentially takes the programmer back to the old world of C where cowboys managed memory all by themselves. This means that memory bugs are sure to creep into even the most carefully written CUDA code!</p>
+<p>The <strong>CUDA memory checker</strong> is one of the tools that can be used to detect and fix memory bugs. On Windows, the CUDA memory checker ships as a standalone program named <code>cuda-memcheck.exe</code> and can be found in the <code>%CUDA_BIN_PATH%</code> directory.</p>
+<p>CUDA memory checker checks for 2 kinds of memory bugs: <strong>out-of-bounds</strong> and <strong>misaligned</strong> accesses in global memory. Here is a simple CUDA program with one such memory bug:</p>
+<pre><code>__global__ void fooKernel(const int* inArr, int num, int* outArr)
+{
+    const int threadNum    = gridDim.x * blockDim.x;
+    const int curThreadIdx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+    for (int i = curThreadIdx; i &lt; num; i += threadNum)
+        outArr[i] = inArr[i] + inArr[i + 1];
+
+    return;
+}
+
+int main()
+{
+    // Allocate memory
+
+    const int num   = 100;
+    int* dInArr     = NULL;
+    int* dOutArr    = NULL;
+    const int size  = num * sizeof(*dInArr);
+
+    cudaMalloc(&amp;dInArr, size);
+    cudaMalloc(&amp;dOutArr, size);
+
+    // Compute
+
+    const int blocksPerGrid     = 128;
+    const int threadsPerBlock   = 128;
+
+    fooKernel&lt;&lt;&lt;blocksPerGrid, threadsPerBlock&gt;&gt;&gt;(dInArr, num, dOutArr);
+
+    // Free memory
+
+    cudaFree(dInArr);
+    cudaFree(dOutArr);
+
+    return 0;
+}</code></pre>
+<p><code>fooKernel</code> is doing one iteration of the <a href="http://en.wikipedia.org/wiki/Prefix_sum"><strong>prefix scan algorithm</strong></a>, adding each element of the input array with its next element and storing that result. The thread accessing the last element <code>[99]</code> will also access <code>[100]</code>, which is out-of-bounds of the input array.</p>
+<p>Such bugs execute silently producing puzzling results and can escape all kinds of <a href="2011/03/02/cuda-error-checking/">CUDA error checking</a> done by the astute programmer.</p>
+<p>When this program is executed with the CUDA memory checker, the memory bug is detected:</p>
+<pre><code>$&gt; cuda-memcheck Foo.exe
+========= CUDA-MEMCHECK
+========= Invalid __global__ read of size 4
+=========     at 0x00000070 in fooKernel
+=========     by thread (99,0,0) in block (0,0)
+=========     Address 0x05100190 is out of bounds
+=========
+========= ERROR SUMMARY: 1 error</code></pre>
+<p>Not only is the programmer now aware of a bug in his program, he knows much more. The output of CUDA memory checker points out that there was an out-of-bounds read of a datatype of size 4 in fooKernel by thread number 99. Armed with this information, the memory bug can hopefully be found and squashed! :-)</p>
+<p><strong>Tried with:</strong> CUDA 3.2</p>
+</body>
+</html>

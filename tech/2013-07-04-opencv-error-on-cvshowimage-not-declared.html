@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>OpenCV error on cvShowImage not declared</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">OpenCV error on cvShowImage not declared</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-07-04 07:50:38+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>I tried to compile some code that uses <strong>OpenCV</strong> and got this error:</p>
+<pre><code>foo.cpp:275:25: error: ‘cvShowImage’ was not declared in this scope
+foo.cpp:532:29: error: ‘cvSaveImage’ was not declared in this scope
+foo.cpp:556:45: error: ‘cvLoadImage’ was not declared in this scope</code></pre>
+<p>That is, the compiler is not able to find the declarations of <strong>cvShowImage</strong>, <strong>cvSaveImage</strong> and <strong>cvLoadImage</strong>. This code used to compile without errors in older versions of OpenCV.</p>
+<p><strong>Solution</strong></p>
+<p>In newer versions of OpenCV, these declarations are in the <strong>highgui.h</strong> header file and it needs to be explicitly included:</p>
+<pre><code>#include &lt;opencv/highgui.h&gt;</code></pre>
+<p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

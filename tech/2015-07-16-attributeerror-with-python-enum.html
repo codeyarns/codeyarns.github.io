@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>AttributeError with Python Enum</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">AttributeError with Python Enum</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-16 12:35:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had code that had worked correctly with Python 2.7 and that used the old <a href="https://pypi.python.org/pypi/enum/"><strong>enum</strong></a> module. Recently it started throwing this error:</p>
+<pre><code>$ ./foo.py 
+Traceback (most recent call last):
+  File &quot;./foo.py&quot;, line 146, in &lt;module&gt;
+    main()
+  File &quot;./foo.py&quot;, line 100, in draw_plot
+    if PlotType.Line == plot_type:
+  File &quot;/usr/local/lib/python2.7/dist-packages/enum/__init__.py&quot;, line 373, in __getattr__
+    raise AttributeError(name)
+AttributeError: Line</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This error is caused when the <a href="https://pypi.python.org/pypi/enum34/"><strong>enum34</strong></a> module has been installed alongside the old enum module. enum34 is the backport for Python 2.x of the standard enum in Python 3.4. Many packages have started to use it and so it will be installed implicitly while installing another package. enum34 overrides the old enum files and causes this error.</p>
+<p>You could remove enum34 and get rid of this error. But since Python 3.x has already adapted a new enum type, it might be wiser to uninstall the old enum and rewrite your code to use enum34. Its syntax is shown in <a href="2013/05/01/how-to-use-enum-in-python/">this example</a>.</p>
+<p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

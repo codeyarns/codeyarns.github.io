@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to check status of port using NMap</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to check status of port using NMap</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-05 14:32:14+00:00</h3>
+</div>
+<p><a href="https://nmap.org/"><strong>NMap</strong></a> is a classic Swiss army knife for network operations. I recently had to check if a certain port on a LAN computer was open or not. This type of diagnostic is very easy to do with NMap.</p>
+<ul>
+<li>NMap can be installed easily:</li>
+</ul>
+<pre><code>$ sudo apt install nmap</code></pre>
+<ul>
+<li>To check if port 9010 was open on the medusa computer:</li>
+</ul>
+<pre><code>$ nmap -p 9010 medusa
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-08-25 13:05 SGT
+Nmap scan report for medusa (192.168.110.22)
+Host is up (0.00035s latency).
+PORT     STATE SERVICE
+9010/tcp open  sdr
+
+Nmap done: 1 IP address (1 host up) scanned in 0.06 seconds</code></pre>
+<p>Turns out that the port 9010 was open.</p>
+<ul>
+<li>To check port 9999 on medusa, which was actually closed:</li>
+</ul>
+<pre><code>$ nmap -p 9999 medusa
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-08-25 13:06 SGT
+Nmap scan report for medusa (192.168.110.22)
+Host is up (0.00030s latency).
+PORT     STATE  SERVICE
+9999/tcp closed unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 0.05 seconds</code></pre>
+<ul>
+<li>To check the status of ports in the range on the medusa computer:</li>
+</ul>
+<pre><code>$ nmap -p 0-10 medusa
+
+Starting Nmap 6.40 ( http://nmap.org ) at 2017-08-25 13:04 SGT
+Nmap scan report for medusa (192.168.110.22)
+Host is up (0.00027s latency).
+PORT   STATE  SERVICE
+0/tcp  closed unknown
+1/tcp  closed tcpmux
+2/tcp  closed compressnet
+3/tcp  closed compressnet
+4/tcp  closed unknown
+5/tcp  closed unknown
+6/tcp  closed unknown
+7/tcp  closed echo
+8/tcp  closed unknown
+9/tcp  closed discard
+10/tcp closed unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 0.08 seconds</code></pre>
+<p><strong>Tried with:</strong> NMap 7.01 and Ubuntu 16.04</p>
+</body>
+</html>

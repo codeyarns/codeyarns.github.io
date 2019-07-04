@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Grep cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Grep cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-13 15:17:45+00:00</h3>
+</div>
+<p><strong>Grep</strong> is the quintessential text search tool of the Unix shell. Many text search tools like <strong>ack</strong> and <strong>ag</strong> are popular now for searching in source code. But, for most common scenarios grep can still be a fast and good enough solution. It is available on every Linux machine you will be working at, so it is a huge bonus to be aware of its usage and capabilities.</p>
+<ul>
+<li><strong>Trivia</strong>: If you type <code>:help grep</code> in the <strong>Vim</strong> editor, you will see the origin of the name grep:</li>
+</ul>
+<pre><code>[Unix trivia: The name for the Unix &quot;grep&quot; command comes from &quot;:g/re/p&quot;, where
+&quot;re&quot; stands for Regular Expression.]</code></pre>
+<ul>
+<li>The most important use of grep is to search for text from <strong>standard input</strong>. This is usually done by <strong>piping</strong> output of another command to grep and searching in that. For example:</li>
+</ul>
+<pre><code>$ ls -1 | grep Xanadu</code></pre>
+<p>Note that the search text can be a <strong>regular expression</strong>. You can find more info about regular expressions from other detailed sources.</p>
+<ul>
+<li>The other common use of grep is to search for text in files. For example:</li>
+</ul>
+<pre><code>$ grep Xanadu *.txt</code></pre>
+<p>Note that the <code>*.txt</code> is expanded by the shell and those filenames are passed to grep. Grep does not lookup the filenames.</p>
+<ul>
+<li>To <strong>ignore case</strong> of the search text (make it case insensitive), use the <code>-i</code> option:</li>
+</ul>
+<pre><code>$ grep -i Xanadu *.txt</code></pre>
+<ul>
+<li>Since the filename lookup is actually done by the shell, it is not recursive by default. To search <strong>recursively</strong> in all files and directories starting from current directory:</li>
+</ul>
+<pre><code>$ grep -R Xanadu *</code></pre>
+<p>Note again, that the wildcard is expanded by the shell and passed to grep. Grep then takes each of those directories and it recurses through them on its own.</p>
+<ul>
+<li>To <strong>reverse</strong> the search, that is, to select lines that do not match the pattern:</li>
+</ul>
+<pre><code>$ grep -v Xanadu *</code></pre>
+<ul>
+<li>To <strong>exclude certain files</strong>, say save files, from grep use the <code>--exclude</code> option:</li>
+</ul>
+<pre><code>$ grep --exclude=&quot;*~&quot; Xanadu *</code></pre>
+<p>To exclude multiple types of files, specify multiple <code>--exclude</code> options.</p>
+<ul>
+<li>To <strong>exclude certain directories</strong>, say Git directories, from grep use the <code>--exclude-dir</code> option:</li>
+</ul>
+<pre><code>$ grep --exclude-dir=&quot;.git&quot; Xanadu *</code></pre>
+<ul>
+<li><p>To exclude files based on glob patterns, you can also put those patterns in a file and pass it to the <code>--exclude-from</code> option. However, this did not seem to work for me.</p></li>
+<li><p>By default, grep prints the file paths which have the search text. To print the <strong>line number</strong>, along with the file paths, use the <code>--line-number</code> option:</p></li>
+</ul>
+<pre><code>$ grep --line-number Xanadu *</code></pre>
+<ul>
+<li>Grep throws out a wall of text where the searched text can be hard to find. Asking it to use <strong>color</strong> using <code>--color</code> can be an useful option:</li>
+</ul>
+<pre><code>$ grep --color Xanadu *</code></pre>
+<p>On my computer, this shows the file path in purple, the line number in green and the searched text in red.</p>
+<ul>
+<li>When searching text in source code files, it is helpful to get some context of where the text is found. Using the <code>-C</code> option you can ask grep to show you some lines of context around the result lines. For example, to get 3 lines of context above and 3 lines of context below every result line:</li>
+</ul>
+<pre><code>$ grep -C 3 Xanadu *.cpp</code></pre>
+<ul>
+<li>Your shell expands both matching filenames and directories and passes them as input to grep. When grep gets a directory as input, it warns that it <strong>Is a directory</strong>. For other files it might also give warnings such as <strong>No such device or address</strong> or <strong>Permission denied</strong>. To hide such messages use the <code>--no-messages</code> option:</li>
+</ul>
+<pre><code>$ grep --no-messages Xanadu *</code></pre>
+<ul>
+<li>Grep does look through <strong>binary files</strong> by default. If the searched text was found, it will just report that the binary file has that text, it does not try to print the matching line, for obvious reasons (no line separators in binary file). However, if you do not want grep poking around in binary files, use the <code>-I</code> or <code>--binary-file=without-match</code> option:</li>
+</ul>
+<pre><code>$ grep --binary-file=without-match Xanadu *</code></pre>
+<p><strong>Tried with:</strong> Grep 2.25 and Ubuntu 16.04</p>
+</body>
+</html>

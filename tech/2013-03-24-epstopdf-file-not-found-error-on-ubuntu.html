@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>EPStoPDF file not found error on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">EPStoPDF file not found error on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-24 13:18:41+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>A <strong>LaTeX</strong> document that compiled with <strong>pdflatex</strong> without errors on Windows using MikTeX was failing with this error on Ubuntu:</p>
+<pre><code>Package epstopdf Warning: Shell escape feature is not enabled.
+! Package pdftex.def Error: File `foobar-eps-converted-to.pdf&#39; not found.</code></pre>
+<p>The document used the <strong>epstopdf</strong> package to include EPS figures. A <strong>foobar.eps</strong> figure that is included in the document would be converted to a PDF file named <strong>foobar-eps-converted-to.pdf</strong>. The inclusion of foobar.eps in the document was giving this error on Ubuntu.</p>
+<p><strong>Solution</strong></p>
+<p>It turns out that epstopdf converts the included EPS document to PDF at compile time. This requires a feature of pdflatex called <strong>shell escape</strong>. This seems to be enabled in MikTeX on Windows, but disabled in Ubuntu. The error went away on enabling the shell escape feature manually while compiling the document:</p>
+<pre><code>$ pdflatex --shell-escape main.tex</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 12.04.2 LTS</p>
+</body>
+</html>

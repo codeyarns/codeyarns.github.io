@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to disable Thinkpad back-forward keys</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to disable Thinkpad back-forward keys</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-08-14 14:49:01+00:00</h3>
+</div>
+<p><strong>Thinkpad</strong> keyboards have <strong>back</strong>-<strong>forward</strong> keys which activate the back-forward action in browsers. However, they are quite irritating because they are placed right above the right-left arrow keys. Pressing them by mistake could make you lose the text you had painstakingly typed into a web form.</p>
+<p>To <strong>disable</strong> these keys in the current session, type these commands at the shell:</p>
+<pre><code>$ xmodmap -e &quot;keycode 166=&quot;
+$ xmodmap -e &quot;keycode 167=&quot;</code></pre>
+<p>To permanently disable them, create a <strong>.Xmodmap</strong> file in your home directory and add these lines to it:</p>
+<p>https://gist.github.com/ashwin/6231755</p>
+<p>Note: This does not work in Ubuntu 14.04, where xmodmap has been replaced with xkb. I do not know of a solution to get this working on that version of Ubuntu.</p>
+<p><strong>Tried with:</strong> Thinkpad X201i and Ubuntu 12.04 LTS</p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>add-apt-repository command not found</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">add-apt-repository command not found</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-24 13:31:46+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I was trying to add an PPA repository and got this error on a server:</p>
+<pre><code>$ sudo add-apt-repository ppa:blah/foobar
+sudo: add-apt-repository: command not found</code></pre>
+<h1 id="solution">Solution</h1>
+<p>The <strong>add-apt-repository</strong> comes from the <code>software-properties-common</code> package. Installing it solved the problem:</p>
+<pre><code>$ sudo apt install software-properties-common</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

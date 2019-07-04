@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Kubuntu install stuck with unmet dependencies</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Kubuntu install stuck with unmet dependencies</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-06-27 14:39:52+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to install <strong>Kubuntu</strong> on an existing <strong>Ubuntu</strong> system using this command:</p>
+<pre><code>$ sudo apt install kubuntu-desktop</code></pre>
+<p>And I got this package dependency error:</p>
+<pre><code>You might want to run &#39;apt-get -f install&#39; to correct these:
+The following packages have unmet dependencies:
+ kde-telepathy-minimal : Depends: kde-config-telepathy-accounts (&gt;= 15.04.0) but it is not going to be installed
+ unity-scope-gdrive : Depends: account-plugin-google but it is not going to be installed
+E: Unmet dependencies. Try &#39;apt-get -f install&#39; with no packages (or specify a solution).</code></pre>
+<p>However, running <code>sudo apt-get -f install</code> would stop with the same dependency problem.</p>
+<h1 id="solution">Solution</h1>
+<p>The key here is to realize that apt itself cannot resolve this cyclic dependency. So, to fix it we need to use a lower-level tool to explicitly take out the offending package. We can do that by using dpkg:</p>
+<pre><code>$ sudo dpkg --purge unity-scope-gdrive
+$ sudo dpkg --purge account-plugin-google
+$ sudo apt-get -f install</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 15.10</p>
+</body>
+</html>

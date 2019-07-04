@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to check maximum packet size for Basler camera</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to check maximum packet size for Basler camera</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-15 12:57:55+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5478&quot; align=&quot;aligncenter&quot; width=&quot;823&quot;][<img src="https://codeyarns.files.wordpress.com/2015/01/20150115-packetsize.png" alt="Pylon Viewer on packet size that is higher than supported by Basler camera" />](https://codeyarns.files.wordpress.com/2015/01/20150115-packetsize.png) Pylon Viewer on packet size that is higher than supported by Basler camera[/caption]</p>
+<p><strong>Basler</strong> GigE cameras transmit image data to the <strong>Ethernet</strong> port of your computer. To obtain the highest <strong>frame rate</strong>, you need to find out the maximum <strong>packet size</strong> supported by the connection between your camera and your computer.</p>
+<p>To do this:</p>
+<ul>
+<li><p>Set the packet size that can be handled by the Ethernet adapter on your computer to the maximum as described <a href="">here</a>.</p></li>
+<li><p>Connect the Basler GigE camera to your computer. Once it is detected, open the <strong>Pylon Viewer</strong> application.</p></li>
+<li><p>In the <strong>Features</strong> section, change to <strong>Expert</strong> mode. Navigate to your camera name -&gt; Transport Layer -&gt; Packet Size. Increase the value and press Enter.</p></li>
+<li><p>Enable <strong>Continuous Shot</strong> mode to view the captured images. After viewing, turn it off.</p></li>
+<li><p>Repeat above two steps by increasing the packet size and viewing the captured images. When the camera reaches a packet size that cannot be supported, the image display freezes. I got a green colored image.</p></li>
+</ul>
+<p>The maximum value of the packet size that was able to capture images correctly is the maximum packet size for your Basler camera. You can set this in Pylon Viewer or in your program.</p>
+<p><strong>Tried with:</strong> Basler acA1600-60gc, Realtek Semiconductor RTL8168/8111 PCIe Gigabit Ethernet Adapter and Windows 7 Professional 64-bit</p>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to calibrate camera using chessboard</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to calibrate camera using chessboard</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-01 03:56:26+00:00</h3>
+</div>
+<p>Whether you are using a RGB or a depth camera in your setup, you will first need to <strong>calibrate</strong> it to be able to undistort the resulting image and to obtain 3D coordinates of depth values. These are the steps I follow to do this:</p>
+<ul>
+<li><p>If you are using a depth camera, it should have an accompanying RGB camera. Make sure that the depth camera is setup to be registered with the RGB camera. For example, this can be done in OpenNI using <code>setImageRegistrationMode(IMAGE_REGISTRATION_DEPTH_TO_COLOR)</code>.</p></li>
+<li><p>Prepare the setup you will use for capturing RGB or depth images. The placement of the camera and the objects should not be disturbed during calibration and later during capture.</p></li>
+<li><p>Print out a chessboard image to A4 paper. For example, I use <a href="http://docs.opencv.org/trunk/_downloads/pattern.png">this chessboard image</a> that is available with OpenCV documentation files. Paste or fix the printed chessboard to a board or pad.</p></li>
+<li><p>Hold or place this board in various orientations and positions in the view of the camera. Take one image for each position. Take at least 10 of these images.</p></li>
+<li><p>Go ahead and do the capture of your experiment next. This will result in capturing a lot more images.</p></li>
+<li><p>To obtain the calibration parameters, we use the camera calibration example code provided along with OpenCV. I have created a CMake project of this code <a href="https://github.com/ashwin/calibrate-camera">here</a>. Build the program.</p></li>
+<li><p>The camera calibration program needs two XML files as input. They can be named anything you wish. I have provided samples of these files in <code>config.xml</code> and <code>images.xml</code> <a href="https://github.com/ashwin/calibrate-camera">here</a>.</p></li>
+<li><p><code>config.xml</code> holds the other details for calibration.</p>
+<ul>
+<li><p><code>BoardSize_Width</code> and <code>BoardSize_Height</code> is the number of <strong>inner corners</strong> along the width and height of the board. For a board with <code>10x7</code> squares, the number of inner corners would be <code>9</code> and <code>6</code>.</p></li>
+<li><p><code>Square_Size</code> is the length (in mm) of the side of a square on the chessboard. You will need to measure this from the printed chessboard.</p></li>
+<li><p><code>Input</code> specifies the file which has the input images, which is <code>images.xml</code> in our case.</p></li>
+<li><p><code>Calibrate_NrOfFrameToUse</code> is the number of images to use from that file for calibration.</p></li>
+<li><p><code>Write_outputFileName</code> is the name of the output XML file from the calibration.</p></li>
+</ul></li>
+<li><p><code>images.xml</code> holds the paths to the chessboard calibration images we captured. Even if you intend to capture depth images for your experiment, you need the chessboard images from the RGB camera for the calibration step here.</p></li>
+<li><p>Call the calibration program as:</p></li>
+</ul>
+<pre><code>$ ./calibrate-camera config.xml</code></pre>
+<p>The output will be written to <code>output.xml</code>. This file can be used as input in your OpenCV program to reconstruct the data from your captured images.</p>
+<p><strong>Reference:</strong></p>
+<ul>
+<li><p><a href="http://docs.opencv.org/doc/tutorials/calib3d/camera_calibration/camera_calibration.html">Camera calibration With OpenCV</a></p></li>
+<li><p><a href="http://docs.opencv.org/trunk/doc/tutorials/calib3d/camera_calibration_square_chess/camera_calibration_square_chess.html">Camera calibration with square chessboard</a></p></li>
+<li><p><a href="http://docs.opencv.org/trunk/doc/py_tutorials/py_calib3d/py_calibration/py_calibration.html">Camera Calibration using Python</a></p></li>
+</ul>
+<p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
+</body>
+</html>

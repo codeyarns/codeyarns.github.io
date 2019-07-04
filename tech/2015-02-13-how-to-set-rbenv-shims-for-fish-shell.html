@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to set rbenv shims for Fish shell</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to set rbenv shims for Fish shell</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-13 12:02:09+00:00</h3>
+</div>
+<p>It is pretty easy to setup rbenv for the Bash shell as described <a href="2015/02/12/how-to-install-rbenv/">here</a>.</p>
+<p>To be able to use rbenv, Ruby and its other tools from the Fish shell, a similar set of commands need to added to <code>~/.config/fish/config.fish</code>:</p>
+<pre><code>set PATH $HOME/.rbenv/bin $PATH
+set PATH $HOME/.rbenv/shims $PATH
+rbenv rehash &gt;/dev/null ^&amp;1</code></pre>
+<p><strong>Tried with:</strong> rbenv 0.4.0, Fish 2.0.0 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to copy retaining relative path</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to copy retaining relative path</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-01-21 14:20:37+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>From a certain directory I wanted to copy a file <code>a/b/c.txt</code> to a destination. But I wanted the relative path <code>a/b</code> to be retained at the destination. A normal copy would just copy <code>c.txt</code> to the destination.</p>
+<h1 id="solution">Solution</h1>
+<p>There is no way to do this using the <code>cp</code> command. One solution is to use <strong>rsync</strong> which supports maintaining the relative file path.</p>
+<p>For example:</p>
+<pre><code>$ pwd
+/home/joe/workspace/foobar
+$ rsync -R a/b/c.txt /home/joe/destination</code></pre>
+<p>This copies <code>c.txt</code> to <code>/home/joe/destination/a/b</code> automatically creating <code>a/b</code> if they do not exist in the destination.</p>
+</body>
+</html>

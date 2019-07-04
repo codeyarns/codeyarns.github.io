@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to save audio of video as MP3</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to save audio of video as MP3</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-07 14:47:38+00:00</h3>
+</div>
+<p>There are times when I want to save the audio stream of a video file as a MP3 file. I tried using <strong>Sound Converter</strong> for this, but it would fail while trying to install plugins. But using <strong>FFMPEG</strong> worked fine!</p>
+<p>To save as a variable bit rate MP3:</p>
+<pre><code>$ ffmpeg -i in.mp4 -vn -acodec libmp3lame -ac 2 -qscale:a 4 -ar 48000 out.mp3</code></pre>
+<p><strong>Tried with:</strong> FFMPEG 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

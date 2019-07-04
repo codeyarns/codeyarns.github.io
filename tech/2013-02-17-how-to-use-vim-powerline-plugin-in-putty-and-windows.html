@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use vim-powerline plugin in PuTTY and Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use vim-powerline plugin in PuTTY and Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-02-17 06:02:53+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_3254&quot; align=&quot;aligncenter&quot; width=&quot;805&quot;][<img src="http://codeyarns.files.wordpress.com/2013/02/20130217-powerline.png" alt="Statusline displayed by vim-powerline" />](http://codeyarns.files.wordpress.com/2013/02/20130217-powerline.png) Statusline displayed by vim-powerline[/caption]</p>
+<p>The <a href="2013/02/17/how-to-install-and-use-vim-powerline-plugin-for-vim/"><strong>vim-powerline</strong></a> plugin can be used to enable a <strong>statusline</strong> in <strong>Vim</strong> that is both beautiful and informative. Using it fully on <strong>Windows</strong> and especially for use with <strong>PuTTY</strong> has a few problems:</p>
+<ol style="list-style-type: decimal">
+<li><p>The Consolas font needs to be patched to view the fancy Unicode symbols in the statusline.</p></li>
+<li><p>Visual mode string symbols are not downloaded properly from Github.</p></li>
+<li><p>Mercurial symbol in Consolas, a lightning symbol, does not display for some reason.</p></li>
+<li><p>Patched Consolas font name cannot be distinguished from the default Consolas in PuTTY.</p></li>
+</ol>
+<p>I have forked the main vim-powerline repository and fixed these issues in it. These fixed files can be obtained <a href="https://github.com/ashwin/vim-powerline">here</a>. Follow the instructions from my <a href="2013/02/17/how-to-install-and-use-vim-powerline-plugin-for-vim/">post on vim-powerline</a> with this fork and you should be able to get the plugin running on Windows.</p>
+<p>For PuTTY, remember to change the font for you SSH session to Powerline-Consolas and also ensure that the terminal can support 256 colors.</p>
+<p><strong>Tried with:</strong> PuTTY 0.62 and Windows 8 x64</p>
+</body>
+</html>

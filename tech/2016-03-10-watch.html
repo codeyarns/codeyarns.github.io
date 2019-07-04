@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>watch</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">watch</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-10 12:22:31+00:00</h3>
+</div>
+<p>The greatest power of Unix-like systems comes from its myriad tools that are built for <strong>composability</strong>. <strong>Watch</strong> is one such excellent tool that can be used to periodically <strong>monitor</strong> by repeatedly running a given program. Some programs, like <code>top</code>, have in-built capability to rewrite the console and show progress with new data. With <code>watch</code>, you can bring to bear this ability on any tool that writes to the console!</p>
+<ul>
+<li>This tool should be there on most systems. If not, installing is easy:</li>
+</ul>
+<pre><code>$ sudo apt install procps</code></pre>
+<ul>
+<li>Example usage: <code>nvidia-smi</code> prints the memory, temperature and frequency of GPUs on a machine. To watch the usage in realtime, updated once every 0.1 second:</li>
+</ul>
+<pre><code>$ watch -n 0.1 nvidia-smi</code></pre>
+<p><strong>Tried with:</strong> ProcPs 3.3.9 and Ubuntu 14.04</p>
+</body>
+</html>

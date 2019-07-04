@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Notes from Effective STL</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Notes from Effective STL</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-05-25 15:31:06+00:00</h3>
+</div>
+<p>I recently read <strong>Effective STL</strong> by Scott Meyers. My review of the book can be found <a href="http://fishmoth.wordpress.com/2010/05/26/effective-stl/">here</a>. Below are my notes from the book.</p>
+<ul>
+<li><p>One guideline that is missing in the book: Do <strong>not</strong> extend the STL containers. It is possible, but brings about nothing but misery.</p></li>
+<li><p>Item 1: Choose your containers with care</p></li>
+</ul>
+<p>The standard sequence containers are: vector, list, deque, string The standard associative containers are: set, multiset, map, multimap</p>
+<p>string is typedef of basic_string<char> wstring is typedef of basic_string<wchar_t></p>
+<p>Scott does not mention this, but I find this useful because when you get compilation errors on string, they will mention basic_string&lt;&gt; and not string.</p>
+<ul>
+<li>Item 2: Beware of the illusion of container-independent code</li>
+</ul>
+<p>This item mentions the most important trick to cut the verbosity of STL: Typedef everything possible.</p>
+<p>For example: <code>cpp class Foo; typedef std::vector&lt;Foo&gt; FooVec; typedef FooVec::iterator FooVecIter;</code></p>
+<ul>
+<li>Item 4: Call empty() instead of checking size() against zero</li>
+</ul>
+<p>empty() is a constant time operation on all containers. size() can sometimes be a linear time operation on certain containers, like std::list.</p>
+<ul>
+<li>Item 5: Prefer range member functions to their single element counterparts</li>
+</ul>
+<p>Instead of doing: <code>cpp for (int i = 0; i &lt; MAX; ++i)     vec.push_back(arr[i]);</code></p>
+<p>Try this:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="bu">std::</span>copy( arr, arr, <span class="bu">std::</span>back_inserter(vec) );</code></pre></div>
+<p>For an example usage of std::back_inserter see <a href="http://codeyarns.wordpress.com/2010/05/25/c-stl-find-common-elements-of-2-sorted-vectors/">this post</a>.</p>
+<ul>
+<li>Item 9: Choose carefully among erasing options</li>
+</ul>
+<p>To me, this is STL's biggest gotcha! std::remove() does not remove elements from the container.</p>
+<p>Use the erase-remove idiom to achieve actual removal: <code>cpp fooVec.erase( std::remove(), fooVec.end() );</code></p>
+<ul>
+<li><p>Item 14: Use reserve to avoid unnecessary reallocations</p></li>
+<li><p>Item 16: Know how to pass vector and string data to legacy APIs</p></li>
+</ul>
+<p><code>cpp if ( !fooVec.empty() )  // This is important!     someCFunctionCall( &amp;v[0], v.size() );</code></p>
+<ul>
+<li>Item 18: Avoid using vector<bool></li>
+</ul>
+<p>It is a pseudo-container with a compressed representation of bools. Avoid using std::vector<bool>, use std::deque<bool> instead. It offers everything that the former does.</p>
+<ul>
+<li><p>Item 21: Always have comparison functions return false for equal values</p></li>
+<li><p>Item 23: Consider replacing associative containers with sorted vectors</p></li>
+</ul>
+<p>If the container is used in a phased manner, first phase only for insertions and the second phase only for lookups, then a sequence container might offer better performance than an associative container.</p>
+<ul>
+<li>Item 27: Use distance and advance to convert a container's const_iterator to iterator</li>
+</ul>
+<p><code>cpp STLContainer v; STLContainer::const_iterator ci = SomeFunction(); STLContainer::iterator i( v.begin() ); std::advance( i, std::distance&lt;STLContainer::const_iterator&gt;( i, ci ));</code></p>
+<ul>
+<li>Item 28: Understand how to use a reverse_iterator's base iterator</li>
+</ul>
+<p>The base() iterator of a reverse_iterator points 1 element in front of the reverse_iterator position. Use with care.</p>
+<ul>
+<li>Item 29: Consider istreambuf_iterator for character-by-character input</li>
+</ul>
+<p>Useful for unformatted input from files:</p>
+<p><code>cpp // Read file to string std::ifstream iFile(&quot;haha.txt&quot;); std::string fileData( std::istreambuf_iterator&lt;char&gt;( iFile ) ), std::istreambuf_iterator&lt;char&gt;() );</code></p>
+<ul>
+<li>Item 30: Make sure destination ranges are big enough</li>
+</ul>
+<p>This usually leads to bugs. Instead, whenever possible use one of the inserters: std::inserter, std::back_inserter or std::front_inserter.</p>
+<p>For an example usage of std::back_inserter see <a href="http://codeyarns.wordpress.com/2010/05/25/c-stl-find-common-elements-of-2-sorted-vectors/">this post</a>.</p>
+<ul>
+<li>Item 31: Know your sorting options</li>
+</ul>
+<p>Ordered by performance, best to worst: partition stable_partition nth_element partial_sort sort stable_sort</p>
+<ul>
+<li>Item 34: Note which algorithms expect sorted ranges</li>
+</ul>
+<p>These are: binary_search lower_bound upper_bound equal_range set_union set_intersection set_difference set_symmetric_difference merge inplace_merge includes</p>
+<ul>
+<li><p>Item 37: Use accumulate or for_each to summarize ranges</p></li>
+<li><p>Item 39: Make predicates pure functions</p></li>
+</ul>
+<p>Predicate is a function that returns bool. Pure function is a function whose return value depends only on its input parameters. It does not have any side effects.</p>
+<ul>
+<li>Item 40: Make functor classes adaptable</li>
+</ul>
+<p>Inherit functors from std::unary_function or std::binary_function so that the necessary types are defined nicely for you.</p>
+<p>Defining functors as classes or structs is purely a matter of style. STL uses structs. Some may find it better since there is no need to declare it as public.</p>
+<ul>
+<li><p>Item 43: Prefer algorithm calls to hand written loops</p></li>
+<li><p>Item 44: Prefer member functions to algorithms with the same names</p></li>
+<li><p>Item 45: Distinguish among count, find, binary_search, lower_bound, upper_bound and equal_range</p></li>
+<li><p>Item 46: Consider function objects instead of functions as algorithm parameters</p></li>
+</ul>
+<p>Passing functors is actually faster than passing pointer to a function! :-)</p>
+</body>
+</html>

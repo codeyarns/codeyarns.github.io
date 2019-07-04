@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to handle Bluetooth devices from shell</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to handle Bluetooth devices from shell</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-24 05:42:28+00:00</h3>
+</div>
+<p>Bluetooth devices can be listed, connected and disconnected by clicking the Bluetooth icon in the top Panel in the Ubuntu Unity desktop. If you prefer to do these simple operations from the commandline, that can be done too.</p>
+<p>To do this, we need the tools from the <code>bluez-tools</code> package:</p>
+<pre><code>$ sudo apt install bluez-tools</code></pre>
+<p>To list all the devices that have paired in the past:</p>
+<pre><code>$ bt-device --list</code></pre>
+<p>This lists each device with its name and UUID. The UUID of a device can be used to connect or disconnect from it.</p>
+<p>To connect an audio device using its UUID, say <code>00:02:3C:2F:F1:D4</code>:</p>
+<pre><code>$ bt-audio --connect 00:02:3C:2F:F1:D4</code></pre>
+<p>To disconnect the same audio device:</p>
+<pre><code>$ bt-audio --disconnect 00:02:3C:2F:F1:D4</code></pre>
+<p><strong>Tried with:</strong> Bluez-tools 0.1.38 and Ubuntu 14.04</p>
+</body>
+</html>

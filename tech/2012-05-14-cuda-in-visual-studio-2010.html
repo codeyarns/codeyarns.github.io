@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDA in Visual Studio 2010</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDA in Visual Studio 2010</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-05-14 11:26:02+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2012/05/20120514-cuda-vs2010.png"><img src="https://codeyarns.files.wordpress.com/2012/05/20120514-cuda-vs2010.png" /></a></p>
+<p><strong>CUDA</strong> 4.0 and later versions work fine with <strong>Visual Studio 2010</strong>. The only noticeable change from Visual Studio 2008 is that <strong>Build Rules</strong> are replaced by <strong>Build Customizations</strong> in Visual Studio 2010.</p>
+<p>Adding CUDA capability to any Visual Studio 2010 solution is easy:</p>
+<ol style="list-style-type: decimal">
+<li>Install the latest version of CUDA Toolkit.</li>
+<li>Right-click the project name in Solution Explorer and choose Build Customizations.</li>
+<li>The <strong>Visual C++ Build Customization Files</strong> dialog should display the one or more CUDA toolkits you have installed. Choose the one you want to use and click OK.</li>
+<li>To change the CUDA compile options, in the project properties look for the section <strong>CUDA C/C++</strong>.</li>
+</ol>
+<p>You should be able to build CUDA source files and run CUDA programs with these changes.</p>
+<p><strong>Tried with:</strong> CUDA 4.1 and Visual Studio 2010</p>
+</body>
+</html>

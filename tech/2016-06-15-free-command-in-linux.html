@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Free command in Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Free command in Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-06-15 15:22:59+00:00</h3>
+</div>
+<p>A common question that occurs to any user of an operating system is how much <strong>memory</strong> is being used and how much is free. The command to check this in Linux is <code>free</code>.</p>
+<p>You run it and it throws up some head-scratching output:</p>
+<pre><code>$ free
+             total       used       free     shared    buffers     cached
+Mem:       5971016    4376120    1594896     210616     237260    2398084
+-/+ buffers/cache:    1740776    4230240
+Swap:      7885820        304    7885516</code></pre>
+<p>Right off the bat you can see that it is showing values in bytes. While this might have been fine back when Unix was invented, it is utterly unreadable with the GBs of RAM we have in today's computers.</p>
+<p>We first fix that by asking it to show human readable output:</p>
+<pre><code>$ free --human
+             total       used       free     shared    buffers     cached
+Mem:          5.7G       4.2G       1.5G       206M       231M       2.3G
+-/+ buffers/cache:       1.7G       4.0G
+Swap:         7.5G       304K       7.5G</code></pre>
+<p>Now we can read the value in GBs and MBs easily.</p>
+<p>Some notes about interpreting the output:</p>
+<ul>
+<li><p>The first two lines of numbers are concerned about <strong>RAM</strong>. The final line of numbers is about your <strong>swap</strong> space.</p></li>
+<li><p>The first three columns seem straightforward: the <strong>total</strong> capacity, how much of the total is <strong>used</strong> by processes and how much of the total is <strong>free</strong>.</p></li>
+<li><p>The next three columns are a bit more complicated. These are the memory <strong>shared</strong> among processes, memory that is being used as <strong>buffers</strong> (temporary storage) by the kernel and as <strong>cached</strong> for pages.</p></li>
+<li><p>The used and free entries in the first line show you how much RAM is being used and is free. You should not get worried if you see the free number being low. Memory lying unused is useless, so kernel tries to use it as buffers and for caching. How much of the used memory has been put up to use as buffers and cache is also shown in the first line.</p></li>
+<li><p>Concerned about how much memory is truly being used by processes you are running? That is why the confusing second line exists! <code>used-in-second-line = used-in-first-line - buffers - cached</code> and <code>free-in-second-line = free-in-first-line + buffers + cached</code>. Take a moment on these values. These calculations make sense since if your processes ask for more memory, the kernel will happily free its buffers and cached resources and hand it over!</p></li>
+<li><p>Finally, the shared is not factored into the second line computation because it is memory that is already shared among the processes. It is already a part of the used memory. Now if you start asking how much memory is being used by a single process then the computation factoring in shared memory gets harder.</p></li>
+<li><p>Please ignore the <code>-/+ buffers/cache</code> text. It is completely confusing to the average user. To make any sense it should have been <code>-/+ buffers+cached</code>.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 15.10</p>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Mercurial: No username supplied</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mercurial: No username supplied</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-03-01 06:03:00+00:00</h3>
+</div>
+<p>The first <strong>error</strong> you might face while using <strong>Mercurial</strong> might be this:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">hg</span> commit
+<span class="ex">abort</span>: no username supplied (see <span class="st">&quot;hg help config&quot;</span>)</code></pre></div>
+<p>Mercurial needs a <strong>username</strong> and email for almost all its operations. It looks for this in a Mercurial <strong>configuration file</strong>.</p>
+<p><strong>For Windows:</strong> The Mercurial configuration file is named <code>Mercurial.ini</code>. You will find a copy of this file in the Mercurial installation directory. Copy it to your <code>%HOMEDRIVE%%HOMEPATH%</code> directory (<code>C:\Users\AverageJoe\</code> on Windows 7).</p>
+<p><strong>For Linux:</strong> The Mercurial configuration file is named <code>.hgrc</code>. Create a file with this name in the home directory of the user if not already there.</p>
+<p>Add these two lines to the Mercurial configuration file:</p>
+<pre><code>[ui]
+username = Average Joe &lt;average.joe@gmail.com&gt;</code></pre>
+<p>Mercurial commands should work fine after this.</p>
+<p><strong>Tried with:</strong> Windows 7 Enterprise, Ubuntu 12.04 and Mercurial 2.0.2</p>
+</body>
+</html>

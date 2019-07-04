@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>PowerShell: List All Aliases</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">PowerShell: List All Aliases</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-07-30 04:43:10+00:00</h3>
+</div>
+<p><strong>PowerShell</strong> comes built-in with <strong>aliases</strong> for almost all commands from the Windows command prompt (like <code>dir</code>) and the most common commands from Linux (like <code>ls</code>). You can also define your own aliases if you find the PowerShell commands too verbose for your taste.</p>
+<p>To view the list of all aliases currently available and their definitions, type:</p>
+<pre><code>Get-ChildItem alias:</code></pre>
+<p>The easiest way to remember this is that all the PowerShell aliases live in a <em>separate drive</em> whose name is <code>alias:</code> So, to list the contents of this drive we use the above command.</p>
+<p>Since, the aliases <code>dir</code> and <code>ls</code> are also mapped to <code>Get-ChildItem</code>, you can also list all the aliases by typing either of:</p>
+<pre><code>dir alias:
+ls alias:</code></pre>
+<p>Pick your poison :-)</p>
+<p><strong>Tried with:</strong> PowerShell 2.0</p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use hgwatchman extension for Mercurial</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use hgwatchman extension for Mercurial</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-11 12:33:22+00:00</h3>
+</div>
+<p><code>hg status</code> command can be very slow on a repository with thousands of files. This is because it has to explicitly check the status of every file. A great method to speed it up is the <a href="https://bitbucket.org/facebook/hgwatchman"><strong>hgwatchman</strong></a> extension for Mercurial. It uses the <a href="2015/02/10/how-to-install-and-use-watchman/"><strong>Watchman</strong></a> tool which relies on the <strong>inotify</strong> mechanism of the Linux kernel to be notified directly of only the changes that occurred to the files in a directory. There are no packages of hgwatchman and Watchman for Ubuntu, so we need to build them from source. But it is pretty easy to do:</p>
+<ul>
+<li><p>Install the Watchman tool as described <a href="2015/02/10/how-to-install-and-use-watchman/">here</a>.</p></li>
+<li><p>Download the hgwatchman source code:</p></li>
+</ul>
+<pre><code>$ hg clone https://bitbucket.org/facebook/hgwatchman</code></pre>
+<ul>
+<li>Build the code:</li>
+</ul>
+<pre><code>$ cd hgwatchman
+$ make local</code></pre>
+<p>If you forget this step, everything seems to be fine until you start seeing this error:</p>
+<pre><code>$ hg status
+abort: No module named bser!</code></pre>
+<p><code>bser.so</code> is a module that is built by this step.</p>
+<ul>
+<li>Add these lines to your <code>hgrc</code>:</li>
+</ul>
+<pre><code>[extensions]
+hgwatchman = /path/to/hgwatchman/hgwatchman
+
+[hgwatchman]
+mode = on</code></pre>
+<ul>
+<li>That is it! You should see a nice improvement in the performance of <code>hg status</code> after using hgwatchman.</li>
+</ul>
+<p><strong>Tried with:</strong> Watchman 3.0.0, Mercurial. 2.8.3 and Ubuntu 14.04</p>
+</body>
+</html>

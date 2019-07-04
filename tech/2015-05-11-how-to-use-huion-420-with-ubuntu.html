@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Huion 420 with Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Huion 420 with Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-05-11 15:11:00+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_6877&quot; align=&quot;alignnone&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2015/05/20150511_huion_420.png" alt="Writing using Huion 420 in the Xournal app on Ubuntu" />](https://codeyarns.files.wordpress.com/2015/05/20150511_huion_420.png) Writing using Huion 420 in the Xournal app on Ubuntu[/caption]</p>
+<p><strong>Huion 420</strong> is an inexpensive graphics tablet and stylus. It can be used to write, mark, draw or sign in Linux apps.</p>
+<ul>
+<li><p>The <a href="https://github.com/DIGImend/digimend-kernel-drivers"><strong>DIGImend</strong></a> drivers support Huion graphics tablets. The 420 is supported in v5 of these drivers.</p></li>
+<li><p>If you are using Linux kernel v3.17 or later, these drivers are already merged into it. Huion 420 will work correctly when you plug the tablet in.</p></li>
+<li><p>If you are using Linux kernel version less than 3.17, then the Huion 420 stylus will appear to move on the display, but it has problems. For example, it will be restricted to the top-left region of the display.</p></li>
+<li><p>To get full support for Huion 420, download the DIGImend v5 drivers from <a href="https://github.com/DIGImend/digimend-kernel-drivers/releases">here</a>. The file to download is named <code>digimend-kernel-drivers-5.tar.gz</code>.</p></li>
+<li><p>Unzip the downloaded file. Run <code>make</code> to build the drivers.</p></li>
+<li><p>Remove the existing Huion driver that might have been loaded:</p></li>
+</ul>
+<pre><code>$ sudo rmmod hid-huion</code></pre>
+<ul>
+<li><p>Install the new drivers using <code>sudo make install</code></p></li>
+<li><p>Unplug and plug back the Huion 420. You should be able to use the stylus to operate the whole display area, write and draw now.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Linux kernel 3.13.0-44 and Ubuntu 14.04</p>
+</body>
+</html>

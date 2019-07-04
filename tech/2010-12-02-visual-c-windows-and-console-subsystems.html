@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: Windows and Console Subsystems</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: Windows and Console Subsystems</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-12-02 09:31:33+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2010/12/20101202_visualcpp_subsystem.png"><img src="http://codeyarns.files.wordpress.com/2010/12/20101202_visualcpp_subsystem.png" /></a></p>
+<p><strong>Subsystem</strong></p>
+<p>The <a href="http://msdn.microsoft.com/en-us/library/fcc1zstk.aspx"><strong>Subsystem</strong></a> option can be found in any <strong>Visual C++</strong> project here: <em>Project → Properties → Linker → System → Subsystem</em>. The choice of Subsystem decides the execution environment for the executable that is compiled from the project. For a Console application, choose <code>/SUBSYSTEM:CONSOLE</code>. For a Windows (GUI) application, choose <code>/SUBSYSTEM:WINDOWS</code>. There are other Subsystems, but these two are the most common.</p>
+<p><strong>Entry Point Function</strong></p>
+<p>The <a href="http://msdn.microsoft.com/en-us/library/f9t8842e.aspx"><strong>entry point function</strong></a> of the executable is decided based on the Subsystem. A Console executable begins from a <code>main()</code> function, so this should be present somewhere in the project code. A Windows executable begins from a <code>WinMain()</code> function, so this should be defined. If a windowing library (like wxWidgets for example) is being used, that library code would typically have the WinMain call defined inside.</p>
+<p><strong>Preprocessor Definitions</strong></p>
+<p>In older Visual C++ environments, the preprocessor definitions <code>_CONSOLE</code> and <code>_WINDOWS</code> corresponded to the above 2 subsystems. They are still defined by Visual C++ when it creates a project. These definitions are not really needed now. But, there might be header files of external libraries that you use, which might look out for these definitions. So, it might be a good idea to not delete them if you face errors.</p>
+<p><strong>Switching Subsystems</strong></p>
+<p>To switch a Visual C++ project from Console to Windows or vice versa, both the Subsystem and the Preprocessor Definitions need to be changed.</p>
+<p><strong>Errors</strong></p>
+<p>A project has a mismatched Subsystem when its code is written for Console and its Subsystem is set to Windows or vice versa. This manifests itself in errors like:</p>
+<pre><code>MSVCRTD.lib(crtexew.obj) : error LNK2019: unresolved external symbol _WinMain@16 referenced in function ___tmainCRTStartup</code></pre>
+<p>To fix this, make sure the Subsystem matches the code, else switch it.</p>
+</body>
+</html>

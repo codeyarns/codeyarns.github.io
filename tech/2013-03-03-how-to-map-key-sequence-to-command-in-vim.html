@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to map key sequence to command in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to map key sequence to command in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-03 15:41:21+00:00</h3>
+</div>
+<p><strong>Vim</strong> and the thousands of plugins written for it come with <strong>commands</strong> that can be used to enable, disable, toggle or invoke an action. Typically, these commands are textual and verbose to type in. For example, the command to toggle the <a href="2013/01/29/gundo-plugin-for-vim/"><strong>Gundo</strong></a> window is <strong>:GundoToggle</strong></p>
+<p>Vim is highly flexible, in that it gives you the freedom to map these commands to any key sequence you prefer. For example, I decide to I want to toggle Gundo by typing the <strong>Leader</strong> key, followed by <strong>gu</strong>. The leader key is mapped to the backslash () key.</p>
+<p>To map this key sequence to the Gundo toggle command, add this line to your vimrc:</p>
+<pre><code>nnoremap &lt;Leader&gt;gu :GundoToggle&lt;CR&gt;</code></pre>
+<p>Note how the Vim mode for the mapping is specified (normal mode), how the Leader key is specified and how the carriage return has to be explicitly specified.</p>
+<p>Any command can be mapped in this way to any key sequence you desire in Vim.</p>
+<p><strong>Tried with:</strong> Vim 7.3</p>
+</body>
+</html>

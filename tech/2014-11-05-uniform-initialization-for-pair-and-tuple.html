@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Uniform initialization for pair and tuple</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Uniform initialization for pair and tuple</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-11-05 08:23:39+00:00</h3>
+</div>
+<p>The uniform initialization syntax introduced in C++11 makes a lot of C++ code less verbose and thus easier to type and read.</p>
+<p>For example, constructing a pair used to required <code>std::make_pair()</code>, but can now be done directly using the uniform initialization syntax:</p>
+<pre><code>#include &lt;unordered_map&gt;
+std::unordered_map&lt;int, std::pair&lt;double, char&gt;&gt; umap;
+
+// Verbose old method
+umap.insert(std::make_pair(10, std::make_pair(3.14, &#39;p&#39;)));
+
+// Using uniform initialization
+umap.insert({10, {3.14, &#39;p&#39;}});</code></pre>
+<p>Sadly, the same syntax cannot be used for tuple, where it would really come in handy! :-(</p>
+<pre><code>#include &lt;unordered_map&gt;
+std::unordered_map&lt;int, std::tuple&lt;double, char, int&gt;&gt; umap;
+
+// Verbose old method
+umap.insert(std::make_pair(10, std::make_tuple(3.14, &#39;p&#39;, 999)));
+
+// Using uniform initialization
+// Error:
+// converting to const std::tuple&lt;float, char&gt; from initializer list would use explicit constructor
+umap.insert({10, {3.14, &#39;p&#39;, 999}});</code></pre>
+<p>The reason for this is answered <a href="http://stackoverflow.com/questions/14961809">here</a>.</p>
+<p><strong>Tried with:</strong> GCC 4.9.1 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to view GPU topology</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to view GPU topology</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-11-03 15:17:51+00:00</h3>
+</div>
+<p>The <strong>NVIDIA System Management Interface</strong> tool is the easiest way to explore the GPU topology on your system. This tool is available as <strong>nvidia-smi</strong> and is installed as part of the NVIDIA display driver. GPU topology describes how one or more GPUs in the system are connected to each other and to the CPU and other devices in the system. The topology is important to know how data is copied between GPUs or between a GPU and CPU or other device.</p>
+<ul>
+<li>To view the available commands related to GPU topology:</li>
+</ul>
+<pre><code>$ nvidia-smi topo -h</code></pre>
+<ul>
+<li>To view the connection matrix between the GPUs and the CPUs they are close to (CPU affinities):</li>
+</ul>
+<pre><code>$ nvidia-smi topo -m</code></pre>
+<p>Some examples of GPU topologies can be seen <a href="https://gist.github.com/ashwin/e139748bdba15f5af63f0146d01ee4c3">here</a>.</p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Python: Installing modules on Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Python: Installing modules on Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2009-10-24 23:20:37+00:00</h3>
+</div>
+<p>In my short experience with Python, I have found that there is more than one way to install a Python module on Windows and depending on the module you may need to know all the different tricks:</p>
+<ol style="list-style-type: decimal">
+<li><p>Popular modules provide a <code>.exe</code> or <code>.msi</code> setup file. Just double click and it will find out your Python installation location and install its files in all the right locations.</p></li>
+<li><p>Most modules however ship as zipped up Python code. Unzip it, and if you see a <code>setup.py</code> file there, you can install it from the Windows command line using the incantation: <code>python setup.py install</code></p></li>
+<li><p>Sometimes a module is just a single or few <code>.py</code> files. In this case put these files in your <code>$(PYTHONPATH)/Lib</code> directory and your Python code will be able to find them when you <code>import</code> the module.</p></li>
+</ol>
+</body>
+</html>

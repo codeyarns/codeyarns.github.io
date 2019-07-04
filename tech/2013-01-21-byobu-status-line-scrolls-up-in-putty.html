@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Byobu status line scrolls up in PuTTY</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Byobu status line scrolls up in PuTTY</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-01-21 13:18:51+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>You connect to a server using <strong>PuTTY</strong> and run <strong>Byobu</strong> there. Everything looks fine, except the <strong>status line</strong> at the bottom starts to <strong>scroll up</strong>.</p>
+<p><strong>Solution</strong></p>
+<p>This problem is caused because by default PuTTY thinks that the characters it is receiving from the remote computer are encoded as <strong>ISO-8859-1</strong>. But, Byobu is encoding its characters in <strong>UTF-8</strong>. So, fixing this is simple.</p>
+<p>Load the session you are using to connect in PuTTY. Go to Window → Translation and change the <strong>Remote character set</strong> to UTF-8 from the dropdown. Save the session.</p>
+<p><strong>Tried with:</strong> PuTTY 0.62 and Byobu 5.17</p>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to parse program options in C++ using getopt_long</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to parse program options in C++ using getopt_long</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-30 12:50:39+00:00</h3>
+</div>
+<p>Any C or C++ program worth its salt will take some options and arguments from the user at the shell. <strong>Option</strong> is typically of the form <code>-h</code> (short) or <code>--help</code> (long). Options can also have a following <strong>argument</strong>, for example <code>-o someFile.txt</code> or <code>--open someFile.txt</code>. All these types of options and arguments can be processed easily using the <a href="http://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Options.html"><code>getopt_long</code></a> function in the GNU C library.</p>
+<p>An example that illustrates its usage is given below:</p>
+<p>https://gist.github.com/ashwin/d88184923c7161d368a9</p>
+<p><strong>Reference:</strong></p>
+<ul>
+<li><p>Sec 2.1.3 of <strong>Advanced Linux Programming</strong> by CodeSourcery LLC and Mark Mitchell</p></li>
+<li><p><a href="http://man7.org/linux/man-pages/man3/getopt.3.html">getopt(3)</a> Linux man page</p></li>
+</ul>
+<p><strong>Tried with:</strong> GCC 4.9.2 and Ubuntu 14.04</p>
+</body>
+</html>

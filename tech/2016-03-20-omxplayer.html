@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>OMXPlayer</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">OMXPlayer</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-20 03:16:10+00:00</h3>
+</div>
+<p>The <strong>Raspberry Pi</strong> is a great device for video playback using its HDMI output. It is popularly used as a HTPC by installing a full-blown media player solution like <strong>OSMC</strong> (formerly <a href="http://codeyarns.com/tag/raspbmc/"><strong>RaspBMC</strong></a>) or <strong>OpenELEC</strong>. What if you do not want such a heavy-handed solution, but just need the ability to play a video file now and then?</p>
+<p><a href="http://elinux.org/Omxplayer"><strong>OMXPlayer</strong></a> is a command-line video player written specifically for the capabilities of the Raspberry Pi. It is filled with features and can output to the HDMI of the Pi.</p>
+<ul>
+<li>SSH into your Raspbian and install it:</li>
+</ul>
+<pre><code>$ sudo apt-get install omxplayer</code></pre>
+<ul>
+<li><p>Make sure your HDMI is forced to turn on at boot, as described <a href="http://codeyarns.com/2012/10/13/forcing-raspbmc-to-turn-on-hdmi-at-boot/">here</a>.</p></li>
+<li><p>Shutdown your Pi and your TV. Connect the Pi to the TV using a HDMI cable. Power on the TV first and choose the HDMI input. Next, power on the Pi.</p></li>
+<li><p>SSH to the Pi and play the video file you want using OMXPlayer:</p></li>
+</ul>
+<pre><code>$ omxplayer foo.mkv</code></pre>
+<ul>
+<li>For the keyboard shortcuts to control the player:</li>
+</ul>
+<pre><code>$ omxplayer --help</code></pre>
+<ul>
+<li>Though command-line is great for setting up and debugging, if you need to play videos frequently, then consider using the <a href="https://play.google.com/store/apps/details?id=com.tencarssoftware.omxremote">OMX Remote</a> on your Android device. You can browse the files on your Pi and play any of them effortlessly using OMXPlayer using this app. I highly recommend it!</li>
+</ul>
+<p><strong>Tried with:</strong> OMXPlayer 0.3.6, OMX Remote 1.9 and Raspbian 7</p>
+</body>
+</html>

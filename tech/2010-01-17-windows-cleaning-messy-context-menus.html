@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Windows: Cleaning Messy Context Menus</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Windows: Cleaning Messy Context Menus</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-01-17 01:18:30+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_308&quot; align=&quot;aligncenter&quot; width=&quot;433&quot;][<img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_17_shellmenuview.png" />](http://codeyarns.files.wordpress.com/2010/01/2010_01_17_shellmenuview.png) ShellExView and ShellMenuView[/caption]</p>
+<p>Once you install a few applications on Windows, the right-click context menu in Windows Explorer gets populated with all kinds of actions. I like to use the tools <strong><a href="http://www.nirsoft.net/utils/shell_menu_view.html">ShellMenuView</a></strong> and <strong><a href="http://www.nirsoft.net/utils/shexview.html">ShellExView</a></strong> to disable these entries. These entries in the context menu are populated from the registry and these two tools help you disable the entries that you want</p>
+<p>Instead of a single tool, Nirsoft has created 2 tools for this job because there are 2 ways these context menu entries appear:</p>
+<ul>
+<li><p>A menu item with the <strong>action</strong> and the menu item text. (For example, <em>Play with VLC media player</em>.)</p></li>
+<li><p>A menu item populated by an Explorer <strong>shell extension</strong> of an application.</p></li>
+</ul>
+<p>Both tools look and work similarly. You find the offending entries and <em>disable</em> them.</p>
+<ul>
+<li><p>In <strong>ShellMenuView</strong>: You look for the offending menu item. This is easy because you just look for the offending text from the context menu item. This change should take effect immediately.</p></li>
+<li><p>In <strong>ShellExView</strong>: You look for the offending application to figure out its Explorer shell extension entry and disable that. You may need to logout and login before you can see the effect of this change.</p></li>
+</ul>
+<p>Administrator privilege is required by both these tools, since the context menu entries are resident in the <code>HKEY_CLASSES_ROOT</code> section of the Registry.</p>
+<p><strong>Tried with:</strong> ShellExView 1.70 and ShellMenuView 1.15</p>
+</body>
+</html>

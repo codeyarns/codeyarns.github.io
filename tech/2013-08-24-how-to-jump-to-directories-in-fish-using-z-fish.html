@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to jump to directories in fish using z-fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to jump to directories in fish using z-fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-08-24 11:51:50+00:00</h3>
+</div>
+<p>The biggest problem with using the <strong>shell</strong> is that it is painful to <strong>jump</strong> to different directories. If only the shell could <strong>remember</strong> the directories you most frequently use and allow you to jump to them by only typing only a few characters of its name. There is no need to dream, since the awesome <a href="http://github.com/rupa/z"><strong>z</strong></a> does this! However, z is written for bash. Fish users need not despair since there is <a href="https://github.com/sjl/z-fish"><strong>z-fish</strong></a>.</p>
+<p><strong>Install and use</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Clone the Github <a href="https://github.com/sjl/z-fish">repository</a> of z-fish</p></li>
+<li><p>Add this line to your <strong>~/.config/fish/config.fish</strong></p></li>
+</ol>
+<pre><code>. /path/to/z.fish</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Add this line to your <strong>~/.config/fish/functions/fish_prompt.fish</strong></li>
+</ol>
+<pre><code>z --add &quot;$PWD&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li><p>cd around to all the directories you frequently use. This helps z-fish build its database. You can see this in the file <strong>~/.z</strong></p></li>
+<li><p>Now, to jump to any directory just provide a substring of its name to z. For example: z foo</p></li>
+</ol>
+<p><strong>Tried with:</strong> fish 2.0.0 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

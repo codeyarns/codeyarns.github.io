@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Connection reset by peer error of SSHFS</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Connection reset by peer error of SSHFS</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-24 02:09:49+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><a href="2014/09/10/how-to-mount-remote-directory-using-sshfs/"><strong>SSHFS</strong></a> can be used to mount a directory of one computer on another computer. Trying that gave me this error message: <code>Connection reset by peer</code></p>
+<h1 id="solution">Solution</h1>
+<p>I was using the <strong>hostname</strong> of the remote computer. As explained <a href="https://wiki.archlinux.org/index.php/Sshfs">here</a>, this can sometimes give this error. The error went away when I used the <strong>IP address</strong> of the remote computer instead.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

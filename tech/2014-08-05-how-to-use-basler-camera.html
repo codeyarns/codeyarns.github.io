@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Basler camera</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Basler camera</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-05 01:48:22+00:00</h3>
+</div>
+<p>Basler makes industrial cameras. Setting up and using this camera with your own code is quite easy:</p>
+<ul>
+<li><p>Download the Pylon 4 camera software for Linux that matches the CPU architecture of your computer from <a href="http://www.baslerweb.com/Downloads-Software-43868.html?language=en">here</a>.</p></li>
+<li><p>Unzip the tar.gz file you downloaded.</p></li>
+<li><p>Install the software:</p></li>
+</ul>
+<pre><code>$ sudo tar -C /opt -xzf pylonSDK*.tar.gz</code></pre>
+<p>It was installed to <code>/opt/pylon4</code> on my computer.</p>
+<ul>
+<li>Setup permissions for the cameras so that they can be detected by the Linux kernel:</li>
+</ul>
+<pre><code>$ sudo ./setup-usb.sh</code></pre>
+<ul>
+<li><p>Screw the lens on to the camera body. Connect the camera using its USB 3.0 cable to a USB 3.0 port on your computer.</p></li>
+<li><p>To test whether the camera is working, try the Pylon Viewer application:</p></li>
+</ul>
+<pre><code>$ /opt/pylon4/bin/PylonViewerApp</code></pre>
+<p>You should be able to capture images from your camera using this app and also configure its various settings.</p>
+<ul>
+<li>Pylon 4 ships with a lot of sample code that shows how to use its cameras with your own code. Build these samples by setting the appropriate environment variables and try them out:</li>
+</ul>
+<pre><code>$ cd Samples
+$ source /opt/pylon4/bin/pylon-setup-env.sh /opt/pylon4
+$ make
+$ cd Grab
+$ ./Grab</code></pre>
+<p>The shell script to set environment variables did not work under the Fish shell, so I used a Bash shell for this purpose.</p>
+<p><strong>Tried with:</strong> <a href="http://www.baslerweb.com/products/ace.html?model=386">Basler acA1600-20uc camera</a>, Pylon 4 for Linux x86 64-bit and Ubuntu 14.04</p>
+</body>
+</html>

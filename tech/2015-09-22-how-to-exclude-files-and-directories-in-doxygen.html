@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to exclude files and directories in Doxygen</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to exclude files and directories in Doxygen</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-22 12:06:00+00:00</h3>
+</div>
+<p><strong>Doxygen</strong> provides two configuration options to exclude certain files and directories from being indexed: <code>EXCLUDE</code> and <code>EXCLUDE_PATTERNS</code>. Note that these need to be specified in a format that is counter-intuitive to what is common among software tools.</p>
+<ul>
+<li><code>EXCLUDE</code> is used to specify files that need to be excluded. Both absolute and relative paths of files can be specified. Note that specifying directories or a file pattern to match multiple files will <strong>not</strong> work.</li>
+</ul>
+<pre><code>EXCLUDE = src/axle.cpp</code></pre>
+<ul>
+<li><code>EXCLUDE_PATTERNS</code> can be used to exclude files that match file patterns that you provide. Note that providing absolute or relative directories does <strong>not</strong> work! For example, to exclude everything in <code>src</code> directory, I cannot specify <code>src</code> or <code>src/*</code>. Instead, I need to specify this:</li>
+</ul>
+<pre><code>EXCLUDE_PATTERNS = */src/*</code></pre>
+<ul>
+<li>For both these options, multiple inputs can be specified using two styles:</li>
+</ul>
+<pre><code>EXCLUDE_PATTERNS = */src/* \
+                   */include/*</code></pre>
+<pre><code>EXCLUDE_PATTERNS  = */src/*
+EXCLUDE_PATTERNS += */include/*</code></pre>
+<p><strong>Tried with:</strong> Doxygen 1.8.6 and Ubuntu 14.04</p>
+</body>
+</html>

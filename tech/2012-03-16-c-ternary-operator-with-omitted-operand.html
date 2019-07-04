@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C: Ternary Operator with Omitted Operand</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C: Ternary Operator with Omitted Operand</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-03-16 04:14:59+00:00</h3>
+</div>
+<p>The <strong>gcc</strong> compiler supports an alternate syntax of the <strong>ternary operator</strong>:</p>
+<pre><code>x = a ? : b;</code></pre>
+<p>This is called a <a href="http://gcc.gnu.org/onlinedocs/gcc-4.2.4/gcc/Conditionals.html">ternary operator with omitted operand</a>. This is shorthand for:</p>
+<pre><code>x = a;
+if ( !x )
+    x = b;</code></pre>
+<p>This is <em>almost</em> like, but is not like:</p>
+<pre><code>x = a ? a : b;</code></pre>
+<p>The difference is that <strong>a</strong> might be a function with side effect. This alternate syntax of the ternary operator ensures that <strong>a</strong> is processed only once (and not twice like in the second version).</p>
+<p>This extension does not seem to be supported in the Visual C++ compilers.</p>
+</body>
+</html>

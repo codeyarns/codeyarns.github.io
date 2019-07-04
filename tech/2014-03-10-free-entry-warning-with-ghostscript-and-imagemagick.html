@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Free entry warning with Ghostscript and ImageMagick</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Free entry warning with Ghostscript and ImageMagick</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-03-10 02:18:48+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I used the <strong>convert</strong> program from <strong>ImageMagick</strong> to convert a PDF file to PNG image files. The program hung with the following warning:</p>
+<pre><code>**** Warning: considering &#39;0000000000 XXXXX n&#39; as a free entry.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This warning turns out to be from the <strong>Ghostscript program</strong>, which is used by ImageMagick internally to perform this format conversion. <a href="http://bugs.ghostscript.com/show_bug.cgi?id=692690">This page</a> explains that this error has been fixed in a recent version of Ghostscript. I used a newer version of Ubuntu, that is 13.11, that had a newer version of <code>gs</code> and I was able to perform the format conversion. It still gave off the warning, but the conversion was done.</p>
+<p><strong>Tried:</strong> ImageMagick 6.6.9-7 and Ghostscript 9.05 on Ubuntu 12.04 and ImageMagick 6.7.7-10 and Ghostscript 9.10 on Ubuntu 13.11</p>
+</body>
+</html>

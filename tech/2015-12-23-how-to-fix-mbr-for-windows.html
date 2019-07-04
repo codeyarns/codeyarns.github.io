@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to fix MBR for Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to fix MBR for Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-12-23 09:45:59+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had installed <strong>Windows 10</strong> successfully. While messing around with my other Linux partitions, a partition delete went awry and on booting I was dropped into a <strong>GRUB rescue</strong> prompt. What I wanted was the <strong>Master Boot Record</strong> to be restored to boot into Windows 10.</p>
+<h1 id="solution">Solution</h1>
+<ul>
+<li><p>On another computer, I downloaded a Windows 10 ISO and created a bootable Windows recovery USB disk as described <a href="http://codeyarns.com/2015/12/07/how-to-create-windows-installer-usb-stick-using-winusb/">here</a>.</p></li>
+<li><p>I booted with this USB disk, chose Troubleshoot -&gt; Advanced Options -&gt; Command Prompt.</p></li>
+<li><p>At the command prompt, type these commands:</p></li>
+</ul>
+<pre><code>$ bootrec /rebuildbcd
+$ bootrec /fixmbr
+$ bootrec /fixboot
+$ exit</code></pre>
+<p>After restarting I was able to boot into Windows 10.</p>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>ps Cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">ps Cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-09-27 14:16:42+00:00</h3>
+</div>
+<p><strong>ps</strong> is the classic Unix/Linux command to list processes and their details. ps that ships with Linux is super-confusing to use because it supports three types of arguments: Unix options (<code>-u</code>), BSD options (<code>x</code>) and GNU options (<code>--pid</code>). The format of the display will also be different based on which type of option you use! I wish the Linux ps did not have so much backward compatibility and was as simple as the OpenBSD ps.</p>
+<ul>
+<li>With no arguments, ps lists the processes associated with the current terminal:</li>
+</ul>
+<pre><code>$ ps</code></pre>
+<p>This would have been useful many years ago, when Unix users put running programs to background and switched them back to foreground later. Today most Linux users just open multiple terminals to achieve the same, so this invocation is pretty useless.</p>
+<p>Note that is lists the process ID (PID), the terminal of the process (TTY), time it has consumed (TIME) and the command invoked to start the process (CMD).</p>
+<ul>
+<li>To view details of a specific process using its PID, say 9999:</li>
+</ul>
+<pre><code>$ ps 9999</code></pre>
+<ul>
+<li>To view all processes associated with a terminal:</li>
+</ul>
+<pre><code>$ ps a</code></pre>
+<ul>
+<li>To view all processes on the system, try one of these:</li>
+</ul>
+<pre><code>$ ps ax
+$ ps -e</code></pre>
+<ul>
+<li>To view the above processes, but with user (UID) of the processes:</li>
+</ul>
+<pre><code>$ ps aux
+$ ps -ef</code></pre>
+<p>Note that this command might be a bit slow since it needs to convert UIDs to usernames.</p>
+<ul>
+<li>To view the above processes, but with more excruciating details:</li>
+</ul>
+<pre><code>$ ps lax
+$ ps elf</code></pre>
+<ul>
+<li>Any of the above options can be viewed with a simple ASCII tree linking parent and child processes. For example:</li>
+</ul>
+<pre><code>$ ps a --forest</code></pre>
+<ul>
+<li>To view the environment variables associated with a process, provide its PID (say 9999):</li>
+</ul>
+<pre><code>$ ps eww 9999</code></pre>
+<ul>
+<li>The columns that are displayed can be customized. For example:</li>
+</ul>
+<pre><code>$ ps -o user,pid,time,cmd</code></pre>
+</body>
+</html>

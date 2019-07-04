@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to Open Definition in GoClipse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to Open Definition in GoClipse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-16 12:43:07+00:00</h3>
+</div>
+<p>The <strong>Open Definition</strong> operation in a default installation of <strong>Go</strong> and <strong>GoClipse</strong> does not work. This functionality of being able to jump to the definition of a type or function is provided by a tool named <strong>godef</strong>.</p>
+<ul>
+<li>Installing godef is easy:</li>
+</ul>
+<pre><code>$ go get -v github.com/rogpeppe/godef</code></pre>
+<p>This installs a <code>godef</code> binary in the <code>$GOPATH/bin</code> directory.</p>
+<ul>
+<li><p>Open Window -&gt; Preferences -&gt; Go -&gt; Tools and set the path to the <code>godef</code> binary here.</p></li>
+<li><p>Restart Eclipse. Right-click on any member or function and choose Open Definition, it should work now!</p></li>
+</ul>
+<p>Note that GoClipse still does not provide the useful feature of showing details of a type or function in tooltip when you hover over something in the source file.</p>
+<p><strong>Tried with:</strong> GoClipse 0.14.1, Eclipse 4.5.2, Go 1.6.2 and Ubuntu 14.04</p>
+</body>
+</html>

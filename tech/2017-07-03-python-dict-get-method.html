@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Python dict get method</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Python dict get method</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-07-03 15:57:07+00:00</h3>
+</div>
+<p>The Python dictionary provides an associate array interface to get the value associated with a key:</p>
+<pre><code>&gt;&gt;&gt; d = { 1:&quot;cat&quot;, 2:&quot;rat&quot; }
+&gt;&gt;&gt; d[1]
+&#39;cat&#39;</code></pre>
+<p>However, this interface is not very friendly if you lookup a key that does not exist. In such a case, it throws a <code>KeyError</code> exception:</p>
+<pre><code>&gt;&gt;&gt; d[3]
+KeyError: 3</code></pre>
+<p>Python dictionary provides a <strong>get</strong> method that is safer, it returns a <code>None</code> value if the key is not present:</p>
+<pre><code>&gt;&gt;&gt; print(d.get(3))
+None</code></pre>
+<p>This method is actually cooler than it looks cause you can make it return <strong>any</strong> default value you want when the key is not present in the dictionary. You do this by passing the default value as the second argument:</p>
+<pre><code>&gt;&gt;&gt; print(d.get(1, &quot;elephant&quot;))
+cat
+&gt;&gt;&gt; print(d.get(3, &quot;elephant&quot;))
+elephant</code></pre>
+<h1 id="bonus-trick">Bonus trick</h1>
+<p>In many cases, we might have the key in the dictionary, but its value is set to some default value like <code>None</code> or empty string or empty list or empty dict or such values. But at the point we are picking values from keys assume we want such default-valued keys to return a different default value. The trick is that since such default values default to <code>False</code> in Python, we can use that to our advantage.</p>
+<p>For example, say the dictionary is already created and not under our control. But, whenever I read values from it, I want <code>elephant</code> if the key does not exist or if the value is a default value that evaluates to <code>False</code>. It gives rise to an elegant Python idiom using <code>get</code> method and <code>or</code> operator:</p>
+<pre><code>&gt;&gt;&gt; d = { 1:&quot;cat&quot;, 2:&quot;rat&quot;, 3:None, 4:&quot;&quot; }
+&gt;&gt;&gt; v = d.get(1) or &quot;elephant&quot; ; print(v)
+cat
+&gt;&gt;&gt; v = d.get(3) or &quot;elephant&quot; ; print(v)
+elephant
+&gt;&gt;&gt; v = d.get(4) or &quot;elephant&quot; ; print(v)
+elephant
+&gt;&gt;&gt; v = d.get(99) or &quot;elephant&quot; ; print(v)
+elephant</code></pre>
+</body>
+</html>

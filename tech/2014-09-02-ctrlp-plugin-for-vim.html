@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CtrlP plugin for Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CtrlP plugin for Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-02 13:48:50+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_6396&quot; align=&quot;aligncenter&quot; width=&quot;576&quot;][<img src="https://codeyarns.files.wordpress.com/2014/09/20150320_ctrlp.png" alt="CtrlP in action" />](https://codeyarns.files.wordpress.com/2014/09/20150320_ctrlp.png) CtrlP in action[/caption]</p>
+<p><a href="https://github.com/ctrlpvim/ctrlp.vim"><strong>CtrlP</strong></a> is the one plugin for <strong>Vim</strong> that literally changes how and where you use the editor! After you start using it, you will stop changing directories, typing out paths and remembering filenames exactly. Using this plugin, you will just open Vim, press a keyboard shortcut, type a few characters of the filename (fuzzy typing, what you type does not even need to be a substring of the filename or file path!). As you type, CtrlP will show and update a list of what it thinks you want and you choose the matching one by pressing Enter. Believe me, it is magic!</p>
+<p>So, CtrlP supports opening files from three lists: files around the current directory, your currently open buffers and from the most recently used (MRU) list of files. MRU is basically all the files you had previously opened with Vim. I find MRU to be the killer application of CtrlP and customize it to be the default list to lookup (see how below).</p>
+<ul>
+<li><p>CtrlP can be installed easily from its Github repository <a href="https://github.com/ctrlpvim/ctrlp.vim">here</a> using your favorite Vim plugin manager.</p></li>
+<li><p>Inside Vim, you can invoke the plugin anytime by pressing <code>Ctrl+p</code>. By default, CtrlP allows you to open the files around the current directory. They can be filtered down by typing <em>any</em> part of their filename. As each letter is typed, the list of files displayed grows shorter.</p></li>
+<li><p>If you want to search among MRU or among your open buffers, press <code>Ctrl+f</code> once or twice to switch to those modes. Press <code>Esc</code> at any time to dismiss the CtrlP window. You can see which of the three lists is currently being used at the bottom (see screenshot above).</p></li>
+<li><p>To search in MRU by default, add this line to your <code>.vimrc</code> file:</p></li>
+</ul>
+<pre><code>let g:ctrlp_cmd = &#39;CtrlPMRU&#39;</code></pre>
+<p>Most of the time I am opening previously opened files, so I set this in my vimrc file.</p>
+<ul>
+<li>To search in buffers by default, add this line to your <code>.vimrc</code> file:</li>
+</ul>
+<pre><code>let g:ctrlp_cmd = &#39;CtrlPBuffer&#39;</code></pre>
+<ul>
+<li>You cannot move up and down the list of files using the <code>j</code> and <code>k</code> since you need them to type filename characters. Instead you can use <code>Ctrl+j</code> and <code>Ctrl+k</code> to achieve the same. Or you can just keep typing more characters that match the filename you are looking for, so that the list shortens and the correct item comes to the bottom.</li>
+</ul>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

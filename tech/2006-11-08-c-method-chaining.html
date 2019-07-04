@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Method Chaining</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Method Chaining</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2006-11-08 11:21:47+00:00</h3>
+</div>
+<p>I recently had to do this to an object: <code>Fbo f; f.setType(GL_FLOAT); f.setFormat(GL_RGB); f.setIntFormat(GL_RGB32F_ARB); f.init();</code> In this case, calling so many functions was inevitable since I was setting this particular object to non-default values. That is okay, but I would like to do the above like this: <code>Fbo f; f.setType(GL_FLOAT).setFormat(GL_RGB).setIntFormat(GL_RGB32F_ARB).init();</code> This is called <em>method chaining</em> and is a neat C++ trick.</p>
+<p>All that is needed for this to work is that every function that is involved in the chaining (except the rightmost one) needs to <code>return *this</code> at the end of the call. For example: ` `</p>
+<pre><code>class Fbo
+{
+    Fbo&amp; setType(GLenum type)
+    {
+        _type = type;
+        return *this;
+    }
+};</code></pre>
+</body>
+</html>

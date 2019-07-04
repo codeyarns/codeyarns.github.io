@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Pip uninstall error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Pip uninstall error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-02-01 16:26:19+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had installed a package using Pip. However, when I tried to uninstall it, I got this error:</p>
+<pre><code>$ sudo pip uninstall h5py
+Can&#39;t uninstall &#39;h5py&#39;. No files were found to uninstall.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>You first want to make sure that you are using the pip version that matches the package. That is, if you installed a Python 2.x package, that can only be uninstalled using pip. A Python 3.x package can only be uninstalled using pip3.</p>
+<p>In my case, I could not discover the real reason for this error, I resorted to finding the deleting the installed directory for this package. I found the directory <code>h5py-2.6.0-py2.7.egg-info</code> under <code>/usr/local/lib/python2.7/dist-packages</code> and deleted that. If this was a Python 3.x package, I would similarly have looked under the <code>/usr/local/lib/python3.x/</code> directory.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

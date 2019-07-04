@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get autocomplete in GoClipse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get autocomplete in GoClipse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-13 12:57:24+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I installed the <strong>Go</strong> compiler and set the <code>GOROOT</code> and <code>GOPATH</code> environment variables correctly. To work with Go files, I installed the <strong>GoClipse</strong> plugin in <strong>Eclipse</strong>. When I tried to make Goclipse autocomplete my code, I got this error:</p>
+<pre><code>Cannot run program &quot;gocode&quot;: error=2, No such file or directory</code></pre>
+<h1 id="solution">Solution</h1>
+<p>The Go compiler is not typically used for autocompletion. There is a separate <a href="https://github.com/nsf/gocode"><strong>gocode</strong></a> tool that is used for this purpose. So, to get autocompletion we need to install this by using this command:</p>
+<pre><code>$ go get -u github.com/nsf/gocode</code></pre>
+<p>I found that this installed the <code>gocode</code> binary in <code>$GOPATH/bin</code>. I opened Window -&gt; Preferences -&gt; Go -&gt; Tools and set this path for gocode. Autocompletion started working immediately after this! :-)</p>
+<p><strong>Tried with:</strong> GoClipse 0.14.1, Eclipse 4.5.2 and Go 1.6.2</p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDA error: gcc 4.9 and up are not supported</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDA error: gcc 4.9 and up are not supported</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-24 12:19:48+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I have seen this error while compiling a <strong>CUDA</strong> program. I have also seen this error on running a <strong>PyCUDA</strong> program:</p>
+<pre><code>#error -- unsupported GNU version! gcc 4.9 and up are not supported!</code></pre>
+<h1 id="solution">Solution</h1>
+<p>I was using GCC 4.9.2 on this system, but I did not know why CUDA had a problem with these newer versions. <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=757961">Turns out</a> that it does not have any problem, this warning just needs to be choked in the relevant header file.</p>
+<p>For CUDA, this header file was <code>/usr/local/cuda/include/host_config.h</code>. For PyCUDA, this header file was <code>/usr/include/host_config.h</code>.</p>
+<p>This diff should fix this error:</p>
+<pre><code>--- host_config.h.bkp   2015-02-24 09:53:55.232620612 +0800
++++ host_config.h   2015-02-24 10:24:01.428654521 +0800
+@@ -77,11 +77,11 @@
+
+ #if defined(__GNUC__)
+
+-#if __GNUC__ &gt; 4 || (__GNUC__ == 4 &amp;&amp; __GNUC_MINOR__ &gt; 8)
++#if __GNUC__ &gt; 4 || (__GNUC__ == 4 &amp;&amp; __GNUC_MINOR__ &gt; 9)
+
+ #error -- unsupported GNU version! gcc 4.9 and up are not supported!
+
+-#endif /* __GNUC__&gt; 4 || (__GNUC__ == 4 &amp;&amp; __GNUC_MINOR__ &gt; 8) */
++#endif /* __GNUC__&gt; 4 || (__GNUC__ == 4 &amp;&amp; __GNUC_MINOR__ &gt; 9) */
+
+ #endif /* __GNUC__ */</code></pre>
+<p><strong>Tried with:</strong> PyCUDA 2014.1, CUDA 6.5, GCC 4.9.2 and Ubuntu 14.04</p>
+</body>
+</html>

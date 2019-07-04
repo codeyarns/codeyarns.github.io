@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change compiler options used by indexer in Eclipse CDT</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change compiler options used by indexer in Eclipse CDT</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-02 12:02:00+00:00</h3>
+</div>
+<p><strong>Eclipse CDT</strong> understands the <strong>C++</strong> code in a window by running it through an <strong>indexer</strong>. This indexer is nothing but an invocation of the GCC C++ compiler with certain compilation options. Sometimes, you might want to change the compiler options used by this indexer.</p>
+<p>For example, I recently found that C++11 containers and classes (like <code>future</code>) were not resolved by the indexer and were underlined with red squiggles. This is because the compiler options used by the indexer does not have <code>-std=c++11</code>.</p>
+<p>To change the compiler options of the indexer:</p>
+<ol style="list-style-type: decimal">
+<li><p>Open <strong>Preferences</strong> and go to C/C++ -&gt; Build -&gt; Settings.</p></li>
+<li><p>Click the <strong>Discovery</strong> tab and choose <strong>CDT GCC Built-in Compiler Settings</strong>.</p></li>
+<li><p>Modify the command string shown below it as you wish. For example, here I added <code>-std=c++11</code>.</p></li>
+<li><p>Eclipse CDT will automatically re-index your C++ files after this is saved. However, I found that this did not remove the unresolved items.</p></li>
+<li><p>I manually re-indexed by right-clicking the project and choosing Index -&gt; Rebuild. This worked!</p></li>
+</ol>
+<p><strong>Tried with:</strong> Eclipse 4.5 (Mars) and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to create alias in Fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to create alias in Fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-27 08:02:33+00:00</h3>
+</div>
+<p>To create an alias in the fish shell, just create a function of that name:</p>
+<pre><code>function ll
+    ls --human-readable -l
+end</code></pre>
+<p>You can place this function inside <code>~/.config/fish/config.fish</code> file. Or you can place it in a new file named <code>ll.fish</code> in the directory <code>~/.config/fish/functions/</code>.</p>
+<p>To pass the arguments that come after the alias to the underlying command, use the <code>$argv</code> variable:</p>
+<pre><code>function ll
+    ls --human-readable -l $argv
+end</code></pre>
+<p>If you name the alias with the same name as the command, then you get this error at the shell:</p>
+<pre><code>fish: The function calls itself immediately, which would result in an infinite loop.</code></pre>
+<p>So, if you want to reuse the name of a command for the alias, then invoke it using the <a href="http://fishshell.com/docs/2.0/commands.html#command">command</a>. In this example, the alias is named as <code>ls</code> and it invokes <code>ls</code>:</p>
+<pre><code>function ls
+    command ls --human-readable -l $argv
+end</code></pre>
+<p>If you prefer to use the alias command of bash, you can use that instead:</p>
+<pre><code>alias ll=&quot;ls --human-readable -l&quot;</code></pre>
+<p>Since an alias is just a function in fish, you can view the list of aliases by listing the functions:</p>
+<pre><code>$ functions</code></pre>
+<p>To see what a particular alias is defined as, list the code of that function:</p>
+<pre><code>$ functions ll</code></pre>
+<p><strong>Tried with:</strong> fish 2.1.0 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

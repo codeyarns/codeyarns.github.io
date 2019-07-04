@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to make Ubuntu USB flash drive using Disk Image Writer</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to make Ubuntu USB flash drive using Disk Image Writer</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-07-07 14:33:05+00:00</h3>
+</div>
+<p>The commonly known methods to create a <strong>bootable USB flash drive</strong> to install Ubuntu on a computer is by using <a href="https://codeyarns.com/2015/09/12/how-to-make-startup-disk-from-iso-using-startup-disk-creator/"><strong>Startup Disk Creator</strong></a> or using <a href="https://codeyarns.com/2013/06/04/how-to-create-ubuntu-installer-usb-flash-drive-using-unetbootin/"><strong>UNetBootin</strong></a>. However, if you try either of these methods with recent versions of Ubuntu, you get this error when you boot up the flash drive on a computer:</p>
+<pre><code>SYSLINUX 6.03 EDD 20150813 Copyright (C) 1994-2012 H. Peter Anvin et al
+Boot Error</code></pre>
+<p>The most reliable solution I have found for this error is to create a bootable USB flash drive using <strong>Disk Image Writer</strong>.</p>
+<p>It is simple to do this:</p>
+<ul>
+<li><p>Download the ISO file of the Ubuntu you want to install.</p></li>
+<li><p>Make sure that <strong>GNOME Disks</strong> utility is installed. If you do not have it, it can be installed easily:</p></li>
+</ul>
+<pre><code>$ sudo apt gnome-disk-utility</code></pre>
+<ul>
+<li><p>Insert the USB flash drive you want to use as the installer medium.</p></li>
+<li><p>In your file manager, right-click on the ISO file and choose to open with <strong>Disk Image Writer</strong>. If you do not get this option, an alternative method is to open <strong>Disks</strong> from your start menu or execute <code>gnome-disks</code> at the shell. First click on the USB flash drive in the left column. Next click the menu in the top-right corner and choose to <strong>Restore disk image</strong>.</p></li>
+<li><p>Pick the ISO file and choose to restore it to the USB flash drive. It might warn that the destination is larger than the ISO, that is OK. After it is done, you can remove the USB flash drive.</p></li>
+</ul>
+<p>This USB flash drive can now be used to boot and install Ubuntu successfully on any computer.</p>
+<p><strong>Tried with:</strong> Ubuntu 15.10 and GNOME Disks 3.16.2</p>
+</body>
+</html>

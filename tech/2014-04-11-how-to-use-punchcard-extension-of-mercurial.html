@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Punchcard extension of Mercurial</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Punchcard extension of Mercurial</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-04-11 10:42:22+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_4424&quot; align=&quot;aligncenter&quot; width=&quot;640&quot;][<img src="http://codeyarns.files.wordpress.com/2014/04/20140411-hgpunchcard.png" alt="Punchcard of a Mercurial repository" />](http://codeyarns.files.wordpress.com/2014/04/20140411-hgpunchcard.png) Punchcard of a Mercurial repository[/caption]</p>
+<p>One of the coolest feature of <strong>Github</strong> is the calendar chart that is shows for your contributions. You can get a similar <strong>chart</strong> for any <strong>Mercurial</strong> repository on your computer using the <a href="http://mercurial.selenic.com/wiki/PunchcardExtension"><strong>Punchcard</strong></a> extension.</p>
+<ul>
+<li>First clone the Punchcard repository in a suitable directory:</li>
+</ul>
+<pre><code>$ hg clone https://bitbucket.org/birkenfeld/hgpunchcard</code></pre>
+<ul>
+<li>Modify your <code>hgrc</code> by adding these lines:</li>
+</ul>
+<pre><code>[extensions]
+hgpunchcard = /path/to/hgpunchcard.py</code></pre>
+<ul>
+<li>To generate the punchcard for a repository, try this command from inside any of its directories:</li>
+</ul>
+<pre><code>$ hg punchcard</code></pre>
+<p>This saves a file named <code>punchcard.png</code> that a chart of your commits to this repository, as shown above.</p>
+<p><strong>Tried with:</strong> Mercurial 2.8.2 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change UID and GID</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change UID and GID</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-06-27 15:56:56+00:00</h3>
+</div>
+<p>You may sometimes want to change the <strong>UID</strong> (user ID) and <strong>GID</strong> (group ID) of your username. This can be done easily in Linux in two steps: change the ID and then change the file owner of all files with the old IDs.</p>
+<h1 id="change-uid">Change UID</h1>
+<p>For example, to change UID of <code>joe</code> from <code>1000</code> to <code>9000</code>:</p>
+<pre><code>$ sudo usermod -u 9000 joe
+$ sudo find / -user 1000 -exec chown -h 9000 {} \;</code></pre>
+<h1 id="change-gid">Change GID</h1>
+<p>For example, to change GID of <code>joe</code> from <code>2000</code> to <code>8000</code>:</p>
+<pre><code>$ sudo groupmod -g 8000 joe
+$ sudo find / -group 2000 -exec chgrp -h 8000 {} \;
+$ sudo usermod -g 8000 joe</code></pre>
+<p>If you get any errors, please remember to logout of your desktop and kill any processes that are holding on to your username. It is best to just run these commands from a virtual terminal like <code>Ctrl + Alt + F1</code>.</p>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

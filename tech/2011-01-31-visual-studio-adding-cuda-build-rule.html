@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual Studio: Adding CUDA Build Rule</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual Studio: Adding CUDA Build Rule</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-01-31 06:36:18+00:00</h3>
+</div>
+<p>To compile <strong>CUDA</strong> source files (<code>*.cu</code>) in Visual Studio, a <strong>custom build rule</strong> is necessary. The following CUDA build rules are provided by NVIDIA:</p>
+<ul>
+<li><p><strong>Cuda.rules</strong>: This file is installed by the <strong>GPU Computing SDK</strong> (<em>not</em> the CUDA Toolkit). This is a general build rule that is applicable to all CUDA source files.</p></li>
+<li><p><strong>NvCudaRuntimeApi.rules</strong> and <strong>NvCudaRuntimeApi.vX.Y.rules</strong>: These files are installed by the <strong>CUDA Toolkit</strong>. This is a build rule applicable to CUDA source files that use the <strong>CUDA Runtime API</strong>. <code>NvCudaRuntimeApi.rules</code> is applicable to any version of the Runtime API, while <code>NvCudaRuntimeApi.vX.Y.rules</code> is specific to a version. For example, <code>NvCudaRuntimeApi.v3.2.rules</code> is specific to CUDA 3.2.</p></li>
+<li><p><strong>NvCudaDriverApi.rules</strong> and <strong>NvCudaDriverApi.vX.Y.rules</strong>: These files are installed by the <strong>CUDA Toolkit</strong>. This is a build rule applicable to CUDA source files that use the <strong>CUDA Driver API</strong>. <code>NvCudaDriverApi.rules</code> is applicable to any version of the Driver API, while <code>NvCudaDriverApi.vX.Y.rules</code> is specific to a version. For example, <code>NvCudaDriverApi.v3.2.rules</code> is specific to CUDA v3.2.</p></li>
+</ul>
+<p>All these build rule files are installed into the <code>C:\Program Files\Microsoft Visual Studio 9.0\VC\VCProjectDefaults</code> directory by the CUDA Toolkit or the GPU Computing SDK. In Visual Studio language, this is the <code>$(VCInstallDir)\VCProjectDefaults</code> directory.</p>
+<p>To add a CUDA build rule, right-click on the <strong>Project</strong> name in the Solution Explorer pane and choose <strong>Custom Build Rules</strong>. The above build rules should be visible in the <strong>Visual C++ Custom Build Rules Files</strong> dialog that pops up. Choose the build rule you want and compile the CUDA files.</p>
+<p><strong>Note:</strong> It is recommended to choose <code>NvCudaRuntimeApi.rules</code> or <code>NvCudaDriverApi.rules</code> over the generic <code>Cuda.rules</code>.</p>
+<p><strong>Tried with:</strong> CUDA 3.2 and Visual Studio 2008.</p>
+</body>
+</html>

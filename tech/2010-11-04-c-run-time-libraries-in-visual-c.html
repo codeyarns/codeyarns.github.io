@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C Run-Time Libraries in Visual C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C Run-Time Libraries in Visual C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-11-04 04:00:29+00:00</h3>
+</div>
+<p>Every Visual C++ project is linked with a <strong>C run-time library</strong>. This is called the <strong>CRT</strong> in Microsoft literature.</p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/11/20101104_crt_21.png"><img src="http://codeyarns.files.wordpress.com/2010/11/20101104_crt_21.png" /></a>Depending on the support for multi-threading there are 2 kinds of CRT:</p>
+<ul>
+<li><p><strong>Single threaded CRT</strong>: This can only be <em>statically linked</em>. This CRT is used if one of the compiler options <code>/ML</code> or <code>/MLd</code> is specified. It would be linked with <code>libc.lib</code> or <code>libcd.lib</code> respectively for Release and Debug modes. The single-threaded CRT is completely <strong>deprecated</strong> and should not be used! :x</p></li>
+<li><p><strong>Multi-threaded CRT</strong>: This is the default kind of CRT and should be used always.</p></li>
+</ul>
+<p><a href="http://codeyarns.files.wordpress.com/2010/11/20101104_crt_3.png"><img src="http://codeyarns.files.wordpress.com/2010/11/20101104_crt_3.png" /></a></p>
+<p>The type of linking (static or dynamic) and the configuration (Release or Debug), lead to 4 kinds of multi-threaded CRT:</p>
+<ul>
+<li><p><strong>Release mode and statically linked</strong>: Specified using the compiler option <code>/MT</code>. The library file used is <code>libcmt.lib</code>.</p></li>
+<li><p><strong>Debug mode and statically linked</strong>: Specified using the compiler option <code>/MTd</code>. The library file used is <code>libcmtd.lib</code>.</p></li>
+<li><p><strong>Release mode and dynamically linked</strong>: Specified using the compiler option <code>/MD</code>. The library file used is <code>msvcrt.lib</code> and the DLL file used at run-time is <code>msvcr100.dll</code> (depends on Visual C++ version).</p></li>
+<li><p><strong>Debug mode and dynamically linked</strong>: Specified using the compiler option <code>/MDd</code>. The library file used is <code>msvcrtd.lib</code> and the DLL file used at run-time is <code>msvcr100d.dll</code> (depends on Visual C++ version).</p></li>
+</ul>
+<p><strong>Reference:</strong> <a href="http://msdn.microsoft.com/en-us/library/abx4dbyh.aspx">C Run-Time Libraries</a> at MSDN.</p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to decimate in Blender</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to decimate in Blender</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-10-24 06:18:37+00:00</h3>
+</div>
+<p>The <a href="http://wiki.blender.org/index.php/Doc:2.6/Manual/Modifiers/Generate/Decimate"><strong>Decimate</strong></a> operation in <strong>Blender</strong> allows you to simplify a model by reducing the number of faces or triangles in its mesh. One common way to do this is by collapsing edges. In addition to this, Blender also supports two other decimation methods called UnSubdivide and Planar. Decimating a mesh is easy:</p>
+<ol style="list-style-type: decimal">
+<li><p>Load the model you want to decimate into Blender using File &gt; Open.</p></li>
+<li><p>In the Properties window on the right, click the <code>Object Modifiers</code> button. This looks like a spanner.</p></li>
+<li><p>The current modifiers applied on the model are displayed here. Do not remove existing modifiers. Choose Add modifier &gt; Generate &gt; Decimate.</p></li>
+<li><p>To apply decimate operation, the mesh of your model needs to be a manifold. If it is not, Blender complains that the mesh is a non-manifold. You need to first <a href="2013/10/22/how-to-fix-non-manifold-mesh-in-blender/">fix the non-manifold elements</a> of the mesh.</p></li>
+<li><p>If your mesh is a manifold, then just pick one of the three decimation types: <code>Collapse</code>, <code>Un-subdivide</code> and <code>Planar</code>.The latter two might not be there in versions of Blender that are older than 2.65.</p></li>
+<li><p>If you chose Collapse, then reduce the decimation Ratio. The number of resulting faces is displayed below in the modifier. But, the decimation is not applied until you click the Apply button. Do that and your mesh is decimated.</p></li>
+</ol>
+<p><strong>Tried with:</strong> Blender 2.69 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

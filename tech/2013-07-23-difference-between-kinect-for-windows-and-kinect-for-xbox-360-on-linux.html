@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Difference between Kinect for Windows and Kinect for Xbox 360 on Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Difference between Kinect for Windows and Kinect for Xbox 360 on Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-07-23 06:50:00+00:00</h3>
+</div>
+<p>There are two variants of the <strong>Kinect</strong> hardware. The first is <strong>Kinect for Xbox 360</strong>, the Kinect sensor that was released to work with the Xbox 360. The second is <strong>Kinect for Windows,</strong> a Kinect sensor that is almost the same as Kinect for Xbox 360 and can be used with any computer. Kinect for Windows has some extra features like near mode. You can also distinguish this type by the Kinect for Windows label below the base of the unit.</p>
+<p>Beware that on Linux a lot of the drivers, libraries and applications for Kinect work only with the Kinect for Xbox 360! Knowing which type of Kinect hardware you are using will save you a lot of trouble.</p>
+<p>Each type of Kinect is identified differently by the <strong>Linux kernel</strong>. This can be seen in the identification that is printed when you list USB devices.</p>
+<p>The output for Kinect for Xbox 360 is:</p>
+<pre><code>$ lsusb
+Bus 001 Device 058: ID 045e:02b0 Microsoft Corp. Xbox NUI Motor
+Bus 001 Device 059: ID 045e:02ad Microsoft Corp. Xbox NUI Audio
+Bus 001 Device 060: ID 045e:02ae Microsoft Corp. Xbox NUI Camera</code></pre>
+<p>Here <strong>045e</strong> is the <strong>vendor ID</strong> and <strong>02b0</strong> is a <strong>product ID</strong>. Note that the Kinect is identified as 3 different products with a fully qualified product name, for example <strong>Microsoft Corp. Xbox NUI Camera</strong>.</p>
+<p>The output for Kinect for Windows is:</p>
+<pre><code>$ lsusb
+Bus 002 Device 011: ID 045e:02c2 Microsoft Corp.
+Bus 002 Device 013: ID 045e:02be Microsoft Corp.
+Bus 002 Device 014: ID 045e:02bf Microsoft Corp.</code></pre>
+<p>Notice how the product IDs are different from Xbox 360 and how the device name is just listed as <strong>Microsoft Corp.</strong> without any further description.</p>
+<p><strong>Tried with:</strong> Kinect for Windows, Linux 3.2.0-48-generic and Ubuntu 12.04 LTS</p>
+</body>
+</html>

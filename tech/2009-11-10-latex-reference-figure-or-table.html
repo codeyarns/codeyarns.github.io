@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>LaTeX: Reference Figure or Table</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">LaTeX: Reference Figure or Table</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2009-11-10 02:56:03+00:00</h3>
+</div>
+<p>One of the cool features of LaTeX is that you could refer to figures or tables by their number automatically. If the original figure number changes, it is automatically updated in all locations it is referred to. To do this:</p>
+<p><strong>Label the figure or table:</strong></p>
+<pre><code>\begin{figure}[ht]
+\centering
+\includegraphics[scale=1.0]{www.png}
+\caption{The world wide web.}
+\label{&lt;strong&gt;sec:www&lt;/strong&gt;}
+\end{figure}</code></pre>
+<p><strong>Refer to the label:</strong></p>
+<pre><code>The world wide web (as shown in Fig \ref{sec:www}) is a series of tubes.</code></pre>
+<p>If the original figure was numbered by LaTeX as Fig 2.1, then the above text will appear as:</p>
+<blockquote>
+The world wide web (as shown in Fig 2.1) is a series of tubes.
+</blockquote>
+</body>
+</html>

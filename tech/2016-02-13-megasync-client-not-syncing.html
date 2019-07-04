@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>MEGASync client not syncing</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">MEGASync client not syncing</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-02-13 08:23:06+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to use the <strong>MEGASync</strong> client on multiple computers running Ubuntu to sync up a common directory of content to the cloud. I noticed that on some of them the clients it would sync only the first time and not do anything after that!</p>
+<h1 id="solution">Solution</h1>
+<p>This one is a very silly bug in their client. It downloads the content the first time the sync directory is created. However, it forgets to <strong>enable</strong> that directory for syncing in the future!</p>
+<p>To turn it back on, go to Settings -&gt; Syncs. Tick the checkbox that is beside your sync directory and click Apply. That is it!</p>
+<p><strong>Tried with:</strong> MEGASync 2.6.1 and Ubuntu 15.10</p>
+</body>
+</html>

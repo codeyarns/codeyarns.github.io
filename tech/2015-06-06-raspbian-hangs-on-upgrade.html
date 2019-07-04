@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Raspbian hangs on upgrade</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Raspbian hangs on upgrade</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-06-06 15:20:26+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to upgrade <strong>Raspbian</strong> using these commands:</p>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade</code></pre>
+<p>After the update, the upgrade downloaded and installed many packages, but hung with this last output:</p>
+<pre><code>Setting up xdg-utils (1.1.0~rc1+git20111210-6+deb7u3) ...
+Setting up xserver-common (2:1.12.4-6+deb7u6) ...
+Setting up xserver-xorg-core (2:1.12.4-6+deb7u6) ...
+Setting up raspberrypi-bootloader (1.20150421-1) ...
+Removing &#39;diversion of /boot/COPYING.linux to /usr/share/rpikernelhack/COPYING.linux by rpikernelhack&#39;</code></pre>
+<h1 id="solution">Solution</h1>
+<p>On examining other processes running on this Raspberry Pi, I noticed <strong>Transmission</strong>. I tried to stop its daemon using:</p>
+<pre><code>$ sudo service transmission-daemon stop</code></pre>
+<p>It stopped, but its <strong>zombie process</strong> still hung around and could not be killed.</p>
+<p>So, I tried to restart the Raspberry Pi using:</p>
+<pre><code>$ sudo shutdown -r now</code></pre>
+<p>It did not restart! Finally, I switched off the power and turned it back on.</p>
+<p>As soon as I could SSH into it, I stopped Transmission, which worked this time.</p>
+<p>I was able to finish the interrupted upgrade successfully, using this command:</p>
+<pre><code>$ sudo dpkg --configure -a</code></pre>
+<p><strong>Tried with:</strong> Raspbian 7 (Wheezy) and Linux 3.12.35</p>
+</body>
+</html>

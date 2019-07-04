@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>The HWE stack for Ubuntu LTS</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">The HWE stack for Ubuntu LTS</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-05-19 15:04:03+00:00</h3>
+</div>
+<p>Many <strong>Ubuntu LTS</strong> users have a problem. They might want to stick with their LTS installation for the full 5 years of support due to stability of applications, libraries and software. But they might also wish for newer versions of Linux kernel and X, so that they can take advantage of newer hardware or fixes for their existing hardware.</p>
+<p>Ubuntu provides <strong>Hardware Enablement Stack (HWE)</strong> that pulls in more recent versions of Linux kernel and X and provides them to Ubuntu LTS release users. The Linux kernel and X that came with the original LTS release is called the <strong>General Availability (GA)</strong> stack. The latest available HWE stack is also installed by default if you install an updated point release of a LTS release. For example, if you install Ubuntu 16.04, that installs the GA stack. If you install a more recent Ubuntu 16.04.3, that will install a HWE stack.</p>
+<p>I faced a problem recently, where my <strong>Intel Wireless-AC 3165</strong> hardware was not detected by the Linux kernel in Ubuntu 16.04, as described <a href="https://codeyarns.com/2017/02/04/how-to-make-intel-wireless-ac-3165-work-in-ubuntu/">here</a>. To install the HWE stack on my Ubuntu 16.04, I used this command:</p>
+<pre><code>$ sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
+<p>After switching to the Linux 4.8.x kernel this installed, my wireless hardware worked fine. I was saved by the HWE stack!</p>
+<p>For more details on HWE, see <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack">LTS Enablement Stack</a> page.</p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>TrueCrypt is already running error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">TrueCrypt is already running error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-16 12:31:04+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>You try to run <strong>TrueCrypt</strong> and it pops this error:</p>
+<pre><code>&lt;code&gt;TrueCrypt is already running
+&lt;/code&gt;</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This error is typically caused if you abruptly shutdown your Linux, without giving TrueCrypt the chance to close properly. This leaves behind a lock file named <code>~/.TrueCrypt-lock-joe</code>, where <code>joe</code> is your username. Delete this file and you will be able to run TrueCrypt again.</p>
+<p><strong>Tried with:</strong> TrueCrypt 7.1a and Ubuntu 12.04 LTS</p>
+</body>
+</html>

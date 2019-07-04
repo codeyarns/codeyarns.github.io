@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>EPS: Bounding Box Problem</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">EPS: Bounding Box Problem</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-05-11 10:51:05+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2011/05/20100511_eps_boundingbox.png"><img src="http://codeyarns.files.wordpress.com/2011/05/20100511_eps_boundingbox.png" /></a></p>
+<p><strong>Problem</strong></p>
+<p>Some <strong>EPS</strong> file generators produce a <code>BoundingBox</code> attribute that is all zeroes. This can fail certain programs that depend on non-zero <code>BoundingBox</code> values in EPS files. (For an example of such a failure see <a href="http://codeyarns.wordpress.com/2011/05/11/dvipdfm-transformation-matrix-error/">here</a>).</p>
+<p><strong>Solution</strong></p>
+<p>Here is a quick hack that might work. EPS files are text files and can be opened and edited using any text editor. Open the EPS file in a text editor and check if it has a <code>HiResBoundingBox</code> attribute. If it does, you are in luck! :-) Copy over its values to the <code>BoundingBox</code> attribute. If this does not work, copy over the <code>HiResBoundingBox</code> values and convert them to integers for <code>BoundingBox</code>.</p>
+</body>
+</html>

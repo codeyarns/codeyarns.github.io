@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Mercurial: Import Subversion Project</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mercurial: Import Subversion Project</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-03-01 06:31:49+00:00</h3>
+</div>
+<p><strong>Mercurial</strong> is a distributed VCS (DVCS). If you are planning to migrate from <strong>Subversion</strong> to Mercurial, it might be better to do this on a per-project basis. Due to the nature of a DVCS, it is better to spin off each of your Subversion projects in the repository as separate Mercurial repositories. Here is how:</p>
+<ol style="list-style-type: decimal">
+<li><p>If you have not already done so, make a copy of the Mercurial <strong>configuration file</strong> (<code>Mercurial.ini</code>) and add your username. See <a href="http://codeyarns.wordpress.com/2010/03/01/mercurial-no-username-supplied/">this post</a> on how to do this.</p></li>
+<li><p>The command to convert repositories is <code>hg convert</code>. It will not work unless the <strong>convert</strong> extension is enabled. To do this, open your <code>Mercurial.ini</code> and in the <code>[extensions]</code> section uncomment the <code>convert =</code> line. It should read:</p>
+<pre><code>[extensions]
+convert =</code></pre></li>
+<li><p>The default Windows binaries of Mercurial cannot import from Subversion. If you attempt a <code>hg convert</code> using this binary, you will see an error:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">hg</span> convert file:///C:/SVNRep/FoobarProject
+<span class="ex">Subversion</span> python bindings could not be loaded</code></pre></div></li>
+</ol>
+<p>You will need the Python bindings of Subversion and Mercurial installed on top of a standalone Python to be able to do this. That is too messy! But, there is an easier alternative to this. Install <a href="http://tortoisehg.bitbucket.org/"><strong>TortoiseHg</strong></a>, the Explorer extension to Hg. Its <code>hg.exe</code> has been built with all the necessary bindings. Issue the convert command using its <code>hg.exe</code>:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="st">&quot;C:\Program Files\TortoiseHg\hg.exe&quot;</span> <span class="ex">convert</span> file:///C:/SVNRep/FoobarProject</code></pre></div>
+<p>This should work. If your Subversion project has been cleanly maintained with the canonical <code>trunks</code>, <code>branches</code> and <code>tags</code> structure <code>hg convert</code> can import all of that correctly into the Mercurial structure of tags.</p>
+</body>
+</html>

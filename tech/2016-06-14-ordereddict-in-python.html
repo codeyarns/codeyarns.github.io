@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>OrderedDict in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">OrderedDict in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-06-14 13:46:33+00:00</h3>
+</div>
+<p><strong>Lists</strong> and <strong>dictionaries</strong> are the fundamental data structures in <strong>Python</strong>. One of the problems I regularly face with dictionary is that I cannot iterate the keys in a certain order. In many problems, I have the keys in a certain order, I am able to insert the keys in that order, but need to be able to later iterate them in that same order.</p>
+<p>The solution to these exact problems is the <a href="https://docs.python.org/3/library/collections.html"><strong>OrderedDict</strong></a>. It is just like the dictionary, but maintains the order of insertion of the keys. Later when you iterate over its keys, the order is the same as you inserted them in. I am guessing it is implemented by maintaining the keys in a list alongside a dictionary.</p>
+<p>Usage of the OrderedDict is same as dictionary in all ways. The only difference is in creating it:</p>
+<pre><code>import collections
+
+d = collections.OrderedDict()</code></pre>
+<p><strong>Tried with:</strong> Python 3.4</p>
+</body>
+</html>

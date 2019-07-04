@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Trackpad cursor freezes on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Trackpad cursor freezes on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-31 14:25:14+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>When I move the <strong>cursor</strong> using the <strong>trackpad</strong> of my Aftershock notebook, it sometimes <strong>freezes</strong> in place. Keyboard still works. The problem happens only with trackpad, not with mouse. The only way to unfreeze the cursor is to switch to virtual terminal <code>Ctrl + Alt + F1</code> and back to X <code>Ctrl + Alt + F7</code>.</p>
+<h1 id="solution">Solution</h1>
+<p>Apparently, this is a common bug in Ubuntu as reported <a href="https://bugs.launchpad.net/xorg-server/+bug/1220426">here</a>. It happens only with NVIDIA drivers with NVIDIA graphics card. A fix has been created for the X Server <a href="https://bugs.freedesktop.org/show_bug.cgi?id=86288">here</a>.</p>
+<p>Until I move to a newer version of Ubuntu with this updated version of X Server, I will have to survive by switch to virtual terminal :-)</p>
+<p><strong>Tried with:</strong> NVIDIA 765M and Ubuntu 14.04</p>
+</body>
+</html>

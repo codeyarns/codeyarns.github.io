@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Math constants for C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Math constants for C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-04-13 08:12:25+00:00</h3>
+</div>
+<p>C and C++ standards have never specified any <strong>math constants</strong>. However, most old versions of C and C++ standard libraries and compilers used to provide many math constants through their <code>math.h</code> and <code>cmath</code> header files. However, in recent years many of these compilers and standard libraries have removed these constants from their header files.</p>
+<p>This results in code which uses such constants, say <code>M_PI</code> in throwing errors like this:</p>
+<pre><code>C:\Foobar.cpp(42): error C2065: &#39;M_PI&#39; : undeclared identifier</code></pre>
+<p>I found that GCC still provides these constants, while Visual Studio 2012 provides this only if <code>_USE_MATH_DEFINES</code> is defined. The latest Visual Studio 2015 has completely removed these constants from their header files.</p>
+<p>If you are faced with a situation where these constants are not available, it is easy to redefine them in your own code.</p>
+<p>Suggested values of these math constants can be found <a href="http://msdn.microsoft.com/en-us/library/4hwaceh6.aspx">here</a>. Here is the same obtained from <code>math.h</code> of Visual Studio 2012:</p>
+<p>https://gist.github.com/ashwin/3e2b6e1881d3e0ddb5dc</p>
+</body>
+</html>

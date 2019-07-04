@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install CUDA 5.5 on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install CUDA 5.5 on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-10-10 08:20:24+00:00</h3>
+</div>
+<p>Installing <strong>CUDA 5.5</strong> on Ubuntu 12.04 is much easier than with earlier versions of CUDA.</p>
+<ol style="list-style-type: decimal">
+<li><p>Download the <code>.deb</code> file that matches your 32-bit or 64-bit Ubuntu from <a href="https://developer.nvidia.com/cuda-downloads">here</a>. For my system, it was <code>cuda-repo-ubuntu1204_5.5-0_amd64.deb</code></p></li>
+<li><p>Uninstall the existing NVIDIA driver:</p></li>
+</ol>
+<pre><code>$ sudo /usr/bin/nvidia-uninstall</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Install the <code>.deb</code> file:</li>
+</ol>
+<pre><code>$ sudo gdebi cuda-repo-ubuntu1204_5.5-0_amd64.deb</code></pre>
+<p>This just adds a <code>cuda.list</code> file to <code>/etc/apt/sources.list.d/</code>. The URL inside <code>cuda.list</code> for my 64-bit Ubuntu is <code>http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1204/x86_64</code>. This will be used by <code>apt-get</code> to get CUDA packages for installation.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Install CUDA packages:</li>
+</ol>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get install cuda</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Restart the computer. Hopefully, there is no problem with your drivers and you get the Ubuntu desktop.</p></li>
+<li><p>Set the <code>PATH</code> and <code>LD_LIBRARY_PATH</code> environment variables. I add this to my <code>.bashrc</code>:</p></li>
+</ol>
+<pre><code>export CUDA_ROOT=/usr/local/cuda-5.5
+export PATH=$PATH:$CUDA_ROOT/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Compile and run your CUDA programs. They should work without errors :)</li>
+</ol>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>eclimd architecture error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">eclimd architecture error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-03 15:28:27+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p><a href="http://eclim.org/"><strong>Eclim</strong></a> enables you to access <strong>Eclipse</strong> features from <strong>Vim</strong>. But, when you run the <strong>eclimd</strong> server on your 64-bit computer, you get this error:</p>
+<pre><code>Your jvm does not support the architecture required  for the version of eclipse you have installed: -d32</code></pre>
+<p><strong>Solution</strong></p>
+<p>eclimd is a Bash script and it has detected that your JVM is 64-bit, but your Eclipse is 32-bit. If this really is the case, you will need to fix it by using a 64-bit version of Eclipse.</p>
+<p>In my case, I was using 64-bit versions of both programs. I found that the architecture detection lines of the script might have a bug. Find these lines in the eclimd script:</p>
+<pre><code>  # ensure that the correct jvm environment is used.
+  SWT=`ls $ECLIM_ECLIPSE_HOME/plugins/org.eclipse.swt.*.jar 2&gt; /dev/null`
+  if `echo &quot;$SWT&quot; | grep -q &quot;x86_64&quot;` ; then
+    ARCH=-d64
+  else
+    ARCH=-d32
+  fi
+
+  if ! `java $ARCH -version 2&gt; /dev/null` ; then
+    echo &quot;Your jvm does not support the architecture required &quot; \
+      &quot;for the version of eclipse you have installed: $ARCH&quot;
+    exit 1;
+  fi</code></pre>
+<p>Comment these out and replace them with this line:</p>
+<pre><code>ARCH=-d64</code></pre>
+<p>eclimd should work fine now.</p>
+<p><strong>Tried with:</strong> Eclim 1.7.13, Vim 7.3, Eclipse 3.7 (Indigo) and Ubuntu 12.04 LTS</p>
+</body>
+</html>

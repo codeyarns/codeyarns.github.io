@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Mat in OpenCV</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mat in OpenCV</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-21 07:24:44+00:00</h3>
+</div>
+<p><strong>Mat</strong> is the basic C++ structure used in <strong>OpenCV</strong> to hold two and higher dimensional data. <a href="2014/02/21/iplimage-in-opencv/">IplImage</a> is the deprecated older C structure that was used for the same purpose earlier in OpenCV. The advantage of using Mat over IplImage is that it behaves like a proper C++ object, so it is easier to construct and is automatically destroyed at end of its scope.</p>
+<ul>
+<li><p>Documentation about the Mat class can be found <a href="http://docs.opencv.org/modules/core/doc/basic_structures.html#Mat">here</a>. The declaration of the Mat class is in the <code>modules/core/include/opencv2/core/mat.hpp</code> file, as can be seen <a href="https://github.com/Itseez/opencv/blob/master/modules/core/include/opencv2/core/mat.hpp">here</a>.</p></li>
+<li><p>The basic structure of Mat is simple:</p></li>
+</ul>
+<pre><code>class Mat
+{
+public:
+    Mat();
+    Mat(int rows, int cols, int type);
+    Mat(Size size, int type);
+    Mat(const Mat&amp; m);
+    Mat(int rows, int cols, int type, void* data, size_t step=AUTO_STEP);
+    Mat(Size size, int type, void* data, size_t step=AUTO_STEP);
+
+    int flags;
+    int dims;
+    int rows, cols;
+    uchar* data;
+};</code></pre>
+<ul>
+<li>To construct a Mat from existing array of data, without allocating its own buffer:</li>
+</ul>
+<pre><code>double darr[640*480];
+cv::Mat dmat(480, 640, CV_64F, darr);</code></pre>
+<ul>
+<li>To construct a Mat from existing array of data, by making a copy to its own buffer:</li>
+</ul>
+<pre><code>double darr[640*480];
+cv::Mat dmat(480, 640, CV_64F, darr);
+cv::Mat cmat;
+dmat.clone(cmat); // cmat has a separate copy of data now</code></pre>
+<ul>
+<li>To construct a Mat of a certain size and initialize each of its channels to a specific value:</li>
+</ul>
+<pre><code>const int frows = 480;
+const int fcols = 640;
+const cv::Scalar init_vals(10, 50, 255);
+
+// Create a mat where B channel pixels are set to 10
+// G channel pixels to 50 and R pixels to 255
+cv::Mat fmat(frows, fcols, CV_8UC3, init_vals);</code></pre>
+<ul>
+<li><p>The data type of the elements of the image and the number of channels can be found using the depth and type methods as described <a href="/2015/08/27/depth-and-type-of-matrix-in-opencv/">here</a>.</p></li>
+<li><p>To set or get directly from the buffer of Mat:</p></li>
+</ul>
+<pre><code>// Set pixel 10 of CV_8UC3 mat to grey
+cmat.data[3*10    ] = 40;
+cmat.data[3*10 + 1] = 40;
+cmat.data[3*10 + 2] = 40;</code></pre>
+<ul>
+<li>To convert between Mat and IplImage:</li>
+</ul>
+<pre><code>// To make Mat from IplImage*
+// IplImage* img = cvCreateImage( ... );
+cv::Mat mat(img);
+
+// To make IplImage* from Mat
+IplImage* img = new IplImage(mat);</code></pre>
+</body>
+</html>

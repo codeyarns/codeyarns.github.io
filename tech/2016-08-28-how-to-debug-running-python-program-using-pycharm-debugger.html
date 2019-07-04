@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to debug running Python program using PyCharm debugger</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to debug running Python program using PyCharm debugger</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-08-28 09:54:58+00:00</h3>
+</div>
+<p><a href="https://codeyarns.com/2016/08/23/how-to-use-pdb-python-debugger/"><strong>PDB</strong></a> is a fantastic debugger for Python, but it cannot be easily attached to an already running Python program. The recommended method to attach to a running Python program for debugging is <strong>GDB</strong> as described <a href="https://wiki.python.org/moin/DebuggingWithGdb">here</a>. But, examining stack trace of a Python program and Python objects in a C++ debugger like GDB is not straightforward.</p>
+<p>I recently discovered that the GUI debugger in <strong>PyCharm</strong> IDE can be used to attach to a running Python program and debug it. It is easy to do this:</p>
+<ul>
+<li><p><strong>An already running program</strong>: Let us assume that I already have a running Python program whose source files are all inside a <code>/home/joe/foobar</code> directory. It has been running an important task for hours now and I have discovered a tiny bug that can be fixed in the running program by changing the value of a global variable.</p></li>
+<li><p><strong>Enable ptrace of any process</strong>: For this type of live debugging, we need any process to be able to ptrace any other process. However, the kernel in your distribution may be setup to only allow ptrace of a child process by a parent process. Check that the value of <code>/proc/sys/kernel/yama/ptrace_scope</code> is 0. If not, set it temporarily to 0:</p></li>
+</ul>
+<pre><code>$ echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope</code></pre>
+<ul>
+<li><p><strong>Install PyCharm</strong>: Download <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> and unzip the downloaded file. I use the <strong>Community Edition</strong> which is free.</p></li>
+<li><p><strong>Run PyCharm</strong>: Run <code>bin/pycharm.sh</code> and open the directory containing the source files of the running program.</p></li>
+<li><p>If necessary, set the Python interpreter for this project to be the same as that of the running program. That is, we make sure they both use the same version of Python.</p></li>
+<li><p>In the source files, set one or more breakpoints where you would like to stop, inspect or change the running program.</p></li>
+<li><p><strong>Attach</strong>: Now we are ready to attach to our running program! Choose Run → Attach to local process and choose the PID of our already running program from the list.</p></li>
+<li><p><strong>Debug</strong>: Once attached, the program should stop at our breakpoints. We can now step through the program and change the value of variables to effect some live bug fixes! Once done, we can disable the breakpoints and allow the program to continue by itself.</p></li>
+</ul>
+<p><strong>Tried with:</strong> PyCharm 2016.2, Python 2.7.11 and Ubuntu 16.04</p>
+</body>
+</html>

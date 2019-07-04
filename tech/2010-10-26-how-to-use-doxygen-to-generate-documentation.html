@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Doxygen to generate documentation</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Doxygen to generate documentation</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-10-26 06:36:29+00:00</h3>
+</div>
+<p><a href="http://www.stack.nl/~dimitri/doxygen/"><strong>Doxygen</strong></a> is a useful tool to automatically generate documentation for code. It can produce beautiful documentation if the code comments are written in its custom format. Thankfully, even if this is not the case it can still produce documentation that can be useful for understanding a mass (or mess) of code.</p>
+<p>Doxygen uses a <strong>configuration file</strong>, typically named <strong>Doxyfile</strong>, to generate documentation. Linux users might like to set their configuration in this file. Doxygen also ships with a GUI tool named <strong>Doxywizard</strong> that makes it easy to create a configuration file and generate documentation for the first time. Windows users might find it easier to use this tool.</p>
+<h1 id="using-doxywizard">Using Doxywizard</h1>
+<p>As an example, assume the code in a project has the following directory structure:</p>
+<pre><code>C:
++---Foobar
+    +---Code
+    +---Docs</code></pre>
+<p>That is the <strong>project root directory</strong> is <code>C:\Foobar</code>, <strong>source code directory</strong> is <code>C:\Foobar\Code</code> and the documentation produced by Doxygen will reside in <code>C:\Foobar\Docs</code>.</p>
+<p>To produce this, fill the fields in Doxywizard as follows:</p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/10/20101026_doxywizard.png"><img src="http://codeyarns.files.wordpress.com/2010/10/20101026_doxywizard.png" /></a></p>
+<p>In the <strong>Run</strong> tab choose <strong>Run Doxygen</strong> to generate the documentation. It will be produced in the format you chose: HTML, CHM, XML, RTF or many others.</p>
+<p>It is a good idea to save the configuration to a file named <strong>Doxyfile</strong> in the project directory. Do this in the Doxywizard by choosing <em>File → Save As</em>. By having a configuration file around, the documentation can be updated whenever the code in the project changes. This can be done directly by invoking <strong>doxygen.exe</strong> in that directory or can be automatically invoked by your build tool.</p>
+<h1 id="using-doxygen">Using doxygen</h1>
+<p>The doxygen program can be used to generate a sample configuration file named <code>Doxyfile</code> for you:</p>
+<pre><code>$ doxygen -g</code></pre>
+<p>If you open this file, you will find that it has all the options understood by the version of doxygen on your computer. These options are excellently documented making it easy to configure them.</p>
+<p>However, the hundreds of options in this file can be quite intimidating. I typically configure these options to start off:</p>
+<ul>
+<li><p><code>PROJECT_NAME</code>: Give the project a name</p></li>
+<li><p><code>OUTPUT_DIRECTORY</code>: Directory to store the generated document files. If you do not specify anything, the subdirectories are created in the current directory. For example, directories like <code>html</code> and <code>latex</code>.</p></li>
+<li><p><code>INPUT</code>: Directories where your source files are. Strangely, they need to be separated by spaces.</p></li>
+<li><p><code>GENERATE_LATEX = NO</code>: This option is set to YES by default. Doxygen generates HTML and Latex by default. Who needs LaTeX?</p></li>
+</ul>
+<p>To generate documentation:</p>
+<pre><code>$ doxygen</code></pre>
+<p>To get started quickly, I have shared my Doxyfile for C++ and CUDA code <a href="https://gist.github.com/ashwin/0a6ad18f9ccb93928ee171a36f764826">here</a>. Just look for <code>foobar</code> in the file and replace with your project name and directories.</p>
+</body>
+</html>

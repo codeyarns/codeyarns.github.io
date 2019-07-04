@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Depth and type of matrix in OpenCV</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Depth and type of matrix in OpenCV</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-08-27 12:13:00+00:00</h3>
+</div>
+<p><code>cv::Mat</code> is the most fundamental datatype used in <strong>OpenCV</strong>. It can be used to store 2D images with 1-4 channels of data.</p>
+<p>When your code receives a <code>cv::Mat</code> from an external library or code, the most common question you have is what is the <strong>data type</strong> of the elements of this image? There seem to be two methods in the <code>cv::Mat</code> class that answer this: <code>depth()</code> and <code>type()</code>.</p>
+<h1 id="depth">Depth</h1>
+<p>Depth is the more fundamental of the two queries. It is the data type of each individual element in the image data. It can take one of these 8 values:</p>
+<pre><code>#define CV_8U   0
+#define CV_8S   1
+#define CV_16U  2
+#define CV_16S  3
+#define CV_32S  4
+#define CV_32F  5
+#define CV_64F  6
+#define CV_USRTYPE1 7</code></pre>
+<p>For example, an image with 2 channels of <code>unsigned short</code> data will have depth of <code>CV_16U</code>.</p>
+<h1 id="type">Type</h1>
+<p>Type combines the data type of the elements along with the number of channels in the image. Since images in OpenCV can have 1-4 channels, it can take one of these 28 values:</p>
+<pre><code>#define CV_8UC1 CV_MAKETYPE(CV_8U,1)
+#define CV_8UC2 CV_MAKETYPE(CV_8U,2)
+#define CV_8UC3 CV_MAKETYPE(CV_8U,3)
+#define CV_8UC4 CV_MAKETYPE(CV_8U,4)
+
+#define CV_8SC1 CV_MAKETYPE(CV_8S,1)
+#define CV_8SC2 CV_MAKETYPE(CV_8S,2)
+#define CV_8SC3 CV_MAKETYPE(CV_8S,3)
+#define CV_8SC4 CV_MAKETYPE(CV_8S,4)
+
+#define CV_16UC1 CV_MAKETYPE(CV_16U,1)
+#define CV_16UC2 CV_MAKETYPE(CV_16U,2)
+#define CV_16UC3 CV_MAKETYPE(CV_16U,3)
+#define CV_16UC4 CV_MAKETYPE(CV_16U,4)
+
+#define CV_16SC1 CV_MAKETYPE(CV_16S,1)
+#define CV_16SC2 CV_MAKETYPE(CV_16S,2)
+#define CV_16SC3 CV_MAKETYPE(CV_16S,3)
+#define CV_16SC4 CV_MAKETYPE(CV_16S,4)
+
+#define CV_32SC1 CV_MAKETYPE(CV_32S,1)
+#define CV_32SC2 CV_MAKETYPE(CV_32S,2)
+#define CV_32SC3 CV_MAKETYPE(CV_32S,3)
+#define CV_32SC4 CV_MAKETYPE(CV_32S,4)
+
+#define CV_32FC1 CV_MAKETYPE(CV_32F,1)
+#define CV_32FC2 CV_MAKETYPE(CV_32F,2)
+#define CV_32FC3 CV_MAKETYPE(CV_32F,3)
+#define CV_32FC4 CV_MAKETYPE(CV_32F,4)
+
+#define CV_64FC1 CV_MAKETYPE(CV_64F,1)
+#define CV_64FC2 CV_MAKETYPE(CV_64F,2)
+#define CV_64FC3 CV_MAKETYPE(CV_64F,3)
+#define CV_64FC4 CV_MAKETYPE(CV_64F,4)</code></pre>
+<p>For example, an image with 2 channels of <code>unsigned short</code> data will have type of <code>CV_16UC2</code>.</p>
+<p>Here are two simple functions that are handy to get the depth and type of image as a string:</p>
+<p>https://gist.github.com/ashwin/8ee64792624b1ef94043</p>
+<p><strong>Reference:</strong> <a href="https://github.com/Itseez/opencv/blob/master/modules/core/include/opencv2/core/hal/interface.h">modules/core/include/opencv2/core/hal/interface.h</a> in OpenCV source code</p>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add a .Net assembly as reference in IronPython</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add a .Net assembly as reference in IronPython</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-06-07 03:50:13+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>By installing <a href="http://ironpython.net/"><strong>IronPython</strong></a> and <a href="https://pytools.codeplex.com/"><strong>Python Tools for Visual Studio</strong></a>, I can work with .Net using Python. The typical method of adding a <strong>.Net assembly</strong> file as a <strong>Reference</strong> is to use choose <strong>Add Reference</strong> in Visual Studio. But, doing this did not work for importing a .Net assembly built using C#. The assembly appeared in the References list, but had a <strong>Warning</strong> sign over it. And sure enough, importing a namespace that the assembly exports failed with a <strong>ImportException</strong>.</p>
+<p><strong>Solution</strong></p>
+<p>Apparently, the Add Reference method only works for <strong>Python Extension Modules</strong>, not for .Net assemblies written in C#. Instead use the methods in <strong>clr</strong> module to add the reference:</p>
+<ol style="list-style-type: decimal">
+<li><p>Place the .Net assembly file, say <strong>Foo.dll</strong>, and any other DLL files that it is dependent on in the directory where your IronPython source file lies.</p></li>
+<li><p>Add a reference to this .Net assembly file in your IronPython using and import the namespace exported by the .Net assembly in your IronPython code.</p></li>
+</ol>
+<p>https://gist.github.com/ashwin/5726946</p>
+<p><strong>Note:</strong> Remember to place all the DLL files that the .Net assembly is dependent on along with it in the same directory. Else you will get a <strong>FileNotFoundException</strong>.</p>
+<p><strong>Tried with:</strong> IronPython 2.7.3, Visual Studio 2012 and Windows 7 x64</p>
+</body>
+</html>

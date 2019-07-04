@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CMake error on Qt5Core</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CMake error on Qt5Core</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-13 12:54:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to build source code that uses <strong>Qt5</strong> using <strong>CMake</strong>. It quit with this error:</p>
+<pre><code>CMake Error at CMakeLists.txt:20 (find_package):
+  By not providing &quot;FindQt5Core.cmake&quot; in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by &quot;Qt5Core&quot;, but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by &quot;Qt5Core&quot; with any
+  of the following names:
+
+    Qt5CoreConfig.cmake
+    qt5core-config.cmake
+
+  Add the installation prefix of &quot;Qt5Core&quot; to CMAKE_PREFIX_PATH or set
+  &quot;Qt5Core_DIR&quot; to a directory containing one of the above files.  If
+  &quot;Qt5Core&quot; provides a separate development package or SDK, be sure it has
+  been installed.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>I checked for Qt5 packages and they seemed to be installed. There has been a naming change between Qt4 and Qt5 packages in Ubuntu and that threw me off.</p>
+<p>What was needed is the package <code>qtbase5-dev</code>. Once I installed it, this error was solved:</p>
+<pre><code>$ sudo apt install qtbase5-dev</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to mount remote directory using SSHFS</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to mount remote directory using SSHFS</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-10 12:36:06+00:00</h3>
+</div>
+<p>Samba (SMB) and NFS can be too complicated to mount directories between computers on a home network. If both the remote and local computers are running Linux then an easier method is to use SSHFS.</p>
+<ul>
+<li>Installing SSHFS is easy:</li>
+</ul>
+<pre><code>$ sudo apt install sshfs</code></pre>
+<ul>
+<li>Create a local directory where you want to mount the remote directory:</li>
+</ul>
+<pre><code>$ mkdir my_remote_contents</code></pre>
+<ul>
+<li>Make sure you can already SSH to your remote computer:</li>
+</ul>
+<pre><code>$ ssh my_remote_login@my_remote_computer</code></pre>
+<ul>
+<li>To mount your remote directory using SSHFS to the local directory you created earlier:</li>
+</ul>
+<pre><code>$ sshfs my_remote_login@my_remote_computer:/some/remote/path my_remote_contents</code></pre>
+<p>Now you can browse the directory both from shell or any GUI file explorer. All normal file operations works seamlessly, including deletion.</p>
+<ul>
+<li>To unmount the remote directory:</li>
+</ul>
+<pre><code>$ fusermount -u my_remote_contents</code></pre>
+<p>Note that your user needs to have sudo permissions to be able to unmount the directory.</p>
+<p><strong>Tried with:</strong> SSHFS 2.5 and Ubuntu 14.04</p>
+</body>
+</html>

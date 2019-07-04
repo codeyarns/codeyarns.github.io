@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Unknown media type in type warnings in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Unknown media type in type warnings in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-12 12:04:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>Whenever I install or remove a package in <strong>Ubuntu</strong>, I get warnings about certain <strong>MIME</strong> types:</p>
+<pre><code>Processing triggers for shared-mime-info (1.2-0ubuntu3) ...
+Unknown media type in type &#39;all/all&#39;
+Unknown media type in type &#39;all/allfiles&#39;
+Unknown media type in type &#39;uri/mms&#39;
+Unknown media type in type &#39;uri/mmst&#39;
+Unknown media type in type &#39;uri/mmsu&#39;
+Unknown media type in type &#39;uri/pnm&#39;
+Unknown media type in type &#39;uri/rtspt&#39;
+Unknown media type in type &#39;uri/rtspu&#39;</code></pre>
+<h1 id="solution">Solution</h1>
+<p>These are the so-called <strong>fake MIME</strong> types and come from the file <code>/usr/share/mime/packages/kde.xml</code> which is installed by the <code>kdelibs5-data</code> package. Every time a package is installed or removed, the MIME database is updated and it complains about these unknown MIME types. This is a bug from 2008 that is still not fixed, as seen <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=469833">here</a>.</p>
+<p>To fix this problem:</p>
+<ul>
+<li>Open the above file, remove the XML entries corresponding to the above 8 MIME types and save the file:</li>
+</ul>
+<pre><code>$ sudoedit /usr/share/mime/packages/kde.xml</code></pre>
+<ul>
+<li>Update the MIME database:</li>
+</ul>
+<pre><code>$ sudo update-mime-database /usr/share/mime/</code></pre>
+<p><strong>Note:</strong> Some online solutions ask you to <strong>delete</strong> the above file. If you do that, KDE applications will complain that they cannot open certain file types. For example, Okular will complain that it cannot open its own <strong>archive</strong> file and throw this error:</p>
+<pre><code>okular(22776)/okular (app) Okular::Document::openDocument: No plugin for mimetype &#39;&quot;application/zip&quot;&#39;.</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

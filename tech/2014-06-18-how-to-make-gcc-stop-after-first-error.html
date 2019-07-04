@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to make GCC stop after first error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to make GCC stop after first error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-06-18 01:42:04+00:00</h3>
+</div>
+<p>During compilation of a source file, GCC tries to show as many error messages as possible until it cannot make any sense of the input. This is the default behavior. For certain files, the error messages can be huge wall of text that should be navigated to find the first or first few errors. So, sometimes I would like GCC to just show me the first error and stop there.</p>
+<p>To make GCC stop after displaying the first error:</p>
+<pre><code>$ gcc -Wfatal-errors foo.c
+
+$ g++ -Wfatal-errors foo.cpp</code></pre>
+<p>If you use CMake to compile your code, then this directive can be added to CMakeLists.txt:</p>
+<pre><code>add_definitions(
+    -Wfatal-errors
+    )</code></pre>
+<p><strong>Tried with:</strong> GCC 4.9 and Ubuntu 14.04</p>
+</body>
+</html>

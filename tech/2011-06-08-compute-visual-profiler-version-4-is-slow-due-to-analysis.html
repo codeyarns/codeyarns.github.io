@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Compute Visual Profiler: Version 4 is Slow due to Analysis</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Compute Visual Profiler: Version 4 is Slow due to Analysis</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-06-08 02:20:33+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>The <strong>Compute Visual Profiler</strong> 4.0.17 that ships with CUDA 4.0 has a new <strong>Analysis</strong> feature. This is enabled on any session and is always active when using the <strong>Summary Table</strong>. I found this analysis to be too slow for my kernels since it hogs the CPU, making it difficult to interact with the profiler. And there seems to be no way to turn off this Analysis feature in this version of the profiler! :-|</p>
+<p><strong>Solution</strong></p>
+<p>Use the Compute Visual Profiler 3.2.0 from CUDA 3.2. I found that is works fine on CUDA executables compiled with CUDA 4.0. Copy over the <code>computeprof</code> directory found in <code>%CUDA_PATH%</code> from your older CUDA installation or from another computer. Use the <code>computeprof.exe</code> found in its <code>bin</code> directory. No additional DLLs are required.</p>
+<p><strong>Tried with</strong>: Compute Visual Profiler 4.0.17 and CUDA 4.0</p>
+</body>
+</html>

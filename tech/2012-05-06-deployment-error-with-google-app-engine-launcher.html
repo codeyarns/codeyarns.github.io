@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Deployment Error with Google App Engine Launcher</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Deployment Error with Google App Engine Launcher</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-05-06 15:01:15+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2012/05/20120506-google-app-engine-error.png"><img src="https://codeyarns.files.wordpress.com/2012/05/20120506-google-app-engine-error.png" /></a></p>
+<p><strong>Problem</strong></p>
+<p>You try to <strong>deploy</strong> an application using the <strong>Google App Engine Launcher</strong>. It asks for your Email and Password, so you enter your Google login and password. But, the deploy script (<code>appcfg.py</code>) fails with the error shown above:</p>
+<pre><code>  File &quot;C:\Program Files (x86)\Google\google_appengine\google\appengine\tools\appengine_rpc.py&quot;, line 94, in __init__
+    self.reason = args[&quot;Error&quot;]
+AttributeError: can&#39;t set attribute</code></pre>
+<p><strong>Solution</strong></p>
+<p>You can use your Google login, but the password associated with that account is <strong>not</strong> usable for application deployment. For this, you need what is called an <strong>application-specific password</strong>. To create it go to <a href="https://accounts.google.com/IssuedAuthSubTokens" class="uri">https://accounts.google.com/IssuedAuthSubTokens</a>. You can find the option to create application-specific passwords at the bottom of that page.</p>
+<p>Once you have created an application-specific password, copy it and use it along with your Google login to deploy your application. It should deploy successfully now.</p>
+<p><strong>Tried with:</strong> Google App Engine SDK 1.6.5</p>
+</body>
+</html>

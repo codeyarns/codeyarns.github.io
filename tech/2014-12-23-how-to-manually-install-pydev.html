@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to manually install PyDev</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to manually install PyDev</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-12-23 11:11:45+00:00</h3>
+</div>
+<p>The easiest and recommended method to install <strong>PyDev</strong> is to use Install New Software as shown <a href="2014/12/23/how-to-install-pydev/">here</a>. I found that this method was giving this error on Eclipse 4.4.1:</p>
+<pre><code>An error occurred while collecting items to be installed
+session context was:(profile=epp.package.cpp, phase=org.eclipse.equinox.internal.p2.engine.phases.Collect, operand=, action=).
+Unable to read repository at http://pydev.org/updates/plugins/com.python.pydev.debug_3.9.0.201411111611.jar.
+Read timed out
+Unable to read repository at http://pydev.org/updates/plugins/org.python.pydev.help_3.9.0.201411111611.jar.
+Read timed out</code></pre>
+<p>Thankfully, PyDev plugin can be installed manually and that is what I ended up doing:</p>
+<ul>
+<li><p>Download the latest plugin zip files from <a href="http://sourceforge.net/projects/pydev/files/">here</a>.</p></li>
+<li><p>Unzip the file and you get two directories <code>features</code> and <code>plugins</code>. Place these directories in the <code>dropins</code> directory of your Eclipse installation.</p></li>
+<li><p>Restart Eclipse if it was running.</p></li>
+<li><p>Go to Help -&gt; Installation Details. You should be able to find PyDev listed here.</p></li>
+</ul>
+<p>You should be able to use PyDev now! :-)</p>
+<p><strong>Tried with:</strong> PyDev 3.9.0, Eclipse Luna 4.4.1 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Dropbox: Common Directory across Windows and Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Dropbox: Common Directory across Windows and Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-06-18 09:32:07+00:00</h3>
+</div>
+<p><a href="http://www.dropbox.com/"><strong>Dropbox</strong></a> is a great way to keep data synced between different computers. It is awesome that it has sync <strong>applications</strong> for both Windows and Linux. This is very useful on a dual-boot computer where it is nice to have data synced and accessible from both Windows and Linux.</p>
+<p>This can be achieved by keeping the <strong>Dropbox directory</strong> on a partition that is accessible from both Windows and Linux. I do this by keeping the Dropbox directory on my <strong>NTFS partition </strong>that is shared between both OSes.</p>
+<p>However, the Dropbox application on Windows insist on the directory being named <strong>My Dropbox</strong>, while the Linux application insists on the directory name <strong>Dropbox</strong>. To maintain a common directory between Windows and Linux use the <a href="http://wiki.dropbox.com/DropboxAddons/DropboxPath"><strong>DropboxPath</strong> addon</a> on Windows. Use it to setup the Windows application to use the directory named Dropbox created by the Linux application:</p>
+<pre><code>$ DropboxPath.exe D:\LinuxShare\Dropbox</code></pre>
+</body>
+</html>

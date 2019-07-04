@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Convert CHM file to PDF using chm2pdf</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Convert CHM file to PDF using chm2pdf</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-10-04 06:49:38+00:00</h3>
+</div>
+<p><strong>CHM</strong> is typically used for documentation of software and libraries or for books. It can sometimes be convenient to convert a CHM file to <strong>PDF</strong> file. For example, you might prefer a PDF file to use on Linux, ebook readers or tablets. This conversion can be performed easily using <a href="https://code.google.com/p/chm2pdf/"><strong>chm2pdf</strong></a>.</p>
+<ol style="list-style-type: decimal">
+<li>Install the <code>chm2pdf</code> package:</li>
+</ol>
+<pre><code>$ sudo apt-get install chm2pdf</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Convert the CHM file to PDF using the <code>chm2pdf</code> command:</li>
+</ol>
+<pre><code>$ chm2pdf --book foobar.chm</code></pre>
+<p>This produces a <code>foobar.pdf</code> file. We provided the option <code>--book</code> in the above command. Alternatively, you can provide either <code>--continuous</code> or <code>--webpage</code> too. These options hint to chm2pdf about the structure of the CHM file. One of these three options has to be provided.</p>
+<p><strong>Tried with:</strong> chm2pdf 0.9.1 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

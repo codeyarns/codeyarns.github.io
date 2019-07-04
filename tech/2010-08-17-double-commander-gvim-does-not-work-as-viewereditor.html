@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Double Commander: GViM Does Not Work as Viewer/Editor</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Double Commander: GViM Does Not Work as Viewer/Editor</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-08-17 20:58:54+00:00</h3>
+</div>
+<p><a href="http://doublecmd.sourceforge.net/"><strong>Double Commander</strong></a> is an open source file manager in the likeness of the venerable <a href="http://en.wikipedia.org/wiki/Norton_Commander"><strong>Norton Commander</strong></a>. By default its <strong>View (F3)</strong> and <strong>Edit (F4)</strong> options open the file for viewing or editing with its own <em>internal</em> viewer and editor. On Windows 7, I like to set the viewer and editor as <strong>GViM</strong>, which can be set in the <em>Configuration → Options → Tools</em>. However, this setting does not work, since View (F3) or Edit (F4) does not do anything.</p>
+<p>This is due to a bug in Double Commander, which cannot handle a path with spaces. On Windows 7, ViM is typically installed to <code>C:\Program Files (x86)\Vim\vim72</code>, which is a path with spaces. To make Double Commander handle this, open the Tools dialog (like above) and enclose the path to gvim.exe (or any executable) in <em>double quotes</em>. View (F3) and Edit (F3) should work after this.</p>
+<p>Tried with: <strong>Double Commander 0.4.5.1 Beta</strong></p>
+</body>
+</html>

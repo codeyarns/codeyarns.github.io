@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>LNK4098 Linker Warning in Visual C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">LNK4098 Linker Warning in Visual C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-09-02 08:38:23+00:00</h3>
+</div>
+<p>Problem</p>
+<p>C++ code when compiled can produce the linker warning <strong><a href="http://msdn.microsoft.com/en-us/library/aa267384.aspx">LNK4098</a></strong> at the final linking stage. This warning is of the form:</p>
+<pre><code>warning LNK4098: defaultlib &#39;LIBCMTD&#39; conflicts with use of other libs; use /NODEFAULTLIB:library</code></pre>
+<p><strong>What does this mean?</strong></p>
+<p>It means that  more than one kind of <strong>C run-time library</strong> has been used in the project! This is the cause of the conflict. The different types of C run-time libraries can be seen <a href="http://codeyarns.wordpress.com/2010/11/04/visual-c-c-run-time-libraries/">here</a>.</p>
+<p><strong>How to fix it?</strong></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100902_linker_warning.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100902_linker_warning.png" /></a></p>
+<p>One source of conflict is different <strong>source files</strong> being compiled with different options. Examine the <strong>Runtime Library</strong> properties of the each of the source files in the solution. Open <em>Project &gt; Properties</em> and this option can be found at <em>C/C++ &gt; Code Generation &gt; Runtime Library</em>. There might be some files which differ in the Runtime Library they are using. For example, Foo.cpp might be compiled with Multi-threaded DLL (/MD) and Joe.cpp might be compiled with Multi-threaded (/MT). To fix this warning, change the Runtime Library settings so that they are uniform across all the files of the solution. <strong>Example:</strong> I typically notice these warnings when there are external <strong>Build Rules</strong> being used in the solution. For example, CUDA files (.cu) are typically compiled with a different Build Rule that invokes the CUDA compiler (nvcc.exe). The Runtime Library option within this Build Rule might not be matching the Runtime Library option of the solution, thus resulting in this warning.</p>
+<p>Another possibility is the <strong>external libraries</strong> being linked with the project. Examine the library files being explicitly linked with the project and ensure they are compiled with the <em>same</em> run-time library options as that of the project.</p>
+<p>If the above options fail or are not feasible, use the <code>/NODEFAULTLIB</code> option set to ignore the specific library that is causing this warning. That is, <code>LIBCMTD</code> in this case. To do this, go to Project &gt; Properties &gt; Linker &gt; Input &gt; Ignore Specific Default Libraries and add the filename of the offending library. For example, add <code>LIBCMTD.lib</code> in this case. This generates a compile option <code>/NODEFAULTLIB:LIBCMTD.lib</code> during compile time that excludes this library during linking.</p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to view octal permission of file</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to view octal permission of file</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-11 12:21:02+00:00</h3>
+</div>
+<p>The <code>ls</code> command shows the access <strong>permissions</strong> of a file or directory in the <strong>symbolic representation</strong> using <code>rwx</code>. Sometimes you may want the view the permissions in <strong>octal representation</strong>. Sadly <code>ls</code> has no option to show this.</p>
+<p>However, the <code>stat</code> command shows both the octal and symbolic representations by default amongst the other wealth of details it lists:</p>
+<pre><code>$ stat foobar.txt
+  File: ‘foobar.txt’
+  Size: 1692            Blocks: 8          IO Block: 4096   regular file
+Device: 802h/2050d      Inode: 57285082    Links: 1
+Access: (0400/-r--------)  Uid: ( 1001/  joe)   Gid: ( 1001/  joe)
+Access: 2016-05-11 15:16:32.884351709 +0800
+Modify: 2016-05-11 13:42:04.135990274 +0800
+Change: 2016-05-11 15:16:31.872327471 +0800
+ Birth: -</code></pre>
+<p>To get just the permissions in octal representation:</p>
+<pre><code>$ stat --format=&quot;%a&quot; foobar.txt
+400</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

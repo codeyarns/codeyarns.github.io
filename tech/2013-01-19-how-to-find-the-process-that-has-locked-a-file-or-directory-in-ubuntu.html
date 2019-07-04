@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to find the process that has locked a file or directory in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to find the process that has locked a file or directory in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-01-19 11:04:56+00:00</h3>
+</div>
+<p>When you open a program in Ubuntu, it might quit complaining that another process has <strong>locked</strong> a file or directory it is trying to open.</p>
+<p>For example, here is an error of this kind:</p>
+<pre><code>E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)
+E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?</code></pre>
+<p>To continue, you might have to find the offending process and stop it. The <a href="2013/01/19/how-to-list-the-files-open-by-processes-in-ubuntu/"><strong>lsof</strong></a> command can be used for this purpose.</p>
+<p>For example, to find out which process has locked the <code>/var/lib/dpkg</code> directory in the above example:</p>
+<p><code>$ lsof | grep /var/lib/dpkg</code></p>
+<p><strong>Tried with:</strong> Ubuntu 12.04.1 LTS</p>
+</body>
+</html>

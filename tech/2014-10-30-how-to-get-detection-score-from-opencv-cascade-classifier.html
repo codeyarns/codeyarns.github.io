@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get detection score from OpenCV cascade classifier</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get detection score from OpenCV cascade classifier</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-10-30 02:37:20+00:00</h3>
+</div>
+<p>The OpenCV cascade classifier makes it easy to train and test detection of faces and other objects in images. I have already written about how to train this classifier <a href="tag/cascade-classifier/">here</a>. To get the objects detected during the testing stage, OpenCV provides this function:</p>
+<pre><code>void CascadeClassifier::detectMultiScale(
+    const Mat&amp; image,
+    vector&lt;Rect&gt;&amp; objects,
+    double scaleFactor=1.1,
+    int minNeighbors=3,
+    int flags=0,
+    Size minSize=Size(),
+    Size maxSize=Size()
+);</code></pre>
+<p>This returns a list of rectangles in the image where the classifier thinks it has detected the object. However, there seems to be no way to rank the detected locations. There is no detection or confidence weight or score associated with each rectangle to help you prioritize the detected locations. This is surprising since such a score should be present in the classifier, it is just that this function is not exposing that information.</p>
+<p>Thankfully, there is an alternative to this function that returns the weight and reject level associated with each detected rectangle. Surprisingly, this function does not yet appear in the documentation. You can find it declared in <code>modules/objdetect/include/opencv2/objdetect/objdetect.hpp</code> as:</p>
+<pre><code>CV_WRAP virtual void detectMultiScale(
+    const Mat&amp; image,
+    CV_OUT vector&lt;Rect&gt;&amp; objects,
+    vector&lt;int&gt;&amp; rejectLevels,
+    vector&lt;double&gt;&amp; levelWeights,
+    double scaleFactor=1.1,
+    int minNeighbors=3,
+    int flags=0,
+    Size minSize=Size(),
+    Size maxSize=Size(),
+    bool outputRejectLevels=false
+);</code></pre>
+<p>You can also hack the code a bit to get other types of scores with each detected location as demonstrated in this <a href="http://haoxiang.org/2013/11/opencv-detectmultiscale-output-detection-score/">post</a>.</p>
+<p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
+</body>
+</html>

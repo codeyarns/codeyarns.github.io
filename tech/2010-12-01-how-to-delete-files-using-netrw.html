@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to delete files using NetRW</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to delete files using NetRW</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-12-01 12:23:32+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2010/12/20101201_netrw_deletion1.png"><img src="http://codeyarns.files.wordpress.com/2010/12/20101201_netrw_deletion1.png" /></a> [ Files matched for the pattern <code>Log_*</code> ]</p>
+<p>The <a href="http://codeyarns.wordpress.com/2010/11/30/vim-netrw-plugin-and-tree-style-listing/"><strong>NetRW</strong></a> plugin is a pretty full-fledged file explorer that ships with <strong>ViM</strong>. Other than opening files and directories, for me the most frequent operation in NetRW is to <strong>delete</strong> files.</p>
+<p><strong>Deleting a File</strong></p>
+<p>The command to delete is <code>D</code>. Move the cursor to the file to be deleted and press <code>D</code>. You will be prompted in the ViM command line, choose <code>y</code> to confirm the deletion.</p>
+<p><strong>Deleting by Visually Highlighting</strong></p>
+<p>When deleting a set of files that are adjacent, it is easier to visually highlight them together and delete them. Place the cursor on the first or last of the files to be deleted. Enter <code>V</code> to enter <strong>Visual Mode</strong>. Use the <code>j</code> and <code>k</code> keys to move up or down, visually highlighting the files in the process. Press <code>D</code> to delete the highlighted files.</p>
+<p><strong>Deleting by Marking</strong></p>
+<p>This trick is useful to delete a few files that are scattered around. Move to each of the files and press <code>mf</code> to mark each of them. The marking is displayed visually with a different color. Press <code>D</code> to delete all the marked files.</p>
+<p><strong>Deleting by Matching a Pattern</strong></p>
+<p>A final trick I find useful is to be able to delete all the files that match a certain pattern. This is especially useful when the files are too numerous to delete by marking them individually or visually.</p>
+<p>Type <code>mr</code> and NetRW will prompt for a regular expression. Enter the pattern to match. All the files that match the pattern are marked (with a different color). Press <code>D</code> to delete.</p>
+<p><strong>Unmarking</strong></p>
+<p>If you marked one or more files by mistake, type <code>mu</code> to unmark all the files that were marked.</p>
+<p>For more info type <code>:help netrw</code> in ViM.</p>
+</body>
+</html>

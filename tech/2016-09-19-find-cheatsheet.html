@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Find Cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Find Cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-09-19 13:59:18+00:00</h3>
+</div>
+<p>The <strong>find</strong> command in Linux is immensely useful. Here are some invocations of this command I find useful:</p>
+<ul>
+<li>List all files and directories under a specified directory:</li>
+</ul>
+<pre><code>$ find /usr/include
+$ find ../foobar/lib
+$ find .</code></pre>
+<p>Unlike commands like <code>ls</code>, note that the <code>find</code> command is recursive by default. It will list everything under the specified directory.</p>
+<ul>
+<li>List only normal files (symbolic links and directories will not be shown):</li>
+</ul>
+<pre><code>$ find /usr/include -type f</code></pre>
+<ul>
+<li>List only symbolic links:</li>
+</ul>
+<pre><code>$ find /usr/foobar -type l</code></pre>
+<ul>
+<li>List only directories:</li>
+</ul>
+<pre><code>$ find /usr/foobar -type d</code></pre>
+<ul>
+<li>List only files or directories that are executable:</li>
+</ul>
+<pre><code>$ find /bin -executable</code></pre>
+<ul>
+<li>Combining two or more types can be done. For example, to list normal files and symbolic links:</li>
+</ul>
+<pre><code>$ find /usr/foobar -type f -or -type l</code></pre>
+<ul>
+<li>List file or directory paths with a wildcard pattern:</li>
+</ul>
+<pre><code>$ find /usr/foobar -name &quot;exactly_match_this&quot;
+$ find /usr/foobar -name &quot;*.this_extension&quot;
+$ find /usr/foobar -name &quot;*some_substring*&quot;</code></pre>
+<ul>
+<li>List matching a wildcard pattern, but case insensitive:</li>
+</ul>
+<pre><code>$ find /usr/foobar -iname &quot;*someblah*&quot;</code></pre>
+<ul>
+<li>List files whose size is exactly or greater than a specific size:</li>
+</ul>
+<pre><code>$ find /usr/foobar -size 10k
+$ find /usr/foobar -size +10k
+$ find /usr/foobar -size +10M
+$ find /usr/foobar -size +10G</code></pre>
+<ul>
+<li>List empty files:</li>
+</ul>
+<pre><code>$ find /usr/foobar -size 0</code></pre>
+<ul>
+<li>List files and directories newer than the specified file or directory:</li>
+</ul>
+<pre><code>$ find /usr/foobar -newer stdio.cpp</code></pre>
+<ul>
+<li>Do a <code>ls -l</code> on specific files and directories:</li>
+</ul>
+<pre><code>$ find /usr/foobar -size +20k -ls</code></pre>
+<ul>
+<li>Delete files and directories that match:</li>
+</ul>
+<pre><code>$ find /usr/foobar -size +20k -delete</code></pre>
+<ul>
+<li>Note that many of the above operations can be performed by piping the results of <code>find</code> to the immensely useful <code>xargs</code> command. For example, to <code>ls</code> on the results of <code>find</code>:</li>
+</ul>
+<pre><code>$ find /usr/foobar -size +20k | xargs ls -l</code></pre>
+<p><strong>Reference</strong>:</p>
+<ul>
+<li><p>man find</p></li>
+<li><p><em>The Linux Command Line: A Complete Introduction</em> by William Shotts</p></li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

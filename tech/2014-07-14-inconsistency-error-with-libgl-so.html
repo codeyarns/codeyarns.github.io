@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Inconsistency error with libGL.so</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Inconsistency error with libGL.so</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-07-14 09:07:12+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I compiled and linked an OpenGL program with <code>-lGL</code>. On executing the program, I got this runtime error:</p>
+<pre><code>Inconsistency detected by ld.so: dl-version.c: 224: _dl_check_map_versions: Assertion `needed != ((void *)0)&#39; failed!</code></pre>
+<h1 id="solution">Solution</h1>
+<p>The cryptic error message held some clues. I guessed there was some inconsistency between the various shared library files being linked into the program.</p>
+<p>Searching for the OpenGL library gave multiple results:</p>
+<pre><code>$ locate libGL.so
+/usr/lib/nvidia-331/libGL.so
+/usr/lib/nvidia-331/libGL.so.1
+/usr/lib/nvidia-331/libGL.so.331.38
+/usr/lib/x86_64-linux-gnu/libGL.so
+/usr/lib/x86_64-linux-gnu/mesa/libGL.so
+/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1
+/usr/lib/x86_64-linux-gnu/mesa/libGL.so.1.2.0
+/usr/lib32/nvidia-331/libGL.so
+/usr/lib32/nvidia-331/libGL.so.1
+/usr/lib32/nvidia-331/libGL.so.331.38</code></pre>
+<p>There seemed to be two versions of the library file: one from MESA located in the standard library directory and another from NVIDIA located in its own directory. I guessed that the MESA file must be getting linked and at runtime it could not work with the NVIDIA display driver. A bit of Googling ended up in this <a href="https://bugs.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-319/+bug/1248642">bug report</a> which painted a similar picture.</p>
+<p>This bug was not yet fixed for my Ubuntu system. So, explicitly using the NVIDIA library file for linking, using <code>-L/usr/lib/nvidia-331</code> acted as a workaround for this error. The program compiled and executed without any errors.</p>
+<p><strong>Tried with:</strong> NVIDIA drivers 331, Ubuntu 14.04 and NVIDIA GeForce 9600 GT</p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to make in parallel</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to make in parallel</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-07 13:59:37+00:00</h3>
+</div>
+<p>Building the source code of big projects can take a lot of time. By default, the <code>make</code> command builds one target at a time. Since most of our computers have multiple cores, this process can be sped up by building multiple targets in parallel. This can be done easily by using the <code>--jobs</code> or <code>-j</code> parameter.</p>
+<ul>
+<li><p><code>make -j</code> will try to build <strong>all</strong> targets in parallel whose dependencies are available. This will swamp your machine with build tasks.</p></li>
+<li><p><code>make -j 6</code> will try to build a maximum of 6 (or any non-zero positive integer you specify) targets in parallel. The actual number of builds done in parallel might be less depending on how many targets have their dependencies ready.</p></li>
+<li><p>If you use parallel make frequently, then it is a good idea to turn it into an alias in your shell.</p></li>
+<li><p>The <code>-j</code> option can be set in the <code>MAKEFLAGS</code> environment variable, if you want parallel make to be used whenever <code>make</code> is invoked. This is better than an alias since parallel make is used even if <code>make</code> is called inside programs which are not using (or not aware of) your alias.</p></li>
+<li><p>You may want to use the same alias or <code>MAKEFLAGS</code> variable across machines with varying number of CPU cores. One way to solve this problem is to use the output of the <code>nproc --all</code> command to set the number of parallel jobs.</p></li>
+</ul>
+</body>
+</html>

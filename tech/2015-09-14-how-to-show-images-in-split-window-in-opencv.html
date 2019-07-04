@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to show images in split window in OpenCV</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to show images in split window in OpenCV</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-14 12:15:00+00:00</h3>
+</div>
+<p>A typical scenario in computer vision is to show multiple images in different parts of a single window, like a split window. However, OpenCV can only display a single <code>cv::Mat</code> in a single window using <code>cv::imshow()</code>. So, to achieve what we want, we create a single <code>cv::Mat</code> whose size is equal to the window. We copy our multiple images into this mat at the locations we want and just display the big mat.</p>
+<p>(Note that this is far easier than the ROI regions you would need to use with <code>IplImage</code>.)</p>
+<p>This sample illustrates showing two <code>640x480</code> images side-by-side in a single window:</p>
+<pre><code>// 640x480 images
+cv::Mat mat_1;
+cv::Mat mat_2;
+
+// Create 1280x480 mat for window
+cv::Mat win_mat(cv::Size(1280, 480), CV_8UC3);
+
+// Copy small images into big mat
+mat_1.copyTo(win_mat(cv::Rect(  0, 0, 640, 480)));
+mat_2.copyTo(win_mat(cv::Rect(640, 0, 640, 480)));
+
+// Display big mat
+cv::imshow(&quot;Images&quot;, win_mat);</code></pre>
+<p><strong>Tried with:</strong> OpenCV 2.4.8 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable debug mode for C++ containers</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable debug mode for C++ containers</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-10 12:41:30+00:00</h3>
+</div>
+<p>The <strong>containers</strong> of the C++ standard library are incredibly useful to write compact code without having to reinvent basic data structures. Since the focus of C++ is always on performance, error checking is not performed in the use of these containers. For example, in a <code>std::vector</code> with <code>35</code> elements, you can access <code>v[39]</code> without C++ blinking an eye. You will of course get back invalid data that might silently poison the runtime execution of the program. <code>std::vector</code> offers a safer <code>at(39)</code> method that does the bounds checking, but it is slower and so not all code will use it. When a strange runtime error does occur in code using C++ containers, how to debug it?</p>
+<p>If you are using GCC, thankfully it provides an alternate <strong>debug mode</strong> version of the C++ standard library where all the calls perform error checking. Finding your error becomes easier by using these <a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/debug_mode.html">debug mode C++ standard library containers</a>.</p>
+<h1 id="debug-mode">Debug mode</h1>
+<p>You can change your entire C++ code to link with the debug C++ standard library by adding the <code>-D_GLIBCXX_DEBUG</code> compiler flag. This will replace all use of C++ standard library containers to their debug versions. On running the program, the container should report any error it finds.</p>
+<p>However, this option may not be feasible if you are passing any C++ container in calls to external libraries (say OpenCV). Since these external libraries may not have been compiled with these flag, they cannot be linked. You will have to recompile all these external libraries with this flag to be able to link with them.</p>
+<p>For example, my C++ code was calling some functions in OpenCV and passing a <code>std::vector</code>. On compiling with this debug flag, I got this error:</p>
+<pre><code>main.cpp.o: In function `main&#39;:
+main.cpp:92: undefined reference to `cv::imwrite(std::string const&amp;, cv::_InputArray const&amp;, std::__debug::vector&lt;int, std::allocator &gt; const&amp;)&#39;
+error: ld returned 1 exit status</code></pre>
+<p>The error is indicating that it cannot find a OpenCV function definition that takes a <code>std::__debug::vector</code> as input.</p>
+<h1 id="debug-container">Debug container</h1>
+<p>If you are stuck with the above scenario where you use an external library that is not compiled in this debug mode, there is an alternative. Find the definitions of containers in your code that are suspect and only change those specifically to the debug version of the container.</p>
+<p>For example, I suspected a certain <code>std::vector</code> in my code, so I changed its definition to:</p>
+<pre><code>#include &lt;debug/vector&gt;
+
+// Earlier this was:
+// std::vector&lt;int&gt; pick_vec;
+// Changed now to:
+std::__gnu_debug::vector&lt;int&gt; pick_vec;</code></pre>
+<p>On compiling and running this code, the out-of-bounds error was found by the debug container:</p>
+<pre><code>/usr/include/c++/4.9/debug/vector:357:error: attempt to subscript container 
+    with out-of-bounds index 39, but container only holds 35 elements.
+
+Objects involved in the operation:
+sequence &quot;this&quot; @ 0x0x7ffffc4d5fe0 {
+  type = NSt7__debug6vectorIN2cv7Point3_IfEESaIS3_EEE;
+}</code></pre>
+<p>The list of C++ debug containers and their header files can be found listed <a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/debug_mode_using.html">here</a>.</p>
+<p><strong>Tried with:</strong> GCC 4.9 and Ubuntu 14.04</p>
+</body>
+</html>

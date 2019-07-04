@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to downgrade XT1068 to KitKat</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to downgrade XT1068 to KitKat</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-02-21 14:17:24+00:00</h3>
+</div>
+<p>The <strong>Moto G2 (XT1068)</strong> shipped with Android 4.4.4 (KitKat). But they were OTA upgraded to Android 5.0.2 (Lollipop) or Android 6.0 (Marshmallow), depending on the region. If your XT1068 is one of the newer Androids and you wish to downgrade back to the original KitKat that can be done easily.</p>
+<ul>
+<li><p>You will loose all the data and apps on your phone. Back up whatever you need.</p></li>
+<li><p>Download the KitKat image of XT1068 from <a href="http://d-h.st/VOw">here</a>.</p></li>
+<li><p>Download the <strong>MFastBoot</strong> tool from <a href="http://www.mediafire.com/download/07jmbobl68d1k9g/Copy+of+mfastboot-v2.zip">here</a>.</p></li>
+<li><p>Connect the XT1068 using a USB cable to the computer.</p></li>
+<li><p>Unzip both of the above files into the same directory. Open a command prompt at this directory.</p></li>
+<li><p>Run the following commands to replace its OS with KitKat:</p></li>
+</ul>
+<pre><code>mfastboot.exe flash partition gpt.bin
+
+mfastboot.exe flash motoboot motoboot.img
+
+mfastboot.exe flash logo logo.bin
+
+mfastboot.exe flash boot boot.img
+
+mfastboot.exe flash recovery recovery.img
+
+mfastboot.exe flash system system.img_sparsechunk.0
+
+mfastboot.exe flash system system.img_sparsechunk.1
+
+mfastboot.exe flash system system.img_sparsechunk.2
+
+mfastboot.exe flash system system.img_sparsechunk.3
+
+mfastboot.exe flash modem NON-HLOS.bin
+
+mfastboot.exe erase modemst1
+
+mfastboot.exe erase modemst2
+
+mfastboot.exe flash fsg fsg.mbn
+
+mfastboot.exe erase cache
+
+mfastboot.exe erase userdata</code></pre>
+<ul>
+<li>Reboot the phone by using this command:</li>
+</ul>
+<pre><code>mfastboot.exe reboot</code></pre>
+<p>That is it! You must have your KitKat back now :-)</p>
+</body>
+</html>

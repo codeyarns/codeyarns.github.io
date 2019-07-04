@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to setup Raspberry Pi as media server using ReadyMedia</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to setup Raspberry Pi as media server using ReadyMedia</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-23 16:37:00+00:00</h3>
+</div>
+<p><strong>Raspberry Pi</strong> can be setup as a <strong>media server</strong> to simultaneously stream videos, music and pictures to multiple devices on the home wireless network. <a href="https://sourceforge.net/projects/minidlna/"><strong>ReadyMedia</strong></a> (formerly known as <strong>MiniDLNA</strong>) is a simple media server that can be used to achieve this.</p>
+<ul>
+<li><p>Install Raspbian to the Pi, as described <a href="2015/01/23/how-to-install-raspbian/">here</a>.</p></li>
+<li><p>Connect and mount the hard disk containing the content to the USB port of the Pi. Let us assume the partition with the content is mounted at <code>/media/usb0</code>.</p></li>
+<li><p>SSH into the Pi and install the ReadyMedia server:</p></li>
+</ul>
+<pre><code>$ sudo apt-get install minidlna</code></pre>
+<ul>
+<li><p>Open the file <code>/etc/minidlna.conf</code> and edit the following entries.</p></li>
+<li><p>Set the video, music and pictures directories. For example:</p></li>
+</ul>
+<pre><code>media_dir=V,/media/usb0/videos
+media_dir=A,/media/usb0/music
+media_dir=P,/media/usb0/pictures</code></pre>
+<ul>
+<li>If you want ReadyMedia to automatically index new media files as they are added to your media directories:</li>
+</ul>
+<pre><code>inotify=yes</code></pre>
+<ul>
+<li>Restart the ReadyMedia server. This will index media files in your media directories and build the media database of the server:</li>
+</ul>
+<pre><code>$ sudo service minidlna force-reload</code></pre>
+<ul>
+<li><p>Open a browser on any other device on the network and open <code>http://192.168.0.99:8200</code>. Assuming <code>192.168.0.99</code> is the IP address of the Pi. <code>8200</code> is the default port of the ReadyMedia server. The webpage should show the number of content files in the server database.</p></li>
+<li><p>You are now ready to enjoy your content on any device on the network! On Android smartphone or tablet, I like to use <a href="2015/01/24/mediahouse-upnpdlna-browser/"><strong>MediaHouse UPnP/DLNA Browser</strong></a>. Once open, it shows my Pi and I can browse video, audio and image content.</p></li>
+<li><p>Videos can be played using any video player on your Android device. I like to use <strong>MX Player</strong> for this. Audio is played by the browser itself.</p></li>
+</ul>
+<p><strong>Tried with:</strong> ReadyMedia 1.0.24 and Raspbian 7</p>
+</body>
+</html>

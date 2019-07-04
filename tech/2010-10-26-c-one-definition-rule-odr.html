@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: One Definition Rule (ODR)</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: One Definition Rule (ODR)</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-10-26 06:06:46+00:00</h3>
+</div>
+<p>Every C++ programmer is aware of the <strong>One Definition Rule (ODR)</strong>, but in a vague sense: <em>&quot;Only one definition of something is allowed in something.&quot;</em> I was surprised to learn that the ODR stumps not just us mortals, but the architects of C++ itself. More than a decade after the birth of C++, in a 1995 C++ Standards meeting it took the architects 2 entire days to put down this rule to paper! :-)</p>
+<p><strong>Attempt 1</strong></p>
+<p>Here is a simple breakdown of the ODR:</p>
+<ul>
+<li><p>In a <strong>program</strong>, there can be only one definition of:</p>
+<ul>
+<li><p>(Non-inline) Function</p></li>
+<li><p>Variable</p></li>
+</ul></li>
+<li><p>In a <strong>translation unit</strong> (a .cpp file), there can be only one definition of:</p>
+<ul>
+<li>Class</li>
+</ul></li>
+</ul>
+<p><strong>Attempt 2</strong></p>
+<p>Alternatively, we can flip around the definition of the rule and try to understand it from the point-of-view of the entities:</p>
+<ul>
+<li><p><strong>Class</strong>: There can be only one definition of a class in a translation unit.</p>
+<ul>
+<li>Note: This means that the same class definition can appear in several translation units. In fact, this is what happens when the header file of a class in included in several source files.</li>
+</ul></li>
+<li><p>(Non-inline) <strong>Function</strong> or (global) <strong>Variable</strong>: There can be only one definition of such a function or variable in the entire program.</p>
+<ul>
+<li>When this rule is broken, a redefinition error is produced by the linker.</li>
+</ul></li>
+</ul>
+<p><strong>References</strong></p>
+<ul>
+<li><p><strong>Standard for C++ Programming Language</strong>: The ODR section is arcane and runs to 3 pages!</p></li>
+<li><p>Section 9.2.3 in <strong>The C++ Programming Language</strong> by Stroustrup: Surprisingly, the C++ creator himself only describes the ODR with relation to classes, clearly skipping (or assuming) it for functions and variables!</p></li>
+<li><p>Articles <strong>Diary of an Observer</strong> by Francis Glassborow and <strong>The Casting Vote</strong> by Sean A. Corfield in <strong>Issue 9</strong> (August 1995) of <strong>Overload</strong> magazine: C++ architects describe in entertaining detail how nailing the ODR definition took them 2 full days at the C++ standards meeting.</p></li>
+</ul>
+</body>
+</html>

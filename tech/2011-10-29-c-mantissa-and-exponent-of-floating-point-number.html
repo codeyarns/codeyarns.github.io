@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Mantissa and Exponent of Floating Point Number</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Mantissa and Exponent of Floating Point Number</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-10-29 06:01:06+00:00</h3>
+</div>
+<p>The little-known <a href="http://msdn.microsoft.com/en-us/library/w1xfschh.aspx"><strong>frexp</strong></a> function from the C/C++ standard library can be used to extract the <strong>mantissa</strong> and <strong>exponent</strong> of a floating point number (float, double or long double):</p>
+<pre><code>#include &lt;cmath&gt;
+
+const double d = 0.123;
+int exponent;
+const double mantissa = frexp( d, &amp;exponent );
+
+// Double:   0.123
+// Mantissa: 0.984
+// Exponent: -3</code></pre>
+<p>A few notes:</p>
+<ul>
+<li><p><code>frexp</code> assumes that a floating point number is represented as <code>mantissa * 2 ^ exponent</code>. This is a simple and convenient representation to work with. But, do keep in mind that this is not how the floating point number is actually stored.</p></li>
+<li><p>For a positive floating point number, the mantissa returned by <code>frexp</code> always lies in the range <code>[0.5, 1.0)</code>. This range is enough since a mantissa in the range <code>(0.0, 0.5)</code> can be converted to a value in <code>[0.5, 1.0)</code> by multiplying it by a suitable <code>2 ^ exponent</code>. Note that the <code>exponent</code> can be negative or positive. The exception to this mantissa value is the floating point number <code>0.0</code>, which is displayed as it is.</p></li>
+<li><p>The mantissa and exponent returned by <code>frexp</code> are in no way related to the actual mantissa and exponent values stored in the floating point number format. For example, the IEEE-754 format uses a sign bit and modifies the exponent value using an exponent bias.</p></li>
+</ul>
+</body>
+</html>

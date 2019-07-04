@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to create Windows installer USB stick using WinUSB</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to create Windows installer USB stick using WinUSB</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-12-07 12:49:23+00:00</h3>
+</div>
+<p>A USB thumb drive with Windows ISO on it can be used to <strong>install</strong> Windows newly or <strong>repair</strong> an existing installation of Windows. Such a bootable USB stick can be created easily on Ubuntu:</p>
+<ul>
+<li><p>Prepare the ISO of the version of Windows you want to install or use. For example, the Windows 10 ISO can be obtained <a href="http://www.microsoft.com/en-us/software-download/windows10ISO">here</a>. If you are upgrading from a Windows 7 or 8, you can find out which version you are allowed to upgrade to <a href="https://www.microsoft.com/en-us/windows/windows-10-specifications">here</a> (check the Upgrade Editions section).</p></li>
+<li><p>Note that common tools like <a href="http://codeyarns.com/2015/09/12/how-to-make-startup-disk-from-iso-using-startup-disk-creator/"><strong>Startup Disk Creator</strong></a> or <a href="http://codeyarns.com/2013/06/04/how-to-create-ubuntu-installer-usb-flash-drive-on-ubuntu/"><strong>UNetBootIn</strong></a> can only create installer USB sticks for Linux operating systems. They cannot be used for installing Windows.</p></li>
+<li><p>An easy tool to create an installer USB thumb drive for booting Windows is <strong>WinUSB</strong>. It can be installed from a PPA:</p></li>
+</ul>
+<pre><code>$ sudo add-apt-repository ppa:nilarimogard/webupd8
+$ sudo apt-get update  
+$ sudo apt-get install winusb</code></pre>
+<ul>
+<li>Plug in your USB stick and use this command to make it a Windows installer:</li>
+</ul>
+<pre><code>$ sudo winusb --format /path/to/windows.iso /dev/sdc</code></pre>
+<p>Use the path to your ISO file and the device name of your USB drive instead of <code>/dev/sdc</code> in the above command.</p>
+<p>You should be able to boot up and install Windows using this USB stick.</p>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

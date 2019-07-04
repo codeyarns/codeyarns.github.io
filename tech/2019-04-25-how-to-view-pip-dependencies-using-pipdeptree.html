@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to view PIP dependencies using pipdeptree</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to view PIP dependencies using pipdeptree</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-04-25 07:25:30+00:00</h3>
+</div>
+<p>When you install a Python PIP package using the pip tool, you will notice that it figures out if the package depends on other packages and installs them too. It is sometimes useful to know what is this tree of packages that a package depends on. <a href="https://github.com/naiquevin/pipdeptree"><strong>pipdeptree</strong></a> is a tool that makes it easy to view this information.</p>
+<ul>
+<li>Installing pipdeptree is easy:</li>
+</ul>
+<pre><code>$ sudo pip3 install pipdeptree</code></pre>
+<ul>
+<li>View the dependency tree of every installed package</li>
+</ul>
+<pre><code>$ pipdeptree</code></pre>
+<ul>
+<li>View the dependency tree of a particular package <code>foobar</code>:</li>
+</ul>
+<pre><code>$ pipdeptree -p foobar</code></pre>
+<ul>
+<li>View the reverse dependency tree -- the packages that are dependent on every installed package:</li>
+</ul>
+<pre><code>$ pipdeptree -r</code></pre>
+<ul>
+<li>Render the dependency tree graph to a PDF file using GraphViz:</li>
+</ul>
+<pre><code>$ pipdeptree --graph-output pdf &gt; out.pdf</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+</body>
+</html>

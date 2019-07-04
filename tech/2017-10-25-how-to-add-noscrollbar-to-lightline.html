@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add NoScrollBar to LightLine</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add NoScrollBar to LightLine</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-25 15:01:56+00:00</h3>
+</div>
+<p><a href="https://github.com/itchyny/lightline.vim"><strong>LightLine</strong></a> is a lightweight statusline plugin for <strong>Vim</strong>. By default, it shows the location of current line relative to the entire file as a percent at the left of the statusbar.</p>
+<p>However, I like to the <a href="https://github.com/gcavallanti/vim-noscrollbar"><strong>NoScrollBar</strong></a> plugin to get a general sense of the current line in the file. So, I replaced the percent display with the output of NoScrollBar using a tiny function.</p>
+<p>I added these lines in Vim to achieve this:</p>
+<pre><code>&quot; Replace percent component of Lightline statusline
+let g:lightline = {
+      \ &#39;component_function&#39;: {
+      \   &#39;percent&#39;: &#39;NoScrollbarForLightline&#39;
+      \ }
+      \ }
+
+&quot; Instead of % show NoScrollbar horizontal scrollbar
+function! NoScrollbarForLightline()
+    return noscrollbar#statusline()
+endfunction</code></pre>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 16.04</p>
+</body>
+</html>

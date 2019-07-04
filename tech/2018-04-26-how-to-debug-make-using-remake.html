@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to debug make using remake</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to debug make using remake</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-04-26 04:09:00+00:00</h3>
+</div>
+<p>In big projects that use <strong>Make</strong>, it can be hard to examine how a make build is working and to diagnose a build problem. Imagine my joy when I finally discovered <a href="https://github.com/rocky/remake"><strong>ReMake</strong></a>. This is a debugger, you heard it right, built off a version of GNU Make. It essentially allows you to step through a make build just like you would step through a program using GDB and examine state at any point in time.</p>
+<ul>
+<li>Installing remake is easy on Ubuntu:</li>
+</ul>
+<pre><code>$ sudo apt install remake</code></pre>
+<ul>
+<li>Using remake is as easy as replacing your make command with it:</li>
+</ul>
+<pre><code>$ remake
+$ remake some_target</code></pre>
+<ul>
+<li>If you want a verbose output of what is happening with your build use <code>-x</code> option:</li>
+</ul>
+<pre><code>$ remake -x</code></pre>
+<ul>
+<li>To actually debug a build with its debugger:</li>
+</ul>
+<pre><code>$ remake -X</code></pre>
+<p>The debugger jumps and waits at the line with the target that it needs to execute first. Use the <strong>help</strong> command to get a list of commands that you can use. They are all similar to GDB: <strong>step</strong> to step into, <strong>next</strong> to execute next line, <strong>print</strong> to print values of make variables (this is a lifesaver!) and so on.</p>
+<p><strong>Tried with:</strong> remake 3.82 and Ubuntu 16.04</p>
+</body>
+</html>

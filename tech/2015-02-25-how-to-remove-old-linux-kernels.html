@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to remove old Linux kernels</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to remove old Linux kernels</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-25 15:46:48+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2015/02/20150225_kernel.png"><img src="https://codeyarns.files.wordpress.com/2015/02/20150225_kernel.png" alt="20150225_kernel" /></a></p>
+<p><strong>Ubuntu</strong> updates Linux kernels almost every month. If you regularly update Ubuntu, you will end up with a lot of old Linux kernels.</p>
+<p>A Linux kernel in Ubuntu is installed as four packages. They are listed here for kernel <code>3.13.0-43</code>: <code>linux-headers-3.13.0-43</code>, <code>linux-headers-3.13.0-43-generic</code>, <code>linux-image-3.13.0-43-generic</code> and <code>linux-image-extra-3.13.0-43-generic</code>.</p>
+<p>You can of course look up the latest kernel version using <code>uname -r</code> and then proceed to remove all the rest of the Linux kernel packages manually.</p>
+<p>A great alternative is to use the <code>purge-old-kernels</code> tool. This removes all but the latest 2 kernels. Strangely, it is shipped along with the Byobu package, so you will need to install that to use it:</p>
+<pre><code>$ sudo apt install byobu
+$ sudo purge-old-kernels</code></pre>
+<p>Another alternative that I like is to use <strong>Ubuntu Tweak</strong> tool. It can be installed easily, as described <a href="2015/02/26/ubuntu-tweak/">here</a>.</p>
+<p>In Ubuntu Tweak, go to Janitor -&gt; System -&gt; Old Kernel and you will be presented with all the Linux kernel packages on your system. The current kernel will <strong>not</strong> be included here, for obvious reasons. You can now pick and choose and select what you want to remove easily from here.</p>
+<p><strong>Tried with:</strong> Ubuntu Tweak 0.8.7 and Ubuntu 14.04</p>
+</body>
+</html>

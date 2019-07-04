@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>VLC does not support hev1</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">VLC does not support hev1</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-08-05 23:36:29+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2015/08/20150806_vlc_h265.png"><img src="https://codeyarns.files.wordpress.com/2015/08/20150806_vlc_h265.png" alt="20150806_vlc_h265" /></a></p>
+<h1 id="problem">Problem</h1>
+<p>I tried to play a <strong>MP4</strong> file using <strong>VLC</strong> and it threw up this error:</p>
+<pre><code>No suitable decoder module:
+VLC does not support the audio or video format &quot;hev1&quot;.
+Unfortunately there is no way for you to fix this.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>That surprisingly pessimistic error message is wrong. <strong>hev1</strong> is the <strong>HEVC/H.265</strong> standard, which is a new video compression standard that is getting popular for high DPI content. All VLC needs is a decoder plugin for it.</p>
+<p>There is a PPA that provides this decoder, so installing it is easy:</p>
+<pre><code>$ sudo apt-add-repository ppa:strukturag/libde265
+$ sudo apt-get update
+$ sudo apt install vlc-plugin-libde265</code></pre>
+<p>These video files should play correctly after installing this decoder.</p>
+<p><strong>Tried with:</strong> VLC 2.1.6 Rincewind and Ubuntu 14.04</p>
+</body>
+</html>

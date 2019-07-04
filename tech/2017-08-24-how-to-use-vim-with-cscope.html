@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Vim with Cscope</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Vim with Cscope</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-08-24 13:34:04+00:00</h3>
+</div>
+<p><strong>Cscope</strong> provides a rudimentary commandline interface for exploring your C or C++ codebase. But using it along with Vim provides a much richer interface.</p>
+<ul>
+<li><p>Make sure you have installed Cscope and know how to use it. This is explained <a href="https://codeyarns.com/2017/08/24/how-to-install-and-use-cscope/">here</a>.</p></li>
+<li><p>To be able to use Cscope inside Vim, install the <strong>cscope_maps.vim</strong> plugin file. This old file can be found mirrored at this Github repository <a href="https://github.com/simplyzhao/cscope_maps.vim">here</a>.</p></li>
+<li><p>Open Vim in the root of the code directory that has the generated Cscope cross-reference file <strong>cscope.out</strong>.</p></li>
+<li><p>Open any source file and move cursor to any symbol and use the following commands: <code>Ctrl-\ s</code> to jump to any instance of the <strong>symbol</strong>, <code>Ctrl-\ f</code> to jump the <strong>file</strong> under the cursor, <code>Ctrl-\ g</code> to jump to the <strong>definition</strong> and <code>Ctrl-\ c</code> to jump to <strong>calls</strong> of the function under cursor.</p></li>
+<li><p>Use the Vim command <code>Ctrl-o</code> to jump back to previous locations in files.</p></li>
+<li><p>If you are using a cross-reference file with a filename that is not <strong>cscope.out</strong> or it is not in the current directory, then export that file path in the <code>CSCOPE_DB</code> environment variable. Vim will use that path to read the cross-reference file.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Cscope 15.8b, Vim 7.4 and Ubuntu 16.04</p>
+</body>
+</html>

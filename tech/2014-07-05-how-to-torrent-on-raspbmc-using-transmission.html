@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to torrent on Raspbmc using Transmission</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to torrent on Raspbmc using Transmission</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-07-05 13:11:04+00:00</h3>
+</div>
+<p><strong>Raspberry Pi</strong> can be converted into a capable HTPC by <a href="2012/08/09/how-to-use-raspberry-pi-as-a-htpc-with-raspbmc/">installing Raspbmc on it</a>. It can be further used to download torrents by using <strong>Transmission</strong>. I mostly used the steps from <a href="http://www.homautomation.org/2013/09/16/install-and-configure-transmission-on-your-raspbmc/">this guide</a>, though I had make some extra customizations to get it working. I have described the steps that worked for me below.</p>
+<h1 id="setup-the-hardware">Setup the hardware</h1>
+<p><strong>Raspbmc</strong> is typically installed on a SD card. Storage left on this card may not be enough to download and store big files. To extend the storage I used a portable harddisk. The Raspberry Pi is not powerful enough to provide power to the harddisk through its USB port.</p>
+<p>So, I bought a <strong>USB hub</strong> that is powered from electricity using a power adapter. I connected this hub with its USB cable to the Raspberry Pi. I connected the harddisk to this hub using another USB cable.</p>
+<p>I powered on the Raspberry Pi. After <a href="2012/08/10/how-to-ssh-to-your-raspbmc-from-windows/">login into the Pi using SSH</a>, I could see that Pi had detected and mounted the harddisk by using the command <code>df</code>. I noted down the mounted path of the harddisk, in my case this was <code>/media/foo-disk</code>.</p>
+<p><strong>Note:</strong> The USB hub may have many ports, but do this setup connecting only the harddisk. If that works fine, try connecting other additional devices, for say charging, to the hub. If you notice that your harddisk gets unmounted by the Pi after a while, then this might mean that the USB hub can only power one device, i.e., your harddisk. This is what I noticed with my hub and so I only use it to connect the harddisk.</p>
+<h1 id="setup-transmission">Setup Transmission</h1>
+<ul>
+<li>First, I installed the Transmission daemon on the Pi:</li>
+</ul>
+<pre><code>$ sudo apt-get install transmission-daemon</code></pre>
+<ul>
+<li>After installation, the daemon is automatically started. Since I need to setup the daemon correctly, I stopped it:</li>
+</ul>
+<pre><code>$ sudo service transmission-daemon stop</code></pre>
+<ul>
+<li>I created two directories on the harddisk: one to hold the files whose download is in progress and another to hold the completed downloads. Transmission can be setup to use the former while downloading and move them to the latter when finished.</li>
+</ul>
+<pre><code>$ cd /media/foo-disk
+$ mkdir downloading
+$ mkdir finished</code></pre>
+<ul>
+<li>I opened the settings file of Transmission to make the changes:</li>
+</ul>
+<pre><code>$ sudo vi /etc/transmission-daemon/settings.json</code></pre>
+<p>The description of the various configuration parameters in this file can be found <a href="https://trac.transmissionbt.com/wiki/ConfigurationParameters">here</a>.</p>
+<ul>
+<li>I edited the following parameters in the file:</li>
+</ul>
+<pre><code>&quot;download-dir&quot;: &quot;/media/foo-disk/finished&quot;,
+&quot;incomplete-dir&quot;: &quot;/media/foo-disk/downloading&quot;,
+&quot;incomplete-dir-enabled&quot;: true,
+&quot;rpc-password&quot;: &quot;raspberry&quot;,
+&quot;rpc-username&quot;: &quot;pi&quot;,
+&quot;rpc-whitelist-enabled&quot;: false,</code></pre>
+<p>Note that Transmission will replace the text password you typed here with its hash after the daemon is started.</p>
+<ul>
+<li>As one last step, I setup the daemon to be started whenever Pi boots up:</li>
+</ul>
+<pre><code>$ sudo update-rc.d transmission-daemon defaults</code></pre>
+<ul>
+<li>I now started the daemon with the new settings:</li>
+</ul>
+<pre><code>$ sudo service transmission-daemon start</code></pre>
+<ul>
+<li><p>The web interface of Transmission can be accessed from any computer in the network using the IP address and port <code>9091</code>. You might want to configure your Pi with a static IP address to make this easier. For example, my Pi is at address 192.168.0.10 and so I access Transmission by typing in the browser: <code>http://192.168.0.10:9091</code></p></li>
+<li><p>Note that the web interface is fully configurable. Other than the buttons on top and the bottom, you can also right-click to get context menus. In the settings, you can even configure Transmission to download only at certain times of the day. This is perfect if you do not want your TV viewing in the evening interrupted by torrent downloading in the background.</p></li>
+</ul>
+<h1 id="problems">Problems</h1>
+<h2 id="permission-denied">Permission denied</h2>
+<p>The daemon needs permission to write to the harddisk. If not, you may see a <code>Permission denied</code> error in the web interface when the daemon tries to write to the harddisk.</p>
+<ul>
+<li>The daemon writes to disk as the user <code>debian-transmission</code>. One solution is to give this user write permissions to the directories on the hard disk:</li>
+</ul>
+<pre><code>$ sudo chown -R debian-transmission /media/foo-disk/downloading
+$ sudo chown -R debian-transmission /media/foo-disk/finished</code></pre>
+<ul>
+<li>Another brute-force <a href="http://raspberrypi.stackexchange.com/questions/4378">solution suggested online</a> is to:</li>
+</ul>
+<pre><code>$ sudo vi /etc/init.d/transmission-daemon</code></pre>
+<p>and edit the line in it to:</p>
+<pre><code>USER=root</code></pre>
+<h2 id="hard-disk-getting-dismounted">Hard disk getting dismounted</h2>
+<p>The harddisk mounted by Raspbmc might get automatically dismounted if there is no activity for a few minutes. When this happens, Transmission fails with an Input/Output Error. To prevent this, I added a cronjob that creates a file after 4 minutes and deletes it after 5 minutes. To do this run:</p>
+<pre><code>$ sudo crontab -e</code></pre>
+<p>This opens a cronfile in the nano editor. Go down to the end of the file and add these two lines and save the file:</p>
+<pre><code>*/4     *       *       *       *       rm /media/foo-disk/keepMeUp.txt
+*/5     *       *       *       *       touch /media/foo-disk/keepMeUp.txt</code></pre>
+<p>That is it, this worked fine on my Pi. I hope it does for you too :-)</p>
+</body>
+</html>

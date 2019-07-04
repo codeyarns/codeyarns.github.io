@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual Leak Detector: Investigate Memory Leaks in Visual C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual Leak Detector: Investigate Memory Leaks in Visual C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-09-11 10:12:28+00:00</h3>
+</div>
+<p><strong>Memory leaks</strong> are a part of life in C++. By default, <strong>Visual C++</strong> looks for memory leaks when the program is executed in Debug mode. If any memory leaks are found when the program exits, it reports them in the <strong>Output window</strong> like this:</p>
+<pre><code>Detected memory leaks!
+Dumping objects -&gt;
+{1372} normal block at 0x04BE1058, 136 bytes long.
+Data: &lt; 3-kt*-k        &gt; 9C 33 2D 6B 74 2A 2D 6B C8 11 BE 04 00 00 00 00
+Object dump complete.
+The program &#39;[408] Foobar.exe: Native&#39; has exited with code 0 (0x0).</code></pre>
+<p>The leak information that it spits out is about <strong>memory blocks</strong>. The information that can be gleaned from this output is:</p>
+<ul>
+<li><p>Memory block allocation number: <code>1372</code></p></li>
+<li><p><a href="http://msdn.microsoft.com/en-us/library/htdyz80k%28v=VS.80%29.aspx">Memory block type</a>: normal</p></li>
+<li><p>Memory block starting address: <code>0x04BE1058</code></p></li>
+<li><p>Memory block size: 136 bytes</p></li>
+<li><p>First 16 bytes of memory block data</p></li>
+</ul>
+<p>This memory leak detection by Visual C++, which is always enabled in Debug mode, is very useful since it will always find a leak if it exists. Once the leak is known however, it is hard to figure out the source of the leak by examining the above information.</p>
+<p>More probing along this line can be done using the definitions and calls from <code>crtdbg.h</code>. This is quite cumbersome and cannot always point out the source of the leak. Comprehensive information on this can be found in the MSDN article on <strong><a href="http://msdn.microsoft.com/en-us/library/x98tx3cf.aspx">Memory Leak Detection and Isolation</a></strong>.</p>
+<p><strong>Visual Leak Detector</strong></p>
+<p><strong><a href="http://vld.codeplex.com/">Visual Leak Detector</a></strong> (VLD) is an open-source alternative to investigate these memory leaks. Using it is very simple and straightforward:</p>
+<ul>
+<li><p>Download and install VLD. The installer will prompt about adding its bin path (<code>C:\...\Visual Leak Detector\bin</code>) to the <code>PATH</code> environment variable. Accept it or add it manually yourself. Either way, you will need to log out and log back in for the addition to the PATH to take effect. <code>vld.dll</code> and <code>dbghelp.dll</code>, from the bin directory need to be available on the system path.</p></li>
+<li><p>Make sure the Visual C++ project is in Debug mode.</p></li>
+<li><p>Add the VLD include path (<code>C:\...\Visual Leak Detector\include</code>) to the <strong>Include Directories</strong> of the project.</p></li>
+<li><p>Add the VLD lib path (<code>C:\...\Visual Leak Detector\lib</code>) to the <strong>Additional Library Directories</strong> of the project.</p></li>
+<li><p>Add <code>#include &lt;vld.h&gt;</code> to any of the C++ source files in the project. This header will bring in <code>vld.lib</code> during the linking stage.</p></li>
+<li><p>Rebuild the project and execute the compiled program in Debug mode. On program exit, VLD will print out the memory leak information it detected in the Output window.</p></li>
+</ul>
+<p>The memory leak information printed by VLD looks like this:</p>
+<pre><code>---------- Block 1199 at 0x04BE1058: 136 bytes ----------
+Call Stack:
+d:\Foobar\FooLog.cpp (26): FooLog::getInstance
+d:\Foobar\FooMain.cpp (75): FooMain::init
+f:\dd\vctools\crt_bld\self_x86\crt\src\crtexe.c (578): __tmainCRTStartup
+f:\dd\vctools\crt_bld\self_x86\crt\src\crtexe.c (403): WinMainCRTStartup
+0x759A3677 (File and line number not available): BaseThreadInitThunk
+0x770C9D42 (File and line number not available): RtlInitializeExceptionChain
+0x770C9D15 (File and line number not available): RtlInitializeExceptionChain
+Data:
+9C 33 2D 6B    74 2A 2D 6B    C8 11 BE 04    00 00 00 00     .3-kt*-k ........
+00 00 00 00    70 14 BB 6C    70 14 BB 6C    00 00 00 00     ....p..l p..l....
+00 00 00 00    68 14 BB 6C    68 14 BB 6C    00 00 00 00     ....h..l h..l....
+00 00 00 00    6C 14 BB 6C    6C 14 BB 6C    20 12 BE 04     ....l..l l..l....
+00 00 00 00    CD 00 CD CD    00 00 00 00    01 CD CD CD     ........ ........
+68 14 BB 6C    78 33 2D 6B    00 00 00 00    00 00 00 00     h..lx3-k ........
+00 00 00 00    01 02 00 00    06 00 00 00    00 00 00 00     ........ ........
+00 00 00 00    00 00 00 00    88 11 BE 04    5C 10 BE 04     ........ ....\...
+00 00 00 00    20 CD CD CD                                   ........ ........</code></pre>
+<p>We can note the following information from this output:</p>
+<ul>
+<li><p>The block allocation number output by Visual C++ leak detection and by VLD do not necessarily match.</p></li>
+<li><p>The memory block address and size information of Visual C++ and VLD match. This confirms that this VLD information is about the same memory block as that reported by Visual C++. This is useful when the program has multiple memory leaks. The programmer can then match each of the Visual C++ memory leak to the corresponding VLD memory leak information.</p></li>
+<li><p>VLD provides a lot of information: the entire call stack trace with function call names, source code filenames and line numbers. It also prints out a lot more data from the memory block.</p></li>
+</ul>
+<p>By looking at the sourecode filename and the line number in it, the programmer should be able to get solid leads to the memory leak and hopefully be able to fix it. :-)</p>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Python: Dictionary Iteration</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Python: Dictionary Iteration</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-01-25 05:25:08+00:00</h3>
+</div>
+<p>The default iteration through a dictionary, returns the <em>keys</em>:</p>
+<pre><code>adict = {10:&quot;Ten&quot;, 7:&quot;Seven&quot;, 12:&quot;Twelve&quot;}
+
+for i in adict:
+    print(i)</code></pre>
+<p>Output:</p>
+<pre><code>10
+12
+7</code></pre>
+<p>(Note that the order of the keys is different from the order in the initialization. This is normal behaviour for a dictionary, where order of the elements should not matter or be relied upon.)</p>
+<p>Explicit iteration of the dictionary <em>keys</em>, <em>values</em> and <em>(key, value)</em> pairs can also be done:</p>
+<pre><code># Iterate keys
+for k in adict.keys():
+    print(k)
+
+# Iterate values
+for v in adict.values():
+    print(v)
+
+# Iterate (key, value) pairs
+for (k, v) in adict.items():
+    print(k, &quot;:&quot;, v)</code></pre>
+<p>Output:</p>
+<pre><code>10
+12
+7
+Ten
+Twelve
+Seven
+10 : Ten
+12 : Twelve
+7 : Seven</code></pre>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add include directory in Eclipse CDT</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add include directory in Eclipse CDT</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-09-22 07:03:20+00:00</h3>
+</div>
+<p>Many C/C++ projects may have to use <strong>header files</strong> that are not placed in the standard include directories. In some projects, the include files of the project itself are placed in one or more separate directories. For all such cases, you need to indicate <a href="http://www.eclipse.org/cdt/"><strong>Eclipse CDT</strong></a> to add these include directories to the compilation. Else your compilation fails with the error that an included header file cannot be found.</p>
+<p>To add an include directory to your project in Eclipse CDT:</p>
+<ol style="list-style-type: decimal">
+<li><p>Right-click on the project name in Project Explorer, choose Properties &gt; C/C++ Build &gt; Settings</p></li>
+<li><p>For include directory used by C++ files, choose Cross G++ Compiler &gt; Includes. For C files, choose Cross GCC Compiler &gt; Includes.</p></li>
+<li><p>In the <strong>Include paths</strong> section, click the + button and add the include directory. If you want to add multiple include directories, add them separately like this.</p></li>
+</ol>
+<p><strong>Tried with:</strong> Eclipse 3.7.2, Eclipse CDT 8.0.2 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

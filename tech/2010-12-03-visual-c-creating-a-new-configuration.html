@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: Creating a New Configuration</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: Creating a New Configuration</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-12-03 07:26:31+00:00</h3>
+</div>
+<p>Creating a new <strong>configuration</strong> for compilation in <strong>Visual C++</strong> is easy!</p>
+<p>For example, say I want to create a new configuration that is same as Release mode, except I want <code>assert()</code> to be compiled. To do this:</p>
+<ul>
+<li><p>Choose <em>Project → Properties</em> and in the <strong>Properties</strong> dialog, choose Configuration Manager.</p></li>
+<li><p>In the Active Solution Configuration dropdown, choose New.</p></li>
+<li><p>In the <strong>New Solution Configuration</strong> dialog that pops up, give the new configuration a name (<strong>ReleaseWithAssert</strong> for example) and choose an existing configuration whose settings to copy from. For our example, I would choose to copy from Release. This creates a new configuration named ReleaseWithAssert with all the settings from the Release configuration.</p></li>
+<li><p>Go into the new configuration settings and make the changes you want. For example, I typically <a href="http://codeyarns.wordpress.com/2011/05/30/visual-c-assert-in-release-mode/">enable assertions in Release mode</a> by removing the definition of the NDEBUG preprocessor directive.</p></li>
+</ul>
+</body>
+</html>

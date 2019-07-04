@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Error building Caffe with Python 3 support</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Error building Caffe with Python 3 support</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-01-24 14:58:24+00:00</h3>
+</div>
+<p><strong>Caffe</strong> can be built with support for Python 2.x. This allows you to invoke Caffe easily from Python code. However, I wanted to call Caffe from Python 3.x code.</p>
+<ul>
+<li><p>I built Boost with Python 3.x support. I could see that <code>libboost_python3</code> library files were generated.</p></li>
+<li><p>I added this to the normal CMake command that I use to build Caffe: <code>-Dpython_version=3</code></p></li>
+</ul>
+<p>Sadly, this popped up errors of this type:</p>
+<pre><code>libboost_python.so: undefined reference to `PyClass_Type&#39;</code></pre>
+<p>This type of error indicates that the Python 2.x Boost library was being used to compile with Python 3.x libraries.</p>
+</body>
+</html>

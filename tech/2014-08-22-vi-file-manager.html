@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Vi File Manager</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Vi File Manager</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-22 10:20:10+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2014/08/20150311_vifm.png"><img src="https://codeyarns.files.wordpress.com/2014/08/20150311_vifm.png" alt="20150311_vifm" /></a></p>
+<p><a href="http://vifm.info/"><strong>Vi File Manager</strong></a> (vifm) is a terminal file manager for users familiar with the <strong>Vim</strong> editor. Its two-pane interface is similar to <strong>Midnight Commander</strong>. However, the navigation, select, cut-copy-paste commands are similar to that in Vim.</p>
+<h1 id="install">Install</h1>
+<p>To install vifm from Ubuntu repository:</p>
+<pre><code>$ sudo apt install vifm</code></pre>
+<p>However, I found that this version of vifm is very old. The most recent vifm can be easily downloaded from <a href="http://vifm.info/downloads.shtml">here</a> and compiled using:</p>
+<pre><code>$ ./configure
+$ make
+$ sudo make install</code></pre>
+<h1 id="usage">Usage</h1>
+<p>Some of the common commands I use are:</p>
+<ul>
+<li><p><code>j</code>, <code>k</code>, <code>h</code>, <code>l</code>: Move down, up, back, forward</p></li>
+<li><p><code>Ctrl+w w</code>: Switch between the split panes</p></li>
+<li><p><code>:only</code>: Make current pane fullscreen</p></li>
+<li><p><code>:vsplit</code>: Bring back split panes from fullscreen mode</p></li>
+<li><p><code>w</code>: Switch to preview mode. Preview is shown in other pane.</p></li>
+<li><p><code>cw</code>: Rename file. Remember it as the <strong>change word</strong> command from Vim</p></li>
+<li><p><code>Shift+v</code>: Move around to select files</p></li>
+<li><p><code>yy</code>: Copy the files</p></li>
+<li><p><code>dd</code>: Delete/cut the files</p></li>
+<li><p><code>p</code>: Paste the files</p></li>
+<li><p><code>t</code>: Select files individually</p></li>
+</ul>
+<p>For the detailed list of commands see the <a href="http://vifm.info/manual.shtml">vifm manual</a> and this <a href="http://src.gnu-darwin.org/ports/misc/vifm/work/vifm-0.3a/src/vifm.txt">summarized command list</a>.</p>
+<p>Custom configuration can be stored in the <code>~/.vifm/vifmrc</code> file.</p>
+<p><strong>Tried with:</strong> Vifm 0.7.7 and Ubuntu 14.04</p>
+</body>
+</html>

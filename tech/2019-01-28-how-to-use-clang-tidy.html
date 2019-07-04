@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use clang-tidy</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use clang-tidy</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-01-28 03:39:20+00:00</h3>
+</div>
+<p><a href="http://clang.llvm.org/extra/clang-tidy/"><strong>clang-tidy</strong></a> is a LLVM tool that can be used as a static checker on your C++ codebase and to fix errors it finds. A full list of current checks and their descriptions can be found <a href="http://clang.llvm.org/extra/clang-tidy/checks/list.html">here</a>. The number of checks available to you will depend on the clang-tidy version you are using.</p>
+<ul>
+<li>Installing this tool is easy:</li>
+</ul>
+<pre><code>$ sudo apt install clang-tidy</code></pre>
+<p>This typically installs a stable but older version of the tool with less number of checks.</p>
+<ul>
+<li>To list the checks it performs by default:</li>
+</ul>
+<pre><code>$ clang-tidy -list-checks</code></pre>
+<p>On my computer I found it had 80 checks enabled by default.</p>
+<ul>
+<li>To list all the checks that it can perform:</li>
+</ul>
+<pre><code>$ clang-tidy -list-checks -checks=&quot;*&quot;</code></pre>
+<p>On my computer I found that it had a total of 292 checks.</p>
+<ul>
+<li>To check a file using all checks enabled by default:</li>
+</ul>
+<pre><code>$ clang-tidy foobar.cpp</code></pre>
+<ul>
+<li>To check a file using all checks enabled by default and fix the errors using suggested fixes:</li>
+</ul>
+<pre><code>$ clang-tidy -fix foobar.cpp
+$ clang-tidy -fix-errors foobar.cpp</code></pre>
+<ul>
+<li>To use a specific check, say <code>modernize-use-nullptr</code>:</li>
+</ul>
+<pre><code>$ clang-tidy -checks=&quot;-*,modernize-use-nullptr&quot; foobar.cpp</code></pre>
+<p><strong>Tried with:</strong> clang-tidy 6.0.0 and Ubuntu 18.04</p>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to encrypt zip file</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to encrypt zip file</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-28 10:52:49+00:00</h3>
+</div>
+<p>Some workplaces have tight restrictions on email attachments containing binaries. So, people in such environments request me to send the attachment by zipping up the suspicious files and <strong>encrypting</strong> it. <strong>Zip</strong> has had support for <strong>password protection</strong> for a long time so most receivers will be able to unzip the contents if you can provide the password you used for encrypting.</p>
+<p>To create the zip files:</p>
+<pre><code>$ zip --password mypassword foobar.zip files to zip go here</code></pre>
+<p>Note that zip uses weak encryption. Use it only to get around the email servers, not for actually hiding data.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

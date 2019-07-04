@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to create a confusion matrix plot using Matplotlib</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to create a confusion matrix plot using Matplotlib</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-10-24 03:08:40+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5185&quot; align=&quot;aligncenter&quot; width=&quot;600&quot;][<img src="https://codeyarns.files.wordpress.com/2014/10/20141024-confusion-matrix.png" alt="Confusion matrix plot generated using Matplotlib" />](https://codeyarns.files.wordpress.com/2014/10/20141024-confusion-matrix.png) Confusion matrix plot generated using Matplotlib[/caption]</p>
+<p>Confusion matrix is an excellent method to illustrate the results of multi-class classification. It takes a single function call in Matplotlib to generate a colorful confusion matrix plot. However, you have to first have your results in the form of a confusion matrix.</p>
+<p>Let me illustrate with an example. Assume, you have 4 classes: A, B, C and D. Your classifier does great on A, C and D with fully accurate results. However, for results that should be class B, it classifies them as A 10% of the time and as C 20% of the time. You should be able to extract such classification results from your classifier easily.</p>
+<p>You just need to put these results in a 2D float Numpy array in the form of a confusion matrix. In this type of matrix, typically the true classes are listed on the Y axis, top to bottom. The predicted classes are listed on X axis, from left to right. For our example, the confusion matrix would look like this:</p>
+<pre><code>[[100 0  0   0  ]
+ [10  70 20  0  ]
+ [0   0  100 0  ]
+ [0   0  0   100]]</code></pre>
+<p>Optionally, you can also normalize the results to 1.0:</p>
+<pre><code>[[1.0 0   0   0  ]
+ [0.1 0.7 0.2 0  ]
+ [0   0   1.0 0  ]
+ [0   0   0   1.0]]</code></pre>
+<p>Once you have this as a 2D float Numpy array, just pass it to the <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.matshow">matshow</a> method of Matplotlib to generate the confusion matrix plot. To get a temperature scale of the colors used in the plot, call the <a href="http://matplotlib.org/api/colorbar_api.html#module-matplotlib.colorbar">colorbar</a> method:</p>
+<pre><code>import matplotlib.pyplot as plt
+
+# Assume m is 2D Numpy array with these values
+# [[1.0 0   0   0  ]
+#  [0.1 0.7 0.2 0  ]
+#  [0   0   1.0 0  ]
+#  [0   0   0   1.0]]
+
+plt.matshow(m)
+plt.colorbar()</code></pre>
+<p>To add X-axis, Y-axis labels, and other modifications, use the typical calls you use in Matplotlib for other types of plots.</p>
+<p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

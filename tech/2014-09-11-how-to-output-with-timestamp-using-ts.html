@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to output with timestamp using ts</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to output with timestamp using ts</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-11 02:17:10+00:00</h3>
+</div>
+<p>You might sometimes want to create a log of the output from a program. Going into the program and adding a timestamp for each print command might seem cumbersome or not possible. It is here that the tiny <code>ts</code> utility makes itself useful. Pipe any output through it and it prefixes a timestamp to each line. Pipe the output of a long-running program through it and then save it to a file and you have a log!</p>
+<p>To get this program, install the <code>moreutils</code> package:</p>
+<pre><code>$ sudo apt install moreutils</code></pre>
+<p>To use it:</p>
+<pre><code>$ ./my-program | ts &gt; log.txt</code></pre>
+<p><strong>Tried with:</strong> MoreUtils 0.5 and Ubuntu 14.04</p>
+</body>
+</html>

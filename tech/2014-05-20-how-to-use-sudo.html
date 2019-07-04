@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use sudo</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use sudo</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-20 04:21:32+00:00</h3>
+</div>
+<ul>
+<li>To give sudo permissions to a user, say joe, add the user to the <strong>sudo</strong> group:</li>
+</ul>
+<pre><code>$ sudo adduser joe sudo</code></pre>
+<ul>
+<li>To run a command as superuser:</li>
+</ul>
+<pre><code>$ sudo some_command</code></pre>
+<p>The superuser privileges last at this shell session for about 15 minutes. Any other superuser commands you execute within this time at this shell session will not require you to enter the password.</p>
+<ul>
+<li>To run a command as another user, say joe:</li>
+</ul>
+<pre><code>$ sudo -u joe some_command</code></pre>
+<ul>
+<li>If you want to execute many commands or need a shell with superuser:</li>
+</ul>
+<pre><code>$ sudo -s</code></pre>
+<ul>
+<li>To have all your environment variables when you execute sudo:</li>
+</ul>
+<pre><code>$ sudo -E some_command</code></pre>
+<ul>
+<li>To list of commands allowed for you:</li>
+</ul>
+<pre><code>$ sudo -l</code></pre>
+<ul>
+<li>To list the commands allowed for another user, say joe:</li>
+</ul>
+<pre><code>$ sudo -l -U joe</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+</body>
+</html>

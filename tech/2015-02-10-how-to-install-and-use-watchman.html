@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install and use Watchman</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install and use Watchman</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-10 12:25:34+00:00</h3>
+</div>
+<p><a href="https://github.com/facebook/watchman"><strong>Watchman</strong></a> is a server-client tool to watch files and directories for changes. It uses the <code>inotify</code> mechanism of the Linux kernel to achieve this.</p>
+<p>There seems to be no package or PPA of Watchman for Ubuntu. But, installing it from source is easy:</p>
+<pre><code>$ git clone https://github.com/facebook/watchman.git
+$ cd watchman
+$ ./autogen.sh
+$ ./configure
+$ make
+$ sudo make install</code></pre>
+<p>To ask Watchman to watch a directory for changes:</p>
+<pre><code>$ watchman watch /path/to/dir</code></pre>
+<p>By default, Watchman writes the changes it notices to its log file. The log file can be found in <code>/tmp/.watchman.yourusername.log</code>.</p>
+<p>If you want to uninstall Watchman, go to the source directory and try:</p>
+<pre><code>$ sudo make uninstall
+( cd &#39;//usr/local/bin&#39; &amp;&amp; rm -f watchman )
+( cd &#39;//usr/local/share/doc/watchman-3.0.0&#39; &amp;&amp; rm -f README.markdown )</code></pre>
+<p><strong>Tried with:</strong> Watchman 3.0.0 and Ubuntu 14.04</p>
+</body>
+</html>

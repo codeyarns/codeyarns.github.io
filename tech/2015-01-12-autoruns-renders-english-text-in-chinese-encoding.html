@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Autoruns renders English text in Chinese encoding</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Autoruns renders English text in Chinese encoding</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-12 12:34:43+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5434&quot; align=&quot;aligncenter&quot; width=&quot;345&quot;][<img src="https://codeyarns.files.wordpress.com/2015/01/20150112-autoruns.png" alt="Chinese font used in Settings of Autoruns" />](https://codeyarns.files.wordpress.com/2015/01/20150112-autoruns.png) Chinese font used in Settings of Autoruns[/caption]</p>
+<h1 id="problem">Problem</h1>
+<p>I recently updated the <a href="http://technet.microsoft.com/en-us/sysinternals/bb963902.aspx"><strong>Autoruns</strong></a> on a Windows machine. When I executed Autoruns, it displayed in the contents in an English font rendering that is typically seen with a Chinese font. I opened the <code>Fonts</code> dialog from <code>Options</code> and even there English text was displayed using a Chinese font no matter which font I chose.</p>
+<h1 id="solution">Solution</h1>
+<p>I guessed that this might be caused due to a misunderstanding of <strong>Registry</strong> entries between the older and newer Autoruns. I opened <strong>Registry Editor</strong> by typing <code>regedit.exe</code>. I deleted the setting <code>HKEY_CURRENT_USER\Software\Sysinternals\Autoruns</code>. When I opened Autoruns after this, the font was back to the default rendering.</p>
+<p><strong>Tried with:</strong> Autoruns 12.03 and Windows 7 Professional 64-bit</p>
+</body>
+</html>

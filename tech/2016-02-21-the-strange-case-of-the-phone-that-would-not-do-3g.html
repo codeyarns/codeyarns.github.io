@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>The strange case of the phone that would not do 3G</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">The strange case of the phone that would not do 3G</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-02-21 14:28:43+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I got a <strong>data SIM</strong> to access the <strong>HSPA+/3G</strong> mobile data network on my <strong>Moto G2 (XT1068)</strong>. Prior to this, I had never connected to any type of data network on my phone. To my surprise, I found that the phone would only get a measly <strong>GPRS</strong> or <strong>EDGE</strong> connection on this SIM! However, the same SIM inserted into another XT1068 and other phones got a HSPA+ connection without any problem.</p>
+<h1 id="solution">Solution</h1>
+<p>I tried everything imaginable to figure out why only my phone could get a HSPA+ connection. Some of things I tried that did not work:</p>
+<ul>
+<li><p>Configure the cellular connection configuration parameters manually.</p></li>
+<li><p>Trying both the SIM1 and SIM2 slots. In reality, both of them should support 3G.</p></li>
+<li><p>Factory reset of the phone.</p></li>
+</ul>
+<p>I was at my wit's end when I thought of one final scenario. The phone had never connected to a data connection before. It has started out with Android 4.4.4 (KitKat) and had been OTA upgraded to Android 5.0.2 (Lollipop). Knowing how buggy software can be, I imagined a scenario where the upgrade was buggy enough to disable some variables of data connection since the phone had never done data before.</p>
+<p>To try this final solution, I downgraded the phone back to KitKat as described <a href="http://codeyarns.com/2016/02/21/how-to-downgrade-xt1068-to-kitkat/">here</a>. I booted into KitKat and lo behold I got a HSPA+ connection on the data SIM! The phone then OTA upgraded again to Lollipop. However, this time it did not lose any data connection and I still had HSPA+/3G after the upgrade!</p>
+</body>
+</html>

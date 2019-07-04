@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Using Stylish to Hide Webpage Content</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Using Stylish to Hide Webpage Content</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-11-20 16:07:40+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2010/11/20101120_stylish_hiding.png"><img src="http://codeyarns.files.wordpress.com/2010/11/20101120_stylish_hiding.png" /></a></p>
+<p><strong><a href="https://addons.mozilla.org/en-US/firefox/addon/2108/">Stylish</a></strong> is a Firefox addon that is useful to inject custom CSS styles onto webpages viewed by the user. It is quite easy to write Stylish scripts to remove or hide unwanted content that is present on webpages.</p>
+<p>For example, the comments on Youtube are not worth anyone's time and one might want to hide them. Or one might find certain Suggestions content on a Facebook page to be irritating. This and any such portions of webpage can be easily hidden by writing Stylish scripts. Here is how:</p>
+<p><strong>Finding the CSS Style</strong></p>
+<p>Content on a commercial webpage is typically styled using CSS classes or IDs. To hide or manipulate certain portions of a webpage, we need to know the name of the class or ID that is applied on it.</p>
+<p>One convenient tool for this investigation is the awesome <strong><a href="http://getfirebug.com/">Firebug</a></strong> addon for Firefox. Once it is installed, open the webpage (say Youtube.com) and click the Firebug icon in the status bar. Firebug shows the HTML content of the webpage being viewed. When the mouse cursor hovers over a HTML element in Firebug window, the corresponding portion of the rendered webpage is highlighted. By navigating the HTML content using this one can figure out the CSS class or ID being used for any portion of the webpage.</p>
+<p>For example, using this method we can figure out that the comments section of the Youtube webpage is enclosed within the following HTML code:</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css">&lt;div id=&quot;watch-discussion&quot;&gt;
+Youtube comments are here<span class="fu">.</span>&lt;/div&gt;</code></pre></div>
+<p><strong>Writing a Stylish Script</strong></p>
+<p>Install the Stylish addon for Firefox and open the webpage (say Youtube). Click on the Stylish icon in the status bar and choose to <em>Write new style</em> for that webpage. Stylish opens with the default template of Stylish code already written. Just add our new CSS style for that webpage in between the curly brackets.</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="im">@namespace</span> url(http://www<span class="dv">.</span>w3<span class="dv">.</span>org/<span class="dv">1999</span>/xhtml);
+
+<span class="im">@-moz-document</span> domain(<span class="st">&quot;youtube.com&quot;</span>)
+{
+<span class="co">/* Styles go here. */</span>
+}</code></pre></div>
+<p>The property-value pair of <code>display: none;</code> is the key to hiding content. To hide the comments section of Youtube, we need to apply this property-value pair on the section of the Youtube webpage that contains comments. We already know (see above) that it is enclosed in a div element with ID <code>watch-discussion</code>. To hide it we provide a <code>display: none;</code> style for that element-ID as follows:</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="im">@namespace</span> url(http://www<span class="dv">.</span>w3<span class="dv">.</span>org/<span class="dv">1999</span>/xhtml);
+
+<span class="im">@-moz-document</span> domain(<span class="st">&quot;youtube.com&quot;</span>)
+{
+    div<span class="pp">#watch-discussion</span>
+    {
+        <span class="kw">display</span>: <span class="dv">none</span>;
+    }
+}</code></pre></div>
+<p>That is it, you have now hidden the comments section of Youtube! Sometimes, ANDing or nesting of CSS classes, IDs or HTML elements might be required to hide webpage content. See my <strong><a href="http://codeyarns.wordpress.com/2010/11/20/basics-of-css/">Basics of CSS</a></strong> post for information on writing styles to deal with these cases.</p>
+<p>Hope that helped you to write simple Stylish scripts to mould the Internet to suit your tastes. This is especially useful if you want a distraction-free reading or browsing experience. :-)</p>
+</body>
+</html>

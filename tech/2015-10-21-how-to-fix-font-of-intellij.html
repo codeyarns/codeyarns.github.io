@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to fix font of IntelliJ</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to fix font of IntelliJ</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-21 12:36:00+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_7735&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2015/10/20151021_intellij_font.png" alt="Before and after fixing font in Android Studio" />](https://codeyarns.files.wordpress.com/2015/10/20151021_intellij_font.png) Before and after fixing font in Android Studio[/caption]</p>
+<h1 id="problem">Problem</h1>
+<p><strong>IntelliJ</strong> and other tools based on it, like <strong>Android Studio</strong>, look terrible on <strong>Ubuntu 14.04</strong> with <strong>OpenJDK 7</strong>. The font rendering in the UI is terribly aliased and is a pain on the eyes. This is surprising since <strong>Eclipse</strong> renders beautifully using the same JDK and Ubuntu system.</p>
+<h1 id="solution">Solution</h1>
+<p>Eclipse uses GTK for its GUI while IntelliJ and Android Studio use Swing. Thankfully, this situation can be fixed.</p>
+<ul>
+<li>Replace the OpenJDK with a version in which font rendering has been fixed:</li>
+</ul>
+<pre><code>$ sudo apt-get purge openjdk-7-jdk
+$ sudo add-apt-repository ppa:no1wantdthisname/openjdk-fontfix
+$ sudo apt-get update
+$ sudo apt install openjdk-7-jdk</code></pre>
+<ul>
+<li>Open the <code>studio64.vmoptions</code> file and change the anti-aliased font setting to <code>-Dawt.useSystemAAFontSettings=on</code>. Other options suggested by users online did not work for me.</li>
+</ul>
+<p>Now IntelliJ or Android Studio should render the font much better. I still notice a bit of aliasing with Consolas, but it is manageable.</p>
+<p><strong>Tried with:</strong> Android Studio 1.4 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Millisecond sleep on Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Millisecond sleep on Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-26 12:04:00+00:00</h3>
+</div>
+<p>I had code that slept for a certain number of <strong>milliseconds</strong> using the <code>usleep</code> function available from <code>unistd.h</code> on Unix systems. This function sleeps in <strong>microseconds</strong>.</p>
+<p>Code:</p>
+<pre><code>#include &lt;unistd.h&gt;
+
+void msleep(int ms)
+{
+    usleep(ms * 1000);
+}</code></pre>
+<p>This code cannot be ported to Windows because it does not have <code>usleep</code>. You have two alternatives: use the high performance timer or the ancient <code>Sleep</code> call.</p>
+<p>Information on <code>Sleep</code> can be found <a href="https://msdn.microsoft.com/en-us/library/ms686298.aspx">here</a>. Include the <code>Windows.h</code> to be able to compile it. I changed the code to:</p>
+<pre><code>#ifdef _WIN32
+#include &lt;Windows.h&gt;
+#else
+#include &lt;unistd.h&gt;
+#endif
+
+void msleep(int ms)
+{
+#ifdef _WIN32
+    Sleep(ms);
+#else
+    usleep(ms * 1000);
+#endif
+}</code></pre>
+</body>
+</html>

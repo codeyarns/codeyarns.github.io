@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add clickable hyperlinks and email addresses in LaTeX</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add clickable hyperlinks and email addresses in LaTeX</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-01-19 12:22:52+00:00</h3>
+</div>
+<p>Hyperlinks can be added to a LaTeX document by using the commands from the <a href="http://tug.ctan.org/cgi-bin/ctanPackageInformation.py?id=hyperref"><code>hyperref</code></a> package:</p>
+<pre><code>\documentclass[a4paper]{article}
+\usepackage{hyperref}   % Package for hyperlinks
+
+\begin{document}
+\href{http://web.media.mit.edu/~minsky/}{Marvin Minsky}\\   % Text to URL
+\url{http://web.media.mit.edu/~minsky/}\\                   % Text is URL
+\href{mailto:linus@kernel.org}{Email Linus}                 % Email
+\end{document}</code></pre>
+<p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_19_hyperref.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_19_hyperref.png" /></a></p>
+<p>Note that the URL is displayed in a fixed-width font. This is the default font used for the <code>\url</code> command. If you want the URL to be displayed in the same font as that used for the rest of the document, use the <code>\urlstyle</code> command as follows:</p>
+<pre><code>\documentclass[a4paper]{article}
+\usepackage{hyperref}   % Package for hyperlinks
+
+\begin{document}
+% Default URL font
+\url{http://web.media.mit.edu/~minsky/}\\
+% Set URL font to same as current text font
+\urlstyle{same}
+\url{http://web.media.mit.edu/~minsky/}\\
+\end{document}</code></pre>
+<p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_19_urlstyle.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_19_urlstyle.png" /></a></p>
+</body>
+</html>

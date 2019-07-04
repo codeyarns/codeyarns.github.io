@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Skype error on libGL shared library</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Skype error on libGL shared library</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-15 12:54:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I installed <strong>Skype</strong> from <a href="http://www.skype.com/en/download-skype/skype-for-computer/">here</a> using the package for <strong>Ubuntu 12.04 Multiarch</strong>. When I ran Skype from the Dash, nothing happened. When I ran Skype from the shell, I found that it quit with this error:</p>
+<pre><code>$ skype
+skype: error while loading shared libraries: libGL.so.1: cannot open shared object file: No such file or directory</code></pre>
+<h1 id="solution">Solution</h1>
+<ul>
+<li>Let us check the shared library dependencies of this Skype executable. This actually uses the dynamic linker and loader to compare what is required by the executable with what shared libraries are available in the cache:</li>
+</ul>
+<pre><code>$ ldd /usr/bin/skype | grep libGL
+libGL.so.1 =&gt; not found
+libGL.so.1 =&gt; not found</code></pre>
+<p>So yes, the shared library file is not found.</p>
+<ul>
+<li>I first checked if the <code>libGL.so.1</code> was available in the shared library cache:</li>
+</ul>
+<pre><code>$ ldconfig -p | grep libGL.so.1
+libGL.so.1 (libc6,x86-64) =&gt; /usr/lib/x86_64-linux-gnu/mesa/libGL.so.1</code></pre>
+<p>So, a 64-bit shared library of the required name was present in the cache!</p>
+<ul>
+<li>I next checked the Skype program itself:</li>
+</ul>
+<pre><code>$ file /usr/bin/skype
+/usr/bin/skype: ELF 32-bit LSB  shared object, Intel 80386, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.24, stripped</code></pre>
+<p>This was a 32-bit executable. Might it require a 32-bit shared library and could this be causing the problem?</p>
+<ul>
+<li>The 32-bit GL library files and directories updated in cache are controlled by the configuration in <code>/etc/ld.so.conf.d/i386-linux-gnu_GL.conf</code>. This in turn can be easily switched between libraries provided by different providers using <code>update-alternatives</code>:</li>
+</ul>
+<pre><code>$ sudo update-alternatives --config i386-linux-gnu_gl_conf</code></pre>
+<p>I found that currently the GL library files provided by <code>/usr/lib/nvidia-352/alt_ld.so.conf</code>, that is, by my NVIDIA drivers was being used. I picked the <code>/usr/lib/i386-linux-gnu/mesa/ld.so.conf</code> which is by MESA. This only sets the symbolic link for the <code>/etc/ld.so.conf.d/i386-linux-gnu_GL.conf</code> from the NVIDIA conf file to the MESA conf file.</p>
+<ul>
+<li>Next we update the cache so that the NVIDIA library files are removed and the MESA library files are symbolically linked to as the default GL library files:</li>
+</ul>
+<pre><code>$ sudo ldconfig</code></pre>
+<ul>
+<li>Let us check what the cache holds now:</li>
+</ul>
+<pre><code>$ ldconfig -p | grep libGL.so.1
+libGL.so.1 (libc6,x86-64) =&gt; /usr/lib/x86_64-linux-gnu/mesa/libGL.so.1
+libGL.so.1 (libc6) =&gt; /usr/lib/i386-linux-gnu/mesa/libGL.so.1</code></pre>
+<p>We can see that we now have an additional entry, which has no architecture specified, but it is for 32-bit by default.</p>
+<ul>
+<li>Finally, let us check if the shared dependencies of the Skype exectuable are met now:</li>
+</ul>
+<pre><code>$ ldd /usr/bin/skype | grep libGL
+libGL.so.1 =&gt; /usr/lib/i386-linux-gnu/mesa/libGL.so.1 (0xf16b5000)</code></pre>
+<p>Yes, they are! I ran Skype after this and it worked fine! 😄</p>
+<p><strong>Tried with:</strong> Skype 4.3 (multiarch) and Ubuntu 14.04</p>
+</body>
+</html>

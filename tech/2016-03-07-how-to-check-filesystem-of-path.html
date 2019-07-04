@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to check filesystem of path</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to check filesystem of path</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-07 12:28:32+00:00</h3>
+</div>
+<p>There are times when I find it useful to know which <strong>filesystem</strong> a directory belongs to. For example, I find that Git is very slow in directories that are in NFS mounts. So, I like to disable Git-related actions in my shell when the <code>PWD</code> is in a NFS mount.</p>
+<p>An easy way to check the filesystem of a path is:</p>
+<pre><code>stat --dereference --file-system --format=&quot;%T&quot; /path/to/check</code></pre>
+<p>Or the shorter version:</p>
+<pre><code>stat -L -f -c &quot;%T&quot; /path/to/check</code></pre>
+<p>On a directory in a NFS mount, this returns me <code>nfs</code>. On a locally mounted directory, it returns <code>ext2/ext3</code>. You can use this return value in your shell scripts to control what happens based on the filesystem.</p>
+<p>If you find this type of lookup useful, you might want to create a shell alias for it.</p>
+</body>
+</html>

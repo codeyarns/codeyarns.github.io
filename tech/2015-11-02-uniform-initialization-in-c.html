@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Uniform initialization in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Uniform initialization in C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-11-02 12:36:00+00:00</h3>
+</div>
+<p>Initializing in C++98 used to be a pain:</p>
+<ul>
+<li><p>There were multiple ways to initialize: using <code>=</code> or <code>()</code> or <code>{}</code>.</p></li>
+<li><p>Some types of initialization of user types was either difficult or not possible to support.</p></li>
+<li><p>You could not initialize variable of a builtin type to its <strong>default value</strong> (like in Java). C or C++ only default-initialize in global scope, not in non-global scope.</p></li>
+<li><p>No way to initialize a container (like <code>std::vector</code> or your own) with a series of non-default values.</p></li>
+</ul>
+<p><strong>C++11</strong> introduced an <strong>uniform initialization syntax</strong> using <code>{}</code> that makes writing and reading C++ a joy! In my opinion, this is a feature that will make everyone's code easier to write and read. Though it does have a few rough edges (since C++ has to support all previous syntaxes), it almost always works in a way that is most intuitive to the viewer.</p>
+<p>It is called uniform initialization because it is applicable in every place where you initialize anything. That includes: variables, constants, objects, in the <strong>initializer list</strong> of a constructor and even in the <strong>member declaration</strong> of a struct or class. Everywhere!</p>
+<p>I am sharing a code sample below that enumerates the various ways to apply this syntax:</p>
+<p>https://gist.github.com/ashwin/ad0122b40ae8ee7bcae0</p>
+<p><strong>Tried with:</strong> GCC 5.1 and Ubuntu 14.04</p>
+</body>
+</html>

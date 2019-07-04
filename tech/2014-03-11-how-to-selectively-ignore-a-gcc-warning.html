@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to selectively ignore a GCC warning</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to selectively ignore a GCC warning</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-03-11 09:16:37+00:00</h3>
+</div>
+<p>You may sometimes want to ignore or disable a specific type of <strong>warning</strong> that is generated when compiling your <strong>C</strong> or <strong>C++</strong> code. The <a href="http://gcc.gnu.org/onlinedocs/gcc/Diagnostic-Pragmas.html"><strong>diagnostic pragmas</strong></a> of <strong>GCC</strong> and <strong>G++</strong> compilers can be used to achieve this.</p>
+<ul>
+<li>For example, to ignore the warning of type <code>-Wenum-compare</code> for an entire C++ source file, add this to your code at the top:</li>
+</ul>
+<pre><code>#pragma GCC diagnostic ignored &quot;-Wenum-compare&quot;
+/**
+ * Code that generates this warning
+ */</code></pre>
+<ul>
+<li>If you want the warning to be ignored only for a certain section of the code, surround it with <strong>push</strong> and <strong>pop</strong> directives:</li>
+</ul>
+<pre><code>#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored &quot;-Wenum-compare&quot;
+/**
+ * Code that generates this warning
+ */
+#pragma GCC diagnostic pop</code></pre>
+<p><strong>Note:</strong> As of GCC 5.1, few of the warnings in G++ (that is, only for C++ code) will not be ignored even when this pragma is used! More details <a href="http://stackoverflow.com/questions/31509434">here</a> and <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53431">here</a>.</p>
+<p><strong>Tried with:</strong> GCC 4.8 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

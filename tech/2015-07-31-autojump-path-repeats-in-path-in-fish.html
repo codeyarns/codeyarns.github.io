@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Autojump path repeats in PATH in Fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Autojump path repeats in PATH in Fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-31 12:21:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><strong>Autojump</strong> can be installed and used with <strong>Fish</strong> shell as described <a href="2014/02/27/how-to-install-autojump-for-fish/">here</a>. However, if you source your Fish config file repeatedly, then the autojump path appears repeated in your <code>PATH</code> environment variable:</p>
+<pre><code>$ echo $PATH
+/home/joe/.autojump/bin /home/joe/bin /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+$ source ~/.config/fish/config.fish
+$ echo $PATH
+/home/joe/.autojump/bin /home/joe/.autojump/bin /home/joe/bin /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin</code></pre>
+<h1 id="solution">Solution</h1>
+<p>I have a commit <a href="https://github.com/ashwin/autojump/commit/10027b98ab7a2039d84eaf83148772fd2d8f2f68">here</a> that fixes this behavior. This <a href="https://github.com/wting/autojump/pull/376">pull request</a> hopefully be merged into Autojump and if you get the latest version of Autojump you should no longer face this problem.</p>
+<p><strong>Tried with:</strong> Autojump 22.2.4, Fish 2.2 and Ubuntu 14.04</p>
+</body>
+</html>

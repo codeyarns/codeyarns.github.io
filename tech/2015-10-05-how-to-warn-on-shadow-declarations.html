@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to warn on shadow declaration</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to warn on shadow declaration</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-05 12:32:00+00:00</h3>
+</div>
+<p><strong>Shadow declarations</strong> are a major source of misunderstanding and bugs in C or C++ code. C and C++ allow shadow declarations, but this is one of those features that is better not used in production code that needs to be understood and maintained by multiple people.</p>
+<ul>
+<li><p>Use the <code>-Wshadow</code> compiler option to be warned about shadow declarations.</p></li>
+<li><p>Note that this option is not part of <code>-Wall</code> or <code>-Wextra</code>, so you will need to explicitly add this to your build.</p></li>
+<li><p>You might find that header files you included from external libraries might throw this warning. (I have faced this with the OpenNI library.) In such a case, ignore this warning only for that particular header file inclusion by using diagnostic pragma, as described <a href="2014/03/11/how-to-selectively-ignore-a-gcc-warning/">here</a> .</p></li>
+</ul>
+<p><strong>Tried with:</strong> GCC 5.1 and Ubuntu 14.04</p>
+</body>
+</html>

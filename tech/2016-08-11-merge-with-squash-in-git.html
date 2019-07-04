@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Merge with squash in Git</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Merge with squash in Git</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-08-11 14:36:16+00:00</h3>
+</div>
+<p><strong>Merge</strong> is a common operation in <strong>Git</strong> to merge the changes in another branch to the current branch.</p>
+<p>Here is an example, where we checkout the <code>master</code> branch and merge a <code>feature_branch</code> to it:</p>
+<p>[code lang=&quot;text&quot;] $ git checkout master $ git merge feature_branch $ git commit</p>
+<pre><code>
+[caption id=&quot;attachment_8722&quot; align=&quot;aligncenter&quot; width=&quot;360&quot;][![Before merge of feature_branch to master](https://codeyarns.files.wordpress.com/2016/08/20160811_before_merge.png)](http://codeyarns.com/2016/08/11/merge-with-squash-in-git/20160811_before_merge/) Before merge of feature_branch to master[/caption]
+
+[caption id=&quot;attachment_8723&quot; align=&quot;aligncenter&quot; width=&quot;360&quot;][![After merge of feature_branch to master](https://codeyarns.files.wordpress.com/2016/08/20160811_after_merge.png)](http://codeyarns.com/2016/08/11/merge-with-squash-in-git/20160811_after_merge/) After merge of feature_branch to master[/caption]
+
+In the pictorial depictions above we can see that the two branches are actually merged together in the directed acyclic graph (DAG) with an edge. After this, the `git log` for `master` will show all the commits that are in `feature_branch` too in addition to the commits in `master`.
+
+There might be cases where you do not want to actually merge the two branches. Maybe you just want a single commit on `master` that has all the changes that would have been merged from `feature_branch`. Note that this is different from `git rebase` since that replays all the multiple commits of `feature_branch` on `master`.
+
+The answer to this is `git merge --squash`. This command effectively changes the files such that they would be after a `git merge`. However, there would be no link between `master` and `feature_branch` after this commit is committed.
+
+To merge with squash in the above scenario:
+
+[code lang=&quot;text&quot;]
+$ git checkout master
+$ git merge --squash feature_branch
+$ git commit</code></pre>
+<p>When you commit you will see that Git inserts a default commit message that says <code>Squashed commit of the following</code> and lists all the commits from <code>feature_branch</code> that are squashed into this commit. You can delete this commit message and create your own of course.</p>
+<p>[caption id=&quot;attachment_8724&quot; align=&quot;aligncenter&quot; width=&quot;360&quot;][<img src="https://codeyarns.files.wordpress.com/2016/08/20160811_after_merge_squash.png" alt="After merge --squash of feature_branch to master" />](http://codeyarns.com/2016/08/11/merge-with-squash-in-git/20160811_after_merge_squash/) After merge --squash of feature_branch to master[/caption]</p>
+<p>The pictorial depiction of this operation above shows that there is no link between the two branches after this merge. When you do <code>git log</code> no one can see the multiple commits of <code>feature_branch</code>. You can even safely delete <code>feature_branch</code> if you want to after this operation.</p>
+<p><strong>Tried with:</strong> Git 2.9.0 and Ubuntu 16.04</p>
+</body>
+</html>

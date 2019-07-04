@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to create Eclipse project from CMake project</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to create Eclipse project from CMake project</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-15 03:33:10+00:00</h3>
+</div>
+<p><strong>CMake</strong> is a popular way to create and maintain C++ projects that are easy to build on different platforms. While CMake can be used to easily generate Visual Studio solutions, it does not work well at creating <strong>Eclipse CDT</strong> projects. One method to get around this is to create a <strong>Makefile project</strong> in Eclipse for an existing CMake project.</p>
+<ol style="list-style-type: decimal">
+<li><p>Go to: File &gt; New &gt; Makefile Project with Existing Code</p></li>
+<li><p>In the Import Existing Code dialog, provide a Project Name and in the Existing Code Location give the directory containing your CMake project.</p></li>
+<li><p>The project is created and all the files and directories in your CMake project appear in the Project Explorer. Fear not, Eclipse has not made copies of these files (as it does for most types of imports). Instead, it is working directly from the location of your CMake project.</p></li>
+<li><p>To be able to build your project, run CMake from the terminal to generate its Makefile. Next, when you choose Project &gt; Build Project, Eclipse runs <code>make</code> in the project directory, thus using the generated Makefile.</p></li>
+<li><p>The common CMake convention is to generate Makefile and other files in a separate subdirectory. If you would like Eclipse to work with this setup, <a href="2014/01/15/how-to-change-make-location-in-eclipse/">configure your project to use that make location</a>.</p></li>
+<li><p>This project can compile one or more target executables, but you cannot Run or Debug them. To be able to do that, create one or more <strong>Launch Configurations</strong> for the project. You can do this in Project &gt; Properties &gt; Run-Debug Settings. In a launch configuration, at a bare minimum you should at least provide the path to the target executable in the C/C++ Application field.</p></li>
+</ol>
+<p>Now you can compile, run or debug your application from Eclipse itself! :-)</p>
+<p>You will find that Eclipse has not created any directory or files in your <strong>Workspace</strong> directory nor in the existing source code base directory. So, where is it storing the config files for your project?</p>
+<p>These are just some of the files and directories, Eclipse uses for such a project:</p>
+<ul>
+<li><p><code>.project</code> and <code>.cproject</code> hidden files in the source code directory</p></li>
+<li><p>All other project details are stored in <code>your_workspace/.metadata/.plugins/org.eclipse.core.resources/.projects</code></p></li>
+</ul>
+<p><strong>Tried with:</strong> Eclipse 4.4.2, NVIDIA Nsight 5.5.0 and Ubuntu 14.04</p>
+</body>
+</html>

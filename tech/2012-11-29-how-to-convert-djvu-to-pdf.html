@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to convert DJVU to PDF</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to convert DJVU to PDF</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-11-29 04:05:49+00:00</h3>
+</div>
+<p><strong>DjVuLibre</strong> provides open source libraries, commandline tools and GUI tools for dealing with DJVU files. So all solutions for converting a DJVU file to a PDF file will use DjVuLibre is some form. Note that it looks like all conversion options seem to produce PDF by converting every DJVU page into an image. So, the resulting PDF files will be big and much larger than the original DJVU files. There seems to be no way to produce smaller PDF files.</p>
+<h1 id="using-ddjvu">Using ddjvu</h1>
+<ul>
+<li>Install DjVuLibre tools on Ubuntu:</li>
+</ul>
+<pre><code>$ sudo apt install djvulibre-bin</code></pre>
+<ul>
+<li>Convert using the <strong>ddjvu</strong> tool:</li>
+</ul>
+<pre><code>$ ddjvu -format=pdf in.djvu out.pdf</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+<h1 id="using-djvups">Using djvups</h1>
+<ul>
+<li>Install DjVuLibre and Ghostscript tools on Ubuntu:</li>
+</ul>
+<pre><code>$ sudo apt install djvulibre-bin ghostscript</code></pre>
+<ul>
+<li>Convert DJVU to Postscript:</li>
+</ul>
+<pre><code>$ djvups in.djvu out.ps</code></pre>
+<ul>
+<li>Convert PS to PDF:</li>
+</ul>
+<pre><code>$ ps2pdf out.ps out.pdf</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+<h1 id="using-djview">Using DJView</h1>
+<p>[caption id=&quot;attachment_2928&quot; align=&quot;aligncenter&quot; width=&quot;437&quot;][<img src="http://codeyarns.files.wordpress.com/2012/11/20121129-djvu-pdf.png" />](http://codeyarns.wordpress.com/2012/11/29/how-to-convert-djvu-to-pdf/20121129-djvu-pdf/#main) Export DJVU as PDF in DJView[/caption]</p>
+<p>To convert a <strong>DJVU</strong> document to a <strong>PDF</strong> document:</p>
+<ol style="list-style-type: decimal">
+<li><p>Install <a href="http://www.djvu.org/"><strong>DjVuLibre DJView</strong></a>.</p></li>
+<li><p>Open the DJVU document in DJView.</p></li>
+<li><p>Choose File → <strong>Export as</strong></p></li>
+<li><p>In the Export dialog choose <strong>PDF document</strong>, the PDF filename and path and press OK.</p></li>
+</ol>
+<p>Note that the PDF export option seems to be missing in recent versions of DJView.</p>
+<p><strong>Tried with:</strong> DjVuLibre DJView 4.9 and Windows 7 Professional x64</p>
+</body>
+</html>

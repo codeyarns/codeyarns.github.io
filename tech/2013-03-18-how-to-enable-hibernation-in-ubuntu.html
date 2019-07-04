@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable hibernation in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable hibernation in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-18 15:53:12+00:00</h3>
+</div>
+<p>It is truly surprising that <strong>Ubuntu</strong> ships with <strong>hibernation</strong> turned off. But, hibernation can be useful on notebooks where I would prefer to hibernate than to power off when the notebook runs completely out of battery.</p>
+<h1 id="ubuntu-14.04">Ubuntu 14.04</h1>
+<p>A few steps are needed to enable hibernation in Ubuntu:</p>
+<ul>
+<li><p>Ensure that the <a href="2013/03/18/how-to-find-the-size-of-swap-partition-in-ubuntu/">size of your swap</a> partition is equal or greater than the <a href="2013/03/18/how-to-find-the-amount-of-ram-in-ubuntu/">amount of RAM</a> in your system.</p></li>
+<li><p>Open the following file with superuser privileges:</p></li>
+</ul>
+<pre><code>$ sudo vim /var/lib/polkit-1/localauthority/10-vendor.d/com.ubuntu.desktop.pkla</code></pre>
+<ul>
+<li>Find the following two sections in the file:</li>
+</ul>
+<pre><code>[Disable hibernate by default in upower]
+Identity=unix-user:*
+Action=org.freedesktop.upower.hibernate
+ResultActive=no
+
+[Disable hibernate by default in logind]
+Identity=unix-user:*
+Action=org.freedesktop.login1.hibernate
+ResultActive=no</code></pre>
+<p>Change the value assigned to <code>ResultActive</code> in both section to <code>yes</code>.</p>
+<ul>
+<li>Reboot Ubuntu. Now, you will find the Hibernate option when you click the Gear icon.</li>
+</ul>
+<p>Note: These steps do not enable the Hibernate option for when the laptop lid is closed. That option is not visible in the Power settings. If you use GNOME Tweak Tool, that option can be set. But, I found that my Thinkpad X201i would still not hibernate when the lid was closed. I still had to manually choose Hibernate from the Shutdown menu to put the laptop into hibernation.</p>
+<h1 id="ubuntu-12.02">Ubuntu 12.02</h1>
+<p>A few steps are needed to enable hibernation in Ubuntu:</p>
+<ul>
+<li><p>Ensure that the <a href="2013/03/18/how-to-find-the-size-of-swap-partition-in-ubuntu/">size of your swap</a> partition is equal or greater than the <a href="2013/03/18/how-to-find-the-amount-of-ram-in-ubuntu/">amount of RAM</a> in your system.</p></li>
+<li><p>As sudo, open a new file <code>/etc/polkit-1/localauthority/50-local.d/com.ubuntu.enable-hibernate.pkla</code></p></li>
+</ul>
+<p>Add these lines and save the file</p>
+<pre><code>[Re-enable hibernate by default]
+Identity=unix-user:*
+Action=org.freedesktop.upower.hibernate
+ResultActive=yes</code></pre>
+<ul>
+<li>Reboot Ubuntu. Now, you will find the Hibernate option when you click the Gear icon. You will also find Hibernate as an option for your Power or Laptop lid settings.</li>
+</ul>
+</body>
+</html>

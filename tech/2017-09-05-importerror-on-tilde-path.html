@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>ImportError on tilde path</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">ImportError on tilde path</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-05 14:23:26+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had a Python module named <code>foobar.py</code> located inside <code>~/foobar</code> directory. To be able to import it, I did this in my Python code:</p>
+<pre><code>import sys
+sys.path.append(&quot;~/foobar&quot;)
+import foobar</code></pre>
+<p>However, when that script was run, it gave this error:</p>
+<pre><code>Traceback (most recent call last):
+  File &quot;./hello_world.py&quot;, line 10, in 
+    import foobar
+ImportError: No module named foobar</code></pre>
+<h1 id="solution">Solution</h1>
+<p>It turns out that Python cannot expand the <strong>tilde</strong> to my home directory! This was quite surprising to me. Once I expanded it to the absolute path, the import worked fine.</p>
+<p><strong>Tried with:</strong> Python 2.7.12 and Ubuntu 16.04</p>
+</body>
+</html>

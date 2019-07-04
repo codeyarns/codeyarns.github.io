@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to open Quickfix window automatically after make</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to open Quickfix window automatically after make</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-21 04:26:09+00:00</h3>
+</div>
+<p>The <a href="2015/03/21/how-to-use-quickfix-feature-of-vim/"><strong>Quickfix</strong></a> feature of <strong>Vim</strong> can be used to view errors or warnings produced by a compilation in a window and jump to those locations in source files. The Quickfix window has to be manually opened using <code>:copen</code>. Instead, I like the Quickfix window to be automatically opened after running a <code>:make</code>.</p>
+<p>This can be done by adding these line to <code>.vimrc</code>:</p>
+<pre><code>&quot; Open Quickfix window automatically after running :make
+augroup OpenQuickfixWindowAfterMake
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
+augroup END</code></pre>
+<p>For more info, see <a href="http://vim.wikia.com/wiki/Automatically_open_the_quickfix_window_on_:make">this Vim Wiki entry</a>.</p>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

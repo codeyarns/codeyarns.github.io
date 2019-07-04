@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Ubuntu: Offline GNOME Dictionary</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Ubuntu: Offline GNOME Dictionary</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-04-09 16:46:20+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2010/04/2010_04_10_gnome_dictionary_1.png"><img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_10_gnome_dictionary_1.png" /></a></p>
+<p>I love using <a href="http://wordweb.info/free/"><strong>WordWeb</strong></a> on Windows. This free dictionary program is perfect! It hides away until it is invoked with the intuitive keyboard shortcut <strong>Ctrl + Alt + W</strong>. The WordWeb UI is simple and the dictionary database is comprehensive.</p>
+<p>I wanted such a light, comprehensive and offline dictionary in Ubuntu. I was surprised to discover that the <a href="http://en.wikipedia.org/wiki/Gnome-dictionary"><strong>GNOME Dictionary</strong></a>, which is the default, uses online dictionary servers. This is painful since quick word lookup is really nice to have and I do not always have Internet access.</p>
+<p>Here is how to turn GNOME Dictionary into an offline dictionary and configure it to use a English-English dictionary database:</p>
+<ol style="list-style-type: decimal">
+<li><p>Using the Synaptic Package Manager install the <strong>dictd</strong> package. <a href="http://www.dict.org/announce.html"><strong>dictd</strong></a> acts as the dictionary server and client dictionary programs, like GNOME Dictionary, can talk to it to get the definitions of words.</p></li>
+<li><p>The <strong>dictd</strong> dictionary server may not be running after the package installation. <strong>Start</strong> it up by using the command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> service dictd restart</code></pre></div></li>
+<li><p>Using the Synaptic Package Manager install the <strong>dict-gcide</strong> package. <a href="http://en.wikipedia.org/wiki/GCIDE"><strong>GCIDE</strong></a> is the <strong>GNU Collaborative International Dictionary of English</strong>. This contains entries from the <strong>Webster's Unabridged Dictionary</strong>, WordNet and other free sources. Webster's is the main source and it is quite dated, since it is the 1913 edition, which is now out of copyright and thus is available in the public domain.</p></li>
+<li><p>Launch <strong>GNOME Dictionary</strong> by choosing Applications → Office → Dictionary or invoking <code>gnome-dictionary</code>. Choose Edit → Preferences.<a href="http://codeyarns.files.wordpress.com/2010/04/2010_04_10_gnome_dictionary_2.png"><img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_10_gnome_dictionary_2.png" /></a>In the Source dialog, choose Add to add a new dictionary source. Give the values for Description (say Local-GCIDE), Transport (Dictionary Server, the default value), Hostname (127.0.0.1) and Port (2628, the default value). Click Add. Back in the Source dialog, choose the Local-GCIDE dictionary to make it the default source.</p></li>
+<li><p>Now you should be able to use GNOME Dictionary with the local GCIDE dictionary database. Words can be typed in the Look up field and their definitions from GCIDE should appear beneath.</p></li>
+<li><p>The icing on this cake would be to have a keyboard shortcut to launch GNOME Dictionary whenever needed. Open System → Preferences → Keyboard Shortcuts. GNOME Dictionary does not have a keyboard shortcut, so we need to add one.<a href="http://codeyarns.files.wordpress.com/2010/04/2010_04_10_gnome_dictionary_3.png"><img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_10_gnome_dictionary_3.png" /></a>Choose Add. Give the values for Name as GNOME Dictionary and Command as gnome-dictionary and click Apply. Click on the GNOME Dictionary entry and click on New Shortcut .... Type in a shortcut, I prefer Ctrl + Alt + W, the same as that used by WordWeb on Windows. Click Close and the setup is complete!</p></li>
+</ol>
+<p>You can now launch GNOME Dictionary in a jiffy by pressing Ctrl + Alt + W and lookup word definitions quickly without requiring any Internet access. :-)</p>
+</body>
+</html>

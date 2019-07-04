@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable case insensitive filename completion in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable case insensitive filename completion in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-24 04:35:34+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_4181&quot; align=&quot;aligncenter&quot; width=&quot;330&quot;][<img src="http://codeyarns.files.wordpress.com/2014/01/20140124-vim-wildignorecase.gif" alt="Vim with case insensitive filename autocompletion" />](http://codeyarns.files.wordpress.com/2014/01/20140124-vim-wildignorecase.gif) Vim with case insensitive filename autocompletion[/caption]</p>
+<p>Opening files and directories from inside <strong>Vim</strong> can be a bit irritating. This is because it expects you to type the correct case sensitive prefix of the filename or directory before you can autocomplete it by pressing <code>Tab</code>. There are two problems here: Vim wants you to type the prefix and the prefix needs to match the filename with correct case. The second problem here can now be fixed in 7.3 and later versions of Vim.</p>
+<p>The <code>wildignorecase</code> option can be set to enable Vim to perform case insensitive autocompletion of filename or directories.</p>
+<p>To set it in your <code>.vimrc</code> use:</p>
+<pre><code>set wildignorecase</code></pre>
+<p>If you use your <code>.vimrc</code> across older and newer versions of Vim, then you might want to check for this option before you set it:</p>
+<pre><code>if exists(&quot;&amp;wildignorecase&quot;)
+    set wildignorecase
+endif</code></pre>
+<p><strong>Tried with:</strong> Vim 7.3 and Ubuntu 12.04</p>
+</body>
+</html>

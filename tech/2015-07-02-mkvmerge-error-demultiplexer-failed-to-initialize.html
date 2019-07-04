@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>MKVMerge Error: Demultiplexer failed to initialize</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">MKVMerge Error: Demultiplexer failed to initialize</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-02 14:58:12+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to merge a subtitle SRT file with a video MP4 file using <strong>MKVMerge</strong> as explained <a href="2015/01/24/how-to-add-subtitles-to-video-file-using-mkvmerge/">here</a>. It failed with this error:</p>
+<pre><code>$ mkvmerge -o out.mp4 foo.mp4 foo.srt 
+mkvmerge v5.6.0 (&#39;Kenya Kane&#39;) built on Jun  7 2012 15:57:56
+&#39;foo.mp4&#39;: Using the demultiplexer for the format &#39;QuickTime/MP4&#39;.
+Error: The demultiplexer for the file &#39;foo.mp4&#39; failed to initialize:
+The file could not be opened for reading, or there was not enough data to parse its headers.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>Googling for this error message did not provide any solution.</p>
+<p>I updated MKVMerge to the newer version 6.7.0. The same command on the same files worked successfully! :-)</p>
+</body>
+</html>

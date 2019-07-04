@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to display an array using OpenCV</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to display an array using OpenCV</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-11 08:04:03+00:00</h3>
+</div>
+<p>One dimensional arrays are commonly used to hold 2D data by storing it row-by-row. To check the contents of the array, it is sometimes useful to display it as if it were a 2D image.</p>
+<p>This can be done easily in <strong>OpenCV</strong> by creating a <code>cv::Mat</code> object from the array and displaying that:</p>
+<pre><code>#include &lt;opencv2/highgui.hpp&gt;
+
+// Assume arr has 1-channel 2D uchar data
+int width;
+int height;
+unsigned char* arr;
+
+// Create Mat object from array
+const cv::Mat img(cv::Size(width, height), CV_8U, arr);
+
+// Display in window and wait for key press
+cv::namedWindow(&quot;foobar&quot;);
+cv::imshow(&quot;foobar&quot;, img);
+cv::waitKey(0);</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
+</body>
+</html>

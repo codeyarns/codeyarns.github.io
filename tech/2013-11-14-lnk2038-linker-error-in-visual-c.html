@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>LNK2038 Linker Error in Visual C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">LNK2038 Linker Error in Visual C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-11-14 08:35:14+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>I got this error at the linking stage of compiling a Visual C++ project:</p>
+<pre><code>Error LNK2038: mismatch detected for &#39;_ITERATOR_DEBUG_LEVEL&#39;: value &#39;0&#39; doesn&#39;t match value &#39;2&#39; in main.obj</code></pre>
+<p>This project was being linked with other libraries and the error referred to the <code>_ITERATOR_DEBUG_LEVEL</code> was defined with different values in my application and the external library.</p>
+<p><strong>Solution</strong></p>
+<p>The difference in the <code>_ITERATOR_DEBUG_LEVEL</code> typically happens if a <strong>Release</strong> version of a library is linked against a <strong>Debug</strong> version of another library or application. Make the two have the same <strong>build type</strong> and this error should go away.</p>
+<p>If you cannot do that, then set the <code>_ITERATOR_DEBUG_LEVEL</code> in your project to match the value used in the other library.</p>
+<p><strong>Tried with:</strong> Visual Studio 2010 and Windows 7 x64</p>
+</body>
+</html>

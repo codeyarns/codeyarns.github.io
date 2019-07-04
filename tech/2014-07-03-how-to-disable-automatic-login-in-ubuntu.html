@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to disable automatic login in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to disable automatic login in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-07-03 13:06:09+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had enabled automatic login for the primary user when I installed Ubuntu. This means that the primary user still has a password, but does not need it during login or when unlocking. After using Ubuntu for a few days, I decided that the primary user needed to have normal login using password.</p>
+<p>The typical way to disable automatic login is to go to System Settings &gt; User Accounts. Click on the primary user, unlock the dialog and disable the Automatic Login option. I did this, but Ubuntu would still allow the primary user to login without a password.</p>
+<h1 id="solution">Solution</h1>
+<p>The User Accounts dialog is not actually disabling automatic login. To disable it correctly, open the <code>/etc/group</code> file as <code>sudo</code>. Find a line that reads <code>nopasswdlogin:x:119:joe</code> where <code>joe</code> is your username. Delete this line and automatic login should be disabled now.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

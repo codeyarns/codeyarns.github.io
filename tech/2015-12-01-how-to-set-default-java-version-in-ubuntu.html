@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to set default Java version in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to set default Java version in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-12-01 12:07:36+00:00</h3>
+</div>
+<p>The <strong>Ubuntu</strong> archives have multiple versions of <strong>OpenJDK</strong> available. One of these is designated as the default and this has the package names <code>default-jdk</code> and <code>default-jre</code>. The <code>java</code> and <code>javac</code> programs will be symlinked to the binaries from this default JDK. On my Ubuntu, the default packages were linked to the <code>openjdk-7-jdk</code> and <code>openjdk-7-jre</code> packages.</p>
+<p>However, you might want to install and use other versions of JDK. For example, to use Java 8 I did:</p>
+<pre><code>$ sudo apt install openjdk-8-jdk</code></pre>
+<p>The problem is that <code>java</code>, <code>javac</code> and other binaries still point to the default Java version. To switch the default Java binaries, use the <code>update-java-alternatives</code> tool.</p>
+<ul>
+<li>To list the Java versions installed on your system, use the <code>--list</code> option:</li>
+</ul>
+<pre><code>$ update-java-alternatives --list
+java-1.7.0-openjdk-amd64 1071 /usr/lib/jvm/java-1.7.0-openjdk-amd64
+java-1.8.0-openjdk-amd64 1069 /usr/lib/jvm/java-1.8.0-openjdk-amd64</code></pre>
+<ul>
+<li>To set one of the above Java versions as the default, use the <code>--set</code> option:</li>
+</ul>
+<pre><code>$ sudo update-java-alternatives --set java-1.8.0-openjdk-amd64</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

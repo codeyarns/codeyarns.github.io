@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to view man pages in color in Fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to view man pages in color in Fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-20 12:39:00+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_7126&quot; align=&quot;aligncenter&quot; width=&quot;496&quot;][<img src="https://codeyarns.files.wordpress.com/2015/07/20150720_man_color.png" alt="Man pages in color" />](https://codeyarns.files.wordpress.com/2015/07/20150720_man_color.png) Man pages in color[/caption]</p>
+<p>When you open a <strong>man page</strong> you are confronted with a wall of white-on-black text. You may have noticed that <strong>man pages</strong> have some formatting information. This can be used to render the formatted elements in various colors. This can make reading and searching for information in a man page a pleasant affair.</p>
+<p>To render man pages with colors in the <strong>Fish</strong> shell, add these lines to <code>~/.config/fish/config.fish</code>:</p>
+<pre><code>set -x LESS_TERMCAP_mb (printf &quot;33[01;31m&quot;)  
+set -x LESS_TERMCAP_md (printf &quot;33[01;31m&quot;)  
+set -x LESS_TERMCAP_me (printf &quot;33[0m&quot;)  
+set -x LESS_TERMCAP_se (printf &quot;33[0m&quot;)  
+set -x LESS_TERMCAP_so (printf &quot;33[01;44;33m&quot;)  
+set -x LESS_TERMCAP_ue (printf &quot;33[0m&quot;)  
+set -x LESS_TERMCAP_us (printf &quot;33[01;32m&quot;)</code></pre>
+<p><strong>Tried with:</strong> Fish 2.2b1 and Ubuntu 14.04</p>
+</body>
+</html>

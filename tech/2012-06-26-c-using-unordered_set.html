@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Using unordered_set</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Using unordered_set</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-06-26 06:49:20+00:00</h3>
+</div>
+<p>There are many additions to <strong>STL</strong> in <strong>C++11</strong>, one of which is <a href="http://msdn.microsoft.com/en-us/library/bb982739.aspx"><strong>unordered_set</strong></a>. This is just a long and complicated name for a <strong>hash table</strong> to store keys. (To store key-value pairs, use <strong>unordered_map</strong>).</p>
+<p>To compile and function correctly, <code>unordered_set</code> needs two functions: 1. An equality comparison function for the key type. 2. A hash function to generate a hash value for any key.</p>
+<p>For in-built types, like <code>int</code>, both of these functions are already implemented, so creating and using an <code>unordered_set</code> of <code>int</code> is very easy:</p>
+<p>https://gist.github.com/2993790</p>
+<p>If you need an unordered_set of your custom <code>struct</code> or <code>class</code>, you will need to provide these two functions. The usage is a bit different:</p>
+<p>https://gist.github.com/2993828</p>
+<p><strong>Tried with:</strong> Visual C++ 2010</p>
+</body>
+</html>

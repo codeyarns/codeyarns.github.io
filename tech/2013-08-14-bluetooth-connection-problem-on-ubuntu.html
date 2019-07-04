@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Bluetooth connection problem on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Bluetooth connection problem on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-08-14 00:44:28+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>I've found that using <strong>Bluetooth</strong> devices with <strong>Ubuntu</strong> is really convenient. Pairing, connecting and customizing other settings can be done right from the top <strong>panel</strong> by clicking on the Bluetooth icon.</p>
+<p>However, sometimes Ubuntu silently refuses to connect to the Bluetooth device. Or it refuses to turn on. Or it does not list any of the paired devices. In my experience these problems typically happen after my notebook computer has been resumed from a sleep or suspend. This happens even though the device has been paired. And it does not connect even if Bluetooth is turned off and then on from the panel.</p>
+<p><strong>Solution</strong></p>
+<p>I've found that I can get Bluetooth working again by restarting the Bluetooth <strong>service</strong>:</p>
+<pre><code>$ sudo /etc/init.d/bluetooth restart</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
+</body>
+</html>

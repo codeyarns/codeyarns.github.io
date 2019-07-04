@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>MATLAB parallel pool error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">MATLAB parallel pool error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-02-23 12:55:59+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I ran a <strong>MATLAB</strong> script that uses a <strong>parallel pool</strong> of workers. It failed with this error:</p>
+<pre><code>The client lost connection to worker 4. This might be due to network problems, or the interactive communicating job might have errored</code></pre>
+<p>The corresponding <code>matlab_crash_dump</code> file had this stack trace starting from <code>mkl.so</code>:</p>
+<pre><code>[  0] 0x00007f995128a1c5        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+16769477 mkl_blas_avx_sgemm_mscale+00001253
+[  1] 0x00007f995115ba1c        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+15530524 mkl_blas_avx_xsgemm+00000204
+[  2] 0x00007f99505a1a5c        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+03234396 mkl_blas_xsgemm+00000316
+[  3] 0x00007f9950529720        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+02742048
+[  4] 0x00007f9950525d5a        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+02727258 mkl_blas_sgemm+00001386
+[  5] 0x00007f99503b8ba5        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+01231781 sgemm+00000377
+[  6] 0x00007f991b803154    /opt/intel/mkl/lib/intel64/libmkl_intel_lp64.so+01315156 cblas_sgemm+00000372</code></pre>
+<h1 id="solution">Solution</h1>
+<p>To run a parallel pool of workers, we need to use the <code>libmkl_rt.so</code> provided by Intel. I added the path of this library path, which was <code>/opt/intel/mkl/lib/intel64</code> in my case, to my <code>LD_LIBRARY_PATH</code>. I also set the <code>BLAS_VERSION</code> environment variable to <code>libmkl_rt.so</code>.</p>
+<p>After this I checked if everything worked fine by going to Parallel -&gt; Manage cluster profiles -&gt; Local -&gt; Validation profiles -&gt; Validate. All the parallel test tasks were validated successfully. My script too worked fine after this.</p>
+<p><strong>Tried with:</strong> MATLAB R2014a and Ubuntu 14.04</p>
+</body>
+</html>

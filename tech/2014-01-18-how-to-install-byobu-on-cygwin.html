@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install Byobu on Cygwin</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install Byobu on Cygwin</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-18 15:26:28+00:00</h3>
+</div>
+<p><strong>Byobu</strong> is a user friendly terminal multiplexer built around <strong>tmux</strong>.</p>
+<p>There is no byobu package in Cygwin, but installing it from source is easy:</p>
+<ul>
+<li><p>Install <code>tmux</code> and <code>make</code> using the Cygwin package installer.</p></li>
+<li><p>Download the latest release of Byobu from <a href="https://launchpad.net/byobu/+download">here</a> and unzip it.</p></li>
+<li><p>Configure by providing it the directory where you want it to be installed and then make install it:</p></li>
+</ul>
+<pre><code>$ ./configure --prefix=&quot;$HOME/installs/byobu&quot;
+$ make
+$ make install</code></pre>
+<ul>
+<li>Add the installed <code>bin</code> directory to your <code>PATH</code> environment variable at the shell or permanently in your bashrc:</li>
+</ul>
+<pre><code>$ export PATH=&quot;$HOME/installs/byobu/bin:$PATH&quot;</code></pre>
+<p>You can now run <code>byobu</code> at the shell. You will notice that there will be some errors when it looks for Linux programs that are either not installed or not available on Cygwin. Also, the configuration user interface does not appear since that needs <code>python-newt</code> which is not available for Cygwin. Some of the function key combinations might also not work cause it is Windows.</p>
+<p><strong>Tried with:</strong> Byobu 5.125 and Cygwin 2.10</p>
+</body>
+</html>

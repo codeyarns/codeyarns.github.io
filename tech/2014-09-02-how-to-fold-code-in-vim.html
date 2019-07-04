@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to fold code in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to fold code in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-02 09:36:10+00:00</h3>
+</div>
+<p>Vim ships with support to perform code folding. It supports many methods of code folding. By default, it is in <code>manual</code> method. So, when you open a file you will find that no code is folded. You can specify which lines form a fold and then open or close that fold. I find this useless and never use it.</p>
+<p>The code folding method that I find most useful is <code>indent</code>. This uses the indentation of the code to figure out automatically the block of code that needs to be folded.</p>
+<p>To have code folding by <code>indent</code> by default, add this to your vimrc:</p>
+<pre><code>set foldmethod=indent</code></pre>
+<p>Some of the common commands I use to fold code:</p>
+<ul>
+<li><p><code>za</code>: Toggle code folding at the current line. The block that the current line belongs to is folded (closed) or unfolded (opened).</p></li>
+<li><p><code>zo</code>: Open fold.</p></li>
+<li><p><code>zc</code>: Close fold.</p></li>
+<li><p><code>zR</code>: Open all folds.</p></li>
+<li><p><code>zM</code>: Close all folds.</p></li>
+</ul>
+<p>With code folding enabled, when I open a file, all the code is folded up. I would rather have all folds open when I open a file.</p>
+<p>To do this, add these lines to your vimrc:</p>
+<pre><code>&quot; Keep all folds open when a file is opened
+augroup OpenAllFoldsOnFileOpen
+    autocmd!
+    autocmd BufRead * normal zR
+augroup END</code></pre>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

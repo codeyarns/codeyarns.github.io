@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install CUDA from Ubuntu repositories</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install CUDA from Ubuntu repositories</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-29 03:39:14+00:00</h3>
+</div>
+<p>The <strong>Ubuntu</strong> repositories now host <strong>CUDA</strong> packages. These may not be latest and greatest, but I find them to work well with the <strong>NVIDIA</strong> drivers from the same place. Also, they are very easy to install compared to the packages from the NVIDIA website.</p>
+<ul>
+<li>First, install the latest NVIDIA driver available from the repositories. NVIDIA driver package is named as <code>nvidia-xyz</code>, where <code>xyz</code> is the version. Pick the largest number version that is available from the repositories. For example:</li>
+</ul>
+<pre><code>$ sudo apt install nvidia-331</code></pre>
+<p>The installation process compiles the driver for your particular Linux kernel and deploys that module. Restart the computer once the install is done.</p>
+<p>You must be able to see a NVIDIA module when you list the kernel modules. For example, on my computer:</p>
+<pre><code>$ dkms status
+nvidia-331, 331.38, 3.13.0-24-generic, x86_64: installed</code></pre>
+<ul>
+<li>Now you are ready to install CUDA. This is really easy since installing the package <code>nvidia-cuda-toolkit</code> will pull in all the hundred other CUDA packages and tools that are needed:</li>
+</ul>
+<pre><code>$ sudo apt install nvidia-cuda-toolkit</code></pre>
+<p>That is it, enjoy your CUDA programming! :)</p>
+<p><strong>Tried with:</strong> Linux kernel 3.13.0-24-generic, CUDA 5.5, NVIDIA driver 331, NVIDIA GTX Titan and Ubuntu 14.04</p>
+</body>
+</html>

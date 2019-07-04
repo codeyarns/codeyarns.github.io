@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to crop image using ImageMagick</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to crop image using ImageMagick</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-11-15 02:00:17+00:00</h3>
+</div>
+<p>To crop an image using ImageMagick, you need to specify the X and Y coordinates of the top corner of the crop rectangle and the width and height of the crop rectangle. Use the <code>mogrify</code> command if you want the images to be replaced in-place or use the <code>convert</code> command otherwise to make a copy.</p>
+<p>If you want the crop rectangle to start at top corner <code>X: 50 Y: 100</code> and the crop rectangle to be of size <code>W: 640 H:480</code>, then use the command:</p>
+<pre><code>$ mogrify -crop 640x480+50+100 foo.png</code></pre>
+<p>To write the cropped image to a new file:</p>
+<pre><code>$ convert foo.png -crop 640x480+50+100 out.png</code></pre>
+<p><strong>Tried with:</strong> ImageMagick 6.7.7.10 and Ubuntu 14.04</p>
+</body>
+</html>

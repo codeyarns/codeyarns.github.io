@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Caca terminal of Gnuplot</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Caca terminal of Gnuplot</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-05-11 12:37:00+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_6871&quot; align=&quot;alignnone&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2015/05/20150511_caca_gnuplot.png?w=660" alt="Plot drawn using caca terminal of GNUPlot" />](https://codeyarns.files.wordpress.com/2015/05/20150511_caca_gnuplot.png) Plot drawn using caca terminal of GNUPlot[/caption]</p>
+<p><a href="http://www.gnuplot.info/"><strong>Gnuplot</strong></a> can plot in ASCII at the terminal if the <a href="2011/01/19/how-to-plot-at-terminal-using-gnuplot/"><strong>dumb terminal</strong></a> is chosen. However, this does not fully utilize the Unicode characters and color support of modern terminals. The <strong>Caca</strong> terminal of Gnuplot uses all the character and color capabilities of your terminal to generate beautiful and colorful plots. It does this by using the <a href="http://caca.zoy.org/wiki/libcaca"><strong>Caca library</strong></a> which provides these capabilities.</p>
+<h1 id="build-or-install">Build or Install</h1>
+<p>Gnuplot can be installed easily:</p>
+<pre><code>$ sudo apt install gnuplot</code></pre>
+<p>Note that support for caca terminal was added in Gnuplot 4.7. If you have that version and it was built with support for caca, then the commands in the next section should work directly.</p>
+<p>If you do not have 4.7 and later and if it was not built with caca support, you need to build Gnuplot from source. Here are the steps I followed to build it from source:</p>
+<ul>
+<li><p>Download Gnuplot source code from <a href="https://sourceforge.net/projects/gnuplot/files/gnuplot/">here</a> and unzip it to a directory.</p></li>
+<li><p>Install the Caca library if you do not have it already:</p></li>
+</ul>
+<pre><code>$ sudo apt install libcaca-dev</code></pre>
+<ul>
+<li><p>While building Gnuplot, I got an error in source files that use WxWidgets. To fix that, I opened the <code>configure</code> file, looked for the <code>WX_CXXFLAGS</code> option and appended <code>-std=c++11</code> to its string.</p></li>
+<li><p>While building Gnuplot, I got an error about linking with a X11 library. To fix that, I opened the <code>configure</code> file, looked for the <code>WX_LIBS</code> option and appended <code>-lX11</code> to its string.</p></li>
+<li><p>We are now ready to configure and build. Remember to configure with support for caca, since it is still an experimental feature and not enabled by default:</p></li>
+</ul>
+<pre><code>$ ./configure --with-caca
+$ make</code></pre>
+<ul>
+<li>If the build is successful, you can install Gnuplot:</li>
+</ul>
+<pre><code>$ sudo make install</code></pre>
+<h1 id="usage">Usage</h1>
+<ul>
+<li>To use the <code>caca</code> terminal in Gnuplot:</li>
+</ul>
+<pre><code>gnuplot&gt; set terminal caca</code></pre>
+<p>You can now plot anything and Caca draws it using ASCII/Unicode characters and colors.</p>
+<ul>
+<li><p>You will notice that Caca opens a X window to draw the plot. If you would like it draw the plot in the terminal itself, then you need request caca to use a driver that can draw at the terminal.</p></li>
+<li><p>You can view the list of drivers supported by caca:</p></li>
+</ul>
+<pre><code>gnuplot&gt; set terminal caca driver list</code></pre>
+<ul>
+<li>Of these, the <code>ncurses</code> and <code>slang</code> drivers can draw to terminal. I found that using <code>slang</code> draws in color, but it shows lots of question mark symbols. So, I use <code>ncurses</code>:</li>
+</ul>
+<pre><code>gnuplot&gt; set terminal caca driver ncurses</code></pre>
+<p>Now plot anything and view it in beautiful ASCII/Unicode and colors at the terminal!</p>
+<ul>
+<li>You can find an extensive list of plots drawn using Caca <a href="http://gnuplot.sourceforge.net/demo_caca_4.7/">here</a>.</li>
+</ul>
+<p><strong>Tried with:</strong> Gnuplot 5.0.0, Caca 0.99.beta18 and Ubuntu 14.04</p>
+</body>
+</html>

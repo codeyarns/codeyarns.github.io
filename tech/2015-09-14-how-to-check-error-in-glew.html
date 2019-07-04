@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to check error in GLEW</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to check error in GLEW</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-14 12:30:00+00:00</h3>
+</div>
+<p>You typically check for error after initializing <strong>GLEW</strong> by calling <code>glewInit()</code>. It returns an error value of type <code>GLenum</code>. Note that GLEW merely uses this data type, it has defined its own error values based on it.</p>
+<p>By looking at GLEW header files, I find that the <strong>error values</strong> currently supported are:</p>
+<pre><code>#define GLEW_OK 0
+#define GLEW_NO_ERROR 0
+#define GLEW_ERROR_NO_GL_VERSION 1  /* missing GL version */
+#define GLEW_ERROR_GL_VERSION_10_ONLY 2  /* Need at least OpenGL 1.1 */
+#define GLEW_ERROR_GLX_VERSION_11_ONLY 3  /* Need at least GLX 1.2 */</code></pre>
+<p>So, you typically first check if the value returned from <code>glewInit()</code> is <code>GLEW_OK</code>. If not, you further investigate what the error might be.</p>
+<p>GLEW provides an utility function <code>glewGetErrorString()</code> that provides an <strong>error string</strong> given the error value.</p>
+<p>Putting all the above together, this is how we could check for error in GLEW:</p>
+<pre><code>const GLenum err = glewInit();
+
+if (GLEW_OK != err)
+{
+    std::cout &lt;&lt; &quot;GLEW Error: &quot; &lt;&lt; glewGetErrorString(err) &lt;&lt; std::endl;
+    exit(1);
+}</code></pre>
+<p><strong>Tried with:</strong> GLEW 1.10 and Ubuntu 14.04</p>
+</body>
+</html>

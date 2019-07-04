@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Include browser of Eclipse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Include browser of Eclipse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-05-21 12:18:00+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_6939&quot; align=&quot;aligncenter&quot; width=&quot;535&quot;][<img src="https://codeyarns.files.wordpress.com/2015/05/20150521_include_browser.png" alt="Include graph of term.c in the Vim source code" />](https://codeyarns.files.wordpress.com/2015/05/20150521_include_browser.png) Include graph of term.c in the Vim source code[/caption]</p>
+<p>The <strong>include graph</strong> of a large C++ project can be really gnarly. Sometimes, you end up with compile errors due to circular inclusion of types or headers and cannot figure out the origin of the error. Other times, you might want to know the <strong>path</strong> of header files through which a certain type is available in a source file. To view these details, I generate a <a href="2013/12/24/how-to-create-header-include-graph-using-doxygen/">header include graph using <strong>Doxygen</strong></a>.</p>
+<p>However, if you are using <strong>Eclipse CDT</strong> you have something that is easier and more convenient: its <strong>Include Browser</strong>! :-)</p>
+<ul>
+<li><p>To open it: Go to Window -&gt; Show View -&gt; Include Browser. It will typically be displayed at the bottom of Eclipse.</p></li>
+<li><p>To view the include graph of a source or header file: Go to the <strong>Project Explorer</strong>, find the file and <strong>drag</strong> its name into the Include Browser window.</p></li>
+<li><p>By default, the include graph of the includes of the file are displayed.</p></li>
+<li><p>You can also view which other files include the current file.</p></li>
+<li><p>If the include graph is too cluttered, you can disable display of <strong>system includes</strong>. These are typically standard C++ header files.</p></li>
+<li><p>You can also disable display of includes in <strong>inactive code</strong>.</p></li>
+</ul>
+<p><strong>Reference:</strong> <a href="http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.cdt.doc.user%2Freference%2Fcdt_u_include_browser_view.htm">Eclipse help on Include Browser</a></p>
+<p><strong>Tried with:</strong> Eclipse 4.4.2 and Ubuntu 14.04</p>
+</body>
+</html>

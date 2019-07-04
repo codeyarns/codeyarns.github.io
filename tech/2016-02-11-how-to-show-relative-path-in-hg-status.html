@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to show relative path in hg status</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to show relative path in hg status</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-02-11 11:58:39+00:00</h3>
+</div>
+<p>By default, <code>hg status</code> shows modified files with path from the root of the working directory. Most of the time, I would like it show the paths relative to my current directory.</p>
+<p>There is no <code>--relative</code> option and due to the few people who need this feature, Mercurial developers have <a href="https://www.mercurial-scm.org/pipermail/mercurial-devel/2015-March/067724.html">said that</a> such a flag will not be added.</p>
+<p>However, applying an empty regular expression or pattern to the status command gets the job done:</p>
+<pre><code>$ hg status re:
+$ hg status &quot;&quot;</code></pre>
+<p><strong>Tried with:</strong> Mercurial 3.4 and Ubuntu 15.10</p>
+</body>
+</html>

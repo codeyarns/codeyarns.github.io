@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to profile C/C++ code using Valgrind and KCacheGrind</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to profile C/C++ code using Valgrind and KCacheGrind</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-09-17 04:28:07+00:00</h3>
+</div>
+<p><a href="http://valgrind.org/"><strong>Valgrind</strong></a> is a popular set of tools for debugging and profiling C/C++ programs. One of its tools is <strong>callgrind</strong>, which can be used to profile a program to find out which calls are taking most of the time. In addition, the profiler output can be beautifully visualized using the tool <a href="http://kcachegrind.sourceforge.net/"><strong>KCacheGrind</strong></a>.</p>
+<p><strong>Install</strong></p>
+<pre><code>$ sudo apt-get install valgrind kcachegrind</code></pre>
+<p><strong>Usage</strong></p>
+<p>Run the program using <code>callgrind</code>, you should expect this execution to be 10-100x slower:</p>
+<pre><code>$ valgrind --tool=callgrind ./foobar</code></pre>
+<p>The profiler output is written to a file named <code>callgrind.out.XYZ</code>, where <code>XYZ</code> is the process ID of this invocation. This is helpful because you can run this tool multiple times and have the profiler output of all those executions stored separately.</p>
+<p>Open the profiler output file using KCacheGrind:</p>
+<pre><code>$ kcachegrind callgrind.out.XYZ</code></pre>
+<p>KCacheGrind displays the profiler output information in a 3-pane window. On the left is the function call list. You typically click <code>main</code> here. In the bottom-right pane, you see the functions called by the function you chose in the left pane (<code>main</code> in this case). The function which took the most time is at the top and the list is sorted accordingly. You can also view this same information in a call graph or tree map by using the Call Graph and Call Map options.</p>
+<p><strong>Related:</strong> How to <a href="https://codeyarns.com/2013/06/24/how-to-profile-c-or-c-code-using-gprof/">profile using gprof</a> and <a href="https://codeyarns.com/2013/06/24/how-to-visualize-profiler-output-as-graph-using-gprof2dot/">view its call graph</a>.</p>
+<p><strong>Tried with:</strong> Valgrind 3.7.0, KCacheGrind 0.7, Ubuntu 12.04 LTS</p>
+</body>
+</html>

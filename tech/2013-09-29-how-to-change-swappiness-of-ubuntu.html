@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change swappiness of Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change swappiness of Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-09-29 09:39:35+00:00</h3>
+</div>
+<p>The <a href="https://help.ubuntu.com/community/SwapFaq"><strong>swappiness</strong></a> parameter of the Linux kernel controls how finicky it is about moving processes out of physical RAM to the swap space on your harddisk. Swappiness ranges from 0 to 100. A value of 0 means that the kernel tries to use the swap space as less as possible, that is it tries to keep processes in physical RAM as much as possible. On the other hand, a value of 100 makes the kernel move processes to swap space as early as possible.</p>
+<p>If you find your Ubuntu to be moving processes unnecessarily to disk and back, then you might want to play around with the swappiness parameter. Ubuntu sets this parameter to 60 by default, which seems pretty high.</p>
+<p>To check the current value of swappiness:</p>
+<pre><code>$ cat /proc/sys/vm/swappiness</code></pre>
+<p>To change the value of swappiness, to say 10, immediately for the current kernel session:</p>
+<pre><code>$ sudo sysctl vm.swappiness=10</code></pre>
+<p>To change the value permanently for all future kernel sessions, open the <code>/etc/sysctl.conf</code> file and edit or add <code>vm.swappiness=10</code></p>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
+</body>
+</html>

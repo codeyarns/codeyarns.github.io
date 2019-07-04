@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to find included header files using showIncludes</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to find included header files using showIncludes</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-27 12:32:00+00:00</h3>
+</div>
+<p>One of the irritating problems in practical C or C++ programming is finding out which are all the header files included when compiling a source file. This is true both when using the standard library or any other large library of header files.</p>
+<p>Starting from a given source file, the header files it includes is a <strong>n-ary tree</strong> that can be many levels deep. When there is a compilation error due to something in one of these header files, the compiler only points to the file and line number. The programmer needs to figure out the <strong>path of header files</strong> from the source file being compiled to the final erroneous header file.</p>
+<p>One solution is to index all the files automatically (Visual Studio or Eclipse) or manually (ctags) or use a documentation tool (Doxygen). You will still need to sift through their output and they might ignore compile-time macros that are defined or undefined during compilation.</p>
+<p>A better solution is the <a href="https://msdn.microsoft.com/en-us/library/hdkef6tk.aspx"><code>/showIncludes</code></a> compiler option in Visual C++ which greatly aids this investigation. Turn it on and it will print all the header files that are being processed while compiling a source file. It prints them out with indenting, so the nesting of header files is easy to see.</p>
+<p>This option can also be turned on from Project Properties. Go to C++ -&gt; Advanced.</p>
+<p><strong>Tried with:</strong> Visual Studio 2015 and Windows 7 x64</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to give read permissions to ReadyMedia</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to give read permissions to ReadyMedia</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-25 13:24:34+00:00</h3>
+</div>
+<p><a href="https://sourceforge.net/projects/minidlna/"><strong>ReadyMedia</strong></a> (formerly known as <strong>MiniDLNA</strong>) needs to have read access to the directories and files in its media directories to be able to index them. By default, it runs as the user and group, both named as <code>minidlna</code>.</p>
+<p>If the directories and files in the media directory have group read permissions, then ReadyMedia can get access to them by adding <code>minidlna</code> user to the group who owns those files:</p>
+<pre><code>$ sudo adduser minidlna joesgroup </code></pre>
+<p>Some programs create directories and files that have no group read permissions. For example, the Copy.com client on Linux only provides user read access to the directories and files that is syncs. In such a case, you will need to tinker with the startup script of ReadyMedia and change the user it runs as to the user who has access to those directories and files.</p>
+<p>On my Raspbian, I found that the startup script for ReadMedia was <code>/etc/init.d/minidlna</code>. Open it and look for the line where the username is provided and change that to the username you want. On my Raspbian, the relevant lines were:</p>
+<pre><code>if [ -z $USER ]; then
+    USER=minidlna
+fi</code></pre>
+<p>I changed <code>minidlna</code> in the above lines to the username who had read access to those files. In the worst case, you can even change it to <code>root</code>.</p>
+<p>Restart the server for changes to take effect:</p>
+<pre><code>$ sudo service minidlna force-reload</code></pre>
+<p><strong>Tried with:</strong> ReadyMedia 1.0.24 and Raspbian 7</p>
+</body>
+</html>

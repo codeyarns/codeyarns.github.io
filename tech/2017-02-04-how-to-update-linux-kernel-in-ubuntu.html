@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to update Linux kernel in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to update Linux kernel in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-02-04 06:09:04+00:00</h3>
+</div>
+<p>Every version of <strong>Ubuntu LTS</strong> sticks to a particular version of the <strong>Linux kernel</strong>. For example, Ubuntu 16.04 sticks to the 4.4.x series of kernels. Over the months and years you use and update this version of Ubuntu, only newer minor versions of the kernel are updated to maintain stability.</p>
+<p>However, there might be reasons you might want to upgrade to a major new Linux kernel version. For example, to get support for newer hardware and firmware. The first option you can try is to install the latest HWE stack for your LTS release, as described <a href="https://codeyarns.com/2017/05/19/the-hwe-stack-for-ubuntu-lts/">here</a>. That should upgrade your Linux kernel and X to recent versions.</p>
+<p>If a HWE stack is not available or the versions it provides is not recent enough for you, then Ubuntu developers maintain a series of the Linux mainline kernel which can be downloaded and installed.</p>
+<ul>
+<li><p>Go to <code>http://kernel.ubuntu.com/~kernel-ppa/mainline/</code> and decide which version of kernel you want. For example, I decided to upgrade from 4.4.x to 4.9.x.</p></li>
+<li><p>You need to download 3 deb files for a full kernel installation. These will be named in this format: <code>linux-headers-XXX_amd64.deb</code>, <code>linux-headers-XXX_all.deb</code> and <code>linux-image-XXX-generic_XXX_amd64.deb</code>.</p></li>
+<li><p>Install them:</p></li>
+</ul>
+<pre><code>$ sudo dpkg -i *.deb</code></pre>
+<ul>
+<li>Restart the computer and check if you are using the new kernel:</li>
+</ul>
+<pre><code>$ uname -r</code></pre>
+<ul>
+<li>Do not delete the kernel provided by Ubuntu even if <code>apt</code> keeps reminding you that you do not need it! If something goes wrong with the new kernel, you might want to keep the older one, so you can boot using that in the GRUB boot screen.</li>
+</ul>
+</body>
+</html>

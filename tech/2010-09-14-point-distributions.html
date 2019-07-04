@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Point Distributions</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Point Distributions</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-09-14 03:16:17+00:00</h3>
+</div>
+<p>A variety of <strong>point distributions</strong> are used in computer graphics and computational geometry to test out algorithms. Below are a few common point distributions and code to generate points in 3D. Assume that <code>random()</code> is a random function that returns a floating point value in the range (0.0-1.0).</p>
+<p><strong>Uniform Distribution</strong></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_uniform.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_uniform.png" /></a></p>
+<p>Uniform distribution is the most common distribution used in practice. Generate point using random values of x, y and z.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">x = random();
+y = random();
+z = random();</code></pre></div>
+<p><strong>Sphere Distribution</strong></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_sphere.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_sphere.png" /></a>A sphere has only surface and no volume. So, we restrict points to the surface of a sphere.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">do</span> {
+    x = random() - <span class="fl">0.5</span>;
+    y = random() - <span class="fl">0.5</span>;
+    z = random() - <span class="fl">0.5</span>;
+
+    d = ( x * x ) + ( y * y ) + ( z * z );
+
+} <span class="cf">while</span> ( ( d &lt; ( <span class="fl">0.45</span> * <span class="fl">0.45</span> ) || ( d &gt; ( <span class="fl">0.5</span> * <span class="fl">0.5</span>) ) ) );</code></pre></div>
+<p><strong>Half Sphere Distribution</strong></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_half_sphere.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_half_sphere.png" /></a>Calling it a half-sphere and not a hemisphere, since it does not have the planar surface in the middle. It is just a sphere sliced off about the middle.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">do</span> {
+    x = random() - <span class="fl">0.5</span>;
+    y = random() - <span class="fl">0.5</span>;
+    z = random() - <span class="fl">0.5</span>;
+
+    d = ( x * x ) + ( y * y ) + ( z * z );
+
+} <span class="cf">while</span> ( ( z &gt;= <span class="fl">0.2</span> ) || ( d &lt; ( <span class="fl">0.45</span> * <span class="fl">0.45</span> ) ) || ( d &gt; ( <span class="fl">0.5</span> * <span class="fl">0.5</span>) ) );</code></pre></div>
+<p><strong>Ball Distribution</strong></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_ball.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_ball.png" /></a>A ball is a filled sphere, it is full of points inside.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">do</span> {
+    x = random() - <span class="fl">0.5</span>;
+    y = random() - <span class="fl">0.5</span>;
+    z = random() - <span class="fl">0.5</span>;
+
+    d = ( x * x ) + ( y * y ) + ( z * z );
+
+} <span class="cf">while</span> ( d &gt; ( <span class="fl">0.49</span> * <span class="fl">0.49</span> ) );</code></pre></div>
+<p><strong>Empty Ball Distribution</strong></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_empty_ball.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_empty_ball.png" /></a>Empty ball is the subtraction of a ball from a cube. Everything outside the ball is filled and the inside core is empty.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">do</span> {
+    x = random() - <span class="fl">0.5</span>;
+    y = random() - <span class="fl">0.5</span>;
+    z = random() - <span class="fl">0.5</span>;
+
+    d = ( x * x ) + ( y * y ) + ( z * z );
+
+} <span class="cf">while</span> ( d &lt; ( <span class="fl">0.45</span> * <span class="fl">0.45</span> ) );</code></pre></div>
+<p><strong>Ellipsoid Distribution</strong></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_ellipsoid.png"></a><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_ellipsoid1.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_ellipsoid1.png" /></a> Ellipsoid has a surface but no volume inside.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">a = <span class="fl">0.5</span>;
+b = <span class="fl">0.5</span>;
+c = <span class="fl">0.2</span>;
+
+<span class="cf">do</span> {
+    x = random() - <span class="fl">0.5</span>;
+    y = random() - <span class="fl">0.5</span>;
+    z = random() - <span class="fl">0.5</span>;
+
+    d = ( ( x * x ) / ( a * a ) ) + ( ( y * y ) / ( b * b ) ) + ( ( z * z ) / ( c * c ) );
+
+} <span class="cf">while</span> ( ( d &lt;= <span class="fl">1.4</span> ) || ( d &gt;= <span class="fl">1.5</span> ) );</code></pre></div>
+<p><strong>Pancake Distribution</strong></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_pancake.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_pancake.png" /></a>Pancake is a filled ellipsoid.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">a = <span class="fl">0.5</span>;
+b = <span class="fl">0.5</span>;
+c = <span class="fl">0.2</span>;
+
+<span class="cf">do</span> {
+    x = random() - <span class="fl">0.5</span>;
+    y = random() - <span class="fl">0.5</span>;
+    z = random() - <span class="fl">0.5</span>;
+
+    d = ( ( x * x ) / ( a * a ) + ( y * y ) / ( b * b ) + ( z * z ) / ( c * c );
+
+} <span class="cf">while</span> ( d &gt;= <span class="fl">1.0</span> );</code></pre></div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: Library Pragma</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: Library Pragma</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2006-05-26 09:40:57+00:00</h3>
+</div>
+<p>I find myself having to indicate the libraries I want linked in every time I do this. I found a neat (non-portable) trick in Visual Studio to do this.</p>
+<p>Use the #pragma comment(lib, &quot;libfile&quot;) [1] preprocessor directive to hint your compiler/linker to include these library files for linking. For example:</p>
+<pre><code>// Link cg libraries
+#pragma comment(lib, &quot;cg.lib&quot;)
+#pragma comment(lib, &quot;cggl.lib&quot;)</code></pre>
+<p>[1] [msdn.microsoft.com/library/en-us/vclang/html/_predir_comment.asp](http://msdn.microsoft.com/library/en-us/vclang/html/_predir_comment.asp)</p>
+<p>(via <a href="http://www.flipcode.com/cgi-bin/fcarticles.cgi?show=63913">Adding MSDEV Libraries</a>)</p>
+</body>
+</html>

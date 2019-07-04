@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>VT-x is not available for VirtualBox</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">VT-x is not available for VirtualBox</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-11-10 16:02:31+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_2904&quot; align=&quot;aligncenter&quot; width=&quot;350&quot;][<img src="http://codeyarns.files.wordpress.com/2012/11/20121110-verr.png" />](http://codeyarns.files.wordpress.com/2012/11/20121110-verr.png) VirtualBox error[/caption]</p>
+<p><strong>Problem</strong></p>
+<p>A virtual machine running Ubuntu in <strong>VirtualBox</strong> which was working fine threw up an error when I tried to restore it. The error read:</p>
+<pre><code>Failed to open a session for the virtual machine Ubuntu-12.04-LTS-x64.
+
+VT-x is not available. (VERR_VMX_NO_VMX).
+
+Result Code: E_FAIL (0x80004005)
+Component: Console
+Interface: IConsole {db7ab4ca-2a3f-4183-9243-c1208da92392}</code></pre>
+<p>This happened even though I had not changed any settings in VirtualBox.</p>
+<p><strong>Solution</strong></p>
+<p><strong>VT-x</strong> is <strong>hardware visualization</strong> which the Intel Core i3 M330 processor I have does support. It was strange that the hardware visualization feature suddenly was not available to VirtualBox.</p>
+<p>Then I remembered that I had enabled <strong>Hyper-V</strong> earlier in the day. Windows 8 ships with Hyper-V and I had turned it on to try it out. It turns out that Hyper-V grabs hardware visualization and VirtualBox is left stranded not being able to access it.</p>
+<p>I disabled Hyper-V and my VM in VirtualBox booted up without any errors.</p>
+<p><strong>Tried with:</strong> VirtualBox 4.2.4 and Windows 8 Pro</p>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to switch GCC version using update-alternatives</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to switch GCC version using update-alternatives</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-26 14:23:30+00:00</h3>
+</div>
+<p>Multiple versions of <strong>GCC</strong> can be installed and used on <strong>Ubuntu</strong> as described <a href="2014/05/06/how-to-upgrade-gcc-on-ubuntu/">here</a>. The <code>update-alternatives</code> tool makes it easy to switch between multiple versions of GCC.</p>
+<p>On Ubuntu, <code>gcc</code> and <code>g++</code> are just symbolic links to the actual binaries of a specific version of GCC. By switching the version, invoking <code>gcc</code> will execute the particular version of the compiler binary that you wish. You can make any of these version as the default at any time effortlessly.</p>
+<p>As an example, I had installed GCC version 4.8 from the Ubuntu repositories. This was the default version of GCC, so <code>gcc</code> was a symlink to <code>gcc-4.8</code> binary. Wanting to use some new C++11 features I installed version 4.9 of GCC. This compiler can be invoked using <code>gcc-4.9</code>. I now want to switch the default <code>gcc</code> to invoke <code>gcc-4.9</code>. I also want the freedom to switch back 4.8 as the default whenever I want. You can switch the symlinks yourself manually, but using this tool makes it easy and clean.</p>
+<p>Let us begin:</p>
+<ul>
+<li><p>Decide which set of symbolic links you want to group together as one <strong>unit</strong>. I like to switch <code>/usr/bin/gcc</code> and <code>/usr/bin/g++</code> together.</p></li>
+<li><p>Pass <code>update-alternatives</code> the first version of these symbolic links. Here I will inform about the 4.8 version of these tools and links:</p></li>
+</ul>
+<pre><code>$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8</code></pre>
+<p>Here, we have provided the <code>gcc</code> as the master and <code>g++</code> as slave. Multiple slaves can be appended along with master. When master symbolic link is changed, the slaves will be changed too.</p>
+<ul>
+<li>Pass the second version of these tools to be recorded:</li>
+</ul>
+<pre><code>$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 50 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9 </code></pre>
+<ul>
+<li>Now you can switch between these versions by using:</li>
+</ul>
+<pre><code>$ sudo update-alternatives --config gcc</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to profile C/C++ code using gprof</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to profile C/C++ code using gprof</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-06-24 12:12:26+00:00</h3>
+</div>
+<p><strong>Profiling</strong> a program is an important step in analyzing program performance and identifying bottlenecks. A C or C++ program can be easily profiled in Linux using <strong>gprof</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Make sure your C or C++ code compiles without errors. Make sure your compiled program starts, executes and exits without any errors.</p></li>
+<li><p>Add the <code>-pg</code> option to <strong>both</strong> the object <strong>compilation</strong> and <strong>linking</strong> stages of the program compilation. Compile the program from scratch.</p></li>
+<li><p>Execute the program as you normally do. It might take a while longer to finish due to the profiling. After the program exits, it writes a <code>gmon.out</code> file with profiling information.</p>
+<pre><code>$ ./foo</code></pre></li>
+<li><p>Invoke gprof with your program executable as input. It prints out profiling information in the form of both a flat profile and a call graph. You can pipe this to a pager or redirect it to a text file for examination.</p>
+<pre><code>$ gprof foo</code></pre></li>
+</ol>
+<p>Examining the output of gprof gives you an idea of which functions in the program are taking the most execution time. This information can be used to optimize such functions.</p>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
+</body>
+</html>

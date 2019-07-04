@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to configure Doxygen for C++ code</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to configure Doxygen for C++ code</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-06-18 04:49:23+00:00</h3>
+</div>
+<p>If you do not use an IDE, then Doxygen is a heaven-send for understanding and working with a huge C++ codebase. To make your life easier, you can configure Doxygen to give you as much information as possible in its documentation. Here are the settings I use for C++ code:</p>
+<h1 id="doxywizard">Doxywizard</h1>
+<p>If the project does not have a Doxyfile configuration file, then <a href="2010/10/26/how-to-use-doxygen-to-generate-documentation/">using Doxywizard</a> is a convenient way to generate this file. I like to use its Wizard mode to quickly set the most important settings.</p>
+<ul>
+<li><p>In the Mode topic, for Select the desired extraction mode choose All Entities. Also enable the Include cross-referenced source code in the output option.</p></li>
+<li><p>In the Mode topic, choose Optimize for C++ output.</p></li>
+<li><p>In the Output topic, choose HTML with navigation panel and search function.</p></li>
+<li><p>In the Diagrams topic, choose to use Dot from the GraphViz package. Choose to generate Dot graphs for all the possible entities, including <a href="2013/12/24/how-to-create-header-include-graph-using-doxygen/">generating header include graphs</a>.</p></li>
+</ul>
+<h1 id="configuration-file">Configuration file</h1>
+<p>In the configuration file, I like to enable a few more options:</p>
+<pre><code>BUILTIN_STL_SUPPORT = YES
+
+# Show private members of class
+EXTRACT_PRIVATE = YES
+
+# Show static members of class
+EXTRACT_STATIC = YES
+
+# Show members of anonymous namespace
+EXTRACT_ANON_NSPACES = YES
+
+# Show which header file to include to use this class or member
+SHOW_GROUPED_MEMB_INC  = YES
+
+# Add all the header and source file extensions used
+FILE_PATTERNS = *.cpp *.h *.hpp
+
+# Function source code shown inline
+INLINE_SOURCES = YES
+
+# Show all functions that reference current function
+REFERENCED_BY_RELATION = YES
+
+# Show all functions referenced by current function
+REFERENCES_RELATION = YES
+
+# Generate class diagrams for base class
+CLASS_DIAGRAMS = YES
+
+# Number of threads to use for DOT
+DOT_NUM_THREADS = 4
+
+# Use UML notation for class diagrams
+UML_LOOK = YES
+
+# Show all members in UML class
+UML_LIMIT_NUM_FIELDS = 0
+
+# Show relationship for templates in graphs
+TEMPLATE_RELATIONS = YES</code></pre>
+<p>To get started quickly, I have shared my Doxyfile for C++ and CUDA code <a href="https://gist.github.com/ashwin/0a6ad18f9ccb93928ee171a36f764826">here</a>. Just look for <code>foobar</code> in the file and replace with your project name and directories.</p>
+<p><strong>Tried with:</strong> Doxygen 1.8.6 and Ubuntu 14.04</p>
+</body>
+</html>

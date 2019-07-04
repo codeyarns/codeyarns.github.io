@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build FastHOG</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build FastHOG</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-23 04:59:53+00:00</h3>
+</div>
+<p><strong>FastHOG</strong> is a Histogram of Oriented Gradients (HOG) library that uses CUDA to compute on the GPU. The original source code can be obtained <a href="http://www.robots.ox.ac.uk/~lav/Papers/prisacariu_reid_tr2310_09/prisacariu_reid_tr2310_09.html">here</a>. However, this code cannot be compiled with recent CUDA SDKs. I've made the changes needed to compile it and shared the code <a href="https://github.com/ashwin/fasthog">here</a>.</p>
+<p>To build and install this FastHOG in a few steps:</p>
+<ul>
+<li><p>Install 5.5 or a more recent version of CUDA. Instructions can be found <a href="2013/10/10/how-to-install-cuda-5-5-on-ubuntu/">here</a>.</p></li>
+<li><p>Install Xinerama and FreeImage libraries:</p></li>
+</ul>
+<pre><code>$ sudo apt install libxinerama-dev libfreeimage-dev</code></pre>
+<ul>
+<li><p>Build and install the 2.0 branch of FLTK. This is an abandoned branch of the library and instructions to build it can be found <a href="/2014/01/22/how-to-build-and-install-fltk-2-0/">here</a>. Note that FastHOG will not compile with the current 1.x branch of FLTK.</p></li>
+<li><p>Clone the fixed source code of FastHOG, build it and test whether it works:</p></li>
+</ul>
+<pre><code>$ git clone https://github.com/ashwin/fasthog.git
+$ cd fasthog/source/fastHOG
+$ make
+$ bin/release/fastHOG</code></pre>
+<p>The test program displays an image of pedestrians. Click anywhere on it and the detected people will be drawn in red boxes.</p>
+<p><strong>Tried with:</strong> CUDA 5.5 and Ubuntu 12.04</p>
+</body>
+</html>

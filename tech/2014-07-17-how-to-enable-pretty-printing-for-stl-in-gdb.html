@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable pretty printing for STL in GDB</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable pretty printing for STL in GDB</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-07-17 09:57:33+00:00</h3>
+</div>
+<p>Printing a C++ STL container in GDB produces information about the internal structure of the container that is hard to understand:</p>
+<pre><code>(gdb) print foo_int_vector
+$1 = {&lt;std::_Vector_base&lt;int, std::allocator&lt;int&gt; &gt;&gt; = {_M_impl = {&lt;std::allocator&lt;int&gt;&gt; = {&lt;__gnu_cxx::new_allocator&lt;int&gt;&gt; = {&lt;No data fields&gt;}, &lt;No data fields&gt;}, _M_start = 0x603010, _M_finish = 0x60301c, 
+      _M_end_of_storage = 0x60301c}}, &lt;No data fields&gt;}</code></pre>
+<p>By adding pretty printing support, we can get information about the STL container that is easy to understand:</p>
+<pre><code>(gdb) print foo_int_vector
+$1 = std::vector of length 3, capacity 3 = {34, 999, 345}</code></pre>
+<p>To enable pretty printing is easy:</p>
+<ul>
+<li><p>Ensure that the GDB version is 7.0 or later. This means it has support for Python scripting.</p></li>
+<li><p>Check out the Python module to perform pretty printing of STL containers:</p></li>
+</ul>
+<pre><code>$ svn co svn://gcc.gnu.org/svn/gcc/trunk/libstdc++-v3/python stlprettyprinter</code></pre>
+<ul>
+<li><p>The GDB that I had in Ubuntu was compiled to run Python 3.4. The Python file <code>printers.py</code> downloaded in the above step gave errors with it. I found an alternate <code>printers.py</code> from <a href="http://organact.mine.nu/dokuwiki/_media/astuces:printers.py.xz">here</a> that worked.</p></li>
+<li><p>Open <code>~/.gdbinit</code> and add these lines:</p></li>
+</ul>
+<pre><code>python
+import sys
+sys.path.insert(0, &#39;/home/joe/stlprettyprinter&#39;)
+from libstdcxx.v6.printers import register_libstdcxx_printers
+register_libstdcxx_printers (None)
+end</code></pre>
+<ul>
+<li>That is it, this gave me pretty printing of STL containers as shown above! :-)</li>
+</ul>
+<p><strong>References:</strong></p>
+<ul>
+<li><p><a href="http://wiki.eclipse.org/CDT/User/FAQ">Eclipse CDT FAQ about pretty printing</a></p></li>
+<li><p><a href="https://bugs.launchpad.net/ubuntu/+source/gcc-4.8/+bug/1256419">Bug report about script not working with Python 3</a></p></li>
+</ul>
+<p><strong>Tried with:</strong> GDB 7.7 and Ubuntu 14.04</p>
+</body>
+</html>

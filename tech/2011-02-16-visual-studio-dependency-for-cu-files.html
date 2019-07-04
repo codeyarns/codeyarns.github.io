@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual Studio: Dependency for .cu Files</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual Studio: Dependency for .cu Files</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-02-16 01:57:08+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>Visual Studio understands that if a C++ file includes a header file, then it means that the C++ file is <strong>dependent</strong> on that header file. That is, when the .h file is changed, Visual Studio recompiles the .cpp file.</p>
+<p>Much like in C++, it is common in CUDA to spread the code across .cu and .h files. However, Visual Studio <em>cannot</em> understand the dependency between a .cu file and a .h file that it might include. Thus, when the .h file is changed, the .cu file is <em>not</em> recompiled!</p>
+<p><strong>Solution</strong></p>
+<p>The dependency between a given .cu file and the .h files it includes needs to be specified explicity to Visual Studio. Consider the Visual Studio solution shown below:</p>
+<p><a href="http://codeyarns.files.wordpress.com/2011/02/20110216_source_dependency_1.png"><img src="http://codeyarns.files.wordpress.com/2011/02/20110216_source_dependency_1.png" /></a></p>
+<p>Assume that <code>Kernels/Foo.cu</code> includes <code>Kernels/FooKernel.h</code>. To make the dependency between these files explicit:</p>
+<ol style="list-style-type: decimal">
+<li><p>Right-click on <code>Kernels/Foo.cu</code> and choose <strong>Properties</strong>.</p></li>
+<li><p>In the Properties dialog, choose <strong>CUDA Runtime API</strong> → <strong>Source Dependencies</strong>.</p></li>
+<li><p>Add the files that <code>Kernels/Foo.cu</code> depends on. For us, this is <code>Kernels/FooKernel.h</code>. Make sure the path is correct, like I have done here by using <code>Kernels/</code></p></li>
+<li><p>If there are multiple dependencies, separate them using <strong>semicolons</strong> (;). Using space, comma or anything else will be silently ignored with no errors!</p></li>
+</ol>
+<p><a href="http://codeyarns.files.wordpress.com/2011/02/20110216_source_dependency_2.png"><img src="http://codeyarns.files.wordpress.com/2011/02/20110216_source_dependency_2.png" /></a></p>
+<p><code>Foo.cu</code> should now be recompiled whenever <code>FooKernel.h</code> is changed! :-)</p>
+<p><strong>Tried with</strong>: CUDA 3.2 and Visual Studio 2008</p>
+</body>
+</html>

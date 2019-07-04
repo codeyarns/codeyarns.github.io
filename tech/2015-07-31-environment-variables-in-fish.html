@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Environment variables in Fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Environment variables in Fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-31 12:39:00+00:00</h3>
+</div>
+<p><strong>Environment variables</strong> can be set just like any other <strong>variable</strong> in the <strong>Fish</strong> shell.</p>
+<ul>
+<li>To export an environment variable to the shell, add it in <code>~/.config/fish/config.fish</code>:</li>
+</ul>
+<pre><code>set -x FOO_ENV_VAR /home/joe/bin/some_foo_dir</code></pre>
+<ul>
+<li>If this a environment variable with many values, then set it as an <strong>array</strong>. In Fish, you set an array variable with a <strong>space-delimited</strong> series of values:</li>
+</ul>
+<pre><code>set -x FOO_ENV_VAR /home/joe/bin/some_foo_dir /usr/local/foo_dir</code></pre>
+<p>Under <strong>Bash</strong>, you might have set this same environment variable in <code>~/.bashrc</code> as:</p>
+<pre><code>export FOO_ENV_VAR=/home/joe/bin/some_foo_dir:/usr/local/foo_dir</code></pre>
+<ul>
+<li>If the environment variable with many values already exists and you want to prepend or append a value to it, the technique is the same. For example, to prepend to <code>PATH</code>:</li>
+</ul>
+<pre><code>set -x PATH /home/joe/bin/some_foo_dir $PATH</code></pre>
+<ul>
+<li><p>Three special environment variables: <code>PATH</code>, <code>CDPATH</code> and <code>MANPATH</code> are treated differently by Fish. These arrive from the environment to Fish as colon-separated, they are converted to array so we can set them easily as shown above using space-delimiter and then they are sent back to the environment as colon-separated. This logic can be seen in the Fish source code file <code>src/env.cpp</code> <a href="https://github.com/fish-shell/fish-shell/blob/master/src/env.cpp">here</a>. This is also explained in <a href="https://github.com/fish-shell/fish-shell/issues/1783">this issue</a>.</p></li>
+<li><p>The problem now is that there are many other environment variables which need to be colon-delimited, but Fish does not do that. For example, the dynamic linker <code>ld.so</code> that is used to load up DLLs when a binary executes requires <code>LD_LIBRARY_PATH</code> environment variable to be colon-delimited. I got errors when this variable was set using space-delimiters: <strong>cannot open shared object file: No such file or directory</strong></p></li>
+<li><p>If you run into any problems with an environment variable that takes a series of values, then check back to see how it is set in traditional shells like Bash. If it is colon-delimited there, then you might need to make it colon-delimited in Fish too. But, do remember to enclose it in double quotes for variable expansion to work correctly. For example:</p></li>
+</ul>
+<pre><code>set -x FOO_ENV_VAR &quot;/home/joe/bin/some_foo_dir:$FOO_ENV_VAR&quot;</code></pre>
+<p><strong>Tried with:</strong> Fish 2.2 and Ubuntu 14.04</p>
+</body>
+</html>

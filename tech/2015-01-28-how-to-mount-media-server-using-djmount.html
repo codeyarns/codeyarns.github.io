@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to mount media server using DJMount</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to mount media server using DJMount</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-28 14:28:02+00:00</h3>
+</div>
+<p><a href="http://djmount.sourceforge.net/"><strong>DJMount</strong></a> is a program that can be used to mount the content of a <strong>UPnP/DLNA</strong> media server on your network to your filesystem. Once it is mounted, you can navigate the server's content folders using any file explorer and play the files using any media player.</p>
+<p>Installing DJMount is easy:</p>
+<pre><code>$ sudo apt install djmount</code></pre>
+<p>Create an empty directory and pass it to DJMount:</p>
+<pre><code>$ mkdir ~/media_server_here
+$ djmount ~/media_server_here</code></pre>
+<p>You can now view all the media servers available in your network and their contents using any file explorer at the above mounted directory.</p>
+<p>To unmount the media servers:</p>
+<pre><code>$ fusermount -u ~/media_server_here</code></pre>
+<p><strong>Note:</strong> I had problems with DJMount. The contents would disappear if I tried to play any video file using VLC. The error I get is:</p>
+<pre><code>(src/ixmlparser.c::Parser_getChar), line 0: Error 63
+[E] Error in UpnpSendAction &#39;Browse&#39; -- -506 (UPNP_E_OUTOF_BOUNDS)
+[E] BrowseOrSearchAction ObjectId=&#39;1$4&#39;</code></pre>
+<p><strong>Tried with:</strong> DJMount 0.71 and Ubuntu 14.04</p>
+</body>
+</html>

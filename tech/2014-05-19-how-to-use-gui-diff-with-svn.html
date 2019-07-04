@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use GUI diff with SVN</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use GUI diff with SVN</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-19 07:32:28+00:00</h3>
+</div>
+<p>A GUI diff program can be used for viewing the diff in Subversion by using the <code>--diff-cmd</code> option. For example, to use the Meld GUI diff tool:</p>
+<pre><code>$ svn diff --diff-cmd meld</code></pre>
+<p>If you find yourself using the GUI diff frequently, consider adding an alias command to your shell that uses this option. For example, if you use the Fish shell, you can add this function:</p>
+<pre><code>function svnvdiff --description=&quot;SVN diff using GUI diff tool&quot;
+    svn diff --diff-cmd meld $argv
+end</code></pre>
+<p><strong>Tried with:</strong> Subversion 1.8.8 and Ubuntu 14.04</p>
+</body>
+</html>

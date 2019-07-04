@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Warning options of GCC</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Warning options of GCC</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-10-24 06:51:54+00:00</h3>
+</div>
+<p>The GCC and G++ compilers have many warning options that can be useful to improve the quality of your code. All the warning options are listed and described <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">here</a>.</p>
+<p>Since the list of warnings is very long, GCC provides a few warning options that are a shortcut for enabling a larger bunch of warnings. These warning options are <code>-Wall</code>, <code>-Wextra</code> and <code>-Wpedantic</code>.</p>
+<p>The warnings enabled by <code>-Wall</code> and <code>-Wextra</code> is listed along with their description. However, this is not provided for <code>-Wpedantic</code>. I went through the individual warning descriptions and found the warning options enabled by <code>-Wpedantic</code>:</p>
+<pre><code>Warning options enabled by -Wpedantic:
+
+-Wpointer-arith
+-Wlong-long
+-Wvariadic-macros
+-Wvla
+-Woverlength-strings</code></pre>
+<p>It can very useful to know which of the warning options are not enabled by <code>-Wall</code>, <code>-Wextra</code> and <code>-Wpedantic</code>. These are the options that might be useful for debugging or improving particular problems with your code. Again, I went through the individual warning descriptions and here they are:</p>
+<pre><code>Warning options not included by -Wall, -Wextra and -Wpedantic:
+
+-Wdouble-promotion
+-Wmissing-include-dirs
+-Wswitch-default
+-Wswitch-enum
+-Wswitch-bool
+-Wsync-nand
+-Wsuggest-attribute=[pure|const|noreturn|format]
+-Wsuggest-final-types
+-Wsuggest-final-methods
+-Wsystem-headers
+-Wtrampolines
+-Wfloat-equal
+-Wtraditional
+-Wtraditional-conversion
+-Wdeclaration-after-statement
+-Wundef
+-Wshadow
+-Wlarger-than=len
+-Wframe-larger-than=len
+-Wstack-usage=len
+-Wunsafe-loop-optimizations
+-Wbad-function-cast
+-Wc90-c99-compat
+-Wc99-c11-compat
+-Wc++-compat
+-Wcast-qual
+-Wcast-align
+-Wwrite-strings
+-Wconditionally-supported
+-Wconversion
+-Wzero-as-null-pointer-constant
+-Wdate-time
+-Wdelete-incomplete
+-Wuseless-cast
+-Wjump-misses-init
+-Wsign-conversion
+-Wfloat-conversion
+-Wlogical-op
+-Waggregate-return
+-Wstrict-prototypes
+-Wold-style-definition
+-Wmissing-prototypes
+-Wmissing-declarations
+-Wnormalized[=&lt;none|id|nfc|nfkc&gt;]
+-Wpacked
+-Wpadded
+-Wredundant-decls
+-Wnested-externs
+-Winline
+-Winvalid-pch
+-Wvector-operation-performance
+-Wdisabled-optimization
+-Wstack-protector
+-Wunsuffixed-float-constants</code></pre>
+<p>Note that I have not included the warning options that disable certain types of warning messages.</p>
+<p>Finally, here is the list of warnings that I like to compile with:</p>
+<pre><code>-Wall
+-Wextra
+-Wpedantic
+-Wconversion
+-Wmissing-include-dirs</code></pre>
+<p><strong>Tried with:</strong> GCC 5.0.0 online documentation</p>
+</body>
+</html>

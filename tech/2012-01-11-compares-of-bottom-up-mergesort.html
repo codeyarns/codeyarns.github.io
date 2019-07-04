@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Compares of Bottom-up Mergesort</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Compares of Bottom-up Mergesort</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-01-11 00:27:37+00:00</h3>
+</div>
+<p>It is fun to spot a mistake in a technical book. (Knuth has made it cool by sending out cheques to the error spotters.) Recently, I found a mistake while looking through the chapter on mergesort in <a href="http://algs4.cs.princeton.edu/"><strong>Algorithms</strong></a> (4th Edition) by <strong>Robert Sedgewick</strong> and <strong>Kevin Wayne</strong>.</p>
+<p>There is a proposition in the chapter which states that:</p>
+<pre><code>bottom-up mergesort uses between 0.5 N lg N and N lg N compares and 6 N lg N array accesses to sort an array of N items.</code></pre>
+<p>There is a small error in the proof. It states that:</p>
+<pre><code>the number of passes through the array is precisely floor( lg N ) which is precisely the value of n such that 2^n &lt;= N &lt; 2^n+1</code></pre>
+<p>This is wrong when N is not a power of 2. For example, if N is 7, then the array cannot be sorted in 2 passes, it needs at least 3, which is <code>ceil( lg N )</code>.</p>
+<p>So, the correct statement in the proof should be:</p>
+<pre><code>the number of passes through the array is precisely ceil( lg N ) which is precisely the value of n such that 2^n-1 &lt; N &lt;= 2^n</code></pre>
+<p>I contacted the authors about this and was surprised when co-author Kevin Wayne promptly replied back confirming the error. He even added the correction to the <a href="http://algs4.cs.princeton.edu/errata/errata-printing2.php">errata webpage</a> of their book :-)</p>
+</body>
+</html>

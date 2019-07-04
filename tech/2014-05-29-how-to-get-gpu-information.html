@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get GPU information</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get GPU information</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-29 04:03:14+00:00</h3>
+</div>
+<p>To get information about your NVIDIA GPU at the shell, try:</p>
+<pre><code>$ nvidia-smi
+
++------------------------------------------------------+                       
+| NVIDIA-SMI 331.38     Driver Version: 331.38         |                       
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GeForce 9600 GT     Off  | 0000:03:00.0     N/A |                  N/A |
+|  0%   58C  N/A     N/A /  N/A |    386MiB /   511MiB |     N/A      Default |
++-------------------------------+----------------------+----------------------+
+
++-----------------------------------------------------------------------------+
+| Compute processes:                                               GPU Memory |
+|  GPU       PID  Process name                                     Usage      |
+|=============================================================================|
+|    0            Not Supported                                               |
++-----------------------------------------------------------------------------+</code></pre>
+<p>This requires that you have the NVIDIA driver package installed.</p>
+<p>If you do not have the driver installed, you can try:</p>
+<pre><code>$ lspci | grep VGA
+
+03:00.0 VGA compatible controller: NVIDIA Corporation G94 [GeForce 9600 GT] (rev a1)</code></pre>
+<p>This lists the actual GPU being used in the graphics card. For example, G94 in the above graphics card.</p>
+<p>To get detailed information about the card, use the domain ID number shown at the beginning of the line. For example:</p>
+<pre><code>$ lspci -v -s 03:00.0
+
+03:00.0 VGA compatible controller: NVIDIA Corporation G94 [GeForce 9600 GT] (rev a1) (prog-if 00 [VGA controller])
+    Subsystem: ASUSTeK Computer Inc. Device 827c
+    Flags: bus master, fast devsel, latency 0, IRQ 63
+    Memory at f6000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at d0000000 (64-bit, prefetchable) [size=256M]
+    Memory at f4000000 (64-bit, non-prefetchable) [size=32M]
+    I/O ports at cf00 [size=128]
+    [virtual] Expansion ROM at f7000000 [disabled] [size=512K]
+    Capabilities: &lt;access denied&gt;
+    Kernel driver in use: nvidia</code></pre>
+<p>Notice that the GPU capabilities section is not displayed since that requires superuser privileges. To view the GPU capabilities:</p>
+<pre><code>$ sudo lspci -v -s 03:00.0
+
+03:00.0 VGA compatible controller: NVIDIA Corporation G94 [GeForce 9600 GT] (rev a1) (prog-if 00 [VGA controller])
+    Subsystem: ASUSTeK Computer Inc. Device 827c
+    Flags: bus master, fast devsel, latency 0, IRQ 63
+    Memory at f6000000 (32-bit, non-prefetchable) [size=16M]
+    Memory at d0000000 (64-bit, prefetchable) [size=256M]
+    Memory at f4000000 (64-bit, non-prefetchable) [size=32M]
+    I/O ports at cf00 [size=128]
+    [virtual] Expansion ROM at f7000000 [disabled] [size=512K]
+    Capabilities: [60] Power Management version 3
+    Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+    Capabilities: [78] Express Endpoint, MSI 00
+    Capabilities: [b4] Vendor Specific Information: Len=14 &lt;?&gt;
+    Capabilities: [100] Virtual Channel
+    Capabilities: [128] Power Budgeting &lt;?&gt;
+    Capabilities: [600] Vendor Specific Information: ID=0001 Rev=1 Len=024 &lt;?&gt;
+    Kernel driver in use: nvidia</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

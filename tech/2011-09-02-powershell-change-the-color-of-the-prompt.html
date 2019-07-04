@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>PowerShell: Change the Color of the Prompt</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">PowerShell: Change the Color of the Prompt</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-09-02 16:38:56+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2011/09/20110903-powershell-color.png"><img src="http://codeyarns.files.wordpress.com/2011/09/20110903-powershell-color.png" /></a></p>
+<p><strong>PowerShell</strong> opens up in a soothing white-on-blue console by default. But, the prompt is displayed in the same color as the rest of the text. The <strong>color</strong> of the <strong>prompt</strong> can be changed by overriding the default <code>Prompt</code> method by writing a custom <code>Prompt</code> method and placing it in your <a href="http://codeyarns.wordpress.com/2011/07/30/powershell-profile-script/">profile script</a>.</p>
+<p>This is a simple <code>Prompt</code> method that sets the color of the prompt to yellow:</p>
+<pre><code>function Prompt
+{
+    $promptString = &quot;PS &quot; + $(Get-Location) + &quot;&gt;&quot;
+    Write-Host $promptString -NoNewline -ForegroundColor Yellow
+    return &quot; &quot;
+}</code></pre>
+<p>The above <code>Prompt</code> method is enough if the profile script is meant for the default PowerShell console only. If you are using a profile script that will be used by other PowerShell hosts (like <strong>PowerShell ISE</strong> for example), then maybe you do not want the prompt to be yellow in those hosts.</p>
+<p>For such cases, this is a <code>Prompt</code> method that sets the color of the prompt to yellow only for the default PowerShell console and uses the default color for the other hosts:</p>
+<pre><code>function Prompt
+{
+    $promptString = &quot;PS &quot; + $(Get-Location) + &quot;&gt;&quot;
+
+    # Custom color for Windows console
+    if ( $Host.Name -eq &quot;ConsoleHost&quot; )
+    {
+        Write-Host $promptString -NoNewline -ForegroundColor Yellow
+    }
+    # Default color for the rest
+    else
+    {
+        Write-Host $promptString -NoNewline
+    }
+
+    return &quot; &quot;
+}</code></pre>
+<p><strong>Tried with:</strong> PowerShell 2.0</p>
+</body>
+</html>

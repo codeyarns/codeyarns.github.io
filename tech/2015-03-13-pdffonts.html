@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>PDFFonts</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">PDFFonts</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-13 12:14:52+00:00</h3>
+</div>
+<p><strong>PDFFonts</strong> is a useful tool to view information about the <strong>fonts</strong> in a <strong>PDF</strong> file. Typically, you need to bother with this only if you are having problems with submitting a PDF online or printing it.</p>
+<p>This tool ships along with <strong>Poppler</strong>. To install it:</p>
+<pre><code>$ sudo apt install poppler-utils</code></pre>
+<p>Usage is straightforward. It is illustrated here with a sample PDF file:</p>
+<pre><code>$ pdffonts foo.pdf 
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+MMFXPR+NimbusSanL-Bold               Type 1            Custom           yes yes no      25  0
+KPMIUD+NimbusRomNo9L-ReguItal        Type 1            Custom           yes yes no      31  0
+Arial,Bold                           TrueType          WinAnsi          no  no  no      77  0
+Times New Roman,Bold                 TrueType          WinAnsi          no  no  no      78  0
+ABCDEE+Calibri                       TrueType          WinAnsi          yes yes no      79  0
+NHFWQZ+CMMI10                        Type 1            Builtin          yes yes no     160  0
+COBEQK+CMMI7                         Type 1            Builtin          yes yes no     166  0
+FOCRQR+CMR12                         Type 1            Custom           yes yes no     175  0
+UJTTFG+CMR8                          Type 1            Builtin          yes yes no     266  0
+DejaVuSans                           Type 3            Custom           yes no  no     283  0
+SBITTL+CMMI8                         Type 1            Builtin          yes yes no     331  0
+Cmr10                                Type 3            Custom           yes no  no     475  0
+DejaVuSans                           Type 3            Custom           yes no  no     958  0</code></pre>
+<p>It displays various attributes of the font:</p>
+<ul>
+<li><p>Name of the font</p></li>
+<li><p>Type of the font (Type 1, Type 3 or TrueType)</p></li>
+<li><p>The encoding (Builtin, WinAnsi or Custom)</p></li>
+<li><p>Whether the font is embedded in the PDF</p></li>
+<li><p>ID of the object in the PDF which uses this font</p></li>
+</ul>
+<p><strong>Tried with:</strong> Poppler-Utils 0.24.5 and Ubuntu 14.04</p>
+</body>
+</html>

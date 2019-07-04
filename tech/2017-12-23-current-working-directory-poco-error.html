@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Current working directory Poco error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Current working directory Poco error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-12-23 21:06:06+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I was trying to build the <a href="https://github.com/pocoproject/poco"><strong>Poco</strong></a> library when I got this error:</p>
+<pre><code>/home/blah/someplace/poco-poco-1.4.6p4-release/build/rules/global:62: *** Current working directory not under $PROJECT_BASE.  Stop.
+make[1]: Leaving directory</code></pre>
+<p>The same code had built successfully on another computer, so I knew there was nothing wrong.</p>
+<h1 id="solution">Solution</h1>
+<p>Turns out that this error is actually caused if the path where you have unzipped Poco has a symlink in it. The <code>someplace</code> directory above was actually a symbolic link. Once I copied Poco to a path which had no symlink, it compiled fine.</p>
+</body>
+</html>

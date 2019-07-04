@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to configure Ubuntu notifications</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to configure Ubuntu notifications</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-05-14 12:55:00+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2015/05/20150514_notifyosd.png"><img src="https://codeyarns.files.wordpress.com/2015/05/20150514_notifyosd.png" alt="20150514_notifyosd" /></a></p>
+<p><strong>Ubuntu</strong> shows <strong>notifications</strong> as a translucent window at the top-right corner with a message and icon. The window location, size, background color, font color, icon size and other parameters can be configured using the <strong>Notify OSD Configuration</strong> application.</p>
+<p><strong>Note</strong>: The Notify OSD Configuration application that is available for Ubuntu 14.04 from their servers does not work.</p>
+<p>Thankfully, there is a PPA that has the updated version. It can be installed easily:</p>
+<pre><code>$ sudo add-apt-repository ppa:amandeepgrewal/notifyosdconfig
+$ sudo apt-get update
+$ sudo pkill notify-osd
+$ sudo remove notify-osd notifyosdconfig
+$ sudo install notify-osd notifyosdconfig</code></pre>
+<p>The app is available as <strong>NotifyOSD Configuration</strong> from the Dash and as <code>/usr/bin/notifyosdconf</code> from the shell.</p>
+<p><strong>Tried with:</strong> Notify OSD Configuration 0.3+22+201404260950~ubuntu14.04.1 and Ubuntu 14.04</p>
+</body>
+</html>

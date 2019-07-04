@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Integer caching in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Integer caching in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-05-01 13:28:50+00:00</h3>
+</div>
+<p>When a <strong>Python</strong> program assigns <strong>integers</strong> to variables, thus giving a name to a value, integer objects need to be created for them. Integers like 0, -1 or small integers are very common in programs. For integer object creation, use and destruction to be efficient for these common values, these objects are created only once and <strong>cached</strong> to be used for any variable that need such a value.</p>
+<p>The range of integers that are cached by Python is specific to the implementation. But, this can be discovered easily by using the <strong>is</strong> operator, which returns <strong>True</strong> is two names are refer to the same object.</p>
+<p>https://gist.github.com/2567864</p>
+<p>On my Python 3.2 64-bit CPython implementation, the range of integers that are cached seems to be <code>-5</code> to <code>256</code>.</p>
+<p><strong>Tried with:</strong> Python 3.2 64-bit on Windows 7</p>
+</body>
+</html>

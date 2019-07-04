@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to share folder from Windows to Ubuntu in VirtualBox</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to share folder from Windows to Ubuntu in VirtualBox</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-10-30 07:08:31+00:00</h3>
+</div>
+<p>On <strong>Windows</strong>, I sometimes run <strong>Ubuntu</strong> inside a <strong>VirtualBox</strong> virtual machine. I find that sharing a folder from Windows to Ubuntu is a convenient method of sharing files between the host and guest OS. Doing this is easy:</p>
+<ul>
+<li><p><a href="http://choorucode.wordpress.com/2012/10/30/install-guest-additions-to-ubuntu-on-virtualbox/">Install</a> <strong>Guest Additions</strong> on the Ubuntu virtual machine.</p></li>
+<li><p><a href="http://choorucode.wordpress.com/2012/10/30/add-user-to-group-in-linux/">Add</a> your user to the group <code>vboxsf</code> in the Ubuntu VM:</p></li>
+</ul>
+<pre><code>$ sudo adduser yourusername vboxsf </code></pre>
+<ul>
+<li><p>Power down the Ubuntu virtual machine.</p></li>
+<li><p>In VirtualBox, right-click on the Ubuntu virtual machine and choose Settings → Shared Folders.</p></li>
+<li><p>Choose <strong>Add Share</strong>. Choose the <strong>Folder Path</strong> to the directory you want to share. Note down the Folder Name displayed. This name will be used inside Ubuntu, so change it if you want. Check the <strong>Auto-mount</strong> option to have Ubuntu mount this directory whenever it starts up.</p></li>
+<li><p>Power up the Ubuntu virtual machine. Your <code>foo</code> shared folder will be accessible in <code>/media/sf_foo</code> directory.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 12.04 x64, Windows 7 Enterprise x64 and VirtualBox 4.2.0</p>
+</body>
+</html>

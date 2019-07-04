@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Segmentation fault on glGenVertexArrays</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Segmentation fault on glGenVertexArrays</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-07-08 03:18:48+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I was trying to compile the code from the book <a href="http://www.cs.unm.edu/~angel/">Interactive Computer Graphics: A Top-Down Approach with Shader-Based OpenGL (6th Edition)</a>. The code compiled fine, but execution failed with <code>SIGSEGV</code> segmentation fault at the line:</p>
+<pre><code>GLuint vao;
+glGenVertexArrays( 1, &amp;vao );</code></pre>
+<h1 id="solution">Solution</h1>
+<p>The system might be using an old version of GLEW, where <code>glGenVertexArrays</code> is still marked as an experimental OpenGL extension. To enable the use of such experimental extensions add these lines during initialization:</p>
+<pre><code>glewExperimental = GL_TRUE; 
+glewInit();</code></pre>
+<p><strong>Tried with:</strong> NVIDIA GeForce 9600 GT, NVIDIA drivers 331 and Ubuntu 14.04</p>
+</body>
+</html>

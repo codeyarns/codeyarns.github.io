@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Command history in Fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Command history in Fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-12-15 13:16:53+00:00</h3>
+</div>
+<p><strong>Fish</strong> maintains a history of all commands you have executed.</p>
+<ul>
+<li>To list the history in reverse chronological order:</li>
+</ul>
+<pre><code>$ history</code></pre>
+<ul>
+<li>To list the history along with the time at which each command was executed:</li>
+</ul>
+<pre><code>$ history --show-time</code></pre>
+<p>Note that this is a very useful feature to check when a particular command was executed. However, this feature was only added in Fish 2.4.0 and is not available in older versions.</p>
+<ul>
+<li>To search for a substring <code>foo</code> in history:</li>
+</ul>
+<pre><code>$ history foo</code></pre>
+<ul>
+<li>To merge the history of all open sessions of Fish right now:</li>
+</ul>
+<pre><code>$ history --merge</code></pre>
+<p>Fish does this merge only when it is exited. This is because Fish does not want to update the common history file at the end of every command. This might be for performance and to avoid race conditions.</p>
+<p>However, sometimes you execute a long command in one Fish session and might want to repeat that in another session. This is a quick way to merge all histories, so that that command is now available in history of the second session for easy autocompletion.</p>
+<p><strong>Tried with:</strong> Fish 2.4.0 and Ubuntu 14.04</p>
+</body>
+</html>

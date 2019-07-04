@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to git fetch everything</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to git fetch everything</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-17 12:30:18+00:00</h3>
+</div>
+<p><code>git fetch</code> is a common command used to fetch and update the local repository with commits and branches from one or more remote repositories.</p>
+<ul>
+<li>The simplest version of the command is:</li>
+</ul>
+<pre><code>$ git fetch</code></pre>
+<p>This fetches only from the <code>origin</code> remote. Also, note that it does not fetch for any of the submodules inside the current repository.</p>
+<ul>
+<li>To fetch from a particular remote:</li>
+</ul>
+<pre><code>$ git fetch some_remote</code></pre>
+<p>This can be useful when there are many remotes and you want to fetch from just one to save time.</p>
+<ul>
+<li>To fetch from all the remotes you have associated with the current repository:</li>
+</ul>
+<pre><code>$ git fetch --all</code></pre>
+<p>Note again, that this does nothing for the submodules.</p>
+<ul>
+<li>To fetch from the <code>origin</code> remote of the main repository and the <code>origin</code> remote of all submodule repositories:</li>
+</ul>
+<pre><code>$ git fetch --recurse-submodules</code></pre>
+<ul>
+<li>What if we want to fetch from all remotes for the main repository and also from all remotes for all the submodules? We might think that this does that:</li>
+</ul>
+<pre><code>$ git fetch --all --recurse-submodules</code></pre>
+<p>And here you land into a Git trap! Strangely, the above command only fetches from all remotes for the main repository. For the submodules, it only fetches from their <code>origin</code> remote!</p>
+<p>So, what if I do want to fetch from all remotes for all submodules? That can be achieved by using the very useful <code>submodule foreach</code> which loops over all submodules (but not the main repository!) and executes the git command you specify. Knowing this, we can do this:</p>
+<pre><code>$ git submodule foreach --recursive git fetch --all</code></pre>
+<p>We are almost there! Can we create one mega command to fetch from all remotes for both the main repository and all the submodules? We can do it at the shell by combining two commands:</p>
+<pre><code>$ git fetch --all &amp;&amp; git submodule foreach --recursive git fetch --all</code></pre>
+<ul>
+<li>If you deal with submodules all the time, you can turn the above command into a Git <strong>alias</strong> by adding this to your <code>.gitconfig</code>:</li>
+</ul>
+<pre><code>[alias]
+fetch-all-recur = !git fetch --all &amp;&amp; git submodule foreach --recursive git fetch --all</code></pre>
+<p>With this alias added, you can sit back and type:</p>
+<pre><code>$ git fetch-all-recur</code></pre>
+<p>Enjoy! :-)</p>
+<p><strong>Tried with:</strong> Git 2.8.2 and Ubuntu 14.04</p>
+</body>
+</html>

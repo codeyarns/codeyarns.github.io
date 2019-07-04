@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>LaTeX: Prevent verbatim text being broken across pages</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">LaTeX: Prevent verbatim text being broken across pages</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-12-21 07:42:55+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p><strong>LaTeX</strong> might break a long stretch of <a href="http://codeyarns.wordpress.com/2012/12/15/how-to-add-code-listings-to-latex-document-using-verbatim-environment/"><strong>verbatim</strong></a> text across two or more pages.</p>
+<p><strong>Solution</strong></p>
+<p>To restrict all the text in a verbatim environment to a single page, use the <a href="http://www.ctan.org/pkg/fancyvrb"><strong>fancyvrb</strong></a> package. Switch to using the <strong>Verbatim</strong> environment (note the uppercase V) and set the <strong>samepage</strong> parameter to true.</p>
+<p>Here is an illustration:</p>
+<pre><code>\usepackage{fancyvrb}
+
+% ...
+
+\begin{Verbatim}[samepage=true]
+A
+stretch
+of
+text
+you
+want
+to
+remain
+on
+a
+single
+page
+\end{Verbatim}</code></pre>
+<p>Tried with: MikTeX 2.9 and Windows 8 Pro x64</p>
+</body>
+</html>

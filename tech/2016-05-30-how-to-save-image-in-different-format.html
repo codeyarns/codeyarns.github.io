@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to save image in different format</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to save image in different format</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-30 12:11:52+00:00</h3>
+</div>
+<p>A common operation when working with images is to save them in a different <strong>format</strong>. Not surprisingly, <strong>ImageMagick</strong> has tools that make this very easy to perform at the shell.</p>
+<p>The easiest way to save an image in a different format is to use <code>convert</code>:</p>
+<pre><code>$ convert foo.png bar.jpg</code></pre>
+<p>This saves an existing <code>foo.png</code> in PNG format to another file <code>bar.jpg</code> in the JPEG format.</p>
+<p>Note that this command does not work if you want to convert a set of images. To do that, we use the <code>mogrify</code> command with its <code>-format</code> option.</p>
+<p>To convert all PNG images in the current directory to JPEG format images keeping the same filename:</p>
+<pre><code>$ mogrify -format &quot;jpg&quot; *.png</code></pre>
+<p>Mogrify usually overwrites its source files. In this case however, the original PNG files are left untouched since the new files have a different file extension.</p>
+<p><strong>Tried with:</strong> ImageMagick 6.7.7 and Ubuntu 14.04</p>
+</body>
+</html>

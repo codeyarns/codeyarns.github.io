@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Cannot import name _tkagg</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Cannot import name _tkagg</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-14 12:58:35+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had <strong>Matplotlib</strong> installed on a computer. I tried to set the <strong>backend</strong> for a plot using <code>TkAgg</code>. There was no <strong>Tk</strong> installed, so I installed the required packages. When I tried to set backend again, I got this error: <code>ImportError: cannot import name _tkagg</code></p>
+<h1 id="solution">Solution</h1>
+<p>Check if your Matplotlib is installed using <strong>pip</strong>. If so, then you need to reinstall Matplotlib so that it picks up links to the <code>python-tk</code> files correctly:</p>
+<pre><code>$ sudo pip uninstall matplotlib
+$ sudo pip install matplotlib</code></pre>
+<p>The plot was displayed correctly after this.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

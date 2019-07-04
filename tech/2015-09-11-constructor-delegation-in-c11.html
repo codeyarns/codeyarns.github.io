@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Constructor delegation in C++11</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Constructor delegation in C++11</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-11 06:31:32+00:00</h3>
+</div>
+<p><strong>C++11</strong> added a feature that I personally find extremely useful. It is called <strong>constructor delegation</strong>. It is a natural addition to the language to reduce duplicated code in constructors of different signatures in a class. It can be understood easily with an example.</p>
+<p>Consider a class with two constructors:</p>
+<pre><code>class Point
+{
+public:
+    Point()
+    {
+        x_ = 0;
+        y_ = 0;
+        z_ = 0;
+    }
+
+    Point(int z)
+    {
+        x_ = 0;
+        y_ = 0;
+        z_ = z; // Only update z
+    }
+
+private:
+    int x_;
+    int y_;
+    int z_;
+};</code></pre>
+<p>How to avoid the duplicated initialization statements in both constructors? You <strong>should not</strong> call one constructor in the other constructor of the same class! That is a very common bug in C++, since that only creates a temporary object and <strong>does not</strong> actually call the constructor of the same object.</p>
+<p>The common solution to this is to create an <strong>init</strong> function that is called from both constructors:</p>
+<pre><code>class Point
+{
+public:
+    Point()
+    {
+        Init();
+    }
+
+    Point(int z)
+    {
+        Init();
+        z_ = z; // Only update z
+    }
+
+private:
+    void Init()
+    {
+        x_ = 0;
+        y_ = 0;
+        z_ = 0;
+    }
+
+    int x_;
+    int y_;
+    int z_;
+};</code></pre>
+<p>C++11 constructor delegation provides an elegant solution that should have been there in C++ since the beginning: you can call a constructor by placing it in the initializer list of constructors. The above code with constructor delegation:</p>
+<pre><code>class Point
+{
+public:
+    Point()
+    {
+        x_ = 0;
+        y_ = 0;
+        z_ = 0;
+    }
+
+    Point(int z) : Point()
+    {
+        z_ = z; // Only update z
+    }
+
+private:
+    int x_;
+    int y_;
+    int z_;
+};</code></pre>
+<p>If you are going to use constructor delegation, please remember to use a compiler version that supports it (I used GCC 5.1.0) and you may need to specify a C++11 flag (I used <code>-std=c++11</code>).</p>
+<p><strong>Reference:</strong> Sec 17.4.3 Delegating Constructors from <strong>The C++ Programming Language</strong> (4th Ed) by Stroustrup</p>
+</body>
+</html>

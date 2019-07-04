@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Java applet error in Chrome</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Java applet error in Chrome</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-22 12:08:55+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I opened a webpage with a <strong>Java applet</strong> in the <strong>Google Chrome</strong> browser. The message &quot;This plug-in is not supported&quot; was displayed in the canvas of the applet.</p>
+<h1 id="solution">Solution</h1>
+<p>Chrome has changed the API it offers to plugins from the <a href="http://en.wikipedia.org/wiki/NPAPI"><strong>Netscape Plugin API (NPAPI)</strong></a> to <strong>Pepper Plugin API (PPAPI)</strong>. I use the <strong>IcedTea</strong> Java plugin for Chrome. It seems that this plugin was written to use NPAPI, so it does not work in Chrome now.</p>
+<p><strong>Firefox</strong> seems to still support NPAPI, so I opened the Java applet page in it and it worked fine.</p>
+<p><strong>Tried with:</strong> Chrome 39.0.2171.95, Firefox 34 and Ubuntu 14.04</p>
+</body>
+</html>

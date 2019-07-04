@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use gcalcli</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use gcalcli</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-11-19 08:05:31+00:00</h3>
+</div>
+<p>If you spend a lot of time at the terminal, you might like to access your <strong>Google Calendar</strong> at the shell too. A great tool to do this is <a href="https://github.com/insanum/gcalcli"><strong>gcalcli</strong></a>. It shows information from all your calendars in Google Calendar, in various formats and using colors.</p>
+<h1 id="install">Install</h1>
+<h2 id="from-ubuntu-archives">From Ubuntu archives</h2>
+<p>To install:</p>
+<pre><code>$ sudo apt install gcalcli</code></pre>
+<p>Note that this is an old version, it did not work for me.</p>
+<h2 id="from-python-package-index">From Python Package Index</h2>
+<p>To install:</p>
+<pre><code>$ sudo pip install gcalcli</code></pre>
+<p>This worked without problems on Ubuntu 14.04, but had problems on Ubuntu 15.04.</p>
+<h2 id="build-from-source">Build from source</h2>
+<p>Before you install gcalcli, first install the Python libraries that it depends on:</p>
+<pre><code>$ sudo apt install python-gflags python-googleapi</code></pre>
+<p>After this, clone gcalcli from its Github repository:</p>
+<pre><code>$ git clone https://github.com/insanum/gcalcli.git</code></pre>
+<p>Finally, install gcalcli using its <code>setup.py</code> file:</p>
+<pre><code>$ cd gcalcli
+$ sudo python setup.py install</code></pre>
+<h1 id="usage">Usage</h1>
+<p>The gcalcli project has a Client ID and Client Secret registered with Google to access its API. You need to authorize it to access your Google account only the first time. To do this, call gcalcli with any of its options, for example:</p>
+<pre><code>$ gcalcli agenda</code></pre>
+<p>This opens a Google URL in your browser asking whether you want to authorize gcalcli to access your Calendar. Authorize it and come back to the terminal. Let the gcalcli command exit or just kill it. gcalci would have stored the authorization information in <code>~/.gcalcli_oauth</code>.</p>
+<p>From here on, you can call gcalcli with any of its options and it works using the stored authorization information.</p>
+<p>To view your events for the next few days:</p>
+<pre><code>$ gcalcli agenda</code></pre>
+<p>To view your calendar for this week:</p>
+<pre><code>$ gcalcli calw</code></pre>
+<p>To view your calendar for this week and the following week:</p>
+<pre><code>$ gcalcli calw 2</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04 and Ubuntu 15.04</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to disable overlay scrollbar in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to disable overlay scrollbar in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-18 04:38:44+00:00</h3>
+</div>
+<p>All versions of <strong>Ubuntu</strong>, including <strong>Xubuntu</strong>, now use an <strong>overlay scrollbar</strong> in all <strong>GTK</strong> applications. The scrollbar is hidden, but a scroller appears when the mouse cursor is hovered on the right or bottom borders of a window.</p>
+<p>If you would like the legacy scrollbar to be used instead of this overlay scrollbar, that can be done in a couple of ways:</p>
+<h1 id="remove-scrollbar-packages">Remove scrollbar packages</h1>
+<p>The best solution is to remove the overlay scrollbar packages and restart your system:</p>
+<pre><code>$ sudo apt-get purge overlay-scrollbar*</code></pre>
+<p>This typically removes 3 packages: <code>overlay-scrollbar</code>, <code>overlay-scrollbar-gtk2</code> and <code>overlay-scrollbar-gtk3</code>.</p>
+<h1 id="tweak-it">Tweak it</h1>
+<p>Install the Unity Tweak Tool:</p>
+<pre><code>$ sudo apt-get install unity-tweak-tool</code></pre>
+<p>Next, open the Unity Tweak Tool and go to System &gt; Scrolling. In the Scrollbars section, choose the Legacy radio button.</p>
+<p>That is it, legacy scrollbars are enabled back in Ubuntu! :)</p>
+<p><strong>Tried with:</strong> Unity Tweak Tool 0.0.6 and Ubuntu 14.04</p>
+</body>
+</html>

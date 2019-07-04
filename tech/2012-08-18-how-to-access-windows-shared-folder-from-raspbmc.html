@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to access Windows shared folder from Raspbmc</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to access Windows shared folder from Raspbmc</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-08-18 09:43:58+00:00</h3>
+</div>
+<p><strong>Raspberry Pi</strong> running <strong>Raspbmc</strong> is an awesome HTPC. If you have videos, music or photos on one of your home <strong>Windows computers</strong>, then it might be convenient to access or view the media right from your Raspbmc over the home network. The easiest way to do this is to share the media files in a Windows <strong>shared folder</strong> and access that from Raspbmc using SMB. I am assuming that the Windows computer and Raspbmc are connected to the same wireless router or the same home network.</p>
+<p>First setup the Windows computer:</p>
+<ol style="list-style-type: decimal">
+<li><p>Your Raspbmc will access your Windows computer using its <strong>IP address</strong>. So, it might be convenient to configure a <strong>static IP address</strong> for the Windows computer. In any case, note down the IP address of the Windows computer.</p></li>
+<li><p>Create a folder and make sure the folder name has no spaces in it. Drop all the media files you want to share into this folder. Make it a shared folder. Add <code>Everyone</code> as a user who has read access to this folder.</p></li>
+</ol>
+<p>Next setup the Raspbmc to access the shared folder:</p>
+<ol style="list-style-type: decimal">
+<li><p>Make sure you can <code>ping</code> the Windows computer from the Raspbmc. You can do this by <strong>SSH</strong> to Raspbmc (here is <a href="http://codeyarns.wordpress.com/2012/08/10/how-to-ssh-to-your-raspbmc/">how</a>) and pinging the IP address of the Windows computer.</p></li>
+<li><p>Assuming you want to access the video files in the shared folders. In XBMC, go to Videos &gt; Files &gt; Add videos &gt; Browse &gt; Add network location.</p></li>
+<li><p>In the Add network location dialog, choose <code>Protocol</code> as <code>Windows network (SMB)</code>. For <code>Server name</code> enter the IP address of the Windows computer. For <code>Shared folder</code> enter the name of the shared folder on the Windows computer. Fill the <code>Username</code> and <code>Password</code> fields with the credentials of a user on your Windows computer. Press OK.</p></li>
+<li><p>The Windows computer shared folder now appears in the listing, choose OK. Press OK in the next dialog. Now the shared folder is visible in the Files listing and you should be able to browse through the media files inside it and play them whenever needed.</p></li>
+</ol>
+<p>Have fun playing the content from your Windows computer on your Raspbmc :-)</p>
+<p><strong>Tried with:</strong> Windows 7 (64-bit) and Raspbmc RC4</p>
+</body>
+</html>

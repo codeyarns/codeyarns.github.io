@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Python: Product of Elements of a List</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Python: Product of Elements of a List</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-02-05 03:01:21+00:00</h3>
+</div>
+<p>Python has a built-in function to find the <em>sum</em> of the elements of a list:</p>
+<pre><code>alist = [10, 3, 8]
+&lt;strong&gt;&lt;a href=&quot;http://docs.python.org/library/functions.html#sum&quot;&gt;sum&lt;/a&gt;&lt;/strong&gt;(alist) # 21</code></pre>
+<p>But, there are no such built-in functions for other arithmetic operations. Defining such arithmetic functions that operate on sequences like lists is easy. Here is how to write a method that gives the <em>product</em> of the elements of a list:</p>
+<pre><code>import functools
+import operator
+
+def product(seq):
+    &quot;&quot;&quot;Product of a sequence.&quot;&quot;&quot;
+    return &lt;strong&gt;&lt;a href=&quot;http://docs.python.org/library/functools.html#functools.reduce&quot;&gt;functools.reduce&lt;/a&gt;&lt;/strong&gt;(&lt;strong&gt;&lt;a href=&quot;http://docs.python.org/library/operator.html#operator.mul&quot;&gt;operator.mul&lt;/a&gt;&lt;/strong&gt;, seq, 1)</code></pre>
+</body>
+</html>

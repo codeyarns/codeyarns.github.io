@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Windows Update error code 80070003</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Windows Update error code 80070003</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-06 14:33:02+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to install the updates in Windows Update and it reported that the update failed and the error code is 80070003.</p>
+<h1 id="solution">Solution</h1>
+<p>This error is caused by the update stuck at some temporary files. The steps to fix this is provided <a href="http://windows.microsoft.com/en-us/windows/windows-update-error-80070003#1TC=windows-7">here</a>. It is simple:</p>
+<ul>
+<li><p>Stop the Windows Update service.</p></li>
+<li><p>Delete all the files and directories inside <code>C:\Windows\SoftwareDistribution\DataStore</code></p></li>
+<li><p>Start Windows Update service back.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Windows 7 x64</p>
+</body>
+</html>

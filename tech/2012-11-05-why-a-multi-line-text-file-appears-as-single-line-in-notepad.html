@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Why a multi-line text file appears as single line in Notepad</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Why a multi-line text file appears as single line in Notepad</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-11-05 08:11:17+00:00</h3>
+</div>
+<p>A <strong>text file</strong> with multiple lines of text appears concatenated into a single line when opened in <strong>Notepad</strong> on Windows.</p>
+<p>This happens because of the difference in the way the end-of-line is written by Linux (or other Unix-based OS) and Windows. If this text file was created on Linux and opened on Windows using Notepad, this problem occurs.</p>
+<p>Linux uses the <strong>newline</strong> character (ASCII: <code>0x0A</code>) to indicate end-of-line. Windows uses two characters: <strong>carriage return</strong> (ASCII: <code>0x0D</code>) followed by newline (ASCII: <code>0x0A</code>) to indicate end-of-line.</p>
+<p>Almost any Windows editor other than Notepad, like <a href="http://notepad-plus-plus.org/"><strong>Notepad++</strong></a> for example, can understand both types of end-of-line indicators and can open such text files correctly.</p>
+</body>
+</html>

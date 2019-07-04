@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install Raspbian 7</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install Raspbian 7</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-23 14:36:13+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2015/01/20150123_raspbian.png"><img src="https://codeyarns.files.wordpress.com/2015/01/20150123_raspbian.png" alt="20150123_raspbian" /></a></p>
+<p><strong>Raspbian</strong> is a Debian distribution for the <strong>Raspberry Pi</strong>. Installing it to the Pi is easy:</p>
+<ul>
+<li><p>Download the latest Raspbian disk image from <a href="http://www.raspberrypi.org/downloads/">here</a>. Unzip the <code>.img</code> file from the downloaded zip file.</p></li>
+<li><p>Insert a <strong>SD card</strong> of at least 4GB capacity into your computer. Write the downloaded disk image to it, as described <a href="2013/06/21/how-to-write-a-disk-image-on-linux/">here</a>.</p></li>
+<li><p>Insert this SD card into the Pi board. Connect your Pi and your home wireless router with a Ethernet cable. Power on the Pi.</p></li>
+<li><p>Go to the Admin webpage of your wireless router and figure out what IP address has been assigned to your Pi. Let us assume it is assigned <code>192.168.0.99</code>.</p></li>
+<li><p>SSH into your Pi using the command <code>ssh pi@192.168.0.99</code>. The default password is <code>raspberry</code>.</p></li>
+<li><p>Run <code>sudo raspi-config</code> and choose to <code>Expand filesystem</code>. This expands Raspbian to make full use of the space on your SD card. Exit the config tool and choose to reboot when it requests so.</p></li>
+<li><p>Once your Pi restarts back and is connected to the home network, SSH into it again. Update the packages to the latest versions:</p></li>
+</ul>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade</code></pre>
+<ul>
+<li>If you want Raspbian to auto-mount USB storage devices (thumbdrives and harddisks) and NTFS partitions, then install these tools:</li>
+</ul>
+<pre><code>$ sudo apt-get install usbmount
+$ sudo apt-get install ntfs-3g</code></pre>
+<ul>
+<li>Restart Raspbian.</li>
+</ul>
+<p>You now have a Raspbian system that is ready to roar! :-)</p>
+<p><strong>Tried with:</strong> Raspbian 7</p>
+</body>
+</html>

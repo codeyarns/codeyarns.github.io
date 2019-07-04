@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get started with Qt on Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get started with Qt on Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-12-13 04:20:59+00:00</h3>
+</div>
+<p><strong>Qt</strong> is a popular application framework to develop cross-platform GUI applications. Installing and using it on Windows is quite easy:</p>
+<ol style="list-style-type: decimal">
+<li><p>From the Qt <a href="http://qt-project.org/downloads">downloads page</a>, download a Windows installer. The online installer is the best choice, since it allows you to install Qt built for all types of platforms. However, I found that the online installer was very slow and would stop downloading after a while. So, I decided to go with an offline installer. For Windows offline installers, you need to decide among these parameters: compiler (MinGW or Visual C++), compiler version (Visual Studio 2010 or 2012), architecture (32-bit or 64-bit) and OpenGL support. Depending on the combination you pick, say <code>Visual Studio 2012 32-bit with OpenGL</code>, you can find a corresponding installer for offline installation. Download and run the installer and it will install Qt source, libraries and tools under <code>C:\Qt</code> directory. The actual executables will be placed in a deeper directory. For example, mine were in <code>C:\Qt\Qt5.2.0\5.2.0\msvc2012</code></p></li>
+<li><p>From the Start menu, open <strong>Qt Creator</strong>. This is the IDE that needs to be used to write a Qt application.</p></li>
+<li><p>In Qt Creator, create a new project by choosing <code>File &amp;gt; New File or Project</code>. Choose <code>Applications</code> and <code>Qt Widgets Application</code> if you want to create a GUI program. In the following dialogs, you will be asked to provide a name for the project, directory to store the files and a kit to use for compilation.</p></li>
+<li><p>This creates a project file with extension <code>.pro</code> and three source files: <code>main.cpp</code>, <code>mainwindow.cpp</code> and <code>mainwindow.h</code>.</p></li>
+<li><p>To compile this project, right-click on the project name in Projects section and choose <code>Run qmake</code>. This runs <code>qmake</code> which creates Makefiles relevant to your environment. Right-click on project name again and choose <code>Build</code>. This uses the Makefiles that was created earlier to build an executable. Finally right-click and choose <code>Run</code>. This runs the executable, which should result in an empty window being displayed. From here on, you can add source code to these files or more source files to extend this window into a Qt application.</p></li>
+</ol>
+<p><strong>Tried with:</strong> Qt 5.2.0, Visual Studio 2012 and Windows 7 x64</p>
+</body>
+</html>

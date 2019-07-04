@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Firefox: Change Zoom Values</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Firefox: Change Zoom Values</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-03-02 03:42:51+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>On certain webpages, I find that the <strong>zoom</strong> increments of Firefox seem quite large. It would be nice to be able to tweak the zoom increment or level.</p>
+<p><strong>Solution</strong></p>
+<p>By default, Firefox is configured to zoom down to <strong>30%</strong> and zoom up to <strong>300%</strong>. There is no fixed increment in which in zooms down or up from the default value of <strong>100%</strong>. Instead, it uses a list of <strong>zoom values</strong>. These default zoom values can be found in <code>about:config</code> at <a href="http://kb.mozillazine.org/Toolkit.zoomManager.zoomValues"><code>toolkit.zoomManager.zoomValues</code></a>.</p>
+<p>The default zoom values on my Firefox are:</p>
+<p><code>.3,.5,.67,.8,.9,1,1.1,1.2,1.33,1.5,1.7,2,2.4,3</code></p>
+<p>Multiply the values by 100 to get the zoom percentage. For example, .3 is 30% and so on.</p>
+<p>Assume that I find that the zoom down from 1 to .9 is too big a leap. I would like the decrement here to be finer. If so, then I add a new zoom value .95 into the list between .9 and 1. In a similar manner, you can tweak the zoom values to whatever is appropriate to you.</p>
+<p><strong>Tried with:</strong> Firefox 10.0.2</p>
+</body>
+</html>

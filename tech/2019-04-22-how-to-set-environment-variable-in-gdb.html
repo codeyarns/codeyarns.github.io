@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to set environment variable in gdb</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to set environment variable in gdb</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-04-22 13:37:23+00:00</h3>
+</div>
+<p><strong>GDB</strong> inherits the environment variables from your shell. Some environment variables, like <code>LD_LIBRARY_PATH</code>, might not be inherited for safety reasons. This can cause errors like this when you try to debug:</p>
+<pre><code>$ gdb --args ./a.out
+(gdb) r
+/path/to/a.out: error while loading shared libraries: libfoobar.so.5: cannot open shared object file: No such file or directory</code></pre>
+<p>You can set the <code>LD_LIBRARY_PATH</code> environment variable at the gdb shell using the <strong>set env</strong> command like this:</p>
+<pre><code>(gdb) set env LD_LIBRARY_PATH /path/to/1:/path/to/2</code></pre>
+<p>However, if you use a shell like <strong>Fish</strong>, you will notice that this will silently not work and you still get the <strong>cannot open shared object file</strong> error.</p>
+<p>This is because under the covers, gdb is reading the <code>SHELL</code> environment variable to understand what is the shell and doing what is right for that shell. It might not understand how to work with the Fish, which is a relatively new shell.</p>
+<p>The solution that works for me, is to set the <code>SHELL</code> variable at the Fish shell to the Bash path:</p>
+<pre><code>$ set SHELL (which bash)</code></pre>
+<p>And then launch gdb and set the environment variable as shown above. It works after that.</p>
+<p><strong>Reference</strong>: <a href="ftp://ftp.gnu.org/old-gnu/Manuals/gdb/html_node/gdb_19.html">Your program's environment</a> (GDB Manual)</p>
+</body>
+</html>

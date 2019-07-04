@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install and use FreeImage</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install and use FreeImage</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-11 03:43:23+00:00</h3>
+</div>
+<p><a href="http://freeimage.sourceforge.net/"><strong>FreeImage</strong></a> is a simple library that can be used for reading and writing image files. If you have to read and write BMP, JPG or PNG files, then this is one of the easiest ways to do that. It has APIs available in C, C++ and .Net.</p>
+<h1 id="install">Install</h1>
+<p>Installing FreeImage on Ubuntu is easy:</p>
+<pre><code>$ sudo apt-get install libfreeimage3 libfreeimage-dev</code></pre>
+<h1 id="use">Use</h1>
+<p>For C++ code, you can use the <strong>FreeImagePlus</strong> API, which is a C++ wrapper around the C API. Here is a simple example that reads a PNG image using the <code>fipImage</code> class:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;FreeImagePlus.h&gt;
+
+int main()
+{
+    fipImage img;
+    img.load(&quot;foobar.png&quot;);
+
+    std::cout &lt;&lt; img.getWidth() &lt;&lt; &quot; &quot; &lt;&lt; img.getHeight() &lt;&lt; std::endl;
+    std::cout &lt;&lt; img.isGrayscale() &lt;&lt; std::endl;
+    std::cout &lt;&lt; img.getBitsPerPixel() &lt;&lt; std::endl;
+
+    return 0;
+}</code></pre>
+<p>To compile code that uses the FreeImagePlus API, link it with <code>libfreeimageplus.so</code> using the directive <code>-lfreeimageplus</code>.</p>
+<p><strong>Tried with:</strong> FreeImage 3.15.1-1 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

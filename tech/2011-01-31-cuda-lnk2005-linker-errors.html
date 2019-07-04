@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDA: LNK2005 Linker Errors</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDA: LNK2005 Linker Errors</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-01-31 06:57:11+00:00</h3>
+</div>
+<p><strong>The Problem</strong></p>
+<p>When building a Visual Studio solution which has CUDA source files (<code>*.cu</code>), <strong>LNK2005</strong> linker errors of the following kind might be seen:</p>
+<pre><code>LIBCMT.lib(hooks.obj) : error LNK2005: &quot;void __cdecl terminate(void)&quot; (?terminate@@YAXXZ) already defined in MSVCRT.lib(MSVCR90.dll)</code></pre>
+<p><strong>What does it mean?</strong></p>
+<p>This indicates a mismatch between the kind of <strong>C runtime library</strong> used by the CUDA Build Rule and that used for the rest of the Visual C++ project.</p>
+<p><strong>How to fix it?</strong></p>
+<p>This problem can be fixed by making both of these use the same kind of C runtime library. For example, if the Visual C++ project is compiled using <code>Multi Threaded DLL (/MD)</code> and the CUDA build rule has <code>Multi Threaded (/MT)</code>, then change the CUDA build rule to use <code>/MD</code> too.</p>
+<p><strong>Tried with</strong>: CUDA 3.2 and Visual Studio 2008</p>
+</body>
+</html>

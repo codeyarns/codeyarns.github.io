@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Python: Making a completely unshared copy of list</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Python: Making a completely unshared copy of list</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2009-10-22 06:36:15+00:00</h3>
+</div>
+<h1 id="also-see-httpstackoverflow.comquestions1601269">Also see: http://stackoverflow.com/questions/1601269</h1>
+<pre><code>def unsharedListCopy(inList):
+    if isinstance(inList, list):
+        return list( map(unsharedListCopy, inList) )
+    return inList</code></pre>
+</body>
+</html>

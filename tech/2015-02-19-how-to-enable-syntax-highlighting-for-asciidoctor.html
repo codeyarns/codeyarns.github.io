@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable syntax highlighting for ASCIIDoctor</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable syntax highlighting for ASCIIDoctor</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-19 17:36:42+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5789&quot; align=&quot;aligncenter&quot; width=&quot;309&quot;][<img src="https://codeyarns.files.wordpress.com/2015/02/20150220_coderay.png" alt="Syntax highlighting of Python code by ASCIIDoctor" />](https://codeyarns.files.wordpress.com/2015/02/20150220_coderay.png) Syntax highlighting of Python code by ASCIIDoctor[/caption]</p>
+<p>Adding source code to <strong>ASCIIDoc</strong> documents is easy, as described <a href="http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/#source-code">here</a>. <strong>ASCIIDoctor</strong> can be used to easily convert them to HTML5 documents using the <code>html5</code> backend (which is the default). However, the source code is not rendered with syntax highlighting.</p>
+<p>To enable syntax highlighting:</p>
+<ul>
+<li>Install the <a href="http://coderay.rubychan.de/"><strong>CodeRay</strong></a> gem:</li>
+</ul>
+<pre><code>$ gem install coderay</code></pre>
+<ul>
+<li>Set CodeRay as the syntax highlighter, by adding this attribute at the top of your ASCIIDoc document:</li>
+</ul>
+<pre><code>:source-highlighter: coderay</code></pre>
+<p><strong>Tried with:</strong> CodeRay 1.1.0, ASCIIDoctor 1.5.2 and Ubuntu 14.04</p>
+</body>
+</html>

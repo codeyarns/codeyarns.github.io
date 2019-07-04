@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>override and final in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">override and final in C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-11-21 13:52:17+00:00</h3>
+</div>
+<p><strong>override</strong> and <strong>final</strong> are two new qualifiers introduced in <strong>C++11</strong>. The use of these qualifiers is <strong>optional</strong>. They are meant to be used with virtual methods to show the intention of the method. The compiler uses these qualifiers to check if your intention matches the actual ground truth in your code and throws a compile error if it does not. Thus, it helps to catch bugs earlier at compile time.</p>
+<ul>
+<li><p>When you specify <strong>override</strong> for a method, you are indicating to the compiler that this is a virtual method and it is overriding a virtual method with the same signature in one of the base classes that the current class inherits from. If the method is not inheriting from any virtual method with the same signature, the compiler throws an error. Thus if you made a mistake in the function signature while defining this method, you would not have caught it unless you used this qualifier.</p></li>
+<li><p>When you specify <strong>final</strong> for a method, you are indicating that this is a virtual method and that no class that inherits from the current class can override this method. If any method tries to override this method in an inherited class, the compiler throws an error.</p></li>
+<li><p>If override or final are used with non-virtual methods, the compiler throws an error.</p></li>
+<li><p>These qualifiers are specified after the function input arguments and should be specified after <code>const</code> if the virtual method is a const method. If you put these qualifiers before a <code>const</code>, you will get a weird error with GCC that gives no hint that this is because of the order of qualifiers is wrong!</p></li>
+<li><p>These qualifiers are to be specified only with the <strong>method declaration</strong>. If you try to use them with the method definition, the compiler will throw an error.</p></li>
+<li><p>You can specify <code>override final</code> for a method, but it is the same as using <code>final</code>.</p></li>
+<li><p><code>override</code> is not allowed to be used with the base virtual method. This is for the obvious reason that the base virtual method is the first virtual method and it is not overriding any other method.</p></li>
+<li><p><code>final</code> can be used with the base virtual method. This can be used to specify that the first base virtual method cannot be overridden in any inherited class.</p></li>
+</ul>
+<p>This code example shows how to use these qualifiers:</p>
+<p>https://gist.github.com/ashwin/a7212fbf5fc0152dab11cf9a5460f694</p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to list symbols in object file</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to list symbols in object file</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-07 08:57:55+00:00</h3>
+</div>
+<p><code>nm</code> is a very useful command for programmers. It can be used to list the symbols defined in an executable, object file (<code>.o</code>) or shared object library file (<code>.so</code>).</p>
+<p>I typically need this command when the compiler throws me a <strong>undefined reference</strong> error. By searching for the reference symbol among the symbols exported by a library file, I can figure out if that is the one that needs to be linked into the target executable.</p>
+<ul>
+<li>To list all symbols <strong>exported</strong> by an object file, use the <code>-g</code> option:</li>
+</ul>
+<pre><code>$ nm -g foo.so</code></pre>
+<p>Other options that I find useful:</p>
+<ul>
+<li><p><code>-C</code>: This option <strong>demangles</strong> symbol names to the names used in C or C++ code. By default, symbol names are mangled. The C symbols have extra underscores and the C++ symbols are completely mangled to encode the namespace, class and type information.</p></li>
+<li><p><code>-A</code>: Prepend each line with path of object file. This is useful when you pipe this output through other programs, like grep.</p></li>
+<li><p><code>-D</code>: Display <strong>dynamic symbols</strong>, rather than <strong>normal symbols</strong>. By default, the symbols in the <code>.symtab</code> and <code>.strtab</code> sections are shown. By specifying this option, the symbols in <code>.dynsym</code> and <code>.dynstr</code> sections are shown.</p></li>
+<li><p><code>--defined-only</code>: Use this option to get only the symbols <strong>defined</strong> in the object file. By default, all the symbols in the object file are shown. I typically use this when I am solving an undefined reference problem.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Binutils 2.24 and Ubuntu 14.04</p>
+</body>
+</html>

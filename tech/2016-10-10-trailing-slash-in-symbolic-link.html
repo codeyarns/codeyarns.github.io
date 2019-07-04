@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Trailing slash in symbolic link</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Trailing slash in symbolic link</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-10-10 14:00:56+00:00</h3>
+</div>
+<p>I recently noticed something strange when creating a <strong>symbolic link</strong> to a directory:</p>
+<pre><code>$ ln -s foo_dir/ slink_to_dir
+$ ls -l
+drwxrwxr-x 2 ashwin ashwin 4.0K 2016-10-05 21:37 foo_dir/
+lrwxrwxrwx 1 ashwin ashwin    7 2016-10-10 21:47 slink_to_dir -&gt; foo_dir//</code></pre>
+<p>Notice the double slash (one extra slash) in the destination of the symbolic link.</p>
+<p>In fact, you can add multiple slashes and they all show up with one extra slash:</p>
+<pre><code>$ ln -s foo_dir/// slink_to_dir
+$ ls -l
+drwxrwxr-x 2 ashwin ashwin 4.0K 2016-10-05 21:37 foo_dir/
+lrwxrwxrwx 1 ashwin ashwin    7 2016-10-10 21:47 slink_to_dir -&gt; foo_dir////</code></pre>
+<p>Turns out that this is the standard working of the <code>ln</code> command. If you are pedantic, you can keep it clean by never specifying a slash when creating a symbolic link using ln:</p>
+<pre><code>$ ln -s foo_dir slink_to_dir</code></pre>
+<p>Anyway, even if you use the extra slashes they have no effect either since Unix (and Linux) <a href="http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap03.html#tag_03_266">allow and ignore</a> the multiple slashes in a path.</p>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

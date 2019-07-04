@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add source code to flashcard in Anki</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add source code to flashcard in Anki</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-08 12:39:00+00:00</h3>
+</div>
+<p><a href="https://github.com/tmbb/SyntaxHighlight"><strong>Syntax Highlighting for Code</strong></a> is an addon for <strong>Anki</strong> which enables you to add <strong>source code</strong> or pseudo-code to a flash card question or answer section. This is necessary for source code because Anki centers all text and that makes any source code text you add to a flash card impossible to understand!</p>
+<p>This addon also automatically adds the appropriate <strong>syntax highlighting</strong> colors to the text. There is a huge variety of languages that it supports for this highlighting.</p>
+<ul>
+<li>This addon depends on <a href="http://pygments.org/"><strong>Pygments</strong></a>. Note that installing the latest version from PyPI using Pip caused errors with the <strong>bytes</strong> package. So, I installed the older version from Ubuntu repositories:</li>
+</ul>
+<pre><code>$ sudo apt install python-pygments</code></pre>
+<ul>
+<li>This addon used to be available from the Anki addons webpage with the code <code>491274358</code>. It is no longer available there. But, we can install it from its source code. First, we get the code:</li>
+</ul>
+<pre><code>$ git clone https://github.com/tmbb/SyntaxHighlight.git</code></pre>
+<ul>
+<li><p>Copy the contents of the above directory to the Anki addons directory. On my system, this is the directory <code>~/Documents/Anki/addons</code></p></li>
+<li><p>Close down Anki and start it up again.</p></li>
+<li><p>Before you add any source code to a flashcard, indent it correctly in an external editor. <strong>Copy</strong> it to the system clipboard.</p></li>
+<li><p>In the <strong>Add</strong> dialog, you will find a yellow <strong>lightning</strong> button and a languages dropdown beside it. Choose the language for syntax highlighting from dropdown. Click the lightning button and the source code from your system clipboard is processed through Pygments and the output HTML code is <strong>pasted</strong> to the flashcard. You can see that it looks great! :-)</p></li>
+<li><p>This addon adds <strong>line numbers</strong> to the code by default. To turn it off, go to Tools -&gt; Syntax Highlighting. Switch it off in the options.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Anki 2.0.33 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to preview images in Ranger</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to preview images in Ranger</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-11 03:44:11+00:00</h3>
+</div>
+<p>Ranger is a great console tool to explore directories and files. You can find the instructions to install and configure it in <a href="2013/08/26/how-to-install-and-use-ranger/">this post</a>. As you explore files in the center column, Ranger displays a preview of the file contents in the right column. If the file is an image, then Ranger displays a color ASCII version of the image using the Caca library.</p>
+<p>However, if you use XTerm or a terminal with similar capabilities, Ranger can show an actual image preview with full color and pixels! Remember that this works only on XTerm or similar terminals.</p>
+<p>To preview images like this, Ranger requires the <code>w3mimgdisplay</code> program. You can get it by installing:</p>
+<pre><code>$ sudo apt install w3m-img</code></pre>
+<p>After this, you need to set the <code>preview_images</code> option to <code>true</code> in the <code>.config/ranger/rc.conf</code> file. You will have this file only if you followed the instructions given above during Ranger installation.</p>
+<p>Once you have done this, open an XTerm and enjoy full-color image previews! Note that this did not work in RXVT for me :-)</p>
+<p><strong>Tried with:</strong> W3m-Img 0.5.3-15, Ranger 1.6.0 and Ubuntu 14.04</p>
+</body>
+</html>

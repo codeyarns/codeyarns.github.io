@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>nullptr is undefined error with nvcc</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">nullptr is undefined error with nvcc</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-18 07:31:45+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had a project which had a mix of C++ and CUDA source files. I was using the NVCC compiler to compile both of these types of files. That worked well, until I started using some modern C++ features in the C++ files. To be able to compile them I passed the <code>-std=c++11</code> flag to the host compiler using the nvcc option <code>-Xcompiler</code>. Then I got compilation errors of this form:</p>
+<pre><code>/usr/lib/gcc/x86_64-linux-gnu/4.8/include/stddef.h(432): error: identifier &quot;nullptr&quot; is undefined</code></pre>
+<p>This can also occur if you are using NVIDIA Nsight and <a href="2014/02/14/how-to-specify-option-to-host-compiler-using-nvcc/">specifying this option to the host compiler</a> in it.</p>
+<h1 id="solution">Solution</h1>
+<p>NVCC seems to apply the options passed to <code>-Xcompiler</code> to both the C++ (host) and CUDA (device) compiler during the pre-processing stage. The error went away once I specifically used <code>g++</code> for compiling C++ files and passed the option there. I compiled CUDA files using nvcc, without passing it the option and linked the resulting object files as usual.</p>
+<p><strong>Tried with:</strong> CUDA 5.5, NVIDIA Nsight 5.5.0, GCC 4.8 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

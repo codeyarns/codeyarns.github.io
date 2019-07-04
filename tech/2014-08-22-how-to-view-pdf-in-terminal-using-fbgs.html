@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to view PDF in terminal using FBGS</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to view PDF in terminal using FBGS</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-22 07:45:52+00:00</h3>
+</div>
+<p><strong>Framebuffer Ghostscript Viewer</strong> (fbgs) can be used to view PostScript (PS) and PDF files at the terminal. However, it only works with real terminals (<code>/dev/tty</code>) and not with pseudo terminals (<code>/dev/pts</code>).</p>
+<p>fbgs ships along with the fbi package. So, to install it:</p>
+<pre><code>$ sudo apt install fbi</code></pre>
+<p>To be enable use of the program by any user, the username must be added to <code>video</code> group:</p>
+<pre><code>$ sudo adduser joe video</code></pre>
+<p>To view a PDF file:</p>
+<pre><code>$ fbgs foo.pdf</code></pre>
+<p><strong>Tried with:</strong> FBI 2.07-11 and Ubuntu 14.04</p>
+</body>
+</html>

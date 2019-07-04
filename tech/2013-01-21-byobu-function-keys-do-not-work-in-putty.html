@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Byobu function keys do not work in PuTTY</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Byobu function keys do not work in PuTTY</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-01-21 13:25:13+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>You are running <strong>Byobu</strong> on a remote computer to which you have connected using <strong>PuTTY</strong>. Everything works fine, except that the Byobu commands that use <strong>function keys</strong> (like F2, F3 and F6 for example) do not work. This problem is caused because the sequences sent by PuTTY for function key press does not match what Byobu expects. This can be fixed easily in PuTTY.</p>
+<p><strong>Clean solution</strong></p>
+<p>Load the session you use to connect to the remote computer. Go to Connection → Data and set the Terminal-type string to <strong>putty-256color</strong>. Save the session.</p>
+<p><strong>Dirtier solution</strong></p>
+<p>Load the session. Go to Terminal → Keyboard and choose <strong>Xterm R6</strong> in the <strong>Function keys and keypad</strong> section. Save the session.</p>
+<p><strong>Tried with:</strong> PuTTY 0.62 and Byobu 5.17</p>
+</body>
+</html>

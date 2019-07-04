@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Okular does not allow review on PDF</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Okular does not allow review on PDF</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-06-29 04:33:13+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I sometimes use <strong>Okular</strong> to annotate a PDF using highlighting, drawing boxes, underlining or writing notes. This feature is called <strong>review</strong> in Okular. However, I noticed that this review feature is disabled on certain PDF files. I did check the filesystem and the file was not readonly.</p>
+<h1 id="solution">Solution</h1>
+<p>Turns out that when a PDF has <strong>DRM</strong> options set in it, Okular obeys those limitations by default. Thankfully, this can be turned off easily. Go to Settings → Configure Okular → General and uncheck the <strong>Obey DRM limitations</strong> option. You will need to restart Okular after you apply this. You will now be able to review the PDF.</p>
+<p><strong>Tried with:</strong> Okular 0.24.2 and Ubuntu 16.04</p>
+</body>
+</html>

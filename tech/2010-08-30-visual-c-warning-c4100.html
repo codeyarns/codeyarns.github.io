@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: Warning C4100</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: Warning C4100</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-08-30 02:35:20+00:00</h3>
+</div>
+<p><strong><a href="http://msdn.microsoft.com/en-us/library/26kb9fy0.aspx">Warning 4100</a>: unreferenced formal parameter</strong> might appear when C++ code is compiled at <strong>Warning Level 4 (/W4)</strong> with the Visual C++ compiler. For example, a function that generates C4100:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )
+{
+    <span class="cf">return</span>;
+}</code></pre></div>
+<p>There are a few ways to deal with this warning:</p>
+<ul>
+<li><p>If this warning made you aware that you had a redundant parameter, that is good! Remove the unused parameter from both the function declaration and the definition:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Foo::OnEvent()
+{
+<span class="cf">return</span>;
+}</code></pre></div></li>
+<li><p>If the function signature cannot be changed but you do not really use the parameter in the function body, then remove the parameter name, while retaining the parameter type:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; )
+{
+<span class="cf">return</span>;
+}</code></pre></div></li>
+<li><p>If you are playing around with the code in the function body and will need the parameter in the future, then comment the parameter temporarily:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; <span class="co">/* event */</span> )
+{
+<span class="co">// Some commented code that uses &quot;event&quot; parameter</span>
+<span class="cf">return</span>;
+}</code></pre></div></li>
+<li><p><strong><a href="http://codeyarns.wordpress.com/2010/07/27/visual-c-pragma-warning/">pragma warning</a></strong> directives can be used to disable the warning locally:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#pragma warning( push )</span>
+<span class="pp">#pragma warning( disable: 4100 )</span>
+<span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )
+{
+<span class="cf">return</span>;
+}
+<span class="pp">#pragma warning( pop )</span></code></pre></div></li>
+<li><p>If you are having many such functions generating warnings and want to do nothing to fix them, then use a pragma warning directive over the entire source file: ```cpp // Foo.cpp #pragma warning( disable: 4100 ) // Disable for entire source file Foo.cpp</p></li>
+</ul>
+<p>void Foo::OnEvent( const FooEvent&amp; event ) { return; } ```</p>
+<p>A final note: Visual C++ 2010 does not seem to have this warning at all! It has been mysteriously removed without providing any reason :-)</p>
+</body>
+</html>

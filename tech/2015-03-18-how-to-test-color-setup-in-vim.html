@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to test color setup in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to test color setup in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-18 12:13:56+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_6360&quot; align=&quot;aligncenter&quot; width=&quot;576&quot;][<img src="https://codeyarns.files.wordpress.com/2015/03/20150318_colortest.png" alt="Color test of Vim in GNOME Terminal" />](https://codeyarns.files.wordpress.com/2015/03/20150318_colortest.png) Color test of Vim in GNOME Terminal[/caption]</p>
+<p>You can quickly test the <strong>color setup</strong> of <strong>Vim</strong> by using a Vimscript file that ships along with it. This can be useful to determine if all the default background and foreground combinations in Vim are being rendered correctly for your Vim setup and terminal.</p>
+<p>To run this test, type <code>:runtime syntax/colortest.vim</code>. You should be able to see text rendered in various background-foreground combinations, like shown above. There are 46 pairs of background-foreground colors that are displayed on 46 lines (lines 8 to 53).</p>
+<p>If you can see most of these color combinations correctly and read the text displayed in color, then your color setup should be fine. Else you need to investigate what setting in your terminal or in your Vim is rendering colors incorrectly.</p>
+<p><strong>Tried with:</strong> Vim 7.4, GNOME Terminal 3.6.2 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to display an array as image in wxWidgets</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to display an array as image in wxWidgets</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-12-18 03:40:12+00:00</h3>
+</div>
+<p>There are many scenarios where you get an array of values that represents an image of certain width and height. For example, the array could contain integers or floats of any range. You might want to display this array in <strong>wxWidgets</strong> to visualize it as a two-dimensional image.</p>
+<p>Here is one way I was able to do this in wxWidgets:</p>
+<ul>
+<li><p>A common type of value that wxWidgets uses for display is <code>unsigned char</code>. This has a range of 0 to 255. So, you will need to convert your <code>float</code>, <code>int</code> or any other type to <code>unsigned char</code>. How you do this conversion will depend on the range of values that are being represented in your type.</p></li>
+<li><p>The typical type of array that wxWidgets uses for display is 3-channel (RGB) or 4-channel (RGBA). So, if you have one or two channel arrays, you will need to convert them to a 3-channel array. The values are arranged such that the RGB values of a pixel are adjacent to each other. That is, the array should be arranged as <code>[R0 G0 B0 R1 G1 B1 ...]</code>. If you have a single channel array, the easiest way to generate 3-channel array is to allocate a new array of 3 times the size and write every value thrice into it. Remember that the values in the array should be of type <code>unsigned char</code> as explained earlier.</p></li>
+<li><p>One of the structures that is used to hold an image is <code>wxImage</code>. You can initialize it with a 3-channel array of type <code>unsigned char</code> as follows:</p></li>
+</ul>
+<pre><code>unsigned char* imgArray[width * height * 3];
+// Fill in imgArray here ... 
+wxImage img(width, height, imgArray, true);</code></pre>
+<ul>
+<li>The easiest structure to use to draw on the GUI is <code>wxBitmap</code>. You can directly convert a <code>wxImage</code> to it:</li>
+</ul>
+<pre><code>wxBitmap bmp(img);</code></pre>
+<ul>
+<li>Finally, we are ready to draw on the GUI. The widget that can be used to draw is <code>wxStaticBitmap</code>. Pass it a <code>wxBitmap</code> and it will render it on the GUI:</li>
+</ul>
+<pre><code>// Start with empty bitmap
+wxStaticBitmap* sbmp = new wxStaticBitmap(this, wxID_STATIC, wxNullBitmap, wxDefaultPosition, wxSize(width, height));
+// Update later with your bitmap
+sbmp-&gt;SetBitmap(bmp);</code></pre>
+<p><strong>Tried with:</strong> wxWidgets 3.0.0 and Visual Studio 2012</p>
+</body>
+</html>

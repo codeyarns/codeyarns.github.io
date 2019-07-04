@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to fix shared object file error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to fix shared object file error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-14 07:37:14+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>One of the most common errors a programmer faces is when an executable is run and it fails to find a required shared library. The error is usually of this form:</p>
+<pre><code>hello-world-program: error while loading shared libraries: libFoobar.so.1: cannot open shared object file: No such file or directory</code></pre>
+<p>However, you might know that the shared library file <code>libFoobar.so.1</code> actually exists, say in a directory named <code>/opt/foobar/lib</code>. But, for some reason the <strong>ld-linux</strong> dynamic loader-linker is not looking in this directory.</p>
+<h1 id="solution">Solution</h1>
+<p>It is important to know which are the locations that the loader searches for a given shared library file. This is described in <a href="https://codeyarns.com/2017/11/02/how-shared-library-locations-are-found-at-runtime/">this post</a>.</p>
+<p>After reading the above post, you can see that the error is caused because the shared library file is not found in the locations listed in that post. Of all those locations, the two places which are easy to modify are at the user-level (<code>LD_LIBRARY_PATH</code>) and at the system-level (shared library cache).</p>
+<h2 id="add-to-ld_library_path">Add to LD_LIBRARY_PATH</h2>
+<p>Set this at shell for temporary use or add to the shell initialization file for permanent effect:</p>
+<pre><code>$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/foobar/lib</code></pre>
+<p>If your shared library is located in the same directory as the executable, then you can add <code>.</code> to <code>LD_LIBRARY_PATH</code>.</p>
+<h2 id="update-system-cache">Update system cache</h2>
+<ul>
+<li><p>Open the <code>/etc/ld.so.conf</code> as <code>sudo</code> and add a new line with the library directory. In this case, we add <code>/opt/foobar/lib</code>.</p></li>
+<li><p>Rerun ldconfig to rebuild the cache:</p></li>
+</ul>
+<p>[code lang=bash] $ sudo ldconfig</p>
+<pre><code>
+
+
+  * Check if the shared library cache now includes the shared libraries from the new directory:
+
+
+
+[code lang=bash]
+$ ldconfig -p</code></pre>
+<p>Your program should now execute without any errors :-)</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

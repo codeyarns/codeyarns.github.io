@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Multiple definitions of inline function</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Multiple definitions of inline function</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-02-21 04:20:23+00:00</h3>
+</div>
+<p>In C++, a function is annotated with <code>inline</code> to implore the compiler to inline that function's code into its callers. The C++ standard says that injecting multiple differing definitions of an inline function into a program is illegal because it breaks the <a href="https://en.wikipedia.org/wiki/One_Definition_Rule"><strong>ODR</strong></a>.</p>
+<p>For example, §7.1.2 from the <a href="https://wg21.link/std11">C++11 standard</a> says:</p>
+<blockquote>
+An inline function shall be defined in every translation unit in which it is odr-used and shall have exactly the same definition in every case.
+</blockquote>
+<p>So, having multiple differing definitions is illegal but the compiler cannot really stop it. This is because two differing definitions of the same inline method might be inlined into their callers in two different compilation units that are linked together into a program.</p>
+<p>Thus, if we use multiple different inline definitions, all bets are off and it is undefined behavior.</p>
+<p>This example illustrates the final behavior differs based on just compilation flags:</p>
+<pre><code>// x.cpp
+#include &lt;iostream&gt;
+
+inline void f()
+{
+    std::cout &lt;&lt; __FILE__ &lt;&lt; std::endl;
+}
+
+extern void g();
+
+int main()
+{
+    f();
+    g();
+
+    return 0;
+}
+
+// y.cpp
+#include &lt;iostream&gt;
+
+inline void f()
+{
+    std::cout &lt;&lt; __FILE__ &lt;&lt; std::endl;
+}
+
+void g()
+{
+    f();
+}
+
+$ g++ x.cpp y.cpp
+$ ./a.out
+x.cpp
+x.cpp
+
+$ g++ -O2 x.cpp y.cpp
+$ ./a.out
+x.cpp
+y.cpp</code></pre>
+<p>If we want to control and want each caller to only use its local inline definition, then we can do that by placing the inline method inside an anonymous namespace. The practice of multiple differing inline definitions is still illegal, but at least we now have controlled what happens. This example illustrates this:</p>
+<pre><code>// x.cpp
+#include &lt;iostream&gt;
+
+namespace
+{
+inline void f()
+{
+    std::cout &lt;&lt; __FILE__ &lt;&lt; std::endl;
+}
+}
+
+extern void g();
+
+int main()
+{
+    f();
+    g();
+
+    return 0;
+}
+                                                                                                                                                                                // y.cpp
+#include &lt;iostream&gt;
+
+namespace
+{
+inline void f()
+{
+    std::cout &lt;&lt; __FILE__ &lt;&lt; std::endl;
+}
+}
+
+void g()
+{
+    f();
+}
+
+$ g++ x.cpp y.cpp
+$ ./a.out
+x.cpp
+y.cpp
+
+$ g++ -O2 x.cpp y.cpp
+$ ./a.out
+x.cpp
+y.cpp</code></pre>
+<p>Thanks to Arch for the elegant examples.</p>
+</body>
+</html>

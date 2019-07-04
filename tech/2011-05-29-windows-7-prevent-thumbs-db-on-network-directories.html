@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Windows 7: Prevent thumbs.db on Network Directories</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Windows 7: Prevent thumbs.db on Network Directories</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-05-29 04:05:08+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>Windows 7 no longer places <code>thumbs.db</code> files in the directories containing media files. However, it still does this on access, copy or move of media files from or to shared network directories.</p>
+<p><strong>Solution</strong></p>
+<p>To stop such creation of <code>thumbs.db</code> files:</p>
+<ol style="list-style-type: decimal">
+<li><p>Open the <strong>Group Policy Editor</strong> with Administrator privileges. The easiest way to do this is by typing <code>gpedit.msc</code> at the Start menu.</p></li>
+<li><p>In the Group Policy Editor dialog, drill down to User Configuration → Administrative Templates → Windows Components → Windows Explorer → Turn off the caching of thumbnails in hidden thumbs.db files.</p></li>
+<li><p>Right-click on this item, edit it and make it <strong>enabled</strong>.</p></li>
+</ol>
+<p><strong>Tried with</strong>: Windows 7</p>
+</body>
+</html>

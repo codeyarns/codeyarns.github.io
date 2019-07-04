@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Ubuntu 14.04 Error: Freezes a while after login</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Ubuntu 14.04 Error: Freezes a while after login</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-28 10:30:27+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I installed Ubuntu 14.04 on a computer with a NVIDIA GTX 590 graphics card. A few minutes after logging into Unity, the entire computer would freeze. Nothing would work, not Unity, not the mouse or keyboard and not even the Ctrl-Alt-1 terminal! This would repeat every time I powered off and powered on the computer.</p>
+<h1 id="solution">Solution</h1>
+<p>Looking at <code>/var/log/syslog</code> I noticed that the last error message usually involved nouveau complaining that it could not read some memory address or failed on reading a memory address. This gave me a clue that the graphics driver was not working with this particular graphics card for some reason.</p>
+<p>I looked for the latest NVIDIA driver in the Ubuntu repositories, named <code>nvidia-xyz</code>, where <code>xyz</code> is the largest number you can find there and installed it. For example:</p>
+<pre><code>$ sudo apt-get update
+$ sudo apt install nvidia-331</code></pre>
+<p>I restarted the computer and Ubuntu worked fine after this. This is one of those rare instances where a NVIDIA driver prevented a crash, rather than cause one! ;-)</p>
+</body>
+</html>

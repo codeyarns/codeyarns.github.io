@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Using BibTeX</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Using BibTeX</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-08-23 11:58:53+00:00</h3>
+</div>
+<p><a href="http://en.wikipedia.org/wiki/BibTeX"><strong>BibTeX</strong></a> is used to add citations to a <strong>LaTeX</strong> document. Using it along with a LaTeX document is a bit unconventional. It is illustrated below with a simple example.</p>
+<ol style="list-style-type: decimal">
+<li><p>Assume, the LaTeX document is <code>Main.tex</code> and the bibliographic records have been placed in a file named <code>References.bib</code>.</p></li>
+<li><p>Add a <code>bibliographystyle</code> command to <code>Main.tex</code> to indicate the bibliography style to use. For example, to use the default <code>plain</code> style use:</p></li>
+</ol>
+<pre><code>\bibliographystyle{plain}</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Add a <code>bibliography</code> command to <code>Main.tex</code> to indicate the file containing the bibliographic entries to be used. Multiple bibliography files can be specified (separated by commas) and the <code>.bib</code> file extension is dropped. For example, add this line to <code>Main.tex</code>:</li>
+</ol>
+<pre><code>\bibliography{References}</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Compile <code>Main.tex</code>. For example:</li>
+</ol>
+<pre><code>pdflatex Main</code></pre>
+<p>It will compile, but will output warnings that there were undefined references. The compilation produces a <code>Main.aux</code> file.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Run BibTeX on <code>Main.tex</code>:</li>
+</ol>
+<pre><code>bibtex Main</code></pre>
+<p>This is one of the confusing aspects of BibTeX: it is run on the LaTeX file and not on the bibliography file! :-D</p>
+<p>BibTeX will look for the <code>Main.aux</code> file, look at the undefined references in it and try to resolve them using the bibliography file(s) indicated in <code>Main.tex</code>.</p>
+<p>BibTeX produces a file named <code>Main.bbl</code>, which is a database of references.</p>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Compile <code>Main.tex</code> (just like in step 4). It will still complain about undefined references.</p></li>
+<li><p>Compile <code>Main.tex</code> again (you heard it right!). The output file now should have its citations correctly.</p></li>
+</ol>
+<p>To summarize, here are the commands for <code>Main.tex</code> and <code>References.bib</code>:</p>
+<pre><code>pdflatex Main
+bibtex Main
+pdflatex Main
+pdflatex Main</code></pre>
+<p><strong>Tried with:</strong> MikTeX 2.9</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>past.builtins ImportError</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">past.builtins ImportError</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-12 21:00:45+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>Calling a Caffe2 Python call gave this error:</p>
+<pre><code>$ python -c &quot;from caffe2.python import core&quot;
+Traceback (most recent call last):
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;/usr/local/lib/python2.7/dist-packages/caffe2/python/core.py&quot;, line 9, in &lt;module&gt;
+    from past.builtins import basestring
+ImportError: No module named past.builtins</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This requires the <code>future</code> package. Installing that solved the problem:</p>
+<pre><code>$ pip install --user future</code></pre>
+<p><strong>Tried with:</strong> Raspbian 9</p>
+</body>
+</html>

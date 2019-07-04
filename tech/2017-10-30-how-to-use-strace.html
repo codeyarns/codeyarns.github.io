@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use strace</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use strace</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-30 15:23:50+00:00</h3>
+</div>
+<p><strong>strace</strong> is a tool that shows you the system calls and signals called by a program. It is a very useful tool, especially to check what files and libraries are opened, read or written by a program.</p>
+<ul>
+<li><strong>Installing</strong> strace is easy:</li>
+</ul>
+<pre><code>$ sudo apt install strace</code></pre>
+<ul>
+<li>To <strong>view</strong> the system calls made by the execution of a program named foobar:</li>
+</ul>
+<pre><code>$ strace ./foobar</code></pre>
+<p>You will see that strace prints out every system call made by the program, with its input arguments and its output. However, since this verbose listing is printed to the console, you will find it difficult to view the actual output of the program or to interact with it.</p>
+<ul>
+<li>Usually, strace is asked to write its output to a <strong>log file</strong>:</li>
+</ul>
+<pre><code>$ strace -o strace.log ./foobar</code></pre>
+<ul>
+<li>Anything but the simplest program will usually fork itself into child processes. By default, strace only traces the parent process launched initially. To request it to trace all <strong>child processes</strong>, use the <code>-f</code> option:</li>
+</ul>
+<pre><code>$ strace -f -o strace.log ./foobar</code></pre>
+<ul>
+<li>To trace only a few specific system calls, say open and close:</li>
+</ul>
+<pre><code>$ strace -e trace=open -o strace.log ./foobar
+$ strace -e trace=open,close -o strace.log ./foobar</code></pre>
+<ul>
+<li>To trace only system calls from a specific <strong>category</strong>, say those calls that take filename as argument:</li>
+</ul>
+<pre><code>$ strace -e trace=file -o strace.log ./foobar</code></pre>
+<p>The other categories include process, network, signal, ipc, desc and memory. See the strace manpage for more details on these categories.</p>
+<ul>
+<li>To trace only specific <strong>signals</strong>:</li>
+</ul>
+<pre><code>$ strace -e signal=sigkill,sigint -o strace.log ./foobar</code></pre>
+<p>The full list of signals can be seen in <code>man 7 signal</code>.</p>
+<ul>
+<li>A very useful option is to trace calls that access a particular <strong>path</strong>. This can be done using the <code>-P</code> option:</li>
+</ul>
+<pre><code>$ strace -P /home/joe/somefile -o strace.log ./foobar</code></pre>
+<p>Note that strace is clever enough to show all calls related to the file descriptor produced by the particular path too.</p>
+<ul>
+<li>By default, the input argument structures to the calls are abbreviated. To view the full structures, use the <strong>verbose</strong> option:</li>
+</ul>
+<pre><code>$ strace -v -o strace.log ./foobar</code></pre>
+<ul>
+<li>By default, all strings that are read or written are displayed, but only the first 32 characters. To view more of the strings, specify how many characters you want to see to the <code>-s</code> option:</li>
+</ul>
+<pre><code>$ strace -s 100 -o strace.log ./foobar</code></pre>
+<ul>
+<li>Another formatting option that I find useful is to align the output values of all calls to a particular column, say 100:</li>
+</ul>
+<pre><code>$ strace -a 100 -o strace.log ./foobar</code></pre>
+<ul>
+<li>Looking at file descriptors in strace output can be confusing. To ask strace to show the path associated with each file descriptor whenever it prints a file descriptor, use the <code>-y</code> option:</li>
+</ul>
+<pre><code>$ strace -y -o strace.log ./foobar</code></pre>
+<p><strong>Tried with:</strong> strace 4.11 and Ubuntu 16.04</p>
+</body>
+</html>

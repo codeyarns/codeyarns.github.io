@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install OpenJDK 8</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install OpenJDK 8</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-06-25 12:17:00+00:00</h3>
+</div>
+<p><strong>OpenJDK 8</strong> which provides the JRE and JDK to work with Java 8 is available from Ubuntu repositories or from a PPA depending on your Ubuntu version.</p>
+<ul>
+<li>If your Ubuntu version does not have Java 8, then add this PPA:</li>
+</ul>
+<pre><code>$ sudo add-apt-repository ppa:openjdk-r/ppa
+$ sudo apt update</code></pre>
+<ul>
+<li>Install JRE and JDK of OpenJDK 8:</li>
+</ul>
+<pre><code>$ sudo apt-get update
+$ sudo apt install openjdk-8-jre openjdk-8-jdk</code></pre>
+<ul>
+<li>Switch the default Java interpreter and compiler to v8:</li>
+</ul>
+<pre><code>$ sudo update-alternatives --config java
+$ sudo update-alternatives --config javac</code></pre>
+<ul>
+<li>There are a whole bunch of other Java tools (like <code>jdb</code> and <code>javadoc</code>) that can be switched to v8 versions, if necessary. You can list these using this command:</li>
+</ul>
+<pre><code>$ sudo update-alternatives --get-selections | grep openjdk</code></pre>
+<p>An easier solution would be to just remove OpenJDK 7. But this can be difficult because other packages (like CUDA) rely on a particular version of OpenJDK. Furthermore, Ubuntu will indicate that if v7 is removed, it will install the older v6 in its place! :-)</p>
+<ul>
+<li>After making v8 the default, check if that worked. Here is the output on my computer:</li>
+</ul>
+<pre><code>$ java -version
+openjdk version &quot;1.8.0_01-internal&quot;
+OpenJDK Runtime Environment (build 1.8.0_01-internal-b04)
+OpenJDK 64-Bit Server VM (build 25.40-b08, mixed 
+
+$ javac -version
+javac 1.8.0_01-internal</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

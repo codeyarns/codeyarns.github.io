@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Compare files at shell using comm</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Compare files at shell using comm</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-02-23 14:34:10+00:00</h3>
+</div>
+<div class="figure">
+<img src="https://codeyarns.files.wordpress.com/2017/02/20170224_comm.png" alt="comm" />
+<p class="caption">comm</p>
+</div>
+<p><strong>comm</strong> is a useful Linux tool to use at the shell. It takes two files with sorted lines as input and displays which lines are unique to each file and which lines are common (intersection) to both. For example, this might be useful when comparing which files are common among two directories and so on. This tool is a part of <strong>coreutils</strong> package, so it should be available everywhere.</p>
+<ul>
+<li>To compare two files:</li>
+</ul>
+<pre><code>$ comm first.txt second.txt</code></pre>
+<p>You will see 3 columns in the output corresponding to lines unique to first file, lines unique to second file and lines common to both.</p>
+<ul>
+<li>To suppress columns 1 and 2, thus display only columns common to both files:</li>
+</ul>
+<pre><code>$ comm -1 -2 first.txt second.txt</code></pre>
+<ul>
+<li>There are a few other options to this tool which can be read about in the manpage: <code>man comm</code></li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Workspace unavailable error in Eclipse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Workspace unavailable error in Eclipse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-13 10:13:12+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_4241&quot; align=&quot;aligncenter&quot; width=&quot;534&quot;][<img src="http://codeyarns.files.wordpress.com/2014/02/20140213-workspace-error.png" alt="Workspace unavailable error of Eclipse" />](http://codeyarns.files.wordpress.com/2014/02/20140213-workspace-error.png) Workspace unavailable error of Eclipse[/caption] <strong>Problem</strong></p>
+<p>You open <strong>Eclipse</strong> or <strong>NSight</strong> and it greets you with this error:</p>
+<pre><code>Workspace unavailable
+Workspace at in use or cannot be created, choose a different one</code></pre>
+<p><strong>Solution</strong></p>
+<p>Eclipse creates a <code>.metadata/.lock</code> file in your workspace directory when it is open. If this file was not deleted when you closed Eclipse, you can get this error. Delete that file and you should be able to open Eclipse without any error.</p>
+<p><strong>Tried with:</strong> NSight 5.5.0 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

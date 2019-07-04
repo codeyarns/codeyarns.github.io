@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add program to Open With in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add program to Open With in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-20 09:38:24+00:00</h3>
+</div>
+<p>You get a list of applications when you try the Open With option to open a certain type of file. If you try to associate a new application to open a certain type of file, you are shown a list of applications. The list of applications shown is the list of <code>.desktop</code> files in the <code>/usr/share/applications</code> directory.</p>
+<p>Programs written by you or shared by a friend or compiled from source may not install their <code>.desktop</code> file in the <code>/usr/share/applications</code> directory. It takes a bit of work to get such a program added to the Open With list in Ubuntu. <a href="http://itsfoss.com/add-application-list-open-applications-ubuntu-1310/">This post</a> shows the details of how to achieve this. I use a method that is a bit easier.</p>
+<ul>
+<li><p>First we need to create a <code>.desktop</code> file for your program. I find that the easiest way to do this is using the <code>alacarte</code> application. <a href="/2013/01/19/how-to-edit-dash-entries-using-main-menu/">Installing and using alacarte</a> is easy. Create a New Item using the name of your program. This creates a file of the name <code>~/.local/share/applications/alacarte-made.desktop</code>.</p></li>
+<li><p>Copy the above file somewhere and find the <code>Exec</code> section in the file. For example, this section might be:</p></li>
+</ul>
+<pre><code>Exec=foobar</code></pre>
+<p>Append a <code>%F</code> parameter to it:</p>
+<pre><code>Exec=foobar %F</code></pre>
+<p>This enables the <code>.desktop</code> file to be used to open a file using this program.</p>
+<ul>
+<li>Finally copy this file to <code>/usr/share/applications</code>:</li>
+</ul>
+<pre><code>$ sudo cp alacarte-made.desktop /usr/share/applications</code></pre>
+<p>Your program should now appear in the list of Open With applications :)</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

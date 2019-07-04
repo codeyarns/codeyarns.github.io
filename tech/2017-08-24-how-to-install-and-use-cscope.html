@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install and use cscope</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install and use cscope</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-08-24 13:20:01+00:00</h3>
+</div>
+<p><a href="http://cscope.sourceforge.net/"><strong>Cscope</strong></a> is a classic source code explorer that can be used to explore a directory containing C source and header files. It can also be applied on C++ files, but do not expect much intelligence on C++ features. It indexes the source files, just like ctags, but provides more useful ways to query the code. It provides a simple commandline interface to query the codebase. You might want to configure Vim to use cscope for a more user-friendly interface.</p>
+<ul>
+<li>Installing cscope is easy:</li>
+</ul>
+<pre><code>$ sudo apt install cscope</code></pre>
+<ul>
+<li>To recursively scan and index all C source and header files in a directory and bring up the interface to explore it:</li>
+</ul>
+<pre><code>$ cscope -R</code></pre>
+<p>This will produce a <strong>cscope.out</strong> file which is where the symbol cross-references are stored. In the interface, you can look up symbols, definition of a symbol, all instances of a function call and even do find-replace. To exit the interface, press <code>Ctrl-D</code>.</p>
+<ul>
+<li>To only produce the cross-reference file:</li>
+</ul>
+<pre><code>$ cscope -R -b</code></pre>
+<ul>
+<li>To request cscope to write cross-reference file to a different filename:</li>
+</ul>
+<pre><code>$ cscope -b -f .some_cscope_file</code></pre>
+<ul>
+<li>To request cscope to index only files you want, list them in a <strong>namefile</strong> that is named <strong>cscope.files</strong> and invoke:</li>
+</ul>
+<pre><code>$ cscope -i -b</code></pre>
+<ul>
+<li>To use a different namefile:</li>
+</ul>
+<pre><code>$ cscope -i some_namefile -b</code></pre>
+<ul>
+<li>To be able to index C++ or CUDA files, we need to be able to list them out in a namefile. This can be done using the find command and we can ask cscope to use that namefile:</li>
+</ul>
+<pre><code>$ find -iregex &#39;.*\.\(h\|hpp\|c\|cpp\|cu\)$&#39; &gt; .files_for_cscope
+$ cscope -i .files_for_cscope -b</code></pre>
+<p>If you use these commands frequently, then wrap them up in a shell function for ease of use.</p>
+<p><strong>Tried with:</strong> Cscope 15.8b and Ubuntu 16.04</p>
+</body>
+</html>

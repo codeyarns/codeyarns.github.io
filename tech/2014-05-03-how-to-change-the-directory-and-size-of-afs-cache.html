@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change the directory and size of AFS cache</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change the directory and size of AFS cache</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-03 05:44:13+00:00</h3>
+</div>
+<p>A typical OpenAFS installation uses the <code>/var/cache/openafs</code> directory as a cache for the files and directories you access on the AFS distributed file system. It typically mounts the file system at the local directory named <code>/afs</code> where you can access it as if it existed on your local storage. The commonly used size of the cache is 50MB.</p>
+<p>To change any of these 3 parameters, edit the <code>/etc/openafs/cacheinfo</code> file. A typical line in this file is:</p>
+<pre><code>/afs:/var/cache/openafs:50000</code></pre>
+<p>The first item is the local directory where AFS is mounted, the second is the location of the cache and the third is the size in KB. Change these to any values you want and restart the OpenAFS client for it to take effect:</p>
+<pre><code>$ sudo /etc/init.d/openafs-client restart</code></pre>
+<p><strong>Tried with:</strong> OpenAFS 1.6.7 and Ubuntu 14.04</p>
+</body>
+</html>

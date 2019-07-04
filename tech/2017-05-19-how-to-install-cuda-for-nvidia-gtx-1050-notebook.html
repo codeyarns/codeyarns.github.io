@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install CUDA for NVIDIA GTX 1050 (Notebook)</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install CUDA for NVIDIA GTX 1050 (Notebook)</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-05-19 16:48:02+00:00</h3>
+</div>
+<p>Installing NVIDIA graphics drivers on Linux has never been easy for me! I bought a notebook with <strong>NVIDIA GTX 1050</strong> GPU recently and installed Kubuntu 16.04. I had to wait for more than a month for NVIDIA to release drivers that supported the notebook 1050 variant.</p>
+<ul>
+<li>Once the driver was released, I downloaded the <code>.run</code> file directly from NVIDIA's website <a href="http://www.nvidia.com/object/unix.html">here</a>. I ran the installation:</li>
+</ul>
+<pre><code>$ sudo sh NVIDIA-Linux-x86_64-381.22.run</code></pre>
+<p>When I rebooted, I got a black screen! Not surprising with NVIDIA and Linux! I had to uninstall it to get back to work:</p>
+<pre><code>$ sudo sh NVIDIA-Linux-x86_64-381.22.run --uninstall</code></pre>
+<ul>
+<li>After another month, I found that the latest NVIDIA driver supporting the notebook 1050 was available from Ubuntu. So, I tried installing that:</li>
+</ul>
+<pre><code>$ sudo apt install nvidia-381</code></pre>
+<p>Reboot and I got a new error message in a GUI dialog box:</p>
+<pre><code>The system is running in low-graphics mode
+Your screen, graphics card, and input device settings could not be detected correctly.
+You will need to configure these yourself.</code></pre>
+<p>I had to uninstall it to get back to work:</p>
+<pre><code>$ sudo apt purge nvidia-381</code></pre>
+<ul>
+<li>It finally dawned on me that what I really wanted was to be able to run CUDA programs on the GPU. I did not really care about X or games being able to use the GPU. So, I went back to the <code>.run</code> driver and installed it without OpenGL:</li>
+</ul>
+<pre><code>$ sudo sh NVIDIA-Linux-x86_64-381.22.run --no-opengl-files</code></pre>
+<p>After rebooting, I found that I still had a desktop. That was a big relief! I proceeded to download and install CUDA:</p>
+<pre><code>$ sudo sh cuda_8.0.61_375.26_linux.run</code></pre>
+<p>I took care to <strong>not</strong> install the graphics driver that comes along with the CUDA installer. That is it! I was able to compile and run the CUDA samples. Running <code>./deviceQuery</code> from the samples showed the GTX 1050 and that is all I wanted! :)</p>
+</body>
+</html>

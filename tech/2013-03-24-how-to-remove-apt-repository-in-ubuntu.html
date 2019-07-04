@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to remove APT repository in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to remove APT repository in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-24 10:23:04+00:00</h3>
+</div>
+<p>You can <a href="http://codeyarns.com/2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">install packages</a> from third party sources by <a href="http://codeyarns.com/2013/03/23/how-to-add-a-repository-to-ubuntu/">adding their APT repositories</a> to <strong>Ubuntu</strong>. If you do not want to keep them later, these packages can be removed and the repositories can be removed too.</p>
+<p>If you remember the name of the repository, say <code>ppa:joe/foobar</code>, use this command:</p>
+<pre><code>$ sudo add-apt-repository --remove ppa:joe/foobar</code></pre>
+<p>The short <code>-r</code> can be used instead of <code>--remove</code>.</p>
+<p>If you do not recall the name of the repository, go to <code>/etc/apt/sources.list.d/</code> directory and remove the filename that matches the repository you want to remove. You will need to use <code>sudo</code> for this.</p>
+<p>After removing the repository in either of the above ways, remember to update:</p>
+<pre><code>$ sudo apt-get update</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

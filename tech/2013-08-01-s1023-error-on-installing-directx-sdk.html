@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>S1023 error on installing DirectX SDK</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">S1023 error on installing DirectX SDK</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-08-01 09:14:18+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>[caption id=&quot;attachment_3711&quot; align=&quot;aligncenter&quot; width=&quot;507&quot;][<img src="http://codeyarns.files.wordpress.com/2013/08/20130801-directx.png" alt="DirectX SDK install error" />](http://codeyarns.files.wordpress.com/2013/08/20130801-directx.png) DirectX SDK install error[/caption]</p>
+<p>I was trying to install <strong>Microsoft DirectX SDK (June 2010)</strong>, which was downloaded from <a href="http://www.microsoft.com/en-us/download/details.aspx?id=6812">here</a>. The installation failed with the following error dialog:</p>
+<pre><code>Setup failed.
+Errors were encountered during installation of redistributable packages.
+Please close all open programs and try running setup again.
+If problems persist, contact DirectX Developer Support.
+
+Error code: S1023</code></pre>
+<p>Needless to mention that even when it was run after closing all open programs, it failed again with the same mysterious error code.</p>
+<p><strong>Solution</strong></p>
+<p>The problem seems to be caused because my Windows has a <strong>Visual C++ 2010 Redistributable</strong> that is newer than the one that this SDK is trying to install. The solution, explained <a href="http://support.microsoft.com/kb/2728613">here</a>, is to uninstall all the Visual C++ 2010 Redistributable packages and try installing this SDK.</p>
+<p>I found that I had the following two packages:</p>
+<pre><code>Microsoft Visual C++ 2010  x64 Redistributable - 10.0.40219
+Microsoft Visual C++ 2010  x86 Redistributable - 10.0.40219</code></pre>
+<p>I uninstalled them and the DirectX SDK installed without a problem after that.</p>
+<p><strong>Tried with:</strong> Windows 7 x64</p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Size of argument and environment lists exceeds limit</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Size of argument and environment lists exceeds limit</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-03-07 15:34:11+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>If you try to <code>cp</code> or <code>mv</code> a large number of files or directories, you will encounter this error:</p>
+<pre><code>$ cd big_dir
+$ cp * ../../some_other_dir
+Failed to execute process &#39;/bin/cp&#39;. Reason:
+The total size of the argument and environment lists 3.2MB exceeds the operating system limit of 2MB.
+Try running the command again with fewer arguments.</code></pre>
+<p>Note that you can copy or move one directory that contains a million files or any number of files for that matter. This error happens only if the shell has to pass a large number of input arguments to the <code>cp</code> or <code>mv</code> programs. So, if you run the above command from inside a directory containing 100K files, you will surely get this error.</p>
+<p>This is because there is a limit to the size of the arguments and environment strings that can be passed to a program. That limit can be queried:</p>
+<pre><code>$ getconf ARG_MAX
+2097152</code></pre>
+<p>The result will vary on different computers. But they always have a limit and it is encoded in the Linux kernel. There does not seem to be an userspace method to increase this size.</p>
+<h1 id="solution">Solution</h1>
+<p>Instead of looking to increase the <code>ARG_MAX</code> size, examine the real problem. Why make the shell expand all the filenames and pass them as one gigantic list of strings to the programs? Instead these alternate solutions can be tried:</p>
+<ul>
+<li><p>See if you can instead <code>cp</code> or <code>mv</code> a parent directory, instead of a million files.</p></li>
+<li><p>Move the files one by one by writing a <strong>loop</strong> in shell script or Python.</p></li>
+<li><p>Use other programs like <strong>rsync</strong> to copy a directory to the destination.</p></li>
+</ul>
+<p><strong>Reference:</strong> Search for <code>ARG_MAX</code> in the <a href="http://man7.org/linux/man-pages/man2/execve.2.html">execve(2)</a> manpage</p>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

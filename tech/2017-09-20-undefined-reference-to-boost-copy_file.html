@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Undefined reference to Boost copy_file</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Undefined reference to Boost copy_file</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-20 15:04:31+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>C++ code that uses <strong>Boost Filesystem</strong> was compiling fine with <strong>Boost 1.49</strong>. However, when I switched to <strong>Boost 1.55</strong>, the same code gave this error:</p>
+<pre><code>foobar.cpp.o: In function `do_something()&#39;:
+foobar.cpp:(.text+0xb78): undefined reference to `boost::filesystem::detail::copy_file(boost::filesystem::path const&amp;, boost::filesystem::path const&amp;, boost::filesystem::copy_option, boost::system::error_code*)&#39;</code></pre>
+<p>This was surprising since the declaration of the <code>copy_file</code> method was present in <code>filesystem.hpp</code> and <code>libboost_filesystem.so</code> was linked during compilation.</p>
+<h1 id="solution">Solution</h1>
+<p>Turns out this is a known bug with Boost Filesystem as described <a href="https://svn.boost.org/trac10/ticket/10038">here</a>. Apparently, this happens only if the C++ code is compiled with the <code>-std=c++11</code> option. I was indeed using that option.</p>
+<p>The current fix for this bug is to temporarily disable the C++ scoped enums when the Boost Filesystem header file is included, like this:</p>
+<pre><code>#define BOOST_NO_CXX11_SCOPED_ENUMS
+#include &lt;boost/filesystem.hpp&gt;
+#undef BOOST_NO_CXX11_SCOPED_ENUMS</code></pre>
+<p><strong>Tried with:</strong> Boost 1.55, GCC 4.8.4 and Ubuntu 14.04</p>
+</body>
+</html>

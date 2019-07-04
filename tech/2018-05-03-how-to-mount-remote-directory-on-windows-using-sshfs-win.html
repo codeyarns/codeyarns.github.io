@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to mount remote directory on Windows using SSHFS-Win</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to mount remote directory on Windows using SSHFS-Win</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-05-03 05:28:20+00:00</h3>
+</div>
+<p><a href="https://codeyarns.com/2014/09/10/how-to-mount-remote-directory-using-sshfs/"><strong>sshfs</strong></a> makes it convenient to mount a directory from a remote Linux computer on a local Linux computer. <a href="https://github.com/billziss-gh/sshfs-win"><strong>SSHFS-Win</strong></a> makes it easy to mount a directory from a remote Linux computer on your local Windows computer.</p>
+<ul>
+<li><p>Install the latest stable installer of <strong>WinFSP</strong> from <a href="https://github.com/billziss-gh/winfsp/releases">here</a>.</p></li>
+<li><p>Install the latest stable installer of SSHFS-Win from <a href="https://github.com/billziss-gh/sshfs-win/releases">here</a>.</p></li>
+<li><p>Open <strong>File Explorer</strong>, right-click on <strong>This PC</strong> and choose <strong>Map network drive</strong>. Choose a drive to mount at and in the <strong>Folder</strong> field enter:</p></li>
+</ul>
+<pre><code>\\sshfs\yourRemoteLogin@remoteComputer</code></pre>
+<p>By default, Windows will use your Windows password or credentials for the remote computer. If the password or credentials are different on the remote computer then choose the <strong>Connect using different credentials</strong> option.</p>
+<p>Windows will ask for your password at the remote computer. After that the home directory from your remote computer will be mounted at the Windows drive you chose. I found that I had full read-write access to the files mounted from remote.</p>
+<p><strong>Tried with:</strong> SSHFS-Win 2.7.17334 and WinFSP 1.2.17346</p>
+</body>
+</html>

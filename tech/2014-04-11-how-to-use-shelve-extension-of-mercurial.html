@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Shelve extension of Mercurial</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Shelve extension of Mercurial</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-04-11 09:26:24+00:00</h3>
+</div>
+<p>The <a href="http://mercurial.selenic.com/wiki/ShelveExtension">Shelve</a> extension of Mercurial is useful to temporarily store away your uncommitted changes and then restore them back. For example, if you are working on some changes, and before you commit it, someone comes in and asks you to test something on an earlier version. You can shelve away your changes, finish the testing and unshelve the changes and continue.</p>
+<ul>
+<li><p>The Shelve extension needs Mercurial 2.8 or later. If you have an older version of Mercurial, <a href="2014/04/11/how-to-install-latest-mercurial-on-ubuntu/">install the latest version</a>.</p></li>
+<li><p>If your Mercurial installation does not include the Shelve extension, it can be installed from PyPI using PIP:</p></li>
+</ul>
+<pre><code>$ sudo pip install hgshelve</code></pre>
+<ul>
+<li>Enable the extension by adding this line to your hgrc:</li>
+</ul>
+<pre><code>[extensions]
+shelve =</code></pre>
+<ul>
+<li>To shelve your uncommitted changes:</li>
+</ul>
+<pre><code>$ hg shelve</code></pre>
+<p>It will be stored using the name <code>default</code>. You can provide other names if you wish.</p>
+<ul>
+<li>To unshelve these changes later:</li>
+</ul>
+<pre><code>$ hg unshelve</code></pre>
+<p><strong>Tried with:</strong> Mercurial 2.8.2 and Ubuntu 12.04</p>
+</body>
+</html>

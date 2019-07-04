@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to visualize Caffe Net using GraphViz</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to visualize Caffe Net using GraphViz</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-10 12:36:34+00:00</h3>
+</div>
+<p>The network architecture of <strong>Convolutional Neural Networks (CNN)</strong> can be heavily layered and complex. Viewing the network visually is a great way to get a sense of its architecture. Since the network is a graph, it is easy to visualize this using <strong>GraphViz</strong>.</p>
+<p><strong>Caffe</strong> requires its Net to be in the <strong>Google ProtoBuf</strong> format. It also provides a <code>draw_net.py</code> script that can be used to output the graph to all the formats supported by GraphViz.</p>
+<ul>
+<li>From the Caffe root directory, you can export a <code>.prototxt</code> model file as a graph to a PNG image file:</li>
+</ul>
+<pre><code>$ python/draw_net.py foo.prototxt foo.png</code></pre>
+<p>Possible output formats include PNG, PDF, DOT and others supported by GraphViz.</p>
+<ul>
+<li>By default, the net layers are drawn from left-to-right. I prefer to visualize a CNN in top-to-bottom fashion:</li>
+</ul>
+<pre><code>$ python/draw_net.py --rankdir TB foo.prototxt foo.png</code></pre>
+<ul>
+<li>I prefer to interact with the graph visualization, which is a bit difficult with an image file. So, I prefer to export to DOT format file and play with it using <a href="http://codeyarns.com/2013/03/04/how-to-view-dot-file-using-xdot/"><strong>XDot</strong></a>:</li>
+</ul>
+<pre><code>$ python/draw_net.py foo.prototxt foo.dot
+$ xdot foo.dot</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

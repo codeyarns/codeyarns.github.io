@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Training Char-RNN with The Count of Monte Cristo</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Training Char-RNN with The Count of Monte Cristo</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-08 12:38:00+00:00</h3>
+</div>
+<p><strong>Andrej Karpathy</strong> recently shared an interesting article about the capabilities of <strong>Recurrent Neural Networks</strong> <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">here</a>. He also shared an open-source <strong>character-level RNN</strong> named <a href="https://github.com/karpathy/char-rnn"><strong>char-rnn</strong></a> that is easy to train with some text. Lots of people have had fun training it and seeing what it can produce! :-)</p>
+<p>Installation of Torch and char-rnn is straightforward. Just follow the instructions and it should be done.</p>
+<p>char-rnn needs a large amount of text to train and I used the massive 1500-page tome <strong>The Count of Monte Cristo</strong> which I read recently. The English translation of this book is available at <strong>Project Gutenberg</strong> <a href="http://www.gutenberg.org/ebooks/1184">here</a> as a text file. I cropped off the Gutenberg-related text at the beginning and end of this file and trained the char-rnn with it.</p>
+<p>With a low <code>temperature</code>, char-rnn returned text which was almost correct in grammar and spelling. However, since I have read the book, I noticed that it played safe, seeming like a nonsense regurgitation of the book:</p>
+<pre><code>$ th sample.lua cv/lm_lstm_epoch50.00_1.1763.t7 -length 2000 -temperature 0.2
+using CUDA on GPU 0...  
+creating an LSTM... 
+missing seed text, using uniform probability over first character   
+--------------------------  
+der.
+As the last man who has been able to say that he has not been
+deceived by the name of the count&#39;s hand in the dead body. The count was said
+to the count&#39;s steward, and the count was still as the door of the stranger to the
+present of the count&#39;s power of the two features of the count&#39;s shoulders.
+
+&quot;I have not the count is a fine and the count&#39;s door, and the count will be able to say that I have seen
+the same time to the postilion of the present of the countess, and the count was a
+small cravarse that he had not the count was the same thing to the
+bright previous conduct to the count with a smile of the countess with his study,
+and was a strange shoulders. The count was spoken of the count&#39;s return
+to the count&#39;s countenance of the count&#39;s steward had been at the same
+of the country of the count&#39;s room, and the count was to be deceived, and the
+street was standing at the same time and the count&#39;s hand to his hands, and
+the count was still as though the continual distance was the stranger to the
+president and the count with a smile of the garden to the count, and the
+streets she had been able to have been continued to say that he had been so much
+approaching the stranger. The count was still as though the streets were
+she did not propose to the same time the wall, and the count was still as the same
+time he was about to be able to conceal the president was strictly endeavoring to see the
+porter with a smile of the street, and the count was so much the present of the
+countess, which he had been able to leave the countenance of his companion,
+who had been so far as the door of his father&#39;s servant, who was still as the
+countenance of the count with a smile of the procureur. &quot;I am already said that the count was the
+present of the countess, and the count was the same time the two men who had been
+considered the count&#39;s servant, and the other had been so long and the second
+part of the passage and the present of the staircase before the cou</code></pre>
+<p>High <code>temperature</code> was more fun! There was more interesting and new conversations, more newly created phrases, but also more spelling mistakes. You can read it below and enjoy: :-)</p>
+<pre><code>$ th sample.lua cv/lm_lstm_epoch50.00_1.1763.t7 -length 2000 -temperature 0.85
+using CUDA on GPU 0...  
+creating an LSTM... 
+missing seed text, using uniform probability over first character   
+--------------------------  
+der.
+It is well before shame.&quot;
+
+&quot;Is it well going to expons I confess, the last fine staircase on the evenge of your life.&quot;
+
+&quot;How did not contrain to me.&quot;
+
+&quot;Oh, you go known.&quot; And Monte Cristo passed the counter, exclaimed, &quot;Star to you, but I left you, that&#39;s what I
+hear Perusial spot to the room,--deeply so dead. I will give him marriage.
+
+&quot;Ma,&quot; replied Monte Cristo, in the middle of the Ruestian; &quot;my tage of conscious to do at
+Noirtier&quot;--
+
+&quot;A life that hung modest.&quot;
+
+&quot;It is a man of honor.&quot;
+
+&quot;Dear Vilentie?&quot;
+
+&quot;The foirs of the direction of another.&quot;
+
+&quot;What, awaited Robe,&quot; continueded he, while Dantes passed of his danger&#39;s, &quot;Your splendid silence as you present me to think of
+my father to speak in the little beauty of my own fault.&quot;
+
+&quot;I was able to leave for a superble in a splendid hands.&quot;
+
+&quot;I will not say this; for it half accomplished that, like the emperor. He touched a royalist, which was a
+window, lyies have been arrested, while they was Ali passed on me. But our eyes
+was turned towards him, where he had referred at the small and thirty. He began
+me into the door. &quot;To which I take the life to my house? and
+the soft acquainter was reflected by the window.&quot;
+
+&quot;Then I may ashails, your majesty&#39;s name, and did you not yet be at your
+disposal thus.&quot;
+
+&quot;And where doubtless your poverty
+will be so blue to me in the department?&quot;
+
+&quot;Yes, sir; you really so well know that, my friend, who, and then, because by the track of treason, but risk
+of her mind, and the idea of shortes have eludantly watching
+the educity and agony and perfect inmost in such engalor that they are admittance, those
+who are about to recognize it. In order of Mademoiselle
+the notary stormed the concierge under the thoughts, for what, however, the freedom of the
+two friends, or seven o&#39;clock in the diggages. He doubled his bread.
+
+&quot;Why shouldered so?&quot;
+
+&quot;Yes, I will, for he is an equal fortunate to see the Champs Elysees of meeting?&#39;--&#39;Well, as you say
+do</code></pre>
+</body>
+</html>

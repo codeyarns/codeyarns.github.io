@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Dependency Walker</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Dependency Walker</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-07-01 15:05:53+00:00</h3>
+</div>
+<p>The <strong><a href="http://www.dependencywalker.com/">Dependency Walker</a></strong> is a great utility to figure out <strong>DLL problems</strong>. Here is a simple illustration of its use.</p>
+<p>I was recently working on code shared by a friend. The C++ code compiled fine under Visual Studio 2010, but when executed would pop up this error message:</p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_0.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_0.png" /></a></p>
+<p>The error message:</p>
+<blockquote>
+The program can't start because MSVCR80.dll is missing from your computer. Try reinstalling the program to fix this problem.
+</blockquote>
+<p>I dissected <code>MSVCR80.dll</code> as MS (Microsoft) VCR (Visual C Runtime) 80 (Visual Studio 2005) library.</p>
+<p>The age old Windows trick of getting <code>MSVCR80.dll</code> from some other computer and putting it in the directory of the .exe did not work. This is because Windows now ships with a SxS system to maintain DLLs of various versions. This requires manifest files and other complicated machinery to work.</p>
+<p>Installing the <strong>Windows 7 Platform SDK</strong>, the older <strong>Windows Server 2003 Platform SDK</strong> and <strong>Visual C++ 2005 Redistributable</strong> packages did not work either.</p>
+<p>Having no further clue to this problem, I decided to use Dependency Walker. Execute the <code>depends.exe</code> and open the .exe which is throwing the error.</p>
+<p>Dependency Walker immediately found the 3 DLLs which were causing problems. These are displayed in red in the middle pane:</p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_1.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_1.png" /></a></p>
+<p>To figure out the origin of the use of these DLLs, right-click on any of the problematic DLL in the middle pane and choose <strong>Highlight matching module in tree</strong>. This shows the origin of the problem in the dependency tree displayed in the top pane:</p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_2.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_2.png" /></a></p>
+<p>Bingo! So, a third party DLL named <code>ILMIMF.dll</code> that was linked with the C++ code was the cause of the error. Rebuilding this DLL separately from its source code and relinking the rest of the project fixed the error.</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change ownership of files and directories in Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change ownership of files and directories in Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-09 01:50:36+00:00</h3>
+</div>
+<p>You typically get access permission errors when you try to access files and directories created by a different user. The <code>chown</code> command can be used to change the ownership of files and directories in Linux. If you are changing the ownership from user1 to user2, you need to have permissions that are higher than these users. So, typically these commands are performed using <code>sudo</code>.</p>
+<p>To set owner of a file or directory:</p>
+<pre><code>$ chown foouser blah.txt
+$ chown foouser blahdir</code></pre>
+<p>To set group of a file or directory:</p>
+<pre><code>$ chown :somegroup blah.txt
+$ chown :somegroup blahdir</code></pre>
+<p>To set both user and group:</p>
+<pre><code>$ chown foouser:somegroup blah.txt
+$ chown foouser:somegroup blahdir</code></pre>
+<p>To set ownership recursively on all files and subdirectories in a directory:</p>
+<pre><code>$ chown -R foouser blahdir
+$ chown -R :somegroup blahdir
+$ chown -R foouser:somegroup blahdir</code></pre>
+<p>If you prefer using a GUI for changing ownership, you can do that in any file explorer. For example, in Nautilus just right-click on the file or directory and choose Properties &gt; Permissions. Note that you need to be the root user or have launched Nautilus using superuser permissions to be able to do this.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change RPATH or RUNPATH of executable</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change RPATH or RUNPATH of executable</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-11-01 17:42:23+00:00</h3>
+</div>
+<p><strong>RPATH</strong> or <strong>RUNPATH</strong> is a colon-separated list of directories embedded in an executable. This list of directories play an important role when shared library file locations are determined at the time when the executable is loaded for running. This process is described in <a href="https://codeyarns.com/2017/11/02/how-shared-library-locations-are-found-at-runtime/">this post</a>. Note that RPATH has highest priority in the shared library search, compared to RUNPATH. We can change RPATH or RUNPATH of a binary file by using the <strong>chrpath</strong> tool.</p>
+<ul>
+<li>Installing this tool is easy:</li>
+</ul>
+<pre><code>$ sudo apt install chrpath</code></pre>
+<ul>
+<li>To view if the binary has RPATH or RUNPATH and to list its colon-separated list of directories:</li>
+</ul>
+<pre><code>$ chrpath ./some_binary</code></pre>
+<ul>
+<li>To remove RPATH or RUNPATH from the binary:</li>
+</ul>
+<pre><code>$ chrpath -d ./some_binary</code></pre>
+<ul>
+<li>To convert RPATH of a binary to a RUNPATH:</li>
+</ul>
+<pre><code>$ chrpath -c ./some_binary</code></pre>
+<p>Note that you cannot convert a RUNPATH back to RPATH.</p>
+<ul>
+<li>To replace RPATH or RUNPATH paths with a different set of paths:</li>
+</ul>
+<pre><code>$ chrpath -r /home/joe:/home/foobar/lib64 ./some_binary</code></pre>
+<p>Note that the string of the new set of paths should be smaller or equal to the length of what was stored earlier in the binary.</p>
+<p><strong>Tried with:</strong> chrpath 0.14 and Ubuntu 16.04</p>
+</body>
+</html>

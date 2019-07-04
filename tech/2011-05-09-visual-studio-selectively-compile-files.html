@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual Studio: Selectively Compile Files</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual Studio: Selectively Compile Files</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-05-09 02:28:26+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>Sometimes after a successful build, you may feel the need to selectively compile a few files in the solution. This is especially needed with C++, where you might sometimes suspect linking problems or just want to look at the compile output. How to <em>selectively</em> compile a subset of the source files inside a solution?</p>
+<p><strong>Solution</strong></p>
+<p>The common way to do this is to selectively compile each of those files by choosing <strong>Compile</strong> or <code>Ctrl+F7</code> for each of them. This is repetitive work and you also need to be present to <strong>Compile</strong> after each file.</p>
+<p>Another trick is to go to each of these files and change a character in them and save the files. Visual Studio notices the changed files and will compile them if you <strong>Build</strong> or press <code>F7</code> on the solution.</p>
+<p>The best solution is to just go to each of these files and press <strong>Save</strong> or <code>Ctrl+S</code>. Visual Studio changes the modified timestamp of the files on this operation and will faithfully compile these files if you <strong>Build</strong> or press <code>F7</code> on the solution.</p>
+<p><strong>Tried with</strong>: Visual Studio 2010</p>
+</body>
+</html>

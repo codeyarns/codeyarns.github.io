@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get started with PhysX.Net</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get started with PhysX.Net</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-06-06 06:45:41+00:00</h3>
+</div>
+<p><a href="https://physxdotnet.codeplex.com/"><strong>PhysX.Net</strong></a> is a <strong>.Net</strong> library that has been written as a wrapper for the <strong>PhysX</strong> library from NVIDIA. This enables you to use PhysX from C# or any other .Net language.</p>
+<ol style="list-style-type: decimal">
+<li><p>Ensure that the <strong>PhysX SDK</strong> is installed and running correctly. This <a href="2013/06/05/how-to-get-started-with-physx-on-windows/">post</a> explains how to get started with PhysX.</p></li>
+<li><p>Download the latest build or nightly build of PhysX.Net from <a href="https://physxdotnet.codeplex.com/">here</a>. Unzip the contents of the zip file. It has the <strong>PhysX.Net.dll</strong> .Net assembly file that contains the wrapper methods and classes for both x86 and x64 architectures.</p></li>
+<li><p>Download the latest <strong>source code</strong> of PhysX.Net from <a href="https://physxdotnet.codeplex.com/SourceControl/latest">here</a>. Unzip the contents of the zip file.</p></li>
+<li><p>Open the <strong>PhysX.Net-3.sln</strong> solution file in Visual Studio. Examine the <strong>Samples</strong> project, it has the code for sample programs, such as <strong>JointsSample</strong>. All of the Samples use the code from the <strong>Engine</strong> sample, which has the code common to all the Samples.</p></li>
+<li><p>Add the <strong>PhysX.Net.dll</strong> downloaded in Step 2 as a <strong>reference</strong> to all the Samples.</p></li>
+<li><p>Build the Engine sample. This produces a <strong>PhysX.Samples.Engine.dll</strong> .Net assembly file that will be used by the other Samples.</p></li>
+<li><p>Now build any of the Samples, for example, the JointsSample. This produces a <strong>PhysX.Samples.JointsSample.exe</strong>.</p></li>
+<li><p>The EXE files need the PhysX DLL files, from NVIDIA, to execute. These are the 5 files: <strong>PhysX3CharacterKinematicCHECKED_x86.dll</strong>, <strong>PhysX3CHECKED_x86.dll</strong>, <strong>PhysX3CommonCHECKED_x86.dll</strong>, <strong>PhysX3CookingCHECKED_x86.dll</strong> and <strong>PhysX3GpuCHECKED_x86.dll</strong>. These files can be found in the NVIDIA PhysX SDK or in the <strong>Assemblies</strong> directory in the PhysX source code. Place these in the same directory as the EXE file.</p></li>
+<li><p>Now you should be able to run the EXE file directly or debug it from Visual Studio.</p></li>
+</ol>
+<p><strong>Tried with:</strong> PhysX.Net 102011, PhysX 3.2.4, Visual Studio Express 2012 and Windows 7 x64</p>
+</body>
+</html>

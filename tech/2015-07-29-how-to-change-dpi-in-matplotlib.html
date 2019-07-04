@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change DPI in Matplotlib</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change DPI in Matplotlib</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-29 12:13:00+00:00</h3>
+</div>
+<p><strong>Matplotlib</strong> can be used to output plot to PNG image files. To render for this bitmap format, Matplotlib uses a default <strong>DPI</strong> of <code>100</code>. This is a surprisingly low DPI for plots. Thankfully, the DPI can be changed easily.</p>
+<ul>
+<li>You can specify the DPI when you save a plot to a file:</li>
+</ul>
+<pre><code>using matplotlib.pyplot as mplot
+mplot.savefig(&quot;foo.png&quot;, dpi=300)</code></pre>
+<ul>
+<li>If you want this DPI to be used for all output by Matplotlib, then set this line in your <strong>matplotlibrc</strong> file:</li>
+</ul>
+<pre><code>savefig.dpi: 300</code></pre>
+<p><strong>Tried with:</strong> Matplotlib 1.4.3, Python 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

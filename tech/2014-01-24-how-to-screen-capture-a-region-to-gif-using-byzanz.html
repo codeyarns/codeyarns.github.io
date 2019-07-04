@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to screen capture a region to GIF using Byzanz</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to screen capture a region to GIF using Byzanz</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-24 13:05:41+00:00</h3>
+</div>
+<p><a href="2014/01/24/how-to-screen-capture-to-gif-using-byzanz/"><strong>Byzanz</strong></a> can be used to screen capture and save it to an animated GIF file. To capture a <strong>region</strong> of the display, you can pass it the XY coordinates of the top-left corner of the region and the width and height of the region. A more intuitive method would have been to draw a region on the display and have Byzanz capture that.</p>
+<p>Thanks to <a href="http://askubuntu.com/users/45058/rob-w">Rob W</a>, you can do that using his Bash script <code>byzanz-record-region</code>, which can be found <a href="http://askubuntu.com/questions/107726">here</a>. Getting this to work takes a few steps:</p>
+<ul>
+<li><p>Install Byzanz as described <a href="2014/01/24/how-to-screen-capture-to-gif-using-byzanz/">here</a>.</p></li>
+<li><p>We need a tool to mark a region of the display. <code>xrectsel</code> is one such tool and it available with <strong>FFcast2</strong>. Clone its repository and build the tool:</p></li>
+</ul>
+<pre><code>$ git clone https://github.com/lolilolicon/FFcast2.git
+$ cd FFcast2
+$ make</code></pre>
+<p>Move the <code>xrectsel</code> binary to location accessible from your <code>PATH</code>.</p>
+<ul>
+<li><p>Create a Bash script file from the source code for <code>byzanz-record-region</code> available <a href="http://askubuntu.com/questions/107726">here</a>.</p></li>
+<li><p>That is it! To record or screen capture a region of the display for 10 seconds, just invoke the script without any parameters:</p></li>
+</ul>
+<pre><code>$ byzanz-record-region</code></pre>
+<p>Your mouse cursor turns into a cross-hair. Draw the region on the display. A countdown of 10 seconds is shown followed by a beep. Recording begins and ends after 10 seconds. You can find the resulting animated GIF file in <code>/tmp/recorded.gif</code>.</p>
+<ul>
+<li>To provide a different duration of recording or filename, you need to provide both parameters (even if you only need to change one of them):</li>
+</ul>
+<pre><code>$ byzanz-record-region 30 foobar.gif</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 12.04</p>
+</body>
+</html>

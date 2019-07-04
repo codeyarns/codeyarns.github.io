@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Fixing Cyclic Dependencies</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Fixing Cyclic Dependencies</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-07-22 14:28:58+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_22_cpp_dependencies1.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_22_cpp_dependencies1.png" /></a>C++ gives enough rope (or freedom) to hang oneself. As the source code grows over time, it can easily get so hairy that it results in <strong>cyclic dependencies</strong>. This typically rears its ugly head when one tries to add a new member to a class and find that the resulting mess cannot be compiled due to cyclic dependencies. Other times, the dependencies can be hidden and manifest themselves only when certain source files are compiled in a certain order. Either way, header and source files with such problems not only depict a sad state of the code, but also have a bad hierarchy of header file inclusion which results in very long compile times.</p>
+<p>Here are some guidelines from experience that I have found useful to handle or fix cyclic dependencies in C++ code. These can be used on new code or to polish ugly old code back to a shiny state.</p>
+<ul>
+<li><p>Remove all <strong>global</strong> variables, functions, constants and enums. Convert them to <strong>static</strong> methods, variables and constants in already existing classes or create new utility classes for them. Enums should be moved into classes too. Now you have only classes to deal with, there are no other <em>kinds</em> of entities at the source file level.</p></li>
+<li><p>Try to place only <strong>one class</strong> declaration and its definition in the corresponding header and source file. If you feel that this granularity is too small, you could place a couple of related classes per header and source file. But, the finer granularity you can achieve the better it is for code maintenance and compile times.</p></li>
+<li><p>Examine all your classes and form a <strong>class graph</strong>. Do not use the class hierarchies or graphs from your design documents. Those give a high level picture, while what we want is the physical dependencies between the classes in our code. That is, the dependencies in your code files that your C++ compiler has to grapple with when it tries to compile them. Here are some simple steps that resulted in the graph shown above:</p>
+<ul>
+<li><div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Triangle.h</span>
+<span class="kw">class</span> Triangle : <span class="kw">public</span> Facet
+{ <span class="co">/***/</span> };</code></pre></div></li>
+</ul></li>
+</ul>
+<p>Class Triangle extends from class Facet, so Triangle depends on Facet. Draw an arrow from Triangle to Facet.</p>
+<pre><code>* ```cpp</code></pre>
+<p>// Triangle.h class Triangle { Point p[3]; };</p>
+<pre><code>
+Class Triangle has a member of class Point, so Triangle depends on Point. Draw an arrow from Triangle to Point.
+
+    
+    * ```cpp
+// Quad.h
+class Quad
+{
+    Point p[4];
+    bool checkForTriangle( const Triangle&amp; ) const;
+    Triangle getTriangle( int ) const;
+};</code></pre>
+<p>Class Quad has a method which has a parameter of class Triangle. It also has a method which returns a Triangle. <em>Neither</em> of this implies that Quad depends on Triangle.</p>
+<ul>
+<li><p>The result should be a <strong>directed acyclic graph</strong>. If the graph has cycles, then you have a cyclic dependency. Look at the cycle and decide how to break it at one of its classes. Most of the time, the mere act of creating a detailed graph of dependencies is enough to get a clue to break the cycle. Re-examine the classes on the cycle to see if the parent class object can be passed in as a parameter to a few of the methods. Or in drastic cases, see if you need to create another class that extends or has members from the problematic classes.</p></li>
+<li><p>Something that helps drastically is reducing the number of <strong>header inclusions</strong> by using <strong>forward declarations</strong>. One needs to be very strict with the header inclusion in header files. (See <a href="http://codeyarns.wordpress.com/2010/07/14/c-header-file-inclusion-order/">this post</a> on header inclusion convention.) Comparatively, one could be a bit more relaxed on the header inclusion in source files. This is because source files are not included by other files, and thus are like leaves in the graph. For example, cleaning up the header inclusion in the above header files:</p>
+<ul>
+<li><p>Triangle.h should include Facet.h.</p></li>
+<li><p>Triangle.h should also include Point.h.</p></li>
+<li><p>Quad.h <em>should not</em> include Triangle.h. Instead, it should only include a_ forward class declaration_ of Triangle. This may seem frivolous since an inclusion of Triangle.h would work fine here. But, this clean habit helps in the long run. Unnecessarily including Triangle.h would bring in all the names it has declared inside it and the entire tree of header files that it has included! Thus, preventing inclusion of header files nips this cancer in the bud, and also helps cut down on compile times quite drastically.<code>cpp // Quad.h #include &quot;Triangle.h&quot; // WRONG! class Triangle;       // CORRECT class Quad { bool checkForTriangle( const Triangle&amp; ) const; Triangle getTriangle( int ) const; };</code></p></li>
+</ul></li>
+</ul>
+<p>Cyclic dependencies can be extremely hairy. Hopefully, these guidelines will help you fix them. :-)</p>
+</body>
+</html>

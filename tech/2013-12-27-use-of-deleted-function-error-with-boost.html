@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Use of deleted function error with Boost</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Use of deleted function error with Boost</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-12-27 10:53:14+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>I was compiling C++ code that uses the Boost library when the compiler threw out this mysterious error:</p>
+<pre><code>/usr/include/boost/thread/pthread/thread_data.hpp: In constructor ‘boost::detail::tss_data_node::tss_data_node(boost::shared_ptr, void*)’:
+/usr/include/boost/thread/pthread/thread_data.hpp:36:41: error: use of deleted function ‘boost::shared_ptr::shared_ptr(const boost::shared_ptr&amp;)’
+                 func(func_),value(value_)</code></pre>
+<p><strong>Solution</strong></p>
+<p>This type of error typically occurs when there is a feature mismatch between the C++ compiler and the library code. In this case, I was using the Boost library version 1.48.0, which is from Ubuntu 12.04. However, I was using a newer version of the g++ compiler since the code used C++11 features. The version that is in Ubuntu was 4.6, while I using a more recent version 4.8 compiler.</p>
+<p>One solution is to go back and use an older version of the C++ compiler. The other solution is to <a href="2013/12/27/how-to-upgrade-the-boost-library-on-ubuntu/">upgrade the Boost library</a> to a more recent version. I chose the second solution and upgraded Boost to version 1.54 and the code compiled without errors.</p>
+<p><strong>Tried with:</strong> Ubuntu 12.04</p>
+</body>
+</html>

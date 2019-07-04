@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Easy Align plugin for Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Easy Align plugin for Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-04-08 12:04:34+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2015/04/20150402_tabular.png"><img src="https://codeyarns.files.wordpress.com/2015/04/20150402_tabular.png" alt="20150402_tabular" /></a></p>
+<p><a href="https://github.com/junegunn/vim-easy-align"><strong>Easy Align</strong></a> is a plugin for <strong>Vim</strong> that makes it super easy to align your code along certain whitespace or characters. Unlike the <a href="/2015/04/02/tabular-plugin-for-vim/"><strong>Tabular</strong></a> plugin, Easy Align is actually <strong>easy</strong> to use, not requiring you to create and recall esoteric-looking arguments.</p>
+<p>Below are a few examples of how I typically use this plugin. For everything below, first visually mark out the lines, press <code>:</code> followed by command given below:</p>
+<ul>
+<li><p>To align text based on space characters as delimiter:</p>
+<ul>
+<li><p>Align on first delimiter: <code>EasyAlign \</code></p></li>
+<li><p>Align on second delimiter: <code>EasyAlign 2\</code></p></li>
+<li><p>Align on last delimiter: <code>EasyAlign -\</code></p></li>
+<li><p>Align on last 2 delimiters: <code>EasyAlign -2\</code></p></li>
+<li><p>Align on all delimiters: <code>EasyAlign *\</code></p></li>
+</ul></li>
+<li><p>To align based on equals character as delimiter. For example, a block of assignment statements in C++. I visually block it and use the command: <code>EasyAlign=</code></p></li>
+<li><p>To align based on comma character as delimiter. For example, a block of function calls in C++ along their multiple comma characters: <code>EasyAlign*,</code></p></li>
+<li><p>To align a block of function parameters, one on each line: <code>EasyAlign-\</code></p></li>
+</ul>
+<p>The logic behind these commands is straightforward and is explained in the table of examples on the plugin's <a href="https://github.com/junegunn/vim-easy-align">Github page</a>.</p>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>GSmartControl</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">GSmartControl</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-12-25 04:58:15+00:00</h3>
+</div>
+<p><a href="http://codeyarns.com/2016/12/25/gsmartcontrol/20161225_gsmartcontrol/"><img src="https://codeyarns.files.wordpress.com/2016/12/20161225_gsmartcontrol.png" alt="20161225_gsmartcontrol" /></a></p>
+<p><a href="http://gsmartcontrol.sourceforge.net/"><strong>GSmartControl</strong></a> is a GUI program that uses the programs in <strong>smartmontools</strong> to show the SMART data of your hard disk or SSD and to run tests on it.</p>
+<ul>
+<li>Installing it is easy:</li>
+</ul>
+<p>[code lang=&quot;text&quot;] $ sudo apt install gsmartcontrol ```</p>
+<ul>
+<li><p>When you invoke the program, it requires superuser privileges. After starting it shows all the drives connected to your computer. You can right-click on any drive to view SMART data or run tests on it.</p></li>
+<li><p>Sometimes SMART may not even be enabled on a drive. You can right-click on a drive to <strong>Enable SMART</strong> or to <strong>Enable auto offline data</strong> collection.</p></li>
+<li><p>Right-click and choose View Details to get all the information about the drive.</p></li>
+<li><p><strong>Identity:</strong> This shows information about the drive like model, device, serial number and such.</p></li>
+<li><p><strong>Attributes:</strong> This shows the all-important SMART data values. The killer feature of GSmartControl is that this display is color coded. For example, values that indicate that the drive has started to degrade or fail will be in pink or red. This is a huge plus over the SMART information shown by GNOME Disks program where you have no idea what to make of the displayed values. Hovering the mouse cursor over any value gives a longer description about the value in a tooltip. This is again a huge plus since these values cannot be readily understood by the normal user.</p></li>
+<li><p><strong>Perform tests:</strong> This is the tab from where you can perform tests created by the disk manufacturer to check the health of the disk. Typically, there will be a <strong>Short</strong> test which takes ~2 minutes and an <strong>Extended</strong> test that might take an hour. Sometimes, there might be other tests offered by the disk manufacturer like a <strong>Conveyance</strong> test and so on. Running a short test should already be enough to point out if your disk is in danger.</p></li>
+<li><p>If you cannot view any SMART information for the disk, then the device type that smartctl is detecting for it might be wrong. Specify a device type that matches the disk in Options → Preferences → Smartctl invocation → Smartctl parameters.</p></li>
+</ul>
+<p><strong>Tried with:</strong> GSmartControl 0.8.7 and Ubuntu 16.04</p>
+</body>
+</html>

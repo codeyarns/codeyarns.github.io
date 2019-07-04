@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable any extension in Mercurial</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable any extension in Mercurial</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-01-25 16:16:39+00:00</h3>
+</div>
+<p><strong>Mercurial</strong> ships with many <strong>extensions</strong>, but none of them is <strong>enabled</strong> by default. In addition, many other extensions can be downloaded for Mercurial.</p>
+<p>If the extension is already present, it can be enabled by editing your <a href="2013/01/26/mercurial-configuration-file/">Mercurial configuration file</a>.</p>
+<p>For example, to enable an extension named <strong>Foo</strong>, edit your Mercurial configuration file to add these lines:</p>
+<pre><code>[extensions]
+Foo =</code></pre>
+<p>If the <strong>extensions</strong> section already exists with an enabled extension, additional extensions can be enabled by adding a line each.</p>
+<p>For example, to additionally enable a <strong>Bar</strong> extension:</p>
+<pre><code>[extensions]
+Foo =
+Bar =</code></pre>
+<p><strong>Tried with:</strong> Mercurial 2.0.2 and Ubuntu 12.04.1 LTS</p>
+</body>
+</html>

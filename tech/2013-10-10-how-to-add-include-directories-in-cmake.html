@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add include directories in CMake</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add include directories in CMake</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-10-10 08:37:51+00:00</h3>
+</div>
+<p>It is common in many setups to have additional <strong>include directories</strong> that need to be used during compilation of C, C++ or CUDA code. These can be both global or relative local directories. Adding include directories to all targets or specific targets is easy in <strong>CMake</strong>.</p>
+<ul>
+<li>The directive to add include directories for all targets being compiled by CMake is <code>include_directories</code>. For example, add this to <code>CMakeLists.txt</code>:</li>
+</ul>
+<pre><code>include_directories(
+    /usr/local/flac
+    include
+    src
+    )</code></pre>
+<ul>
+<li>The directive to add include directories for a particular target being compiled by CMake is <code>target_include_directories</code>. For example, add this to <code>CMakeLists.txt</code> to compile the target <code>foobar</code>:</li>
+</ul>
+<pre><code>target_include_directories(
+    foobar PUBLIC
+    /usr/local/flac
+    include
+    src
+    )</code></pre>
+<p><strong>Tried with:</strong> CMake 2.8.7 and Ubuntu 14.04</p>
+</body>
+</html>

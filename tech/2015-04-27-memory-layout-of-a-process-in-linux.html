@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Memory layout of a process in Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Memory layout of a process in Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-04-27 12:23:00+00:00</h3>
+</div>
+<p>After reading <a href="2015/04/25/the-art-of-debugging-with-gdb-ddd-and-eclipse/"><strong>The Art of Debugging</strong></a>, I was curious to see the <strong>memory layout</strong> of a <strong>process</strong> in Linux. In modern operating systems, this is essentially the virtual memory layout and I tried this with a 64-bit Linux.</p>
+<p>I wrote a simple C++ program which had these components:</p>
+<ul>
+<li><p>Global constants and variables</p></li>
+<li><p>Functions</p></li>
+<li><p>Dynamic memory allocation</p></li>
+<li><p>Calls to C and C++ standard libraries</p></li>
+</ul>
+<p>I compiled and ran the <code>a.out</code> program, made it wait for user input, found its PID and tried:</p>
+<pre><code>$ cat /proc/PID/maps</code></pre>
+<p>That output, with some annotations, is shown below:</p>
+<pre><code>Address                   Perm Offset   Dev   Inode     Path
+00400000-00401000         r-xp 00000000 08:06 55325003  /home/joe/bin/a.out
+00600000-00601000         r--p 00000000 08:06 55325003  /home/joe/bin/a.out
+00601000-00602000         rw-p 00001000 08:06 55325003  /home/joe/bin/a.out
+01b5f000-01b91000         rw-p 00000000 00:00 0         [heap]
+7f180c4d2000-7f180c68d000 r-xp 00000000 08:06 13238492  /lib/x86_64-linux-gnu/libc-2.19.so
+7f180c68d000-7f180c88c000 ---p 001bb000 08:06 13238492  /lib/x86_64-linux-gnu/libc-2.19.so
+7f180c88c000-7f180c890000 r--p 001ba000 08:06 13238492  /lib/x86_64-linux-gnu/libc-2.19.so
+7f180c890000-7f180c892000 rw-p 001be000 08:06 13238492  /lib/x86_64-linux-gnu/libc-2.19.so
+7f180c892000-7f180c897000 rw-p 00000000 00:00 0 
+7f180c897000-7f180ca04000 r-xp 00000000 08:06 45088807  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f180ca04000-7f180cc03000 ---p 0016d000 08:06 45088807  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f180cc03000-7f180cc0d000 r--p 0016c000 08:06 45088807  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f180cc0d000-7f180cc0f000 rw-p 00176000 08:06 45088807  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21
+7f180cc0f000-7f180cc13000 rw-p 00000000 00:00 0 
+7f180cc13000-7f180cc36000 r-xp 00000000 08:06 13238486  /lib/x86_64-linux-gnu/ld-2.19.so
+7f180ce06000-7f180ce0b000 rw-p 00000000 00:00 0 
+7f180ce31000-7f180ce35000 rw-p 00000000 00:00 0 
+7f180ce35000-7f180ce36000 r--p 00022000 08:06 13238486  /lib/x86_64-linux-gnu/ld-2.19.so
+7f180ce36000-7f180ce37000 rw-p 00023000 08:06 13238486  /lib/x86_64-linux-gnu/ld-2.19.so
+7f180ce37000-7f180ce38000 rw-p 00000000 00:00 0 
+7fff9b79a000-7fff9b7bb000 rw-p 00000000 00:00 0         [stack]
+7fff9b7fe000-7fff9b800000 r-xp 00000000 00:00 0         [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0 [vsyscall]</code></pre>
+<p>By observing the memory ranges in this output, we can build the classic memory layout of a process by ourselves:</p>
+<pre><code>0x00                                  0xFF
+Text Data Heap ---&gt; DLLs &lt;--- Stack Kernel</code></pre>
+<p>I always found the vertical layout used in textbooks confusing, so I like to lay it out horizontally like this. Left to right, you go from low to high memory addresses.</p>
+<p>A few notes by observing the output of proc and the layout:</p>
+<ul>
+<li><p>We can see that the device and inode columns are filled for binary images of program and the dynamic libraries, since both of these are loaded from disk.</p></li>
+<li><p>By looking at the address range of small segments, we can see that Linux is still using 4096 bytes as the page size for the 64-bit Intel CPU it is running on. <code>0x1000</code> is 4096 in decimal.</p></li>
+<li><p>All the segments and their permissions are at the granularity of a page. CPU checks the permission of a machine instruction when it operates on a memory location in RAM. Once a page is loaded to RAM and becomes <strong>resident</strong> there, bits set on the page indicate its allowed permissions. CPU enforces these permissions. When program tries to override these permissions, we get segmentation fault.</p></li>
+<li><p>Text segment has read and execute permissions. Machine instructions in text segment need to be read and executed by CPU.</p></li>
+<li><p>Constant data segment has only read permission. Constants used by program should only be allowed to read, not changed (written).</p></li>
+<li><p>Data + BSS segment has read and write permissions. Global variables of program should be read and written too.</p></li>
+<li><p>Text, constant and Data+BSS segments taken together is the binary image of program that has been mapped into virtual memory by loader.</p></li>
+<li><p>Heap does not have execute permission. Program can only read and write to the memory it gets from <code>malloc</code>.</p></li>
+<li><p>All the loaded DLLs also have similar Text, constant and Data segments in each. They also have a mysterious <code>---p</code> segment! :-)</p></li>
+<li><p>Stack is where local variables are stored. Note that it too has only read and write permissions. If this program was multi-threaded, there would be one stack for each thread here.</p></li>
+<li><p><code>vdso</code> and <code>vsyscall</code> is where the user space last sees a system call disappear. From there it enters the rabbit hole to kernel space.</p></li>
+</ul>
+<p><strong>Reference:</strong> <a href="https://github.com/torvalds/linux/blob/master/Documentation/filesystems/proc.txt">Proc.txt</a> from Linux kernel source code</p>
+<p><strong>Tried with:</strong> Linux 3.13.0-45 and Ubuntu 14.04</p>
+</body>
+</html>

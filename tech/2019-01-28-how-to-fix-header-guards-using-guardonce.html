@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to fix header guards using guardonce</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to fix header guards using guardonce</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-01-28 03:10:13+00:00</h3>
+</div>
+<p><a href="https://en.wikipedia.org/wiki/Include_guard"><strong>Header guards</strong></a> are used in C and C++ header files to avoid them being included more than once during the compilation of a compilation unit. There are generally two techniques: using an include guard and using a pragma once directive. <a href="https://github.com/cgmb/guardonce"><strong>guardonce</strong></a> provides a set of Python tools that can be used to diagnose the state of header guards, convert between the two types of guards and to fix guards in your codebase.</p>
+<ul>
+<li>Installing guardonce using pip is easy:</li>
+</ul>
+<pre><code>$ sudo pip3 install guardonce</code></pre>
+<ul>
+<li>To convert include guards to pragma onces for all header files in the current directory:</li>
+</ul>
+<pre><code>$ guard2once *.h</code></pre>
+<ul>
+<li>To convert pragma onces to include guards for all header files in the current directory:</li>
+</ul>
+<pre><code>$ once2guard *.h</code></pre>
+<ul>
+<li>The tools support a <a href="https://github.com/cgmb/guardonce/blob/master/docs/PatternLanguage.md"><strong>pattern language</strong></a> that can be used to specify include guard name of a specific pattern. The pattern is built like a Unix pipeline. For example, to convert pragma once to include guard names with a default prefix (say <code>FOOBAR_</code>) followed by filename in snake form and uppercase:</li>
+</ul>
+<pre><code>$ once2guard -p &quot;name | snake | upper | prepend FOOBAR_&quot; *.h</code></pre>
+<p>For a filename <code>linkedList.h</code> the above command would generate an include guard name <code>FOOBAR_LINKED_LIST_H</code>.</p>
+<ul>
+<li>For include guards it is convenient to have the guard name to appear in comments near the <strong>endif</strong>. To do that:</li>
+</ul>
+<pre><code>$ once2guard -s &quot;#endif // %&quot; *.h</code></pre>
+<ul>
+<li>It is a good convenience to have a newline before the <strong>endif</strong>. To do that:</li>
+</ul>
+<pre><code>$ once2guard -l *.h</code></pre>
+<ul>
+<li>There is no straightforward option to fix or modify the include guards to a certain pattern. Instead I found that I could achieve this by first converting the file to pragma once and then converting back to include guards. This can be done like this:</li>
+</ul>
+<pre><code>$ guard2once *.h ; once2guard *.h</code></pre>
+<p><strong>Tried with:</strong> guardonce 2.4.0 and Ubuntu 18.04</p>
+</body>
+</html>

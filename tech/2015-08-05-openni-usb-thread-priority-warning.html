@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>OpenNI USB thread priority warning</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">OpenNI USB thread priority warning</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-08-05 12:06:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I have a <strong>Primesense</strong> camera plugged into USB port. Running any program linked with the <strong>OpenNI</strong> library throws this warning:</p>
+<pre><code>Warning: USB events thread - failed to set priority. This might cause loss of data</code></pre>
+<h1 id="solution">Solution</h1>
+<p>OpenNI tries to set the USB async thread priority to <strong>critical</strong>. This works on Linux only with root privileges. For a normal user, the program will throw this warning. To get rid of this warning, run the program as root.</p>
+<p>For more details see <code>ThirdParty/PSCommon/XnLib/Source/Linux/XnLinuxUSB.cpp</code> in OpenNI source code <a href="https://github.com/OpenNI/OpenNI2/blob/master/ThirdParty/PSCommon/XnLib/Source/Linux/XnLinuxUSB.cpp">here</a>.</p>
+<p><strong>Tried with:</strong> Primesense RD1.09, OpenNI 2.2 and Ubuntu 14.04</p>
+</body>
+</html>

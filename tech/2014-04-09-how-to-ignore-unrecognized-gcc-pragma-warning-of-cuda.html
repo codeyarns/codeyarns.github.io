@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to ignore unrecognized GCC pragma warning of CUDA</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to ignore unrecognized GCC pragma warning of CUDA</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-04-09 03:02:03+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>You have a GCC pragma in your CUDA code to <a href="2014/03/11/how-to-ignore-specific-warning-of-gcc/">ignore a specific warning</a> produced by your code. While the GCC compiler uses this for the C++ section of the code, the CUDA compiler frontend complains about it with a warning:</p>
+<pre><code>foo.cu(44): warning: unrecognized GCC pragma</code></pre>
+<h1 id="solution">Solution</h1>
+<p>To request the frontend of the CUDA compiler to ignore or hide this warning, pass this option during compilation:</p>
+<pre><code>-Xcudafe &quot;--diag_suppress=unrecognized_gcc_pragma&quot;</code></pre>
+<p>The GCC pragma warning should be hidden now.</p>
+<p><strong>Tried with:</strong> CUDA 5.5, GCC 4.8 and Ubuntu 12.04</p>
+</body>
+</html>

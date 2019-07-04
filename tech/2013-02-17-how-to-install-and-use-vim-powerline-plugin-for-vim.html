@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install and use vim-powerline plugin for Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install and use vim-powerline plugin for Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-02-17 05:53:06+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_3254&quot; align=&quot;aligncenter&quot; width=&quot;805&quot;][<img src="http://codeyarns.files.wordpress.com/2013/02/20130217-powerline.png" alt="Statusline displayed by vim-powerline" />](http://codeyarns.files.wordpress.com/2013/02/20130217-powerline.png) Statusline displayed by vim-powerline[/caption]</p>
+<p>The <strong>statusline</strong> in <strong>Vim</strong> gets the job done: it shows the current mode and the location of the cursor in the currently open file. The <a href="https://github.com/Lokaltog/vim-powerline"><strong>vim-powerline</strong></a> plugin is a great way to jazz up the statusline of Vim and show lots of useful additional information. (As of this writing, folks are working on a new <a href="https://github.com/Lokaltog/powerline"><strong>powerline</strong></a> plugin. This post is about the older vim-powerline plugin.)</p>
+<p><strong>Installation</strong></p>
+<p>The powerline plugin can be <a href="2010/12/09/how-to-install-pathogen-and-use-it-to-install-vim-plugins/">installed for Pathogen</a> by cloning its <a href="https://github.com/Lokaltog/vim-powerline">Github repository</a>.</p>
+<p><strong>Color support</strong></p>
+<p>The plugin uses lots of bright colors and needs 256-color support in Vim. One way to turn this on in Vim is by adding this line to your vimrc:</p>
+<pre><code>set t_Co=256</code></pre>
+<p><strong>Fancy symbols</strong></p>
+<p>By default it shows a simple colored statusline. By using Unicode symbols, it can present a more beautiful statusline. To turn this on, add this line to your vimrc:</p>
+<pre><code>let g:Powerline_symbols = &quot;fancy&quot;</code></pre>
+<p><strong>Patched fonts</strong></p>
+<p>The plugin can show symbols if the file is in version control (Git or Mercurial), for the filetype, for the line number and many more. For this to work, you need to patch your font and use that patched font for your terminal or Vim.</p>
+<p>If you are on Ubuntu and using the default Ubuntu Mono font, then a patched version of this font can be obtained <a href="https://github.com/scotu/ubuntu-mono-powerline">here</a>. Follow the instructions on that page to install the fonts.</p>
+<p>If you are on Windows and using Consolas, either directly or through SSH with PuTTY, I have more information in <a href="2013/02/17/how-to-use-vim-powerline-plugin-in-putty-and-windows/">another post</a>.</p>
+<p>For other fonts and setups, use the script and directions in the <strong>fontpatcher</strong> directory.</p>
+<p><strong>Additional plugins</strong></p>
+<p>The plugin can show information on syntax errors and also version control information for Git and Mercurial. To view these status symbols and messages, install these three plugins: <a href="2013/02/16/how-to-use-syntastic-as-syntax-checker-for-vim/"><strong>syntastic</strong></a> (for syntax checking), <a href="https://github.com/tpope/vim-fugitive"><strong>fugitive</strong></a> (for Git) and <a href="https://github.com/vim-scripts/hgrev"><strong>hgrev</strong></a> (for Mercurial).</p>
+<p>With all this set up correctly, you get a Vim statusline that looks gorgeous and shows lots of useful information, both in terminal and GUI modes.</p>
+<p><strong>Tried with:</strong> Vim 7.3 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

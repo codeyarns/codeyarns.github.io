@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Could not create logging file error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Could not create logging file error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-02-22 15:18:07+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to train a model using <strong>Caffe</strong> on a remote computer. The training proceeded without any problems, but this error would show up in the console output occasionally:</p>
+<pre><code>Could not create logging file: No such file or directory
+COULD NOT CREATE A LOGGINGFILE 20170221-111719.33617!I0221 11:17:19.399444 33617 solver.cpp:243] Iteration 86860, loss = 3.38734</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This error turned out to be from <strong>GLog</strong>, the Google logging module. Caffe uses GLog for its logging. On this particular remote computer, the <code>GLOG_log_dir</code> environment variable had been set, but to a non-existent path! This was the reason GLog was complaining. Once I removed this environment variable and restarted the training, I no longer saw the error.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

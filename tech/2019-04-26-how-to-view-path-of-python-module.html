@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to view path of Python module</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to view path of Python module</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-04-26 13:58:40+00:00</h3>
+</div>
+<p>To view the paths of an imported Python module, say <code>tensorflow</code>:</p>
+<pre><code>import tensorflow
+print(tensorflow.__path__)
+
+# Output is:
+# [&#39;/usr/local/lib/python3.6/site-packages/tensorflow/python/keras/api/_v1&#39;,
+#  &#39;/usr/local/lib/python3.6/site-packages/tensorflow_estimator/python/estimator/api/_v1&#39;,
+#  &#39;/usr/local/lib/python3.6/site-packages/tensorflow&#39;,
+#  &#39;/usr/local/lib/python3.6/site-packages/tensorflow/_api/v1&#39;]</code></pre>
+<p>This can be useful to check if the right module from the right location is being imported. It is also useful to know where to go check out the Python source files of a module for inspection or debugging.</p>
+</body>
+</html>

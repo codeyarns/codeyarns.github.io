@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to debug at command window in MATLAB</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to debug at command window in MATLAB</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-27 03:58:10+00:00</h3>
+</div>
+<p>One of the killer features of <strong>MATLAB</strong> is its excellent debugging features in GUI mode. Anyone who has used the <strong>Visual Studio</strong> debugger will be right at home in MATLAB, since the keyboard shortcuts and mouse operations for debugging are the same. However, sometimes you may be using MATLAB in its <code>-nodesktop</code> mode where you only have access to its command window.</p>
+<p>In these situations, you can still debug MATLAB scripts using the debugging commands:</p>
+<ul>
+<li><p><code>dbstop in foo.m at 600</code>: Set breakpoint in <code>foo.m</code> file at line <code>600</code>.</p></li>
+<li><p><code>dbstop if error</code>: Indicate MATLAB that you want debugging to be stopped at the instructions that caused an error.</p></li>
+<li><p><code>dbstatus</code>: List all the breakpoints that are currently set.</p></li>
+<li><p><code>dbclear all</code>: Remove all breakpoints.</p></li>
+<li><p><code>dbclear in foo.m</code>: Remove all breakpoints in <code>foo.m</code>.</p></li>
+<li><p><code>dbclear in foo.m at 600</code>: Remove breakpoint set in <code>foo.m</code> at line <code>600</code>.</p></li>
+<li><p><code>dbcont</code>: Continue execution until next breakpoint.</p></li>
+<li><p><code>dbquit</code>: Exit debug mode. Execution will be terminated.</p></li>
+<li><p><code>dbstack</code>: List the function call stack.</p></li>
+<li><p><code>dbstep</code>: Execute next instruction. Same as F10 in Visual Studio.</p></li>
+<li><p><code>dbstep in</code>: Step into next instruction. Same as F11 in Visual Studio.</p></li>
+<li><p><code>dbstep out</code>: Step out of next instruction. Same as Shift-F11 in Visual Studio.</p></li>
+<li><p>To print the value of any variable, just type its name.</p></li>
+<li><p><code>size</code>: Get the size of any variable.</p></li>
+<li><p><code>whos</code>: Get the list of variables at current scope.</p></li>
+</ul>
+<p><strong>Reference:</strong> <a href="http://www.mathworks.com/help/matlab/debugging-code.html">Debugging documentation</a> of MATLAB</p>
+</body>
+</html>

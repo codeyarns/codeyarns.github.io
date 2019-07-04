@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Caffe CUDA_cublas_device_LIBRARY error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Caffe CUDA_cublas_device_LIBRARY error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-03-20 12:50:26+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I was trying to build <strong>BVLC Caffe</strong> from source as described <a href="https://codeyarns.com/2017/02/22/how-to-build-caffe/">here</a> on Ubuntu 18.04 with CUDA 10.0.</p>
+<p>CMake ended with this error:</p>
+<pre><code>Please set them or make sure they are set and tested correctly in the CMake files:
+CUDA_cublas_device_LIBRARY (ADVANCED)</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This problem seems to occur with a combination of CUDA 10.0 or later and a CMake version that is older than 3.13. I upgraded to CMake 3.14.0 as described <a href="https://codeyarns.com/2019/03/20/how-to-install-cmake/">here</a> and the problem was solved.</p>
+</body>
+</html>

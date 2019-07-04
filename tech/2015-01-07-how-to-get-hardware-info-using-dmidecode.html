@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get hardware info using dmidecode</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get hardware info using dmidecode</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-07 12:33:15+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5420&quot; align=&quot;aligncenter&quot; width=&quot;576&quot;][<img src="https://codeyarns.files.wordpress.com/2015/01/20150107-dmidecode1.png" alt="Information about RAM from dmidecode" />](https://codeyarns.files.wordpress.com/2015/01/20150107-dmidecode1.png) Information about RAM from dmidecode[/caption]</p>
+<p><code>dmidecode</code> is an useful application on Linux to obtain hardware information from DMI or SMBIOS of your system.</p>
+<p>This application is typically installed on Ubuntu. If not, it is easy to get it:</p>
+<pre><code>$ sudo apt install dmidecode</code></pre>
+<p>Running it without any parameters, dumps all the info it knows:</p>
+<pre><code>$ sudo dmidecode</code></pre>
+<p>Instead, what you typically need is info about a specific part of your computer. This can be dumped using the <code>--type</code> parameter. Please see <code>man dmidecode</code> to find out all the values of integers that can be passed to this parameter.</p>
+<p>For example, to get information about the RAM (memory) slots on your computer:</p>
+<pre><code>$ sudo dmidecode --type 17</code></pre>
+<p><strong>Tried with:</strong> DMIDecode 2.12 and Ubuntu 14.04</p>
+</body>
+</html>

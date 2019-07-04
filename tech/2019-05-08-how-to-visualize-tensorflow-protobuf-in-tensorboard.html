@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to visualize TensorFlow protobuf in Tensorboard</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to visualize TensorFlow protobuf in Tensorboard</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-08 02:48:32+00:00</h3>
+</div>
+<p><strong>Tensorboard</strong> is a browser based visualization tool for the training of deep learning models using <strong>TensorFlow</strong>. It is typically invoked on the log directory that is output from the TensorFlow training process. It is not straightforward to use it to visualize a model stored as a single protobuf (.pb) file.</p>
+<p>Here is how to do that:</p>
+<ul>
+<li>Install TensorFlow and Tensorboard, if you do not have them already:</li>
+</ul>
+<pre><code>$ pip3 install -U --user tensorflow tensorboard</code></pre>
+<ul>
+<li>Convert the protobuf file to a file that Tensorboard can work with using an import script that ships with TensorFlow:</li>
+</ul>
+<pre><code>$ python3 ~/.local/lib/python3.6/site-packages/tensorflow/python/tools/import_pb_to_tensorboard.py --model_dir foobar_model.pb --log_dir foobar_log_dir</code></pre>
+<p>This script creates a log directory you requested for if it does not exist. It creates a file name of the form <code>events.out.tfevents.1557253678.your-hostname</code> that Tensorboard understands. Note that it is better to pass in a different log directory for every different model.</p>
+<p>Another thing to note is that the option is named <code>--model_dir</code> but it actually expects a protobuf file as input.</p>
+<ul>
+<li>Now we can invoke Tensorboard with the log directory as input:</li>
+</ul>
+<pre><code>$ tensorboard --logdir=foobar_log_dir</code></pre>
+<p>The <code>tensorboard</code> executable file should be present in your <code>~/.local/bin</code> directory. If this path is not in your <code>PATH</code> environment variable, consider adding it. Alternatively, you can invoke the executable with its absolute path too.</p>
+<ul>
+<li>You can visualize and explore the structure of your model in Tensorboard by opening <a href="http://localhost:6006">localhost:6006</a> in your browser.</li>
+</ul>
+</body>
+</html>

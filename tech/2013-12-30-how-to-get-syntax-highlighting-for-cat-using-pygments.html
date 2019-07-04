@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get syntax highlighting for cat using pygments</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get syntax highlighting for cat using pygments</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-12-30 12:12:50+00:00</h3>
+</div>
+<p>Some people like to quickly have a look at short source files using <code>cat</code> at the terminal. It would be nice to have <strong>syntax highlighting</strong> for such a use. Though <code>cat</code> does not support syntax highlighting, it is easy to get a similar experience using <a href="http://pygments.org/"><strong>Pygments</strong></a>, a syntax highlighter written in Python.</p>
+<p>First, install Pygments using <code>pip</code>:</p>
+<p>[code lang=bash] $ sudo pip install Pygments</p>
+<pre><code>
+This installs a `pygmentize` program, whose `-g` can be used to request it to guess the type of input file and apply the appropriate syntax highlighting:
+
+[code lang=bash]
+$ pygmentize -g foobar.cpp</code></pre>
+<p>If you use this regularly, create an alias for it with a name that is easy to remember like <code>ccat</code>.</p>
+<p><strong>Tried with:</strong> Pygments 1.6, Python 2.7.3 and Ubuntu 12.04</p>
+</body>
+</html>

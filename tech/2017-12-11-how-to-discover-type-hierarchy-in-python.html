@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to discover type hierarchy in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to discover type hierarchy in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-12-11 13:47:14+00:00</h3>
+</div>
+<p>Given any type in Python, you can easily discover its ancestor and descendant types. This ease of discovery of the internals of the language is one of my favorite features of Python.</p>
+<ul>
+<li><p>Remember that all types are descended from the <code>object</code> type.</p></li>
+<li><p>Even <code>type</code> is a type and it is a child of the <code>object</code> type.</p></li>
+<li><p>The <code>__base__</code> attribute of any type has a string value with the name of the parent type.</p></li>
+<li><p>The <code>__subclasses__</code> method of any type lists the child types.</p></li>
+<li><p>To determine which are the standard types (or builtin types or builtins as they are called in Python), check the <code>__module__</code> attribute of the type. If it is <code>builtins</code> in Python 3 or <code>__builtin__</code> in Python 2, then that is a standard type.</p></li>
+<li><p>If you start from <code>object</code>, you can actually list the entire type hierarchy tree. A script that does just that can be found <a href="https://gist.github.com/ashwin/baf6edd2a2af5fb6070cc55b4339f84c">here</a>.</p></li>
+<li><p>In Python 3.5.2, I found that there are 143 builtin types (most of them are just types of Exception) in the tree:</p></li>
+</ul>
+<pre><code>object
++-- type
++-- dict_values
+    +-- odict_values
++-- tuple_iterator
++-- set
++-- fieldnameiterator
++-- frame
++-- dict_keyiterator
++-- PyCapsule
++-- coroutine
++-- bytearray
++-- NoneType
++-- list
++-- dict
++-- getset_descriptor
++-- method-wrapper
++-- method
++-- str_iterator
++-- formatteriterator
++-- str
++-- set_iterator
++-- range_iterator
++-- memoryview
++-- cell
++-- generator
++-- map
++-- list_iterator
++-- stderrprinter
++-- reversed
++-- method_descriptor
++-- code
++-- weakproxy
++-- int
+    +-- bool
++-- ellipsis
++-- module
++-- dict_items
+    +-- odict_items
++-- bytearray_iterator
++-- Struct
++-- moduledef
++-- filter
++-- staticmethod
++-- tuple
++-- frozenset
++-- managedbuffer
++-- coroutine_wrapper
++-- function
++-- builtin_function_or_method
++-- odict_iterator
++-- float
++-- range
++-- super
++-- dict_keys
+    +-- odict_keys
++-- list_reverseiterator
++-- bytes_iterator
++-- member_descriptor
++-- wrapper_descriptor
++-- property
++-- instancemethod
++-- zip
++-- weakref
++-- slice
++-- longrange_iterator
++-- dict_valueiterator
++-- EncodingMap
++-- callable_iterator
++-- mappingproxy
++-- BaseException
+    +-- Exception
+        +-- TypeError
+        +-- StopAsyncIteration
+        +-- SyntaxError
+            +-- IndentationError
+                +-- TabError
+        +-- AttributeError
+        +-- AssertionError
+        +-- StopIteration
+        +-- MemoryError
+        +-- BufferError
+        +-- NameError
+            +-- UnboundLocalError
+        +-- LookupError
+            +-- IndexError
+            +-- KeyError
+        +-- EOFError
+        +-- ImportError
+        +-- ValueError
+            +-- UnicodeError
+                +-- UnicodeEncodeError
+                +-- UnicodeDecodeError
+                +-- UnicodeTranslateError
+        +-- RuntimeError
+            +-- RecursionError
+            +-- NotImplementedError
+        +-- SystemError
+        +-- Warning
+            +-- UserWarning
+            +-- DeprecationWarning
+            +-- BytesWarning
+            +-- SyntaxWarning
+            +-- PendingDeprecationWarning
+            +-- FutureWarning
+            +-- ResourceWarning
+            +-- ImportWarning
+            +-- RuntimeWarning
+            +-- UnicodeWarning
+        +-- ReferenceError
+        +-- OSError
+            +-- ConnectionError
+                +-- BrokenPipeError
+                +-- ConnectionAbortedError
+                +-- ConnectionRefusedError
+                +-- ConnectionResetError
+            +-- BlockingIOError
+            +-- NotADirectoryError
+            +-- PermissionError
+            +-- FileExistsError
+            +-- TimeoutError
+            +-- IsADirectoryError
+            +-- InterruptedError
+            +-- ProcessLookupError
+            +-- FileNotFoundError
+            +-- ChildProcessError
+        +-- ArithmeticError
+            +-- FloatingPointError
+            +-- OverflowError
+            +-- ZeroDivisionError
+    +-- GeneratorExit
+    +-- KeyboardInterrupt
+    +-- SystemExit
++-- dict_itemiterator
++-- classmethod
++-- NotImplementedType
++-- iterator
++-- bytes
++-- enumerate
++-- classmethod_descriptor
++-- complex
++-- traceback
++-- weakcallableproxy</code></pre>
+<ul>
+<li><p>Note how <code>bool</code> is a child type of the <code>int</code> type.</p></li>
+<li><p>In Python 2.7.12, I found that there are 60 builtin types in the tree:</p></li>
+</ul>
+<pre><code>object
++-- type
++-- weakref
++-- weakcallableproxy
++-- weakproxy
++-- int
+    +-- bool
++-- basestring
+    +-- str
+    +-- unicode
++-- bytearray
++-- list
++-- NoneType
++-- NotImplementedType
++-- traceback
++-- super
++-- xrange
++-- dict
++-- set
++-- slice
++-- staticmethod
++-- complex
++-- float
++-- buffer
++-- long
++-- frozenset
++-- property
++-- memoryview
++-- tuple
++-- enumerate
++-- reversed
++-- code
++-- frame
++-- builtin_function_or_method
++-- instancemethod
++-- function
++-- classobj
++-- dictproxy
++-- generator
++-- getset_descriptor
++-- wrapper_descriptor
++-- instance
++-- ellipsis
++-- member_descriptor
++-- file
++-- PyCapsule
++-- cell
++-- callable-iterator
++-- iterator
++-- EncodingMap
++-- fieldnameiterator
++-- formatteriterator
++-- module
++-- classmethod
++-- dict_keys
++-- dict_items
++-- dict_values
++-- deque_iterator
++-- deque_reverse_iterator
++-- Struct</code></pre>
+<ul>
+<li><p>Note how <code>str</code> and <code>unicode</code> are child types of the <code>basestring</code> type. Also observe how this differs from Python 3 builtin types.</p></li>
+<li><p>Also notice how in Python 2 the exception types are not builtin types.</p></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build OGRE on Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build OGRE on Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-06-09 03:16:39+00:00</h3>
+</div>
+<p>OGRE is a bit difficult to compile on Windows because of the many libraries it depends on.</p>
+<h1 id="build-ogre-dependencies">Build OGRE dependencies</h1>
+<ul>
+<li><p>Clone the <a href="https://bitbucket.org/cabalistic/ogredeps">OGRE Dependencies repository</a>. This has the source code of all the OGRE dependent libraries.</p></li>
+<li><p><a href="2014/06/09/how-to-build-cmake-project-on-windows/">Build it using CMake</a>. Make sure you set <code>CMAKE_INSTALL_PREFIX</code> to a separate subdirectory since this path will be used while building OGRE.</p></li>
+<li><p>If you get error on <code>unistd.h</code>, comment that line. I found it could build without using it.</p></li>
+</ul>
+<h1 id="build-ogre">Build OGRE</h1>
+<ul>
+<li><p>Download the source code of OGRE or clone from <a href="https://bitbucket.org/sinbad/ogre/">its repository</a>.</p></li>
+<li><p><a href="2014/06/09/how-to-build-cmake-project-on-windows/">Build it using CMake</a>. Set the variable OGRE_DEPENDENCIES_DIR to the install path you set while building the dependencies. Set the CMAKE_INSTALL_PREFIX variable to the place where you want the OGRE libraries and executables need to be placed after build.</p></li>
+</ul>
+<h1 id="pre-built">Pre-built</h1>
+<p>Pre-built libraries of OGRE for recent Visual Studio versions can be downloaded from <a href="http://www.ogre3d.org/forums/viewtopic.php?f=4&amp;t=69274">here</a>.</p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="http://techny.tumblr.com/post/39928642180/building-ogre-in-windows-7-8-using-visual-studio-2012">Building Ogre in Windows 7/8 using Visual Studio 2012</a></li>
+</ul>
+<p><strong>Tried with:</strong> OGRE 1.8.1, Visual Studio 2013 and Windows 7 x64</p>
+</body>
+</html>

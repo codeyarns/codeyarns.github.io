@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to configure local computer for FastAI course</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to configure local computer for FastAI course</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-04-01 03:44:45+00:00</h3>
+</div>
+<p>I wanted to check out the <a href="http://course.fast.ai/"><strong>Practical Deep Learning for Coders</strong></a> course by <strong>FastAI</strong>. However, I noticed that the course provided configuration instructions mainly for cloud GPU instance providers like Paperspace. I have a notebook and a desktop computer with powerful NVIDIA GPUs and wanted to try the course on my local machines. The course material is also provided in the form of Jupyter notebooks, while I intended to turn those into Python programs to run locally.</p>
+<p>Here are the steps I followed to get my local computer setup for the FastAI course:</p>
+<ul>
+<li><p>The local computer was running Ubuntu 16.04 and NVIDIA drivers were already installed on it and working.</p></li>
+<li><p>CUDA 9.0 was installed using the online instructions from NVIDIA.</p></li>
+<li><p>The latest release of CuDNN was installed as described <a href="https://codeyarns.com/2017/05/20/how-to-install-cudnn/">here</a>.</p></li>
+<li><p>Conda was installed and configured as described <a href="https://codeyarns.com/2018/03/31/how-to-install-conda/">here</a>. You should be able to run <code>conda info</code> from the shell. I wanted to try the course without resorting to Anaconda, but that seems unnecessarily complicated.</p></li>
+<li><p>Clone the fastai Github repo:</p></li>
+</ul>
+<pre><code>$ git clone git@github.com:fastai/fastai.git</code></pre>
+<ul>
+<li>In the fastai directory, use this command to create a Conda environment named <code>fastai</code> and install all the required Python packages (including PyTorch) under that:</li>
+</ul>
+<pre><code>$ conda env update</code></pre>
+<ul>
+<li>Activate the <code>fastai</code> environment:</li>
+</ul>
+<pre><code>$ conda activate fastai</code></pre>
+<ul>
+<li><p>Add the path to fastai to your <code>PYTHONPATH</code> environment variable, so that you can import it from Python.</p></li>
+<li><p>Open a Python interpreter and check if you can import PyTorch and it has CUDA and CuDNN support:</p></li>
+</ul>
+<pre><code>$ python
+&gt;&gt;&gt; import torch
+&gt;&gt;&gt; torch.cuda.is_available()
+True
+&gt;&gt;&gt; torch.backends.cudnn.enabled
+True</code></pre>
+<ul>
+<li>Open a Python interpreter and check if you can import the fastai package:</li>
+</ul>
+<pre><code>$ from fastai.imports import *</code></pre>
+<p>You are now ready to execute any of the code shown in the course at a Python interpreter or inside Python scripts. Note that you will still need to download any additional datasets needed by the course. You will find these instructions in the Jupyter notebooks or course material.</p>
+</body>
+</html>

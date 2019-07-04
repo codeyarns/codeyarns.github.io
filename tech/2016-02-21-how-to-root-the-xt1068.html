@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to root the XT1068</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to root the XT1068</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-02-21 03:57:52+00:00</h3>
+</div>
+<p>The <strong>Moto G2 (XT1068)</strong> can be safely <strong>rooted</strong> (or jailbroken) thus allowing you full access to install any apps, run them with superuser permissions, downgrade or upgrade Android ROMs or install alternate ROMs (like CyanogenMod). The best guide for rooting the XT1068 that worked for me was <a href="http://forum.xda-developers.com/moto-g-2014/general/xt1063-t3018818">this</a>.</p>
+<p>Here are the steps that worked specifically for my dual-SIM XT1068 running Android 5.0.2 (Lollipop). If your phone is different (say the single-SIM XT1064) or running a different Android version (say KitKat or Marshmallow), then do not follow these steps!</p>
+<p>Here is mine:</p>
+<ul>
+<li><p>Before rooting the XT1068, the bootloader needs to be unlocked. That can be done following the steps described <a href="http://codeyarns.com/2016/02/21/how-to-unlock-bootloader-of-xt1068/">here</a>.</p></li>
+<li><p>Download the <strong>TWRP</strong> image from <a href="https://dl.twrp.me/titan/twrp-3.0.0-0-titan.img">here</a> and <strong>SuperSU</strong> zip file from <a href="https://download.chainfire.eu/696/SuperSU/UPDATE-SuperSU-v2.46.zip">here</a>.</p></li>
+<li><p>Copy the TWRP <code>.img</code> file to the directory of your ADB and Fastboot.</p></li>
+<li><p>Connect XT1068 to your computer using USB cable. You should be able to view its contents in File Explorer.</p></li>
+<li><p>Copy the SuperSU zip file to the XT1068 directory in File Explorer. This is actually the <code>/sdcard</code> directory of the phone.</p></li>
+<li><p>Open the ADB and Fastboot prompt and flash the TWRP image: <code>fastboot flash recovery type_twrp_image_filename_here</code></p></li>
+<li><p>After it is flashed, disconnect the phone.</p></li>
+<li><p>Follow these steps carefully: Press volume-down to scroll to <strong>Recovery</strong> option and press volume-up. This boots into TWRP.</p></li>
+<li><p>We need TWRP to be the default recovery ROM. To to that, select Mount and select only System. Go back, go to Advanced -&gt; File Manager and delete these files: <code>/system/etc/install-recovery.cfg</code> and <code>/system/recovery-from-boot.p</code></p></li>
+<li><p>Go to Install and select the location where we copied SuperSU zip file that we had copied. This will usually be <code>/sdcard</code>. Flash it. Choose Reboot -&gt; System.</p></li>
+<li><p>Once the phone has booted, install the <strong>Root Checker</strong> app and check. You must have root access now!</p></li>
+</ul>
+<p><strong>Tried with:</strong> Windows 10 x64</p>
+</body>
+</html>

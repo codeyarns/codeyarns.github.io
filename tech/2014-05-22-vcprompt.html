@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>VCPrompt</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">VCPrompt</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-22 07:15:17+00:00</h3>
+</div>
+<p>Extensions like <strong>Hg-Prompt</strong> help print the version control status to the command prompt, as described <a href="2014/05/22/hg-prompt-extension-for-mercurial/">here</a>. But, it is written in <strong>Python</strong> and launching the Python interpreter on every command is too slow at the command prompt. That is the last place where you need things to be slow!</p>
+<p>The solution for speed is always C/C++! <a href="https://bitbucket.org/gward/vcprompt"><strong>VCPrompt</strong></a> is a tool that is written in C/C++ by <strong>Greg Ward</strong> that can be used to print status of version control in the shell prompt. It is extremely fast due to it being a binary. It can handle <strong>Mercurial</strong>, <strong>Git</strong> and <strong>Subversion</strong> repositories.</p>
+<p>To install from PPA:</p>
+<pre><code>$ sudo add-apt-repository ppa:voronov84/andreyv
+$ sudo apt-get update
+$ sudo apt install vcprompt</code></pre>
+<p>To install it from source:</p>
+<pre><code>$ hg clone https://bitbucket.org/gward/vcprompt
+$ cd vcprompt
+$ autoconf
+$ ./configure
+$ make
+$ sudo make install</code></pre>
+<p>To use vcprompt, specify the information you need in its format specifier:</p>
+<pre><code>$ vcprompt -f &quot;%n:%r:%u%m&quot;
+hg:123:+</code></pre>
+<p>It can be easily incorporated into a shell prompt, by grabbing its output.</p>
+<p><strong>Note:</strong> VCPrompt has a few missing features, including not being able to show details of Git submodule. There is another VCPrompt inspired by this one <a href="https://github.com/djl/vcprompt">here</a> which has these features. However, it is written in Python, which makes its choice moot.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

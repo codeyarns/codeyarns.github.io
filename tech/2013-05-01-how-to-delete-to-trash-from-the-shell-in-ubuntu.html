@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to delete to trash from the shell in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to delete to trash from the shell in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-05-01 04:24:28+00:00</h3>
+</div>
+<p>The <strong>rm</strong> command is probably the most dangerous command to use from the shell in Linux. Files need to be deleted and directories need to be cleaned up all the time. However, one small mistake with rm can lead to disaster. The question that begs then is, why not safely delete to the trash can, just like we do on the desktop?</p>
+<p>Thankfully, that is possible thanks to <a href="https://github.com/andreafrancia/trash-cli"><strong>trash-cli</strong></a>. It has commands to move files and directories to the trash can on your Ubuntu desktop.</p>
+<p>Here is how I have set up my system to delete files to trash from the shell:</p>
+<ol style="list-style-type: decimal">
+<li><p>First, install trash-cli. I prefer <a href="2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">installing it from the Ubuntu repositories</a> using the package name <strong>trash-cli</strong></p></li>
+<li><p>trash-cli has many <strong>commands</strong>: to trash, to empty the trash can, to list contents of the trash can and to restore. The only command I really need is <strong>trash-put</strong>, which moves files and directories to the trash can. Since its name is pretty long, I have added an alias to my <strong>~/.bash_aliases</strong> file that maps this command to a shorter name: <strong>can</strong></p></li>
+<li><p>Next, you need to overcome your habit of using rm for deleting and use can instead. To do this, create an alias in <strong>~/.bash_aliases</strong> named rm that reminds you whenever you use rm:</p></li>
+</ol>
+<pre><code>alias rm=&quot;echo Use trash-put or /bin/rm&quot;</code></pre>
+<ol style="list-style-type: decimal">
+<li>For the rare cases where you actually need rm, it is still around. You can use it by providing its full path: <strong>/bin/rm</strong></li>
+</ol>
+<p><strong>Note:</strong> Do not make the mistake of making an alias named rm that maps to trash-put! That can be dangerous when you switch to using another computer which does not have trash-cli and you use rm thinking it does.</p>
+<p><strong>Tried with:</strong> trash-cli 0.12.10.3 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

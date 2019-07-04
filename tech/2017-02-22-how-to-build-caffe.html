@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build Caffe</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build Caffe</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-02-22 15:30:29+00:00</h3>
+</div>
+<p>Building <strong>Caffe</strong> from source is easy. There are two options provided: using a Makefile or using CMake.</p>
+<h1 id="required-packages">Required packages</h1>
+<ul>
+<li><p>Download or clone the source code of Caffe from <a href="https://github.com/BVLC/caffe">here</a>.</p></li>
+<li><p>Not surprisingly, you will need a GPU, a graphics driver that can work with that GPU and an installation of CUDA.</p></li>
+<li><p>Other than that, you will need to install these packages:</p></li>
+</ul>
+<pre><code>$ sudo apt install libboost-all-dev libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler libgflags-dev libgoogle-glog-dev liblmdb-dev</code></pre>
+<ul>
+<li>For BLAS on CPU, the best performance comes from installing Intel's MKL libraries. If you do not have that, you can install either ATLAS or OpenBLAS:</li>
+</ul>
+<pre><code>$ sudo apt install libatlas-base-dev
+$ sudo apt install libopenblas-dev</code></pre>
+<ul>
+<li>To build the Python interface to Caffe, which is highly recommended, make sure these packages are installed:</li>
+</ul>
+<pre><code>$ sudo apt install libboost-python-dev python-skimage python-protobuf</code></pre>
+<ul>
+<li>If you do not have one or more of the above Python-related packages, you might see these errors:</li>
+</ul>
+<pre><code>The dependency target &quot;pycaffe&quot; of target &quot;pytest&quot; does not exist.
+
+ImportError: No module named skimage.io
+
+ImportError: No module named google.protobuf.internal</code></pre>
+<h1 id="build-using-cmake">Build using CMake</h1>
+<p>Just follow the usual steps for CMake:</p>
+<pre><code>$ mkdir build
+$ cd build
+$ cmake ..
+$ make</code></pre>
+<p>To build and run the 2000+ unittests, which can take quite a while to finish:</p>
+<pre><code>$ make runtest</code></pre>
+<p>Finally to build the Python interface to Caffe:</p>
+<pre><code>$ make pycaffe
+$ make install</code></pre>
+<p>By default, the install directory will be a subdirectory inside the <code>build</code> directory. Add this <code>build/install/python</code> path to <code>PYTHONPATH</code> environment variable before you import caffe in Python.</p>
+<h1 id="build-using-make">Build using Make</h1>
+<p>On one system, I found that using Makefile was easier, since CMake was erroneously complaining about <code>-lpthreads</code> (which is a Clang library, not a GCC library). Copy the Makefile config file, open it in an editor and check whether all the paths are set correctly:</p>
+<pre><code>$ cp Makefile.config.example Makefile.config
+$ vim Makefile.config
+$ make</code></pre>
+<h1 id="build-matcaffe">Build MatCaffe</h1>
+<p>Building support for <strong>MATLAB</strong> to use Caffe takes a few more steps:</p>
+<ul>
+<li><p>In Makefile.config, set the <code>MATLAB_DIR</code> to the path that contains <code>bin/mex</code>. On my computer, this was the path <code>/usr/local/MATLAB/R2014a</code>.</p></li>
+<li><p>Compiling the MATLAB wrapper gave an error about C++11 on my Ubuntu 14.04 due to the older GCC compilers. So, I had to add <code>-std=c++11</code> to the <code>CXXFLAGS</code> variable in <code>Makefile</code> as shown <a href="https://github.com/Caffe-MPI/Caffe-MPI.github.io/pull/4/files">here</a>.</p></li>
+<li><p>Finally, compiling MatCaffe is easy:</p></li>
+</ul>
+<pre><code>$ make all matcaffe</code></pre>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>pstree cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">pstree cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-11-21 13:53:28+00:00</h3>
+</div>
+<p>The <strong>ps</strong> command in Linux has been horribly mauled by having to support Unix, BSD and GNU options and innumerable eccentric back-compatible necessities that I find it almost unusable. Instead, I like to use the <strong>pstree</strong> command for almost all my process exploration tasks. pstree shows the processes on a system as a tree.</p>
+<ul>
+<li>Installing it is easy:</li>
+</ul>
+<pre><code>$ sudo apt install psmisc</code></pre>
+<ul>
+<li>By default, pstree shows the processes of all users as a tree, where each link connects the parent process on the left to the child process on the right:</li>
+</ul>
+<pre><code>$ pstree</code></pre>
+<ul>
+<li>To only view the processes of a particular <strong>user</strong> joe:</li>
+</ul>
+<pre><code>$ pstree joe</code></pre>
+<ul>
+<li>To view the <strong>command-line arguments</strong> of each process:</li>
+</ul>
+<pre><code>$ pstree -a</code></pre>
+<ul>
+<li>To view the <strong>PID</strong> of each process:</li>
+</ul>
+<pre><code>$ pstree -p</code></pre>
+<ul>
+<li>To view all the children or <strong>descendants</strong> of a process with PID 900:</li>
+</ul>
+<pre><code>$ pstree 900</code></pre>
+<ul>
+<li>To view both the <strong>ancestors</strong> and descendants of a process with PID 900:</li>
+</ul>
+<pre><code>$ pstree -s 900</code></pre>
+<p><strong>Tried with:</strong> pstree 22.21 and Ubuntu 16.04</p>
+</body>
+</html>

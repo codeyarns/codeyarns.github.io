@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>H5Dump</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">H5Dump</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-01-17 14:39:00+00:00</h3>
+</div>
+<div class="figure">
+<img src="https://codeyarns.files.wordpress.com/2017/01/20170117_h5dump.png" alt="H5Dump" />
+<p class="caption">H5Dump</p>
+</div>
+<p><strong>HDF5</strong> is the most popular file format for storing binary data structures. The <a href="https://codeyarns.com/2016/02/24/hdfview/"><strong>HDFView</strong></a> tool makes it convenient to view and browse the contents of a HDF5 file in a Java GUI. But what if you are at the commandline and need a way to quickly view or dump the contents of a HDF5 file? The <strong>h5dump</strong> does exactly this.</p>
+<ul>
+<li>It can be installed easily:</li>
+</ul>
+<pre><code>$ sudo apt install hdf5-tools</code></pre>
+<ul>
+<li>To dump the contents of a file:</li>
+</ul>
+<pre><code>$ h5dump foobar.h5</code></pre>
+<ul>
+<li>By default, you will notice that some data like string arrays are shown in a matrix format. To display all contents in one column format:</li>
+</ul>
+<pre><code>$ h5dump --width=1 foobar.h5
+$ h5dump -w 1 foobar.h5</code></pre>
+<p><strong>Tried with:</strong> HDF5 Tools 1.8.16 and Ubuntu 16.04</p>
+</body>
+</html>

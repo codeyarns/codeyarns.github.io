@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Out of sync error in Eclipse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Out of sync error in Eclipse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-08-04 12:26:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><strong>Eclipse</strong> has a strange behavior that I have not seen in any other editor or IDE. Assume that a file belonging to a project in the workspace has been modified outside of Eclipse. If you now open that file in Eclipse, it does not open it, but shows this error:</p>
+<pre><code>Resource is out of sync with the file system: &#39;/src/foo.cpp&#39;.
+
+Press &#39;F5&#39; or select File &gt; Refresh to refresh the file.</code></pre>
+<p>You can press <code>F5</code> and the file will be displayed.</p>
+<h1 id="solution">Solution</h1>
+<p>I cannot imagine a scenario in practice where I would not want to keep the updated file. To make this out of sync error go away by refreshing files automatically, you have two options:</p>
+<ol style="list-style-type: decimal">
+<li><p>You can make Eclipse refresh the file automatically when it is opened. To do this enable Windows -&gt; Preferences -&gt; General -&gt; Workspace -&gt; Refresh on access.</p></li>
+<li><p>You can make Eclipse refresh the file by being signaled by the filesystem (this is efficient) or polling the filesystem (this is inefficient). This is efficient only on Windows. To do this enable Windows -&gt; Preferences -&gt; General -&gt; Workspace -&gt; Refresh using native hooks or polling.</p></li>
+</ol>
+<p><strong>Tried with:</strong> Eclipse 4.5 and Ubuntu 14.04</p>
+</body>
+</html>

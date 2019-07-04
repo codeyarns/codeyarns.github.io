@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Forcing Raspbmc to turn on HDMI at boot</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Forcing Raspbmc to turn on HDMI at boot</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-10-13 02:13:33+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p><strong>Raspberry Pi</strong> is running <strong>Raspbmc</strong> and is connected to a TV by <strong>HDMI</strong>. If the TV and Raspbmc are powered on at the same time, then everything works fine. However, if the Raspbmc is powered on first and the TV much later, then there is no video or audio on the TV!</p>
+<p><strong>Solution</strong></p>
+<p>During boot, if Raspbmc sees through HDMI that the TV is off then it switches its video-audio signals to the analog outputs. To force Raspbmc to always use HDMI even if no HDMI display is detected, add the line <code>hdmi_force_hotplug=1</code> to <code>/boot/config.txt</code> and reboot Raspbmc.</p>
+<p>Now, if you boot Raspbmc first and power on the TV later, you will find that video works. However, there is no audio! This is because when forced to use HDMI and no HDMI display is detected, Raspbmc only outputs video and no audio. To force Raspbmc to pick the full HDMI mode where both video and audio are sent, add <code>hdmi_drive=2</code> to <code>/boot/config.txt</code> and reboot Raspbmc.</p>
+<p>https://gist.github.com/ashwin/5047791</p>
+<p>By adding both of these lines, the problem should be solved. More information on these modes can be found <a href="http://elinux.org/RPi_config.txt">here</a>. Thanks to the fine folks who answered <a href="http://raspberrypi.stackexchange.com/questions/2169">my query</a> for this solution :-)</p>
+<p><strong>Tried with:</strong> Raspbmc RC4</p>
+</body>
+</html>

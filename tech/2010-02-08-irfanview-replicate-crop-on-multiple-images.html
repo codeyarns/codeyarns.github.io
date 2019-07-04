@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>IrfanView: Replicate Crop on Multiple Images</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">IrfanView: Replicate Crop on Multiple Images</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-02-08 08:22:07+00:00</h3>
+</div>
+<p>I had a series of images of the same dimensions and wanted to <strong>crop</strong> all of them with the same bounds. Eyeballing the original crop and approximating the same on the rest of the images was out of the question, since the crops had to match to the very last pixel.</p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/02/2010_02_08_irfanview_crop_1.png"><img src="http://codeyarns.files.wordpress.com/2010/02/2010_02_08_irfanview_crop_1.png" /></a></p>
+<p>I tried to note down the crop parameters and redo the same on the rest of the images. When a <strong>crop rectangle</strong> is drawn on the image, its parameters can be seen on the Irfanview titlebar. The first 2 numbers are the coordinates of the <strong>origin</strong> (top left) and the next two numbers are the dimensions of the crop rectangle.</p>
+<p>Redoing this crop manually on many images turned out bad since it was tiring to draw the rectangle with a mouse correctly to match the parameters.</p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/02/2010_02_08_irfanview_crop_2.png"><img src="http://codeyarns.files.wordpress.com/2010/02/2010_02_08_irfanview_crop_2.png" /></a></p>
+<p>Thankfully, the swiss army knife that is IrfanView has a better solution. Choose <strong>Edit</strong> → <strong>Create custom crop selection</strong>. If you have chosen a crop rectangle its parameters will already be displayed. Click on <strong>Save current values</strong>, click on <strong>Apply to image</strong> and crop the image. Open the rest of the images and do the same.</p>
+</body>
+</html>

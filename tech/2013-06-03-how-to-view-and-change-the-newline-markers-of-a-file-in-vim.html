@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to view and change the newline markers of a file in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to view and change the newline markers of a file in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-06-03 03:28:38+00:00</h3>
+</div>
+<p>It is pretty common to create, edite and exchange source files between Windows, Linux and Mac computers. The <strong>newline</strong> markers in text files are different on all these three systems. Sometimes, this leads to funny looking characters when files are created on one system and opened on another. Typically, the <code>dos2unix</code> and <code>unix2dos</code> tools are used to convert text files between these formats.</p>
+<p>In <strong>Vim</strong>, it is easy to convert the end-of-line markers of a file to that of Windows, Linux or Mac. This is done using the <strong>fileformat</strong> option.</p>
+<p>To <strong>view</strong> the end-of-line markers of the currently open file:</p>
+<pre><code>:set fileformat?</code></pre>
+<p>To set the end-of-line markers of the file to <strong>Windows</strong>:</p>
+<pre><code>:set fileformat=dos</code></pre>
+<p>To set the end-of-line markers of the file to <strong>Linux</strong>:</p>
+<pre><code>:set fileformat=unix</code></pre>
+<p>To set the end-of-line markers of the file to <strong>Mac</strong>:</p>
+<pre><code>:set fileformat=mac</code></pre>
+<p>After changing the newline markers, save the file.</p>
+<p><strong>Tried with:</strong> Vim 7.3 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

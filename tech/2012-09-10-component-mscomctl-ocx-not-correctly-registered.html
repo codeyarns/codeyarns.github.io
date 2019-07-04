@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Component MSCOMCTL.OCX not correctly registered</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Component MSCOMCTL.OCX not correctly registered</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-09-10 12:30:12+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_2772&quot; align=&quot;aligncenter&quot; width=&quot;497&quot;][<img src="http://codeyarns.files.wordpress.com/2012/09/20120910-component-error.png" />](http://codeyarns.files.wordpress.com/2012/09/20120910-component-error.png) MSCOMCTL.OCX error dialog[/caption]</p>
+<p><strong>Problem</strong></p>
+<p>After I installed <strong>MP3Gain</strong> on <strong>Windows 8</strong> and executed it, it threw this error:</p>
+<blockquote>
+Component 'MSCOMCTL.OCX' or one of its dependencies not correctly registered: a file is missing or invalid
+</blockquote>
+<p><strong>Solution</strong></p>
+<p>This error is caused because either the file <strong>MSCOMCTL.OCX</strong> is missing or it is not registered with the registry. To fix it, try the following:</p>
+<ol style="list-style-type: decimal">
+<li><p>Find a copy of this file. You might find this file somewhere among your Windows application directories or can be found online. Place the file in a directory which will not be tampered with.</p></li>
+<li><p>Open a command prompt with Administrator privileges.</p></li>
+<li><p>Register the file by using the <strong>regsvr32</strong> command: <code>regsvr32 C:\path\to\MSCOMCTL.OCX</code></p></li>
+</ol>
+<p>After the registration is successful, run the application again and it should execute without throwing this error.</p>
+<p><strong>Tried with:</strong> Windows 8 x64 and MP3Gain 1.2.5</p>
+</body>
+</html>

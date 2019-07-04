@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Python: all() &amp; any()</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Python: all() &amp; any()</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2009-10-21 02:29:05+00:00</h3>
+</div>
+<h1 id="alliterable-returns-true-if-all-elements-in-iterable-are-true-for-if-element">all(iterable) returns True if all elements in iterable are True for &quot;if element:&quot;</h1>
+<pre><code># any(iterable) returns True if any element in iterable is True for &quot;if element:&quot;
+
+alist = [True, True, True]
+all(alist) # True
+any(alist) # True
+
+blist = [True, 0, 1, &quot;True&quot;]
+all(blist) # False, due to 0
+any(blist) # True
+
+clist = [True, 1, &quot;False&quot;]
+all(clist) # True
+any(clist) # True
+
+dlist = [False, 0, [], None]
+all(dlist) # False
+any(dlist) # False</code></pre>
+</body>
+</html>

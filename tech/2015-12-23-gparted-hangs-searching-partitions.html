@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>GParted hangs searching partitions</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">GParted hangs searching partitions</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-12-23 13:24:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had to extend a <strong>Windows</strong> partition on a <strong>Dell Inspiron 1320</strong> notebook. So, I booted the computer with a <strong>Ubuntu</strong> USB disk. To extend the partition, I opened <strong>GParted</strong>. However, it was stuck at <code>Searching /dev/sda partitions</code>. This task did not finish even though I left the computer for many hours!</p>
+<h1 id="solution">Solution</h1>
+<p>It turns out that this a common problem on Dell notebooks, as reported in detail <a href="http://gparted-forum.surf4.info/viewtopic.php?id=16892">here</a>. The culprit is the tiny partition that Dell puts at the beginning of the disk. On my notebook this partition appears in Windows as <strong>OEM Partition</strong>. I cannot mount, umount, change or delete it from Windows! I could not find any solution online that describes how to do this either.</p>
+<p><strong>Note:</strong> I was able to extend the Windows partition though. Turns out it can be done easily from Administrative Tools -&gt; Computer Management -&gt; Disk Management. I was actually surprised it allowed me to extend a live mounted partition. But it does it in a snap!</p>
+</body>
+</html>

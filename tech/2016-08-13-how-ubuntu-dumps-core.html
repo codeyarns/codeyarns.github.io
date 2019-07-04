@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How Ubuntu dumps core</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How Ubuntu dumps core</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-08-13 10:43:33+00:00</h3>
+</div>
+<p>When your program tries to do anything nasty, like access memory it is not supposed to, you end up seeing a <strong>core dump</strong>.</p>
+<p>If you ran the program under the <strong>Bash</strong> shell, you might see this error:</p>
+<pre><code>$ ./my_program
+Segmentation fault (core dumped)</code></pre>
+<p>Under the <strong>Fish</strong> shell, I see this error:</p>
+<pre><code>$ ./my_program
+fish: “./my_program” terminated by signal SIGSEGV (Address boundary error)</code></pre>
+<p>If I check the directory I ran the program from, I see that there is a <code>core</code> file that has the entire dump of the process memory from when the program did its nasty act.</p>
+<p>How did a <code>SIGSEGV</code> end up as a core dump file? This is what I found in Ubuntu:</p>
+<ul>
+<li>On SIGSEGV, Linux kernel writes an entry in <code>/var/log/syslog</code> with some information about what happened. Here is the line on my computer:</li>
+</ul>
+<pre><code>Aug 13 17:56:09 my_machine kernel: [442853.259571] my_program[18432]: segfault at 4700000046 ip 00007f7688f6980d sp 00007ffd46b5e3e0 error 4 in libc-2.23.so[7f7688f30000+1c0000]</code></pre>
+<ul>
+<li><p>The Linux kernel checks what settings are present for writing a core dump. There are 3 settings, which are in the files <code>core_pattern</code>, <code>core_pipe_limit</code> and <code>core_uses_pid</code> in <code>/proc/sys/kernel</code> directory. The documentation of these settings can be found described in <a href="https://www.kernel.org/doc/Documentation/sysctl/kernel.txt">kernel.txt</a>.</p></li>
+<li><p><code>core_pattern</code> says what the filename of the core dump file should be. On my Ubuntu, this setting had this value:</p></li>
+</ul>
+<pre><code>$ cat /proc/sys/kernel/core_pattern 
+|/usr/share/apport/apport %p %s %c %P</code></pre>
+<p>From the kernel.txt documentation, we can see that this means that the kernel has to call the <code>/usr/share/apport/apport</code> executable with four input arguments. The first, second and fourth arguments are documented as PID of offending process, signal number and global PID. We do not know what the <code>%c</code> does, but we will find out soon below. The kernel will pipe the process memory to the standard input of this apport program.</p>
+<ul>
+<li>What is this <a href="https://wiki.ubuntu.com/Apport"><strong>apport</strong></a> program? It is the crash handler of Ubuntu. We can see that it is a Python script:</li>
+</ul>
+<pre><code>$ file /usr/share/apport/apport
+/usr/share/apport/apport: Python script, ASCII text executable</code></pre>
+<p>That is great, because we can open it and read its code to see what it does!</p>
+<ul>
+<li>Opening up this file in Vim, we see that <code>%c</code> input argument is the <code>ulimit</code> value set in our shell:</li>
+</ul>
+<pre><code>Line 393: (pid, signum, core_ulimit) = sys.argv[1:4]</code></pre>
+<ul>
+<li><p>We can also see what exactly it does to write the core dump in its function <code>write_user_coredump</code>. In short, this function checks the <code>ulimit</code> value of the shell and then decides how many bytes to write to the core file and writes it to the same directory as the program.</p></li>
+<li><p>We also see that it called <code>error_log</code> to write some log messages. These can be found listed in the <code>/var/log/apport.log</code> file:</p></li>
+</ul>
+<pre><code>ERROR: apport (pid 18475) Sat Aug 13 17:56:18 2016: called for pid 18474, signal 11, core limit 102400000
+ERROR: apport (pid 18475) Sat Aug 13 17:56:18 2016: executable: /home/joe/my_program (command line &quot;./my_program&quot;)
+ERROR: apport (pid 18475) Sat Aug 13 17:56:18 2016: executable does not belong to a package, ignoring
+ERROR: apport (pid 18475) Sat Aug 13 17:56:18 2016: writing core dump to /home/joe/core (limit: 102400000)</code></pre>
+<p>This is how Ubuntu writes the core dump file. You can now open this up in GDB for debugging! :-)</p>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

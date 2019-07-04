@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDA: Block and Grid Dimensions</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDA: Block and Grid Dimensions</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-02-04 09:40:47+00:00</h3>
+</div>
+<p>Sometimes the number of possible dimensions of a <strong>CUDA</strong> block and grid can get confusing. This is not helped by the fact that both of their dimensions is specified by the type dim3.</p>
+<p>I try to distinguish their dimensions by the meaning of their words:</p>
+<ul>
+<li><p><strong>Block</strong>: Think of a block of wood. It has all 3 dimensions: length, width and height.</p></li>
+<li><p><strong>Grid</strong>: A grid is a lattice of horizontal and vertical lines. Thus it has only 2 dimensions.</p></li>
+<li><p>Thus, a block has a <strong>maximum</strong> of 3 dimensions and a grid a maximum of 2 dimensions.</p></li>
+<li><p>A block has a <strong>minimum</strong> of 1 dimension and a grid too has a minimum of 1 dimension. This seems obvious, but in the CUDA 1.x days, the minimum dimension of a block was 2. Needless to say that many programmers must have swore at NVIDIA for that weird restriction! :-D</p></li>
+</ul>
+<p>Similarly, I also find the global variables <code>blockDim</code> and <code>gridDim</code> very confusing. Instead, I mentally replace <code>blockDim</code> by <strong>threads-per-block</strong> and <code>gridDim</code> by <strong>blocks-per-grid</strong>.</p>
+</body>
+</html>

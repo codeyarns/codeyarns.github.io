@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Byobu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Byobu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-01-21 13:09:40+00:00</h3>
+</div>
+<p><a href="https://launchpad.net/byobu"><strong>Byobu</strong></a> is a program that makes using terminal multiplexers really easy. A <strong>terminal multiplexer</strong> is like a windowing system for console programs. Byobu uses <strong>tmux</strong> by default, but can be configured to use <strong>GNU screen</strong> too.</p>
+<p>Byobu allows you have many console windows or programs running at the same time. You can detach from Byobu and later restore the session, with all your terminals and programs running intact. This is similar to hibernating and restarting an OS back.</p>
+<h1 id="usage">Usage</h1>
+<ul>
+<li><p>When opened, Byobu opens with your default shell. The bottom line of Byobu is like a taskbar and shows currently open windows (or tabs). You can see the default window (or tab) numbered 0 there.</p></li>
+<li><p>To open a new session named foo, use the command: <code>byobu -S foo</code></p></li>
+</ul>
+<h1 id="keyboard-shortcuts">Keyboard shortcuts</h1>
+<p>Byobu uses the function keys for almost all its operations.</p>
+<ul>
+<li><p><code>F2</code>: Open a new window or tab. This means that a new shell session is opened in that window. This window is numbered 1, as seen at the bottom.</p></li>
+<li><p><code>F3</code> or <code>F4</code>: Switch forward and backward between open windows.</p></li>
+<li><p><code>F6</code> or <code>Ctrl+A d</code>: Detach from Byobu. Puts you back at the shell. All the windows and the shells inside them are still running. You get back to them whenever you want.</p></li>
+<li><p><code>F7</code>: Toggle mode to scroll through history. Once in this mode, use cursor keys or Page Up or Page Down to scroll through history. To search back or forward in the history, use slash or question mark (just like in Vim). Press Enter to get out of this mode.</p></li>
+<li><p><code>F8</code>: Rename the current window. The name is shown at the bottom of each window. This is very useful to distinguish work you are doing in each window.</p></li>
+<li><p><code>Ctrl + F2</code>: Create a vertical split window</p></li>
+<li><p><code>Shift + F2</code>: Create a horizontal split window</p></li>
+<li><p><code>Shift + F3</code> or <code>Shift + F4</code>: Switch forward and backward between split windows</p></li>
+<li><p><code>F9</code>: Change the settings using its inbuilt Curses GUI dialog.</p></li>
+<li><p><code>Alt + F12</code>: Toggle mouse support. More details in this <a href="https://codeyarns.com/2016/01/28/how-to-use-mouse-in-byobu/">post</a>.</p></li>
+<li><p><code>Shift + F12</code>: Toggle function keys. This is useful when you want to use the function keys in a terminal application.</p></li>
+</ul>
+<p>You can see these keyboard shortcuts defined in the <code>/usr/share/byobu/keybindings/f-keys.tmux</code> file.</p>
+<p><strong>Tried with:</strong> Byobu 5.77 and Ubuntu 14.04</p>
+</body>
+</html>

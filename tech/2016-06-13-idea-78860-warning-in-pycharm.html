@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>IDEA-78860 warning in PyCharm</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">IDEA-78860 warning in PyCharm</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-06-13 12:02:47+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I installed <strong>PyCharm</strong> (Community 2016.1) on an Ubuntu 14.04 system. Whenever it is started, it would show this warning:</p>
+<pre><code>IBus prior to 1.5.11 may cause input problems. See IDEA-78860 for details.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>PyCharm and many other IDEs based on <strong>IntelliJ IDEA</strong> seem to give this warning on Ubuntu 14.04 which uses IBus 1.5.5. <a href="https://en.wikipedia.org/wiki/Intelligent_Input_Bus"><strong>IBus</strong></a> is a framework to enter text in multiple languages in Linux. I guess that this warning goes away if an IBus version of 1.5.11 or later is installed. But since I do not type in any language other than English, I decided to turn off IBus itself.</p>
+<p>In XUbuntu, I opened Settings Manager -&gt; Language Support and changed the Keyboard input method system dropdown value from IBus to None. I had to restart the system for this to take effect. The PyCharm warning went away after changing this setting.</p>
+</body>
+</html>

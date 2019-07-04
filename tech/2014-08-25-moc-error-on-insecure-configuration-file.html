@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>MOC error on insecure configuration file</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">MOC error on insecure configuration file</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-25 15:17:27+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I added a configuration file for the MOC music player in my home directory: <code>~/.moc/config</code>. On running <code>mocp</code>, it threw this error:</p>
+<pre><code>FATAL_ERROR: Configuration file is not secure: /home/joe/.moc/config</code></pre>
+<h1 id="solution">Solution</h1>
+<p>MOC requires that this configuration file be only writable by root or current user and nobody else. However, this file had write permissions for the users belonging to its group. MOC started without error once I removed the write permission for group:</p>
+<pre><code>$ chmod g-w ~/.moc/config</code></pre>
+<p><strong>Tried with:</strong> MOC 2.5.0 and Ubuntu 14.04</p>
+</body>
+</html>

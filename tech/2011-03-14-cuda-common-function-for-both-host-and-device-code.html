@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDA: Common Function for both Host and Device Code</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDA: Common Function for both Host and Device Code</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-03-14 05:36:09+00:00</h3>
+</div>
+<p>If a function needs to be used <strong>both</strong> by host and by device code, it is convenient to define it in a single location. Such a function can be defined by applying both of the qualifiers <code>__host__ __device__</code>.</p>
+<p>For example, a function that computes maximum of 2 numbers to be used both on host and device code:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__host__ __device__ <span class="dt">int</span> fooMax( <span class="dt">int</span> a, <span class="dt">int</span> b )
+{
+    <span class="cf">return</span> ( a &gt; b ) ? a : b;
+}</code></pre></div>
+<p>The <code>__CUDA_ARCH__</code> macro can be used to if a part of the code of the function needs to be compiled selectively for either host or device:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__host__ __device__ <span class="dt">int</span> fooMax( <span class="dt">int</span> a, <span class="dt">int</span> b )
+{
+    <span class="co">// Compiled only on host</span>
+<span class="pp">#ifndef __CUDA__ARCH__</span>
+    assert( ( a &lt; <span class="dv">100</span> ) &amp;&amp; ( b &lt; <span class="dv">100</span> ) &amp;&amp; <span class="st">&quot;Numbers beyond the application bound!&quot;</span> );
+<span class="pp">#endif</span>
+
+    <span class="cf">return</span> ( a &gt; b ) ? a : b;
+}</code></pre></div>
+<p>Sometimes, the host and device code that use the common function can be spread across different compilation units. Here is such a scenario:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">/////////////////////////////////////////////////</span>
+<span class="co">// fooDevice.cu</span>
+__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>* inArray, <span class="dt">int</span> num, <span class="dt">int</span>* outArray )
+{
+    <span class="co">// Do something</span>
+}
+<span class="co">/////////////////////////////////////////////////</span>
+
+<span class="co">/////////////////////////////////////////////////</span>
+<span class="co">// fooDevice.h</span>
+__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>*, <span class="dt">int</span>, <span class="dt">int</span>* );
+<span class="co">/////////////////////////////////////////////////</span>
+
+<span class="co">/////////////////////////////////////////////////</span>
+<span class="co">// fooHost.cu</span>
+<span class="pp">#include </span><span class="im">&quot;fooDevice.h&quot;</span>
+<span class="dt">void</span> foo()
+{
+    fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( devInArray, num, devOutArray );
+}
+<span class="co">/////////////////////////////////////////////////</span></code></pre></div>
+<p>In the above example, the host code is in <code>fooHost.cu</code>, the device code is in <code>fooDevice.cu</code> and there is a <code>fooDevice.h</code> that is used to share kernel and function declarations between the two compilation units. In such a setup, how do we share the <code>__host__ __device__</code> function between the 2 compilation units?</p>
+<p>Placing the <code>__host__ __device__</code> function in a header file is not a suitable solution since it leads to multiple definitions of the function when the header is included in multiple compilation units.</p>
+<p>The only solution in such a setup is to place the <code>__host__ __device__</code> function definition in the compilation unit that has device kernels that use this function. That is, place the function in <code>fooDevice.cu</code> and share its host function declaration in the <code>fooDevice.h</code> as follows:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">/////////////////////////////////////////////////</span>
+<span class="co">// fooDevice.cu</span>
+
+__host__ __device__ <span class="dt">int</span> fooMax( <span class="dt">int</span> a, <span class="dt">int</span> b )
+{
+    <span class="cf">return</span> ( a &gt; b ) ? a : b;
+}
+
+__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>* inArray, <span class="dt">int</span> num, <span class="dt">int</span>* outArray )
+{
+    <span class="co">// Do something using fooMax</span>
+    outArray[ idx ] = fooMax( inArray[ idx0 ], inArray[ idx1 ];
+}
+<span class="co">/////////////////////////////////////////////////</span>
+
+<span class="co">/////////////////////////////////////////////////</span>
+<span class="co">// fooDevice.h</span>
+<span class="dt">int</span> fooMax( <span class="dt">int</span>, <span class="dt">int</span> );
+__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>*, <span class="dt">int</span>, <span class="dt">int</span>* );
+<span class="co">/////////////////////////////////////////////////</span>
+
+<span class="co">/////////////////////////////////////////////////</span>
+<span class="co">// fooHost.cu</span>
+<span class="pp">#include </span><span class="im">&quot;fooDevice.h&quot;</span>
+<span class="dt">void</span> foo()
+{
+    <span class="dt">int</span> m = fooMax( x, y );
+    fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( devInArray, num, devOutArray );
+}
+<span class="co">/////////////////////////////////////////////////</span></code></pre></div>
+<p>Doing it the other way around will not work! That is, placing the <code>__host__ __device__</code> function in <code>fooHost.cu</code> and sharing its function declaration to <code>fooDevice.cu</code> does not work since the CUDA compiler needs the ability to inline a <code>__device__</code> function. And inlining a function is only possible if the entire function definition is available.</p>
+<p><strong>Tried with</strong>: CUDA 3.2</p>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to do error checking in CUDA</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to do error checking in CUDA</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-03-02 08:49:17+00:00</h3>
+</div>
+<p>Error checks in CUDA code can help catch CUDA errors at their source. There are 2 sources of errors in CUDA source code:</p>
+<ol style="list-style-type: decimal">
+<li><p>Errors from CUDA <strong>API</strong> calls. For example, a call to <code>cudaMalloc()</code> might fail.</p></li>
+<li><p>Errors from CUDA <strong>kernel</strong> calls. For example, there might be invalid memory access inside a kernel.</p></li>
+</ol>
+<p>All CUDA API calls return a <code>cudaError</code> value, so these calls are easy to check:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">if</span> ( cudaSuccess != cudaMalloc( &amp;fooPtr, fooSize ) )
+    printf( <span class="st">&quot;Error!</span><span class="sc">\n</span><span class="st">&quot;</span> );</code></pre></div>
+<p>CUDA kernel invocations do not return any value. Error from a CUDA kernel call can be checked after its execution by calling <code>cudaGetLastError()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;(); <span class="co">// Kernel call</span>
+<span class="cf">if</span> ( cudaSuccess != cudaGetLastError() )
+    printf( <span class="st">&quot;Error!</span><span class="sc">\n</span><span class="st">&quot;</span> );</code></pre></div>
+<p>These two types of checks can be elegantly wrapped up in two simple error-checking functions like this:</p>
+<p>https://gist.github.com/2652488</p>
+<p>Using these error checking functions is easy:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">CudaSafeCall( cudaMalloc( &amp;fooPtr, fooSize ) );
+
+fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;(); <span class="co">// Kernel call</span>
+CudaCheckError();</code></pre></div>
+<p>These functions are actually derived from similar functions which used to be available in the <code>cutil.h</code> in old CUDA SDKs.</p>
+<p>Notice that the calls are inline functions, so absolutely no code is produced when <code>CUDA_CHECK_ERROR</code> is not defined. These utility functions can prove their worth to catch errors as close as possible to the error source only if they are used everywhere. So, use them to wrap all CUDA API calls and after all your kernel calls :-)</p>
+<p><strong>Tried with</strong>: CUDA 5.5</p>
+</body>
+</html>

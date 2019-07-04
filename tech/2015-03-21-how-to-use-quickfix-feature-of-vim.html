@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Quickfix feature of Vim for compilation</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Quickfix feature of Vim for compilation</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-21 04:13:44+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_6405&quot; align=&quot;aligncenter&quot; width=&quot;636&quot;][<img src="https://codeyarns.files.wordpress.com/2015/03/20150321_quickfix.png" alt="Compile, view errors and fix them from inside Vim using Quickfix" />](https://codeyarns.files.wordpress.com/2015/03/20150321_quickfix.png) Compile, view errors and fix them from inside Vim using Quickfix[/caption]</p>
+<p>The <strong>Quickfix</strong> feature of <strong>Vim</strong> is great if you work regularly with source code of languages which need to be compiled, like <strong>C</strong> or <strong>C++</strong>. If you are coming from <strong>Visual Studio</strong> or <strong>Eclipse CDT</strong>, the Quickfix feature basically gives an IDE-like feel of the edit-compile-fix cycle. (The only missing piece is a visual debugger inside Vim.) For example, you can view the errors and warnings produced on compiling your code in the Quickfix window, jump to the location of the error or warning, fix them and compile the code again. All from within Vim! :-)</p>
+<p>Here are some pointers on how I use Quickfix:</p>
+<ul>
+<li><p>Quickfix is a plugin that ships with Vim. So, there is nothing to install!</p></li>
+<li><p>If you have a compile command, then redirect its output to a file. Use the <code>-q</code> option of Vim to open this file and you can navigate the errors from there (as described later below). For example:</p></li>
+</ul>
+<pre><code>$ g++ main.cpp 2&gt; errors.txt
+$ vim -q errors.txt</code></pre>
+<ul>
+<li><p>If you are using CMake or Make, then life is much easier for you. Open Vim in <code>build</code> directory and invoke make from within it using the command <code>:make</code>. This runs Make and fills up the Quickfix buffer with the error output.</p></li>
+<li><p>To open the Quickfix window, use the command <code>:copen</code>. In the screenshot above, the Quickfix window is visible at the bottom.</p></li>
+<li><p>Navigate the Quickfix window as usual and press <code>Enter</code> on any error or warning line. That file, which may not even be in the same directory, is opened in the top window and the cursor is placed at the line and column of the error. Now, is that not like an IDE! :-)</p></li>
+<li><p>Now you can jump between the editor window and Quickfix window, using the usual <code>Ctrl + w + w</code> command and fix all the errors.</p></li>
+<li><p>Once done, you can compile again right from inside Vim using <code>:make</code>. More errors? Fix them. And the edit-compile-edit cycle continues :-)</p></li>
+<li><p>For more help on Quickfix, see <code>:help quickfix</code></p></li>
+</ul>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

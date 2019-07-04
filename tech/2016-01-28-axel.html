@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Axel</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Axel</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-01-28 12:01:13+00:00</h3>
+</div>
+<p><strong>Wget</strong> is a venerable tool to download files from the web. However, if you are downloading a huge file or a lot of files, it can be a slow tool. This is because it does have support to download using multiple connections.</p>
+<p>I find that <strong>Axel</strong> is a good replacement for Wget as download manager. It can use multiple connections to download in parallel, can automatically resume if you kill and restart it and it has a good progress display.</p>
+<p>To install it:</p>
+<pre><code>$ sudo apt install axel</code></pre>
+<p>Usage is simple:</p>
+<pre><code>$ axel the_url_you_want</code></pre>
+<p>By default, it will use 10 connections to download the files.</p>
+<ul>
+<li><p>Use the <code>-n</code> option to specify the number of connections it should use.</p></li>
+<li><p>Use the <code>-a</code> option for an alternate progress bar. I like this better than the default progress bar which scroll down the terminal.</p></li>
+</ul>
+<p>Note that if you kill Axel and restart it with the same command options, it will resume the download from where it had left off! This is a great feature when downloading huge files. You do not want to start all over again!</p>
+<p><strong>Tried with:</strong> Axel 2.4 and Ubuntu 14.04</p>
+</body>
+</html>

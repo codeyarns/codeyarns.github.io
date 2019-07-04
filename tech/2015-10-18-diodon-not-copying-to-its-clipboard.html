@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Diodon not copying to its clipboard</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Diodon not copying to its clipboard</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-18 12:09:17+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I have <a href="2013/03/24/diodon-clipboard-manager-for-ubuntu/"><strong>Diodon</strong></a> working fine on a Ubuntu 14.04 computer. But, when I tried it on a Ubuntu 15.04 computer, it would not work. It is running, but nothing I copy is appearing in its clipboard, which remains empty!</p>
+<h1 id="solution">Solution</h1>
+<p>The newer version of Diodon now uses the <a href="http://zeitgeist-project.com/"><strong>Zeitgeist</strong></a> service for tracking what is copied by the user. This is described in <a href="https://esite.ch/2014/08/why-does-diodon-not-save-anything-to-the-clipboard-history/">this blog post</a>. I usually turn off all logging of file and application use on Ubuntu and this is nothing but the Zeitgeist service.</p>
+<p>To minimally turn back Zeitgeist just enough for Diodon to work, go to System Settings -&gt; Security and Privacy -&gt; File and Applications. Turn ON the <strong>Record file and application usage</strong> option and include <strong>Documents</strong>. The rest can be disabled, they are not needed.</p>
+<p>Restart Diodon and it should now work as expected.</p>
+<p><strong>Tried with:</strong> Diodon 1.2.0 and Ubuntu 15.04</p>
+</body>
+</html>

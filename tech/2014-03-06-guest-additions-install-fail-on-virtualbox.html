@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Guest Additions install fail on VirtualBox</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Guest Additions install fail on VirtualBox</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-03-06 10:56:38+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>You have a Ubuntu guest virtual machine running on VirtualBox that is running on a Ubuntu host OS. You try to install Guest Additions and it fails.</p>
+<pre><code>The headers for the current running kernel were not found. If the following
+module compilation fails then this could be the reason.
+
+Building the main Guest Additions module ...fail!
+(Look at /var/log/vboxadd-install.log to find out what went wrong)</code></pre>
+<h1 id="solution">Solution</h1>
+<p>Though the error looks like it has something to do with the kernel, the actual solution turned out to be quite basic. My Ubuntu host OS was 12.04 and it was running VirtualBox 4.1.2. Now the guest OS was Ubuntu 13.10, which is much newer. The problem turned out to be that the Guest Additions, which comes from VirtualBox, was much older than the guest OS. I uninstalled the old Virtual Box and installed the latest VirtualBox 4.3.8 from the web and Guest Additions worked fine!</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to create directory using C++ on Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to create directory using C++ on Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-07 09:09:47+00:00</h3>
+</div>
+<p>The function to create a new directory is not part of the C or C++ standard library. On Linux, this can be done using the <a href="http://linux.die.net/man/3/mkdir"><strong>mkdir</strong></a> function call.</p>
+<p>Using it is pretty easy:</p>
+<pre><code>#include &lt;sys/stat.h&gt;
+
+const int dir_err = mkdir(&quot;foo&quot;, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+if (-1 == dir_err)
+{
+    printf(&quot;Error creating directory!n&quot;);
+    exit(1);
+}</code></pre>
+<p>This creates the new directory with the commonly used permissions set for user, group and others. Note that this does not create parent directories in a path like <code>foo/bar/xyz</code>, so you will have to create such a path one directory at a time.</p>
+<p>A dirty alternative is to use the <code>mkdir</code> shell command which can construct parent directories, if needed:</p>
+<pre><code>#include &lt;cstdlib&gt;
+
+const int dir_err = system(&quot;mkdir -p foo/bar/xyz&quot;);
+if (-1 == dir_err)
+{
+    printf(&quot;Error creating directory!n&quot;);
+    exit(1);
+}</code></pre>
+<p><strong>Note:</strong> You can check if a directory path exists using the <a href="http://pubs.opengroup.org/onlinepubs/7908799/xsh/opendir.html">opendir</a> call.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

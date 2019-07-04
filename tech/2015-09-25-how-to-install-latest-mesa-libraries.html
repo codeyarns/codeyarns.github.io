@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to update Mesa</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to update Mesa</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-25 12:47:00+00:00</h3>
+</div>
+<p><strong>Mesa</strong> is the open source library on Linux that provides the <strong>OpenGL</strong> implementation for programs. The Mesa library installed by Ubuntu can be pretty old. For example, my Mesa library showed support for the archaic OpenGL 2.1 standard.</p>
+<p>Thankfully, there is a PPA that provides updated Mesa libraries. Updating is easy:</p>
+<pre><code>$ sudo add-apt-repository ppa:oibaf/graphics-drivers
+$ sudo apt-get update
+$ sudo apt-get dist-upgrade</code></pre>
+<p>Remember to reboot the computer after this update. I found that Mesa supported OpenGL 3.0 after this update! 😄</p>
+<p><strong>Tried with:</strong> Mesa 11.1 and Ubuntu 14.04</p>
+</body>
+</html>

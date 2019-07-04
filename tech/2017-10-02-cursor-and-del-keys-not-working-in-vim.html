@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Cursor and Del keys not working in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Cursor and Del keys not working in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-02 14:17:37+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>After changing some configurations in a <strong>vimrc</strong>, I noticed that the keys that move the cursor in Insert mode of Vim did not work. Even the Del key did nothing but move the cursor.</p>
+<h1 id="solution">Solution</h1>
+<p>After examining the configuration I had added to my vimrc, I found that this behavior was caused by setting <code>set noesckeys</code>. Turns out that this setting disables cursor keys in Insert mode. I did not really need that feature, so I took out that line. This leaves the default <code>set esckeys</code> setting which works as expected.</p>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 16.04</p>
+</body>
+</html>

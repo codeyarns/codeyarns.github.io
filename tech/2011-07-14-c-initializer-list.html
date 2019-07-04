@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C: Initializer List</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C: Initializer List</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-07-14 10:54:17+00:00</h3>
+</div>
+<p>A common practice in <strong>C</strong> is to <strong>initialize</strong> the elements of arrays and structures to <strong>zero</strong> like this:</p>
+<pre><code>int iarr[3]    = { 0 };
+struct Foo foo = { 0 };</code></pre>
+<p>Experienced C programmers know that this kind of initialization works <strong>only</strong> for zero, not for any other value! :-) For example, this <strong>will not</strong> initialize the elements of the array or structure to -1:</p>
+<pre><code>int iarr[3]    = { -1 };  // Initialized to [-1, 0, 0]
+struct Foo foo = { -1 };</code></pre>
+<p>The above only initializes the first element of the array or structure to -1. The rest are initialized to 0.</p>
+<p>The single initializer shown in examples above is just a special case of an <strong>initializer list</strong> that does not completely handle all the elements of the array or structure. For such partial initializer lists, C will step in and initialize the rest of the elements to 0. For example:</p>
+<pre><code>int iarr[3] = { -1, 99 }; // Initialized to [-1, 99, 0]</code></pre>
+<p>Finally, modern compilers like Visual C++ provide an easier alternative to initialize all the elements to zero:</p>
+<pre><code>int iarr[3] = {}; // Initialized to [0, 0, 0]</code></pre>
+<p>For more on initializer lists, refer to <strong>Appendix A.8.7</strong> in <strong>The C Programming Language</strong> (2nd Edition).</p>
+</body>
+</html>

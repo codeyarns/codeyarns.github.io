@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to create and use multiple P4 workspaces</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to create and use multiple P4 workspaces</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-07-03 05:54:27+00:00</h3>
+</div>
+<p>It is sometimes useful to have more than one <strong>workspace</strong> in <strong>Perforce</strong>. I have found that this gives me more freedom to work on multiple bugs or features at the same time for the same branch.</p>
+<ul>
+<li>To create a new workspace, we create a new P4 client. To do this, you need to provide a new client name:</li>
+</ul>
+<pre><code>$ p4 client my_client_2</code></pre>
+<p>This opens the configuration of a new client named <code>my_client_2</code> in your favorite editor. Here you can provide the root directory for this client and mappings as your normally would. Save and exit the editor.</p>
+<ul>
+<li>Create the root directory path you specified in the new client config:</li>
+</ul>
+<pre><code>$ mkdir -p /home/joe/p4_workspaces/my_workspace_2</code></pre>
+<ul>
+<li>You need to set this client name as the current client to inform P4 that its commands apply to this client. You do this by setting the <code>P4CLIENT</code> environment variable:</li>
+</ul>
+<pre><code>$ export P4CLIENT=my_client_2</code></pre>
+<p>Now you can run commands such as <code>sync</code> and they should work in this new workspace.</p>
+<ul>
+<li>Switching between two or more P4 workspaces gets onerous if you need to set the above environment variable every time. One solution to overcome this is to create a P4 config file in the root directory of every workspace with the environment variables you want applied for that workspace.</li>
+</ul>
+<p>Create a file named <code>.p4config</code> in the root directory of the new workspace, <code>/home/joe/p4_workspaces/my_workspace_2</code> in this example, with the environment variables and their values you want to set:</p>
+<pre><code>P4CLIENT=my_client_2</code></pre>
+<p>Now when you are at any child directory of the new workspace, P4 will know that it has to use the above client config for its commands. You need to place such config files at the roots of all your workspaces to have a pleasant working experience when moving between workspaces.</p>
+</body>
+</html>

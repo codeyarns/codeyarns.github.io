@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install Eclipse Luna on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install Eclipse Luna on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-10-29 02:03:27+00:00</h3>
+</div>
+<p>The Ubuntu that I am using ships with an ancient 3.x version of Eclipse. However, switching to the latest Eclipse Luna version is easy:</p>
+<ul>
+<li><p>Download the latest Eclipse from <a href="https://www.eclipse.org/downloads/">here</a>. Choose the package that matches what language you develop for. I work with C++, so I downloaded Eclipse CDT.</p></li>
+<li><p>Unzip the contents. This creates an <code>eclipse</code> directory. I prefer to rename that to the Eclipse version. I renamed mine to <code>eclipse-luna-4.4.1</code>.</p></li>
+<li><p>For convenience, move the directory to your <code>~/bin</code> directory. I like to keep my binaries and programs in this directory.</p></li>
+<li><p>You can launch Eclipse by running the <code>eclipse</code> binary in the installation directory.</p></li>
+<li><p>If you want to install other plugins and language support for Eclipse, you can do that from Help -&gt; Install New Software.</p></li>
+<li><p>For convenience, add a Dash entry for Eclipse using Main Menu as explained <a href="2013/01/19/how-to-edit-dash-entries-using-main-menu/">here</a>. You can set the icon for this entry to the <code>icon.xpm</code> file that can be found inside the Eclipse directory. However, I found that the icon was only displayed when I edited the <code>.desktop</code> file of the entry, as described <a href="2014/10/30/how-to-set-icon-for-application-in-ubuntu/">here</a>, to set the full path correctly, including the <code>.xpm</code> file extension.</p></li>
+<li><p>If you would like to remove the ancient version of Eclipse installed by Ubuntu:</p></li>
+</ul>
+<pre><code>$ sudo apt-get remove eclipse-platform
+$ sudo apt-get autoremove</code></pre>
+<p><strong>Tried with:</strong> Eclipse Luna 4.4.1 and Ubuntu 14.04</p>
+</body>
+</html>

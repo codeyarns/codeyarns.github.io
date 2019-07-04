@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>IPython Notebook error: Unsupported JSON nbformat</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">IPython Notebook error: Unsupported JSON nbformat</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-01 12:18:00+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2015/07/20150701_ipython_error.png"><img src="https://codeyarns.files.wordpress.com/2015/07/20150701_ipython_error.png" alt="20150701_ipython_error" /></a></p>
+<h1 id="problem">Problem</h1>
+<p>I ran the <strong>IPython Notebook</strong> server in a directory containing a <code>.ipynb</code> notebook file:</p>
+<pre><code>$ ipython notebook</code></pre>
+<p>It opened the URL <code>http://127.0.0.1:8888</code> in my browser. The notebook file was listed in the webpage. I clicked it to load it and got this error:</p>
+<pre><code>Error loading notebook
+
+Unreadable Notebook: Unsupported JSON
+nbformat version 4 (supported version: 3)</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This error is caused due to opening a notebook created with a newer IPython on a computer with an older IPython. On my computer, I was using IPython installed from Ubuntu repositories, which is ancient.</p>
+<p>I first uninstalled it:</p>
+<pre><code>$ sudo apt remove ipython</code></pre>
+<p>I installed the latest IPython from the <strong>Python Package Index</strong>:</p>
+<pre><code>$ sudo pip install ipython</code></pre>
+<p>The installation was successful, but on running IPython it complained about many other programs. I installed the libraries it complained about:</p>
+<pre><code>$ sudo apt install python-zmq python-jinja2 python-jsonschema</code></pre>
+<p>IPython Notebook ran correctly and I was able to open the notebook after this! :-)</p>
+<p><strong>Tried with:</strong> IPython 3.2 and Ubuntu 14.04</p>
+</body>
+</html>

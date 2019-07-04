@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to draw scatter plot using Matplotlib</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to draw scatter plot using Matplotlib</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-06-23 12:11:00+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_7021&quot; align=&quot;aligncenter&quot; width=&quot;578&quot;][<img src="https://codeyarns.files.wordpress.com/2015/06/20150623_scatter.png" alt="Scatter plot drawn using Matplotlib" />](https://codeyarns.files.wordpress.com/2015/06/20150623_scatter.png) Scatter plot drawn using Matplotlib[/caption]</p>
+<p><strong>Scatter plots</strong> are useful to show data points that lie in 2D. Drawing a scatter plot in Matplotlib is easy using the <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.scatter"><strong>scatter</strong></a> function.</p>
+<ul>
+<li>Assuming your data points are available as two NumPy arrays of shape <code>(N, 1)</code>, drawing a scatter plot is straightforward:</li>
+</ul>
+<pre><code>import matplotlib.pyplot as mplot
+
+# x_vals is NumPy array of shape (N, 1)
+# y_vals is NumPy array of shape (N, 1)
+mplot.scatter(x_vals, y_vals)</code></pre>
+<ul>
+<li><p>By default, <strong>markers</strong> that are filled discs, that is of type <code>o</code>, are drawn. This can changed to any of the other markers available in Matplotlib using the <code>marker</code> input argument. The different markers of Matplotlib are shown <a href="2013/10/24/markers-of-matplotlib/">here</a>.</p></li>
+<li><p>The <strong>size</strong> of the marker is <code>20</code> by default. It can be changed by setting the <code>s</code> input argument.</p></li>
+<li><p>The <strong>edge</strong> or border of the markers are drawn in black by default. If you do not want the edges to be drawn, then set the <code>edgecolors</code> input argument to <code>none</code> (a string, not the <code>None</code> value).</p></li>
+<li><p>The color that is filled inside the marker is called the <strong>face color</strong>. It can be set by using the <code>facecolors</code> input argument. For setting the RGB values of <code>N</code> points, pass a NumPy array of shape <code>(N, 3)</code> where each color value lies in <code>(0, 1)</code>.</p></li>
+<li><p>If a dense set of data points is being drawn, multiple markers could obscure each other. This situation can be improved by adding some transparency to the markers. This can be set using the <code>alpha</code> input argument.</p></li>
+<li><p>An example that uses all the above customizations to draw the figure shown above:</p></li>
+</ul>
+<pre><code>import matplotlib.pyplot as mplot
+
+# x_vals is NumPy array of shape (N, 1)
+# y_vals is NumPy array of shape (N, 1)
+# c_arr  is NumPy array of shape (N, 3)
+
+mplot.scatter(x_vals, y_vals, s=2, marker=&quot;.&quot;, facecolors=c_arr, edgecolors=&quot;none&quot;, alpha=0.5)</code></pre>
+<p><strong>Tried with:</strong> Matplotlib 1.3.1 and Ubuntu 14.04</p>
+</body>
+</html>

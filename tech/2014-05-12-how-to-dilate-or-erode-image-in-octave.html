@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to dilate or erode image in Octave</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to dilate or erode image in Octave</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-12 07:18:29+00:00</h3>
+</div>
+<ul>
+<li>Make sure the <strong>image</strong> package for Octave is installed. It can be installed easily:</li>
+</ul>
+<pre><code>$ sudo apt-get install octave-image</code></pre>
+<ul>
+<li>First create a structuring element to use for dilation or erosion:</li>
+</ul>
+<pre><code>$ se = strel(&quot;square&quot;, 3);
+$ se
+1 1 1
+1 1 1
+1 1 1</code></pre>
+<ul>
+<li>Next, use the structuring element to perform dilation or erosion:</li>
+</ul>
+<pre><code>$ B = imdilate(A, se);
+$ D = imerode(C, se);</code></pre>
+<p>These functions are from Matlab and so will work on it too.</p>
+<p><strong>Tried with:</strong> Octave 3.8.1 and Ubuntu 14.04</p>
+</body>
+</html>

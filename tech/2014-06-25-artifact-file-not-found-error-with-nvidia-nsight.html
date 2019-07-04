@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Artifact file not found error with NVIDIA NSight</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Artifact file not found error with NVIDIA NSight</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-06-25 05:05:24+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to install the Vrapper plugin to NVIDIA NSight. Everything went fine until the last step, which gave this error:</p>
+<pre><code>An error occurred while installing the items
+session context was:(profile=cider, phase=org.eclipse.equinox.internal.p2.engine.phases.Install, operand=null --&gt; [R]org.eclipse.equinox.launcher.gtk.linux.x86_64 1.1.200.v20120913-144807, action=org.eclipse.equinox.internal.p2.touchpoint.eclipse.actions.InstallBundleAction).
+The artifact file for osgi.bundle,org.eclipse.equinox.launcher.gtk.linux.x86_64,1.1.200.v20120913-144807 was not found.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>Go to <code>~/.eclipse</code>. One of the subdirectories here holds the configuration files for NSight. The other subdirectory might be for Eclipse, if you have installed it and are using it. Delete the NSight subdirectory. Open NSight again and try installing Vrapper. It worked this time for me.</p>
+<p><strong>Tried with:</strong> Vrapper 0.44, NVIDIA NSight 5.5 and Ubuntu 14.04</p>
+</body>
+</html>

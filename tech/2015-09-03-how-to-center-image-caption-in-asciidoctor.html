@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to center image caption in ASCIIDoctor</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to center image caption in ASCIIDoctor</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-03 12:27:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>A <strong>caption</strong> to an image is provided in <strong>ASCIIDoctor</strong> document as follows:</p>
+<pre><code>.This is a caption
+image::foo.png[align=&quot;center&quot;]</code></pre>
+<p>However, the caption is aligned to the left by default.</p>
+<p>Applying a <code>text-center</code> on it does not work:</p>
+<pre><code>[.text-center]
+.This is a caption
+image::foo.png[align=&quot;center&quot;]</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This problem has been discussed in <a href="https://github.com/asciidoctor/asciidoctor/issues/857">this Github issue</a>. The solution provided to add a few lines to <code>imageblock</code> in the stylesheet does not work. Instead, I changed the default behavior itself in the stylesheet to be center.</p>
+<ul>
+<li>To do this first find out where gems are installed:</li>
+</ul>
+<pre><code>$ gem environment</code></pre>
+<ul>
+<li>Go to the <code>INSTALLATION DIRECTORY</code> output in the above command and to the subdirectory holds ASCIIDoctor stylesheets:</li>
+</ul>
+<pre><code>$ cd gems/asciidoctor-1.5.2/data/stylesheets/</code></pre>
+<ul>
+<li><p>Open the <code>asciidoctor-default.css</code> and find the place where for <code>imageblock</code> the <code>text-align</code> attribute is set to <code>left</code> and change that to <code>center</code>. For me, this was in line 177.</p></li>
+<li><p>Rebuild your ASCIIDoctor document and the rendered HTML should have centered image caption.</p></li>
+</ul>
+<p><strong>Tried with:</strong> ASCIIDoctor 1.5.2, Ruby 2.1.0 and Ubuntu 14.04</p>
+</body>
+</html>

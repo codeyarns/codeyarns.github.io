@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to find version of OpenCV</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to find version of OpenCV</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-03-10 02:54:38+00:00</h3>
+</div>
+<p>To print the version of OpenCV that you are using:</p>
+<pre><code>#include &lt;opencv2/opencv.hpp&gt;
+
+std::cout &lt;&lt; CV_VERSION &lt;&lt; std::endl;</code></pre>
+<p><code>CV_VERSION</code> is a macro that is defined in <code>modules/core/include/opencv2/core/version.hpp</code> as seen <a href="https://github.com/Itseez/opencv/blob/master/modules/core/include/opencv2/core/version.hpp">here</a>. It combines the values of five definitions provided in the same file:</p>
+<pre><code>#define CV_VERSION_EPOCH    3
+#define CV_VERSION_MAJOR    0
+#define CV_VERSION_MINOR    0
+#define CV_VERSION_REVISION 0
+#define CV_VERSION_STATUS   &quot;-dev&quot;</code></pre>
+</body>
+</html>

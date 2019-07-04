@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Reference to pointer in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Reference to pointer in C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-12-28 15:44:29+00:00</h3>
+</div>
+<p><strong>Reference to pointer</strong> is a useful construct to be aware of in C++. As you might already know, the C++ language allows you to take a reference to any object that is not a temporary. You can take a const reference to any object, including a temporary. So what is special about reference to a pointer?</p>
+<p>A common construct in C++ is to receive a <strong>pointer to a pointer</strong> as input argument to a function. This is typically used to allocate a primitive or an object inside the function. The allocated primitive or object will be available in the caller after the function is called and done with. This idiom is common with C programmers who have moved to C++. It is such code that becomes a lot cleaner and easier to write and read if a reference to pointer is used as input argument to function. As a bonus, since it is a reference it has to always refer to a pointer that actually exists.</p>
+<p>The code example below shows the difference between pointer to pointer and reference to pointer:</p>
+<p>https://gist.github.com/ashwin/6ae52a0712e905977185af76ba48e374</p>
+<p>Note how reference-to-pointer is cleaner to understand both at the caller location and inside callee.</p>
+</body>
+</html>

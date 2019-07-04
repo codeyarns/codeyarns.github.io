@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Menu not visible in Zeal</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Menu not visible in Zeal</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-01-19 12:02:22+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I installed <strong>Zeal</strong> as described <a href="http://codeyarns.com/2014/06/06/zeal/">here</a>. When I opened Zeal, the <strong>main menu</strong> was not visible!</p>
+<h1 id="solution">Solution</h1>
+<p>This is a problem caused by the integrated menu bar used by Qt5. As described <a href="https://github.com/zealdocs/zeal/issues/134">here</a>, removing the <code>appmenu-qt5</code> solves this problem immediately:</p>
+<pre><code>$ sudo apt-get remove appmenu-qt5</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

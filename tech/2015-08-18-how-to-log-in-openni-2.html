@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to log in OpenNI 2</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to log in OpenNI 2</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-08-18 12:28:00+00:00</h3>
+</div>
+<p>I use <strong>OpenNI 2</strong> to read depth and color (RGB) images from a <strong>Primesense</strong> camera. Sometimes when my program does not work as expected, I like to enable the <strong>logging</strong> that is built into OpenNI 2.</p>
+<ul>
+<li><p>To change the logging settings, the file that needs to be edited is <code>Redist/OpenNI.ini</code>.</p></li>
+<li><p>Log messages can be printed to the <strong>console</strong> by setting <code>LogToConsole</code> to 1. If you run your program after this is enabled, it prints log messages on the console.</p></li>
+<li><p>Log messages can be written to a <strong>log file</strong> by setting <code>LogToFile</code> to 1. If you run your program after this is enabled, it prints log messages to files in a <code>Log</code> subdirectory. One log file is created for every invocation of your program. The log filename is a timestamp, for example: <code>2015_08_18__20_27_53_16182.log</code></p></li>
+<li><p>Four levels of <strong>verbosity</strong> is available for log messages. In increasing verbosity these are: <strong>error</strong> (3), <strong>warning</strong> (2), <strong>info</strong> (1) and <strong>verbose</strong> (0).</p></li>
+</ul>
+<p><strong>Tried with:</strong> OpenNI 2.2, Primesense RD1.09 and Ubuntu 14.04</p>
+</body>
+</html>

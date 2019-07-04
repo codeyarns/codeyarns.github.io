@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Firefox tooltip with terrible colors</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Firefox tooltip with terrible colors</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-20 15:47:04+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>The <strong>tooltip</strong> used by <strong>Firefox</strong> was being shown in terrible and unreadable colors. It was black foreground text on black background!</p>
+<h1 id="solution">Solution</h1>
+<p>This was on an Ubuntu computer where the desktop environment had been switched around between Unity, XFCE (Xubuntu) and finally KDE (Kubuntu). I realized that the tooltip in Firefox was being rendered by the desktop environment and was using its theme. And possibly the theme settings had been mauled to death by the switch between desktop environments.</p>
+<p>To set this right, in KDE I opened the <strong>System Settings</strong> application. Here I found my way to Application Appearance → Colors dialog. Here go to Colors tab → Tooltip. You can pick the colors you want from the dropdown and click Apply once done. They should be reflected in Firefox tooltips immediately after this.</p>
+<p><strong>Tried with:</strong> Firefox 55.0.2 and Ubuntu 16.04</p>
+</body>
+</html>

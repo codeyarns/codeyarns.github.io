@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install VeraCrypt on Raspbian</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install VeraCrypt on Raspbian</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-17 05:37:27+00:00</h3>
+</div>
+<ul>
+<li>Install libraries required by VeraCrypt:</li>
+</ul>
+<pre><code>$ sudo apt install libfuse-dev libwxbase3.0-dev</code></pre>
+<ul>
+<li>Download the latest version of Veracrypt that has a Raspbian package from <a href="https://sourceforge.net/projects/veracrypt/files/">here</a>. The latest version for Raspbian I could find was v1.21. It can be downloaded using this command:</li>
+</ul>
+<pre><code>$ wget -L -O veracrypt-1.21-raspbian-setup.tar.bz2 https://sourceforge.net/projects/veracrypt/files/VeraCrypt%201.21/veracrypt-1.21-raspbian-setup.tar.bz2/download</code></pre>
+<ul>
+<li>Uncompress the file:</li>
+</ul>
+<pre><code>$ tar xvf veracrypt-1.21-raspbian-setup.tar.bz2</code></pre>
+<ul>
+<li>Make the installer as executable and run it:</li>
+</ul>
+<pre><code>$ chmod +x veracrypt-1.21-setup-console-armv7
+$ sudo ./veracrypt-1.21-setup-console-armv7</code></pre>
+<ul>
+<li>That is it! Try it out:</li>
+</ul>
+<pre><code>$ veracrypt --version
+VeraCrypt 1.21</code></pre>
+<ul>
+<li>In case you need to uninstall it in the future, this is how to do it:</li>
+</ul>
+<pre><code>$ sudo /usr/bin/veracrypt-uninstall.sh</code></pre>
+<p><strong>Tried with:</strong> Raspbian 9</p>
+</body>
+</html>

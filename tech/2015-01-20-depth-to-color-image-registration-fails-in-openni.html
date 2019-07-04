@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Depth to color image registration fails in OpenNI</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Depth to color image registration fails in OpenNI</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-20 12:10:11+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I wrote C++ code to read depth and color images from a <strong>Primesense</strong> camera using <a href="http://structure.io/openni"><strong>OpenNI 2</strong></a>, running on Windows. After initializing OpenNI and opening the Primesense device, I check if depth-to-color <strong>image registration</strong> mode is supported by calling <code>psense_device.isImageRegistrationModeSupported(openni::IMAGE_REGISTRATION_DEPTH_TO_COLOR)</code>. This returns <code>openni::STATUS_OK</code>. So, next I set this image registration mode by calling <code>psense_device.setImageRegistrationMode(openni::IMAGE_REGISTRATION_DEPTH_TO_COLOR)</code>. However, this fails!</p>
+<h1 id="solution">Solution</h1>
+<p>I could not actually figure out why OpenNI reports that the device supports this mode, but fails setting it. I suspected that maybe the camera needs to see depth and color video streams being created before this mode is set. So, I set this mode as late as possible, after the depth-color streams are opened and configured. That seemed to work!</p>
+<p><strong>Tried with:</strong> Primesense camera, OpenNI 2, Visual Studio 2013 and Windows 7 Professional 64-bit</p>
+</body>
+</html>

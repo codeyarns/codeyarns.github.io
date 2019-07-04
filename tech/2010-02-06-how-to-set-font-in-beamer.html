@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to set font in Beamer</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to set font in Beamer</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-02-06 08:43:39+00:00</h3>
+</div>
+<p>If you are not satisfied with the <strong><a href="http://codeyarns.wordpress.com/2010/02/06/beamer-font-themes/">font themes</a></strong> that ship with Beamer, you can use any <strong>font family</strong> you want for your Beamer document. The font family you intend to use has to be available as a package. For example, to use the <em>Helvetica</em> font family include:</p>
+<pre><code>\usepackage{helvet}</code></pre>
+<p>The font theme has to match the style of the font family, else the resulting document may have a mix of fonts used in it. That is, use the <code>serif</code> font theme for a <code>serif</code> font family and so on. For example, to use the <em>Concrete Math</em> font family (which is serif):</p>
+<pre><code>\usefonttheme{serif}     % Font theme: serif
+\usepackage{ccfonts}     % Font family: Concrete Math
+\usepackage[T1]{fontenc} % Font encoding: T1</code></pre>
+<p>Sometimes, a <strong>font encoding</strong> may also have to be specified for the font family. For example, the <code>T1</code> font encoding for Concrete Math font family in the example above.</p>
+</body>
+</html>

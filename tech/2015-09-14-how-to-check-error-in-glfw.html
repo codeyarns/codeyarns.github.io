@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to check error in GLFW</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to check error in GLFW</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-14 12:37:00+00:00</h3>
+</div>
+<p>To check for <strong>errors</strong> in <strong>GLFW</strong>, we register an <strong>error callback</strong> function with GLFW and it is called automatically when there is an error. This is a cleaner method than having to check explicitly for errors, like in <strong>OpenGL</strong> or <strong>GLEW</strong>.</p>
+<p>This callback can be registered with GLFW even before GLFW has been initialized. This is useful because errors in initialization can also be caught.</p>
+<p>The error values I found in GLFW are:</p>
+<pre><code>GLFW_NOT_INITIALIZED
+GLFW_NO_CURRENT_CONTEXT
+GLFW_INVALID_ENUM
+GLFW_INVALID_VALUE
+GLFW_OUT_OF_MEMORY
+GLFW_API_UNAVAILABLE
+GLFW_VERSION_UNAVAILABLE
+GLFW_PLATFORM_ERROR
+GLFW_FORMAT_UNAVAILABLE</code></pre>
+<p>A typical usage of GLFW with error callback:</p>
+<pre><code>void ErrorCallback(int, const char* err_str)
+{
+    std::cout &lt;&lt; &quot;GLFW Error: &quot; &lt;&lt; err_str &lt;&lt; std::endl;
+}
+
+void SomeInitFunction()
+{
+    // Register error callback first
+    glfwSetErrorCallback(ErrorCallback);
+
+    // Start GLFW next
+    const int ret = glfwInit();
+    if (GL_FALSE == ret)
+    {
+        std::cout &lt;&lt; &quot;GLFW Error!n&quot;;
+    }
+
+    // Other GLFW functions go here ...
+}</code></pre>
+<p><strong>Tried with:</strong> GLFW 3.1.1 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build Caffe2 from source</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build Caffe2 from source</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-05-30 14:56:22+00:00</h3>
+</div>
+<p>I followed these steps to build and use <a href="https://caffe2.ai"><strong>Caffe2</strong></a> from source:</p>
+<ul>
+<li><p>If you have a GPU, install CUDA and cuDNN as described <a href="https://codeyarns.com/2017/05/20/how-to-install-cudnn/">here</a>.</p></li>
+<li><p>Install the package prerequisites:</p></li>
+</ul>
+<pre><code>$ sudo apt install build-essential cmake git libgoogle-glog-dev libprotobuf-dev protobuf-compiler python-dev python-pip libgflags2 libgtest-dev libiomp-dev libleveldb-dev liblmdb-dev libopencv-dev libopenmpi-dev libsnappy-dev openmpi-bin openmpi-doc python-pydot</code></pre>
+<ul>
+<li>Install the required Python packages using PIP:</li>
+</ul>
+<pre><code>$ sudo pip install numpy protobuf flask graphviz hypothesis jupyter matplotlib pydot python-nvd3 pyyaml requests scikit-image scipy setuptools tornado</code></pre>
+<ul>
+<li>Clone Caffe2 source code:</li>
+</ul>
+<pre><code>$ git clone git@github.com:caffe2/caffe2.git</code></pre>
+<ul>
+<li>Caffe2 is under rapid deployment, so I find that the master branch may sometimes not compile. It is better to check the available release tags and checkout the latest release:</li>
+</ul>
+<pre><code>$ git tag
+$ git co -b v_0_7_0 v0.7.0</code></pre>
+<ul>
+<li>The install guide suggests running make to build. Note that this in turn creates a <code>build</code> directory, runs CMake from there and later runs make in a subshell. The child make running from inside a Makefile will not get the <code>MAKEFLAGS</code> of the parent make. So, you cannot make in parallel by using <code>--jobs</code> or <code>-j</code> settings. And believe me building Caffe2 without parallel make takes extremely long! So, I prefer doing the CMake and make myself:</li>
+</ul>
+<pre><code>$ mkdir build
+$ cd build
+$ cmake ..
+$ make</code></pre>
+<ul>
+<li>After Caffe2 is built, you need to install the Caffe2 headers, libraries and Python files to a different location. If you do not configure anything, CMake will try to install Caffe2 to <code>/usr/local</code>, which requires superuser privileges. I prefer installing Caffe2 to a local directory, say <code>/home/joe/caffe2_deploy</code>. To be able to to this:</li>
+</ul>
+<pre><code>$ cmake -DCMAKE_INSTALL_PREFIX:PATH=/home/joe/caffe2_deploy ..
+$ make install</code></pre>
+<ul>
+<li>Add the library path to <code>LD_LIBRARY_PATH</code>:</li>
+</ul>
+<pre><code>$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/joe/caffe2_deploy/lib</code></pre>
+<ul>
+<li>Add the install directory to <code>PYTHONPATH</code> to be able to use Caffe2 from Python:</li>
+</ul>
+<pre><code>$ export PYTHONPATH=$PYTHONPATH:/home/joe/caffe2_deploy</code></pre>
+<ul>
+<li>Use Caffe2 and enjoy:</li>
+</ul>
+<pre><code>$ python -m caffe2.python.operator_test.relu_op_test</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

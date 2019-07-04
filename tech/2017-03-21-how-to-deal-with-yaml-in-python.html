@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to deal with YAML in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to deal with YAML in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-03-21 15:13:41+00:00</h3>
+</div>
+<p><strong>YAML (Yet Another Markup Language)</strong> is a language similar to <strong>JSON</strong> for reading and writing configuration information to files that are human readable. YAML is a superset of JSON. It uses indentation instead of the braces used by JSON.</p>
+<ul>
+<li>To be able to deal with YAML in Python, install the <a href="http://pyyaml.org/"><strong>PyYAML</strong></a> package:</li>
+</ul>
+<pre><code>$ sudo pip install PyYAML
+$ sudo pip3 install PyYAML</code></pre>
+<ul>
+<li>Similar to JSON, YAML file can be directly loaded into a Python list or dict, depending on whether the root structure of the file is a list or a dict:</li>
+</ul>
+<pre><code>import yaml
+y = yaml.load(open(&quot;foobar.yaml&quot;))</code></pre>
+<ul>
+<li>Writing a Python structure back to a YAML is similarly straightforward:</li>
+</ul>
+<pre><code>yaml.dump(y, open(&quot;foobar.yaml&quot;, &quot;w&quot;))</code></pre>
+<ul>
+<li>Note that the YAML file is written in <strong>flow style</strong> by default. This makes it look a bit like JSON. For human readability, it might be better to dump in <strong>block style</strong>, like this:</li>
+</ul>
+<pre><code>yaml.dump(y, open(&quot;foobar.yaml&quot;, &quot;w&quot;), default_flow_style=False)</code></pre>
+<p><strong>Tried with:</strong> PyYAML 3.11, Python 3.5.2 and Ubuntu 16.04</p>
+</body>
+</html>

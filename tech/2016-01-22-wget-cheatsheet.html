@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>wget cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">wget cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-01-22 12:49:11+00:00</h3>
+</div>
+<ul>
+<li>To download a URL:</li>
+</ul>
+<pre><code>$ wget url_to_download</code></pre>
+<p>It writes to the current directory with a filename same as in the URL.</p>
+<ul>
+<li>To download a URL, but write to a specific filename:</li>
+</ul>
+<pre><code>$ wget -O write_to_this_file url_to_download</code></pre>
+<ul>
+<li>To download a URL and write inside a specific directory:</li>
+</ul>
+<pre><code>$ wget -P this_dir url_to_download</code></pre>
+<ul>
+<li>To download a list of URLs stored in a file, one URL per line:</li>
+</ul>
+<pre><code>$ wget -i list_of_urls.txt</code></pre>
+<ul>
+<li>By default, wget is quite verbose and displays progress bar and other details for each URL. To download quietly:</li>
+</ul>
+<pre><code>$ wget -q url_to_download</code></pre>
+<p><strong>Tried with:</strong> Wget 1.15 and Ubuntu 14.04</p>
+</body>
+</html>

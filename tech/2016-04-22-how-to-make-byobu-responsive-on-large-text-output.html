@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to make Byobu responsive on large text output</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to make Byobu responsive on large text output</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-04-22 12:34:10+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I use <strong>Byobu</strong> on remote computers which I have connected to using <strong>SSH</strong>. I typically use many vertical and horizontal splits and tabs. If a program in my current pane starts writing a huge amount of text to the terminal, Byobu becomes unresponsive. That is, I cannot switch panes or even kill the runaway command!</p>
+<h1 id="solution">Solution</h1>
+<p>Byobu is just a wrapper on <strong>Tmux</strong>, so we need to fix this problem in Tmux. Whenever Tmux gets a <strong>trigger</strong> sequence (like newline), it modifies the pane. If it is caught in a loop of modifying the pane, it will not get a chance to process input from the user, like control sequences to switch panes or <code>Ctrl+C</code>.</p>
+<p>Thankfully, Tmux has a <strong>rate limiting</strong> feature and it is active by default. We just need to tinker with its values to make our user experience more responsive.</p>
+<p>When the rate of triggers is above a threshold, we can ask Tmux to <strong>redraw</strong> the pane instead of just modifying it. This redraw also gives it a chance to process user input at that moment. This trigger threshold is set in the <code>c0-change-trigger</code> configuration option. The default is 250. That is, only if the number of trigger sequences is more than 250 per millisecond, Tmux will switch to redrawing instead of modifying the pane. To make Tmux (or Byobu) responsive, we need to lower this trigger threshold.</p>
+<p>This solves the first problem, that is you will be able to switch away from the pane where text is being vomited. But if you want to comfortably type in the other panes, you cannot. This is because the vomiting pane is being redrawn too frequently. To fix this, we need to increase the <strong>redraw interval</strong>. This is controlled by the <code>c0-change-interval</code> configuration option and its default value is to redraw every 100 milliseconds.</p>
+<p>To make Tmux responsive, I added these lines to my <code>~/.byobu/.tmux.conf</code> modifying the above two options:</p>
+<pre><code>set -g c0-change-trigger 20
+set -g c0-change-interval 1000</code></pre>
+<p><strong>Tried with:</strong> Byobu 5.77, Tmux 1.8 and Ubuntu 14.04</p>
+</body>
+</html>

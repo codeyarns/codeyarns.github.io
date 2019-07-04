@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to compile and use Bullet3 with OpenCL support</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to compile and use Bullet3 with OpenCL support</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-12-02 11:04:09+00:00</h3>
+</div>
+<p><a href="http://bulletphysics.org"><strong>Bullet</strong></a> is a popular open-source 3D physics engine. <strong>Bullet3</strong> is its fabled branch that uses GPUs and OpenCL in its rigid body pipeline.</p>
+<ul>
+<li><p>Take note that you need to have a GPU that has OpenCL support. On my system, I used a NVIDIA GeForce GTX 750 Ti.</p></li>
+<li><p>Install the latest NVIDIA driver for your Ubuntu. The driver installation also installs the <strong>Installable Client Driver (ICD)</strong> required by OpenCL. On my system, I installed the NVIDIA 352 driver package.</p></li>
+<li><p>Clone the Bullet3 repository:</p></li>
+</ul>
+<pre><code>$ git clone https://github.com/bulletphysics/bullet3.git</code></pre>
+<p><strong>Note:</strong> By default, OpenCL examples are not featured in the <strong>Example Browser</strong>. If you would like to have this, get my Bullet3 fork <a href="https://github.com/ashwin/bullet3.git">here</a> or just replace the <code>examples/ExampleBrowser/CMakeLists.txt</code> from it in your repository.</p>
+<ul>
+<li>Compile the Bullet3 code and examples:</li>
+</ul>
+<pre><code>$ cd build3
+$ cmake ..
+$ make</code></pre>
+<ul>
+<li>If you would like to install the library:</li>
+</ul>
+<pre><code>$ sudo make install</code></pre>
+<ul>
+<li>Invoke the Example Browser to try out many physics tests and see how the engine fares:</li>
+</ul>
+<pre><code>$ examples/ExampleBrowser/App_ExampleBrowser</code></pre>
+<ul>
+<li>If you want to try the OpenCL tests, invoke it as:</li>
+</ul>
+<pre><code>$ examples/ExampleBrowser/App_ExampleBrowser --enable_experimental_opencl</code></pre>
+<p>You must be able to see two new tests listed under <strong>OpenCL (Experimental)</strong> and be able to try them out.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

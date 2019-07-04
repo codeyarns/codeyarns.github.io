@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change the date and time format of clock in panel of Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change the date and time format of clock in panel of Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-04-02 15:45:14+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>The <strong>Clock</strong> on the <strong>Panel</strong> in Ubuntu displays the time. You can enable it to display the date and day of the week by changing its settings. It displays this information in this format:</p>
+<pre><code>Fri Apr 2 02:10 PM</code></pre>
+<p>I prefer the following format for date and time display:</p>
+<pre><code>2010-04-02 Fri 14:10</code></pre>
+<p>The date and time format can be changed to anything that you are comfortable with.</p>
+<h1 id="ubuntu-12.04-and-later">Ubuntu 12.04 and later</h1>
+<p>[caption id=&quot;attachment_5332&quot; align=&quot;aligncenter&quot; width=&quot;534&quot;][<img src="https://codeyarns.files.wordpress.com/2010/04/20141224-datetime.png" alt="Changing date-time format in Ubuntu" />](https://codeyarns.files.wordpress.com/2010/04/20141224-datetime.png) Changing date-time format in Ubuntu[/caption]</p>
+<p>Here is how to change the date and time format of the panel clock to your liking:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">Install the package</a> <strong>dconf-tools</strong> from the Ubuntu repositories. This installs the dconf-editor which is needed for changing the configuration.</p></li>
+<li><p>Open <strong>dconf editor</strong> from the Dash or <strong>dconf-editor</strong> from the shell. In the editor, navigate to <strong>com.canonical.indicator.datetime</strong>.</p></li>
+<li><p>Change the <strong>time-format</strong> field to <strong>custom</strong>.</p></li>
+<li><p>In the <strong>custom-time-format</strong> field, change the value to the desired format. The format can include <em>both</em> the date and time specifiers. This format uses the same specifiers as that of the C standard library function <a href="http://msdn.microsoft.com/en-us/library/fe06s4ak%28VS.71%29.aspx"><code>strftime()</code></a>.</p></li>
+</ol>
+<p>To change to my desired format, I use:</p>
+<pre><code>%Y-%m-%d %a %H:%M
+2010-04-02 Fri 14:10</code></pre>
+<p>The changes should take effect immediately and the date-time should change in the panel.</p>
+<p><strong>Tried with:</strong> Ubuntu 12.04 and Ubuntu 14.04</p>
+<h1 id="ubuntu-10.04-and-older">Ubuntu 10.04 and older</h1>
+<p><a href="http://codeyarns.files.wordpress.com/2010/04/2010_04_02_panel_clock_preferences.png"><img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_02_panel_clock_preferences.png" /></a></p>
+<p>** Use <strong>gconf-editor</strong>. Navigate to <code>/apps/panel/applets/clock_screen0/prefs</code>. Change <strong>format</strong> field to the string <strong>custom</strong>. Change the <strong>custom_format</strong> field as described above.</p>
+</body>
+</html>

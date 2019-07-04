@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to export a version in Mercurial</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to export a version in Mercurial</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-12-06 05:01:56+00:00</h3>
+</div>
+<p>Most of the work of transitioning from one version control system to another is figuring out the mapping from the jargon of the old one to the new. In <strong>Subversion</strong>, you could give someone a copy of a certain version using the <strong>export</strong> command. The copy thus created would be free of any repository information.</p>
+<p>The corresponding operation in Mercurial is called <strong>archive</strong>. This creates an unversioned archive of a certain revision of the repository. Creating an archive of the current revision of your repository to give to a colleague named Harry is as easy as:</p>
+<pre><code>$ hg archive ../Copy-For-Harry</code></pre>
+<p>Another cool feature of the archive command is that it can create archives in compressed formats like zip. For example, to create a zip archive of the above:</p>
+<pre><code>$ hg archive Copy-For-Harry.zip</code></pre>
+<p>The hash of the revision being exported can be used in the name of the destination directory or file. For example:</p>
+<pre><code>$ hg archive Copy-For-Harry-%h.zip</code></pre>
+<p>The above command will create a file whose name might be <code>Copy-For-Harry-72f497079285.zip</code>, where <code>72f497079285</code> is the hash of the exported revision.</p>
+<p>(Thanks to <a href="http://stackoverflow.com/users/311635">Rudi</a> and <a href="http://stackoverflow.com/users/309760">Paul</a> on StackOverflow for these tips.)</p>
+<p><strong>Tried with:</strong> Mercurial 1.9.2</p>
+</body>
+</html>

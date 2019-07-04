@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Signify plugin for Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Signify plugin for Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-26 14:47:34+00:00</h3>
+</div>
+<p>If you use version control systems like <strong>Git</strong> or <strong>Mercurial</strong> and you use <strong>Vim</strong> to edit your source files, then you might find the <strong>Signify</strong> plugin very useful. When you edit a version controlled file, Signify shows which lines are changed using signs (or markers) in the gutter on the left side.</p>
+<ul>
+<li><p>Signify can be installed using your favorite plugin manager from: <a href="https://github.com/mhinz/vim-signify" class="uri">https://github.com/mhinz/vim-signify</a></p></li>
+<li><p>By default, Signify works with a large number of version controls systems. If you only use one or a few of those, then you can speed up Signify a bit by informing it to only check those VCS. For example, I only use Git and Mercurial, so I add this line to my vimrc:</p></li>
+</ul>
+<pre><code>let g:signify_vcs_list = [ &#39;git&#39;, &#39;hg&#39; ]</code></pre>
+<ul>
+<li>You can also override the default marker characters it uses for its signs. For example, to change its delete character:</li>
+</ul>
+<pre><code>let g:signify_sign_delete = &quot;-&quot;</code></pre>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 16.04</p>
+</body>
+</html>

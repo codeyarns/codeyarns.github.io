@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to profile a Python program using cProfile</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to profile a Python program using cProfile</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-05-12 09:47:46+00:00</h3>
+</div>
+<p><a href="http://docs.python.org/2/library/profile.html"><strong>cProfile</strong></a> is one of the many <strong>profilers</strong> that ship with <strong>Python</strong>.</p>
+<p>To profile a function in your Python program:</p>
+<pre><code># Assuming we want to profile function doMain()
+import cProfile
+cProfile.run( &quot;doMain( a, b )&quot; )</code></pre>
+<p>When a function call is executed with the profiler, it prints out detailed profiling information after the function call finishes execution.</p>
+<p>To dump the profiler statistics to a file named <strong>foo.stats</strong>:</p>
+<pre><code># Assuming we want to profile function doMain()
+import cProfile
+cProfile.run( &quot;doMain( a, b )&quot;, filename=&quot;foo.stats&quot; )</code></pre>
+<p>The stats file is not human readable, but is written in the <strong>pstats</strong> format. This can be opened by using the pstats Python module in a script or using other tools that understand this format.</p>
+<p>To profile a Python program named <strong>foo.py</strong>:</p>
+<pre><code>$ python -m cProfile foo.py</code></pre>
+<p>To profile a Python program and dump the profiler statistics to a file named <strong>foo.stats</strong>:</p>
+<pre><code>$ python -m cProfile -o foo.stats foo.py</code></pre>
+<p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Font expansion error in LaTeX</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Font expansion error in LaTeX</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-24 13:04:43+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>I had a <strong>LaTeX</strong> document that was compiling without errors under both Windows and Ubuntu systems. When a friend tried to compile it on their Ubuntu system using <strong>pdflatex</strong>, it spewed this strange error:</p>
+<pre><code>! pdfTeX error (font expansion): auto expansion is only possible with scalable fonts</code></pre>
+<p><strong>Solution</strong></p>
+<p>The error was strange because it gave no clue how to solve it. It turns out that the LaTeX installation on that particular Ubuntu system did not have scalable fonts. The common solution seems to be to <a href="2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">install</a> the <strong>cm-super</strong> package which has scalable fonts that can be used by LaTeX. On installing this package and recompiling the document, the error went away.</p>
+<p><strong>Tried with:</strong> Ubuntu 12.04.2 LTS</p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Unused parameter warning of GCC</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Unused parameter warning of GCC</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-10 03:38:08+00:00</h3>
+</div>
+<p>GCC throws a <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">unused parameter warning</a> if you are compiling your code with one of these options: <code>-Wunused-parameter</code>, <code>-Wunused</code> or <code>-Wextra</code>.</p>
+<p>The warning message looks like this:</p>
+<pre><code>foo.cpp:43:40: warning: unused parameter ‘off’ [-Wunused-parameter]
+ string IntToString(int num, int off)
+                                 ^</code></pre>
+<p>In most scenarios, this warning is good since you find out that maybe this parameter is not being used currently, so it can be removed from the definition, declaration and the calls.</p>
+<p>However, sometimes the function definition cannot be changed. For example, if the function is a callback that is required by a library. In such a case, the function signature cannot be changed even if you are not using that parameter inside your callback.</p>
+<p>There is a simple solution for this scenario: remove the parameter name, just keep the parameter type. For example, to fix the function shown above, you could change its definition to:</p>
+<pre><code>string IntToString(int num, int)
+{
+    // Code of function here
+}</code></pre>
+<p>This keeps the function signature, so it still works with the library. But since the parameter name is gone, you no longer get the warning. :-)</p>
+<p><strong>Tried with:</strong> GCC 4.9 and Ubuntu 14.04</p>
+</body>
+</html>

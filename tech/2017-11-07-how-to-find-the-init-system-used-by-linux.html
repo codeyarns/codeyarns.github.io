@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to find the init system used by Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to find the init system used by Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-11-07 14:14:56+00:00</h3>
+</div>
+<p><strong>init</strong> is the first process that is started by an Unix operating system. It has PID 1 and handles creation of all other processes and daemon processes required by the OS. It acts as the ancestor of all processes. There are many init systems that have been used in Linux distributions over the years. Some of the popular init systems are the classic <strong>System V init</strong>, <strong>upstart</strong> (Ubuntu used to use this) and <strong>systemd</strong> (popular right now for all Linux distros).</p>
+<p>So, you are sitting at a Linux computer, do you know which init system it is using? There is no straightforward method to find this out.</p>
+<p>Here are a few methods, one of which should work:</p>
+<ul>
+<li>Check the init version, it should report the init system name too:</li>
+</ul>
+<pre><code>$ init --version
+init (upstart 1.12.1)
+Copyright (C) 2006-2014 Canonical Ltd., 2011 Scott James Remnant</code></pre>
+<p>This was on a Ubuntu 14.04 system. You can see that it uses upstart.</p>
+<ul>
+<li>Sometimes the <code>/sbin/init</code> is a symbolic link to the actual init:</li>
+</ul>
+<pre><code>$ stat /sbin/init
+  File: &#39;/sbin/init&#39; -&gt; &#39;/lib/systemd/systemd&#39;</code></pre>
+<p>This was on a Ubuntu 16.04 system. You can see that it uses systemd.</p>
+</body>
+</html>

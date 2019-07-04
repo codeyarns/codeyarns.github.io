@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Inodes and hard links</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Inodes and hard links</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-16 14:09:00+00:00</h3>
+</div>
+<p>A <strong>hard link</strong> is a reference that links a file or directory name to an <strong>inode</strong> in the filesystem. Hard links are created by default when a file or directory is created. Hard links can also be created in Linux (or any Unix) using the <code>ln</code> command.</p>
+<p>The inode number of any file or directory can be viewed using <code>ls -i</code>:</p>
+<pre><code>$ mkdir foo
+$ ls -id foo
+1842306 foo/</code></pre>
+<p>Here, <code>1842306</code> is the inode number of the <code>foo</code> directory we created.</p>
+<p>The number of hard links can be viewed in the second column of <code>ls -l</code>:</p>
+<pre><code>$ ls -ld foo
+drwxrwxr-x 2 joe joe 4096 Mar 16 21:59 foo/</code></pre>
+<p>We can see that an empty directory starts off with 2 hard links. These are from <code>foo</code> and <code>foo/..</code> respectively.</p>
+<p>In contrast, a file starts off with a single hard link.</p>
+<p>The number of hard links associated with the inode of a directory is usually the number of its subdirectories, plus two. This is because the <code>..</code> entry inside each subdirectory points back to the inode of its parent directory.</p>
+<p>Here is an illustration:</p>
+<pre><code>$ mkdir -p foo/bar
+$ mkdir -p foo/buzz
+$ mkdir -p foo/pizza
+$ ls -ld foo/{,.,*/..} 
+drwxrwxr-x 5 joe joe 4096 Mar 16 22:04 foo/
+drwxrwxr-x 5 joe joe 4096 Mar 16 22:04 foo/.
+drwxrwxr-x 5 joe joe 4096 Mar 16 22:04 foo/bar/..
+drwxrwxr-x 5 joe joe 4096 Mar 16 22:04 foo/buzz/..
+drwxrwxr-x 5 joe joe 4096 Mar 16 22:04 foo/pizza/..</code></pre>
+</body>
+</html>

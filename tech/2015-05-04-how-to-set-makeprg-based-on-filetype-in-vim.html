@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to set makeprg based on filetype in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to set makeprg based on filetype in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-05-04 12:23:00+00:00</h3>
+</div>
+<p>The command string set in <code>makeprg</code> in <strong>Vim</strong> is applied to compile a file or a project when you invoke the <code>:make</code> command.</p>
+<p>For most types of files, this usually just invokes the <code>make</code> program. You can see what <code>makeprg</code> is set to for a certain filetype, by opening a file of that type and trying <code>:set makeprg?</code></p>
+<p>You can set <strong>any</strong> program to run on the current file or any other file when <code>:make</code> is invoked, by setting <code>makeprg</code> yourself.</p>
+<p>To set it based on a certain filetype, say for filetype <code>foo</code>, add this to your Vimrc:</p>
+<pre><code>autocmd Filetype foo setlocal makeprg=/bin/foo_compiler %</code></pre>
+<p>The percent character denotes the path to the currently open file.</p>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

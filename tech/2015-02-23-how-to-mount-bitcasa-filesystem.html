@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to mount Bitcasa filesystem</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to mount Bitcasa filesystem</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-23 15:35:17+00:00</h3>
+</div>
+<p><a href="www.bitcasa.com"><strong>Bitcasa</strong></a> provides a cloud filesystem with 5GB free for any user who signs up. The only reason I tried them was because they claimed to have a Linux client.</p>
+<p>The installation steps for their Linux client is:</p>
+<pre><code>$ sudo sh -c &#39;echo &quot;deb http://dist.bitcasa.com/release/apt debian main&quot; &gt; /etc/apt/sources.list.d/bitcasa-release.list&#39;
+$ wget -O- http://dist.bitcasa.com/release/bitcasa-releases.gpg.key | sudo apt-key add -
+$ sudo apt-get update
+$ sudo apt-get install bitcasa2</code></pre>
+<p>What is installed is a commandline tool named <code>mount.bitcasa</code>. It can be used to mount an existing directory on your computer as your Bitcasa filesystem. There are many ways to call this tool, which can be seen by using <code>man mount.bitcasa</code>. I used an existing <code>/media/foo</code> directory on my computer to mount like this:</p>
+<pre><code>$ mount.bitcasa foo@example.org /media/foo -o password=secret</code></pre>
+<p>This mounted and the files subsequently appeared in the online Bitcasa filesystem. However, deleting or modifying these files online did not reflect in the local filesystem. I guess it is an one-way sync only! That ended my Bitcasa experiment since I wanted two-way sync like Dropbox does.</p>
+<p>To unmount this mounted directory:</p>
+<pre><code>$ fusermount -u /media/foo</code></pre>
+<p>To uninstall the Bitcasa client, reverse the installation steps:</p>
+<pre><code>$ sudo apt-get remove bitcasa2
+$ wget -O- http://dist.bitcasa.com/release/bitcasa-releases.gpg.key | sudo apt-key del -
+$ sudo rm /etc/apt/sources.list.d/bitcasa-release.list
+$ sudo apt-get update</code></pre>
+<p><strong>Tried with:</strong> Bitcasa 1.0.0.144 and Ubuntu 14.04</p>
+</body>
+</html>

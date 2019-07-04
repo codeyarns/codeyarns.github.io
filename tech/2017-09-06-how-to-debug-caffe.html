@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to debug Caffe</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to debug Caffe</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-06 15:10:10+00:00</h3>
+</div>
+<p><a href="http://caffe.berkeleyvision.org/"><strong>Caffe</strong></a> is written in C++ while its GPU accelerated portions are written in CUDA. It also ships with <strong>PyCaffe</strong>, a Python wrapper to the C++ code.</p>
+<h1 id="to-debug-python-code-of-pycaffe">To debug Python code of PyCaffe</h1>
+<p>You might have written a Python script to train or load and use models for inference. The Python code of Caffe can be debugged as usual using the PDB Python debugger as described <a href="https://codeyarns.com/2016/08/23/how-to-use-pdb-python-debugger/">here</a>.</p>
+<h1 id="to-debug-c-code-from-caffe-binary">To debug C++ code from Caffe binary</h1>
+<p>We can use GDB to debug the C++ code in Caffe. First, remember to build Caffe with debugging information. This can be done as described <a href="https://codeyarns.com/2017/02/22/how-to-build-caffe/">here</a>, but remember to indicate <strong>Debug</strong> mode to CMake, like this:</p>
+<pre><code>$ cmake -DCMAKE_BUILD_TYPE=Debug ..</code></pre>
+<p>If you are using binary Caffe, then debugging the C++ code is straightforward using GDB:</p>
+<pre><code>$ gdb --args ./caffe --your-usual-caffe-arguments-go-here</code></pre>
+<p>You can set breakpoints in any Caffe C++ code and debug using GDB as usual. For more info see my <a href="https://codeyarns.com/2017/08/22/gdb-cheatsheet/">GDB cheatsheet</a>.</p>
+<h1 id="to-debug-c-code-from-pycaffe">To debug C++ code from PyCaffe</h1>
+<p>If you are using PyCaffe and need to debug the C++ parts of Caffe code that is still possible using GDB! Remember to first build Caffe in Debug mode as shown above. Note that after <code>make install</code>, you might have to rename the <code>_caffe-d.so</code> file to <code>_caffe.so</code> to be able to <code>import caffe</code> in your Python script.</p>
+<p>To be able to debug the C++ code, we invoke GDB and pass it the python interpreter and its arguments, which is our Python script that calls PyCaffe:</p>
+<pre><code>$ gdb --args python my_script_calls_pycaffe.py --some_input_arguments</code></pre>
+<p>GDB first begins in the Python interpreter binary. Python will later load all the required shared libraries including <code>_caffe.so</code> and more importantly <code>libcaffe-nv.so</code> which is the compiled version of the Caffe C++ code. The problem is that these libraries are not yet loaded at the beginning. What we can do is set one or more breakpoints at the places we want right away. GDB will complain that these breakpoint locations are as yet not known to it. That is okay, it will turn them into <strong>pending breakpoints</strong> that will be enabled when the shared library having that location is loaded.</p>
+<p>For example, to set up a breakpoint right away in convolution layer code:</p>
+<pre><code>(gdb) b base_conv_layer.cpp:15</code></pre>
+<p>After you have set your breakpoints, press <code>c</code> to continue and GDB will load the shared libraries and stop when your breakpoint locations are hit. After this point it is debugging as usual in GDB.</p>
+<p>If you are adventurous, you can even connect GDB to the Python process that is running PyCaffe/Caffe by using its PID. For example, after I find out that my Python script is running as PID 589:</p>
+<pre><code>$ gdb -p 589</code></pre>
+<p>You can set breakpoints in Caffe C++ code and GDB will stop at those locations.</p>
+<p>I hope you have fun stepping through and exploring Caffe code! :-)</p>
+<p><strong>Tried with:</strong> GDB 7.7.1 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Enum in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Enum in C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-20 12:02:22+00:00</h3>
+</div>
+<p><strong>C++11</strong> introduced a much better <strong>enumeration</strong>. It provides a named scope for its enumerators and is strongly typed:</p>
+<pre><code>enum class FileType
+{
+    Png,
+    Jpg,
+    Bmp
+};
+
+write_file(img_data, &quot;foo&quot;, FileType::Jpg);</code></pre>
+<p>When using an older C++ compiler, I try to get the scope feature of C++11 by using a namespace:</p>
+<pre><code>namespace FileType
+{
+    enum Enum
+    {
+        Png,
+        Jpg,
+        Bmp
+    };
+}
+
+// Excepts the type FileType::Enum
+write_file(img_data, &quot;foo&quot;, FileType::Jpg);</code></pre>
+</body>
+</html>

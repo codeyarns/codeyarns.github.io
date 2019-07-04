@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install FFMPEG on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install FFMPEG on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-11-19 11:58:57+00:00</h3>
+</div>
+<p>The <a href="https://www.ffmpeg.org/"><strong>FFMPEG</strong></a> project has forked into the <a href="http://libav.org/"><strong>LibAV</strong></a> project. Ubuntu ships with the LibAV (<code>libav-tools</code>) package instead of FFMPEG. However, I found that the <code>avconv</code> program from LibAV does not support certain parameters that FFMPEG does. If you find yourself in such a situation, you may want to install FFMPEG on Ubuntu.</p>
+<ul>
+<li>Uninstall LibAV if you have it installed:</li>
+</ul>
+<pre><code>$ sudo apt-get remove libav-tools</code></pre>
+<ul>
+<li>Add the FFMPEG PPA and install it:</li>
+</ul>
+<pre><code>$ sudo add-apt-repository ppa:mc3man/trusty-media
+$ sudo apt-get update
+$ sudo apt-get install ffmpeg</code></pre>
+<p><strong>Tried with:</strong> FFMPEG 2.4.3 and Ubuntu 14.04</p>
+</body>
+</html>

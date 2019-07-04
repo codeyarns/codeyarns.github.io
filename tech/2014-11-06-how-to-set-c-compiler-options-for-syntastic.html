@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to set C++ compiler options for Syntastic</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to set C++ compiler options for Syntastic</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-11-06 11:05:42+00:00</h3>
+</div>
+<p>To learn how to install and use Syntastic, please see <a href="2014/11/06/how-to-use-syntastic-plugin-for-vim/">this post</a>.</p>
+<p>Syntastic should be able to detect the C++ compiler on your system and use it for syntax checking automatically. If you need to change it or set it explicitly, then add its command or full path to your <code>.vimrc</code>:</p>
+<pre><code>let g:syntastic_cpp_compiler = &quot;g++&quot;</code></pre>
+<p>You might want to enable some compiler options for Syntastic to apply on your code. For example, I like to add support for C++11 and also rigorously check for warnings, so I add this to my <code>.vimrc</code>:</p>
+<pre><code>let g:syntastic_cpp_compiler_options = &quot;-std=c++11 -Wall -Wextra -Wpedantic&quot;</code></pre>
+<p><strong>Tried with:</strong> GCC 4.9.2, Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

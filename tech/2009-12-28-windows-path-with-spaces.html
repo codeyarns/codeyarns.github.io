@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Windows: Path with spaces</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Windows: Path with spaces</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2009-12-28 03:46:59+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_qt_path_spaces.png"><img src="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_qt_path_spaces.png" /></a></p>
+<p>Windows Vista fixed one colossal mistake Microsoft had made with directory names. The obnoxiously named <code>C:\Documents and Settings</code> was changed to the short and sweet <code>C:\Users</code>. It was short, meaningful and most importantly it did not have spaces in the path! The <code>My</code> (and the following space) was removed from directories like <code>My Documents</code> and they were shortened to <code>Documents</code>, <code>Pictures</code> and <code>Videos</code>.</p>
+<p>I know it is 2009 and I should expect most real-world applications to deal with paths that have spaces. (Sadly, a lot of open-source applications ported over from Linux to Windows fail on this.) However, I believe that it is of paramount importance that the default Windows directory names themselves should be as short as possible and have no spaces.</p>
+<p>There is one elephant that remains, even in Windows 7: <code>C:\Program Files</code></p>
+<p>Strangely, there are some applications and libraries that (can deal with paths with spaces, but) require their <em>installation path</em> to have no spaces! Since they cannot work from <code>C:\Program Files</code> they try to install themselves onto <code>C:\</code> itself. This irritates me a lot, since it clutters up that root directory! So, I resort to having another <code>C:\Programs\</code> folder around for these applications to install into. The famous culprits that do this are <a href="http://www.cygwin.com/">cygwin</a>, <a href="http://www.cgal.org/">CGAL</a> and <a href="http://qt.nokia.com/">Qt</a>.</p>
+<p>What I would like to learn from the likes of <a href="http://blogs.msdn.com/oldnewthing/">Raymond Chen</a> is why Windows 7 still uses <code>C:\Program Files</code> instead of using something shorter like <code>C:\Programs</code>?! If they could go through the pains of renaming <code>Documents and Settings</code> and its bastard children, surely they could have done the same with <code>Program Files</code>!!!</p>
+</body>
+</html>

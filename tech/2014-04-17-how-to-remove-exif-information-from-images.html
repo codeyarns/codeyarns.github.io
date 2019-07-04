@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to remove EXIF information from images</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to remove EXIF information from images</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-04-17 07:49:16+00:00</h3>
+</div>
+<p>The <a href="http://www.sno.phy.queensu.ca/~phil/exiftool/">EXIFTool</a> program can be used remove all EXIF tags from an image file.</p>
+<p>This tool can be installed from the <code>libimage-exiftool-perl</code> package:</p>
+<pre><code>$ sudo apt-get install libimage-exiftool-perl</code></pre>
+<p>To remove all EXIF tags from an image file:</p>
+<pre><code>$ exiftool -all= foo.jpg</code></pre>
+<p>The <code>foo.jpg</code> has been stripped of all EXIF tags. The original file is saved for backup as <code>foo.jpg_original</code>.</p>
+<p><strong>Tried with:</strong> ExifTool 8.60-2 and Ubuntu 12.04</p>
+</body>
+</html>

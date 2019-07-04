@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Perforce sync write permission error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Perforce sync write permission error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-02-02 06:04:39+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to sync a Perforce client and got this error:</p>
+<pre><code>$ p4 sync
+open for write: /home/joe/p4_workspace/foobar/tmp.30935.46: Permission denied</code></pre>
+<p>The strange thing is that there is no <code>tmp.30935.46</code> in this repository!</p>
+<h1 id="solution">Solution</h1>
+<p>Turns out that Perforce writes some temporary files to subdirectories during the sync operation. This error indicates that it is failing in this write because the directory does not have write permissions.</p>
+<p>The error went away and the sync worked once I added write permissions to that directory:</p>
+<pre><code>$ chmod +w /home/joe/p4_workspace/foobar</code></pre>
+</body>
+</html>

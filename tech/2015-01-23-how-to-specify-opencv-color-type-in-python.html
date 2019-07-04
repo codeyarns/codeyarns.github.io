@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to specify OpenCV color type in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to specify OpenCV color type in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-23 12:22:10+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><strong>OpenCV</strong> has bindings for <strong>Python</strong>. Specifying the color type in calls to <code>imread</code> or <code>imdecode</code> gives this error:</p>
+<pre><code>$ cat foo.py
+import cv
+import cv2
+mat = cv2.imread(&quot;foo.png&quot;, cv.CV_LOAD_IMAGE_ANYCOLOR)
+
+$ python foo.py
+AttributeError: &#39;module&#39; object has no attribute &#39;CV_LOAD_IMAGE_ANYCOLOR&#39;</code></pre>
+<h1 id="solution">Solution</h1>
+<p>It looks like the <code>CV_LOAD_IMAGE</code> enums which specify the <strong>color type</strong> of an image have not been exported to Python. Thankfully, the integer value of these enums can be passed directly to the call.</p>
+<p>This enum is defined in <code>highgui/highgui_c.h</code> as:</p>
+<pre><code>enum
+{
+/* 8bit, color or not */
+    CV_LOAD_IMAGE_UNCHANGED  =-1,
+/* 8bit, gray */
+    CV_LOAD_IMAGE_GRAYSCALE  =0,
+/* ?, color */
+    CV_LOAD_IMAGE_COLOR      =1,
+/* any depth, ? */
+    CV_LOAD_IMAGE_ANYDEPTH   =2,
+/* ?, any color */
+    CV_LOAD_IMAGE_ANYCOLOR   =4
+};</code></pre>
+<p>Make the call using the integer value of the enum directly:</p>
+<pre><code># To call with CV_LOAD_IMAGE_ANYCOLOR
+mat = cv2.imread(&quot;foo.png&quot;, 4)</code></pre>
+<p><strong>Tried with:</strong> OpenCV 2.4.9, Python 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

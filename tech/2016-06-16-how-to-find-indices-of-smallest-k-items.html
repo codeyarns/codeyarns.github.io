@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to find indices of smallest K items</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to find indices of smallest K items</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-06-16 13:13:29+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>Recently I actually faced a problem, the likes of which you see being asked in interviews. Input is a array of N values that is not sorted. We want this array to be untouched, since it is required in the given order for later use. What we want to find out is the indices of the smallest K values in this unsorted array. The K in this case is very small compared to N.</p>
+<h1 id="solution-1">Solution 1</h1>
+<p>The straightforward solution is:</p>
+<ul>
+<li><p>Make a copy of the array (or vector)</p></li>
+<li><p>Create another vector of indices</p></li>
+<li><p>Apply a <code>std::partial_sort</code> on this pair of vectors with a custom comparison method that only compares the values vector</p></li>
+<li><p>The smallest K values and their indices in the original order will be output in the first K locations of the vectors</p></li>
+</ul>
+<p>The computational complexity of this solution can probably not be beaten. However, the problems with this solution for my particular application were:</p>
+<ul>
+<li><p>A copy of the input vector needs to be made since our input vector needs to be unmodified. The input vector can be very large, so this copy is wasteful. Especially since K is known to be very small (assume 3 or 5).</p></li>
+<li><p>Since we require the indices of the smallest K values, an additional vector of same length of input vector needs to be created.</p></li>
+</ul>
+<h1 id="solution-2">Solution 2</h1>
+<p>As you can imagine, the ideal solution would have complexity similar to the above solution. But practically it should not require N new storage, but K size storage. In fact, this can be solved using a <code>std::priority_queue</code>. Here is the pseudocode of my solution:</p>
+<pre><code>GetSmallestKIndices(input_array, K):
+    Create priority queue pq
+
+    Insert first K pairs of items and indices into pq
+    (pq will be maintained at size K)
+
+    Iterate over each of the N-K items in input_array
+        If item is bigger than top item in pq then
+            continue
+
+        We have now found item smaller than items in pq
+        Pop off the top item from pq
+        Insert pair of current item and its index
+
+    What we have left in pq is smallest K values and their indices</code></pre>
+<p>It goes without saying that this solution is only ideal for this particular setup where K is very small compared to N.</p>
+</body>
+</html>

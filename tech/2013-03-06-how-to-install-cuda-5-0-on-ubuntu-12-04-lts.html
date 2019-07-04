@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install CUDA 5.0 on Ubuntu 12.04 LTS</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install CUDA 5.0 on Ubuntu 12.04 LTS</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-03-06 15:27:55+00:00</h3>
+</div>
+<p>These steps helped me to successfully install <strong>CUDA 5.0</strong> on many <strong>Ubuntu 12.04 LTS</strong> computers, including headless servers that do not run X windows.</p>
+<ol style="list-style-type: decimal">
+<li><p>Make sure the computer has a NVIDIA <strong>graphics card</strong> that is recognized by Linux. This can be done as shown <a href="2013/01/25/how-to-find-which-nvidia-graphics-card-is-in-your-ubuntu-system/">here</a>.</p></li>
+<li><p><strong>Uninstall</strong> all NVIDIA <strong>drivers</strong> and kernel modules. Steps to do this are described <a href="2013/02/07/how-to-fix-nvidia-driver-failure-on-ubuntu/">here</a>.</p></li>
+<li><p>Download <strong><a href="https://developer.nvidia.com/cuda-downloads">CUDA 5.0 installer for Linux</a></strong>. There is no installer for Ubuntu 12.04 LTS, so download the installer for Ubuntu 11.10 instead.</p></li>
+<li><p>Make the installer executable and run it as sudo. When asked to install the NVIDIA driver, choose Yes. This is important, allow the installer to install its own drivers. Let it install CUDA to the default location: <code>/usr/local/cuda-5.0/</code></p></li>
+<li><p>If the computer is a headless Ubuntu server which is not connected to a display or does not run X, then device files for your card are not created by default. So, create a shell script file (say <code>/home/joe/NvidiaDevCreator.sh</code>) with the following code:</p></li>
+</ol>
+<p>https://gist.github.com/ashwin/5099946</p>
+<p>Add the line <code>/home/joe/NvidiaDevCreator.sh</code> to <code>/etc/rc.local</code> and restart the system. This ensures that the necessary dev files are created on every startup for access by CUDA programs.</p>
+<ol style="list-style-type: decimal">
+<li>Add the following to your bashrc:</li>
+</ol>
+<p>https://gist.github.com/ashwin/5100011</p>
+<p>This ensures that the CUDA libraries are available for dynamic loading by CUDA programs.</p>
+<p>That is all! Any user on your Ubuntu 12.04 system should now be able to compile and run CUDA 5.0 programs without any special access permissions or privileges :-)</p>
+<p><strong>Note</strong>: I had problems when I used the nvidia-current and nvidia-current-updates drivers from Ubuntu. Only by uninstalling them and using the drivers that ship with the CUDA installer was I able to get CUDA working.</p>
+<p><strong>Tried with:</strong> NVIDIA GeForce 9900 GT and NVIDIA GTX 690</p>
+</body>
+</html>

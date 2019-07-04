@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to get started with Kinect for Windows on Ubuntu using OpenNI</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to get started with Kinect for Windows on Ubuntu using OpenNI</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-07-23 07:23:01+00:00</h3>
+</div>
+<p>The <strong>Kinect</strong> can be connected to a computer and used for a lot of fun projects. <a href="http://www.openni.org/"><strong>OpenNI</strong></a> is a popular library that is used by many applications and libraries to use the Kinect. You can also use the OpenNI API in your programs to access the output of the Kinect. This post describes the steps I used to get OpenNI working with the <strong>Kinect for Windows</strong> sensor on Ubuntu:</p>
+<p><strong>Preliminary checks</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>This post is about the Kinect for Windows sensor. It is <strong>not</strong> about the Kinect for Xbox 360 sensor. If you don't know which type of Kinect you are using, read about the <a href="/2013/07/23/difference-between-kinect-for-windows-and-kinect-for-xbox-360-on-linux/">difference between the two types of Kinect</a>.</p></li>
+<li><p>Plug the power plug of the Kinect to a power source. Plug the USB plug of the Kinect into your computer running Ubuntu. You should see the light on the Kinect <strong>blink</strong> slowly in <strong>green</strong> color.</p></li>
+<li><p>Ensure that the Kinect has been identified by the Linux kernel. You can check this by listing all the USB devices as described in this <a href="/2013/07/23/difference-between-kinect-for-windows-and-kinect-for-xbox-360-on-linux/">post</a>. Check if the 3 devices described in that post are listed with the correct product and vendor IDs.</p></li>
+</ol>
+<p><strong>Install unstable branch of OpenNI 1.x</strong></p>
+<p>By default, OpenNI does not ship with the drivers for Kinect. Also, OpenNI 2.x does not seem to work with Kinect for Windows. To use the Kinect for Windows sensor on Ubuntu, it seems that the unstable version of OpenNI 1.x should be used.</p>
+<p>Get the unstable branch of OpenNI 1.x code:</p>
+<pre><code>$ git clone https://github.com/OpenNI/OpenNI.git
+$ cd OpenNI/
+$ git checkout -b unstable origin/unstable</code></pre>
+<p>Compile the OpenNI code:</p>
+<pre><code>$ cd Platform/Linux/CreateRedist/
+$ ./RedistMaker</code></pre>
+<p>Install the OpenNI headers, libraries and binaries on the system:</p>
+<pre><code>$ cd ../Redist/
+$ cd OpenNI-Bin-Dev-Linux-x64-v1.5.4.0/
+$ sudo ./install.sh</code></pre>
+<p>You now have OpenNI installed. However, it cannot yet communicate with your Kinect for Windows sensor. To get that working, we need to install the Kinect drivers.</p>
+<p><strong>Install SensorKinect drivers</strong></p>
+<p>These are drivers that have been modified to work with OpenNI 1.x (not OpenNI 2.x) on Linux. We need to compile and install this to use the Kinect. Compilation of these drivers needs OpenNI to be installed, which is why we did that step first.</p>
+<p>Get the code of SensorKinect:</p>
+<pre><code>$ git clone https://github.com/avin2/SensorKinect.git
+$ cd SensorKinect/</code></pre>
+<p>Compile the SensorKinect driver code:</p>
+<pre><code>$ cd Platform/Linux/CreateRedist/
+$ ./RedistMaker</code></pre>
+<p>Install the SensorKinect drivers:</p>
+<pre><code>$ cd ../Redist/
+$ cd Sensor-Bin-Linux-x64-v5.1.2.1/
+$ sudo ./install.sh</code></pre>
+<p>You now have the drivers installed on your system.</p>
+<p><strong>Start playing with Kinect</strong></p>
+<p>It is time to check out if your Kinect for Windows sensor works on Ubuntu. The OpenNI directory has some tools that can be used to start playing with your Kinect. Go to <strong>OpenNI/Platform/Linux/Bin/x64-Release</strong> and try them out. For example, the <strong>NiViewer</strong> tool displays both the RGB and depth output from your Kinect.</p>
+<p><strong>Tried with:</strong> Kinect for Windows, SensorKinect 5.1.0.25, OpenNI unstable 1.5.4.0, Linux 3.2.0-48-generic and Ubuntu 12.04 LTS</p>
+</body>
+</html>

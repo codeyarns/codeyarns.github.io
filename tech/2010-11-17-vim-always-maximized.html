@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>ViM: Always Maximized</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">ViM: Always Maximized</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-11-17 16:03:54+00:00</h3>
+</div>
+<p>As I increasingly try to work in a distraction-free mode, I find myself using applications with their windows** maximized<strong>. To make </strong>ViM** always open its window maximized, add this command to your <strong>vimrc</strong> file:</p>
+<pre><code>autocmd GUIEnter * simalt ~x</code></pre>
+<p><code>autocmd</code> is used to add a command to ViM that is triggered on a certain event. The event here is <code>GUIenter</code>, which is the event of opening a ViM window. The <code>*</code> represents the files on which to trigger the command, which is all files for our case. <code>simalt ~x</code> is the <code>Alt-Space + x</code> command, the command to trigger on the window open event. That is, <code>Alt-Space</code> which shows the control menu of the window in Windows, followed by <code>x</code>, which chooses the <code>Maximize</code> option.</p>
+</body>
+</html>

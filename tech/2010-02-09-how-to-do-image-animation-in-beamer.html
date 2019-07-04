@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to do image animation in Beamer</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to do image animation in Beamer</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-02-09 08:04:26+00:00</h3>
+</div>
+<p><strong>Beamer</strong> makes it very easy to include a <strong>series of images</strong> and display them in a serial <strong>animated</strong> style in separate frames (slides).</p>
+<p>For example, to display the images <code>foobar-0.png</code>, <code>foobar-1.png</code> and <code>foobar-2.png</code> in a serial fashion use:</p>
+<pre><code>\usepackage{xmpmulti}
+\begin{frame}
+\multiinclude[format=png]{foobar}
+\end{frame}</code></pre>
+<p><strong><code>xmpmulti</code></strong> is a package that ships along with the Beamer package. <code>\**multiinclude**</code> is the command that takes care of putting the <code>foobar-x.png</code> into different frames. Make sure that the files are named as <strong>basename-number.format</strong>, i.e., the basename and the number are separated by a <strong>hyphen</strong>. The <code>format</code> option is the extension of the files.</p>
+<p><code>\multiinclude</code> starts from file number 0. To start from a different number, say 9:</p>
+<pre><code>\multiinclude[format=png,start=9]{foobar}</code></pre>
+<p><code>\multiinclude</code> inserts all files that are in the above format. To make it <strong>stop</strong> at a certain number, say 7:</p>
+<pre><code>\multiinclude[format=png,end=7]{foobar}</code></pre>
+<p>Typically, images are inserted using the <code>\includegraphics</code> command. The settings passed to <code>\includegraphics</code> can be passed to <code>\multiinclude</code> using its <code>graphics</code> option. For example, to set the scale of the image to 0.3:</p>
+<pre><code>\multiinclude[format=png,graphics={scale=0.3}]{foobar}</code></pre>
+<p>By default, the images are placed one <em>on top</em> of another. To <strong>replace</strong> each image by the next image try:</p>
+<pre><code>\multiinclude[&lt;+&gt;][format=png]{foobar}</code></pre>
+</body>
+</html>

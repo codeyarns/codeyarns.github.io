@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Asynchronous threads in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Asynchronous threads in C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-04-24 12:38:00+00:00</h3>
+</div>
+<p>It is extremely simple to do <strong>asynchronous threading</strong> in <strong>C++</strong> now. It is straightforward to spawn threads to perform some work and collect back the results from them later. This is an important step forward for C++ due to the increasing importance of multithreading and the hairy platform-specific threading mess C++ had in the past.</p>
+<p>Threading is easy:</p>
+<ul>
+<li><p>Include the header <code>future</code></p></li>
+<li><p>Create asynchronous thread by calling <code>std::async</code> and passing the function to use and its parameters.</p></li>
+<li><p>On Linux, threads will execute sequentially by default! Yeah, I know! To force them to execute in parallel, pass the <code>std::launch::async</code> as the first parameter.</p></li>
+<li><p>If passing a class method, then pass pointer to it and pointer to class object as first parameter.</p></li>
+<li><p><code>std::future</code> structure makes it easy to control the thread. Its template parameter is the same as the result type returned by your thread.</p></li>
+<li><p>Call <code>get</code> on the <code>future</code> to wait for thread to finish and return back the result.</p></li>
+<li><p>Whether the threads will immediately run or later, the order they will run in and other such concerns cannot be relied on.</p></li>
+</ul>
+<p>For example, to spawn off 10 threads to do some work and gather back their results:</p>
+<p>https://gist.github.com/ashwin/9b3c5efd1edc3736f47d</p>
+<p><strong>How many threads</strong> should you spawn off to maximize usage of the CPU and memory resources on your computer? In other words, how big should your <strong>thread pool</strong> be? The only way to answer this is by measuring the performance for different pool sizes on your particular application and decide. The right answer for your application will depend on how much compute or memory bound the computation you are doing inside the thread might be.</p>
+<p>For example, for a particular function that I was trying to parallelize, it was both doing a lot of compute and also accessing quite a few data locations in memory. I tried different thread pool sizes and compared them with how long the computation was taking on average <strong>per thread</strong>. Here are the results:</p>
+<p>[caption id=&quot;attachment_6824&quot; align=&quot;alignnone&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2015/04/20150417_cpp_thread_performance.png?w=660" alt="Size of thread pool versus thread performance on GCC 4.9.2, Linux 3.13.0-45 and Intel i7-4790" />](https://codeyarns.files.wordpress.com/2015/04/20150417_cpp_thread_performance.png) Size of thread pool versus thread performance on GCC 4.9.2, Linux 3.13.0-45 and Intel i7-4790[/caption]</p>
+<p>So, in my case it looks like a pool of 32 threads gives close to the optimum performance. Something seems to happen at 64 threads, from which point on the performance drops. I am guessing that this is the point where the Linux kernel finds the overhead of managing that number of threads starts to hit the thread computation performance.</p>
+<p><strong>Tried with:</strong> GCC 4.9.2, Linux 3.13.0-45, Ubuntu 14.04 and Intel i7-4790</p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Git-GUI</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Git-GUI</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-15 12:12:00+00:00</h3>
+</div>
+<p><strong>Git-GUI</strong> is a rudimentary GUI tool for <strong>Git</strong> written in Tcl/Tk. It should be available on all platforms where Git is available. It is primarily meant for committing. However, its dinosaur GUI hides quite a few actions that can be very useful.</p>
+<ul>
+<li>To install Git-GUI:</li>
+</ul>
+<pre><code>$ sudo apt install git-gui</code></pre>
+<ul>
+<li>To invoke Git-GUI:</li>
+</ul>
+<pre><code>$ git gui</code></pre>
+<ul>
+<li><p>By default, it shows the unstaged files in top-left and staged files in bottom-left. When any files in these sections are clicked, their diff is shown in the main window.</p></li>
+<li><p>To stage a file in the Unstaged Changes section: click the file icon to the left of the file. I know this is totally non-intuitive, but that is how this GUI is designed!</p></li>
+<li><p>To move all the unstaged files to staged, click the <strong>Stage Changed</strong> button at the bottom. The same can be achieved from the top menu: Commit -&gt; <strong>Stage changed files to commit</strong>.</p></li>
+<li><p>To unstage a staged file that is in the Unstaged Changes section: Click the checkbox icon to the left of the filename.</p></li>
+<li><p>To commit, type commit message in the bottom box and press <strong>Commit</strong> button beside it.</p></li>
+<li><p>To view graphical history log of any branch, go to Repository -&gt; <strong>Visualize All Branch History</strong>. This uses <code>gitk</code> to show this info.</p></li>
+<li><p>All other basic operations are accessible from the top menu. For example, create/checkout/delete of branches and so on.</p></li>
+<li><p>To browse the directory tree and look inside files of any branch, use the Repository -&gt; <strong>Browse branch files</strong> option. This is very useful. When you open a file, it is opened in a rudimentary <strong>File Viewer</strong>.</p></li>
+</ul>
+<h1 id="file-viewer">File Viewer</h1>
+<p>The information shown in the file viewer is incredibly informative!</p>
+<ul>
+<li><p>You can hover mouse on any line and see its full history (who added it and so on)!</p></li>
+<li><p>The file viewer also has rudimentary features to find text and other operations. Right-click anywhere to view these.</p></li>
+<li><p>To view graphical log of just this file, right-click and choose <strong>Show History Context</strong>.</p></li>
+</ul>
+</body>
+</html>

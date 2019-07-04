@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>The strange case of cvAddSearchPath</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">The strange case of cvAddSearchPath</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-24 06:47:51+00:00</h3>
+</div>
+<p>Recently, I saw some code that should clearly give a compile error, but it compiled correctly. Here it is:</p>
+<pre><code>#include &lt;opencv/highgui.h&gt;
+
+int main()
+{
+    // Other code here
+
+    cvAddSearchPath(input_directory);
+
+    // Other code here
+
+    return 0;
+}</code></pre>
+<p>I saw that <code>input_directory</code> was not defined anywhere in this file. I also checked <code>highgui.h</code> and any other files it included. No sign of <code>input_directory</code> anywhere.</p>
+<p>The answer came not by pursuing <code>input_directory</code>, but going after <code>cvAddSearchPath</code>. It turns out that this is an obsolete function, but OpenCV has retained it so that old code did not break. The reason this code compiled without any errors, is because <code>cvAddSearchPath</code> was defined to nothing in <code>highgui_c.h</code>:</p>
+<pre><code>/****************************************************************************************
+*                              Obsolete functions/synonyms                               *
+****************************************************************************************/
+#define cvAddSearchPath(path)</code></pre>
+<p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
+</body>
+</html>

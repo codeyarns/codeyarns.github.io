@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to associate files with existing filetype in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to associate files with existing filetype in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-19 12:26:50+00:00</h3>
+</div>
+<p><strong>Vim</strong> has support for many <strong>filetypes</strong>. If it detects that a file is of a certain filetype, then syntax highlighting and indenting rules of that filetype are applied to the file.</p>
+<p>If you have a new file extension that you want to associate with an <em>existing</em> filetype, that is easy to do in Vim. For example, to associate files of type <code>.foo</code> with the filetype <code>.html</code>, add this line to your <code>.vimrc</code>:</p>
+<pre><code>autocmd BufRead,BufNewFile *.foo set filetype=html</code></pre>
+<ul>
+<li><p>The list of filetypes known to your Vim can be found as described <a href="2015/03/19/how-to-list-filetypes-in-vim/">here</a>.</p></li>
+<li><p>Make sure that <code>filetype on</code> is already done before this line in the <code>.vimrc</code> file.</p></li>
+</ul>
+<p>For more info, try <code>:help new-filetype</code> in your Vim :-)</p>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

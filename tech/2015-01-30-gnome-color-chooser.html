@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>GNOME Color Chooser</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">GNOME Color Chooser</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-30 12:39:06+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5616&quot; align=&quot;aligncenter&quot; width=&quot;441&quot;][<img src="https://codeyarns.files.wordpress.com/2015/01/20150130_color_chooser.png" alt="GNOME Color Chooser" />](https://codeyarns.files.wordpress.com/2015/01/20150130_color_chooser.png) GNOME Color Chooser[/caption]</p>
+<p><a href="http://gnomecc.sourceforge.net/"><strong>GNOME Color Chooser</strong></a> is a tool that makes it easy to change the colors of <strong>GTK</strong> UI elements. Since GNOME is based on GTK, this affects the foreground, background and other colors of the UI elements of many applications and the desktop. The settings applied here might override the colors applied by your desktop theme.</p>
+<p>Installing it is easy:</p>
+<pre><code>$ sudo apt install gnome-color-chooser</code></pre>
+<p>It can be invoked from the Dash as <strong>GNOME Color Chooser</strong> or from the shell as <code>gnome-color-chooser</code>. The changes are applied on the desktop and applications as soon as they are set. No need to logout of your desktop session.</p>
+<p>Curious to know what this tool is changing? I found that this tool writes a <code>~/.gtkrc-2.0</code> file. Internally, that just points to a <code>~/.gtkrc-2.0-gnome-color-chooser</code> where this tool writes all its settings.</p>
+<p>Some of the changes I used it for:</p>
+<ul>
+<li>The Ubuntu Ambiance theme uses a black background color for <strong>Tooltips</strong>. This looks horrible especially when they appear in applications like <strong>Eclipse</strong>. The foreground and background color of Tooltips can be changed in this tool at Specific -&gt; Tooltips.</li>
+</ul>
+<p><strong>Tried with:</strong> GNOME Color Chooser 0.2.5 and Ubuntu 14.04</p>
+</body>
+</html>

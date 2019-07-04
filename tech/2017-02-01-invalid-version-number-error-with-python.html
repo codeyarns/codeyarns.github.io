@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Invalid version number error with Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Invalid version number error with Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-02-01 16:20:39+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to import a Python package that I had installed from source. The import failed with this error:</p>
+<pre><code>File &quot;/usr/lib/python2.7/distutils/version.py&quot;, line 40, in __init__
+  self.parse(vstring)
+File &quot;/usr/lib/python2.7/distutils/version.py&quot;, line 107, in parse
+  raise ValueError, &quot;invalid version number &#39;%s&#39;&quot; % vstring
+ValueError: invalid version number &#39;2.7.0rc3&#39;</code></pre>
+<h1 id="solution">Solution</h1>
+<p>It turns out that package version number has to be in the x.y.z format. Else Python throws this error.</p>
+<p>Since I had the source code of this package, I found all instances of <code>2.7.0rc3</code> and changed it to <code>2.7.0</code>. Typically, this will be in the <code>setup.py</code> and <code>version.py</code> files. I removed the previously installed package and reinstalled this changed source code. I was able to import after this successfully.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

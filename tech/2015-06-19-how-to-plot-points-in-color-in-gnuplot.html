@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to plot points in color in Gnuplot</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to plot points in color in Gnuplot</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-06-19 12:11:00+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_7016&quot; align=&quot;aligncenter&quot; width=&quot;642&quot;][<img src="https://codeyarns.files.wordpress.com/2015/06/20150619_gnuplot_color.png" alt="Points plotted with color in Gnuplot" />](https://codeyarns.files.wordpress.com/2015/06/20150619_gnuplot_color.png) Points plotted with color in Gnuplot[/caption]</p>
+<p>I had some 2D data in a file in the following format:</p>
+<pre><code>6.37026 2.42441 0
+4.16001 6.55597 2
+3.54946 7.15539 2
+4.35229 3.8448 1
+7.12706 1.2563 3
+1.98478 8.68739 0
+7.67213 2.22039 0
+3.85744 7.3549 1</code></pre>
+<p>Each data point is on a separate line. The first and second columns were the X and Y coordinates of the data. The third column represents that which of the 4 classes (0-3) that points belonged to.</p>
+<p>To understand the data better, I wanted to visualize it by drawing a 2D plot with a point for each data point. To distinguish the points belonging to different classes, I wanted points of each class to be drawn with a distinct <strong>color</strong>.</p>
+<p>Once your data is in this format, achieving the above is easy in <strong>Gnuplot</strong>:</p>
+<pre><code>plot(&quot;sales_data.txt&quot;) with points palette</code></pre>
+<p><strong>Tried with:</strong> Gnuplot 5.0 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>USBView on Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">USBView on Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-30 12:13:00+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2015/07/20150730_usbview1.png"><img src="https://codeyarns.files.wordpress.com/2015/07/20150730_usbview1.png" alt="20150730_usbview" /></a></p>
+<p>You can list your USB devices using <code>lsusb</code>. However, the USB subsystem of controllers, hubs and devices connected to them has the structure of a <strong>tree</strong> and it would be most convenient to view as such. <a href="http://www.kroah.com/linux/usb/"><strong>USBView</strong></a> is a small GTK tool written by kernel developer <strong>Greg Kroah-Hartman</strong> that shows the <strong>topography</strong> of the devices connected to your USB subsystem in this tree format.</p>
+<ul>
+<li>Installing USBView is easy:</li>
+</ul>
+<pre><code>$ sudo apt install usbview</code></pre>
+<ul>
+<li>This tool parses the information available from <code>/sys/kernel/debug/usb/devices</code> and presents it nicely. Reading this file needs superuser permissions. You can read this information manually too:</li>
+</ul>
+<pre><code>$ sudo cat /sys/kernel/debug/usb/devices</code></pre>
+<ul>
+<li>To invoke USBView:</li>
+</ul>
+<pre><code>$ sudo usbview</code></pre>
+<ul>
+<li><p>In the tree presented by USBView, click on the controllers, hubs and devices connected to them to view information about them.</p></li>
+<li><p>Some of the information I typically look for:</p>
+<ul>
+<li><p>Manufacturer</p></li>
+<li><p>Serial Number</p></li>
+<li><p>Speed</p></li>
+<li><p>USB version (2 or 3)</p></li>
+<li><p>Device class</p></li>
+<li><p>Power needed (in mA)</p></li>
+</ul></li>
+</ul>
+<p><strong>Tried with:</strong> USBView 2.0, Linux 3.13.0-52-generic and Ubuntu 14.04</p>
+</body>
+</html>

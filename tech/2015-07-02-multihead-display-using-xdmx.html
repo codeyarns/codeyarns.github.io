@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Multihead display using Xdmx</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Multihead display using Xdmx</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-02 12:20:00+00:00</h3>
+</div>
+<p>The <a href="http://dmx.sourceforge.net/"><strong>Xdmx</strong></a> server allows your X server to extend its display to include other displays that are held by other X server across a network. Hence, the name <strong>Distributed Multihead X</strong>.</p>
+<p>As a simple example, consider two computers with one display each, up and running their own versions of Ubuntu. Let us call one the <strong>master</strong> and the other <strong>slave</strong>. If they are connected to each other by a network, can ping each other, then the master can extend its display by grabbing the display of slave. Once this is done, the master computer X server believes it has two displays. So, while working on the master computer you can now throw windows into the second display as if it were connected to the master computer itself.</p>
+<p>This is theory that Xdmx is supposed to make practical, however it did not work for my setup! :-(</p>
+<p>The steps I followed:</p>
+<ul>
+<li>Installed Xdmx server on both master and slave computers:</li>
+</ul>
+<pre><code>$ sudo apt install xdmx</code></pre>
+<ul>
+<li>Installed <strong>OpenSSH</strong> server on master computer:</li>
+</ul>
+<pre><code>$ sudo apt install openssh-server</code></pre>
+<ul>
+<li>On the slave, SSH into master computer with X11 forwarding:</li>
+</ul>
+<pre><code>$ ssh -X joe@master</code></pre>
+<ul>
+<li>Note down the <code>DISPLAY</code> string allocated to this SSH X session:</li>
+</ul>
+<pre><code>$ export | grep DISPLAY
+declare -x DISPLAY=&quot;localhost:10.0&quot;</code></pre>
+<ul>
+<li>Run the Xdmx server to fuse the two displays together for master:</li>
+</ul>
+<pre><code>$ startx -- /usr/bin/Xdmx :1 +xinerama -display :0.0 -display localhost:10.0 -norender -noglxproxy</code></pre>
+<p>The two displays blanked out for a while and then I got this error at the end:</p>
+<pre><code>xinit: XFree86_VT property unexpectedly has 0 items instead of 1
+xinit: connection to X server lost
+
+waiting for X server to shut down</code></pre>
+<p>Suggestions from <a href="https://wiki.archlinux.org/index.php/Extreme_Multihead">this page</a> indicate that the best chance of this multihead display working is if both computers are running an extremely minimal X session. Since I am running the complex Unity desktop on both, this may not work.</p>
+<p><strong>Tried with:</strong> Xdmx 1.15.1 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install and use FZF</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install and use FZF</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-24 13:45:20+00:00</h3>
+</div>
+<p><a href="https://github.com/junegunn/fzf"><strong>FZF</strong></a> is a fuzzy finder that can be used to autocomplete and find stuff at the shell. It has a beautiful ncurses interface, sensible keybindings and is blazing fast. It truly supercharges your shell use and you will not be able to live without it after.</p>
+<ul>
+<li>To install FZF and install its hooks into Bash, Zsh and Fish shells:</li>
+</ul>
+<pre><code>$ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+$ ~/.fzf/install</code></pre>
+<ul>
+<li><p><strong>Find files and directories:</strong> At the shell prompt, press <strong>Ctrl+T</strong> and FZF scans the files and directories inside your current directory and starts filling up its list. Type a few characters of the file or directory you want to autocomplete. The characters do not need to be an exact substring. That is the <strong>fuzzy</strong> feature of this finder. Use <strong>up</strong> and <strong>down</strong> keys to navigate the list. You can even use the <strong>mouse</strong> to pick items from the list by clicking and Ctrl-clicking. Finally press <strong>Enter</strong> to pick the entry you want. Press <strong>Esc</strong> to dismiss FZF any point.</p></li>
+<li><p><strong>Find directories:</strong> At the shell prompt, press <strong>Alt+C</strong> to autocomplete and find only directories. The rest of the interaction is same as that for <strong>Ctrl+T</strong> shown above.</p></li>
+<li><p><strong>Find from history:</strong> <strong>Ctrl+R</strong> does the fuzzy finding for commands from your shell history. This works in Bash, but seems to be disabled in Fish. No worries cause Fish already has powerful history search.</p></li>
+<li><p><strong>Find process to kill:</strong> Figuring out the PID of a process you want to kill is painful. With FZF, all you need to do is type <strong>kill</strong>, press TAB and you get a list of processes with full details. You can type some characters to find the process you want or scroll the list. For each item, it also shows the full command line at the bottom, enabling you choose the right program to kill. Press <strong>Enter</strong> to choose the process. Its PID will be added to your kill command.</p></li>
+</ul>
+<p><strong>Tried with:</strong> FZF 0.17.1 and Ubuntu 16.04</p>
+</body>
+</html>

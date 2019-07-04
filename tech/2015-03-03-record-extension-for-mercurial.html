@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Record extension for Mercurial</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Record extension for Mercurial</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-03 12:41:15+00:00</h3>
+</div>
+<p><a href="http://mercurial.selenic.com/wiki/RecordExtension"><strong>Record</strong></a> is an important extension for <strong>Mercurial</strong> and it ships along with it. It provides the <code>record</code> command, using which you can pick and choose which changes and modified files you want to commit. It feeds you the changes and modified files in an interactive format, so you do not have to type out long paths or other specifications.</p>
+<p>You can specify which of the modified files you want to commit to the <code>commit</code> command, but typing out the file paths like that is cumbersome. Also, it does not allow you to pick and choose changes inside a file. I feel that the <code>record</code> command is better for this use case.</p>
+<p>To enable the Record extension, add these lines to your <code>hgrc</code>:</p>
+<pre><code>[extensions]
+record =</code></pre>
+<p>Using it is as simple as:</p>
+<pre><code>$ hg record</code></pre>
+<p>For each change or file it shows, you can provide one of these inputs:</p>
+<pre><code>y - record this change
+n - skip this change
+
+s - skip remaining changes to this file
+f - record remaining changes to this file
+
+d - done, skip remaining changes and files
+a - record all changes to all remaining files
+q - quit, recording no changes
+
+? - display help</code></pre>
+<p><strong>Tried with:</strong> Mercurial 2.8.2 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Empty bibliography error with LaTeX</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Empty bibliography error with LaTeX</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-09 04:37:22+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>A LaTeX document that uses BibLaTeX was compiling without errors on Ubuntu 12.04 using Vim-LaTeX. When I changed to Ubuntu 14.04, compiling the same document gave this warning:</p>
+<pre><code>LaTeX Warning: Empty bibliography on input line 728.</code></pre>
+<p>The resulting PDF had no citations and no bibliography!</p>
+<h1 id="solution">Solution</h1>
+<p>In Ubuntu, the TeX-Live distribution is typically used for LaTeX compilation. In the years since the TeX-Live of Ubuntu 12.04, BibLaTeX has switched from bibtex to biber as its backend. Also, Vim-LaTeX has not been updated in these years and it still uses bibtex. This was causing the error.</p>
+<p>First, we install biber:</p>
+<pre><code>$ sudo apt-get install biber</code></pre>
+<p>Next, using the <a href="http://tex.stackexchange.com/questions/83715/biber-backend-and-vim-latex">clues given by Paul</a> I forked Vim-LaTeX and fixed it to use biber. To use this fork:</p>
+<pre><code>$ git clone https://github.com/ashwin/vim-latex.git</code></pre>
+<p>Compiling the LaTeX document using Vim-LaTeX now should not have this error and the bibliography should be produced. :-)</p>
+</body>
+</html>

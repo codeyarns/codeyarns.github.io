@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CGAL: GMP and MPFR Linker Errors</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CGAL: GMP and MPFR Linker Errors</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-05-20 05:49:40+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>Compiling any <strong>Visual C++</strong> solution that uses <strong>CGAL</strong> produces either or both of these errors:</p>
+<pre><code>1&gt;LINK : fatal error LNK1104: cannot open file &#39;gmp-vc90-mt.lib&#39;
+1&gt;LINK : fatal error LNK1104: cannot open file &#39;mpfr-vc90-mt.lib&#39;</code></pre>
+<p><strong>Solution</strong></p>
+<p>CGAL seems to look for <strong>GMP</strong> and <strong>MPFR</strong> libraries, whose names are suffixed with the Visual C++ version (<code>vc90</code>) and the build type (<code>mt</code>). However, CGAL stopped shipping pre-built GMP and MPFR libraries in such a format a while ago. Instead it ships a single library file for each. For example, in CGAL 3.8, these files are <code>libgmp-10.lib</code> and <code>libmpfr-4.lib</code>.</p>
+<p><a href="http://codeyarns.files.wordpress.com/2011/05/20110520_cgal_linker_errors.png"><img src="http://codeyarns.files.wordpress.com/2011/05/20110520_cgal_linker_errors.png" /></a></p>
+<p>With this knowledge, this error can be fixed and the solution can be compiled like this:</p>
+<ol style="list-style-type: decimal">
+<li><p>Ignore the library dependencies that are indicated by CGAL. This can be done by going to Properties → Linker → Input → Ignore Specific Library and adding <code>gmp-vc90-mt.lib,mpfr-vc90-mt.lib</code></p></li>
+<li><p>Link with the available libraries instead. This can be done by going to Properties → Linker → Input → Additional Dependencies and adding <code>libgmp-10.lib libmpfr-4.lib</code></p></li>
+</ol>
+<p>The Visual C++ solution using CGAL should be able to build and execute without errors now.</p>
+<p><strong>Tried with</strong>: Visual C++ 2008 and CGAL 3.8</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use CLEW</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use CLEW</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-12-03 12:56:21+00:00</h3>
+</div>
+<p><a href="https://github.com/martijnberger/clew"><strong>OpenCL Extension Wrangler Library (CLEW)</strong></a> does to <strong>OpenCL</strong> what <strong>GLEW</strong> does to <strong>OpenGL</strong>. It takes out all the pain of dealing with OpenCL libraries from different vendors and on different platforms. The best part is that your code will compile and run even on a computer without a OpenCL device or library. Only when it calls a OpenCL call does it fail.</p>
+<ul>
+<li>Get the CLEW code from Github:</li>
+</ul>
+<pre><code>$ git clone https://github.com/martijnberger/clew.git</code></pre>
+<ul>
+<li>Compile CLEW:</li>
+</ul>
+<pre><code>$ mkdir build
+$ cd build
+$ cmake ..
+$ make</code></pre>
+<ul>
+<li>Test if CLEW works:</li>
+</ul>
+<pre><code>$ clewTest/clewTest
+num platforms: 1</code></pre>
+<p>If you have an OpenCL device and OpenCL library installed, then the number of platforms reported will be greater than zero.</p>
+<ul>
+<li>For your own code, include the <code>clew.h</code> header file and link with the <code>libclew.so</code> library file. Call <code>clewInit</code> at the beginning. After that you can follow with any OpenCL calls.</li>
+</ul>
+<p><strong>Tried with:</strong> NVIDIA 352 drivers, NVIDIA GeForce GTX 750 Ti and Ubuntu 14.04</p>
+</body>
+</html>

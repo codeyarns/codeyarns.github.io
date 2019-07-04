@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to add symbolic name for Mercurial repository</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to add symbolic name for Mercurial repository</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-28 05:20:36+00:00</h3>
+</div>
+<p>When you clone a repository in Mercurial, it creates a file <code>.hg/hgrc</code> in the new clone repository. Typically, this has the following lines:</p>
+<pre><code>[paths]
+default = https://joe@someserver.org/joe/foobar</code></pre>
+<p>That is, it has the login, the source location (directory or internet domain), the repository owner and finally the repository name. This assigns a symbolic name of <code>default</code> to this repository. After this any push or pull command is done with this repository.</p>
+<p>If you created a new Mercurial repository and want to push it to another existing repository, then the command is:</p>
+<pre><code>$ hg push https://joe@someserver.org/joe/foobar</code></pre>
+<p>If you want to push or pull without having to specify the repository, then just create a <code>.hg/hgrc</code> file and add the above lines to it.</p>
+<p>If you want to add other repositories to push-pull from, add them on separate lines with a different symbolic name, not <code>default</code>:</p>
+<pre><code>[paths]
+default = https://joe@someserver.org/joe/foobar
+bkp = https://joe@bkpserver.org/joe/foobar</code></pre>
+<p>You can push-pull from that repository using the symbolic name you have given it:</p>
+<pre><code>$ hg pull bkp</code></pre>
+<p><strong>Tried with:</strong> Mercurial 2.0.2 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

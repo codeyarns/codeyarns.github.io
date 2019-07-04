@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>OGRE build error: freetype package could not be located</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">OGRE build error: freetype package could not be located</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-13 12:34:16+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_5705&quot; align=&quot;aligncenter&quot; width=&quot;718&quot;][<img src="https://codeyarns.files.wordpress.com/2015/02/20150213_freetype.png" alt="FreeType error in CMake GUI" />](https://codeyarns.files.wordpress.com/2015/02/20150213_freetype.png) FreeType error in CMake GUI[/caption]</p>
+<h1 id="problem">Problem</h1>
+<p>I was trying to build OGRE on Ubuntu:</p>
+<pre><code>$ mkdir build
+$ cd build
+$ cmake ..</code></pre>
+<p>CMake threw this error:</p>
+<pre><code>CMake Error at CMake/Utils/MacroLogFeature.cmake:100 (MESSAGE):
+  -----------------------------------------------------------------------------
+  -- The following REQUIRED packages could NOT be located on your system.
+  -- Please install them before continuing this software installation.
+  -- If you are in Windows, try passing -DOGRE_DEPENDENCIES_DIR=&lt;path to dependencies&gt;
+  -----------------------------------------------------------------------------
+  + freetype: Portable font engine &lt;http://www.freetype.org&gt;</code></pre>
+<p>CMake complained that it could not find the FreeType package. But, I had already installed both the <code>libfreetype6</code> and <code>libfreetype6-dev</code> packages.</p>
+<h1 id="solution">Solution</h1>
+<p>The dependency on FreeType is listed in the <code>CMake/Dependencies.cmake</code> file in the OGRE source. OGRE seems to be using its own CMake script to find FreeType located at <code>CMake/Packages/FindFreetype.cmake</code>. This script seems to be failing to locate some file or directory of FreeType, even though it is installed.</p>
+<p>I solved this by opening the CMake GUI:</p>
+<pre><code>$ cmake-gui ..</code></pre>
+<p>Enable <strong>Advanced</strong> and <strong>Grouped</strong> so that its easy to view the results. Click <strong>Configure</strong>. The same FreeType error is thrown up. But, now we can see that for some reason the <code>FREETYPE_INCLUDE_DIR</code> is not being found. I set this to <code>/usr/include/freetype2</code>. Click Configure again and the error is gone. Then click Generate. Compilation worked fine after this.</p>
+<p><strong>Tried with:</strong> OGRE 1.8 and Ubuntu 14.04</p>
+</body>
+</html>

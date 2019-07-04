@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>The strange case of the incorrect side-by-side configuration</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">The strange case of the incorrect side-by-side configuration</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-11-05 07:33:40+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_2877&quot; align=&quot;aligncenter&quot; width=&quot;562&quot;][<img src="http://codeyarns.files.wordpress.com/2012/11/20121031-sxs.png" />](http://codeyarns.files.wordpress.com/2012/11/20121031-sxs.png) Side-by-side configuration error[/caption]</p>
+<p>A week ago <strong>VirtualBox</strong> informed that a new version was available and that I should update to it. I proceeded to get the latest version using Chrome, which downloaded as the file <strong>VirtualBox-4.2.4-81684-Win.exe</strong>. On executing the file, I got this error:</p>
+<blockquote>
+The application has failed to start because its side-by-side configuration is incorrect. Please see the application event log or use the command-line sxstrace.exe tool for more detail.
+</blockquote>
+<p>This error was a bit troubling to me because I have not seen any DLL or SxS problems with Windows 7 and recent versions of software. Those happen mostly with older versions of Windows and older software.</p>
+<p>Searching online for this error leads to suggestions that one should install a particular version of the <strong>Visual C++ Redistributable</strong> package. None of those solved the problem however.</p>
+<p>I finally suspected the file itself. File downloads rarely get corrupted these days, but it can still happen. So, I downloaded the file again and it installed without any complaint! :-)</p>
+<p>Just to confirm I opened up the two files in WinMerge and found that there were a few bytes at the end of the second file missing from the first downloaded file.</p>
+<p><strong>Tried with:</strong> VirtualBox 4.2.4 and Windows 7 Enterprise</p>
+</body>
+</html>

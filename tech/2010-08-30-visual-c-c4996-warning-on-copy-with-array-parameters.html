@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: C4996 Warning on Copy with Array Parameters</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: C4996 Warning on Copy with Array Parameters</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-08-30 13:30:59+00:00</h3>
+</div>
+<p><strong>Visual C++</strong> throws a <strong><a href="http://msdn.microsoft.com/en-us/library/ttcz0bys.aspx">C4996</a></strong> warning if <strong>std::copy</strong> is called with array parameters (instead of the conventional iterator parameters). For example, if you have code of the form:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="bu">std::</span>copy( arr0, arr0 + <span class="dv">5</span>, arr1 );</code></pre></div>
+<p>where <code>arr0</code> and <code>arr1</code> are pointers to arrays or valid memory locations.</p>
+<p>The C4996 warning is of the form:</p>
+<blockquote>
+warning C4996: 'std::_Copy_impl': Function call with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
+</blockquote>
+<p>Visual C++ uses <strong><a href="http://msdn.microsoft.com/en-us/library/aa985965.aspx">checked iterators</a></strong> by default everywhere for security reasons. This warning is a manifestation of that design decision. There are a few ways to deal with it:</p>
+<ul>
+<li><p><strong>checked_array_iterator</strong>: A <strong><a href="http://msdn.microsoft.com/en-us/library/aa985928.aspx">checked_array_iterator</a></strong> can be used to wrap the unsafe array pointer. It is a Microsoft extension to the C++ Standard and is defined in the <strong><a href="http://msdn.microsoft.com/en-us/library/ek139e86.aspx">stdext</a></strong> namespace. It results in an assertion check at runtime, which throws an exception if it fails. Applying a checked_array_iterator on the above code: <code>cpp #include &lt;iterator&gt; std::copy( arr0, arr0 + 5, stdext::checked_array_iterator&lt;int*&gt;( arr1, 5 ) );</code></p></li>
+<li><p><strong>unchecked_copy</strong>: The copy call can be replaced with an <strong><a href="http://msdn.microsoft.com/en-us/library/aa985849.aspx">unchecked_copy</a></strong> if you want to forgo the checking. This is defined in the <strong>stdext</strong> namespace. Note that this is usable in Visual C++ 2008 and not later. It was <a href="http://msdn.microsoft.com/en-us/library/bb531344.aspx">removed</a> in Visual C++ 2010. Using unchecked_copy instead of copy:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">stdext::unchecked_copy( arr0, arr0 + <span class="dv">5</span>, arr1 );</code></pre></div></li>
+<li><p><strong>vector</strong>: Another solution is to wrap the destination array in a vector and use the vector as the destination of copy. Not a great solution, but it might work for you.</p></li>
+<li><p><strong>pragma warning</strong>: Turn off the C4996 warning for the call to copy using <strong><a href="http://codeyarns.wordpress.com/2010/07/27/visual-c-pragma-warning/">pragma warning</a></strong>. This can be applied at the source file level to mask all C4996 warnings. Note that this is a really bad move since it masks all deprecation warnings!</p></li>
+<li><p>**_SCL_SECURE_NO_WARNINGS<strong>: Define the </strong><a href="http://msdn.microsoft.com/en-us/library/aa985974.aspx">_SCL_SECURE_NO_WARNINGS</a>** macro to turn off all C4996 warnings. SCL here stands for Standard C++ Library. Again, turning off this warning not a good move! If you want to do this anyway, add <code>-D_SCL_SECURE_NO_WARNINGS</code> to your project settings or <code>#define _SCL_SECURE_NO_WARNINGS</code> in your code.</p></li>
+</ul>
+</body>
+</html>

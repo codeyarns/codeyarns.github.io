@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build OpenCV on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build OpenCV on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-07-17 04:48:29+00:00</h3>
+</div>
+<ul>
+<li><p>Download the <strong>OpenCV</strong> source code from its <a href="https://github.com/Itseez/opencv">Github repository</a>. I prefer to download the <a href="https://github.com/Itseez/opencv/releases">releases</a>, which are more stable compared to the main branch.</p></li>
+<li><p>Create a build directory:</p></li>
+</ul>
+<pre><code>$ mkdir build
+$ cd build</code></pre>
+<ul>
+<li>Configure the features you want OpenCV to be compiled with. I prefer the CMake GUI for this:</li>
+</ul>
+<pre><code>$ cmake-gui ..</code></pre>
+<ul>
+<li><p>Click <strong>Configure</strong>. Go down the list and look for the items named <code>BUILD_*</code>, <code>BUILD_opencv_*</code> and <code>WITH_*</code>. Each of these is a feature that can be compiled into OpenCV. Choose what you would like and uncheck those not needed.</p></li>
+<li><p><code>BUILD_*</code> items: These are related to external libraries. If you enable one of them, during the build, the source code of that external library will be downloaded and built. You typically do not want to do this, since you can install the pre-built library directly by using <code>apt-get</code>. For example, instead of using <code>BUILD_JPEG</code>, you can just install the <code>libjpeg-dev</code> package from Ubuntu repositories.</p></li>
+<li><p><code>BUILD_opencv_*</code> items: These are the features of OpenCV. Choose which of these features you need for your work. These features might be interdependent and it is your responsibility to ensure that all the dependent features are also enabled. You can see if the dependencies for the feature you need were met in the output you get after pressing the Configure button.</p></li>
+<li><p><code>WITH_*</code> items: These are typically related to external libraries. This is different from <code>BUILD_*</code> items, since choosing this indicates that you want OpenCV to link with this external library. For example, choosing <code>WITH_TBB</code> links with the Intel TBB library and certain OpenCV features compute faster due to the added parallelism available from Intel TBB.</p></li>
+<li><p>After you have chosen the features you need, click Configure again. Examine the output at the bottom and if you are satisfied, click Generate. This generates the Makefile.</p></li>
+<li><p>Build OpenCV from the Makefile:</p></li>
+</ul>
+<pre><code>$ make</code></pre>
+<p>The build can take a long time, so you might want to run parallel builds:</p>
+<pre><code>$ make -j</code></pre>
+<ul>
+<li>If you find that a feature you want is not being built, then check the output that is at the bottom of the CMake GUI after you press Configure.</li>
+</ul>
+<p>Ensure there is nothing displayed in red color. If there is, note down the header file or library that is required and install those packages. Also ensure that all the options you chose have been chosen for build. Some of the features are inter-dependent and may not be built if their dependencies are not chosen.</p>
+<p>Another technique is to go to the subdirectory containing the feature and look at the <code>CMakeLists.txt</code> file there. Look for the text <code>REQUIRED_DEPS</code> that shows what other OpenCV features need to be present for this feature to be built. Ensure those features are also chosen.</p>
+<ul>
+<li>To install OpenCV that you have built:</li>
+</ul>
+<pre><code>$ sudo make install</code></pre>
+<p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
+</body>
+</html>

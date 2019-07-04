@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>OpenCV CMake package version error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">OpenCV CMake package version error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-12-23 21:31:53+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I was compiling OpenCV using CMake and it threw up this error:</p>
+<pre><code>CMake Warning at cmake/OpenCVPackaging.cmake:23 (message):
+  CPACK_PACKAGE_VERSION does not match version provided by version.hpp
+  header!
+Call Stack (most recent call first):
+  CMakeLists.txt:1105 (include)</code></pre>
+<h1 id="solution">Solution</h1>
+<p>Open <code>cmake/OpenCVPackaging.cmake</code> file and add the version of OpenCV using a line <code>set(OPENCV_VCSVERSION &quot;2.4.13&quot;)</code>. Place the line anywhere above the first use of <code>OPENCV_VCSVERSION</code>.</p>
+</body>
+</html>

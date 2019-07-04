@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install Intel MKL</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install Intel MKL</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-15 03:38:46+00:00</h3>
+</div>
+<p><a href="https://software.intel.com/en-us/mkl"><strong>Intel Math Kernel Library (MKL)</strong></a> provides math routines optimized for Intel CPUs. It is available free for personal and community use.</p>
+<ul>
+<li><p>Register and download MKL from <a href="https://software.seek.intel.com/performance-libraries">here</a>. I prefer to choose the <strong>full package</strong>.</p></li>
+<li><p>For Linux, the downloaded file is a zipped tar file. For example: <code>l_mkl_2019.3.199.tgz</code>. Unzip its contents.</p></li>
+<li><p>Run its installer script:</p></li>
+</ul>
+<pre><code>$ sudo ./install.sh</code></pre>
+<p>The installer takes you through a console install wizard. By default, it will install to <code>/opt/intel</code>. By default, it will install MKL libraries for C/C++ and Fortran. I typically request not to install the Fortran libraries which reduces the install size by half.</p>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to kill a process</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to kill a process</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-31 14:53:02+00:00</h3>
+</div>
+<p>Sooner or later you will find that an errant process is running amok or in the background and it needs to be stopped. This is called <strong>killing</strong> a process in Linux.</p>
+<h1 id="kill">kill</h1>
+<p>The most common command to kill a process is <code>kill</code>.</p>
+<ul>
+<li>To kill a process, provide its PID:</li>
+</ul>
+<pre><code>$ kill 1234</code></pre>
+<p>By default, <code>kill</code> sends the <code>TERM</code> signal.</p>
+<ul>
+<li>To kill multiple processes, provides all their PIDs:</li>
+</ul>
+<pre><code>$ kill 1234 5678 9999</code></pre>
+<ul>
+<li>Many other signals other than <code>TERM</code> can be sent to processes. To list all the available signal numbers and their corresponding signal names:</li>
+</ul>
+<pre><code>$ kill -L</code></pre>
+<ul>
+<li>To send a different signal provide the signal name:</li>
+</ul>
+<pre><code>$ kill -KILL 1234</code></pre>
+<ul>
+<li>The signal name can also be specified by appending a <code>SIG</code> as prefix:</li>
+</ul>
+<pre><code>$ kill -SIGKILL 1234</code></pre>
+<ul>
+<li>Alternatively, you can provide the signal number:</li>
+</ul>
+<pre><code>$ kill -9 1234</code></pre>
+<ul>
+<li>For most processes, sending the default <code>TERM</code> is enough. Most processes receive this signal, clean up their work and exit. For errant processes which do not respond to <code>TERM</code>, the final deathblow is sending a <code>KILL</code>. On sending this signal, the kernel steps in and it directly murders the process giving it no chance to clean up.</li>
+</ul>
+<h1 id="killall">killall</h1>
+<p>Looking up the PID of a process and then killing it is usually cumbersome. What you usually want to do is to kill based on the process name. This can be done using the <code>killall</code> command.</p>
+<ul>
+<li>To kill all Vim processes:</li>
+</ul>
+<pre><code>$ killall vim</code></pre>
+<ul>
+<li>To kill all processes that match a regex:</li>
+</ul>
+<pre><code>$ killall -r &quot;*abcd*&quot;</code></pre>
+<ul>
+<li><p>By default, <code>killall</code> sends the <code>TERM</code> signal. Other signals can be sent using signal number or signal name using the same command syntax as the <code>kill</code> command shown above.</p></li>
+<li><p>By default, <code>killall</code> only prints out the processes that it could not kill. It might be better to also see output from the command when it succeeds. The verbose option can be used for this:</p></li>
+</ul>
+<pre><code>$ killall -v vim
+Killed vim(28952) with signal 15
+Killed vim(28347) with signal 15</code></pre>
+<ul>
+<li>You might be afraid that you might kill processes by mistake with this command. If so use the interactive option to pick and choose which process to kill:</li>
+</ul>
+<pre><code>$ kill -i vim
+Kill vim(1067) ? (y/N)</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

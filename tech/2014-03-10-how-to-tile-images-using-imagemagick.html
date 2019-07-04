@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to tile images using ImageMagick</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to tile images using ImageMagick</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-03-10 02:27:38+00:00</h3>
+</div>
+<p>Tiling images into a 2D grid of one or more rows and columns is an important use of <strong>ImageMagick</strong>. This operation can be performed using its <a href="http://www.imagemagick.org/Usage/montage/">montage</a> tool.</p>
+<p>To tile a set of images, allowing ImageMagick to pick the layout for you:</p>
+<pre><code>$ montage *.jpg out.jpg</code></pre>
+<p>To tile a set of 7 images, arranged in a single row:</p>
+<pre><code>$ montage *.jpg -tile 7x1 out.jpg</code></pre>
+<p>To tile a set of 5 images, arranged in a single column:</p>
+<pre><code>$ montage *.jpg -tile 1x5 out.jpg</code></pre>
+<p>To tile a set of 10 images, arranged in two rows:</p>
+<pre><code>$ montage *.jpg -tile 5x2 out.jpg</code></pre>
+<p>To specify that only a spacing of 2 pixels be used between images in the above setting:</p>
+<pre><code>$ montage *.jpg -tile 5x2 -geometry +2+2 out.jpg</code></pre>
+<p>You will notice that montage downsizes images. If you want the resulting image to have the width or height of the original images or a specific width or height, specify it:</p>
+<pre><code>$ montage *.jpg -geometry 320x out.jpg</code></pre>
+<p><strong>Tried with:</strong> ImageMagick 6.8.9.9 and Ubuntu 14.04</p>
+</body>
+</html>

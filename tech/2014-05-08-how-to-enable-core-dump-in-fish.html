@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable core dump in Fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable core dump in Fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-08 05:36:43+00:00</h3>
+</div>
+<p>When a program crashes due to segmentation fault, then its core dump file is useful to debug the problem. However, when you execute such a program under Fish, it does not create a <code>core</code> file. This is because core dump is disabled by default in Fish. You can check this by using the <code>ulimit</code> command:</p>
+<pre><code>$ ulimit -c
+0</code></pre>
+<p>The output of <code>0</code> means that core dump has been disabled.</p>
+<p>To enable it you can pass the maximum size of the core file which Fish should allow to be dumped (in KB). If you want to dump core no matter how large the file:</p>
+<pre><code>$ ulimit -c unlimited</code></pre>
+<p>If you want this setting to be enabled by default, add the above line to your <code>~/.config/fish/functions/config.fish</code> file. More information on the ulimit command can be found <a href="http://ridiculousfish.com/shell/user_doc/html/commands.html#ulimit">here</a>.</p>
+<p><strong>Tried with:</strong> Fish 2.0.0 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Cannot close buffer of NetRW in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Cannot close buffer of NetRW in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-02 12:09:55+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><strong>Vim</strong> has a built-in plugin named <strong>NetRW</strong> that acts as a file explorer to navigate directories and read-write files. I found that all the buffers used by NetRW to show directory listings would exist even after opening a file from them. This cluttered up my buffer list. Furthermore, while inside NetRW I could not close its buffer by using <code>:q</code>.</p>
+<h1 id="solution">Solution</h1>
+<p>This turned out to be a problem created by <a href="https://codeyarns.com/2015/02/02/vinegar-plugin-for-vim/"><strong>Vinegar</strong></a>, a plugin that makes using NetRW easier. This problem has been discussed <a href="https://github.com/tpope/vim-vinegar/issues/13">here</a>.</p>
+<p>From the many solutions offered, adding this line to <code>.vimrc</code> worked for me:</p>
+<pre><code>autocmd FileType netrw setl bufhidden=wipe</code></pre>
+<p>Note that this still retains the very first buffer used by NetRW to show file listing. All the NetRW buffers that were created later, do not appear in the buffer list. Not a perfect solution, but I can live with it.</p>
+<p>Another solution is to use the <a href="https://github.com/jeetsukumaran/vim-filebeagle">FileBeagle</a> plugin instead of NetRW and Vinegar. It works the same as NetRW for viewing and opening files from a directory hierarchy. However, you cannot rename or delete files from it.</p>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

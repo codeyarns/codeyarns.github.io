@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: pragma warning</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: pragma warning</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-07-27 15:20:49+00:00</h3>
+</div>
+<p>It is a good practice to compile code at the highest warning level available from the compiler. When the compiler reports warnings on the code, the code should be fixed so that it compiles with zero warnings. But, sometimes this is not possible, for example, if the source of the warnings are headers included from external libraries. Common C++ libraries like <strong>Boost</strong> and special libraries like <strong>CGAL</strong> (Computational Geometry Algorithms Library) are notorious for introducing hundreds of warnings when their header files are included.</p>
+<p>In Visual C++, the <a href="http://msdn.microsoft.com/en-us/library/2c8f766e.aspx"><strong>#pragma warning</strong></a> compiler directive is an effective way to disable these specific warnings. There are many <strong>specifiers</strong> that can be specified with #pragma warning. Here are a couple that I find most useful:</p>
+<p>Warnings that are reported have an identifier and a textual message. The identifier is of the form <strong>CXXXX</strong>, where XXXX is the <strong>warning number</strong>. The <strong>disable</strong> specifier can be used to disable a specific warning, say C1234:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#pragma warning(disable: 1234)</span></code></pre></div>
+<p>The disabling of warnings should be localized as much as possible. This can be done using the <strong>push</strong> and <strong>pop</strong> specifiers around the offending code.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#pragma warning(push)</span>
+<span class="pp">#pragma warning(disable: 1234)</span>
+<span class="co">// Offending code that produces C1234 warning goes here</span>
+<span class="pp">#pragma warning(pop)</span></code></pre></div>
+<h1 id="pragma-warning-directives-can-be-placed-in-header-files-or-in-source-files.-when-the-directive-needs-to-be-used-across-an-entire-source-file-or-many-files-one-can-get-lazy-and-place-it-in-a-header-that-is-included-in-all-these-files.-this-is-not-a-good-practice-since-the-warning-will-be-disabled-for-all-the-source-files-that-include-that-header-now-or-in-the-future.">pragma warning directives can be placed in header files or in source files. When the directive needs to be used across an entire source file or many files, one can get lazy and place it in a header that is included in all these files. This is <em>not</em> a good practice since the warning will be disabled for all the source files that include that header now or in the future.</h1>
+<p>I prefer placing directives at the source file level, so that their effect is localized to the source file. If one is placing the directive at the source file, it should be put at the top, even above the header files inclusion, to be effective:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Foo.cpp</span>
+<span class="pp">#pragma warning(disable: 1234)</span>
+<span class="pp">#include </span><span class="im">&quot;Foo.h&quot;</span>
+
+Foo::Foo()
+{ <span class="co">/***/</span> }</code></pre></div>
+</body>
+</html>

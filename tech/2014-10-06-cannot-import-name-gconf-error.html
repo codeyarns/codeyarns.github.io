@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Cannot import name GConf error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Cannot import name GConf error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-10-06 02:56:36+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<pre><code>$ hamster 
+ERROR:root:Could not find any typelib for GConf
+Traceback (most recent call last):
+  File &quot;/usr/bin/hamster&quot;, line 30, in &lt;module&gt;
+    from hamster import client, reports
+  File &quot;/usr/lib/python2.7/dist-packages/hamster/reports.py&quot;, line 32, in &lt;module&gt;
+    from hamster.lib.configuration import runtime
+  File &quot;/usr/lib/python2.7/dist-packages/hamster/lib/configuration.py&quot;, line 33, in &lt;module&gt;
+    from gi.repository import GConf as gconf
+ImportError: cannot import name GConf</code></pre>
+<h1 id="solution">Solution</h1>
+<p>To be able to import GConf from Python script, install this package:</p>
+<pre><code>sudo apt install  gir1.2-gconf-2.0</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

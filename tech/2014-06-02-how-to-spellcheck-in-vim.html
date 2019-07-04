@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to spellcheck in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to spellcheck in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-06-02 09:14:33+00:00</h3>
+</div>
+<p><strong>Vim</strong> has built-in ability to perform <strong>spellcheck</strong>. The <a href="http://vimcasts.org/episodes/spell-checking/">VimCasts video on spellcheck</a> gives a good summary of these features.</p>
+<ul>
+<li>Use the <code>set spelllang</code> option to set the language to be used for spellcheck. For example, to set International English, add this to your vimrc:</li>
+</ul>
+<pre><code>set spelllang=en</code></pre>
+<ul>
+<li><p>To perform a spellcheck use <code>:set spell</code>. The wrongly spelled words are marked in Vim.</p></li>
+<li><p><code>]s</code> to jump to next misspelled word.</p></li>
+<li><p><code>z=</code> to see suggestions for misspelled word under cursor.</p></li>
+<li><p><code>zg</code> to add misspelled word under cursor to your personal spellfile. Remember it as adding a <strong>good</strong> word.</p></li>
+<li><p><code>zG</code> to ignore the misspelled word under cursor for this session.</p></li>
+<li><p><code>zw</code> to mark correctly spelled word under cursor as a misspelling. Remember it as adding a <strong>wrong</strong> word.</p></li>
+</ul>
+<p>The spellfile can be found in <code>~/.vim/spell/</code>. For example, mine is named <code>en.utf-8.add</code></p>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

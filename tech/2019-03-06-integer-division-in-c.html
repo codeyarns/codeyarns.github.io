@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Integer division in C</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Integer division in C</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-03-06 02:25:34+00:00</h3>
+</div>
+<p><strong>Integer division</strong> in modern C always rounds towards zero. For example:</p>
+<pre><code>9/2 = 4
+-9/2 = -4 (not -5)</code></pre>
+<p>This was was not always so. In early C versions and in the C89 standard, positive integer division rounded to zero, but result of negative integer division was implementation dependent!</p>
+<p>From <strong>§3.3.5 Multiplicative operators</strong> of the <a href="http://port70.net/~nsz/c/c89/c89-draft.txt"><strong>C89 standard</strong></a>:</p>
+<pre><code>   When integers are divided and the division is inexact, if both
+operands are positive the result of the / operator is the largest
+integer less than the algebraic quotient and the result of the %
+operator is positive.  If either operand is negative, whether the
+result of the / operator is the largest integer less than the
+algebraic quotient or the smallest integer greater than the algebraic
+quotient is implementation-defined, as is the sign of the result of
+the % operator.  If the quotient a/b is representable, the expression
+(a/b)*b + a%b shall equal a .</code></pre>
+<p>The same appears in the first edition of <strong>The C Programming Language</strong> book by Kernighan and Ritchie.</p>
+<p>This implementation-defined behavior was fixed by the C99 standard which defined that integer division always rounds towards zero.</p>
+<p>From <strong>§6.5.5 Multiplicative operators</strong> of the <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf"><strong>C99 standard</strong></a>:</p>
+<pre><code>When integers are divided, the result of the / operator is the algebraic
+quotient with any fractional part discarded.</code></pre>
+<p>Thanks to Arch for pointing this out.</p>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Static Initialization Order</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Static Initialization Order</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-05-04 02:48:17+00:00</h3>
+</div>
+<p>There are so many aspects of C++ that are not nailed down that it is crazy! If you are using a <strong>static object</strong> from one file to <strong>initialize</strong> a static object in another file, you are in big trouble!</p>
+<p>For example:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Point2D.h</span>
+<span class="kw">class</span> Point<span class="er">2D</span>
+{
+<span class="kw">private</span>:
+    <span class="dt">int</span> _x, _y;
+<span class="kw">public</span>:
+    Point2D(<span class="dt">int</span> x, <span class="dt">int</span> y) : _x(x), _y(y) {}
+    <span class="at">static</span> <span class="at">const</span> Point2D INVALID;
+};</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Point2D.cpp</span>
+<span class="pp">#include </span><span class="im">&quot;Point2D.h&quot;</span>
+<span class="at">const</span> Point2D::INVALID(<span class="dv">-1</span>, <span class="dv">-1</span>); <span class="co">// Initialize static object</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Main.h</span>
+<span class="pp">#include </span><span class="im">&quot;Foobar.h&quot;</span>
+<span class="pp">#include </span><span class="im">&quot;Point2D.h&quot;</span>
+<span class="kw">class</span> Main
+{
+<span class="kw">public</span>:
+    <span class="at">static</span> Foobar foobar;
+}</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Main.cpp</span>
+<span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span>
+
+<span class="co">// Point2D::INVALID may not even be initialized to (-1, -1) when foobar is constructed!</span>
+Foobar Main::foobar( Point2D::INVALID );</code></pre></div>
+<p>In the above example, you are bitten by the <strong>static initialization order problem</strong> in C++. The problem is, there is no order! <code>Point2D</code> and <code>Main</code> classes are defined in different source files, or in C/C++ parlance, called different <strong>translation units</strong>. So, the <code>Main::foobar</code> object could be created even before the <code>Point2D::INVALID</code> object is created!</p>
+<p>The best solution for such cross-translation unit initializations seems to be the use of a <strong>static method</strong> that returns a reference to a <strong>function-local static object</strong>. The function-local static object is guaranteed to be created only once, the first time that function is called.</p>
+<p>For example, to fix the above error, we change <code>Point2D::INVALID</code> into a function:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Point2D.h</span>
+<span class="kw">class</span> Point<span class="er">2D</span>
+{
+<span class="kw">private</span>:
+    <span class="dt">int</span> _x, _y;
+<span class="kw">public</span>:
+    Point2D(<span class="dt">int</span> x, <span class="dt">int</span> y) : _x(x), _y(y) {}
+    <span class="at">static</span> Point2D&amp; INVALID()
+    {
+        <span class="at">static</span> Point2D* pt = <span class="kw">new</span> Point2D(<span class="dv">-1</span>, <span class="dv">-1</span>);
+        <span class="cf">return</span> *pt;
+    }
+};</code></pre></div>
+<p>We will need to replace all usages of <code>Point2D::INVALID</code> with <code>Point2D::INVALID()</code> after this change.</p>
+<p><strong>References:</strong></p>
+<p>For more on this, check out <strong>Item 4: Make sure the objects are initialized before they are used</strong> from the book <strong><a href="http://www.amazon.com/Effective-Specific-Improve-Programs-Designs/dp/0321334876/">Effective C++</a></strong> (3rd Edition) by Scott Meyers. He uses a function-local static object, instead of a function-local static pointer. Using a pointer seems to be a better strategy as explained in the answer to <a href="http://www.parashift.com/c++-faq-lite/ctors.html#faq-10.14">this question</a> at <strong><a href="http://www.parashift.com/c++-faq-lite/">C++ FAQ Lite</a></strong>.</p>
+</body>
+</html>

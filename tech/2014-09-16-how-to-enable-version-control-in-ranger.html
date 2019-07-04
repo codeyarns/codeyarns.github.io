@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable version control in Ranger</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable version control in Ranger</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-16 07:42:54+00:00</h3>
+</div>
+<p><a href="http://codeyarns.com/2013/08/26/how-to-install-and-use-ranger/"><strong>Ranger</strong></a> can show the version control status of files and directories. Symbols are displayed in colors along the right side, beside the file size, to indicate the <strong>version control status</strong> of those files. For example, a green tick mark is shown if the file is up-to-date. Version control systems that are supported include <strong>Git</strong>, <strong>Mercurial</strong> (Hg) and <strong>Bazaar</strong>.</p>
+<p>The version control feature is only available in Ranger v1.6.1 and later. If the version from your distribution is older than this, then you need to get the latest version.</p>
+<h1 id="install-latest-version">Install latest version</h1>
+<ul>
+<li>Before installing the latest version of Ranger, I remove the old one:</li>
+</ul>
+<pre><code>$ sudo apt remove ranger</code></pre>
+<ul>
+<li>Install the latest version of Ranger as described <a href="http://codeyarns.com/2013/08/26/how-to-install-and-use-ranger/">here</a>.</li>
+</ul>
+<h1 id="configure-version-control-feature">Configure version control feature</h1>
+<ul>
+<li>To enable version control support, have this line in your <code>~/.config/ranger/rc.conf</code>:</li>
+</ul>
+<pre><code>set vcs_aware true</code></pre>
+<ul>
+<li>Next we need to specify which version control systems we want to be supported. For each version control system, are three possible options: <code>disabled</code>, <code>local</code> (use only local information) and <code>enabled</code> (get remote information too).</li>
+</ul>
+<p>For example, to enable Git and Mercurial support with only local information, I add this to <code>rc.conf</code>:</p>
+<pre><code>set vcs_backend_git local
+set vcs_backend_hg local</code></pre>
+<p>Open Ranger now in a directory that is inside any repository and you will see the file status information displayed at the right side of the column.</p>
+<ul>
+<li>I found that having VCS enabled made Ranger extremely slow to start. So, I disabled it by default and instead mapped a keyboard shortcut <code>zg</code> to enable it when I needed it. This can be done by adding these lines to <code>rc.conf</code>:</li>
+</ul>
+<pre><code>set vcs_aware false
+map zg set vcs_aware true</code></pre>
+<p><strong>Tried with:</strong> Ranger 1.7.2 and Ubuntu 14.04</p>
+</body>
+</html>

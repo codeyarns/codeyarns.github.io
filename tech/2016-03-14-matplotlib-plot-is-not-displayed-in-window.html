@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Matplotlib plot is not displayed in window</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Matplotlib plot is not displayed in window</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-14 12:40:15+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I created a plot using the <strong>Matplotlib</strong> library in a Python script. But the call to <code>show</code> does not display the plot in a GUI window.</p>
+<h1 id="solution">Solution</h1>
+<p>The rendering of a plot to a file or display is controlled by the <strong>backend</strong> that is set in Matplotlib. You can check the current backend using:</p>
+<pre><code>import matplotlib
+matplotlib.get_backend()</code></pre>
+<p>I got the default backend as <code>Agg</code>. The possible values for GUI backends on Linux are <code>Qt4Agg</code>, <code>GTKAgg</code>, <code>WXagg</code>, <code>TKAgg</code> and <code>GTK3Agg</code>. Since <code>Agg</code> is not a GUI backend, nothing is being displayed.</p>
+<p>I wanted to use the simple Tcl-Tk backend. So, I installed the necessary packages for Python:</p>
+<pre><code>$ sudo apt install tcl-dev tk-dev python-tk python3-tk</code></pre>
+<p>The backend is not set automatically after this. In my Python script, I set it explicitly:</p>
+<pre><code>import matplotlib
+matplotlib.rcParams[&quot;backend&quot;] = &quot;TkAgg&quot;</code></pre>
+<p>The plot was displayed after this change.</p>
+<p>However, this needs to be set immediately after the import line of Matplotlib and before importing <code>matplotlib.pyplot</code>. Doing this in the import region of a Python script is quite ugly.</p>
+<p>Instead, I like to switch the backend of the <code>matplotlib.pyplot</code> object itself:</p>
+<pre><code>import matplotlib.pyplot as mplot
+mplot.switch_backend(&quot;TkAgg&quot;)</code></pre>
+<p>This too worked fine for me! :-)</p>
+<p><strong>Reference:</strong> <a href="http://www.pyimagesearch.com/2015/08/24/resolved-matplotlib-figures-not-showing-up-or-displaying/">Matplotlib figures not showing up or displaying</a></p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

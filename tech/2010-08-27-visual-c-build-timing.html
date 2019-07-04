@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: Build Timing</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: Build Timing</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-08-27 03:52:09+00:00</h3>
+</div>
+<p>It is not wise to optimize code without benchmarking it. Similarly, it is not wise to investigate and improve C++ build times without even knowing the <strong>build times</strong>.</p>
+<p><strong>Enabling Build Times</strong></p>
+<p>To turn on the display of build time in Visual C++, go to <em>Tools → Options → Projects and Solutions → VC++ Project Settings</em>. Set the <em>Build Timing option</em> to <strong>Yes</strong>. Once turned on, Visual C++ will display the build time after a build in the output window.</p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/08/2010_08_27_vcpp_build_timing.png"><img src="http://codeyarns.files.wordpress.com/2010/08/2010_08_27_vcpp_build_timing.png" /></a></p>
+<p><strong>Visual C++ 2008</strong></p>
+<p>On Visual C++ 2008 and older versions, it is displayed simply like this:</p>
+<blockquote>
+Build Time 0:20
+</blockquote>
+<p><strong>Visual C++ 2010</strong></p>
+<p>The Build Timing output has undergone major changes in Visual C++ 2010, which displays all kinds of detailed diagnostics. But, by default it does not even display the total build time! Very ironic, I know! :-)</p>
+<p>To be able to see the total build time in Visual C++ 2010, go to <em>Tools → Options → Projects and Solutions → Build and Run</em>. Set the <em>MSBuild project build output verbosity</em> to <strong>Normal</strong>. (You could set it higher to Detailed or Diagnostic too.) After setting this, look for the build time at the bottom of the output window after a build:</p>
+<blockquote>
+Build succeeded. Time Elapsed 00:00:01.43
+</blockquote>
+</body>
+</html>

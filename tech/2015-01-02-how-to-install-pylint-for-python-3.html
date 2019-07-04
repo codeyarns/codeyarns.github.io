@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install PyLint for Python 3</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install PyLint for Python 3</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-02 12:08:55+00:00</h3>
+</div>
+<p><a href="http://www.pylint.org/"><strong>PyLint</strong></a> is a useful tool to improve code quality and to ensure that it complies with <a href="https://www.python.org/dev/peps/pep-0008/"><strong>PEP-8</strong></a> style guidelines. Sadly, Ubuntu only ships with the PyLint for Python 2.x. If you are using Python 3.x, then do the following:</p>
+<ul>
+<li>If you have the Python 2.x version of PyLint, then remove it:</li>
+</ul>
+<pre><code>$ sudo apt remove pylint</code></pre>
+<ul>
+<li>Install the PIP installer for Python 3.x:</li>
+</ul>
+<pre><code>$ sudo apt install python3-pip</code></pre>
+<ul>
+<li>Install the PyLint for Python 3.x using PIP3:</li>
+</ul>
+<pre><code>$ sudo pip3 install pylint</code></pre>
+<ul>
+<li>If you need to use the GUI of PyLint, then install Tk for Python 3.x:</li>
+</ul>
+<pre><code>$ sudo apt install python3-tk</code></pre>
+<ul>
+<li>You can now use the PyLint for Python 3.x:</li>
+</ul>
+<pre><code>$ pylint ./foo.py
+$ pylint-gui</code></pre>
+<p><strong>Tried with:</strong> PyLint 1.4.0, PIP 1.5.4, Python 3.4.0 and Ubuntu 14.04</p>
+</body>
+</html>

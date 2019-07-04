@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Firefox: Double-Click to Only Highlight Word</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Firefox: Double-Click to Only Highlight Word</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-04-19 10:23:55+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2011/04/20110419_word_highlight.png"><img src="http://codeyarns.files.wordpress.com/2011/04/20110419_word_highlight.png" /></a></p>
+<p><strong>Problem</strong></p>
+<p>If you <strong>double-click</strong> anywhere on a word of text in any application on <strong>Windows</strong>, it will <strong>highlight</strong> that word and any following whitespace characters upto the beginning of the next word. <a href="http://stackoverflow.com/questions/2575758">Supposedly</a>, Mac behaves the same way too.</p>
+<p>The reason for this behaviour seems to be to aid in copy-paste of a word inside a document. It also helps if one wants to delete a word, since the following whitespace is also nicely removed.</p>
+<p>However, I find this behaviour quite anachronistic and irritating today. Especially when I am editing text on Firefox and want to apply formatting on the highlighted word either in rich text mode or HTML mode.</p>
+<p><strong>Solution</strong></p>
+<p>Thankfully, there is an obscure feature hidden in Firefox to make it highlight only the word on a double-click and ignore the following whitespace. Open <code>about:config</code> and set <code>layout.word_select.eat_space_to_next_word</code> to false.</p>
+<p><strong>Reference</strong></p>
+<ul>
+<li><p><strong><a href="http://kb.mozillazine.org/Layout.word_select.eat_space_to_next_word">layout.word_select.eat_space_to_next_word</a></strong> at MozillaZine.</p></li>
+<li><p><strong><a href="http://stackoverflow.com/questions/2575758">Conventions for the behavior of double or triple “click to select text” features?</a></strong> at Stackoverflow</p></li>
+</ul>
+<p><strong>Tried with</strong>: Firefox 4</p>
+</body>
+</html>

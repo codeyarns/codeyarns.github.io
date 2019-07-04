@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to block domains using hosts file</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to block domains using hosts file</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-08-12 14:00:53+00:00</h3>
+</div>
+<p>A popular method used to block ads or domains in browsers is to use <strong>adblocking</strong> addons. An alternate method is by using the <code>hosts</code> file of your operating system. This file has mappings of hostnames to IP addresses. By pointing domain names to the <code>0.0.0.0</code> IP address they cannot be resolved for access.</p>
+<ul>
+<li>A popular source for hosts file is provided by Steven Black. Clone that repository to your computer:</li>
+</ul>
+<pre><code>$ git clone https://github.com/StevenBlack/hosts.git
+$ cd hosts</code></pre>
+<ul>
+<li><p>If you have any entries in your local <code>hosts</code> file, then add them to the <code>myhosts</code> file in this repository.</p></li>
+<li><p>To update the adblocking domain files to their latest versions and to add the <code>myhosts</code> entries to create a final <code>hosts</code> file run this command:</p></li>
+</ul>
+<pre><code>$ ./makeHosts</code></pre>
+<ul>
+<li>Replace your <code>hosts</code> file with this one:</li>
+</ul>
+<pre><code>$ sudo cp /etc/hosts /etc/hosts.orig
+$ sudo cp hosts /etc/hosts</code></pre>
+<ul>
+<li>Optionally, you can also restart your name service cache daemon to flush its cache:</li>
+</ul>
+<pre><code>$ sudo service nscd restart</code></pre>
+<p>That is it! You can use any browser or application and the domains in the hosts file will not be accessible from them.</p>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

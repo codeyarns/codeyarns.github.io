@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Ubuntu: Recovering Photos from Memory Cards</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Ubuntu: Recovering Photos from Memory Cards</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-04-02 14:40:17+00:00</h3>
+</div>
+<p><a href="http://codeyarns.files.wordpress.com/2010/04/2010_04_02_sd_card.jpg"><img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_02_sd_card.jpg" /></a></p>
+<p>Today a friend deleted a few photos from my camera SD card by mistake. But, recovering those deleted photos turned out to be quite easy. Here is how to recover deleted photos from a memory card on Ubuntu:</p>
+<ol style="list-style-type: decimal">
+<li><p>As soon as you discover the deletion, shutdown the device, take out the memory card and make sure it is made <strong>read-only</strong>. Most SD cards have a tiny latch, that when pulled down locks the card into read-only mode. For example, the yellow colored latch on my Kingston SD card in the photo above.</p></li>
+<li><p>Put the card into the memory card reader slot on your computer. Typically, Ubuntu will <strong>mount</strong> it automatically.</p></li>
+<li><p>Figure out the <strong>device name</strong> of the mounted memory card. This can be done by looking at the contents of <code>/etc/mtab</code>. This text file holds the table of mounted devices on the computer. For example, my SD card is named <code>ASH_D40</code> and I found that its device name is <code>/dev/mmcblk0p1</code> by finding this line in <code>/etc/mtab</code>:</p>
+<pre><code>/dev/mmcblk0p1 /media/ASH_ND40 vfat rw,nosuid,nodev,uhelper=devkit,uid=1000,gid=1000,shortname=mixed,dmask=0077,utf8=1,flush 0 0</code></pre></li>
+<li><p>Install the <strong><a href="http://en.wikipedia.org/wiki/TestDisk">testdisk</a></strong> package. This is available on the Ubuntu repositories, so can be installed using Synaptic Package Manager. This package has photorec, a tool that can be used to recover photos from memory cards.</p></li>
+<li><p>Execute <strong>photorec</strong> as superuser providing it the memory card device name:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> photorec /dev/mmcblk0p1</code></pre></div></li>
+<li><p>Photorec leads the user through a few prompts, each of which is a multiple choice question. Most of them should be easy to answer, here are some of the important ones:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Partition table type</strong>: For SD cards used in cameras, the choice should typically be <code>[Intel] Intel/PC partition</code></p></li>
+<li><p><strong>Partition</strong>: Since most SD cards are formatted such that the entire space is a single partition, the choice could be <code>No partition [Whole disk]</code></p></li>
+<li><p><strong>Filesystem type</strong>: Most SD cards are formatted as FAT16, hence the choice could be <code>[Other] FAT/NTFS/HFS+/ReiserFS/...</code></p></li>
+</ol></li>
+<li><p>After it obtains all the necessary information, photorec churns through the memory card, this may take a while. It will access the card strictly in read-only mode, so there is no fear of it messing up the recovery information available on the card. After it is done, the recovered photos can be found in directories named in the format <code>recup_dir.X</code>, where <code>X</code> is an integer.</p></li>
+</ol>
+</body>
+</html>

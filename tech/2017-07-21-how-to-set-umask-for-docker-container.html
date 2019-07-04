@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to set umask for Docker container</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to set umask for Docker container</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-07-21 14:02:06+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>Once you run a <strong>Docker</strong> container using <code>docker run</code> and get a shell inside it, you can set the file creation mode mask there with the <code>umask</code> command of the shell. This is usually <code>0022</code> and you can set it to whatever you want. All consecutive operations at the shell and child processes forked from the shell will have with umask.</p>
+<p>What if you don't want to manually type this umask command, but want it set automatically in the container?</p>
+<h1 id="solution">Solution</h1>
+<ul>
+<li><p>Note that there is no way to do this directly in the Dockerfile. You can have a <code>RUN umask 0002</code> command in the Dockerfile, but that does not have any effect for when you run the container.</p></li>
+<li><p>You might think you can set this in the command that is passed at the end of a docker run like this:</p></li>
+</ul>
+<pre><code>$ docker run -it --rm some_image &quot;umask 0000; /bin/bash&quot;</code></pre>
+<p>This does not work either. The umask is back to the normal one in the shell. There is no other way to specify umask directly in a docker run as discussed <a href="https://github.com/moby/moby/issues/19189">here</a>.</p>
+<ul>
+<li>One solution is to create a shell script that sets this umask:</li>
+</ul>
+<pre><code>$ cat set_umask.sh
+#!/bin/bash
+umask 0002
+/bin/bash</code></pre>
+<p>To be able to run this script when the container is run, we first need to make this executable:</p>
+<pre><code>$ chmod +x set_umask.sh</code></pre>
+<p>Next we add commands to the Dockerfile to copy this into the image and make the script as the entry point:</p>
+<pre><code>COPY set_umask.sh set_umask.sh
+ENTRYPOINT [&quot;./set_umask.sh&quot;]</code></pre>
+<p>Build the container and run it and see your umask already enabled at the shell!</p>
+<ul>
+<li>A final solution is to set the umask in the application you plan to run inside Docker. This is a foolproof way to ensure that the umask is obeyed.</li>
+</ul>
+</body>
+</html>

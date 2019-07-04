@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Newline at end of file</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Newline at end of file</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-12-29 14:39:42+00:00</h3>
+</div>
+<p>Many Linux tools and compilers that process text files require the text <strong>file to end with a newline</strong>. This is simply because they are designed to process a series of lines, each ending with a newline. That means, the last line of the file should also end in a newline.</p>
+<p>If the file does not end with a newline, then C++ compilers and other tools complain with errors such as <code>No newline at end of file</code>.</p>
+<p>How do you end up with a file that does not end in newline? If you use tools that are written for other platforms like Windows or are cross-platform, those might not follow the rule of ending the last line with a newline. The latest culprit who I found doing this mistake was the <strong>Visual Studio Code</strong> editor. Editors like Vim, which come from a Unix heritage, just do not allow you to save without a newline.</p>
+<p>In Visual Studio Code, I set the <code>files.insertFinalNewline</code> option to true to fix this mistake.</p>
+</body>
+</html>

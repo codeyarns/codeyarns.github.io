@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use MATLAB without GUI</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use MATLAB without GUI</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-29 14:36:36+00:00</h3>
+</div>
+<p><strong>MATLAB</strong> has a GUI that is great for editing code, inspecting runtime values and debugging. However, there are some situations when you may want to run MATLAB without the GUI. For example, you are running Matlab from over SSH and X cannot be used or is too slow over the network. Thankfully, MATLAB provides a decent console version of itself.</p>
+<ul>
+<li>It can be invoked as:</li>
+</ul>
+<pre><code>$ matlab -nodisplay</code></pre>
+<ul>
+<li><p>If your <code>EDITOR</code> environment variable is set, you can edit files using <code>edit foo.m</code> at the MATLAB command prompt.</p></li>
+<li><p>The full power of debugging is available by using the debug commands as described <a href="http://codeyarns.com/2016/03/27/how-to-debug-at-command-window-in-matlab/">here</a>.</p></li>
+<li><p>Some people suggest using the <code>-nojvm</code> option. This is not recommended. Many MATLAB features, like the parallel cluster require the JVM to work.</p></li>
+</ul>
+<p><strong>Tried with:</strong> MATLAB R2014a and Ubuntu 14.04</p>
+</body>
+</html>

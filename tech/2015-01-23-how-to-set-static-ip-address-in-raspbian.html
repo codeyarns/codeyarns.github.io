@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to set static IP address in Raspbian</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to set static IP address in Raspbian</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-23 16:01:10+00:00</h3>
+</div>
+<p>I assume that <strong>Raspbian</strong> has been assigned an IP address automatically by your home wireless router using DHCP. To set a static IP address for it:</p>
+<ul>
+<li><p>Run <code>ifconfig</code>. Note the interface (say <code>eth0</code>) and the values of the <code>inet addr</code>, <code>Bcast</code> and <code>Mask</code> entries.</p></li>
+<li><p>Run <code>netstat -nr</code>. Note down the values of the <code>Gateway</code> and <code>Destination</code> entries.</p></li>
+<li><p>Open the <code>/etc/dhcpcd.conf</code> file in an editor.</p></li>
+<li><p>Find the commented lines starting with &quot;Example static IP configuration&quot;. Uncomment the lines concerned with interface, ip_address and router and fill in your details there. For example:</p></li>
+</ul>
+<pre><code>interface eth0
+static ip_address=192.168.0.99/24
+static routers=192.168.0.1</code></pre>
+<ul>
+<li><p>You will also need to set the DNS servers manually, as described <a href="2015/02/11/how-to-set-dns-server-in-linux/">here</a>.</p></li>
+<li><p>Reboot the system and it should have the static IP address you assigned.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Raspbian 9</p>
+</body>
+</html>

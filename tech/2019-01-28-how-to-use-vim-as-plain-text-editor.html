@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Vim as plain text editor</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Vim as plain text editor</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-01-28 07:52:06+00:00</h3>
+</div>
+<p><strong>Vim</strong> is not only useful for code, but also as a general plain text editor. This is useful for writing README files, Markdown files or if you like publishing plain text file content.</p>
+<p>In plain text files, a desirable property is to have lines wrapped at a certain width. The general <strong>wrap</strong> feature of Vim is meaningful only for code which has long lines. This option just wraps the long line visually to the screen width.</p>
+<p>To use Vim as a plain text editor you want it to automatically breaks lines at a certain width as you type. You want it to do that only at word boundaries. The option that enables this mode is <strong>textwidth</strong>. For source code, this feature is disabled and is set to 0.</p>
+<p>To enable Vim to set a maximum width for text that is inserted, set this option: <code>:set textwidth=80</code></p>
+<p>If you have existing text that was not set to this width or you have shortened some lines all of that can be fixed too: mark them visually and press <code>gq</code>.</p>
+<p>A final feature needed from a plain text editor is to be able to center a line. This is useful for example for titles and section headings. To do that, mark that line visually and type <code>:center</code>. This only works if the textwidth option is set.</p>
+<p><strong>Tried with:</strong> Vim 8.0 and Ubuntu 18.04</p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>XTerm</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">XTerm</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-07-27 13:57:22+00:00</h3>
+</div>
+<p><a href="http://codeyarns.com/2017/07/27/xterm/20170727_xterm/"><img src="https://codeyarns.files.wordpress.com/2017/07/20170727_xterm1.png" /></a></p>
+<p><a href="http://invisible-island.net/xterm/"><strong>XTerm</strong></a> is a classic terminal emulator for the X window system. It is so old that it is in fact a bit older than the X window system itself! Today it ships as one of the quintessential programs of the X window system. Here are some factoids I discovered about XTerm that may interest you to use it:</p>
+<ul>
+<li><p>It was explicitly written to emulate the old DEC VT102 and Tektronix 4014 terminals.</p></li>
+<li><p>It supports 256 colors. You may need to configure it to set the <code>TERM</code> environment variable correctly as <code>xterm-256color</code>. Terminal apps read this variable to decide how to show their colors, so this might be essential. See my config file below for how to do this.</p></li>
+<li><p>Along with the classic xterm, there is also xterm with Unicode support that you can invoke as <code>uxterm</code>. The latter is what you almost always need.</p></li>
+<li><p>Being one of those early X programs, it does not have a toolbar or scrollbar. Instead, you get three different menus if you hold down the <code>Ctrl</code> key and click any one of your 3 mouse buttons.</p></li>
+<li><p>The 3 menus you get are: main options (left mouse button), VT options (center button) and font options (right button). All the menu options can also be set in its config file.</p></li>
+<li><p>By default, xterm starts with white background and black foreground. Invoke it with the <code>-rv</code> (reverse video) option to get black background and white foreground. This can also be set in its config file (see below).</p></li>
+<li><p>One keyboard shortcut I like in xterm is <code>Alt + Enter</code> which toggles the fullscreen mode.</p></li>
+<li><p>Like any classic X application, XTerm copies and pastes from the <a href="https://codeyarns.com/2017/01/18/the-two-clipboards-in-linux/">PRIMARY clipboard</a>. If you need the normal window manager clipboard behavior, choose <strong>Copy to clipboard</strong> in the VT menu.</p></li>
+<li><p>A cool trick to select a large body of text in XTerm is to left-click at the beginning of the text and right-click at the end. The region in between the two clicks is copied to PRIMARY.</p></li>
+<li><p>The main reason I like using xterm, other than its bare bones simplicity, is its keypress latency. Experiments <a href="https://news.ycombinator.com/item?id=14799631">seem to show</a> that it has the lowest keypress latency among all terminal emulators on Linux. This may not be surprising considering the dinosaur age in which it was developed when every bit of speed mattered.</p></li>
+<li><p>XTerm is a great program. Simple and fast. The only disadvantage for me is that its stdout speed is among the slowest in terminal apps. Only Terminator is slower than XTerm in my experience. This is a real deal killer if you frequently run commands that can throw thousands of lines to the terminal.</p></li>
+<li><p>Being a classic X program, XTerm reads its config from a <a href="https://codeyarns.com/2017/07/27/xresources/"><strong>Xresources</strong></a> file. Here are some settings I use in my file to change foreground/background colors, set font size, enable font size increment/decrement and such settings:</p></li>
+</ul>
+<p>https://gist.github.com/ashwin/adfb351686f0934ec25c4ed1c9a7d5d6</p>
+<p>Note that the settings are applied to the app only at the start of the X server. If you want to apply them right now, use the xrdb app as described <a href="https://codeyarns.com/2017/07/27/xresources/">here</a>.</p>
+<p><strong>References:</strong></p>
+<ul>
+<li><p><a href="http://lukas.zapletalovi.com/2013/07/hidden-gems-of-xterm.html">Hidden gems of xterm</a></p></li>
+<li><p><a href="http://www.futurile.net/2016/06/14/xterm-setup-and-truetype-font-configuration/">XTerm introduction and TrueType fonts configuration</a></p></li>
+</ul>
+</body>
+</html>

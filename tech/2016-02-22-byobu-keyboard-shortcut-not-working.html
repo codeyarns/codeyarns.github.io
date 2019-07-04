@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Byobu keyboard shortcut not working</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Byobu keyboard shortcut not working</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-02-22 12:45:16+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><a href="http://codeyarns.com/2013/01/21/byobu/"><strong>Byobu</strong></a> has support for a long list of <strong>keyboard shortcuts</strong>. The full list of keybindings can be found listed in <code>/usr/share/byobu/keybindings/f-keys.tmux</code>. However, you may find that one or more of those do not work. For example, I found that pressing <code>Shift+F1</code> to view help and pressing <code>Ctrl+F2</code> to do a horizontal split did not work.</p>
+<h1 id="solution">Solution</h1>
+<p>There are many reasons why Byobu is not receiving or failing on executing the hotkey you are pressing.</p>
+<p>One possibility is that your desktop environment, window manager or terminal program is already using that keyboard shortcut. You will need to disable those keyboard shortcuts for it to work in Byobu. This was how I got <code>Ctrl+F2</code> working in Byobu.</p>
+<p>Here are some places where you can check:</p>
+<ul>
+<li><p><strong>XFCE</strong>: Check in Keyboard -&gt; Application Shortcuts. Also check in Window Manager -&gt; Keyboard.</p></li>
+<li><p><strong>KDE</strong>: Check in Global Keyboard Shortcuts.</p></li>
+</ul>
+<p>Another possibility is that Byobu is receiving the keybinding you pressed, but it is executing a shell command that is failing.</p>
+<p>This was the case for <code>Shift-F1</code> to fail, the culprit was my Fish shell. The command executed by this hotkey can be seen in <code>/usr/share/byobu/keybindings/f-keys.tmux</code>. It is executing a command that will work only in Sh or Bash.</p>
+<p>To override this, I created a <code>~/.byobu/keybindings.tmux</code>, copied the line and edited to add a <code>sh -c</code> prefix to it so that it used the correct shell.</p>
+<p><strong>Tried with:</strong> Byobu 5.74 and Ubuntu 14.04</p>
+</body>
+</html>

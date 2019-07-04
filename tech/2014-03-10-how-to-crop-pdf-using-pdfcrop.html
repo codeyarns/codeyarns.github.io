@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to crop PDF using PDFCrop</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to crop PDF using PDFCrop</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-03-10 03:52:38+00:00</h3>
+</div>
+<p><strong>PDFCrop</strong> is a simple Perl script that can be used to crop every page of a PDF file down to its minimal size. That is, it removes all the margins so that the page is reduced to the bounding box of the content. This tool is most commonly used to crop the PDF figures exported from other tools, so that they can be inserted in LaTeX documents.</p>
+<p>PDFCrop ships along with the <code>texlive-extra-utils</code> package, so you may need to install it:</p>
+<pre><code>$ sudo apt-get install texlive-extra-utils</code></pre>
+<p>Using the tool is easy:</p>
+<pre><code>$ pdfcrop in.pdf out.pdf</code></pre>
+<p>I got this error when I ran it under the fish shell:</p>
+<pre><code>Failed to execute process &#39;/usr/bin/pdfcrop&#39;. Reason:
+exec: Exec format error
+The file &#39;/usr/bin/pdfcrop&#39; is marked as an executable but could not be run by the operating system.</code></pre>
+<p>It turns out that PDFCrop script file uses 3 lines of bash at the top. So, you will need to run under bash or a bash compatible shell.</p>
+<p><strong>Tried with:</strong> PDFCrop 1.2 and Ubuntu 12.04</p>
+</body>
+</html>

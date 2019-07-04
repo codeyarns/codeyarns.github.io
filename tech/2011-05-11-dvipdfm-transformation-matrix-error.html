@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>DVIPDFM: Transformation Matrix Error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">DVIPDFM: Transformation Matrix Error</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-05-11 10:36:11+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>The <code>dvipdfm</code> program is used to convert a <strong>DVI</strong> file to a <strong>PDF</strong> file. For a DVI file which has <strong>EPS</strong> image files inside, this conversion might sometimes fail with the error shown below:</p>
+<pre><code>C:\Users\joe&gt;dvipdfm foo.dvi
+foo.dvi -&gt; foo.pdf
+[1
+** WARNING ** Image width=0.0!
+** WARNING ** Image height=0.0!
+** WARNING ** Transformation matrix not invertible.
+** WARNING ** --- M = [0 0 0 0 233.624 -249.417]
+]</code></pre>
+<p><strong>Solution</strong></p>
+<p>This error indicates that one or more of the EPS image files included in the DVI file have no width and height information. This is typically caused by EPS files whose <code>BoundingBox</code> parameters are all zero. You can check this by opening the EPS file in a text editor and look for a line that resembles this:</p>
+<pre><code>%%BoundingBox: 0 0 0 0</code></pre>
+<p>If you can generate EPS files that have non-zero bounding box values, this conversion error should be gone. For a quick hack to fix an existing EPS file with these values see <a href="http://codeyarns.wordpress.com/2011/05/11/eps-bounding-box-problem/">here</a>.</p>
+<p><strong>Tried with</strong>: MiKTeX 2.9</p>
+</body>
+</html>

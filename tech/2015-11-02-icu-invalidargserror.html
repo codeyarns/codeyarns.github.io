@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>icu.InvalidArgsError</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">icu.InvalidArgsError</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-11-02 12:48:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried running <strong>gcalcli</strong> and got this error:</p>
+<pre><code>$ gcalcli
+Traceback (most recent call last):
+  File &quot;/usr/bin/gcalcli&quot;, line 392, in &lt;module&gt;
+    class gcalcli:
+  File &quot;/usr/bin/gcalcli&quot;, line 410, in gcalcli
+    dateParser    = DateTimeParser()
+  File &quot;/usr/bin/gcalcli&quot;, line 335, in __init__
+    self.pdtCalendar = parsedatetime.Calendar();
+  File &quot;/usr/lib/python2.7/dist-packages/parsedatetime/__init__.py&quot;, line 216, in __init__
+    self.ptc = Constants()
+  File &quot;/usr/lib/python2.7/dist-packages/parsedatetime/__init__.py&quot;, line 1733, in __init__
+    self.locale = pdtLocales[&#39;icu&#39;](self.localeID)
+  File &quot;/usr/lib/python2.7/dist-packages/parsedatetime/pdt_locales.py&quot;, line 151, in __init__
+    self.icu = pyicu.Locale(localeID)
+icu.InvalidArgsError: (&lt;type &#39;icu.Locale&#39;&gt;, &#39;__init__&#39;, (None,))</code></pre>
+<h1 id="solution">Solution</h1>
+<p>This is a well known bug in the <code>parsedatetime</code> package as described <a href="https://bugs.launchpad.net/ubuntu/+source/parsedatetime/+bug/1302963">here</a>.</p>
+<p>The solution is to remove the package installed from Ubuntu archives and install a recent version of it from the Python Package Index:</p>
+<pre><code>$ sudo apt-get remove python-parsedatetime
+
+$ sudo pip install --upgrade parsedatetime</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

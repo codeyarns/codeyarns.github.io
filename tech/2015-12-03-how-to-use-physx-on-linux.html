@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use PhysX on Linux</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use PhysX on Linux</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-12-03 12:05:29+00:00</h3>
+</div>
+<p><strong>PhysX</strong> is a 3D game physics engine provided by <strong>NVIDIA</strong>. They have released the source code of the engine on <strong>Github</strong>, though with restricted access. This library and its sample programs can be compiled from source easily.</p>
+<p>Here are my notes on how to compile this library, run its sample tools and get started:</p>
+<ul>
+<li><p>You need a Linux computer (I use Ubuntu), with a fairly modern NVIDIA graphics card.</p></li>
+<li><p>Make sure you have installed recent NVIDIA graphics drivers and a recent version of CUDA on it. Ensure that these are working correctly before trying PhysX.</p></li>
+<li><p>Go to <a href="https://developer.nvidia.com/physx-source-github">this webpage</a> and jump through their hoops to get access to the PhysX Github page. Essentially, NVIDIA requires you to create a login with them and after that they give your Github login the access to their PhysX source code.</p></li>
+<li><p>Once you have access to PhysX source code, clone its repository to your computer:</p></li>
+</ul>
+<pre><code>$ git clone https://github.com/NVIDIAGameWorks/PhysX-3.3.git</code></pre>
+<ul>
+<li><p>The documentation in the source code is outdated and is misleading. This is how the source code is laid out: <code>Source</code> for source code, <code>Snippets</code> and <code>Samples</code> have small programs to try PhysX. Once you have compiled these Snippets and Samples, their binaries will be placed in <code>Bin/linux64</code>.</p></li>
+<li><p>Each of the above three code directories has a <code>compiler/linux64</code> directory which holds the Makefiles to build them. There are four build profiles available: <code>release</code>, <code>profile</code>, <code>checked</code> and <code>debug</code>. Just invoking <code>make</code> builds all four versions. To build just the release versions, I did <code>make release</code> in all the three code directories.</p></li>
+<li><p>Once the library and its snippets and samples are built, you can try these programs from <code>Bin/linux64</code>. For example, the <code>samples</code> program allows you try many of the features of the engine in an interactive GUI.</p></li>
+</ul>
+<p><strong>Tried with:</strong> PhysX 3.3.4, NVIDIA GeForce GTX 750 Ti and Ubuntu 14.04</p>
+</body>
+</html>

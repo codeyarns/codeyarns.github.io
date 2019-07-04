@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use enum in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use enum in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-05-01 02:46:03+00:00</h3>
+</div>
+<p><strong>Python 2.x</strong> does not have an equivalent of the <strong>enum</strong> in C or C++. <strong>Python 3.x</strong> (3.4 and later) has a builtin enum type.</p>
+<p>You can install the backported Python 3.4 enum for Python 2.x easily from <a href="https://pypi.python.org/pypi/enum34/">here</a>:</p>
+<pre><code>$ sudo pip install enum34</code></pre>
+<p>Usage of this enum is simple:</p>
+<pre><code>from enum import Enum
+
+class Colors(Enum):
+    Red   = 1
+    Green = 2
+    Blue  = 3
+
+c = Colors.Green</code></pre>
+<p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

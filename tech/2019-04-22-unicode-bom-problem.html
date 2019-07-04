@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Unicode BOM problem</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Unicode BOM problem</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-04-22 13:17:48+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I processed a JSON file using some tool and the resulting JSON text file would not be accepted by other tools. They would complain that this was a <strong>UTF-8 Unicode (with BOM) text</strong> file. I had to remove whatever this BOM was from my UTF-8 file.</p>
+<h1 id="solution">Solution</h1>
+<p><strong>BOM</strong> is a <a href="https://en.wikipedia.org/wiki/Byte_order_mark"><strong>byte order mark</strong></a> added by some tools to UTF-8 files. BOM is this 3-byte sequence: <code>0xEF,0xBB,0xBF</code>.</p>
+<p>You could use any tool or process to remove these 3-byte sequences. If you are on Linux, the awesome sed tool can do the job:</p>
+<pre><code>$ sed -i &#39;1s/^\xEF\xBB\xBF//&#39; in.txt</code></pre>
+<p><strong>Reference</strong>: <a href="https://unix.stackexchange.com/questions/381230/how-can-i-remove-the-bom-from-a-utf-8-file">How can I remove the BOM from a UTF-8 file?</a></p>
+</body>
+</html>

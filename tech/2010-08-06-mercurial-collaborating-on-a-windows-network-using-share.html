@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Mercurial: Collaborating on a Windows Network Using Shares</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Mercurial: Collaborating on a Windows Network Using Shares</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-08-06 04:47:33+00:00</h3>
+</div>
+<p>You might feel the need to publish <strong>Mercurial</strong> repositories in a central location and collaborate using that. This is really useful when:</p>
+<ul>
+<li><p>You are working from 2 or more workstations or laptops.</p></li>
+<li><p>You are in a small team and there are 2 or more people working on the project.</p></li>
+</ul>
+<p>Publishing a Mercurial repository in a central location enables different people or computers to push and pull from it. There are a few common ways to do this:</p>
+<ul>
+<li><p><strong>hg serve</strong>: Real easy and quick to setup with simple features.</p></li>
+<li><p><strong>SSH</strong>: Not as easy on Windows as on Linux. OpenSSH server is the most common option, but it comes with Cygwin and all its problems.</p></li>
+<li><p><strong>HTTP</strong>: Requires quite a lot of configuration on Windows.</p></li>
+<li><p><strong>SMB</strong>: If you are on a Windows network, your computers or team is small in number and your needs are simple, then using a Windows share is very compelling!</p></li>
+</ul>
+<p><a href="http://codeyarns.files.wordpress.com/2010/08/2010_08_06_mercurial_windows.png"><img src="http://codeyarns.files.wordpress.com/2010/08/2010_08_06_mercurial_windows.png" /></a>You can start publishing Mercurial repositories using Windows shares in just a few minutes:</p>
+<ol style="list-style-type: decimal">
+<li><p>Designate one computer as the central repository server. Let us call it A. It can be the workstation of the one of the team members, it does not really matter. Other computers, B and C, should be in the same Windows network as A.</p></li>
+<li><p>Create a directory on A, say <code>D:\HgReps</code> and move all your current repositories to it. New repositories in the future should also be created here.</p></li>
+<li><p>Share the directory on A, so it becomes <code>\\A\HgReps</code>. Give only the team members who use A, B and C access to <strong>read and write</strong> to this share. You could also give <strong>read access</strong> to other users who you wish only pull from A. These access permissions should be very easy to configure if you are in a well set up Windows domain.</p></li>
+<li><p>Point all the current working directories on A, B and C to push and pull from <code>\\A\HgReps</code>. To do this, open the <code>.hg/hgrc</code> file in each working directory and edit it so it points to A. For a project named Foobar, the <code>.hg/hgrc</code> file looks like:</p>
+<pre><code>[paths]
+default = \\A\HgReps\Foobar</code></pre></li>
+</ol>
+<p>All this setup is ridiculously easy to do for a small team and everything just works without much configuration. Another nice side-effect is that you can backup the <code>D:\HgReps</code> on computer A easily and grab all the team's commits.</p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install Ruby</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install Ruby</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-13 12:53:32+00:00</h3>
+</div>
+<p><strong>Ubuntu</strong> ships with ancient versions of the <strong>Ruby</strong> interpreter and its tools. The preferred method to installing the latest version of Ruby from source is using rbenv.</p>
+<ul>
+<li><p>Install and setup <code>rbenv</code> and its <code>ruby-build</code> plugin from source as described <a href="2015/02/12/how-to-install-rbenv/">here</a>.</p></li>
+<li><p>List the versions of Ruby available for installation:</p></li>
+</ul>
+<pre><code>$ rbenv install -l</code></pre>
+<ul>
+<li>Pick a fairly recent version for installation from source. For example, I picked:</li>
+</ul>
+<pre><code>$ rbenv install 2.1.5</code></pre>
+<p>Trying the latest <code>2.2.0</code> gave build errors on my system, but I was able to install <code>2.1.5</code>.</p>
+<ul>
+<li>After installation is done, set this version of the Ruby interpreter as the default for you:</li>
+</ul>
+<pre><code>$ rbenv global 2.1.5</code></pre>
+<ul>
+<li>Now you can run this Ruby interpreter from your shell:</li>
+</ul>
+<pre><code>$ ruby --version</code></pre>
+<p>Now you can also install other gems using the <code>gem</code> tool that is also built along with Ruby.</p>
+<p><strong>Tried with:</strong> rbenv 0.4.0 and Ubuntu 14.04</p>
+</body>
+</html>

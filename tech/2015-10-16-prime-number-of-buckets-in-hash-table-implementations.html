@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Prime number buckets in hash table implementations</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Prime number buckets in hash table implementations</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-16 12:16:00+00:00</h3>
+</div>
+<p><strong>Prime numbers</strong> are very important in the implementation of <strong>hash tables</strong>. They might be used in computing a <strong>hash</strong> for a given <strong>key</strong> using a <strong>hash function</strong>. Also, they seem to be commonly used as the size of the hash table, i.e., the number of <strong>buckets</strong> in the table.</p>
+<p>Consider, a hash table with <strong>separate chaining</strong>. When there is a <strong>collision</strong>, i.e., multiple keys map to the same bucket, they are maintained in a list at that bucket. The <strong>load factor</strong> of the hash table is the average number of keys per bucket in the table. When the load factor increases beyond a certain threshold, a new hash table with larger number of buckets is chosen, the existing keys are rehashed and inserted anew into the new hash table.</p>
+<p>A key part of a hash table implementation is: what number of buckets to choose when increasing or decreasing the size of a hash table? In containers like vectors, this is easy: in most implementations it grows by 2x the size. But, for hash tables, I found that implementations seem to prefer prime numbers. So, how do hash table implementations pick this prime number?</p>
+<h1 id="hash-table-in-c-stl-of-gcc">Hash table in C++ STL of GCC</h1>
+<p>The containers based on hash tables in C++ STL are <code>unordered_set</code>, <code>unordered_multiset</code>, <code>unordered_map</code> and <code>unordered_multimap</code>. All of them are based on the same underlying hash table implementation. Computing an optimal prime number for a given load factor and number of keys is not easy.</p>
+<p>Not surprisingly, the GCC 5.1 implementation of STL has a pre-computed <strong>lookup table of prime numbers</strong>. I found it in <code>/usr/include/c++/5/ext/pb_ds/detail/resize_policy/hash_prime_size_policy_imp.hpp</code>. Here is the array of prime numbers it uses:</p>
+<pre><code>static const std::size_t g_a_sizes[num_distinct_sizes_64_bit] =
+{
+  /* 0     */              5ul,
+  /* 1     */              11ul, 
+  /* 2     */              23ul, 
+  /* 3     */              47ul, 
+  /* 4     */              97ul, 
+  /* 5     */              199ul, 
+  /* 6     */              409ul, 
+  /* 7     */              823ul, 
+  /* 8     */              1741ul, 
+  /* 9     */              3469ul, 
+  /* 10    */              6949ul, 
+  /* 11    */              14033ul, 
+  /* 12    */              28411ul, 
+  /* 13    */              57557ul, 
+  /* 14    */              116731ul, 
+  /* 15    */              236897ul,
+  /* 16    */              480881ul, 
+  /* 17    */              976369ul,
+  /* 18    */              1982627ul, 
+  /* 19    */              4026031ul,
+  /* 20    */              8175383ul, 
+  /* 21    */              16601593ul, 
+  /* 22    */              33712729ul,
+  /* 23    */              68460391ul, 
+  /* 24    */              139022417ul, 
+  /* 25    */              282312799ul, 
+  /* 26    */              573292817ul, 
+  /* 27    */              1164186217ul,
+  /* 28    */              2364114217ul, 
+  /* 29    */              4294967291ul,
+  /* 30    */ (std::size_t)8589934583ull,
+  /* 31    */ (std::size_t)17179869143ull,
+  /* 32    */ (std::size_t)34359738337ull,
+  /* 33    */ (std::size_t)68719476731ull,
+  /* 34    */ (std::size_t)137438953447ull,
+  /* 35    */ (std::size_t)274877906899ull,
+  /* 36    */ (std::size_t)549755813881ull,
+  /* 37    */ (std::size_t)1099511627689ull,
+  /* 38    */ (std::size_t)2199023255531ull,
+  /* 39    */ (std::size_t)4398046511093ull,
+  /* 40    */ (std::size_t)8796093022151ull,
+  /* 41    */ (std::size_t)17592186044399ull,
+  /* 42    */ (std::size_t)35184372088777ull,
+  /* 43    */ (std::size_t)70368744177643ull,
+  /* 44    */ (std::size_t)140737488355213ull,
+  /* 45    */ (std::size_t)281474976710597ull,
+  /* 46    */ (std::size_t)562949953421231ull, 
+  /* 47    */ (std::size_t)1125899906842597ull,
+  /* 48    */ (std::size_t)2251799813685119ull, 
+  /* 49    */ (std::size_t)4503599627370449ull,
+  /* 50    */ (std::size_t)9007199254740881ull, 
+  /* 51    */ (std::size_t)18014398509481951ull,
+  /* 52    */ (std::size_t)36028797018963913ull, 
+  /* 53    */ (std::size_t)72057594037927931ull,
+  /* 54    */ (std::size_t)144115188075855859ull,
+  /* 55    */ (std::size_t)288230376151711717ull,
+  /* 56    */ (std::size_t)576460752303423433ull,
+  /* 57    */ (std::size_t)1152921504606846883ull,
+  /* 58    */ (std::size_t)2305843009213693951ull,
+  /* 59    */ (std::size_t)4611686018427387847ull,
+  /* 60    */ (std::size_t)9223372036854775783ull,
+  /* 61    */ (std::size_t)18446744073709551557ull,
+};</code></pre>
+<p>You can create a simple C++ program that inserts keys into an <code>unordered_set</code> and then check the number of buckets using the <code>bucket_count</code> method. You will find that it will be one of the above listed prime numbers.</p>
+<h1 id="hash-table-in-.net-c">Hash table in .Net (C#)</h1>
+<p>Now that the <strong>.Net</strong> source code is available, I also checked out its <code>System.Collections.HashTable</code> implementation. It too seems to be using a lookup table of prime numbers for the table size. Here is the list from <a href="http://referencesource.microsoft.com/#mscorlib/system/collections/hashtable.cs,19337ead89202585">its source code</a>:</p>
+<pre><code>// Table of prime numbers to use as hash table sizes. 
+// A typical resize algorithm would pick the smallest prime number in this array
+// that is larger than twice the previous capacity. 
+// Suppose our Hashtable currently has capacity x and enough elements are added 
+// such that a resize needs to occur. Resizing first computes 2x then finds the 
+// first prime in the table greater than 2x, i.e. if primes are ordered 
+// p_1, p_2, ..., p_i, ..., it finds p_n such that p_n-1 &lt; 2x &lt; p_n. 
+// Doubling is important for preserving the asymptotic complexity of the 
+// hashtable operations such as add.  Having a prime guarantees that double 
+// hashing does not lead to infinite loops.  IE, your hash function will be 
+// h1(key) + i*h2(key), 0 &lt;= i &lt; size.  h2 and the size must be relatively prime.
+public static readonly int[] primes = {
+    3, 7, 11, 17, 23, 29, 37, 47, 59, 71, 89, 107, 131, 163, 197, 239, 293, 353, 431, 521, 631, 761, 919,
+    1103, 1327, 1597, 1931, 2333, 2801, 3371, 4049, 4861, 5839, 7013, 8419, 10103, 12143, 14591,
+    17519, 21023, 25229, 30293, 36353, 43627, 52361, 62851, 75431, 90523, 108631, 130363, 156437,
+    187751, 225307, 270371, 324449, 389357, 467237, 560689, 672827, 807403, 968897, 1162687, 1395263,
+    1674319, 2009191, 2411033, 2893249, 3471899, 4166287, 4999559, 5999471, 7199369};</code></pre>
+<p>The prime numbers in .Net are different from that in GCC STL. I'm guessing they are tuned for the .Net load factors, languages and virtual machine.</p>
+<p>A conclusion we can draw from these observations is that though hash tables <a href="http://scottmeyers.blogspot.sg/2015/09/should-you-be-using-something-instead.html">easily beat</a> <strong>balanced binary search tree (BST)</strong> in lookup performance, they are not any easier to implement. Especially a hash table that is built for general purpose applications and data sizes.</p>
+</body>
+</html>

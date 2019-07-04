@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>AFS kernel module cannot be built</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">AFS kernel module cannot be built</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-18 10:57:46+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to install the <strong>OpenAFS</strong> client. The package installation failed, complaining that the AFS kernel module could not be built for my Linux kernel:</p>
+<pre><code>$ sudo apt install openafs-client
+AFS module /lib/modules/3.19.0-28-generic/fs/openafs.ko does not exist.
+Not starting AFS.  Please consider building kernel modules using
+instructions in /usr/share/doc/openafs-client/README.modules
+Setting up openafs-modules-dkms (1.6.7-1ubuntu1) ...
+Loading new openafs-1.6.7 DKMS files...
+First Installation: checking all kernels...
+Building only for 3.19.0-28-generic
+Building initial module for 3.19.0-28-generic
+Traceback (most recent call last):
+  File &quot;/usr/share/apport/package-hooks/dkms_packages.py&quot;, line 97, in &lt;module&gt;
+    with open(apport.fileutils.make_report_path(report), &#39;wb&#39;) as f:
+AttributeError: &#39;module&#39; object has no attribute &#39;make_report_path&#39;
+Error! Bad return status for module build on kernel: 3.19.0-28-generic (x86_64)
+Consult /var/lib/dkms/openafs/1.6.7/build/make.log for more information.
+Processing triggers for ureadahead (0.100.0-16) ...</code></pre>
+<p>Restarting the OpenAFS service, complained about the missing kernel module:</p>
+<pre><code>$ sudo /etc/init.d/openafs-client restart
+Stopping AFS services:.
+Starting AFS services:
+AFS module /lib/modules/3.19.0-28-generic/fs/openafs.ko does not exist.
+Not starting AFS.  Please consider building kernel modules using
+instructions in /usr/share/doc/openafs-client/README.modules</code></pre>
+<p>Running any OpenAFS program, like <code>klog</code> for example, gave a strange error:</p>
+<pre><code>$ klog
+Unable to authenticate to AFS because a pioctl failed.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>The AFS kernel module did not compile because of changes in recent kernel source code. The bug is reported <a href="https://bugs.launchpad.net/ubuntu/+source/openafs/+bug/1433411">here</a>. It can be fixed if you can install patches and recompile the kernel or pull a modified kernel from Ubuntu servers.</p>
+<p>An easier solution is to get the updated OpenAFS package from their PPA <a href="https://launchpad.net/~openafs/+archive/ubuntu/stable">here</a>:</p>
+<pre><code>$ sudo apt-get purge openafs-client
+$ sudo add-apt-repository ppa:openafs/stable
+$ sudo apt-get update
+$ sudo apt install openafs-client</code></pre>
+<p>The AFS kernel module was compiled successfully when I tried this and everything worked fine!</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04 and Linux kernel 3.19.0-28</p>
+</body>
+</html>

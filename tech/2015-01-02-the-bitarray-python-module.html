@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>The bitarray Python module</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">The bitarray Python module</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-02 12:29:27+00:00</h3>
+</div>
+<p>It is fairly common in many applications to read or write series of bits into bytes or longer array of bytes. For example, to store results of various binary tests. The space saved by storing these results as bits might be crucial when memory or disk resources are the bottleneck.</p>
+<p>If you deal with an array of bits, the Python module you need is <a href="https://pypi.python.org/pypi/bitarray/">bitarray</a>.</p>
+<p>Installing it for Python 2.x is simple:</p>
+<pre><code>$ sudo apt install python-bitarray</code></pre>
+<p>If you are using Python 3.x:</p>
+<pre><code>$ sudo apt install python3-bitarray</code></pre>
+<p>Creating an empty bitarray is easy:</p>
+<pre><code>import bitarray
+ba = bitarray.bitarray()</code></pre>
+<p>Note that the endianess of the data is very important in these applications. bitarray uses <strong>big-endian</strong> interpretation by default. If your data is stored in <strong>little-endian</strong>, then specify this explicitly:</p>
+<pre><code>ba = bitarray.bitarray(endian=&quot;little&quot;)</code></pre>
+<p>You can check the endianess of any bitarray:</p>
+<pre><code>print(ba.endian())</code></pre>
+<p>To initialize a bitarray from a byte string:</p>
+<pre><code>ba.frombytes(byte_str)</code></pre>
+<p>To get or set a specific bit in the bitarray:</p>
+<pre><code>ba[9] = 0
+print(ba[9])</code></pre>
+<p><strong>Tried with:</strong> Bitarray 0.8.0, Python 3.4 and Ubuntu 14.04</p>
+</body>
+</html>

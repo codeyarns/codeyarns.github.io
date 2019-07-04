@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to cherry pick in Git</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to cherry pick in Git</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-04 15:09:00+00:00</h3>
+</div>
+<p><strong>Cherry picking</strong> in Git allows you to pick a specific commit and replay the changes done in that single commit on your current commit. This is different from a merge, where Git tries to replay the changes of all the commits from the other branch. Even if you specified a commit for a merge, Git will try to fuse the branch of which that commit is head to your current branch. After a merge, the two branches are fused in the DAG.</p>
+<p>In contrast, a cherry pick replays changes on your current workspace. After you cherry pick a commit and replay it on your current commit, you will see that there is no branch being merged to your commit in the DAG. There will just be one or more new commits.</p>
+<ul>
+<li>To cherry pick a specific commit and replay it on your current commit, use the hash of that commit:</li>
+</ul>
+<pre><code>$ git cherry-pick 123456</code></pre>
+<ul>
+<li>You can use a branch name too, in which case only topmost commit of the branch is replayed:</li>
+</ul>
+<pre><code>$ git cherry-pick some_branch</code></pre>
+<ul>
+<li>You can specify multiple commits to cherry pick, in that order:</li>
+</ul>
+<pre><code>$ git cherry-pick 123456 some_branch some_tag</code></pre>
+<p>The above command will result in 3 new commits on your current branch.</p>
+<p>Cherry-picking changes all the files that were changed in a commit. If you need to pick only the changes from a specific file in a specific commit, we need to be a bit more clever.</p>
+<p>First, we get the diff of the changes on a specific file in a specific commit:</p>
+<pre><code>$ git show 123456 -- foo/bar.cpp</code></pre>
+<p>We can then pipe this diff to be applied as a patch on our current workspace:</p>
+<pre><code>$ git show 123456 -- foo/bar.cpp | git apply -</code></pre>
+<p><strong>Tried with:</strong> Git 2.7.4 and Ubuntu 16.04</p>
+</body>
+</html>

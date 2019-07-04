@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to read YAML file in Python with ordered keys</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to read YAML file in Python with ordered keys</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-11-23 15:34:08+00:00</h3>
+</div>
+<p>It is very easy to read a <strong>YAML</strong> file in Python as a combination of dict and lists using <strong>PyYAML</strong>. However, the YAML format does not require PyYAML to read the keys of any dict in the YAML file to be read in the order it appears in the file. In addition, Python dict also does not have any order to the keys in it. However, in certain situations it might be necessary to read the keys in YAML in the order they appear in the file. This can be done by using the <strong>yamlordereddictloader</strong>.</p>
+<ul>
+<li>Installing this Python package is easy using pip:</li>
+</ul>
+<pre><code>$ sudo pip install yamlordereddictloader</code></pre>
+<ul>
+<li>Read YAML files by providing the loader from this package to PyYAML:</li>
+</ul>
+<pre><code>import yaml
+import yamlordereddictloader
+
+with open(&quot;foobar.yaml&quot;) as f:
+    yaml_data = yaml.load(f, Loader=yamlordereddictloader.Loader)</code></pre>
+<p>This returns the data in the YAML file as a combination of lists and OrderedDict (instead of dict). So, almost all of the rest of the your code should work the same as before after this change.</p>
+<p><strong>Tried with:</strong> yamlordereddictloader 0.4 and Ubuntu 16.04</p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable gravity in PhysX</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable gravity in PhysX</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-12-05 07:53:55+00:00</h3>
+</div>
+<p><strong>Gravity</strong> is disabled by default in <strong>PhysX</strong>. To enable it, add a gravity vector to the <strong>scene descriptor</strong>:</p>
+<pre><code>physx::PxSceneDesc* sceneDesc;
+// Assuming scene descriptor is created here
+sceneDesc-&gt;gravity = physx::PxVec3(0.0f, -9.81f, 0.0f);</code></pre>
+<p>You can also set the gravity vector in the <strong>scene</strong> itself:</p>
+<pre><code>physx::PxScene* scene;
+// Assuming scene is created here
+scene-&gt;setGravity(physx::PxVec3(0.0f, -9.81f, 0.0f));</code></pre>
+<p>To avoid buggy behavior, it is better to enable gravity at the beginning.</p>
+<p><strong>Tried with:</strong> PhysX 3.2.4, Visual Studio 2010 and Windows 8 x64</p>
+</body>
+</html>

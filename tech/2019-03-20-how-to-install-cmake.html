@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install CMake</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install CMake</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-03-20 12:46:04+00:00</h3>
+</div>
+<p><strong>CMake</strong> is easy to install in Ubuntu using apt:</p>
+<pre><code>$ sudo apt install cmake</code></pre>
+<p>However, depending on your version of Ubuntu, the CMake version that is installed might be very old. So, you might run into problems when you build projects that use features from more recent versions of CMake.</p>
+<p>CMake provides binary versions for Linux x86_64. Installing the latest version of CMake from these packages is easy:</p>
+<ul>
+<li>Remove the Ubuntu version of CMake:</li>
+</ul>
+<pre><code>$ sudo apt remove cmake cmake-data</code></pre>
+<ul>
+<li><p>Download the <code>.sh</code> binary package of the CMake version you want from <a href="https://cmake.org/download/">here</a>. When I downloaded, I got <code>cmake-3.14.0-Linux-x86_64.sh</code></p></li>
+<li><p>Move the downloaded package to <code>/opt</code> and execute it:</p></li>
+</ul>
+<pre><code>$ sudo mv cmake-3.14.0-Linux-x86_64.sh /opt
+$ cd /opt
+$ sudo chmod +x cmake-3.14.0-Linux-x86_64.sh
+$ sudo bash ./cmake-3.14.0-Linux-x86_64.sh</code></pre>
+<p>This installs this version of CMake in the directory <code>/opt/cmake-3.14.0-Linux-x86_64</code>.</p>
+<ul>
+<li>Create symbolic links for the CMake binaries:</li>
+</ul>
+<pre><code>$ sudo ln -s /opt/cmake-3.14.0-Linux-x86_64.sh/bin/* /usr/local/bin</code></pre>
+<p>$ Test if CMake is working:</p>
+<pre><code>$ cmake --version
+cmake version 3.14.0
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+</body>
+</html>

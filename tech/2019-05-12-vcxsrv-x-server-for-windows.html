@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>VcXsrv X server for Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">VcXsrv X server for Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-12 02:03:26+00:00</h3>
+</div>
+<p>A <strong>X server</strong> is needed on Windows if you SSH to remote Linux computers and wish to start X or GUI applications from there. It is also necessary if you are working with a Linux distribution running inside <strong>Windows Subsystem for Linux (WSL)</strong>. <strong>VcXsrv</strong> is a free open-source X server that can be used for all these purposes.</p>
+<ul>
+<li><p>To install VcXsrv, download its installer from <a href="http://sourceforge.net/projects/vcxsrv/">here</a> and install it.</p></li>
+<li><p>Launch <strong>XLaunch</strong> from the Windows start menu. This brings up a wizard to pick the X server configuration options. I choose <strong>Multiple Windows</strong> and go with the default options for the rest. Now the X server is running in the background.</p></li>
+<li><p><strong>Local</strong>: Go to your WSL shell (say Ubuntu) and set the <code>DISPLAY</code> environment variable:</p></li>
+</ul>
+<pre><code>$ export DISPLAY=localhost:0.0</code></pre>
+<p>Launch any X or GUI app and its window should now be displayed in its own individual Windows window.</p>
+<ul>
+<li><strong>Remote</strong>: Remember to SSH to the remote system with <strong>trusted X11 forwarding</strong> using option <code>-Y</code>. On the remote system, set the <code>DISPLAY</code> variable:</li>
+</ul>
+<pre><code>$ export DISPLAY=your-windows-ip:0.0</code></pre>
+<p>When you start XLaunch you may want to choose to <strong>Disable access control</strong>. Otherwise you may get errors like this:</p>
+<pre><code>$ xeyes
+Authorization required, but no authorization protocol specified
+Error: Can&#39;t open display: 10.0.0.99:0.0</code></pre>
+<p><strong>Tried with:</strong> VcXsrv 1.20.1.4 and Ubuntu 18.04 WSL</p>
+</body>
+</html>

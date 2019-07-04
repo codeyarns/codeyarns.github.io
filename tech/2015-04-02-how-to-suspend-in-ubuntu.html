@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to suspend in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to suspend in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-04-02 13:33:11+00:00</h3>
+</div>
+<p>You can <strong>suspend</strong> your notebook running <strong>Ubuntu</strong> by clicking the Gear icon and choosing Suspend. If you want to suspend from the shell, then the relevant command as described <a href="http://forum.ubuntu-fr.org/viewtopic.php?pid=16497311#p16497311">here</a> is:</p>
+<pre><code>dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 &quot;org.freedesktop.login1.Manager.Suspend&quot; boolean:true</code></pre>
+<p>If you use this frequently, then you can turn it into a script or create a keyboard shortcut for it.</p>
+<p><strong>Note:</strong> The other methods suggested on the web which use the <code>powermanagement-interface</code> did not work for me on Ubuntu 14.04.</p>
+</body>
+</html>

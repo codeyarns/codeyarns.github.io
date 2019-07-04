@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Apt update stuck waiting for headers</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Apt update stuck waiting for headers</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-08-03 05:43:40+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I tried to update the apt cache on a machine that had not been updated in a long time:</p>
+<pre><code>$ sudo apt-get update</code></pre>
+<p>But that got stuck at one of the repositories <strong>Waiting for headers</strong>. No matter how many times I tried the command, it would get stuck at this.</p>
+<h1 id="solution">Solution</h1>
+<p>The problem went away once I cleared the cache using these steps as explained <a href="https://www.kubuntuforums.net/showthread.php/57567-Ubuntu-problems-on-update">here</a>:</p>
+<pre><code>$ sudo apt-get clean
+$ cd /var/lib/apt
+$ sudo mv lists lists.old
+$ sudo mkdir -p lists/partial
+$ sudo apt-get clean
+$ sudo apt-get update </code></pre>
+<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+</body>
+</html>

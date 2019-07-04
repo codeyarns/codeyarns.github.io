@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build and install Bluez</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build and install Bluez</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-06-05 14:31:06+00:00</h3>
+</div>
+<p><a href="http://www.bluez.org/"><strong>Bluez</strong></a> is the default Bluetooth protocol stack on Linux. It should be present and installed on your Linux distribution. If not, building and installing from source is not too difficult:</p>
+<ul>
+<li><p>Download the latest stable source release of Bluez from <a href="http://www.bluez.org/download/">here</a>. Unzip the compressed file you downloaded.</p></li>
+<li><p>Install the headers and libraries required for Bluez compilation:</p></li>
+</ul>
+<pre><code>$ sudo apt install libdbus-1-dev libudev-dev libical-dev libreadline-dev</code></pre>
+<p>If you do not install the <code>libdbus-1-dev</code>, you will later get this strange error:</p>
+<pre><code>configure: error: D-Bus &gt;= 1.6 is required</code></pre>
+<ul>
+<li>Next configure the Makefile:</li>
+</ul>
+<pre><code>$ ./configure</code></pre>
+<p>This gave an error about systemd, which is not present on the relatively old Ubuntu I was on:</p>
+<pre><code>checking systemd system unit dir... configure: error: systemd system unit directory is required</code></pre>
+<p>So, I ran configure disabling systemd:</p>
+<pre><code>$ ./configure --disable-systemd</code></pre>
+<ul>
+<li>After that build and install as usual:</li>
+</ul>
+<pre><code>$ make
+$ sudo make install</code></pre>
+<p><strong>Tried with:</strong> Bluez 5.45 and Ubuntu 14.04</p>
+</body>
+</html>

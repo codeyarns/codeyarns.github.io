@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install CUDA 6.5 on Ubuntu 14.04</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install CUDA 6.5 on Ubuntu 14.04</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-26 12:17:17+00:00</h3>
+</div>
+<p>Installing <strong>CUDA</strong> is becoming increasingly easier on <strong>Ubuntu</strong>. I think I keep hitting problems because I am usually updating from an older NVIDIA graphics driver or CUDA version. NVIDIA continues to be quite bad at providing error-free upgrades. Anyway, this is what worked for me:</p>
+<ul>
+<li><p>Do <strong>not</strong> try to install any of the NVIDIA drivers or CUDA packages that are in the Ubuntu repositories. I wasted a day with the errors these operations threw up!</p></li>
+<li><p>Uninstall all CUDA packages and NVIDIA drivers you may have on your Ubuntu system.</p></li>
+<li><p>Download the CUDA <code>.deb</code> package for Ubuntu 14.04 from <a href="https://developer.nvidia.com/cuda-downloads">here</a>. For me, it was a <code>cuda-repo-ubuntu1404_6.5-14_amd64.deb</code> file.</p></li>
+<li><p>The <code>.deb</code> file just adds a CUDA repository maintained by NVIDIA. Install this <code>.deb</code> file and update:</p></li>
+</ul>
+<pre><code>$ sudo gdebi cuda-repo-ubuntu1404_6.5-14_amd64.deb
+$ sudo apt-get update</code></pre>
+<ul>
+<li>Installing CUDA now is easy as this:</li>
+</ul>
+<pre><code>$ sudo apt-get install cuda</code></pre>
+<p>This is a big install, it will install everything including a <code>nvidia-340</code> driver that actually worked and NVIDIA NSight. After the install, reboot the computer. Your CUDA is ready for work now :-)</p>
+<p><strong>Note:</strong> I tried this on two systems. On one, it installed without any problem. On the other, it gave an error of unmet dependencies. I have described <a href="2015/02/26/cuda-installation-error-of-unmet-dependencies/">here</a> how I solved this problem.</p>
+<p><strong>Tried with:</strong> NVIDIA GeForce GTS 250 and NVIDIA GTX Titan</p>
+</body>
+</html>

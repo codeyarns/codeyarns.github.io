@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install Intel IPP on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install Intel IPP on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-10-04 10:44:46+00:00</h3>
+</div>
+<p>I wanted to try <strong>Intel Integrated Performance Primitives (IPP)</strong> with OpenCV. I installed IPP with these steps:</p>
+<ol style="list-style-type: decimal">
+<li><p>Intel IPP can be downloaded from <a href="http://software.intel.com/en-us/intel-ipp">here</a>. If you are using it for non-commercial purposes, you can get it for free through Intel's <a href="http://software.intel.com/en-us/non-commercial-software-development">Non-Commercial Software Development</a> webpage. You need to register with an email address. You will be sent an email with the download link and a registration key.</p></li>
+<li><p>Download the Intel IPP version you want, beware that its a huge download. I downloaded Intel IPP 7.1, which ships as a 777MB <code>.tgz</code> file.</p></li>
+<li><p>Unzip the downloaded <code>.tgz</code> file. Run the <code>install.sh</code> file. You will be asked to enter your registration key.</p></li>
+<li><p>The installer walks you through the steps of installing IPP. I was asked to install the <code>gcc-multilib</code> package, before I could proceed. So, I did:</p></li>
+</ol>
+<pre><code>$ sudo apt-get install gcc-multilib</code></pre>
+<p>By default, the IPP files are installed to <code>/opt/intel/</code></p>
+<ol style="list-style-type: decimal">
+<li>Going by the steps given on the Intel website, you are supposed to run the <code>ippvars.sh</code> script, which is in the <code>/opt/intel/ipp/bin</code> directory. It sets the following environment variables: <code>IPPROOT</code>, <code>LIBRARY_PATH</code> and <code>LD_LIBRARY_PATH</code>. This script failed to work for me. So, I set those manually in my <code>.bashrc</code>:</li>
+</ol>
+<pre><code># My .bashrc
+export IPPROOT=/opt/intel/composer_xe_2013.1.117/ipp
+export LIBRARY_PATH=$LIBRARY_PATH:/opt/intel/composer_xe_2013.1.117/ipp/lib/intel64:/opt/intel/composer_xe_2013.1.117/compiler/lib/intel64
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/composer_xe_2013.1.117/ipp/lib/intel64:/opt/intel/composer_xe_2013.1.117/compiler/lib/intel64</code></pre>
+<p>After this, I was able to use Intel IPP to compile OpenCV successfully as explained <a href="2013/10/04/how-to-compile-opencv-with-ipp-support/">here</a>.</p>
+<p><strong>Tried with:</strong> Intel IPP 7.1 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

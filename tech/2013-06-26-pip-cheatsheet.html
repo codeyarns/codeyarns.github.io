@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>pip cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">pip cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-06-26 16:00:55+00:00</h3>
+</div>
+<p>Installing and managing <strong>packages</strong> of <strong>Python</strong> is a pain. Many popular Python packages are available for installation from Ubuntu repositories, but they are old versions.</p>
+<p>The most convenient way to install, uninstall and manage Python packages is <a href="http://www.pip-installer.org/"><strong>Pip</strong></a>.</p>
+<ul>
+<li><p><strong>pip</strong> is the usually the Python2 tool. <strong>pip3</strong> is the Python3 tool. All the commands in this post will use pip, but they apply the same to pip3.</p></li>
+<li><p>pip and pip3 can be installed from Ubuntu repositories:</p></li>
+</ul>
+<pre><code>$ sudo apt install python-pip python3-pip</code></pre>
+<ul>
+<li>To install a package from PyPI for all users:</li>
+</ul>
+<pre><code>$ sudo pip install foobar</code></pre>
+<p>This installs the package files to <code>/usr/local/lib/python2.x/site-packages</code> for pip and to <code>/usr/local/lib/python3.x/site-packages</code> for pip3.</p>
+<ul>
+<li>To install a package from PyPI for only yourself:</li>
+</ul>
+<pre><code>$ pip install --user foobar</code></pre>
+<p>This installs the package files to <code>~/.local/lib/python2.x/site-packages</code>.</p>
+<ul>
+<li>To uninstall a package that was installed for all users:</li>
+</ul>
+<pre><code>$ sudo pip uninstall foobar</code></pre>
+<ul>
+<li>To uninstall a package that was installed only for you:</li>
+</ul>
+<pre><code>$ pip uninstall --user foobar</code></pre>
+<ul>
+<li>To upgrade an installed package:</li>
+</ul>
+<pre><code>$ pip install --upgrade foobar</code></pre>
+<ul>
+<li>To list all installed packages and their versions:</li>
+</ul>
+<pre><code>$ pip list</code></pre>
+<ul>
+<li>To search PyPI for a package by name:</li>
+</ul>
+<pre><code>$ pip search foobar</code></pre>
+<ul>
+<li>To list the installed file paths of a package:</li>
+</ul>
+<pre><code>$ pip show -f foobar</code></pre>
+</body>
+</html>

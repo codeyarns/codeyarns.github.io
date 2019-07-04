@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Unresolved inclusion warning in Eclipse</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Unresolved inclusion warning in Eclipse</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-01 12:14:00+00:00</h3>
+</div>
+<p><a href="https://codeyarns.files.wordpress.com/2015/10/20150901_unresolved_inclusion.png"><img src="https://codeyarns.files.wordpress.com/2015/10/20150901_unresolved_inclusion.png" alt="20150901_unresolved_inclusion" /></a></p>
+<h1 id="problem">Problem</h1>
+<p>When working with <strong>C++</strong> code in <strong>Eclipse</strong>, you might see a <strong>Unresolved inclusion</strong> warning for some include header lines. This is indicated with a question-mark and an underline squiggle. On hovering the mouse over it, a tooltip is shown with the Unresolved inclusion message.</p>
+<h1 id="solution">Solution</h1>
+<p>This is caused when the Eclipse indexer cannot find the header file you have included. This commonly happens when you have installed the library of that header file in a non-standard location.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open the project <strong>Properties</strong> and go to C/C++ General -&gt; Paths and Symbols.</p></li>
+<li><p>In the <strong>Includes</strong> tab, go to the <strong>GNU C++</strong>, choose <strong>Add</strong> and add the path to the directory that contains the above header file.</p></li>
+<li><p>After re-indexing the code of your project, this warning should be gone.</p></li>
+</ol>
+<p><strong>Tried with:</strong> Eclipse 4.5 and Ubuntu 14.04</p>
+</body>
+</html>

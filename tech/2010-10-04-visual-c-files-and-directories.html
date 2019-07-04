@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Visual C++: Files and Directories</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Visual C++: Files and Directories</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-10-04 12:50:04+00:00</h3>
+</div>
+<p><strong>Visual C++</strong> does not respect (or use) the underlying directory structure of your existing source code files. Some may find this to be a failing, but I personally think this is a feature. It allows you to organize your files in the way you want into one (or more) projects inside Solution Explorer.</p>
+<p><strong>Visual C++ Files</strong></p>
+<p>If a simple Visual C++ solution named <strong>Foobar</strong> is created with source files named <strong>Main.cpp</strong> and <strong>Main.h</strong>, it will have the following structure:</p>
+<pre><code>Foobar
+|   Foobar.sln
+|
++---Foobar
+        Foobar.vcxproj
+        Main.cpp
+        Main.h</code></pre>
+<p><strong>Foobar.sln</strong> is the Visual C++ solution file and <strong>Foobar.vcxproj</strong> is the Visual C++ project file. A <strong>solution</strong> can contain one or more <strong>projects</strong>. By default, when a solution is created, one project is created in the same name as that of the solution.</p>
+<p>If another project named <strong>Foobar2</strong> is added to the Foobar solution, the directory structure would look like this:</p>
+<pre><code>Foobar
+|   Foobar.sln
+|
++---Foobar
+|       Foobar.vcxproj
+|       Main.cpp
+|
++---Foobar2
+        Foobar2.vcxproj
+        Main2.cpp</code></pre>
+<p>The solution file (Foobar.sln) and the project files (Foobar.vcxproj and Foobar2.vcxproj) are the only non-source files that are needed. Visual C++ might create a few more files and directories, all of them are not essential. So, if you plan to use a version control system (like Subversion or Mercurial) on this solution, you only need to backup .sln, .vcxproj, .cpp and .h files. For the comprehensive list of Visual C++ files that need to be checkedin to version control see <a href="http://codeyarns.wordpress.com/2010/11/05/visual-c-files-for-version-control/">this post</a>.</p>
+<p><strong>Directory Structure</strong></p>
+<p>You can setup a convenient directory structure inside the directory that contains Main.cpp and Main.h. For example, creating a directory <strong>Foo</strong> with source files <strong>Foo.cpp</strong> and <strong>Foo.h</strong>:</p>
+<pre><code>Foobar
+|   Foobar.sln
+|
++---Foobar
+    |   Foobar.vcxproj
+    |   Main.cpp
+    |   Main.h
+    |
+    +---Foo
+            Foo.cpp
+            Foo.h</code></pre>
+<p>No matter what is the directory structure, the source files can be imported into the Foobar Visual C++ solution and arranged in any fashion the user wants. The root directory of the Foobar project is <strong>Foobar/Foobar</strong>.</p>
+<p><strong>Including Directories </strong></p>
+<p>Header files at the root directory of the project can be directly included:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Main.cpp</span>
+<span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></code></pre></div>
+<p>For the header files lying inside directories of the project root directory, there are 2 ways to include them:</p>
+<ol style="list-style-type: decimal">
+<li><p>Include the header file providing the <strong>relative path</strong> from the source file to the header: <code>cpp // Main.cpp #include &quot;Main.h&quot; #include &quot;Foo/Foo.h&quot;</code></p></li>
+<li><p>Open <em>Project → Properties</em>. Choose <em>C/C++ → Additional Include Directories</em> and add <strong>Foo</strong>. To add more include directories to the project, separate them with semicolons. The header files in the Foo directory can now be included without specifying <strong>any</strong> path in <strong>any</strong> .cpp or .h file in the project:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Main.cpp</span>
+<span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span>
+<span class="pp">#include </span><span class="im">&quot;Foo.h&quot;</span></code></pre></div></li>
+</ol>
+<p>As you might deduce, strategy 1 gets messy pretty quickly since each file that includes another header needs to know the path that leads to it. For example, to include Main.h in Foo.cpp:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Foo.cpp</span>
+<span class="pp">#include </span><span class="im">&quot;../Main.h&quot;</span></code></pre></div>
+<p>Compared to this, using strategy 2 one can include any header file in any source file without worrying about the directory where it lies. This is much easier to apply across the directory structure of a project.</p>
+</body>
+</html>

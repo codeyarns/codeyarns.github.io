@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Pip install error with PyCUDA</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Pip install error with PyCUDA</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-07-31 12:04:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<ul>
+<li>I tried to install PyCUDA using <code>pip</code>:</li>
+</ul>
+<pre><code>$ sudo pip install pycuda</code></pre>
+<ul>
+<li>The installation tries to compile a few C++ files and it failed on the very first file with this error:</li>
+</ul>
+<pre><code>In file included from src/cpp/cuda.cpp:1:0:
+src/cpp/cuda.hpp:14:18: fatal error: cuda.h: No such file or directory
+#include &lt;cuda.h&gt;
+                ^
+compilation terminated.
+error: command &#39;x86_64-linux-gnu-gcc&#39; failed with exit status 1</code></pre>
+<h1 id="investigation">Investigation</h1>
+<ul>
+<li><p>This error was strange because I had set <code>CUDA_ROOT</code> and had added the <code>bin</code> path of CUDA installation to <code>PATH</code> environment variable. So, the installer should have found <code>cuda.h</code> which I could see was present in <code>$CUDA_ROOT/include</code></p></li>
+<li><p>To see what was happening, I tried the same command with verbosity:</p></li>
+</ul>
+<pre><code>$ sudo pip -vvv install pycuda</code></pre>
+<ul>
+<li><p>Now I could see that it was failing to find <code>nvcc</code>.</p></li>
+<li><p>On downloading the source code of PyCUDA and checking <code>setup.py</code>, I saw that the check for <code>nvcc</code> was used to figure out the <code>CUDA_ROOT</code> and <code>CUDA_INC_DIR</code>.</p></li>
+<li><p>The reason <code>nvcc</code> was not visible was that <code>CUDA_ROOT</code> was set for my user, but this <code>PATH</code> is not visible when a command is run under <code>sudo</code>, as described here. The solution was to make the CUDA <code>bin</code> path visible to <code>sudo</code>.</p></li>
+</ul>
+<h1 id="solution">Solution</h1>
+<p>To make the <code>$CUDA_ROOT/bin</code> available in <code>PATH</code> for <code>sudo</code>, we can follow the steps described here. For example, on my system with CUDA 7.0 I followed these steps:</p>
+<ul>
+<li>Created a new file <code>/etc/profile.d/cuda.sh</code> and added this line:</li>
+</ul>
+<pre><code>export PATH=/usr/local/cuda-7.0/bin:$PATH</code></pre>
+<ul>
+<li>Opened <code>root</code> shell without resetting <code>PATH</code> and ran the pip installation:</li>
+</ul>
+<pre><code>$ sudo su -
+$ pip install pycuda</code></pre>
+<p>This worked and PyCUDA was installed successfully! :-)</p>
+<p><strong>Tried with:</strong> PyCUDA 2015.1.2, CUDA 7.0 and Ubuntu 14.04</p>
+</body>
+</html>

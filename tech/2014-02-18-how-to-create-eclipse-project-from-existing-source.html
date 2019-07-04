@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to create Eclipse project from existing source</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to create Eclipse project from existing source</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-02-18 05:33:41+00:00</h3>
+</div>
+<p>When you create a <strong>project</strong> in <strong>Eclipse</strong> (or <strong>NVIDIA Nsight</strong>), it creates a new directory in your workspace and creates the files there. If you have your source files arranged under a directory in some other location, you might prefer to work on them without Eclipse copying them over to its workspace directory.</p>
+<p>To achieve this, do not use the import option! Instead create a new project, in its dialog uncheck the <strong>Use default location</strong> option and provide the root directory of your source code. The entire contents of your source directory will appear in the newly created project. Do not fear, they have not been copied. Instead, Eclipse has created <code>.project</code>, <code>.cproject</code> and other hidden files and directories in your source directory, so that it can work from there. Also, any new files or directories you create under your source directory will automatically appear in your Eclipse project.</p>
+<p>Another alternative to this approach is to <a href="2014/01/15/how-to-create-eclipse-project-from-cmake-project/">create a Makefile project</a>, which works similarly.</p>
+<p><strong>Tried with:</strong> NVIDIA Nsight 5.5.0 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

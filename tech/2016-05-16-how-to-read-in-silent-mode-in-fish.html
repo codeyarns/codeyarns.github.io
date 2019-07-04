@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to read in silent mode in Fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to read in silent mode in Fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-05-16 14:48:09+00:00</h3>
+</div>
+<p><strong>Silent mode</strong> is an useful feature in shells to read sensitive information like passwords. The text typed by the user is not displayed on the displayed nor stored anywhere on file.</p>
+<p>Sadly, the <strong>Fish</strong> shell does not have a true silent mode in its <code>read</code> command. Also, when used with default options, the password (or input) entered to the read command is stored in <code>~/.config/fish/fish_read_history</code>.</p>
+<p>The best we can do is to make the read command not store its history. This can be achieved by passing <code>/dev/null</code> as the history file for read:</p>
+<pre><code>read -m /dev/null var_to_store_password</code></pre>
+<p><strong>Tried with:</strong> Fish 2.2.0 and Ubuntu 14.04</p>
+</body>
+</html>

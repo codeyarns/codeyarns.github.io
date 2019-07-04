@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to find options used to build a package</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to find options used to build a package</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-05 03:32:06+00:00</h3>
+</div>
+<p>Sometimes you may want to find out the configuration options that were used to build a package that you download and install. For example, if a certain feature has not been built into a program or library from a package, you may need to build that program or library from source to use that feature.</p>
+<p>Finding out the build rules used to build a package is easy:</p>
+<ul>
+<li><p>Figure out the source package name that corresponds to the package you are interested in. For example, the source package of <code>libopencv-dev</code> is named <code>opencv</code>.</p></li>
+<li><p>Download the source package. For example:</p></li>
+</ul>
+<pre><code>$ apt-get source opencv</code></pre>
+<ul>
+<li>You can find the build rules, options and configuration used to build the package in the file <code>debian/rules</code>.</li>
+</ul>
+<p><strong>Tried with:</strong> OpenCV 2.4.8 and Ubuntu 14.04</p>
+</body>
+</html>

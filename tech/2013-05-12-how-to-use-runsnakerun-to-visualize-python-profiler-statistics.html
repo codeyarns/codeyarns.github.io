@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use RunSnakeRun to visualize Python profiler statistics</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use RunSnakeRun to visualize Python profiler statistics</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-05-12 10:03:04+00:00</h3>
+</div>
+<p>It is really easy to <a href="2013/05/12/how-to-profile-a-python-program-using-cprofile/">profile a Python program</a>. But, it is not straightforward to determine the different bottlenecks in the program by looking at the profiler output. A <strong>visualization</strong> of the profiler output makes it really convenient to examine the different sources of bottleneck in the program.  One way to visualize the profiler output is to use <a href="http://www.vrplumber.com/programming/runsnakerun/"><strong>RunSnakeRun</strong></a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>RunSnakeRun ships as a Python module. But, before installing it, <a href="2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">install the packages</a> it is dependent on: <strong>python-profiler</strong>, <strong>python-wxgtk2.8</strong> and <strong>python-setuptools</strong>.</p></li>
+<li><p>Install RunSnakeRun from PyPI <a href="2012/05/22/python-installing-packages-with-easy_install/">using easy_install</a>:</p></li>
+</ol>
+<pre><code>$ sudo easy_install SquareMap RunSnakeRun</code></pre>
+<ol style="list-style-type: decimal">
+<li><p>Profile your Python program and dump the statistics to a file, say <strong>foostats</strong>.</p></li>
+<li><p>Open the profiler statistics file with RunSnakeRun:</p></li>
+</ol>
+<pre><code>$ runsnake foostats</code></pre>
+<p>RunSnakeRun shows a tabular view of the profiler statistics, similar to the output of cProfile. It also shows a <strong>squaremap</strong> visualization of the call tree. This makes it really convenient to drill down to the various bottlenecks in the program.</p>
+<p><strong>Tried with:</strong> RunSnakeRun 2.0.2b1, Python 2.7.3 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

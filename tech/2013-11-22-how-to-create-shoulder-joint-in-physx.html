@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to create shoulder joint in PhysX</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to create shoulder joint in PhysX</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-11-22 11:53:57+00:00</h3>
+</div>
+<p>The <strong>shoulder joint</strong> of the human body can be simulated in <strong>PhysX</strong> by using its <strong>spherical joint</strong>. The spherical joint is used to represent a ball-and-socket joint.</p>
+<p>In the case of the shoulder joint, we assume that the ball-and-socket is placed at the shoulder location and it is connected by the upper arm to elbow. So, we use two PhysX bodies: one located at the shoulder itself and another at the elbow. Alternatively you could put the first body at the neck and connect it by the shoulder bone to the ball-and-socket position.</p>
+<p>The code below creates the shoulder joint:</p>
+<p>https://gist.github.com/ashwin/7598571</p>
+<p>To create the joint we need to provide the position of the two bodies involved, the relative location of the joint to those bodies. In addition, we also need to provide the local orientation of the joint to those bodies.</p>
+<p>The joint begins life with an upright orientation, that is, its axes are same as the global axes. We need to point the X-axis of the orientation to look at the second body. The above code does that by computing the Euler angles of rotation around the Y-axis and Z-axis of the joint that point the X-axis to look at the second body. The X-axis of the joint will also be the axis around which the cone of rotation is created to bound the rotational freedom of the joint.</p>
+<p>Once we have the Euler angles, we convert that to a quaternion. We also compute the position of the joint relative to the first and second bodies. Each pair of position and orientation rotation forms a transform. Two pairs of these are used to define the joint.</p>
+<p><strong>Tried with:</strong> PhysX 3.2.4, Visual Studio 2010 and Windows 7 x64</p>
+</body>
+</html>

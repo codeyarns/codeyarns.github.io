@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to rename remote branch in Git</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to rename remote branch in Git</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-12 15:15:21+00:00</h3>
+</div>
+<p><strong>Git</strong> is known for its confusing and difficult commands. If you want to rename a remote branch, say a branch that is on Github, from the comfort of your shell then you are in luck for one such experience! :-)</p>
+<p>This is the invocation to rename a branch <code>old_branch</code> on a remote named <code>foo_remote</code> to a new branch name <code>new_branch</code>:</p>
+<pre><code>$ git push foo_remote foo_remote/old_branch:refs/heads/new_branch :old_branch</code></pre>
+<p>If you find yourself renaming remote branches a lot, then it is better to add this as a Git command. To do that, save this piece of shell script code as a file named <code>git-rename-remote-branch</code>:</p>
+<p>https://gist.github.com/ashwin/63aa43d6e74f5969f7620f2b3a1981e1</p>
+<p>The file can be named anything as long as it begins with a <code>git-</code> prefix. Make it executable and place it in any directory that is in your <code>PATH</code>.</p>
+<p>Now, you can rename a remote branch with a sane command:</p>
+<pre><code>$ git rename-remote-branch foo_remote old_branch new_branch</code></pre>
+<p><strong>Tried with:</strong> Git 2.7.4 and Ubuntu 14.04</p>
+</body>
+</html>

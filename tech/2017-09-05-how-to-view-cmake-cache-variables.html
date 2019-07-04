@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to view CMake cache variables</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to view CMake cache variables</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-05 14:57:57+00:00</h3>
+</div>
+<p>Running <strong>CMake</strong> for a project creates many variables that are required for its own operation and for the project being built. If you use the CMake GUI, then these are the variables which you see populated after you perform <strong>Configure</strong> and then <strong>Generate</strong>. When you want to diagnose a CMake build problem at the shell, it is useful to be able to view these variables.</p>
+<ul>
+<li>To perform a CMake build and then print the <strong>cache variables</strong>:</li>
+</ul>
+<pre><code>$ cmake -L ..</code></pre>
+<p>Note that in the above command, I am in the <code>build</code> directory and the <code>CMakeLists.txt</code> is in the parent directory. This command builds as usual and at the end prints the CMake variables and their values.</p>
+<ul>
+<li>To perform a CMake build and list all the cache variables, including <strong>advanced variables</strong>:</li>
+</ul>
+<pre><code>$ cmake -LA ..</code></pre>
+<p>Note that the number of variables that are printed can be quite high for big projects. I have seen it run into the hundreds.</p>
+<ul>
+<li>To perform a CMake build and list all the cache variables and print the <strong>help documentation</strong> about each variable too:</li>
+</ul>
+<pre><code>$ cmake -LAH ..</code></pre>
+<ul>
+<li>If you have already done a CMake build and just need to print out the cache variables, add the <code>-N</code> option:</li>
+</ul>
+<pre><code>$ cmake -L -N</code></pre>
+<p>This command assumes that the current directory is the build directory containing the cache files, so no directory needs to be specified. This command is quick because it does not do a CMake build. Additionally, you can also add the <code>-AH</code> options as before if you want.</p>
+<p><strong>Tried with:</strong> CMake 2.8.12.2 and Ubuntu 16.04</p>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Perforce cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Perforce cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-02-02 07:05:46+00:00</h3>
+</div>
+<p><strong>Perforce</strong> is a version control system. <strong>p4</strong> is its primary commandline tool. <strong>p4g</strong> is its GUI tool. The reference for all this is the <a href="https://www.perforce.com/perforce/doc.current/manuals/cmdref/"><strong>p4 command reference</strong></a>.</p>
+<ul>
+<li>To get help on any p4 command named foobar:</li>
+</ul>
+<pre><code>$ p4 help foobar</code></pre>
+<ul>
+<li>To list all depots:</li>
+</ul>
+<pre><code>$ p4 depots</code></pre>
+<ul>
+<li>To view info about your workspace:</li>
+</ul>
+<pre><code>$ p4 info</code></pre>
+<ul>
+<li>To list environment variables that P4 understands and their values:</li>
+</ul>
+<pre><code>$ p4 set</code></pre>
+<ul>
+<li>To view all clients of all users:</li>
+</ul>
+<pre><code>$ p4 clients</code></pre>
+<ul>
+<li>To view all clients of a particular user or yours:</li>
+</ul>
+<pre><code>$ p4 clients -u joe</code></pre>
+<ul>
+<li>To create or view or change the configuration of your current client or default client:</li>
+</ul>
+<pre><code>$ p4 client</code></pre>
+<p>You typically use this command to add new branches or paths from the depot to your directory view.</p>
+<ul>
+<li>To create or view or change the configuration of a new client or existing client with a name:</li>
+</ul>
+<pre><code>$ p4 client my_client_2</code></pre>
+<ul>
+<li>To delete a client from the server:</li>
+</ul>
+<pre><code>$ p4 client -d my_client_2</code></pre>
+<ul>
+<li>To sync all the latest branches and paths of your client from the depot:</li>
+</ul>
+<pre><code>$ p4 sync</code></pre>
+<ul>
+<li>To list (and not actually sync) the unsynced files between workspace and depot:</li>
+</ul>
+<pre><code>$ p4 sync -n</code></pre>
+<ul>
+<li>To sync only a specific directory or file use its depot path:</li>
+</ul>
+<pre><code>$ p4 sync //dev/foo/some.cpp</code></pre>
+<ul>
+<li>To sync a specific changelist to your working directory:</li>
+</ul>
+<pre><code>$ p4 sync ...@123456</code></pre>
+<h1 id="copy-move-and-delete">Copy, move and delete</h1>
+<ul>
+<li>To copy a file or a directory (including its subdirectories and files):</li>
+</ul>
+<pre><code>$ p4 copy old_file new_file
+$ p4 copy old_dir/... new_dir/...</code></pre>
+<ul>
+<li>To move a file or directory:</li>
+</ul>
+<pre><code>$ p4 move old_file new_file</code></pre>
+<p>If the move operation is disabled for your Perforce server, then check out these <a href="https://codeyarns.com/2018/10/09/operation-move-disabled-on-this-server/">alternate solutions</a>.</p>
+<ul>
+<li>To delete a file or directory (including its subdirectories and files):</li>
+</ul>
+<pre><code>$ p4 delete foobar_file
+$ p4 delete foobar_dir/...</code></pre>
+<h1 id="changelist">Changelist</h1>
+<p>p4 commands related to changelist are collected <a href="https://codeyarns.com/2018/06/12/p4-changelist-cheatsheet/">here</a>.</p>
+<h1 id="log">Log</h1>
+<ul>
+<li>To view all the changelists from the server:</li>
+</ul>
+<pre><code>$ p4 changes</code></pre>
+<p>This will list all changelists of everybody, so it is pretty much useless. You want to filter it down using other criteria, like shown below.</p>
+<ul>
+<li>To view all the changelists of a particular depot:</li>
+</ul>
+<pre><code>$ p4 changes //somedepot/</code></pre>
+<ul>
+<li>To view all the changelists of a particular branch in a depot:</li>
+</ul>
+<pre><code>$ p4 changes //somedepot/somebranch/</code></pre>
+<ul>
+<li>To view the most recent 5 changelists added to the server:</li>
+</ul>
+<pre><code>$ p4 changes -m5</code></pre>
+<ul>
+<li>To view the changelists added by a particular user:</li>
+</ul>
+<pre><code>$ p4 changes -u joe</code></pre>
+<ul>
+<li>By default, a single truncated line of information is shown for each changelist. To view the complete description of every changelist:</li>
+</ul>
+<pre><code>$ p4 changes -l</code></pre>
+<ul>
+<li>To list changelists, with each description limited to 250 characters:</li>
+</ul>
+<pre><code>$ p4 changes -L</code></pre>
+<ul>
+<li>To view the changelists of a particular status, say pending:</li>
+</ul>
+<pre><code>$ p4 changes -s pending</code></pre>
+<ul>
+<li>To view the changelist checked out in the current workspace:</li>
+</ul>
+<pre><code>$ p4 changes -m1 ...#have</code></pre>
+<ul>
+<li>To add a new file, either cause you want to create a new file or add an existing file to be tracked by version control:</li>
+</ul>
+<pre><code>$ p4 add foobar.txt</code></pre>
+<p>If it is a new file, then you will need to create the file yourself after this command. This command just indicates to p4 to start tracking such a file.</p>
+<ul>
+<li>To delete a file:</li>
+</ul>
+<pre><code>$ p4 delete foobar.txt</code></pre>
+<ul>
+<li>To delete a file and record that to a particular changelist:</li>
+</ul>
+<pre><code>$ p4 delete -c 123456 foobar.txt</code></pre>
+<ul>
+<li>To open a file for editing:</li>
+</ul>
+<pre><code>$ p4 edit foobar.txt</code></pre>
+<ul>
+<li>To revert a specific file or all files in directory with versions from depot:</li>
+</ul>
+<pre><code>$ p4 revert foobar.txt
+$ p4 revert ...
+$ p4 revert src/...</code></pre>
+<p>Note that you will lose changed made your files on disk with this operation. This operation can be used after shelving a changelist to revert the files back to their original state.</p>
+<ul>
+<li>To revert back only unchanged (but opened) files:</li>
+</ul>
+<pre><code>$ p4 revert -a</code></pre>
+<ul>
+<li>To view the currently changed files as seen by p4:</li>
+</ul>
+<pre><code>$ p4 opened
+$ p4 opened ...
+$ p4 opened src/...</code></pre>
+<h1 id="file-information">File information</h1>
+<ul>
+<li>To view the changelist of a file:</li>
+</ul>
+<pre><code>$ p4 changes //somedepot/somepath/foobar.txt</code></pre>
+<ul>
+<li>To view the log of a file:</li>
+</ul>
+<pre><code>$ p4 filelog //somedepot/somepath/foobar.txt</code></pre>
+<ul>
+<li><p>To see a beautiful timelapse view of file history, it is better to view it in p4g by right-clicking the file and choosing <strong>Timelapse view</strong>. The color of the lines show their age and the slider can be used to move through history.</p></li>
+<li><p>To print all the lines of a file:</p></li>
+</ul>
+<pre><code>$ p4 print //somedepot/somepath/foobar.txt</code></pre>
+<ul>
+<li>To print the revision numbers of every line of a file:</li>
+</ul>
+<pre><code>$ p4 annotate //somedepot/somepath/foobar.txt</code></pre>
+<ul>
+<li>To print changelists for every line of a file:</li>
+</ul>
+<pre><code>$ p4 annotate -c //somedepot/somepath/foobar.txt</code></pre>
+<ul>
+<li>To print the user who last changed every line of a file:</li>
+</ul>
+<pre><code>$ p4 annotate -u //somedepot/somepath/foobar.txt</code></pre>
+<h1 id="diff">Diff</h1>
+<ul>
+<li>To view the diff of all currently open files:</li>
+</ul>
+<pre><code>$ p4 diff</code></pre>
+<p>This prints a text diff at the shell by default. If you set the <code>P4DIFF</code> environment variable to a GUI program, like Meld, it will use that to show the diffs.</p>
+<ul>
+<li>By default, the diff is shown in P4's own format. To display in the <strong>unified diff format</strong> that is understood by most tools:</li>
+</ul>
+<pre><code>$ p4 diff -du</code></pre>
+<ul>
+<li>To view the diff of opened files that are actually changed:</li>
+</ul>
+<pre><code>$ p4 diff -sa</code></pre>
+<ul>
+<li>To diff two files in the depot:</li>
+</ul>
+<pre><code>$ p4 diff2 //branch1/some.cpp //branch2/some.cpp</code></pre>
+<p>This prints a diff at the shell. Set the <code>P4DIFF2</code> environment variable to a GUI diff program to view the diff using that.</p>
+<h1 id="branch">Branch</h1>
+<p>To create a new branch from an old branch, there are typically 3 steps:</p>
+<p>First, create the branch:</p>
+<pre><code>$ p4 integrate //foo/old_branch/... //foo/new_branch/...</code></pre>
+<p>Now the branch is created, but you cannot yet view the files in the new branch in your filesystem.</p>
+<p>Second, change the client specification add the new branch files to your view and sync:</p>
+<pre><code>$ p4 client
+$ p4 sync</code></pre>
+<p>Finally, submit the new branch to depot:</p>
+<pre><code>$ p4 submit //foo/new_branch/...</code></pre>
+<h1 id="merge">Merge</h1>
+<ul>
+<li>To merge, resolve automatically and finally only resolve merge conflicts manually:</li>
+</ul>
+<pre><code>$ p4 integrate //foo/from_branch/... //foo/my_branch/...
+$ p4 resolve -a
+$ p4 resolve</code></pre>
+<ul>
+<li>After an integrate, show what files cannot be resolved automatically:</li>
+</ul>
+<pre><code>$ p4 resolve -n</code></pre>
+<ul>
+<li>Integrate a specific changelist 123456 from one branch to another:</li>
+</ul>
+<pre><code>$ p4 integrate from_branch/...@=123456 to_branch/...
+$ p4 resolve to_branch/...
+$ p4 change</code></pre>
+</body>
+</html>

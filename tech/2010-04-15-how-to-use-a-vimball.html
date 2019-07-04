@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use a Vimball</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use a Vimball</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-04-15 10:15:49+00:00</h3>
+</div>
+<p>I noticed that <strong>plugins</strong> of <strong>ViM</strong> have now started to ship as vimballs. A <strong>vimball</strong> is a ViM-readable archive format that holds the plugin files and commands to install them. A plugin downloaded as a Vimball typically has a file extension of <strong>.vba</strong> or <strong>.vimball</strong>, say <code>Foobar.vba</code>.</p>
+<p>To <strong>view</strong> the plugin files installed by a vimball and their destination directories, open <code>Foobar.vba</code> in ViM and use:</p>
+<pre><code>:VimballList</code></pre>
+<p>A Vimball can be <strong>installed</strong> with a single command. Open <code>Foobar.vba</code> in ViM and invoke:</p>
+<pre><code>:source %</code></pre>
+<p><strong>%</strong> is a ViM read-only <strong><a href="http://codeyarns.wordpress.com/2010/04/15/vim-registers/">register</a></strong> that holds the name of the currently open file. <strong>:source</strong> executes Ex commands from its source, which is %, the vimball file in this case.</p>
+<p>To <strong>view</strong> the currently loaded plugins, use:</p>
+<pre><code>:scriptnames</code></pre>
+<p>This lists all the loaded .vim plugin files with their complete path. The plugin installed from the vimball should also be listed in this output.</p>
+<p>To <strong>remove</strong> a plugin which was installed from a Vimball use:</p>
+<pre><code>:RmVimball Foobar</code></pre>
+<p>The ability of ViM to read and execute vimballs is through a plugin called vimball. A default install of ViM should already have this plugin loaded.</p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to list files or directories only</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to list files or directories only</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-04-03 12:50:56+00:00</h3>
+</div>
+<p>There are many instances where I have wanted to list <strong>only the files</strong> or <strong>only the directories</strong>. The <code>find</code> tool seems to be the most convenient way to do this.</p>
+<p>To list only the files in current directory:</p>
+<pre><code>$ find . -maxdepth 1 -type f | sort</code></pre>
+<p>To list only the directories in current directory:</p>
+<pre><code>$ find . -maxdepth 1 -type d | sort</code></pre>
+<p>The <code>-maxdepth</code> says it should only look in the directory and not recurse into subdirectories. The <code>-type</code> indicates that only files (or directories) should be found. The results of <code>find</code> are not in sorted order, so we pipe them to <code>sort</code>.</p>
+<p>I recommend making an aliases out of this, so that they can be called easily like say <code>lsf</code> or <code>lsd</code>.</p>
+<p><strong>Tried with:</strong> FindUtils 4.4.2-7 and Ubuntu 14.04</p>
+</body>
+</html>

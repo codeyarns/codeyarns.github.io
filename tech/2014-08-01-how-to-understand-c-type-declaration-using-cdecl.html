@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to understand C++ type declaration using cdecl</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to understand C++ type declaration using cdecl</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-08-01 08:00:30+00:00</h3>
+</div>
+<p>Type declarations in C or C++ can sometimes look confusing. cdecl is a commandline tool that can convert a type declaration into plain English that might be easier to understand.</p>
+<p>To install cdecl:</p>
+<pre><code>$ sudo apt install cdecl</code></pre>
+<p>To use cdecl:</p>
+<pre><code>$ cdecl explain &quot;const int* ip;&quot;
+declare ip as pointer to const int</code></pre>
+<p>To use cdecl in interactive mode:</p>
+<pre><code>$ cdecl
+Type `help&#39; or `?&#39; for help
+cdecl&gt; explain const int* ip;
+declare ip as pointer to const int
+cdecl&gt;</code></pre>
+<p>Note that I found that cdecl fails on even simple declarations which are legal in C or C++:</p>
+<pre><code>$ cdecl explain &quot;const int const * ip;&quot;
+syntax error</code></pre>
+<p>The cdecl can also be used online <a href="http://cdecl.ridiculousfish.com/">here</a>.</p>
+<p><strong>Tried with:</strong> Cdecl 2.5-13 and Ubuntu 14.04</p>
+</body>
+</html>

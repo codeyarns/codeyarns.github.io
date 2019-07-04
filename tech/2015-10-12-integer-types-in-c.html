@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Integer types in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Integer types in C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-10-12 12:39:00+00:00</h3>
+</div>
+<p>Traditional programmers are familiar with <code>int</code>, <code>long</code> and such integer types. These are known to have different sizes on different systems.</p>
+<p>However, a lot of code requires integer types to be <strong>exactly</strong> a certain size or of <strong>at least</strong> a certain size. In such situations, it is a good idea to use the <strong>fixed width integer types</strong> provided by C++ through the header file <code>cstdlib</code>.</p>
+<h1 id="types-of-integers">Types of integers</h1>
+<p>C++ provides three types of fixed width integer types:</p>
+<ul>
+<li><p>Integer of precisely the size you specify (Ex: <code>int32_t</code>)</p></li>
+<li><p>Smallest integer whose size is <strong>at least</strong> the size you specify (Ex: <code>int_least32_t</code>)</p></li>
+<li><p>Fastest integer whose size is <strong>at least</strong> the size you specify (Ex: <code>int_fast32_t</code>)</p></li>
+</ul>
+<p>List of the signed and unsigned integer types is:</p>
+<pre><code>int8_t
+int16_t
+int32_t
+int64_t
+uint8_t
+uint16_t
+uint32_t
+uint64_t
+
+int_least8_t
+int_least16_t
+int_least32_t
+int_least64_t
+uint_least8_t
+uint_least16_t
+uint_least32_t
+uint_least64_t
+
+int_fast8_t
+int_fast16_t
+int_fast32_t
+int_fast64_t
+uint_fast8_t
+uint_fast16_t
+uint_fast32_t
+uint_fast64_t</code></pre>
+<h1 id="why-these-types">Why these types?</h1>
+<p>When we specify that we want an integer to have exactly 32 bits, say <code>int32_t</code>, that may not be supported on certain exotic systems. Assume a computer which supports only 34-bit and 68-bit integers. That system cannot provide a 32 bit integer. Code which uses <code>int32_t</code> will not compile. This is good because the programmer who used <code>int32_t</code> might have been assuming the type to have exactly 32 bits, for example, if he is looping over the 32 bits to compute something. Such code should fail, else it would be a bug.</p>
+<p>Now the use of a precise width type, like <code>int32_t</code>, provides the reason for the other two types of integers: smallest and fastest.</p>
+<p>The smallest integer type, say <code>int_least32_t</code>, should be used when our code requires to store values that need at least 32 bits, but our first priority is space and not speed of computation. For example, assume that the exotic system described above does 68-bit integer addition faster than 34-bit addition. In such a case, when we use <code>int_least32_t</code>, we are asking it use the 34-bit type, foregoing speed for space.</p>
+<p>The fastest integer type, say <code>int_fast32_t</code>, should be used when our code requires to store values that need at least 32 bits, but our first priority is speed and not space. For example, in the exotic system described above when we use <code>int_fast32_t</code>, that system's compiler will use the 68-bit type, providing the fastest integer addition, but by increasing space occupied by our program.</p>
+<h1 id="on-x86_64-linux">On x86_64 Linux</h1>
+<p>I now come back from a world of exotic computers to the common 64-bit x86_64 Intel processor system I'm using. On GCC C++ compiler in Linux, I found that the smallest types (like <code>int_least32_t</code>) were of the same size as the precise type (like <code>int32_t</code>). No surprises there cause x86_64 has integers of size 8, 16, 32 and 64.</p>
+<p>You will get a surprise if you use the fast types though! Except for the 8-bit fast types, the rest are all mapped to 64-bit signed and unsigned integers for speed. So, a <code>int_fast16_t</code> is mapped to a 64-bit signed integer.</p>
+<p>You can print out the sizes of all the fixed width integer types, by compiling and running a simple program, I have shared <a href="https://gist.github.com/ashwin/b4dce8392558ce815fd1">here</a>.</p>
+<p>Another method is to look at the source code. On my x86_64 Linux with GCC 5, the <code>cstdint</code> trail leads to <code>/usr/include/stdint.h</code>, where I find these definitions for the fast signed types:</p>
+<pre><code>/* Fast types.  */
+
+/* Signed.  */
+typedef signed char     int_fast8_t;
+#if __WORDSIZE == 64
+typedef long int        int_fast16_t;
+typedef long int        int_fast32_t;
+typedef long int        int_fast64_t;
+#else
+typedef int         int_fast16_t;
+typedef int         int_fast32_t;
+__extension__
+typedef long long int       int_fast64_t;
+#endif</code></pre>
+<p><strong>Tried with:</strong> GCC 5.1, Ubuntu 14.04 and x86_64 Intel CPU</p>
+</body>
+</html>

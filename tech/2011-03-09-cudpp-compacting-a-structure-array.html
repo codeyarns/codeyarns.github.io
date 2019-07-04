@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDPP: Compacting a Structure Array</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDPP: Compacting a Structure Array</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-03-09 09:40:09+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>The <code>cudppCompact()</code> function from the <strong>CUDPP</strong> library can be used to compact device arrays of simple types like integer or float. However, this function cannot be used directly to compact a device array of structures.</p>
+<p><strong>Solution</strong></p>
+<p>One solution for this problem is to create an index array, compact the index array and use the compacted index array to manually compact the device array of structures.</p>
+<p>Here is a simple example for illustration. Assume we are dealing with data of type <code>Foo</code>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">struct</span> Foo
+{
+    <span class="co">// Composed of something</span>
+};
+
+<span class="co">// Arrays are assumed to be allocated and filled</span>
+Foo* devFooArray;             <span class="co">// Device array with content to be compacted</span>
+<span class="dt">int</span> Num;                      <span class="co">// Size of array</span>
+<span class="dt">unsigned</span> <span class="dt">int</span>* devValidArrary; <span class="co">// Device array with 1/0 flags already set</span></code></pre></div>
+<p>Create an integer array on the device and set each element of index array using a simple kernel:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__global__ <span class="dt">void</span> setIndexKernel( <span class="dt">int</span>* indexArr, <span class="dt">int</span> num )
+{
+    <span class="at">const</span> <span class="dt">int</span> threadNum         = gridDim.x * blockDim.x;
+    <span class="at">const</span> <span class="dt">int</span> curThreadIndex    = ( blockIdx.x * blockDim.x ) + threadIdx.x;
+
+    <span class="cf">for</span> ( <span class="dt">int</span> index = curThreadIndex; index &lt; num; index += threadNum )
+        indexArr[ index ] = index;
+
+    <span class="cf">return</span>;
+}
+
+<span class="dt">int</span>* devIndexArray; <span class="co">// Device index array</span>
+setIndexKernel&lt;&lt;&lt; BlocksPerGrid, ThreadsPerBlock &gt;&gt;&gt;( devIndexArray, Num );</code></pre></div>
+<p>Now, use this array as input to <code>cudppCompact()</code> and obtain a compacted index array from it:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">cudppCompact( compactPlan, devCompactIndexArray, devCompactNum, devIndexArr, devValidArray, Num );</code></pre></div>
+<p>Allocate for a compacted size Foo-type array and compact the elements using another simple kernel:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__global__ <span class="dt">void</span> compactKernel
+(
+<span class="at">const</span> Foo*  srcFooArray,
+Foo*        destFooArray,
+<span class="at">const</span> <span class="dt">int</span>*  compactIndexArray,
+<span class="dt">int</span>         compactNum
+)
+{
+    <span class="at">const</span> <span class="dt">int</span> threadNum         = gridDim.x * blockDim.x;
+    <span class="at">const</span> <span class="dt">int</span> curThreadIndex    = ( blockIdx.x * blockDim.x ) + threadIdx.x;
+
+    <span class="cf">for</span> ( <span class="dt">int</span> index = curThreadIndex; index &lt; compactNum; index += threadNum )
+    {
+        <span class="at">const</span> <span class="dt">int</span> fromIndex   = compactIndexArray[ index ];
+        destFooArray[ index ] = srcFooArray[ fromIndex ];
+    }
+
+    <span class="cf">return</span>;
+}
+
+Foo* devCompactFooArray; <span class="co">// Allocated to size devCompactNum</span>
+compactKernel&lt;&lt;&lt; BlocksPerGrid, ThreadsPerBlock &gt;&gt;&gt;( devFooArray, devCompactFooArray, devCompactIndexArray, devCompactNum );</code></pre></div>
+<p><strong>Tried with</strong>: CUDPP 1.1.1 and CUDA 3.2</p>
+</body>
+</html>

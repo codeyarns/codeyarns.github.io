@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>dlopen: cannot load any more object with static TLS</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">dlopen: cannot load any more object with static TLS</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-06-09 13:34:48+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had a <strong>Python</strong> script that used <strong>Caffe2</strong>. It worked fine on one computer. On another computer with same setup, it would fail at the <code>import caffe2.python</code> line with this error:</p>
+<pre><code>WARNING:root:This caffe2 python run does not have GPU support. Will run in CPU only mode.
+WARNING:root:Debug message: dlopen: cannot load any more object with static TLS
+CRITICAL:root:Cannot load caffe2.python. Error: dlopen: cannot load any more object with static TLS</code></pre>
+<p>As I mentioned above, the GPU support warning is a red herring cause this Caffe2 Python was built with GPU support. The real error is the dlopen.</p>
+<h1 id="solution">Solution</h1>
+<p>The only solution from Googling that gave a clue was <a href="https://github.com/tensorflow/models/issues/523">this</a>. As suggested there, I placed the <code>import caffe2.python</code> line at the top above all other imports. The error disappeared.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+</body>
+</html>

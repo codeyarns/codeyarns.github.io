@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Function Pointers</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Function Pointers</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-10-25 12:22:41+00:00</h3>
+</div>
+<p>There are 2 kinds of pointers to class functions in C++:</p>
+<ol style="list-style-type: decimal">
+<li><p>Pointer to static function of a class</p></li>
+<li><p>Pointer to (non-static) function of a class</p></li>
+</ol>
+<p><strong>Pointer to Static Function of a Class</strong></p>
+<p>For most practical purposes, the static function of a class behaves like a C-style function defined at the same scope of the class and which can be accessed by invoking the name of the class. Hence, a pointer to a static function is defined, assigned and invoked just like a C-style function pointer.</p>
+<p>It is useful to first define a type of the pointer required:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">typedef</span> <span class="dt">void</span> ( *StaticFunctionPointer ) ( <span class="dt">int</span> );</code></pre></div>
+<p>The above type definition can be understood by reading outwards starting from the middle. It reads as <em>&quot;The type FooStaticFunctionPointer is a pointer to a function that takes an integer parameter and returns void&quot;</em>. So, we have defined a pointer type that can point to any static function of any class with the above described signature.</p>
+<p>After this, we can define a variable of the above type and initialize it by assigning the memory address of a function that matches the above signature:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">class</span> Foo
+{
+<span class="kw">public</span>:
+    <span class="at">static</span> <span class="dt">void</span> StaticFunc( <span class="dt">int</span> val )
+    {}
+};
+
+StaticFunctionPointer statFp = &amp;Foo::StaticFunc;</code></pre></div>
+<p>To invoke the function pointed to by this function pointer, use the indirection operator on the pointer:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">(*statFp)( <span class="dv">10</span> );</code></pre></div>
+<p><strong>Pointer to (Non-Static) Function of a Class</strong></p>
+<p>This pointer is a bit different in the invocation, but the definition and assignment is the same as that of static function. Note that this pointer will finally be invoked on a class object (and not a class).</p>
+<p>The type definition and assignment of this function pointer is similar to that of static function pointer:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">class</span> Foo
+{
+<span class="kw">public</span>:
+    <span class="dt">void</span> Func( <span class="dt">int</span> val )
+    {}
+};
+
+<span class="kw">typedef</span> <span class="dt">void</span> ( Foo::* FooFunctionPointer ) ( <span class="dt">int</span> );
+
+FooFunctionPointer fp = &amp;Foo::Func;</code></pre></div>
+<p>To invoke a non-static function pointer, we need an object of the class which was used to initialize the function pointer. The invocation looks a bit more involved:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Foo foo;
+(foo.*fp)( <span class="dv">30</span> );</code></pre></div>
+<p><strong>Sample Code</strong></p>
+<p>Finally, here is code that illustrates both kinds of C++ function pointers:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">class</span> Foo
+{
+<span class="kw">public</span>:
+
+    <span class="co">// *** Static Functions</span>
+
+    <span class="at">static</span> <span class="dt">void</span> StaticFunc0( <span class="dt">int</span> val )
+    {
+        cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="st">&quot;: Value is &quot;</span> &lt;&lt; val &lt;&lt; endl;
+    }
+
+    <span class="at">static</span> <span class="dt">void</span> StaticFunc1( <span class="dt">int</span> val )
+    {
+        cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="st">&quot;: Value is &quot;</span> &lt;&lt; val &lt;&lt; endl;
+    }
+
+    <span class="co">// *** (Non-Static) Functions</span>
+
+    <span class="dt">void</span> Func0( <span class="dt">int</span> val )
+    {
+        cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="st">&quot;: Value is &quot;</span> &lt;&lt; val &lt;&lt; endl;
+    }
+
+    <span class="dt">void</span> Func1( <span class="dt">int</span> val )
+    {
+        cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="st">&quot;: Value is &quot;</span> &lt;&lt; val &lt;&lt; endl;
+    }
+};
+
+<span class="co">// Pointer to a static function of a class</span>
+<span class="co">// The function has an integer parameter and returns void</span>
+<span class="kw">typedef</span> <span class="dt">void</span> ( *FooStaticFunctionPointer ) ( <span class="dt">int</span> );
+
+<span class="co">// Pointer to a (non-static) function of a class</span>
+<span class="co">// The function has an integer parameter and returns void</span>
+<span class="kw">typedef</span> <span class="dt">void</span> ( Foo::* FooFunctionPointer ) ( <span class="dt">int</span> );
+
+<span class="dt">int</span> main()
+{
+    <span class="co">// *** Static Function Pointer</span>
+
+    <span class="co">// Initialize the pointer</span>
+    FooStaticFunctionPointer statFp0 = &amp;Foo::StaticFunc0;
+
+    <span class="co">// Invoke the function pointed by pointer passing 10 as parameter</span>
+    (*statFp0)( <span class="dv">10</span> );
+
+    <span class="co">// Same as above, but different static function</span>
+    FooStaticFunctionPointer statFp1 = &amp;Foo::StaticFunc1;
+    (*statFp1)( <span class="dv">20</span> );
+
+    <span class="co">// *** (Non-Static) Function Pointer</span>
+
+    Foo foo; <span class="co">// Object of Foo class</span>
+
+    <span class="co">// Initialize the pointer to a function of Foo class</span>
+    FooFunctionPointer fp0 = &amp;Foo::Func0;
+
+    <span class="co">// Invoke the function pointed by pointer passing 30 as parameter</span>
+    (foo.*fp0)( <span class="dv">30</span> );
+
+    <span class="co">// Same as above, but different function</span>
+    FooFunctionPointer fp1 = &amp;Foo::Func1;
+    (foo.*fp1)( <span class="dv">40</span> );
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+</body>
+</html>

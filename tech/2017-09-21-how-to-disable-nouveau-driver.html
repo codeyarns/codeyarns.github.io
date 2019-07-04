@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to disable Nouveau driver</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to disable Nouveau driver</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-09-21 14:47:09+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><strong>Nouveau</strong> is the open-source graphics driver for <strong>NVIDIA</strong> graphics cards. When I tried to install a driver downloaded from the NVIDIA website on a computer, the installer complained like this:</p>
+<pre><code>The Nouveau kernel driver is currently in use by your system. This driver is incompatible with the NVIDIA driver, and must be disabled before proceeding. Please consult the NVIDIA driver README and your Linux distribution&#39;s documentation for details on how to correctly disable the Nouveau kernel driver.</code></pre>
+<h1 id="solution">Solution</h1>
+<p>To disable the Nouveau kernel driver:</p>
+<ul>
+<li>Remove the installed NVIDIA drivers:</li>
+</ul>
+<pre><code>$ sudo apt-get purge &quot;nvidia*&quot;
+$ sudo apt autoremove</code></pre>
+<ul>
+<li>Create a new file named <code>/etc/modprobe.d/disable-nouveau.conf</code> with the following lines:</li>
+</ul>
+<pre><code>blacklist nouveau
+blacklist lbm-nouveau
+options nouveau modeset=0
+alias nouveau off
+alias lbm-nouveau off</code></pre>
+<ul>
+<li>Append this line to <code>/etc/modprobe.d/nouveau-kms.conf</code>:</li>
+</ul>
+<pre><code>options nouveau modeset=0</code></pre>
+<ul>
+<li>Update the boot environment for your kernel:</li>
+</ul>
+<pre><code>$ sudo update-initramfs -u</code></pre>
+<ul>
+<li>Now reboot and you should get a low resolution GUI which indicates that Nouveau graphics driver is not being used.</li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+<p><strong>Reference</strong>: <a href="https://tutorials.technology/tutorials/85-How-to-remove-Nouveau-kernel-driver-Nvidia-install-error.html">How to remove Nouveau kernel driver</a></p>
+</body>
+</html>

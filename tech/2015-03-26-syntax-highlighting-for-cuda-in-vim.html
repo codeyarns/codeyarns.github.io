@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Syntax highlighting for CUDA in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Syntax highlighting for CUDA in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-26 13:37:09+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p><strong>Vim</strong> has had <strong>syntax highlighting</strong> support for <strong>CUDA</strong> source files for a long time now. You can check this: open any <code>.cu</code> file and try the command <code>:set filetype?</code>. You will see that Vim knows that it is a CUDA source file. It applies the syntax highlighting from the file <code>/usr/share/vim/vim74/syntax/cuda.vim</code>.</p>
+<p>So, what is the problem? The syntax highlighting done by Vim for CUDA is very very minimal. My CUDA source files look like pages of plain white text in Vim! Also, the comments in the <code>cuda.vim</code> file that it was last updated in 2007. Now that is old!</p>
+<h1 id="solution-1">Solution 1</h1>
+<p>There is an alternate <code>cu.vim</code> or <code>cuda.vim</code> syntax file for Vim floating around on the web. You can get it, for example, from <a href="https://github.com/npinto/dotfiles/blob/master/vim/cuda.vim">here</a>.</p>
+<p>I replaced the <code>cuda.vim</code> that ships with Vim with this one and found it slightly better. But not by much. It still looks like lots of plain text.</p>
+<h1 id="solution-2">Solution 2</h1>
+<p>The better solution for me was to just syntax highlight CUDA file as C++ file. This gave the best results, with the highest number of elements in the file being colored when compared to above two methods.</p>
+<p>To do this, add this line to your <code>.vimrc</code>:</p>
+<pre><code>autocmd BufRead,BufNewFile *.cu set filetype=cpp</code></pre>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

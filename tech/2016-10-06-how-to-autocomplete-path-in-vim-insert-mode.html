@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to autocomplete path in Vim insert mode</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to autocomplete path in Vim insert mode</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-10-06 15:21:12+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_8835&quot; align=&quot;aligncenter&quot; width=&quot;252&quot;][<img src="https://codeyarns.files.wordpress.com/2016/10/20161006_vim_path_autocomplete.png" alt="Vim path autocomplete in insert mode" />](http://codeyarns.com/2016/10/06/how-to-autocomplete-path-in-vim-insert-mode/20161006_vim_path_autocomplete/) Vim path autocomplete in insert mode[/caption]</p>
+<p>It is useful to be able to <strong>autocomplete</strong> a path to a directory or filename while typing code or script files. This helps in ensuring that there are no mistakes and the path is correct. Thankfully, <strong>Vim</strong> has an autocompletion feature for typing path in insert mode! It calls this feature as <strong>file name completion</strong>.</p>
+<ul>
+<li><p><code>Ctrl-x Ctrl-f</code>: This is the shortcut to autocomplete path in insert mode. Start typing a path (absolute or relative) and use this keyboard shortcut. You will see a dropdown menu filled with the next entries from the filesystem that can be used to fill the path.</p></li>
+<li><p><code>Ctrl-n</code> or <code>Ctrl-p</code>: Shortcuts to move up and down the entries in the autocomplete dropdown menu. If you move off the top or bottom of the dropdown menu, you get the empty entry.</p></li>
+<li><p><strong>Absolute path</strong>: Any path that you begin typing with a slash is autocompleted as an absolute path.</p></li>
+<li><p><strong>Relative path</strong>: This is any path that does not begin with a slash. They are autocompleted too. Note that they will use the directory that Vim was launched from (PWD) as the root.</p></li>
+<li><p><strong>Hidden files or directories</strong>: I found that this was autocompleted only if I typed the first period and then used <code>Ctrl-x Ctrl-f</code>.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

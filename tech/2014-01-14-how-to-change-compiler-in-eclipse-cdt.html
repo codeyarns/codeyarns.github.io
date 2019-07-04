@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to change compiler in Eclipse CDT</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to change compiler in Eclipse CDT</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-14 07:45:33+00:00</h3>
+</div>
+<p><strong>Eclipse CDT</strong> uses <strong>gcc</strong>, <strong>g++</strong> and <strong>as</strong> as the C compiler, C++ compiler (and linker) and assembler by default. Sometimes, you may want to use a different version or different type of compiler, linker or assembler to build your code. Changing this in Eclipse CDT for your project is easy:</p>
+<ul>
+<li><p>Go to Project &gt; Properties &gt; C/C++ Build &gt; Settings &gt; Tool Settings.</p></li>
+<li><p>In this dialog, to change the C++ compiler, change the entry in Cross G++ Compiler &gt; Command.</p></li>
+<li><p>In this dialog, to change the C compiler, change the entry in Cross GCC Compiler &gt; Command.</p></li>
+<li><p>In this dialog, to change the C++ linker, change the entry in Cross G++ Linker &gt; Command. This is typically the same as the C++ compiler command.</p></li>
+<li><p>In this dialog, to change the assembler, change the entry in Cross GCC Assembler &gt; Command.</p></li>
+</ul>
+<p>Click Apply and OK. Build your code and you will see that the new tools are used.</p>
+<p><strong>Tried with:</strong> Eclipse 3.7.2</p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to compute intrinsic camera matrix for a camera</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to compute intrinsic camera matrix for a camera</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-08 12:07:00+00:00</h3>
+</div>
+<p>The <strong>intrinsic camera matrix</strong> is useful in depth cameras to obtain the 3D position of any given pixel in the camera coordinate system. The <strong>pinhole camera model</strong> used for the intrinsic camera matrix is explained beautifully <a href="http://ksimek.github.io/2013/08/13/intrinsic/">here</a>.</p>
+<p>The intrinsic camera matrix is of the form:</p>
+<pre><code>f_x s   x
+0   f_y y
+0   0   1</code></pre>
+<p>Here, <code>f_x</code> and <code>f_y</code> are the <strong>focal lengths</strong> of the camera in the X and Y directions. <code>s</code> is the <strong>axis skew</strong> and is usually <code>0</code>. <code>x</code> and <code>y</code> are the X and Y dimensions of the image produced by the camera, measured from the center of the image. (So, they are half the length and width of the image.)</p>
+<p>We typically know the dimensions of the image produced by the camera. What is typically not provided are the focal lengths. Instead camera manufacturers provide the <strong>field of view (FOV)</strong> angle in the horizontal and vertical directions.</p>
+<p>Using the FOV angles, the focal lengths can be computed using trigonometry. For example, given the FOV <code>a_x</code> in the horizontal direction, the focal length <code>f_x</code> can be computed using:</p>
+<pre><code>f_x = x / tan(a_x / 2)</code></pre>
+<p>We divide the FOV by 2 because this angle spans the entire horizontal or vertical view.</p>
+<p>As an example, consider the <strong>Primesense Carmine 1.09</strong> depth camera. It produces a VGA (640x480) image. Its specifications state a horizontal FOV of 57.5 degrees and vertical FOV of 45 degrees.</p>
+<p>Using the above information, we can compute its intrinsic camera matrix as:</p>
+<pre><code>583.2829786373293 0.0               320.0
+0.0               579.4112549695428 240.0
+0.0               0.0               1.0</code></pre>
+</body>
+</html>

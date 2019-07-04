@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>DepthSense Error: some dll files are missing</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">DepthSense Error: some dll files are missing</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-05-06 03:57:07+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>We wanted to use the SoftKinetic DepthSense DS325 camera on a Ubuntu 14.04 system. We installed the DepthSense SDK from the file <code>DepthSenseSDK-1.2.1-840-amd64-deb.run</code>. We connected the camera to a USB port and ran DepthSense Viewer program: <code>/opt/softkinetic/DepthSenseSDK/bin/DepthSenseViewer</code>. It failed with this error:</p>
+<pre><code>=================================================================
+DepthSenseServer log started Tue May  6 11:35:52 2014
+=================================================================
+Tue May  6 11:35:52 2014: [0000148e]: INFO:     DepthSenseServer version 1.2.1.840 linux64 gcc (Release)
+Tue May  6 11:35:52 2014: [0000148e]: INFO:     logging to STDERR
+Tue May  6 11:35:52 2014: [0000148f]: INFO:     using default connection timeout
+Tue May  6 11:35:52 2014: [0000148f]: INFO:     listening on port 6909
+Tue May  6 11:35:52 2014: [00001490]: WARNING:  Initialization Exception: no enumerator found, some dll files are missing
+Tue May  6 11:35:52 2014: [00001490]: ERROR:    no enumerator found, some dll files are missing
+Tue May  6 11:35:52 2014: [00001490]: INFO:     number of connections: 0
+=================================================================</code></pre>
+<p>We got the same error on running my own program that was compiled and linked with the DepthSense libraries.</p>
+<h1 id="solution">Solution</h1>
+<p>It looked like the DepthSense Viewer was looking for a DLL file and not finding it. We checked the shared library dependencies of the viewer and any other DepthSense library file it depended on using <code>ldd</code>:</p>
+<pre><code>$ ldd /opt/softkinetic/DepthSenseSDK/bin/DepthSenseViewer
+libturbojpeg.so =&gt; /opt/softkinetic/DepthSenseSDK/bin/../lib/libturbojpeg.so (0x00007f967ffab000)
+libDepthSense.so.1 =&gt; /opt/softkinetic/DepthSenseSDK/bin/../lib/libDepthSense.so.1 (0x00007f967f2cd000)
+libDepthSensePlugins.so.1 =&gt; /opt/softkinetic/DepthSenseSDK/bin/../lib/libDepthSensePlugins.so.1 (0x00007f967f059000)
+
+$ ldd /opt/softkinetic/DepthSenseSDK/lib/libturbojpeg.so
+
+$ ldd /opt/softkinetic/DepthSenseSDK/lib/libDepthSense.so.1
+libDepthSensePlugins.so.1 =&gt; /opt/softkinetic/DepthSenseSDK/lib/libDepthSensePlugins.so.1 (0x00007fa777dbf000)
+libturbojpeg.so =&gt; /opt/softkinetic/DepthSenseSDK/lib/libturbojpeg.so (0x00007fa777717000)
+
+$ ldd /opt/softkinetic/DepthSenseSDK/lib/libDepthSensePlugins.so.1</code></pre>
+<p>There seemed to be no missing DLL files that were required by these programs and libraries.</p>
+<p>Not finding any solution, we decided to check the dependencies of all binaries and libraries that were in <code>/opt/softkinetic/DepthSenseSDK/</code>. Here we found a missing library:</p>
+<pre><code>$ ldd /opt/softkinetic/DepthSenseSDK/bin/Plugins/libDefaultEnumeratorImpl.so 
+linux-vdso.so.1 =&gt;  (0x00007ffffa76e000)
+libDepthSensePlugins.so.1 =&gt; /opt/softkinetic/DepthSenseSDK/lib/libDepthSensePlugins.so.1 (0x00007f5c594be000)
+libudev.so.0 =&gt; not found</code></pre>
+<p>So, <code>libudev.so.0</code> was the missing DLL! :-)</p>
+<p>We checked if there was any <code>libudev.so</code> file available on the system:</p>
+<pre><code>$ locate libudev.so
+/lib/x86_64-linux-gnu/libudev.so.1
+/lib/x86_64-linux-gnu/libudev.so.1.3.5</code></pre>
+<p>We just created a symbolic link for the required library file to the existing library file:</p>
+<pre><code>$ sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1.3.5 /lib/x86_64-linux-gnu/libudev.so.0</code></pre>
+<p>On Ubuntu 15.04, the file is <code>libudev.so.1.6.2</code>, the rest of the command remains the same.</p>
+<p>Once this was done, the DepthSense Viewer program worked fine! Also, all our programs that had linked with DepthSense libraries also worked. :-)</p>
+</body>
+</html>

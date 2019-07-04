@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to install CUDA 7.5 on Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to install CUDA 7.5 on Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-09-25 12:56:00+00:00</h3>
+</div>
+<h1 id="easy-solution">Easy solution</h1>
+<p>The easiest method is to visit the <a href="https://developer.nvidia.com/cuda-downloads"><strong>CUDA Downloads</strong></a> webpage and download the <strong>deb (network)</strong> file that matches your Ubuntu. Installing from it is as easy as:</p>
+<pre><code>$ sudo dpkg -i cuda-repo-ubuntu1404_7.5-18_amd64.deb
+$ sudo apt-get update
+$ sudo apt install cuda-7-5</code></pre>
+<p>This worked great on a notebook for me. However, on a desktop I started getting the infamous <strong>login loop</strong> problem.</p>
+<p><strong>Login loop</strong> problem: You start Ubuntu and you get the graphical login, but it is being displayed at an extremely low resolution (like <code>640x480</code> for example). You login, you see the desktop for a second, something fails and you are thrown back to the graphical login screen.</p>
+<h1 id="manual-solution">Manual solution</h1>
+<p>There are many solutions to the <strong>login loop</strong> problem. The only one which worked for me is described <a href="https://devtalk.nvidia.com/default/topic/878117/-solved-titan-x-for-cuda-7-5-login-loop-error-ubuntu-14-04-/">here</a>.</p>
+<p>That solution has many steps, not all of which I needed. I also ran into problems not listed there. Here is what worked for me:</p>
+<ul>
+<li>Purge all NVIDIA and CUDA packages:</li>
+</ul>
+<pre><code>$ sudo apt purge &quot;nvidia*&quot;
+$ sudo apt purge &quot;cuda*&quot;</code></pre>
+<ul>
+<li>Remove the X org configuration file, if it exists:</li>
+</ul>
+<pre><code>$ sudo rm /etc/X11/xorg.conf</code></pre>
+<ul>
+<li><p>Reboot and make sure you are having a X desktop that is rendering fine at the correct resolution. If not, this guide cannot help you.</p></li>
+<li><p>Visit the <a href="https://developer.nvidia.com/cuda-downloads">CUDA Downloads</a> webpage and download the <strong>runfile (local)</strong> installation file. It is a 1+GB file and the download will take a while. This installer file contains both a NVIDIA graphics driver and the CUDA files.</p></li>
+<li><p>Logout of your desktop and kill the X server:</p></li>
+</ul>
+<pre><code>$ sudo service lightdm stop</code></pre>
+<ul>
+<li>Switch to a virtual terminal using <code>Ctrl + Alt + F1</code>. Run the downloaded installer file. But, make sure it does not install its NVIDIA OpenGL libraries. This is the <strong>key</strong> to fixing the login loop problem! Choose Yes to everything except if it tries to create a <code>xorg.conf</code>.</li>
+</ul>
+<pre><code>$ chmod +x cuda_7.5.18_linux
+$ sudo ./cuda_7.5.18_linux --no-opengl-libs</code></pre>
+<ul>
+<li><p>At this point the NVIDIA driver installation failed saying that the <code>nouveau</code> driver was active. It reported that it had disabled <code>nouveau</code>, but required a restart.</p></li>
+<li><p>I restarted the system, switched to virtual terminal, stopped X and ran the CUDA installer again, exactly as shown above. Again, the NVIDIA driver installation failed. This time it reported that the <strong>compiler was incompatible</strong>. I was using GCC 5.1 as my default compiler. I guess compiling NVIDIA driver kernel module needs something older. So, I switched back to GCC 4.8:</p></li>
+</ul>
+<pre><code>$ sudo update-alternatives --config gcc</code></pre>
+<ul>
+<li>I restarted the installation and it finished successfully. I rebooted and was greeted by a desktop running at the correct resolution. CUDA programs worked fine too! 😄</li>
+</ul>
+<p><strong>Tried with:</strong> CUDA 7.5, NVIDIA driver 352.21, Ubuntu 14.04, Linux 3.19.0-28-generic and NVIDIA GTX 750 Ti</p>
+</body>
+</html>

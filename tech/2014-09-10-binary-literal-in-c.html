@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Binary literal in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Binary literal in C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-10 03:55:17+00:00</h3>
+</div>
+<p><strong>C++</strong> has always had support for specifying integer values in the form of <strong>decimal literals</strong> (like <code>255</code>), <strong>hexadecimal literals</strong> (like <code>0xFF</code>) or <strong>octal literals</strong> (like <code>0377</code>).</p>
+<p><strong>C++14</strong> has added support for specifying integer values using <strong>binary literals</strong>. This makes code using binary or performing bit manipulation easier to write, understand and fix. Binary literals can be specified using the prefix of <code>0b</code> or <code>0B</code>.</p>
+<pre><code>int i = 0b0011;
+int j = 0B01101001;</code></pre>
+<p>I found that this was supported in GCC 5.1 compiler when the code was compiled with the <code>-std=c++11</code> flag.</p>
+<p>Additionally, C++14 also adds support for <strong>digit separator</strong> character, which is the single quote character. This can be added anywhere among the bits to help separate them for easier understanding.</p>
+<pre><code>int k = 0B0101&#39;0111&#39;1100;</code></pre>
+<p>I found this was not yet supported in GCC 5.1.</p>
+</body>
+</html>

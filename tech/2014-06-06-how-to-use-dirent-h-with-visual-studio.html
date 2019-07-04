@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use dirent.h with Visual Studio</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use dirent.h with Visual Studio</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-06-06 07:44:34+00:00</h3>
+</div>
+<p><code>dirent.h</code> is a header file that is found only on Linux systems. It provides data structures and function calls to open and read the contents of directories. If you are trying to port Linux code that uses this header file to Windows, you will that it is not available with Visual Studio.</p>
+<p>Thankfully, there is a <a href="http://www.softagalleria.net/dirent.php">Windows implementation of dirent.h</a> which can be downloaded <a href="https://github.com/tronkko/dirent">here</a> on Github. Just download the zip file, find the <code>dirent.h</code> header file and place it in your Visual Studio include directory. For example, with Visual Studio Express 2015, this directory is <code>C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include</code></p>
+<p><strong>Tried with:</strong> Visual Studio Express 2015 and Windows 7 x64</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>LaTeX: Import &amp; Subimport for Document Organization</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">LaTeX: Import &amp; Subimport for Document Organization</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-05-27 04:11:37+00:00</h3>
+</div>
+<p>Large LaTeX documents can be organized nicely by using the <strong>* command. For more on that see <a href="http://codeyarns.wordpress.com/2010/05/27/latex-using-input-command-for-document-organization/">this post</a>. However, the </strong>* command is not intelligent, it blindly includes the content of its files.</p>
+<p>For example, a <code>Report.tex</code> includes a <code>01-IntroDir/01-Intro.tex</code> file that uses lots of images stored in <code>01-IntroDir</code>. All of the <code>\includegraphics</code> commands in <code>01-IntroDir/01-Intro.tex</code> would have to include the <code>01-IntroDir/</code> prefix:</p>
+<pre><code>% 01-IntroDir/01-Intro.tex
+\includegraphics{01-IntroDir/Image0.png}
+\includegraphics{01-IntroDir/Image1.png}
+\includegraphics{01-IntroDir/Image2.png}</code></pre>
+<p>To intelligently include the content in other directories such that all their content paths are also relative, the <strong>* and </strong>* commands from the <a href="http://www.ctan.org/tex-archive/help/Catalogue/entries/import.html"><strong>import</strong></a> package can be used.</p>
+<p>For example, <code>Report.tex</code> can be changed to:</p>
+<pre><code>% Report.tex
+\usepackage{import}
+\subimport{01-IntroDir/}{01-Intro.tex}</code></pre>
+<p>When <strong>* or </strong>* are used, the imported files can refer to their images/files relative to themselves. So, the above <code>01-IntroDir/01-Intro.tex</code> can be simplified to:</p>
+<pre><code>% 01-IntroDir/01-Intro.tex
+\includegraphics{Image0.png}
+\includegraphics{Image1.png}
+\includegraphics{Image2.png}</code></pre>
+</body>
+</html>

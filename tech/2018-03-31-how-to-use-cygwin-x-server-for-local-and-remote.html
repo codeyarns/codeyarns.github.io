@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use Cygwin X server for local and remote</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use Cygwin X server for local and remote</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-03-31 19:37:11+00:00</h3>
+</div>
+<p><strong>Cygwin</strong> not only provides most of the Linux programs and shells, it also comes with a builtin X server called <strong>Cygwin/X</strong>. This is great if you want to run Cygwin GUI applications locally or over SSH from a remote computer.</p>
+<h1 id="install-cygwinx">Install Cygwin/X</h1>
+<ul>
+<li><p>Install Cygwin, if you do not already have it.</p></li>
+<li><p>Use the Cygwin setup program and install the <code>xorg-server</code> and <code>xinit</code> packages. The first one is the X server and the second installs a lot of scripts and programs that enable you to start the server and use it.</p></li>
+<li><p>Install the <code>xeyes</code> package. This is a small X application that we will use for testing X.</p></li>
+</ul>
+<h1 id="use-cygwinx-for-local-apps">Use Cygwin/X for local apps</h1>
+<ul>
+<li><p>Kill the <code>xinit</code>, <code>XWin</code> and other X server processes if they are running and close all your Cygwin windows. Open a new Cygwin window.</p></li>
+<li><p>Set the <code>DISPLAY</code> environment variable:</p></li>
+</ul>
+<pre><code>$ export DISPLAY=:0.0</code></pre>
+<ul>
+<li><p><strong>startx</strong>: If you run <code>startx</code>, you get X server opening a X window with XTerm running inside it. From here on, you can open X apps by running them from that XTerm. You can try by running <code>xeyes</code> inside that XTerm. Once you kill this X window, your X server is closed.</p></li>
+<li><p><strong>startxwin</strong>: If you run <code>startxwin</code>, you get X server running, but no windows are displayed. You can now open another Cygwin window and can invoke individual X apps there and they will be displayed in individual windows. You can try by running <code>xeyes</code> from the Cygwin shell. This is called the <strong>multiwindow</strong> mode.</p></li>
+</ul>
+<h1 id="use-cygwinx-for-remote-apps">Use Cygwin/X for remote apps</h1>
+<ul>
+<li><p>Follow all the steps shown above for local X apps. Make sure you have killed the earlier X server processes, set the <code>DISPLAY</code> environment variable locally and run <code>startxwin</code>. Make sure local X apps can display a window to the Cygwin/X server.</p></li>
+<li><p>SSH to the remote computer running Linux using ssh on Cygwin or PuTTY. Make sure you have X11 Forwarding enabled for this SSH session. This is usually done by specifying <code>-X</code> (untrusted forwarding) or <code>-Y</code> (trusted forwarding) or setting the corresponding X11 Forwarding option in your SSH config file.</p></li>
+<li><p>Check the <code>DISPLAY</code> on the remote computer. It should be set to some value like shown below:</p></li>
+</ul>
+<pre><code>$ echo $DISPLAY
+localhost:11.0</code></pre>
+<p>If <code>DISPLAY</code> is empty, then either you did not set <code>DISPLAY</code> locally, did not cleanly restarted a X server locally or there was a problem with SSH X11 Forwarding. Please diagnose.</p>
+<ul>
+<li>Run the <code>xeyes</code> program from the remote computer. It should display in a window on your local machine. Your Cygwin/X server is working! You can now run GUI/X apps from the remote computer and display them locally. Beware that they will be slow to display and refresh.</li>
+</ul>
+<p><strong>Tried with:</strong> Cygwin 2.10.0 and Windows 10</p>
+</body>
+</html>

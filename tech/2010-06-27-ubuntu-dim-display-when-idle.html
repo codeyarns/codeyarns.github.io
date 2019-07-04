@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Ubuntu: Dim Display When Idle</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Ubuntu: Dim Display When Idle</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-06-27 04:40:39+00:00</h3>
+</div>
+<p>When the laptop is on battery, Ubuntu <strong>dims</strong> the display if it is idle for a while. Note that this is different from another setting, which <strong>turns off</strong> the display if the laptop is idle for a while. This <strong>idle time</strong> period before dimming can feel quite short for people who are reading something on the laptop. There are two ways to fix this:</p>
+<h3 id="turn-off-display-dim">1. Turn off display dim</h3>
+<p><a href="http://codeyarns.files.wordpress.com/2010/06/2010_06_27_power_management.png"><img src="http://codeyarns.files.wordpress.com/2010/06/2010_06_27_power_management.png" /></a></p>
+<p>You could turn off this dimming feature. Go to System → Preferences → Power Management and choose the <strong>On Batter Power tab</strong>. Turn off the option <strong>Dim display when idle</strong>.</p>
+<h3 id="change-the-idle-dim-time">2. Change the idle dim time</h3>
+<p><a href="http://codeyarns.files.wordpress.com/2010/06/2010_06_27_conf_editor.png"><img src="http://codeyarns.files.wordpress.com/2010/06/2010_06_27_conf_editor.png" /></a></p>
+<p>Open up a terminal and type <strong>gconf-editor</strong> to open the <strong>GNOME Configuration Editor</strong>. Choose <strong>/apps/gnome-power-manager/backlight</strong>. Change the <strong>idle_dim_time</strong> to a value you like. This field is in <strong>seconds</strong>.</p>
+<p>Tried with: <strong>Ubuntu 10.04 (Lucid Lynx)</strong></p>
+</body>
+</html>

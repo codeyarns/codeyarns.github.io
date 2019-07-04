@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>PowerShell: Profile Script</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">PowerShell: Profile Script</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-07-30 03:23:38+00:00</h3>
+</div>
+<p>The <strong>profile script</strong> is a text file that is executed whenever an instance of <strong>PowerShell</strong> is created. This is similar to the <code>bashrc</code> file for the <strong>bash</strong> shell. The user can store the commands in this file that he wants to be executed whenever PowerShell starts up.</p>
+<p><strong>Profile Script for Default PowerShell Console</strong></p>
+<p>To find out the filename and path of the profile script for you, type:</p>
+<pre><code>$profile</code></pre>
+<p>The profile script is typically a file named <code>Microsoft.PowerShell_profile.ps1</code> and its location is <code>C:\Users\AverageJoe\Documents\WindowsPowerShell</code></p>
+<p>This directory and this profile script file is not created by default. If you want to add some startup commands, you will need to create the <code>WindowsPowerShell</code> directory and a text file named <code>Microsoft.PowerShell_profile.ps1</code> within it to store your commands.</p>
+<p><strong>Note:</strong> You might have to change the execution policy to allow unsigned scripts to be executed. To find out more on this go <a href="http://codeyarns.wordpress.com/2011/07/30/powershell-change-the-execution-policy/">here</a>.</p>
+<p><strong>Profile Script for Other PowerShell Consoles and Users</strong></p>
+<p>PowerShell can be hosted by other console or terminal programs or can be executed by other users. The profile script path for such situations is different. To find out the profile script paths for all these cases, type:</p>
+<pre><code>$profile | Format-List -force</code></pre>
+<p>The output of this command will have entries for <code>AllUsersAllHosts</code>, <code>AllUsersCurrentHost</code>, <code>CurrentUserAllHosts</code> and <code>CurrentUserCurrentHost</code>. <code>Host</code> is the PowerShell jargon for a console or terminal that executes PowerShell. So, for example if I run PowerShell using a different console, but with the same username, I would place my startup settings in the file given by <code>CurrentUserAllHosts</code>.</p>
+<p>(A hat tip to <a href="http://boeprox.wordpress.com/">Boe Prox</a> for pointing out this useful command! :-) )</p>
+<p><strong>Tried with:</strong> PowerShell 2.0</p>
+</body>
+</html>

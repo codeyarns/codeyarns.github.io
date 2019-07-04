@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to convert from Blender to OGRE format</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to convert from Blender to OGRE format</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-10-23 07:57:06+00:00</h3>
+</div>
+<p><strong>Blender</strong> does not ship with support for exporting to <strong>OGRE</strong> mesh and skeleton. However, the <strong>Blender2OGRE</strong> addon can be used to export a Blender file as OGRE mesh, skeleton and material files.</p>
+<ol style="list-style-type: decimal">
+<li><p>Download or clone the Blender2OGRE addon repository <code>https://bitbucket.org/MindCalamity/blender2ogre</code></p></li>
+<li><p>Make sure that your Blender version is equal or greater than what is required by Blender2OGRE. You can find the minimum version required listed in the <code>bl_info</code> dictionary in the file <code>io_export_ogreDotScene.py</code>. If you are using a version of Blender that is older than what is required, then <a href="2013/10/23/how-to-install-new-version-of-blender-in-ubuntu/">install a new version</a>.</p></li>
+<li><p>Open Blender and go to File &gt; User Preferences &gt; Addons &gt; Install from file. Choose the file <code>io_export_ogreDotScene.py</code> from the files you downloaded. Once the addon is added, it will appear as <code>Import-Export: OGRE Exporter and RealXtend</code>. Remember to enable the addon.</p></li>
+<li><p>If the addon was installed and enabled correctly, you must be able to see a Ogre checkbox at the right in the top toolbar. If your window width is small, you may have to move the top toolbar to the right by pressing and holding the middle mouse button.</p></li>
+<li><p>Open the model you wish to export. Choose File &gt; Export &gt; OGRE3D. By default, the addon exports mesh, skeleton, texture and material files. Both XML and binary versions of the OGRE mesh are created. You can test if the export worked, by opening the <code>.mesh</code> file using OGREMeshy.</p></li>
+</ol>
+<p><strong>Tried with:</strong> Blender 2.69 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

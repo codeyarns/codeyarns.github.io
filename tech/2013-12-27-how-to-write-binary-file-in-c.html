@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to write binary file in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to write binary file in C++</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-12-27 11:07:59+00:00</h3>
+</div>
+<p>Let us assume you want to write the binary representation of variables of native data types (like <code>int</code> or <code>float</code>) or objects to a file. Such a file can read back to recover the original values.</p>
+<p>Writing a binary file can be done in 3 steps in C++:</p>
+<ol style="list-style-type: decimal">
+<li><p>Include the <code>fstream</code> header file. This holds the classes and flags needed for the writing.</p></li>
+<li><p>Create an object of the <code>ofstream</code> class. This can be used to open the file and write to it. Open the object using the <code>binary</code> flag. Contrary to expectation, opening this file in binary mode does not make the writing using <code>operator &lt;&lt;</code> become magically binary. All the <code>binary</code> flag does it to prevent of special characters like EOL or EOF.</p></li>
+<li><p>Write the bytes of the variable or object to the <code>ofstream</code> object.</p></li>
+</ol>
+<p>Here is an example of writing a <code>float</code> value to file:</p>
+<pre><code>#include &lt;fstream&gt;
+const float f = 3.14f;
+std::ofstream ofile(&quot;foobar.bin&quot;, std::ios::binary);
+ofile.write((char*) &amp;f, sizeof(float));</code></pre>
+<p>The same method can be used to write objects. Note that if your object holds pointers to other data, then you need some sort of deep copy. This simple method to write to file will not work in such a case.</p>
+</body>
+</html>

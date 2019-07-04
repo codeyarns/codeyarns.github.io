@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>NVIDIA 343 driver and GTS 250</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">NVIDIA 343 driver and GTS 250</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-24 12:28:22+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>On a computer with a <a href="http://www.geforce.com/hardware/desktop-gpus/geforce-gts250"><strong>NVIDIA GeForce GTS 250</strong></a> graphics card running Ubuntu 14.04, I decided to update the installed driver from <code>nvidia-331</code> to <code>nvidia-343</code>. I did this:</p>
+<pre><code>$ sudo apt-get install nvidia-343</code></pre>
+<p>It installed the driver and then compiled and installed the kernel module. I rebooted the computer. I was able to login in the GUI, but got an empty desktop!</p>
+<h1 id="solution">Solution</h1>
+<p>What kind of graphics driver problem allows graphics, but only hides the desktop elements in Unity? No idea. I dug through <code>/var/syslog</code>, searched for <code>nvidia</code> and found this:</p>
+<pre><code>NVRM: The NVIDIA GeForce GTS 250 GPU installed in this system is
+NVRM:  supported through the NVIDIA 340.xx Legacy drivers. Please
+NVRM:  visit http://www.nvidia.com/object/unix.html for more
+NVRM:  information.  The 343.22 NVIDIA driver will ignore
+NVRM:  this GPU.  Continuing probe...
+NVRM: ignoring the legacy GPU 0000:03:00.0</code></pre>
+<p>So, it turns out that the GTS 250 is no longer supported in the 343 version drivers and later. I removed this driver and reinstalled back 331 driver and got back my desktop.</p>
+</body>
+</html>

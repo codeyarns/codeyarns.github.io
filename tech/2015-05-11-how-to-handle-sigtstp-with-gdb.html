@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to handle SIGTSTP with GDB</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to handle SIGTSTP with GDB</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-05-11 12:58:00+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I use <code>Ctrl+Z</code> regularly at the shell to temporarily stop a program and then continue its running using the <code>fg</code> command. However, doing the same in GDB does not work as expected:</p>
+<ul>
+<li><p>I press <code>Ctrl+Z</code>. GDB catches it and prints out a message saying <code>SIGTSTP</code> has been received.</p></li>
+<li><p>Typing <code>continue</code> does not continue the execution of the program. The program keeps getting stopped again and prints this message:</p></li>
+</ul>
+<pre><code>(gdb) c
+Continuing.
+
+Program received signal SIGTSTP, Stopped (user).
+[Switching to Thread 0x7fffe7e28700 (LWP 1492)]
+0x00007ffff5b5112d in poll () at ../sysdeps/unix/syscall-template.S:81
+81  T_PSEUDO (SYSCALL_SYMBOL, SYSCALL_NAME, SYSCALL_NARGS)</code></pre>
+<h1 id="solution">Solution</h1>
+<p>To view the signals handled by GDB and how they are handled:</p>
+<pre><code>(gdb) info signals</code></pre>
+<ul>
+<li>To view how a specific signal, say <code>SIGTSTP</code> is handled:</li>
+</ul>
+<pre><code>(gdb) info signal SIGTSTP
+Signal        Stop  Print   Pass to program Description
+SIGTSTP       Yes   Yes Yes     Stopped (user)</code></pre>
+<ul>
+<li>We can see that by default, this signal is passed to the program. By not passing it to the program, just like what a shell does, our problem is solved. To do this, use the <code>handle</code> command:</li>
+</ul>
+<pre><code>(gdb) handle SIGTSTP nopass</code></pre>
+<ul>
+<li>Type <code>continue</code> now and the program continues from where it was stopped.</li>
+</ul>
+<p><strong>Tried with:</strong> GDB 7.7.1 and Ubuntu 14.04</p>
+</body>
+</html>

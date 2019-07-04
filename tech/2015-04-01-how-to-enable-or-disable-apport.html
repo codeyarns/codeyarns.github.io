@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to enable or disable Apport</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to enable or disable Apport</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-04-01 15:36:32+00:00</h3>
+</div>
+<p><a href="https://wiki.ubuntu.com/Apport"><strong>Apport</strong></a> is the crash reporting service in <strong>Ubuntu</strong>.</p>
+<ul>
+<li>To disable it for your current login session:</li>
+</ul>
+<pre><code>$ sudo service apport stop</code></pre>
+<ul>
+<li>To disable it from the next restart onwards, edit this file:</li>
+</ul>
+<pre><code>$ sudoedit /etc/default/apport</code></pre>
+<p>Change the <code>enabled=1</code> in the file to <code>enabled=0</code>. You will need to restart for it to take effect.</p>
+<ul>
+<li>To enable back Apport, reverse the above steps.</li>
+</ul>
+<p><strong>Tried with:</strong> Apport 2.14.1 and Ubuntu 14.04</p>
+</body>
+</html>

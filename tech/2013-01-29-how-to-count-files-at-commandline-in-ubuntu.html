@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to count files at commandline in Ubuntu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to count files at commandline in Ubuntu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-01-29 13:29:12+00:00</h3>
+</div>
+<p>Is there a way to easily <strong>count</strong> how many files and directories match a given pattern? Thankfully, this is easy to do at the commandline with the <strong>ls</strong> and <strong>wc</strong> programs. ls can be used to list files that match the pattern you want and wc can be used to count them.</p>
+<p>Assume we want to count how many files or directories have prefix <strong>Foo</strong>.</p>
+<p>First, let us see what does not work:</p>
+<pre><code>$ ls -l Foo* | wc -l</code></pre>
+<p>This is ls with its <code>-l</code> (EL, not ONE) parameter. It lists the files that match and you pipe it to wc to count the number of lines it receives.</p>
+<p>This almost works, except that <code>ls -l</code> puts an extra line at the beginning that shows the number of blocks used by that directory.</p>
+<p>Instead, use <code>ls -1</code> (that is ONE, not EL) parameter which gives exactly what you want:</p>
+<pre><code>$ ls -1 Foo* | wc -l</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 12.04.1 LTS</p>
+</body>
+</html>

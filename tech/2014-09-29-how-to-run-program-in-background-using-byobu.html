@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to run program in background using Byobu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to run program in background using Byobu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-09-29 10:07:41+00:00</h3>
+</div>
+<p>When running a training program, that might take hours to complete, I like to run it in the background. However, it should keep running even if I kill my current shell. I should be able to bring it back to the foreground and check its console output and then send it back to background. I should be able to do this any number of times.</p>
+<p>The solution that fulfilled these requirements was to run the program in a new Byobu session. This is how I do it:</p>
+<ul>
+<li>From my current shell, I launch a new Byobu session and start the program I want to run from its shell:</li>
+</ul>
+<pre><code>$ byobu
+$ ./my-program</code></pre>
+<ul>
+<li><p>To detach from this Byobu session, just press <code>Ctrl+a</code> followed by <code>d</code>.</p></li>
+<li><p>To re-attach to the Byobu session and check the progress of my program, invoke Byobu again from any terminal or shell.</p></li>
+</ul>
+<p>The advantage of this setup is that Byobu is not the child of my shell, but rather of the desktop <code>lightdm</code> process. So, it will keep running even if my terminal is hung or killed. It also enables me to see the console output of the program anytime I want.</p>
+<p><strong>Tried with:</strong> Byobu 5.74, TMux 1.8 and Ubuntu 14.04</p>
+</body>
+</html>

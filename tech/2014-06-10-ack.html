@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Ack</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Ack</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-06-10 08:27:10+00:00</h3>
+</div>
+<p><a href="http://beyondgrep.com/">Ack</a>, also known as ack-grep, is a commandline tool to search for text. It is an excellent replacement for grep for programmers.</p>
+<p>To install it:</p>
+<pre><code>$ sudo apt install ack-grep</code></pre>
+<p>To search for foo in all files in current directory and its subdirectories:</p>
+<pre><code>$ ack-grep foo</code></pre>
+<p>Ack intelligently searches only files and directories which might contain text files or source code files. For example, it skips the hidden directories used by version control systems like Git or Mercurial. It reports the results in color and nicely formatted.</p>
+<p>To search ignoring case if search string is lowercase:</p>
+<pre><code>$ ack-grep --smart-case foo</code></pre>
+<p>To ignore a particular file named dumbofile while searching:</p>
+<pre><code>$ ack-grep --ignore-file=is:dumbofile foo</code></pre>
+<p>If you use certain options frequently, you might want to place them in a <code>.ackrc</code> file so that they are used by default:</p>
+<pre><code># This file is ~/.ackrc
+--smart-case
+--ignore-file=is:dumbofile</code></pre>
+<p><strong>Tried with:</strong> Ack 2.12 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>The strange case of the disconnecting wireless router</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">The strange case of the disconnecting wireless router</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-12-12 11:44:22+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>At 2PM today, I started noticing problems with my home wireless network. All the devices connected wirelessly to the wireless router started getting disconnected and reconnected repeatedly. Even when connected for the brief period, the Internet speed was an order of magnitude less than normal.</p>
+<p>The wireless router is a D-Link DCM-604 cable wireless modem-router provided by Starhub. There were two Android smartphones, an Aftershock XG15 V2 notebook and a Macbook Air 2013 connected to the network which experienced these problems.</p>
+<h1 id="solution">Solution</h1>
+<p>I thought that this was a problem with the wireless router. But, resetting the wireless router to factory settings did not help. I spent a lot of time going through the settings of the router, hoping that something had gone wrong with one of them. However, connecting to the router using an Ethernet cable worked fine.</p>
+<p>On mulling over this problem and its symptoms, I had no choice but to settle on a crazy conclusion: one of the wireless devices was causing this problem. I do not know how a wireless client could be continuously messing with the wireless router, to the point that its affecting the entire wireless network. But, I decided to test this.</p>
+<p>To do that, I started by powering off the connected devices one by one, restarting the wireless router each time and checking the status of the wireless network. And soon I hit pay dirt: the Aftershock XG15 V2!</p>
+<p>This notebook was using a Qualcomm Atheros AR9462 wireless network adapter. I was running Ubuntu 14.04 with kernel 3.13.0.40-generic on it. I do not know whether the hardware or the driver was causing this problem and how. Turning off the wireless from Ubuntu tray icon did nothing. But on restarting the device and then restarting the wireless router, peace was restored. All the devices connected and worked fine!</p>
+<p><strong>Tried with:</strong> Aftershock XF15 V2 notebook, Qualcomm Atheros AR9462 wireless network adapter, Ubuntu 14.04 and D-Link DCM-604 wireless router</p>
+</body>
+</html>

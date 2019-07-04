@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Out of memory error on Raspbian</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Out of memory error on Raspbian</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-12 18:19:51+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I was compiling some templated C++ on a Raspberry Pi when the compilation failed with this error:</p>
+<pre><code>cc1plus: out of memory allocating 66574076 bytes after a total of 98316160 bytes</code></pre>
+<h1 id="solution">Solution</h1>
+<p>The Raspberry Pi had 1GB of RAM. From the error it looked like the compiler needed more memory than that.</p>
+<p>It turns out that Raspbian does not use a <strong>swap</strong> partition. Instead it uses a <code>/var/swap</code> file on the SD card. This is called <strong>dphys-swapfile</strong>. The default size of this swapfile is 100MB. As can be seen from the error above, this swap space was not enough.</p>
+<p>Since I had more than 1GB of free space still available on my SD card, I decided to increase this swapfile. To do that, open the file <code>/etc/dphys-swapfile</code> and increase the number of MB set in the line <code>CONF_SWAPSIZE=100</code>.</p>
+<p>Restart the swapfile using the command:</p>
+<pre><code>$ /etc/init.d/dphys-swapfile restart</code></pre>
+<p>Or alternately you could restart Raspbian.</p>
+<p><strong>Tried with:</strong> Raspbian 9 and Raspberry Pi B+ Rev3</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Install Guest Additions to Ubuntu on VirtualBox</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Install Guest Additions to Ubuntu on VirtualBox</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-10-30 06:54:46+00:00</h3>
+</div>
+<p>[caption id=&quot;attachment_2869&quot; align=&quot;aligncenter&quot; width=&quot;451&quot;][<img src="http://codeyarns.files.wordpress.com/2012/10/20121030-guest-additions.png" />](http://codeyarns.files.wordpress.com/2012/10/20121030-guest-additions.png) Installing Guest Additions[/caption]</p>
+<p><strong>Guest Additions</strong> are drivers and applications of <strong>VirtualBox</strong> that can be installed to the <strong>guest</strong> operating system to enable new features and improve performance. Installing Guest Additions to Ubuntu running inside VirtualBox on Windows is easy.</p>
+<ol style="list-style-type: decimal">
+<li><p>Start your Ubuntu image in VirtualBox. Login to your Ubuntu account.</p></li>
+<li><p>From the VirtualBox toolbar choose Devices → Install Guest Additions.</p></li>
+<li><p>VirtualBox mounts a CD of drivers and applications. Ubuntu asks for permission to autorun this CD. Allow it to run. If it does not autorun, go to <code>/media/joe/VBOXADDITIONS</code> directory and run <code>sudo ./VBoxLinuxAdditions.sh</code>.</p></li>
+<li><p>The tools from the CD are compiled and installed on Ubuntu. Ideally there should be no problems here and the install finishes.</p></li>
+<li><p>A driver icon might appear in the Ubuntu notification area. Open it. You might see a driver named <strong>Oracle VM VirtualBox Guest Additions for Linux Module</strong>. Activate it.</p></li>
+<li><p>Open the Ubuntu file manager. Unmount the Guest Additions CD.</p></li>
+<li><p>Restart Ubuntu in VirtualBox.</p></li>
+</ol>
+<p><strong>Tried with:</strong> Ubuntu 12.04 x64, Windows 7 Enterprise x64 and VirtualBox 4.2.0</p>
+</body>
+</html>

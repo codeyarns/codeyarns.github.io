@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to plot to multiple windows in Gnuplot</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to plot to multiple windows in Gnuplot</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-06-23 12:41:00+00:00</h3>
+</div>
+<p>On my Ubuntu, <strong>Gnuplot</strong> plots into a <strong>Qt</strong> window (terminal type <code>qt</code>) by default. Every invocation of the <code>plot</code> command redraws the contents of this single Qt window.</p>
+<p>Sometimes, I need to plot two different data sets in two different windows, so that I can compare them side-by-side. To do this specify a <strong>window number</strong>, an integer starting from <code>0</code>.</p>
+<p>For example:</p>
+<pre><code>set terminal qt 0
+plot(&quot;data_0.txt&quot;)
+
+set terminal qt 1
+plot(&quot;data_1.txt&quot;)</code></pre>
+<p><strong>Tried with:</strong> Gnuplot 5.0 and Ubuntu 14.04</p>
+</body>
+</html>

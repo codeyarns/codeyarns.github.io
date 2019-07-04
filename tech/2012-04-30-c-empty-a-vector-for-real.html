@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Empty a vector for real</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Empty a vector for real</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-04-30 08:14:53+00:00</h3>
+</div>
+<p><code>clear()</code> is the method used to <strong>empty</strong> a STL <strong>vector</strong> in <strong>C++</strong>. However, it merely sets the size of the vector to zero. In almost all STL implementations, the vector is still consuming the same amount of memory it was before the call to <code>clear()</code>. This can be seen by calling the <code>capacity()</code> method, which returns the actual number of items which the vector can hold without needing or reallocating any new memory.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;vector&gt;</span>
+<span class="dt">int</span> main()
+{
+    vector&lt; <span class="dt">int</span> &gt; v( <span class="dv">1000000</span> );
+    v.clear();
+    <span class="bu">std::</span>cout &lt;&lt; v.capacity() &lt;&lt; <span class="bu">std::</span>endl; <span class="co">// 1000000</span>
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>But, there will be situations where memory is tight and you would like to actually clear a vector of all its memory. This can be achieved using the <code>shrink_to_fit()</code> method, which was introduced in <strong>C++11</strong>:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">v.clear();
+v.shrink_to_fit(); <span class="co">// Capacity of v is now 0</span></code></pre></div>
+<p>If you are using an old C++ compiler or STL implementation that does not support <code>shrink_to_fit()</code>, there is another trick to empty a vector: swap its contents with a vector that is actually empty:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">vector&lt; <span class="dt">int</span> &gt;().swap( v ); <span class="co">// Capacity of v is now 0</span></code></pre></div>
+<p>Our original vector now points to the (empty) space of the new vector. The new vector now points to the capacity of the old vector. But, the lifetime of the new vector is the scope of this statement. As soon as that scope ends, the new vector is deleted, thus freeing the memory occupied by the old vector.</p>
+<p><strong>Tried with:</strong> Visual C++ 2010</p>
+</body>
+</html>

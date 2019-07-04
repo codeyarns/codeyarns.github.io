@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use checkinstall instead of make install</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use checkinstall instead of make install</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-03-11 12:13:14+00:00</h3>
+</div>
+<p>There are many situations where you need to <strong>build</strong> an application from <strong>source code</strong> and install it. The typical method to install it is:</p>
+<pre><code>$ sudo make install</code></pre>
+<p>One of the major problems with installing like this is that uninstalling is not possible. You will need to know what files were installed to what destination directories and manually remove those files!</p>
+<p>The <a href="http://asic-linux.com.mx/~izto/checkinstall/"><strong>CheckInstall</strong></a> application can be used to convert such an installation into a <strong>package</strong>, which can be installed and <strong>uninstalled</strong> easily using your distribution's package tools.</p>
+<ul>
+<li><strong>Install checkinstall:</strong> First, we have to install this application:</li>
+</ul>
+<pre><code>$ sudo apt install checkinstall</code></pre>
+<ul>
+<li><strong>Creating a package file</strong>: Turning the above <code>make install</code> into the installation of a package is as easy as:</li>
+</ul>
+<pre><code>$ sudo checkinstall</code></pre>
+<p>This will take you through some prompts where you provide the meta information for the package. You can choose to just press Enter through these sections. After that, a package file is created and is also installed for you. For example, a <code>foo_amd64.deb</code> package was created for me and it was installed.</p>
+<ul>
+<li><strong>Package name</strong>: Note that the directory name from where you are running this becomes the default <strong>package name</strong>. If you do not want that, specify a package name:</li>
+</ul>
+<pre><code>$ sudo checkinstall --pkgname foobar_by_joe</code></pre>
+<ul>
+<li><strong>Make options</strong>: Checkinstall runs <code>make install</code> by default. If you want other options to be used, that can be accommodated too.</li>
+</ul>
+<p>For example, I noticed that checkinstall runs make serially, even though I have specified <code>-j</code> in my <code>MAKEFLAGS</code>. So, to explicitly tell checkinstall to build in parallel:</p>
+<pre><code>$ sudo checkinstall make -j install</code></pre>
+<p>Another example, for another project the install command was <code>make install_foobar</code>. To use that with checkinstall:</p>
+<pre><code>$ sudo checkinstall make install_foobar</code></pre>
+<ul>
+<li><strong>Install your package</strong>: I can now use the <code>.deb</code> file created by checkinstall to <strong>install</strong> on other computers or pass it to other people on the team:</li>
+</ul>
+<pre><code>$ sudo gdebi foo_amd64.deb</code></pre>
+<ul>
+<li><strong>Uninstalling</strong> is as easy as:</li>
+</ul>
+<pre><code>$ sudo apt remove foo</code></pre>
+<p><strong>Tried with:</strong> CheckInstall 1.6.2 and Ubuntu 16.04</p>
+</body>
+</html>

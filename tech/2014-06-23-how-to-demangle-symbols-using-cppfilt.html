@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to demangle symbols using C++Filt</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to demangle symbols using C++Filt</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-06-23 05:04:29+00:00</h3>
+</div>
+<p><a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/ext_demangling.html"><strong>C++Filt</strong></a> is a utility that ships with <a href="http://www.gnu.org/software/binutils/"><strong>GNU Binutils</strong></a>. It can be applied on mangled symbols to recover back the demangled symbol. This can be useful to recognize the original class method name and signature.</p>
+<p>There are two ways in which this tool can be used:</p>
+<ul>
+<li>To demangle a symbol directly:</li>
+</ul>
+<pre><code>$ c++filt _ZNK8KxVectorI6DlAtomjEixEj
+KxVector&lt;DlAtom, unsigned int&gt;::operator[](unsigned int) const</code></pre>
+<ul>
+<li>To demangle the mangled output of another tool by piping it in. For example, I use it on the mangled symbols output by the <strong>symtree</strong> tool:</li>
+</ul>
+<pre><code>$ symtree foo | c++filt</code></pre>
+<p><strong>Tried with:</strong> GNU Binutils 2.24 and Ubuntu 14.04</p>
+</body>
+</html>

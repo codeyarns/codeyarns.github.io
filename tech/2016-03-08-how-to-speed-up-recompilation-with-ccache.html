@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to speed up recompilation with ccache</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to speed up recompilation with ccache</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-08 12:23:38+00:00</h3>
+</div>
+<p>C++ compilation of large projects takes forever. One trick to speed it up is to <strong>cache</strong> previous compilations. When a compilation unit and its compilation options exactly match an earlier one, the result from the cache can be used directly. Such a compilation cache can reduce compilation times enormously (by orders of magnitude) on a machine where you build several times a day. <a href="https://ccache.samba.org/"><strong>CCache</strong></a> is an implementation of such a compilation cache for C and C++ compilation using GCC compilers.</p>
+<ul>
+<li>Installing it is easy:</li>
+</ul>
+<pre><code>$ sudo apt install ccache</code></pre>
+<ul>
+<li><p>The ccache man page suggests replacing the symlinks of <code>gcc</code>, <code>g++</code>, <code>cc</code> and <code>c++</code> with symlinks to <code>/usr/bin/ccache</code>. This works, but is an onerous method.</p></li>
+<li><p>The method I like is to just add <code>/usr/lib/ccache</code> to the front of your <code>PATH</code> environment variable. This directory has symlinks named for all the GCC compilers and they point to the ccache binary.</p></li>
+<li><p>Once you finished either of the above two methods, that is it! You can just run your builds as usual. The first time your builds will take the usual time, but from the second time you should be able to witness enormous speedups.</p></li>
+<li><p>To check details of the cache, such as its size, how much is occupied, number of cache hits and misses:</p></li>
+</ul>
+<pre><code>$ ccache --show-stats</code></pre>
+<ul>
+<li>If you feel that reuse of compilation from cache is causing some weird compilation or linking problems, then you can clear out the cache:</li>
+</ul>
+<pre><code>$ ccache --clear</code></pre>
+<p>CCache is so easy to use and its benefits are so bountiful that I highly recommend using it if you are a C or C++ programmer.</p>
+<p>(Thanks to <a href="https://eklausmeier.wordpress.com/2015/05/14/speeding-up-software-builds-parallelizing-make-and-compiler-cache/">this post</a> for introducing me to ccache and you can also find some speedup metrics of using ccache in it.)</p>
+<p><strong>Tried with:</strong> CCache 3.1.9 and Ubuntu 14.04</p>
+</body>
+</html>

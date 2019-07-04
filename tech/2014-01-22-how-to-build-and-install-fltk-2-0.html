@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to build and install FLTK 2.0</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to build and install FLTK 2.0</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-01-22 10:37:39+00:00</h3>
+</div>
+<p><strong>FLTK 2.0</strong> is an experimental new version of the library that was later abandoned. Some other libraries seem to use it, so sometimes you may need to build and install it. Doing that is easy:</p>
+<ul>
+<li><p>Download the source code from the SVN repository:</p>
+<p><code>$ svn co http://seriss.com/public/fltk/fltk/trunk fltk-2.0 </code></p></li>
+</ul>
+<p>If it asks for username or password, just press Enter.</p>
+<ul>
+<li><p>Configure and build the code:</p>
+<p><code>$ cd fltk-2.0 $ autoconf $ ./configure $ make </code></p></li>
+<li><p>You might get this error:</p>
+<p><code>=== making test === Compiling mandelbrot_ui.cxx... In file included from mandelbrot_ui.cxx:3:0: mandelbrot_ui.h:15:5: error: ‘Drawing_Area’ does not name a type </code></p></li>
+</ul>
+<p>Open <code>Makefile</code> and remove <code>test</code> from this line:</p>
+<pre><code>&lt;code&gt;DIRS = src $(LOCALIMAGES) images OpenGL fluid glut test
+&lt;/code&gt;</code></pre>
+<ul>
+<li><p>Build again, it should succeed. Install the files:</p>
+<p><code>$ make $ sudo make install </code></p></li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
+</body>
+</html>

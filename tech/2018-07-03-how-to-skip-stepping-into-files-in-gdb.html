@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to skip stepping into files in GDB</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to skip stepping into files in GDB</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2018-07-03 06:43:21+00:00</h3>
+</div>
+<p><strong>Visual Studio</strong> C++ debugger has a feature called <a href="https://blogs.msdn.microsoft.com/vcblog/2018/06/29/announcing-jmc-stepping-in-visual-studio/"><strong>Just My Code</strong></a> which helps you to step over external code, like that in STL, and only step through the code of your own project. GDB does not have this feature at the time of this writing.</p>
+<p>However, GDB has a <strong>skip -gfile</strong> feature that can be used in a similar way. You pass this command a <strong>glob pattern</strong> of files to ignore during stepping.</p>
+<p>For example, to skip stepping into the source files of STL implementations on my system I use:</p>
+<pre><code>skip -gfile /usr/include/c++/5/bits/*</code></pre>
+<p>This works because the STL implementation files on my system are located at the above path.</p>
+<p>Note that this feature requires GDB 7.12 or later.</p>
+<p><strong>Reference:</strong> <a href="https://sourceware.org/gdb/onlinedocs/gdb/Skipping-Over-Functions-and-Files.html">GDB Skipping over files and functions</a></p>
+<p><strong>Tried with:</strong> GDB 8.1 and Ubuntu 16.04</p>
+</body>
+</html>

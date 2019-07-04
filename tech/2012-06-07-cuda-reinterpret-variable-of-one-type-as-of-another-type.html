@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>CUDA: Reinterpret variable of one type as of another type</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">CUDA: Reinterpret variable of one type as of another type</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-06-07 07:21:44+00:00</h3>
+</div>
+<p>Sometimes, it might be useful to <strong>reinterpret</strong> the bits of a variable of one type as if it were of another type. Note that this is completely different from converting or <strong>casting</strong> a variable of one type to another type.</p>
+<p>Such a reinterpretation is frequently employed between floating-point and integer types. The union construct or pointer casting can be used to achieve such reinterpretation.</p>
+<p>An alternative is to use the <strong>intrinsic functions</strong> in CUDA. The intrinsic functions related to reinterpretation can be found listed in the <strong>CUDA Reference Manual</strong> under the <strong>Type Casting Intrinsics</strong> section. For example, the intrinsic function to reinterpret float as int is <code>__float_as_int()</code></p>
+<p>https://gist.github.com/2887145</p>
+<p><strong>Tried with:</strong> CUDA 4.2</p>
+</body>
+</html>

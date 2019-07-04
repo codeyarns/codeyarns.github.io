@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use OpenCV constants in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use OpenCV constants in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-01-20 12:14:09+00:00</h3>
+</div>
+<p><strong>OpenCV</strong> has a <strong>Python</strong> API. The Python function calls are well documented and listed along with the C and C++ calls. However, it is not obvious how to use the various OpenCV constants and enums in Python. These are typically named as <code>CV_SOME_THING</code>. For example: <code>CV_WINDOW_AUTOSIZE</code>.</p>
+<ul>
+<li>A few of these named constants seem to be available for use in Python by importing the <code>cv</code> package. For example:</li>
+</ul>
+<pre><code>import cv
+win = cv.NamedWindow(&quot;haha&quot;, cv.CV_WINDOW_AUTOSIZE)</code></pre>
+<ul>
+<li>However, I find that many of these named constants are not available in Python. You will need to look up their integer value from OpenCV header files and pass those raw integer values directly to the calls.</li>
+</ul>
+<p>Here is a list of integer values for OpenCV constants that I frequently need to use:</p>
+<pre><code>CV_LOAD_IMAGE_UNCHANGED = -1
+CV_LOAD_IMAGE_GRAYSCALE =  0
+CV_LOAD_IMAGE_COLOR     =  1
+CV_LOAD_IMAGE_ANYDEPTH  =  2
+CV_LOAD_IMAGE_ANYCOLOR  =  4</code></pre>
+<p><strong>Tried with:</strong> OpenCV 2.4.9, Python 2.7.3 and Ubuntu 14.04</p>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>PyOpenGL Installation Notes for Windows</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">PyOpenGL Installation Notes for Windows</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2012-04-26 16:02:45+00:00</h3>
+</div>
+<p><a href="http://pyopengl.sourceforge.net/"><strong>PyOpenGL</strong></a> provides Python bindings to OpenGL, GLU and GLUT libraries.</p>
+<p><strong>The painful solution</strong></p>
+<p>Assume you are using Python 3.x 64-bit on Windows 7 64-bit. There is no official PyOpenGL package for Python 3.x. Tough luck!</p>
+<p>So, you take the pains of installing Python 2.x 64-bit on your OS. You then get the official PyOpenGL package and install it using <code>python setup.py install</code>. Everything seems to be working fine.</p>
+<p>You write your simple PyOpenGL program, but when you execute it, you get this error:</p>
+<pre><code>File &quot;C:\Program Files\Python27\lib\site-packages\OpenGL\GLUT\special.py&quot;, line 324, in glutInit
+    _base_glutInit( ctypes.byref(count), holder )
+TypeError: &#39;NoneType&#39; object is not callable</code></pre>
+<p>It turns out that there are many problems with the official PyOpenGL package. It does not copy the required DLLs and even if you figure this out and copy them manually it will not work on work properly on 64-bit Windows. So, give up using the official package.</p>
+<p><strong>The better solution </strong></p>
+<p>Skip the error-prone official PyOpenGL package and get the unofficial PyOpenGL installer from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">here</a>. Pick the version that matches your Windows version, 32-64-bitness and Python version (2.x or 3.x). Double-click to install and you are done! This is one of those cases where the unofficial builds are far better than the official one. Cheers to <a href="http://www.lfd.uci.edu/~gohlke/">Christoph Gohlke</a> for maintaining them :-)</p>
+<p><strong>Tried with:</strong> Windows 7 64-bit and Python 3.2 64-bit</p>
+</body>
+</html>

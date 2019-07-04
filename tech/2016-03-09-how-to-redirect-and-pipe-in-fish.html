@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to redirect and pipe in Fish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to redirect and pipe in Fish</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-03-09 12:24:23+00:00</h3>
+</div>
+<h1 id="redirection">Redirection</h1>
+<ul>
+<li>To redirect to stdin is similar to Bash:</li>
+</ul>
+<pre><code>$ ./a.out &gt; out.txt</code></pre>
+<ul>
+<li>To redirect stdout is similar to Bash:</li>
+</ul>
+<pre><code>$ ./a.out &lt; in.txt</code></pre>
+<ul>
+<li>To redirect stderr:</li>
+</ul>
+<pre><code>$ ./a.out ^ out.txt</code></pre>
+<ul>
+<li>To redirect both stdout and stderr:</li>
+</ul>
+<pre><code>$ ./a.out &gt; out.txt 2&gt;&amp;1</code></pre>
+<p>Note how the binding of stderr (2) to stdout (1) is placed after the filename.</p>
+<h1 id="piping">Piping</h1>
+<ul>
+<li>To pipe stdout is similar to Bash:</li>
+</ul>
+<pre><code>$ ./a.out | less</code></pre>
+<ul>
+<li>To pipe stderr:</li>
+</ul>
+<pre><code>$ ./a.out ^| less</code></pre>
+<ul>
+<li>To pipe both stdout and stderr:</li>
+</ul>
+<pre><code>$ ./a.out 2&gt;&amp;1 | less</code></pre>
+<p><strong>Tried with:</strong> Fish 2.7.1 and Ubuntu 16.04</p>
+</body>
+</html>

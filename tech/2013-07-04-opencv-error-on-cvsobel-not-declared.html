@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>OpenCV error on cvSobel not declared</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">OpenCV error on cvSobel not declared</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2013-07-04 07:59:36+00:00</h3>
+</div>
+<p><strong>Problem</strong></p>
+<p>I tried to compile some code that used <strong>OpenCV</strong> and got this error:</p>
+<pre><code>foo.cpp:634:21: error: ‘cvPyrDown’ was not declared in this scope
+foo.cpp:708:25: error: ‘cvSobel’ was not declared in this scope
+foo.cpp:744:31: error: ‘CV_INTER_LINEAR’ was not declared in this scope
+foo.cpp:744:49: error: ‘CV_WARP_FILL_OUTLIERS’ was not declared in this scope
+foo.cpp:745:17: error: ‘cvRemap’ was not declared in this scope</code></pre>
+<p>This code used to compile without errors in older versions of OpenCV.</p>
+<p><strong>Solution</strong></p>
+<p>It turns out that in newer versions of OpenCV, these declarations are in <strong>cv.h</strong> and it needs to be explicitly included:</p>
+<pre><code>#include &lt;opencv/cv.h&gt;</code></pre>
+<p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 12.04 LTS</p>
+</body>
+</html>

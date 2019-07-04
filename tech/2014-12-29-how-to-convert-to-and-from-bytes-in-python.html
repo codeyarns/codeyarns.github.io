@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to convert to and from bytes in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to convert to and from bytes in Python</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-12-29 12:00:58+00:00</h3>
+</div>
+<p>A typical scenario in systems programming is to read and write structures and data in a certain binary format. This could be using buffers in memory or binary files on disk. This is pretty straightforward to do in C or C++, all you need is a pointer to the start of the structure or data and the number of bytes to copy or write from that pointer. The <code>struct</code> module can be used to achieve the same in Python.</p>
+<p>The <code>pack</code> method can be used to convert data to a byte string. For details of the parameters and formatting flags passed to this method, see <a href="https://docs.python.org/2/library/struct.html">here</a>. This byte string can be then be passed on the network or written to a binary file. For example:</p>
+<p>https://gist.github.com/ashwin/f1975e7c78aa7b3a8115</p>
+<p>To read back binary data or data stored in bytes, use the <code>unpack</code> method. The usage of that is similar to above.</p>
+<p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
+</body>
+</html>

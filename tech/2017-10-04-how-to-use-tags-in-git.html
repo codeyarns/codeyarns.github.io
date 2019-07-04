@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use tags in Git</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use tags in Git</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-04 15:22:13+00:00</h3>
+</div>
+<p>A <strong>tag</strong> in Git is a user-friendly label attached to a particular commit. It is commonly used to mark a particular commit, for example to mark as a release version. Using tags in Git is quite easy, once you notice how they are pushed to a remote repository.</p>
+<ul>
+<li>To list tags in your repository:</li>
+</ul>
+<pre><code>$ git tag</code></pre>
+<ul>
+<li>To checkout a tag, it has to be checked out to a new local branch:</li>
+</ul>
+<pre><code>$ git checkout -b FOOBAR_BRANCH FOOBAR_TAG</code></pre>
+<ul>
+<li>To mark the current commit with a tag named <code>FOOBAR_TAG</code>:</li>
+</ul>
+<pre><code>$ git tag FOOBAR_TAG</code></pre>
+<ul>
+<li>If you know the hash of a particular commit, say <code>abcd1234</code>, and want to attach a tag to it:</li>
+</ul>
+<pre><code>$ git tag FOOBAR_TAG abcd1234</code></pre>
+<ul>
+<li>If you want to label the head commit of a branch with a tag:</li>
+</ul>
+<pre><code>$ git tag FOOBAR_TAG XYZ_BRANCH</code></pre>
+<ul>
+<li>There are times when you want to do a reverse lookup, to lookup the commit associated with a tag. There are a couple of ways to do this:</li>
+</ul>
+<pre><code>$ git log -n 1 FOOBAR_TAG
+$ git rev-list -n 1 FOOBAR_TAG</code></pre>
+<ul>
+<li>When you push your new commits to a remote, the tags you created locally are not pushed. This command pushes only the tags (not any new commits) to a remote:</li>
+</ul>
+<pre><code>$ git push FOOBAR_REMOTE --tags</code></pre>
+<ul>
+<li>There are times when you want to move a tag to a different commit. This operation essentially removes the old tag and writes a tag with the same name at the new commit. This can be done if you create the new tag (with the same name) with force:</li>
+</ul>
+<pre><code>$ git tag -f FOOBAR_TAG</code></pre>
+<ul>
+<li>If you try to push a moved tag (like the above example) to a remote, Git will complain that the remote already has a tag of the same name pointing at a different commit. Again, you use force to coerce Git to do this:</li>
+</ul>
+<pre><code>$ git push -f FOOBAR_REMOTE --tags</code></pre>
+<p><strong>Tried with:</strong> Git 2.7.4 and Ubuntu 16.04</p>
+</body>
+</html>

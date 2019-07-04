@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to convert datetime to and from ISO 8601 string</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to convert datetime to and from ISO 8601 string</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2017-10-12 14:47:35+00:00</h3>
+</div>
+<p><a href="https://en.wikipedia.org/wiki/ISO_8601"><strong>ISO 8601</strong></a> is a standardized format for representing date and time that is popular. Python has built-in support to convert to and from this format. But confusingly, those methods are distributed across two different modules!</p>
+<ul>
+<li>Convert a <code>datetime</code> object to string in ISO 8601 format:</li>
+</ul>
+<pre><code>import datetime
+some_datetime_obj = datetime.datetime.now()  # Store current datetime
+datetime_str = some_datetime_obj.isoformat()  # Convert to ISO 8601 string
+print(datetime_str)  # Print the string</code></pre>
+<p>This prints a date string in ISO 8601 format. For example: <code>2019-01-23T06:17:59.273519</code>.</p>
+<ul>
+<li>To convert a ISO 8601 format string to <code>datetime</code> object we need a package named <code>dateutil</code>. This is available as <code>python-dateutil</code> and <code>python3-dateutil</code> in Ubuntu or <code>dateutil</code> as PIP package. Once this package is installed, you can do:</li>
+</ul>
+<pre><code>import dateutil.parser
+datetime_str = &quot;2019-01-23T06:17:59.273519&quot;  # Datestring in ISO 8601 format
+some_datetime_obj = dateutil.parser.parse(datetime_str)  # Convert to datetime object</code></pre>
+</body>
+</html>

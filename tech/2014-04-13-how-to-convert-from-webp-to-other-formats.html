@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to convert from WebP to other formats</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to convert from WebP to other formats</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2014-04-13 16:10:57+00:00</h3>
+</div>
+<p><strong>WebP</strong> is an image file format developed by Google. Since there are not many programs that support WebP, you might sometimes want to convert a WebP file to other common formats like PNG.</p>
+<p>Converting WebP to other image file formats is easy using the WebP library provided by Google. Note that using the WebP library package from the Ubuntu repositories did not work for me. Only a few popular formats are supported, including PNG and BMP. Most notably, the JPG format is not currently supported.</p>
+<p>To convert a WebP file:</p>
+<ul>
+<li>Install the webp package:</li>
+</ul>
+<pre><code>$ sudo apt install webp</code></pre>
+<p>Alternatively, you can also download the libwebp archive file that matches your system from <a href="https://code.google.com/p/webp/downloads/list">here</a>. Unzip the archive file.</p>
+<ul>
+<li>You will find a dwebp binary in the bin directory. That can be used to convert WebP files to other formats. For example, to convert to PNG:</li>
+</ul>
+<pre><code>$ dwebp foo.webp -o foo.png</code></pre>
+<p><strong>Tried with:</strong> LibWebP 0.3.0-3 and Ubuntu 14.04</p>
+</body>
+</html>

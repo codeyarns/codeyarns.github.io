@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use performance analysis tools of Linux kernel</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use performance analysis tools of Linux kernel</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-06-30 12:06:00+00:00</h3>
+</div>
+<p>The performance counters available in modern processors can be easily accessed through the Linux kernel to analyze the performance of your programs. For example, you can find out how many branch misses occurred when your program executed.</p>
+<ul>
+<li>We first install the <strong>performance analysis</strong> tools for our specific Linux kernel version:</li>
+</ul>
+<pre><code>$ sudo apt install linux-tools-(uname -r) linux-tools-common</code></pre>
+<ul>
+<li><p><code>perf</code> is the main command that we use for analysis.</p></li>
+<li><p>List the performance counters and events that you can measure:</p></li>
+</ul>
+<pre><code>$ perf list
+
+List of pre-defined events (to be used in -e):
+  cpu-cycles OR cycles                               [Hardware event]
+  instructions                                       [Hardware event]
+  cache-references                                   [Hardware event]
+  cache-misses                                       [Hardware event]
+  branch-instructions OR branches                    [Hardware event]
+  branch-misses                                      [Hardware event]
+  bus-cycles                                         [Hardware event]
+  ref-cycles                                         [Hardware event]
+
+  cpu-clock                                          [Software event]
+  task-clock                                         [Software event]
+  page-faults OR faults                              [Software event]
+  context-switches OR cs                             [Software event]
+  cpu-migrations OR migrations                       [Software event]
+  minor-faults                                       [Software event]
+  major-faults                                       [Software event]
+  alignment-faults                                   [Software event]
+  emulation-faults                                   [Software event]
+  dummy                                              [Software event]
+
+  L1-dcache-loads                                    [Hardware cache event]
+  L1-dcache-load-misses                              [Hardware cache event]
+  L1-dcache-stores                                   [Hardware cache event]
+  L1-dcache-store-misses                             [Hardware cache event]
+  L1-dcache-prefetch-misses                          [Hardware cache event]
+  L1-icache-load-misses                              [Hardware cache event]
+  LLC-loads                                          [Hardware cache event]
+  LLC-stores                                         [Hardware cache event]
+  LLC-prefetches                                     [Hardware cache event]
+  dTLB-loads                                         [Hardware cache event]
+  dTLB-load-misses                                   [Hardware cache event]
+  dTLB-stores                                        [Hardware cache event]
+  dTLB-store-misses                                  [Hardware cache event]
+  iTLB-loads                                         [Hardware cache event]
+  iTLB-load-misses                                   [Hardware cache event]
+  branch-loads                                       [Hardware cache event]
+  branch-load-misses                                 [Hardware cache event]
+
+  branch-instructions OR cpu/branch-instructions/    [Kernel PMU event]
+  branch-misses OR cpu/branch-misses/                [Kernel PMU event]
+  bus-cycles OR cpu/bus-cycles/                      [Kernel PMU event]
+  cache-misses OR cpu/cache-misses/                  [Kernel PMU event]
+  cache-references OR cpu/cache-references/          [Kernel PMU event]
+  cpu-cycles OR cpu/cpu-cycles/                      [Kernel PMU event]
+  cycles-ct OR cpu/cycles-ct/                        [Kernel PMU event]
+  cycles-t OR cpu/cycles-t/                          [Kernel PMU event]
+  el-abort OR cpu/el-abort/                          [Kernel PMU event]
+  el-capacity OR cpu/el-capacity/                    [Kernel PMU event]
+  el-commit OR cpu/el-commit/                        [Kernel PMU event]
+  el-conflict OR cpu/el-conflict/                    [Kernel PMU event]
+  el-start OR cpu/el-start/                          [Kernel PMU event]
+  instructions OR cpu/instructions/                  [Kernel PMU event]
+  mem-loads OR cpu/mem-loads/                        [Kernel PMU event]
+  mem-stores OR cpu/mem-stores/                      [Kernel PMU event]
+  tx-abort OR cpu/tx-abort/                          [Kernel PMU event]
+  tx-capacity OR cpu/tx-capacity/                    [Kernel PMU event]
+  tx-commit OR cpu/tx-commit/                        [Kernel PMU event]
+  tx-conflict OR cpu/tx-conflict/                    [Kernel PMU event]
+  tx-start OR cpu/tx-start/                          [Kernel PMU event]
+
+  rNNN                                               [Raw hardware event descriptor]
+  cpu/t1=v1[,t2=v2,t3 ...]/modifier                  [Raw hardware event descriptor]
+   (see &#39;man perf-list&#39; on how to encode it)
+
+  mem:&lt;addr&gt;[:access]                                [Hardware breakpoint]
+
+  [ Tracepoints not available: Permission denied ]</code></pre>
+<p>We can see that a lot of counters and events are available for measurement. The tracepoints can be listed if the command is run as <code>sudo</code>.</p>
+<ul>
+<li>We can query any of the above listed events. For example, to find out the number of branch misses in a program <code>foo</code> by repeatedly running the program 10 times:</li>
+</ul>
+<pre><code>$ perf stat -r 10 -e branch-misses ./foo
+
+ Performance counter stats for &#39;./foo&#39; (10 runs):
+
+            42,683 branch-misses                                                 ( +-  0.55% )
+
+       0.001782436 seconds time elapsed                                          ( +- 12.91% )</code></pre>
+<p>All values are the average of 10 executions, since that is what we specified.</p>
+<ul>
+<li>To print out other stats, just append with a comma. For example, to get both branch misses and memory stores:</li>
+</ul>
+<pre><code>$ perf stat -r 10 -e branch-misses,mem-stores ./foo
+
+ Performance counter stats for &#39;./foo&#39; (10 runs):
+
+            42,603 cpu/branch-misses/                                            ( +-  0.23% )
+           972,221 cpu/mem-stores/                                               ( +-  0.05% )
+
+       0.001748714 seconds time elapsed                                          ( +-  0.39% )</code></pre>
+<p><strong>Tried with:</strong> Intel i7-4790, Linux 3.13.0-52-generic and Ubuntu 14.04</p>
+</body>
+</html>

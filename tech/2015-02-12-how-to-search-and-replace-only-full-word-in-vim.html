@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to search and replace only full word in Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to search and replace only full word in Vim</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2015-02-12 12:10:14+00:00</h3>
+</div>
+<p>By default, the <strong>search and replace</strong> in <strong>Vim</strong> replaces the search string even if it is a substring in a longer string. For example, <code>:%s/foo/abracadabra/</code> will replace <code>foo</code> that is in <code>foobar[10]</code> or <code>zoofoomoo(20)</code>. However, while working with source code we typically want to replace only those occurrences where the search string appears as a whole word.</p>
+<p>To do this in Vim, enclose the search string as shown in:</p>
+<p>https://gist.github.com/ashwin/6ce469d09516da724424</p>
+<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+</body>
+</html>

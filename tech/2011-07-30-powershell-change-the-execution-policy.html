@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>PowerShell: Change the Execution Policy</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">PowerShell: Change the Execution Policy</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2011-07-30 03:20:49+00:00</h3>
+</div>
+<p>By default, <strong>PowerShell</strong> will not execute any PowerShell script files. It will only execute the commands, cmdlets and aliases it ships with. This <strong>execution policy</strong> of PowerShell is called <code>Restricted</code> and is the default policy. Though this is secure, it is quite painful if you intend to write and use your own script files or PowerShell modules.</p>
+<p>To change the execution policy to allow <em>local</em> scripts to execute, open a PowerShell with Administrator privileges and type:</p>
+<pre><code>Set-ExecutionPolicy RemoteSigned</code></pre>
+<p>The <code>RemoteSigned</code> policy will allow execution of all local scripts, but will require scripts on remote locations to be signed with a trusted certificate. The policy set using <code>Set-ExecutionPolicy</code> is applied for the current and all following PowerShell instances started by all users of the system.</p>
+<p><strong>Tried with:</strong> PowerShell 2.0</p>
+</body>
+</html>

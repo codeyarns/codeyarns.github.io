@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>nvidia-smi cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">nvidia-smi cheatsheet</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-04-26 13:24:35+00:00</h3>
+</div>
+<p><a href="https://developer.nvidia.com/nvidia-system-management-interface"><strong>nvidia-smi</strong></a> (NVIDIA System Management Interface) is a tool to query, monitor and configure NVIDIA GPUs. It ships with and is installed along with the NVIDIA driver and it is tied to that specific driver version. It is a tool written using the <a href="https://developer.nvidia.com/nvidia-management-library-nvml"><strong>NVIDIA Management Library (NVML)</strong></a>.</p>
+<ul>
+<li>To query the usage of all your GPUs:</li>
+</ul>
+<pre><code>$ nvidia-smi</code></pre>
+<p>I use this default invocation to check:</p>
+<blockquote>
+<blockquote>
+
+</blockquote>
+<blockquote>
+<ul>
+<li>Version of driver.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Names of the GPUs.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Index of the GPUs, based on PCI Bus Order. This is different from the CUDA order.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Amount of memory each of the GPUs has.</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Whether persistence mode is enabled on each of the GPUs</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Utilization of each of the GPUs (if I'm running something on them).</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>List of processes executing on the GPUs.</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>To query the configuration parameters of all the GPUs:</li>
+</ul>
+<pre><code>$ nvidia-smi -q</code></pre>
+<p>I use this to check:</p>
+<blockquote>
+<blockquote>
+
+</blockquote>
+<blockquote>
+<ul>
+<li>Default clocks (listed under <strong>Default Application Clocks</strong>).</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Current clocks (listed under <strong>Application Clocks</strong>).</li>
+</ul>
+</blockquote>
+</blockquote>
+<ul>
+<li>To query the configuration parameters of a particular GPU, use its index:</li>
+</ul>
+<pre><code>$ nvidia-smi -q -i 0</code></pre>
+</body>
+</html>

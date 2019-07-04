@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>C++: Random Number Generation Using</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">C++: Random Number Generation Using <random></h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2010-11-24 02:45:19+00:00</h3>
+</div>
+<p><strong>Note:</strong> Please note that the random header has undergone substantial change for C++11 and later. This post is outdated and only meant for older versions of C++. For the latest, please refer to <a href="https://msdn.microsoft.com/en-us/library/bb982398.aspx">this page</a>.</p>
+<p><strong>C++</strong> can get very irritating if all you want is a simple solution. Take <strong>random number generation</strong> for example. The <strong><a href="http://msdn.microsoft.com/en-us/library/bb982398.aspx"><random></a></strong> header was added to C++ to provide all kinds of random number generation. While it does cover any kind of random generation you can dream of, it makes writing a simple random generator super-hard! Unlike C or C#, where you can quickly generate random numbers with little code, in C++ it takes a lot of reading, pondering and lots of ugly-looking code.</p>
+<p><strong><random></strong></p>
+<p>The <random> header file provides many kinds of classes:</p>
+<ul>
+<li><p><strong>Engine</strong>: It generates random numbers based on a certain algorithm. There are many engines defined in <random>. One example is <strong><a href="http://msdn.microsoft.com/en-us/library/ee462284.aspx">linear_congruential_engine</a></strong>, which uses the algorithm that is typically used in the C rand() random number generator. A engine cannot be used alone, it should be attached to a distribution (see below).</p></li>
+<li><p><strong>Predefined Engine</strong>: It is an engine created with some good-quality initial values. This saves a lot of the pain of coming up with values to initialize the engine. There are many predefined engines in <random>. For example, <strong><a href="http://msdn.microsoft.com/en-us/library/bb983077.aspx">minstd_rand</a></strong> is pre-defined on the linear_congruential_engine.</p></li>
+<li><p><strong>Distribution</strong>: It takes the output of an engine and shapes it to fit a certain distribution. An example is <strong><a href="http://msdn.microsoft.com/en-us/library/ee462299.aspx">uniform_real_distribution</a></strong>, which creates an uniform distribution of real numbers. A distribution needs an engine to provide it with random number input.</p></li>
+<li><p><strong>Variate Generator</strong>: <strong><a href="http://msdn.microsoft.com/en-us/library/bb982404.aspx">variate_generator</a></strong> is a wrapper to combine an engine (or predefined engine) with a distribution, to create a custom random number generator.</p></li>
+</ul>
+<p><strong>Simple Random Number Generation</strong></p>
+<p>Here is a simple random number generator that produces random float values. It uses the variate_generator to wrap a minstd_rand engine and uniform_real_distribution.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;random&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">typedef</span> minstd_rand                             Engine;
+<span class="kw">typedef</span> uniform_real_distribution&lt;<span class="dt">float</span>&gt;        Distribution;
+<span class="kw">typedef</span> variate_generator&lt;Engine, Distribution&gt; Generator;
+
+Generator gen( Engine(<span class="dv">9999</span>), Distribution( <span class="dv">10</span>, <span class="dv">100</span> ) );
+
+cout &lt;&lt; <span class="st">&quot;Random value: &quot;</span> &lt;&lt; gen() &lt;&lt; endl;</code></pre></div>
+<p>The minstd_rand engine requires a seed, here we seed it with 9999. We also provide the uniform_real_distribution an output range of [10.0,100.0).</p>
+<p><strong>Simple Random Generator Class</strong></p>
+<p>If all I want is to generate some random number simply and quickly, the C++ <random> looks truly foreboding! :-(</p>
+<p>Here is a simple random number generator class that wraps up the complexity to provide a simple interface:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;random&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">class</span> MyRandom
+{
+<span class="kw">private</span>:
+    <span class="co">// Types</span>
+    <span class="kw">typedef</span> minstd_rand                             Engine;
+    <span class="kw">typedef</span> uniform_real_distribution&lt;<span class="dt">float</span>&gt;        Distribution;
+    <span class="kw">typedef</span> variate_generator&lt;Engine, Distribution&gt; Generator;
+
+    <span class="co">// To hold the generator</span>
+    Generator* _gen;
+
+<span class="kw">public</span>:
+    MyRandom( <span class="dt">int</span> seed, <span class="dt">float</span> minVal, <span class="dt">float</span> maxVal )
+    {
+        _gen = <span class="kw">new</span> Generator( Engine( seed ), Distribution( minVal, maxVal ) );
+    }
+
+    ~MyRandom()
+    {
+        <span class="kw">delete</span> _gen;
+    }
+
+    <span class="dt">float</span> next()
+    {
+        <span class="cf">return</span> (*_gen)();
+    }
+};</code></pre></div>
+<p>The above class interface is influenced by C# Random, which is how simple and accessible C++ should have been! Writing code using the above class is easy:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="at">const</span> <span class="dt">int</span> seed      = <span class="dv">9999</span>;
+<span class="at">const</span> <span class="dt">float</span> minVal  = <span class="dv">10</span>;
+<span class="at">const</span> <span class="dt">float</span> maxVal  = <span class="dv">100</span>;
+MyRandom myRand( seed, minVal, maxVal );
+cout &lt;&lt; <span class="st">&quot;Random value: &quot;</span> &lt;&lt; myRand.next() &lt;&lt; endl;</code></pre></div>
+<p>I hope this post made digesting <random> a wee bit easier! :-)</p>
+</body>
+</html>

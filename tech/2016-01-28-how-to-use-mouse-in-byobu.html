@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to use mouse in Byobu</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to use mouse in Byobu</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-01-28 12:30:19+00:00</h3>
+</div>
+<p>In <strong>Byobu</strong>, you will find that many mouse operations work just like in a raw terminal emulator. For example, you can select content by holding down the left-button and moving the mouse. And pasting by pressing the middle-button. However, you will find that the mouse operations are not Byobu-aware or Tmux-aware. For example, you can select text that spans across two split views.</p>
+<p>Byobu/Tmux has support for mouse operations. When enabled, the mouse operations seem more natural and aware of the split views and windows of Byobu/Tmux. For example, it can be useful to use the mouse for operations such as selecting a split, resizing a split and for scrolling the console content to view history. However, note that such mouse support is turned off by default.</p>
+<ul>
+<li><p>To <strong>toggle mouse support</strong>, press <code>Alt+F12</code>. (If it does not work, check if the keyboard shortcut is set for something else by your window manager.) When mouse support is on, the mouse cursor turns into an arrow. When it is off, the mouse cursor is an I-beam. When you toggle, you can see that <code>Mouse: ON</code> or <code>Mouse: OFF</code> is displayed at the bottom of Byobu.</p></li>
+<li><p>To <strong>select a split window</strong>, just click anywhere inside it using the mouse.</p></li>
+<li><p>To <strong>resize a split window</strong>, select the split and then drag its thick orange borders.</p></li>
+<li><p>To <strong>scroll the content of a window</strong>, select the window and use the mouse scroller to scroll up and down. You will notice that the scrolling is split-aware. Only the console output inside a split will scroll, not the entire terminal contents.</p></li>
+<li><p>To <strong>enable mouse support by default</strong> for all these operations, add these lines to your <code>~/.byobu/profile.tmux</code>:</p></li>
+</ul>
+<pre><code># Enable mouse support including scrolling
+set -g mouse on 
+# Versions prior to 2.1 may want this too:
+set -g mouse-utf8 on</code></pre>
+<p>Restart Byobu to see the effect.</p>
+<ul>
+<li>One side-effect of enabling mouse in Byobu is that you might find that the middle-click to paste might not work in some terminal emulators like XTerm. You can toggle the mouse support to paste in such situation.</li>
+</ul>
+<p><strong>Tried with:</strong> Byobu 5.77 and Ubuntu 14.04</p>
+</body>
+</html>

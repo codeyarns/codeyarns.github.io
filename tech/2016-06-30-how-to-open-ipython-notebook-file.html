@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>How to open IPython Notebook file</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">How to open IPython Notebook file</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2016-06-30 12:26:44+00:00</h3>
+</div>
+<p>The <code>.ipynb</code> file is an <strong>IPython Notebook</strong> file containing the Python commands, output and notes that another user has recorded.</p>
+<p>To be able to create or open this file, we need to install <strong>IPython</strong> and its <strong>notebook</strong> package:</p>
+<pre><code>$ sudo apt install ipython-notebook</code></pre>
+<p>After installation, it is invoked as:</p>
+<pre><code>$ ipython notebook</code></pre>
+<p>This open a Mathematica-like web interface in your browser. You can create new IPython Notebook files or open existing files for viewing.</p>
+<p>On a recent IPython Notebook file, I got this error when I opened it:</p>
+<pre><code>Error loading notebook
+Unreadable Notebook: Unsupported JSON nbformat version 4 (supported version: 3)</code></pre>
+<p>This means that a more recent version of notebook package needs to be used to open this file. More confusingly, the notebook package has been moved into a new project called <a href="http://jupyter.org/"><strong>Jupyter</strong></a>. Since this is a new development its package was not available on my ancient Ubuntu.</p>
+<p>I installed it from PyPI using:</p>
+<pre><code>$ sudo pip3 install jupyter</code></pre>
+<p>To open its notebook web interface:</p>
+<pre><code>$ jupyter-notebook</code></pre>
+<p>I was able to open the problematic IPython Notebook file correctly using this.</p>
+<p><strong>Tried with:</strong> Jupyter 4.x and Ubuntu 14.04</p>
+</body>
+</html>
