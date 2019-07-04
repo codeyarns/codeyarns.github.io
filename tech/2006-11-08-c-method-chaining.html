@@ -14,8 +14,17 @@
 <h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2006-11-08 11:21:47+00:00</h3>
 </div>
-<p>I recently had to do this to an object: <code>Fbo f; f.setType(GL_FLOAT); f.setFormat(GL_RGB); f.setIntFormat(GL_RGB32F_ARB); f.init();</code> In this case, calling so many functions was inevitable since I was setting this particular object to non-default values. That is okay, but I would like to do the above like this: <code>Fbo f; f.setType(GL_FLOAT).setFormat(GL_RGB).setIntFormat(GL_RGB32F_ARB).init();</code> This is called <em>method chaining</em> and is a neat C++ trick.</p>
-<p>All that is needed for this to work is that every function that is involved in the chaining (except the rightmost one) needs to <code>return *this</code> at the end of the call. For example: ` `</p>
+<p>I recently had to do this to an object:</p>
+<pre><code>Fbo f;
+f.setType(GL_FLOAT);
+f.setFormat(GL_RGB);
+f.setIntFormat(GL_RGB32F_ARB);
+f.init();</code></pre>
+<p>In this case, calling so many functions was inevitable since I was setting this particular object to non-default values. That is okay, but I would like to do the above like this:</p>
+<pre><code>Fbo f;
+f.setType(GL_FLOAT).setFormat(GL_RGB).setIntFormat(GL_RGB32F_ARB).init();</code></pre>
+<p>This is called <em>method chaining</em> and is a neat C++ trick.</p>
+<p>All that is needed for this to work is that every function that is involved in the chaining (except the rightmost one) needs to <code>return *this</code> at the end of the call. For example:</p>
 <pre><code>class Fbo
 {
     Fbo&amp; setType(GLenum type)
