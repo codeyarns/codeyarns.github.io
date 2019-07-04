@@ -27,5 +27,7 @@
 <p>I had a simple graphics program written using OpenGL and using GLUT for windowing. To get more windowing functionality, I wanted to move it to wxWidgets. I picked an <a href="http://wiki.wxwidgets.org/WxGLCanvas">example program</a> that uses OpenGL in wxWidgets. It compiled and worked correctly. When I placed my OpenGL code into this example, I got a segmentation fault at the <code>glCreateShader</code> call in my code.</p>
 <h1 id="solution">Solution</h1>
 <p>I had a <code>glewInit</code> in my original code. I had put this in the application class constructor. Apparently, wxWidgets <a href="http://forums.wxwidgets.org/viewtopic.php?t=35011">requires that</a> the first OpenGL or GLEW call be placed inside the <code>OnPaint</code> event handler function. Look for <code>EVT_PAINT</code> to find this function. Once I did that, the error disappeared and OpenGL worked.</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

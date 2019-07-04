@@ -77,5 +77,7 @@ v.shrink_to_fit(); <span class="co">// Capacity of v is now 0</span></code></pre
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">vector&lt; <span class="dt">int</span> &gt;().swap( v ); <span class="co">// Capacity of v is now 0</span></code></pre></div>
 <p>Our original vector now points to the (empty) space of the new vector. The new vector now points to the capacity of the old vector. But, the lifetime of the new vector is the scope of this statement. As soon as that scope ends, the new vector is deleted, thus freeing the memory occupied by the old vector.</p>
 <p><strong>Tried with:</strong> Visual C++ 2010</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

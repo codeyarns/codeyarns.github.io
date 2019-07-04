@@ -31,5 +31,7 @@
 <p>Coming back to <code>abs()</code>, since its return type is the same as the input type it simply cannot represent the positive value (<code>-INT_MIN</code>) in an <code>int</code>. Thus, it returns back <code>INT_MIN</code>.</p>
 <p>The binary representation of <code>0</code> is <code>00000000000000000000000000000000</code> and the binary representation of <code>INT_MIN</code> is <code>10000000000000000000000000000000</code>. That is, <code>INT_MIN</code> is same as 0, with MSB set to 1. Quirks of integers, such as with abs(), could have been avoided if the int format had been defined with two zero values: a positive zero (<code>00000000000000000000000000000000</code>) and a negative zero (<code>10000000000000000000000000000000</code>).</p>
 <p>Anyway, the reason you need to be careful about <code>abs()</code> is because you might be using its return value to index into an array. Indexing an array using a negative value can be disastrous or result in a hard-to-replicate bug.</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

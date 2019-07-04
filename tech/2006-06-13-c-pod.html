@@ -32,5 +32,7 @@
 <p>As an example, the C declaration struct Fred x; does not initialize the members of the Fred variable x. To make this same behaviour happen in C++, Fred would need to not have any constructors. Similarly to make the C++ version of copying the same as the C version, the C++ Fred must not have overloaded the assignment operator. To make sure the other rules match, the C++ version must not have virtual functions, base classes, non-static members that are private or protected, or a destructor. It can, however, have static data members, static member functions, and non-static non-virtual member functions.</p>
 The actual definition of a POD type is recursive and gets a little gnarly. Here's a slightly simplified definition of POD: a POD type's non-static data members must be public and can be of any of these types: bool, any numeric type including the various char variants, any enumeration type, any data-pointer type (that is, any type convertible to void*), any pointer-to-function type, or any POD type, including arrays of any of these. Note: data-pointers and pointers-to-function are okay, but pointers-to-member are not. Also note that references are not allowed. In addition, a POD type can't have constructors, virtual functions, base classes, or an overloaded assignment operator.
 </blockquote>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

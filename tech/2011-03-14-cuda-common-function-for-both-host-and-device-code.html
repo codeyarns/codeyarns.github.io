@@ -133,5 +133,7 @@ __global__ <span class="dt">void</span> fooKernel( <span class="at">const</span>
 <span class="co">/////////////////////////////////////////////////</span></code></pre></div>
 <p>Doing it the other way around will not work! That is, placing the <code>__host__ __device__</code> function in <code>fooHost.cu</code> and sharing its function declaration to <code>fooDevice.cu</code> does not work since the CUDA compiler needs the ability to inline a <code>__device__</code> function. And inlining a function is only possible if the entire function definition is available.</p>
 <p><strong>Tried with</strong>: CUDA 3.2</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

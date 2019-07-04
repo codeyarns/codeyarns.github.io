@@ -31,5 +31,7 @@ what():  unload of CUDA runtime failed</code></pre>
 <p>This cryptic error typically occurs if you are using Thrust <code>device_vector</code> in your program. I found that this error occurs when I have a <code>device_vector</code> which is destroyed after the CUDA runtime has been unloaded.</p>
 <p>For example, this can happen if you have declared a vector as a global variable. At the end of the program, the CUDA runtime is unloaded. If the destructor of the vector is called after this, it cannot destroy fully since it needs the CUDA runtime. Moving these global vectors inside functions or classes might fix the error.</p>
 <p><strong>Tried with:</strong> CUDA 5 and Ubuntu 12.04 LTS</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

@@ -32,5 +32,7 @@ No symbol &quot;i&quot; in current context</code></pre>
 <p>The culprit turned out to be a mismatch between the compiler and debugger! I had recently switched to GCC 4.8, a newer version. However, I was still using the old version of GDB. In v4.8, GCC produces debugging information in the <strong>DWARF4</strong> format, as explained in its <a href="http://gcc.gnu.org/gcc-4.8/changes.html">release notes</a>. However, this older version of GDB could only understand DWARF3 or versions older than that. It was failing silently when local variables were requested.</p>
 <p>The solution was simple: request GCC to produce debugging information in the older format by specifying <code>-gdwarf-3</code>. Once I did this, GDB could print local variables and they appeared in Eclipse CDT too.</p>
 <p><strong>Tried with:</strong> GCC 4.8, GDB 7.4 and Ubuntu 12.04 LTS</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

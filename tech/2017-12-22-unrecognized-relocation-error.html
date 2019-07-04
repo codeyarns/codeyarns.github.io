@@ -32,5 +32,7 @@
 <p>At first I suspected some problem with the symbol that you see the linker complaining about above. But using <strong>nm</strong> I found that the symbol was present and was defined in the archive library file.</p>
 <p>Only after eliminating all other possibilities did I discover that the problem was the compiler version. The archive library file had been compiled using GCC 4.8. The linking was being done on a different computer where the compiler was GCC 5.x. The C++ ABI had changed along with the major version difference between the two compilers and this was causing the problem.</p>
 <p>Once I rebuilt OpenCV with GCC 5.x and used its archive library file, the linking proceeded smoothly.</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

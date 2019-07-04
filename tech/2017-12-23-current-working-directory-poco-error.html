@@ -30,5 +30,7 @@ make[1]: Leaving directory</code></pre>
 <p>The same code had built successfully on another computer, so I knew there was nothing wrong.</p>
 <h1 id="solution">Solution</h1>
 <p>Turns out that this error is actually caused if the path where you have unzipped Poco has a symlink in it. The <code>someplace</code> directory above was actually a symbolic link. Once I copied Poco to a path which had no symlink, it compiled fine.</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

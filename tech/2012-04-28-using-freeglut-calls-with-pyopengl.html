@@ -67,5 +67,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>OpenGL.error.NullFunctionError: Undefined GLUT callback function MouseWheel, check for bool(glutMouseWheelFunc) before calling</code></pre>
 <p>On further investigation, it turns out that PyOpenGL chooses the first available DLL between glut and freeglut. This can be seen in <code>Python32\Lib\site-packages\OpenGL\platform\win32.py</code>. So, to get FreeGLUT functionality, we need to make PyOpenGL to pick the freeglut DLL file instead of glut. We can do this by deleting the glut DLL file(s) in <code>Python32\Lib\site-packages\OpenGL\DLLS</code>. Once this is done, PyOpenGL should pick the freeglut DLL and the FreeGLUT calls should be routed to it without any problem.</p>
 <p><strong>Tried with:</strong> PyOpenGL 3.0.2a6 and Python 3.2 64-bit</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

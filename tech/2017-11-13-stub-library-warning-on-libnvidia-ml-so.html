@@ -41,5 +41,7 @@ to have Display Driver installed).</code></pre>
 <p>Since the binary has an RPATH, described <a href="https://codeyarns.com/2017/11/02/how-shared-library-locations-are-found-at-runtime/">here</a>, with the stubs path, the stub library was getting picked up with high preference over the actual libnvidia-ml.so, which was present in . The solution I came up with for this problem was to add a command to the docker run invocation to delete the stubs directory:</p>
 <pre><code>$ rm -rf  /usr/local/cuda/lib64/stubs</code></pre>
 <p>That way, it was still available outside Docker for compilation. It would just appeared deleted inside the Docker container, thus forcing the loader to pick up the real libnvidia-ml.so during execution.</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>

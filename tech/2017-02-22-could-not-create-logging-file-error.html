@@ -30,5 +30,7 @@ COULD NOT CREATE A LOGGINGFILE 20170221-111719.33617!I0221 11:17:19.399444 33617
 <h1 id="solution">Solution</h1>
 <p>This error turned out to be from <strong>GLog</strong>, the Google logging module. Caffe uses GLog for its logging. On this particular remote computer, the <code>GLOG_log_dir</code> environment variable had been set, but to a non-existent path! This was the reason GLog was complaining. Once I removed this environment variable and restarted the training, I no longer saw the error.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
+<hr />
+<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
 </body>
 </html>
