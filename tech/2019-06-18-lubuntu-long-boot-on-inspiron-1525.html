@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Lubuntu long boot on Inspiron 1525</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">Lubuntu long boot on Inspiron 1525</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-06-18 16:38:09+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I installed <strong>Lubuntu</strong> 18.04, the LXDE variant of Ubuntu, on an old <strong>Dell Inspiron 1525</strong> laptop. It worked, but every bootup would take several long minutes.</p>
+<h1 id="solution">Solution</h1>
+<p>Turns out that this is a known problem for this Dell laptop reported <a href="https://www.reddit.com/r/linuxmint/comments/ajvlxx/dell_inspiron_1525_very_long_boot_on_linux_mint/">here</a>. I followed these steps:</p>
+<ul>
+<li>Opened Grub config file:</li>
+</ul>
+<pre><code>$ sudo vi /etc/default/grub</code></pre>
+<ul>
+<li>Change the Grub commandline option to be:</li>
+</ul>
+<pre><code>GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash video=SVIDEO-1:d&quot;</code></pre>
+<ul>
+<li>Update Grub and reboot:</li>
+</ul>
+<pre><code>$ sudo update-grub
+$ sudo reboot</code></pre>
+<p>Boot time dropped dramatically to about a minute after this change.</p>
+</body>
+</html>

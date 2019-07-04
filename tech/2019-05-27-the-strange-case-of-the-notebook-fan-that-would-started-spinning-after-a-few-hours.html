@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>The strange case of the notebook fan that would started spinning after a few hours</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">The strange case of the notebook fan that would started spinning after a few hours</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-27 00:28:58+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>A problem started to happen last week with my Dell notebook running <strong>Windows 10</strong>. After I kept it open for a few hours, its fan would start spinning noisily and never stop. This started to happen without a fail every day. The only brute force solution that worked was to restart Windows. That would keep the fans silent for a few hours before they would start all over again.</p>
+<h1 id="investigation">Investigation</h1>
+<p>From the minimized <strong>Task Manager</strong> CPU graph I could see that all 8 logical CPU cores seem to have been engaged 100 percent by some process. Opening Task Manager to watch what process was causing this was a dead end because Task Manager window would freeze when restored. In the end, I had to try the same with <strong>Process Explorer</strong> and leave its window open to catch the rogue service: <strong>WmiPrvSE.exe</strong>.</p>
+<p>Looking into this service turned out to be a dead end. It did not lead to any suitable culprit and it was not clear why this service was going all hammer and tongs on the cores.</p>
+<p>I then looked at the problem from a different angle: this problem was new. What had changed on my Windows recently? I had installed the <strong>1809 update</strong> for its WSL feature. And after that I had switched over from Cygwin to <strong>Ubuntu 18.04</strong> running on WSL. And indeed the problem seemed to only occur when I had Ubuntu open for a few hours.</p>
+<p>The next time this happened, I tried <strong>htop</strong> in Ubuntu. Just like Task Manager and Process Explorer, htop too hung. But I left it open nevertheless and after a while it showed that there were hundreds of <code>wget</code> and <code>timeout 1 wget</code> commands taking over all the cores! Who was running this automatically after a few hours in Ubuntu?</p>
+<p>Using Google helped to reveal a new suspect: <strong>byobu</strong>. This is the terminal multiplexer that I use in Ubuntu. Checking its <a href="https://github.com/dustinkirkland/byobu">source code</a> confirmed that it was using wget commands to get the host IP address (don't ask me why!). I am guessing it does it periodically to keep its IP address updated. And this simple lookup was somehow acting like a virus outburst after a few hours. Why?</p>
+<p>It turns out that WSL has a serious <a href="https://github.com/microsoft/WSL/issues/3951">bug</a>: if you open a large number of non-blocking TCP connections its ephemeral ports are exhausted. I guess the byobu's regular requests, when performed over a span of hours, exhausted this. And after that the <strong>LxssManager</strong> service, which is the layer that enables ELF executables to be executed on Windows, would go crazy. The only solution at this point: <a href="https://github.com/Microsoft/WSL/issues/634">restart LxssManager</a>.</p>
+<h1 id="solution">Solution</h1>
+<p>So the solution is: if possible do not use Byobu on Ubuntu WSL. If you get this problem, then restart LxssManager by opening a CMD window with Administrator privilege and running these commands:</p>
+<pre><code>sc stop LxssManager
+sc start LxssManager</code></pre>
+<p>Note that stopping the LxssManager service kills Ubuntu.</p>
+</body>
+</html>

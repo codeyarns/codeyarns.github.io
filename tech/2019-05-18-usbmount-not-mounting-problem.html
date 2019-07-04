@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>USBMount not mounting problem</title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="header">
+<h1 class="title">USBMount not mounting problem</h1>
+<h2 class="author">Ashwin Nanjappa</h2>
+<h3 class="date">2019-05-18 19:17:14+00:00</h3>
+</div>
+<h1 id="problem">Problem</h1>
+<p>I had a portable harddisk connected using USB to my <strong>Raspberry Pi B+ Rev3</strong> running <strong>Raspbian 9</strong>. The harddisk had two partitions: NTFS and ext4. I had <strong>usbmount</strong> installed and configured as described <a href="https://codeyarns.com/2015/07/03/how-to-configure-usbmount/">here</a>. When Raspbian is booted up with the harddisk already plugged in, I could see using <code>sudo fdisk -l</code> that the ext4 partition was visible. So, usbmount should have automatically mounted this ext4 partition to <code>/media/usb0</code>, but it was not doing that.</p>
+<p>I had verbose logging enabled for <strong>usbmount</strong> as described <a href="https://codeyarns.com/2015/07/03/how-to-configure-usbmount/">here</a>. When I searched the system log I could see that usbmount was actually mounting the ext4 partition, but surprisingly it was not visible at <code>/media/usb0</code>:</p>
+<pre><code>$ cat /var/log/syslog | grep usbmount
+980:May 18 11:42:28 my-pi usbmount[373]: /dev/sda2 contains filesystem type ext4
+989:May 18 11:42:28 my-pi usbmount[373]: mountpoint /media/usb0 is available for /dev/sda2
+991:May 18 11:42:28 my-pi usbmount[373]: executing command: mount -text4 -osync,noexec,nodev,noatime,nodiratime /dev/sda2 /media/usb0
+1010:May 18 11:42:28 my-pi usbmount[373]: executing command: run-parts /etc/usbmount/mount.d
+1013:May 18 11:42:28 my-pi usbmount[373]: usbmount execution finished</code></pre>
+<h1 id="solution">Solution</h1>
+<p>Turned out that <strong>systemd</strong> was the culprit. It was having a <code>MountFlags=slave</code> in its <code>systemd-udevd.service</code> file. So, the mount operation of usbmount was mounting into the namespace of systemd and not to the user.</p>
+<p>To change this mount option, run this command:</p>
+<pre><code>$ sudo systemctl edit systemd-udevd</code></pre>
+<p>Add these lines to the file that is opened:</p>
+<pre><code>[Service]
+MountFlags=shared</code></pre>
+<p>I found that this created the file <code>/etc/systemd/system/systemd-udevd.service.d/override.conf</code> with the above lines.</p>
+<p>Restart systemd or your Pi:</p>
+<pre><code>$ sudo systemctl daemon-reload
+$ sudo service systemd-udevd --full-restart</code></pre>
+<p>After the restart, I found that usbmount had automatically mounted my ext4 partition.</p>
+<p><strong>References:</strong></p>
+<ul>
+<li><p>https://bugs.launchpad.net/ubuntu/+source/usbmount/+bug/1768010</p></li>
+<li><p>https://unix.stackexchange.com/questions/330094/udev-rule-to-mount-disk-does-not-work/441588#441588</p></li>
+</ul>
+</body>
+</html>
