@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Error: Can not get new positive sample</title>
+  <title>Code Yarns – Error: Can not get new positive sample</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Error: Can not get new positive sample</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-09-01 07:55:36+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was in the process of training a cascade classifier. I had exactly 354 positive samples and yet I got this error from <code>opencv_traincascade</code> when it entered stage 2:</p>
 <pre><code>$ opencv_traincascade -data car-classifier -vec pos-samples.vec -bg neg-image-filepaths.txt -precalcValBufSize 256 -precalcIdxBufSize 256 -numPos 354 -numNeg 4000 -nstages 20 -minhitrate 0.999 -maxfalsealarm 0.5 -w 50 -h 50 -nonsym -baseFormatSave 
 PARAMETERS:
@@ -70,12 +71,12 @@ OpenCV Error: Bad argument (Can not get new positive sample. The most possible r
 terminate called after throwing an instance of &#39;cv::Exception&#39;
   what():  opencv-2.4.9/apps/traincascade/imagestorage.cpp:162: error: (-5) Can not get new positive sample. The most possible reason is insufficient count of samples in given vec-file.
  in function get</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>This problem seems to be very common. One possible solution is here. I took the hint from that and reduced the number of positive samples I provided as input to the program. Note that you need more positive samples to be present in the <code>.vec</code> file, just pass a smaller number to the program so it has some left over when it starts stage 1.</p>
 <p>Here is the modified invocation I used:</p>
 <pre><code>$ opencv_traincascade -data car-classifier -vec pos-samples.vec -bg neg-image-filepaths.txt -precalcValBufSize 256 -precalcIdxBufSize 256 -numPos 200 -numNeg 2000 -nstages 20 -minhitrate 0.999 -maxfalsealarm 0.5 -w 50 -h 50 -nonsym -baseFormatSave</code></pre>
 <p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

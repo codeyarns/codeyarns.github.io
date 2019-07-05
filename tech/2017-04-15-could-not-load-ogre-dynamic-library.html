@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Could not load OGRE dynamic library</title>
+  <title>Code Yarns – Could not load OGRE dynamic library</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,15 +18,16 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Could not load OGRE dynamic library</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-04-15 07:22:18+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I had an binary compiled on <strong>Ubuntu 14.04</strong>. I tried to run it on <strong>Ubuntu 16.04</strong> and got this error:</p>
 <pre><code>OGRE EXCEPTION(7:InternalErrorException): Could not load dynamic library /usr/lib/x86_64-linux-gnu/OGRE-1.8.0/RenderSystem_GL</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>From the error, I could see that it was looking for an <strong>OGRE</strong> library file. I installed the OGRE library available on Ubuntu 16.04:</p>
 <pre><code>$ sudo apt install libogre-1.9-dev</code></pre>
 <p>The error still persisted, because Ubuntu 16.04 only has OGRE 1.9, while this binary was looking for OGRE 1.8 library files.</p>
@@ -35,6 +36,6 @@
 $ ln -s OGRE-1.9.0 OGRE-1.8.0</code></pre>
 <p>This worked! The executable ran without problems. This saved me from having to build OGRE 1.8 from source on this computer.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

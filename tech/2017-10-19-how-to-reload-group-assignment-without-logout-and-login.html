@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to reload group assignment without logout and login</title>
+  <title>Code Yarns – How to reload group assignment without logout and login</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to reload group assignment without logout and login</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-10-19 15:11:20+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was working in a shell in KDE. I installed <strong>Docker</strong> as described <a href="https://codeyarns.com/2017/10/19/how-to-install-docker/">here</a>. To be able to run Docker commands, my username should be in the <code>docker</code> group, so I added that. Now I need to logout and login out of my desktop environment for my username's new group assignments to be picked up. Otherwise, running any Docker command throws this error:</p>
 <pre><code>$ docker images
 Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.32/images/json: dial unix /var/run/docker.sock: connect: permission denied</code></pre>
@@ -31,7 +32,7 @@ Got permission denied while trying to connect to the Docker daemon socket at uni
 <pre><code>$ id</code></pre>
 <p>You will find that the <code>docker</code> group will not appear in the user's group assignment, though the user has been already added to it. Creating a new shell or a child shell does not achieve what we want.</p>
 <p>The only way to get the new group assignment is to logout and login from the desktop environment. The problem I have so many other GUI applications open in my desktop environment. I cannot afford to logout and login from my desktop environment, especially for a shell command to work!</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>So, what we want is a shell environment that is similar to what is presented when you login directly at a virtual terminal. Thankfully, we can do that by using the <code>-</code> option of the <strong>su</strong> command, like this:</p>
 <pre><code>$ su - joe
 $ docker images
@@ -40,6 +41,6 @@ It works!</code></pre>
 <pre><code>$ sg docker -c &quot;docker images&quot;</code></pre>
 <p><strong>Tried with:</strong> Docker 17.09 and Ubuntu 16.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

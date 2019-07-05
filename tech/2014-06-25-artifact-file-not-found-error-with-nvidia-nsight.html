@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Artifact file not found error with NVIDIA NSight</title>
+  <title>Code Yarns – Artifact file not found error with NVIDIA NSight</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,20 +18,21 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Artifact file not found error with NVIDIA NSight</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-06-25 05:05:24+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I tried to install the Vrapper plugin to NVIDIA NSight. Everything went fine until the last step, which gave this error:</p>
 <pre><code>An error occurred while installing the items
 session context was:(profile=cider, phase=org.eclipse.equinox.internal.p2.engine.phases.Install, operand=null --&gt; [R]org.eclipse.equinox.launcher.gtk.linux.x86_64 1.1.200.v20120913-144807, action=org.eclipse.equinox.internal.p2.touchpoint.eclipse.actions.InstallBundleAction).
 The artifact file for osgi.bundle,org.eclipse.equinox.launcher.gtk.linux.x86_64,1.1.200.v20120913-144807 was not found.</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>Go to <code>~/.eclipse</code>. One of the subdirectories here holds the configuration files for NSight. The other subdirectory might be for Eclipse, if you have installed it and are using it. Delete the NSight subdirectory. Open NSight again and try installing Vrapper. It worked this time for me.</p>
 <p><strong>Tried with:</strong> Vrapper 0.44, NVIDIA NSight 5.5 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

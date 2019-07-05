@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>The strange case of gdb not finding any symbol</title>
+  <title>Code Yarns – The strange case of gdb not finding any symbol</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,21 +18,22 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">The strange case of gdb not finding any symbol</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-02-18 15:37:34+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I compiled C++ code using the <code>g++</code> compiler. The <code>-g</code> option was specified so that the executable had debugging information. I could run the program using <code>gdb</code> and place breakpoints and look at the source code. However, when I tried to print the value of a variable in gdb, it threw this strange error:</p>
 <pre><code>(gdb) print i
 No symbol &quot;i&quot; in current context</code></pre>
 <p>I tried using Eclipse CDT to compile and debug the same C++ code. Again, I got a similar result. I could run in Debug mode and the program could stop at a breakpoint. However, the <strong>Variables</strong> window did not show any of the local variables. Hovering the mouse cursor over any local variable did not show its current value!</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>The culprit turned out to be a mismatch between the compiler and debugger! I had recently switched to GCC 4.8, a newer version. However, I was still using the old version of GDB. In v4.8, GCC produces debugging information in the <strong>DWARF4</strong> format, as explained in its <a href="http://gcc.gnu.org/gcc-4.8/changes.html">release notes</a>. However, this older version of GDB could only understand DWARF3 or versions older than that. It was failing silently when local variables were requested.</p>
 <p>The solution was simple: request GCC to produce debugging information in the older format by specifying <code>-gdwarf-3</code>. Once I did this, GDB could print local variables and they appeared in Eclipse CDT too.</p>
 <p><strong>Tried with:</strong> GCC 4.8, GDB 7.4 and Ubuntu 12.04 LTS</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

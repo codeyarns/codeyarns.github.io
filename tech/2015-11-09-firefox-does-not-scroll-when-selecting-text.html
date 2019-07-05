@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Firefox does not scroll when selecting text</title>
+  <title>Code Yarns – Firefox does not scroll when selecting text</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,23 +18,24 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Firefox does not scroll when selecting text</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-11-09 12:06:00+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I run into so many small, but irritating problems in UI of programs that I wonder if I am the only one affected by them! Here is another one that took a while to figure out.</p>
 <p>Someone had sent me a long email that was many pages long. I had it open in Gmail in Firefox. I needed to copy a large portion of this email and paste it into another document.</p>
 <p><code>Ctrl + A</code> to <strong>Select All</strong> was not a solution since that selects all the text being displayed, including sections of the Gmail UI. A common solution in this situation it to put the mouse cursor at the start of the text, press down the Left button, drag mouse down until it hits the screen bottom and keep dragging until I reach end of the text I want. This highlights and selects the text portion I want and I can now right-click and choose <strong>Copy</strong> or press <code>Ctrl + c</code> to copy it.</p>
 <p>The strange problem was that, this did not work! Keeping Left mouse button pressed I could drag until screen bottom, but the page would not scroll up allowing me to choose the rest of the text!</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>It turns out that this happens only in Firefox on Ubuntu. It will only happen when Firefox is shown in a <strong>maximized</strong> or <strong>fullscreen</strong> window.</p>
 <p>What is happening is that when the mouse cursor is dragged to hit the screen bottom, something in Firefox UI is not indicating that the cursor is trying to move out of the window. Thus, the webpage is not scrolling.</p>
 <p>Turns out that this is a known bug, reported <a href="https://bugs.launchpad.net/ubuntu/+source/firefox/+bug/744580">here</a> in 2011. Four years on, a good solution is still being debated on.</p>
 <p>Until it is fixed, the solution is simple: <strong>unmaximize</strong> or <strong>restore</strong> your Firefox window so that it is not fullscreen or maximized. Now try the copy operation, the webpage will scroll and it will work! Voila!</p>
 <p><strong>Tried with:</strong> Firefox 42 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

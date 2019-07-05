@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>unpack operator in Python</title>
+  <title>Code Yarns – unpack operator in Python</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -55,13 +55,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">unpack operator in Python</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2012-04-25 16:09:56+00:00</h3>
 </div>
 <p>In Python, the <code>*</code> (asterisk) character is not only used for multiplication and replication, but also for <strong>unpacking</strong>. There does not seem to be any name for this <code>*</code> operator and <code>**</code> operator. So, searching for information on it online can sometimes be difficult. But, they are commonly called as the <strong>unpack</strong> or <strong>splat</strong> operator in this role.</p>
-<h1 id="operator"><code>*</code> operator</h1>
+<h2 id="operator"><code>*</code> operator</h2>
 <p>Applying <code>*</code> on any iterable object, by placing it to the left of the object, produces the individual elements of the iterable. If applied on a list-like iterable, it produces the elements of the list in the order they appear in the list. If applied on a dict-like object, it produces the keys of the dict in the order you would get as if you iterated the dict.</p>
 <p>I imagine this operator as shattering the container that holds the items together, so they are now free and individual. The look of the asterisk character helps bolster this imagination.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> foo(x, y, z):
@@ -84,7 +85,7 @@ d <span class="op">=</span> {<span class="st">&quot;y&quot;</span>: <span class=
 foo(<span class="op">*</span>d)
 <span class="co"># This passes in the keys of the dict</span>
 <span class="co"># First is z then x lastly y</span></code></pre></div>
-<h1 id="operator-1"><code>**</code> operator</h1>
+<h2 id="operator-1"><code>**</code> operator</h2>
 <p>Applying <code>**</code> on any dict-like object, by placing it to the left of the object, produces the individual key-value pairs of the iterable. The order of the key-value pairs produced is in the order you would get as if you iterated the dict.</p>
 <p>This <code>**</code> operator makes it easy to pass a dictionary to a function that has keyword arguments. Just make sure that the number of keys and the name of the keys in the dict exactly match the number and names of the function parameters. If the number of keys is less or more than in the function parameters or if some keys do not match the function parameter names, then the function call fails.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> foo(x, y, z):
@@ -104,6 +105,6 @@ foo(<span class="op">**</span>d)
 <p>For more info, see <a href="http://docs.python.org/tutorial/controlflow.html">More Control Flow Tools</a>.</p>
 <p><strong>Tried with:</strong> Python 3.5.2</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

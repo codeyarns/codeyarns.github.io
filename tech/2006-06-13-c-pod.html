@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>C++: POD</title>
+  <title>Code Yarns – C++: POD</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,9 +18,10 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">C++: POD</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2006-06-13 10:10:32+00:00</h3>
 </div>
 <p>When programming in C++, mixing up C++ and C data types becomes an ugly inevitability. It always throws up some quirky behaviour. <em>POD (Plain Old Data)</em> is one of these I discovered today. C macros can be used unchanged under C++. But, the correct behaviour under C++ depends on the type of data being operated on. It needs to be of POD type.</p>
@@ -33,6 +34,6 @@
 The actual definition of a POD type is recursive and gets a little gnarly. Here's a slightly simplified definition of POD: a POD type's non-static data members must be public and can be of any of these types: bool, any numeric type including the various char variants, any enumeration type, any data-pointer type (that is, any type convertible to void*), any pointer-to-function type, or any POD type, including arrays of any of these. Note: data-pointers and pointers-to-function are okay, but pointers-to-member are not. Also note that references are not allowed. In addition, a POD type can't have constructors, virtual functions, base classes, or an overloaded assignment operator.
 </blockquote>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

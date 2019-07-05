@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>CUDA: Launch Bounds</title>
+  <title>Code Yarns – CUDA: Launch Bounds</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -55,9 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">CUDA: Launch Bounds</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2011-06-27 03:50:22+00:00</h3>
 </div>
 <p>The <strong>CUDA</strong> compiler decides on the number of <strong>registers</strong> to use for a kernel based on its complexity. Such a compiled kernel is flexible enough to be launched with any number of threads or blocks. However, if an approximate idea of the number of threads and blocks is known at compile-time, then this can be used to optimize the kernel for such launches. This is done by informing the compiler of this launch configuration, so that it has a better chance of tweaking the number of registers it will use for the kernel during compilation.</p>
@@ -73,6 +74,6 @@ fooKernel( <span class="dt">int</span>* inArr, <span class="dt">int</span>* outA
 }</code></pre></div>
 <p>The <code>MAX_THREADS_PER_BLOCK</code> parameter is mandatory and the <code>MIN_BLOCKS_PER_MP</code> parameter is optional. Also note that if the kernel is launched with the thread number more than <code>MAX_THREADS_PER_BLOCK</code>, that launch will fail for obvious reasons. <strong> Tried with</strong>: CUDA 4.0</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

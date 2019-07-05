@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Python dict get method</title>
+  <title>Code Yarns – Python dict get method</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,9 +18,10 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Python dict get method</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-07-03 15:57:07+00:00</h3>
 </div>
 <p>The Python dictionary provides an associate array interface to get the value associated with a key:</p>
@@ -38,7 +39,7 @@ None</code></pre>
 cat
 &gt;&gt;&gt; print(d.get(3, &quot;elephant&quot;))
 elephant</code></pre>
-<h1 id="bonus-trick">Bonus trick</h1>
+<h2 id="bonus-trick">Bonus trick</h2>
 <p>In many cases, we might have the key in the dictionary, but its value is set to some default value like <code>None</code> or empty string or empty list or empty dict or such values. But at the point we are picking values from keys assume we want such default-valued keys to return a different default value. The trick is that since such default values default to <code>False</code> in Python, we can use that to our advantage.</p>
 <p>For example, say the dictionary is already created and not under our control. But, whenever I read values from it, I want <code>elephant</code> if the key does not exist or if the value is a default value that evaluates to <code>False</code>. It gives rise to an elegant Python idiom using <code>get</code> method and <code>or</code> operator:</p>
 <pre><code>&gt;&gt;&gt; d = { 1:&quot;cat&quot;, 2:&quot;rat&quot;, 3:None, 4:&quot;&quot; }
@@ -51,6 +52,6 @@ elephant
 &gt;&gt;&gt; v = d.get(99) or &quot;elephant&quot; ; print(v)
 elephant</code></pre>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

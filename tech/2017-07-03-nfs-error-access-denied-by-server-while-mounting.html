@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>NFS error access denied by server while mounting</title>
+  <title>Code Yarns – NFS error access denied by server while mounting</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,16 +18,17 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">NFS error access denied by server while mounting</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-07-03 15:32:08+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I wanted to share a directory that was on my local computer to a remote computer named <code>medusa</code> using <strong>NFS</strong>. I did the setup of the <strong>NFS server</strong> on my local computer and <strong>NFS client</strong> on the remote computer as described <a href="https://codeyarns.com/2013/03/17/how-to-setup-nfs-server-and-client/">here</a>. However, when I mounted the NFS share on the remote computer, I got this error:</p>
 <pre><code>$ sudo mount /mnt/my_nfs_share
 mount.nfs: access denied by server while mounting my-local-computer:/path/i/shared</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>This turned out to be tricky one! The error message is quite a bit misleading because it turned out that the problem had nothing to do with access. Turns out this remote computer <code>medusa</code> had two Ethernet cards and thus two IP addresses. One of the IP addresses was set to the hostname <code>medusa</code>, but the NFS client was using the second IP address.</p>
 <p>The solution was to add the second IP address <code>192.168.0.100</code> as an entry in the <code>/etc/exports</code> file:</p>
 <pre><code>/path/i/shared medusa(rw,sync,no_subtree_check)
@@ -36,6 +37,6 @@ mount.nfs: access denied by server while mounting my-local-computer:/path/i/shar
 <p><strong>Reference:</strong> <a href="https://unix.stackexchange.com/questions/106122/" class="uri">https://unix.stackexchange.com/questions/106122/</a></p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

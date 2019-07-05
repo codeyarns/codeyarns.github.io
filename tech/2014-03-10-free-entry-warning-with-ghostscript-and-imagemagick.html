@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Free entry warning with Ghostscript and ImageMagick</title>
+  <title>Code Yarns – Free entry warning with Ghostscript and ImageMagick</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,18 +18,19 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Free entry warning with Ghostscript and ImageMagick</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-03-10 02:18:48+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I used the <strong>convert</strong> program from <strong>ImageMagick</strong> to convert a PDF file to PNG image files. The program hung with the following warning:</p>
 <pre><code>**** Warning: considering &#39;0000000000 XXXXX n&#39; as a free entry.</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>This warning turns out to be from the <strong>Ghostscript program</strong>, which is used by ImageMagick internally to perform this format conversion. <a href="http://bugs.ghostscript.com/show_bug.cgi?id=692690">This page</a> explains that this error has been fixed in a recent version of Ghostscript. I used a newer version of Ubuntu, that is 13.11, that had a newer version of <code>gs</code> and I was able to perform the format conversion. It still gave off the warning, but the conversion was done.</p>
 <p><strong>Tried:</strong> ImageMagick 6.6.9-7 and Ghostscript 9.05 on Ubuntu 12.04 and ImageMagick 6.7.7-10 and Ghostscript 9.10 on Ubuntu 13.11</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

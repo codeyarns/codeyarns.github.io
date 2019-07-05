@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to work with Git submodules</title>
+  <title>Code Yarns – How to work with Git submodules</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,33 +18,34 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to work with Git submodules</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2016-02-10 12:43:18+00:00</h3>
 </div>
 <p>Working with <strong>submodules</strong> in <strong>Git</strong> can be a bit confusing and painful, especially when there is a hierarchy of submodules in the main module. However, organization of submodules in this manner are found in many <strong>Github</strong> repositories. So, you will need to know how to work with this setup. Many folks use Git clients like <strong>SmartGit</strong> that make it easy to work with submodules. However, sooner or later the complexity that Git exposes will bite back requiring one to revert back to the shell to operate.</p>
 <p>Here are the Git practices and incantations I have found useful to work with submodules:</p>
-<h1 id="clone">Clone</h1>
+<h2 id="clone">Clone</h2>
 <p>When you clone a Git repository that has submodules, the submodules are not cloned.</p>
 <p>To clone the main module and all its submodules:</p>
 <pre><code>$ git clone --recursive git@github.com:jpe/some_repo.git</code></pre>
 <p>I prefer to use the normal clone, followed by initializing and updating all submodules:</p>
 <pre><code>$ git clone git@github.com:jpe/some_repo.git
 $ git submodule update --init --recursive</code></pre>
-<h1 id="fetch">Fetch</h1>
+<h2 id="fetch">Fetch</h2>
 <p>Each of the submodules are usually linked to remote repositories (like Github or NFS). To fetch changes for remotes of the main module and all remotes of the submodules:</p>
 <pre><code>$ git fetch --all --recurse-submodules</code></pre>
-<h1 id="update">Update</h1>
+<h2 id="update">Update</h2>
 <p>After checking out a branch (or revision) on the main module, you need to update the submodules too:</p>
 <pre><code>$ git checkout foo_local_branch
 $ git submodule update --recursive --force</code></pre>
 <p>Note that this is similar to the command used in clone above, except we do not use <code>--init</code>. The <code>--force</code> is optional, but I like to use since if some files or directories were removed or added between checkouts. If you do not use <code>--force</code>, then the update will not finish and quit with a warning like this:</p>
 <pre><code>warning: unable to rmdir foobar: Directory not empty</code></pre>
-<h1 id="status">Status</h1>
+<h2 id="status">Status</h2>
 <p>To list all the submodules and their revisions:</p>
 <pre><code>$ git submodule status --recursive</code></pre>
-<h1 id="remotes">Remotes</h1>
+<h2 id="remotes">Remotes</h2>
 <p>If you will be changing any of the submodules, then remember to fork those repositories (on Github) and add those remotes. Note that you will need to do this even if you have forked the main module and cloned from that forked repo.</p>
 <p>For <code>fruit</code> and <code>fruit/apple</code> directories that are nested submodules under the main module:</p>
 <pre><code>$ cd fruit
@@ -52,7 +53,7 @@ $ git remote add joe_fruit_remote git@github.com:joe/fruit_repo.git
 
 $ cd apple
 $ git remote add joe_apple_remote git@github.com:joe/apple_repo.git</code></pre>
-<h1 id="commit">Commit</h1>
+<h2 id="commit">Commit</h2>
 <p>A revision or branch of the main module will be tied to particular revisions of its submodules. That is, the submodules appear as <strong>detached HEAD</strong> revisions. Also, it is the revision of a submodule that is committed to a parent module. All of this gets messy when you have a hierarchy of submodules.</p>
 <p>So, when you checkout a local branch on the main module <strong>and</strong> you need to modify files in a hierarchy of submodules, the typical workflow is to:</p>
 <ul>
@@ -82,7 +83,7 @@ $ git commit -m &quot;Changes in fruit go next&quot;
 $ cd ..
 $ git add -u
 $ git commit -m &quot;Commit new fruit submodule revision to main module&quot;</code></pre>
-<h1 id="push">Push</h1>
+<h2 id="push">Push</h2>
 <p>Each of the submodules are usually linked to remote repositories (like Github or NFS). It is a good idea to push the local branches you created in submodules (see above) to remote branches in your fork on your remote. This makes it easy to give <strong>pull request</strong> later (see next section below).</p>
 <p>Continuing from our example above:</p>
 <pre><code>$ cd fruit
@@ -95,13 +96,13 @@ $ git push joe_fruit_remote fruit_remote_branch
 
 $ cd ..
 $ git push origin foo_remote_branch</code></pre>
-<h1 id="pull-request">Pull request</h1>
+<h2 id="pull-request">Pull request</h2>
 <p>After your changes are done, you typically need to give a pull request (on Github) from your branch to a master branch which is typically owned by someone else. To do this:</p>
 <ul>
 <li><p>Push the local branches of all changed submodules to their remotes. (See Push section above).</p></li>
 <li><p>Give multiple pull requests, one from each submodule repository that has changed.</p></li>
 </ul>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

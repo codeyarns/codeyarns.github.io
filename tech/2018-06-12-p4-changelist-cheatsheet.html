@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>p4 changelist cheatsheet</title>
+  <title>Code Yarns – p4 changelist cheatsheet</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,9 +18,10 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">p4 changelist cheatsheet</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2018-06-12 05:29:35+00:00</h3>
 </div>
 <p>A <strong>changelist</strong> in <strong>Perforce</strong> is identified by an unique number and contains a list of modified files and a description (among other things). When you inform Perforce that you have created a file, deleted a file or modified a file, such changed files are by default added to a <strong>default changelist</strong> that has no changelist number.</p>
@@ -42,7 +43,7 @@
 <li>To move a file from an existing changelist 123456 to the default changelist:</li>
 </ul>
 <pre><code>$ p4 reopen -c default joe/foobar.cpp</code></pre>
-<h1 id="description">Description</h1>
+<h2 id="description">Description</h2>
 <ul>
 <li>To view the description of a changelist:</li>
 </ul>
@@ -51,7 +52,7 @@
 <li>To edit the description of an existing changelist 123456:</li>
 </ul>
 <pre><code>$ p4 change -u 123456</code></pre>
-<h1 id="shelve">Shelve</h1>
+<h2 id="shelve">Shelve</h2>
 <ul>
 <li>To shelve the files from a changelist 123456:</li>
 </ul>
@@ -82,7 +83,7 @@
 <li>To delete a few files from a shelved changelist 123456:</li>
 </ul>
 <pre><code>$ p4 shelve -d -c 123456 joe/foo.cpp joe/foo.h</code></pre>
-<h1 id="unshelve">Unshelve</h1>
+<h2 id="unshelve">Unshelve</h2>
 <ul>
 <li>To unshelve the files that were shelved from a changelist 123456 back to the same changelist:</li>
 </ul>
@@ -95,7 +96,7 @@
 <li>To unshelve the files that were shelved from a changelist 123456 back to the default changelist:</li>
 </ul>
 <pre><code>$ p4 unshelve -s 123456</code></pre>
-<h1 id="submit">Submit</h1>
+<h2 id="submit">Submit</h2>
 <ul>
 <li>To create a changelist from the default changelist and submit it to your branch in the depot:</li>
 </ul>
@@ -105,6 +106,6 @@
 </ul>
 <pre><code>$ p4 submit -c 123456</code></pre>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Clock skew detected during make</title>
+  <title>Code Yarns – Clock skew detected during make</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,16 +18,17 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Clock skew detected during make</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-10-25 15:17:59+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was trying to build source files on a remote server using <strong>make</strong>. The make command would sometimes throw up a <strong>clock skew</strong> warning like this:</p>
 <pre><code>make[2]: Warning: File `foobar.cpp&#39; has modification time 36 s in the future
 make[2]: warning:  Clock skew detected.  Your build may be incomplete</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>It turns out that these source files were actually shared from another computer to this remote server using <strong>NFS</strong>. Using the <strong>date</strong> command at the local computer and the remote server, I found that there was a difference of a few seconds between the two.</p>
 <p>More investigation showed that only the local computer was using <strong>NTP</strong> and so its time was correct. The remote server was not using NTP and so its time was wrong.</p>
 <p>To install and enable NTP on the remote server, I used these commands:</p>
@@ -37,6 +38,6 @@ $ sudo service ntp reload</code></pre>
 <p><strong>Reference:</strong> <a href="https://help.ubuntu.com/14.04/serverguide/NTP.html">Time Synchronisation with NTP</a></p>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

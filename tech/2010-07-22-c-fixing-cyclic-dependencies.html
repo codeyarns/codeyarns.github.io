@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>C++: Fixing Cyclic Dependencies</title>
+  <title>Code Yarns – C++: Fixing Cyclic Dependencies</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -55,9 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">C++: Fixing Cyclic Dependencies</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2010-07-22 14:28:58+00:00</h3>
 </div>
 <p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_22_cpp_dependencies1.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_22_cpp_dependencies1.png" /></a>C++ gives enough rope (or freedom) to hang oneself. As the source code grows over time, it can easily get so hairy that it results in <strong>cyclic dependencies</strong>. This typically rears its ugly head when one tries to add a new member to a class and find that the resulting mess cannot be compiled due to cyclic dependencies. Other times, the dependencies can be hidden and manifest themselves only when certain source files are compiled in a certain order. Either way, header and source files with such problems not only depict a sad state of the code, but also have a bad hierarchy of header file inclusion which results in very long compile times.</p>
@@ -99,6 +100,6 @@ class Quad
 </ul>
 <p>Cyclic dependencies can be extremely hairy. Hopefully, these guidelines will help you fix them. :-)</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

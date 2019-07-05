@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>CUDA: Occupancy Calculator</title>
+  <title>Code Yarns – CUDA: Occupancy Calculator</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,9 +18,10 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">CUDA: Occupancy Calculator</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2011-06-27 06:51:57+00:00</h3>
 </div>
 <p>The <strong>CUDA Occupancy Calculator</strong> is an Excel spreadsheet that ships with the CUDA Toolkit. It can be used to determine if the number of threads per block being used to launch a kernel is optimal. This spreadsheet can be found at <code>%ProgramData%\NVIDIA Corporation\GPU SDK\C\tools</code></p>
@@ -37,6 +38,6 @@
 <p>For example, say for a given kernel I have no say in the number of registers and shared memory it uses. However, I have the ability to change the number of threads per block it launches with. Assume that I am currently using 200 threads per block for this kernel. For this case, I look at Chart 1 (Varying Block Size), and check if the red triangle is on any of the global maxima of the curve. If it is not, I look at the threads per block that will put this kernel at the global maxima and try my kernel with that (say 256). In most cases, my CUDA program should execute a bit faster due to this change since the occupancy of the GPU by the threads of this kernel has been improved.</p>
 <p><strong>Tried with</strong>: CUDA 4.0</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

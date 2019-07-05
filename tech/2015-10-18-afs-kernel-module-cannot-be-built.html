@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>AFS kernel module cannot be built</title>
+  <title>Code Yarns – AFS kernel module cannot be built</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">AFS kernel module cannot be built</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-10-18 10:57:46+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I tried to install the <strong>OpenAFS</strong> client. The package installation failed, complaining that the AFS kernel module could not be built for my Linux kernel:</p>
 <pre><code>$ sudo apt install openafs-client
 AFS module /lib/modules/3.19.0-28-generic/fs/openafs.ko does not exist.
@@ -51,7 +52,7 @@ instructions in /usr/share/doc/openafs-client/README.modules</code></pre>
 <p>Running any OpenAFS program, like <code>klog</code> for example, gave a strange error:</p>
 <pre><code>$ klog
 Unable to authenticate to AFS because a pioctl failed.</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>The AFS kernel module did not compile because of changes in recent kernel source code. The bug is reported <a href="https://bugs.launchpad.net/ubuntu/+source/openafs/+bug/1433411">here</a>. It can be fixed if you can install patches and recompile the kernel or pull a modified kernel from Ubuntu servers.</p>
 <p>An easier solution is to get the updated OpenAFS package from their PPA <a href="https://launchpad.net/~openafs/+archive/ubuntu/stable">here</a>:</p>
 <pre><code>$ sudo apt-get purge openafs-client
@@ -61,6 +62,6 @@ $ sudo apt install openafs-client</code></pre>
 <p>The AFS kernel module was compiled successfully when I tried this and everything worked fine!</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04 and Linux kernel 3.19.0-28</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

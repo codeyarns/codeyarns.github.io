@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Undefined reference error with __cxa_free_exception@@CXXABI_1.3</title>
+  <title>Code Yarns – Undefined reference error with __cxa_free_exception@@CXXABI_1.3</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,18 +18,19 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Undefined reference error with __cxa_free_exception@<span class="citation">@CXXABI_1.3</span></h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-05-02 07:39:01+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was compiling some C++ and CUDA code using CMake on Ubuntu 14.04. The linking stage threw up this error:</p>
 <pre><code>/usr/bin/ld: foobar.cpp.o: undefined reference to symbol &#39;__cxa_free_exception@@CXXABI_1.3&#39;
 //usr/lib/x86_64-linux-gnu/libstdc++.so.6: error adding symbols: DSO missing from command line
 collect2: error: ld returned 1 exit status</code></pre>
 <p>I had used these same source and CMake files without any compile error on a Ubuntu 12.04 system.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>Ubuntu 14.04 uses newer versions of the GCC compilers and libraries. The hint here is that its complaining about a core C++ symbol: <code>__cxa_free_exception</code>. Suggesting the linker to link with the standard C++ library fixed this error. You can do this by adding <code>-lstdc++</code> to the linker invocation.</p>
 <p>For my CMake, I did this by adding <code>-lstdc++</code> to the linking options to the target as:</p>
 <pre><code>target_link_libraries(
@@ -39,6 +40,6 @@ collect2: error: ld returned 1 exit status</code></pre>
     )</code></pre>
 <p><strong>Tried with:</strong> GCC 4.8.2, CMake 2.8.12.2 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

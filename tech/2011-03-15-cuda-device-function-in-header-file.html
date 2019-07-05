@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>CUDA: Device Function in Header File</title>
+  <title>Code Yarns – CUDA: Device Function in Header File</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -55,9 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">CUDA: Device Function in Header File</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2011-03-15 02:24:20+00:00</h3>
 </div>
 <p><strong>Template kernels</strong> are very useful to write generic kernels that can handle multiple data types. (For more on template kernels go <a href="http://codeyarns.wordpress.com/2011/03/14/cuda-template-kernels/">here</a>.) However, they come with one drawback: any device function that is called by a template kernel needs to be defined in a header file. It cannot be hidden away in a different CUDA compilation unit. This is because the CUDA compiler needs to have the flexibility to inline the device function (if necessary) and to do that the device function definition needs to be accessible in the same compilation unit as the template kernel that calls it.</p>
@@ -93,6 +94,6 @@ FooDevice.cu.obj : error LNK2005: &quot;int __cdecl getCurThreadIdx(void)&quot; 
 <p><strong>Note</strong>: More discussion on this topic is at StackOverflow <a href="http://stackoverflow.com/questions/5295503">here</a> and NVIDIA Forums <a href="http://forums.nvidia.com/index.php?showtopic=195520">here</a>.</p>
 <p><strong>Tried with</strong>: CUDA 3.2</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

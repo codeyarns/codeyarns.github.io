@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to change build output directory in Eclipse CDT</title>
+  <title>Code Yarns – How to change build output directory in Eclipse CDT</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,20 +18,21 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to change build output directory in Eclipse CDT</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-01-14 08:34:20+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>When you build a C/C++ project in <strong>Eclipse CDT</strong>, the executable and other build files are written to <strong>Debug</strong> or <strong>Release</strong> directories, depending on the Build Configuration. For example, for a project in <code>/home/joe/workspace/foobar</code>, the build output directory might be <code>/home/joe/workspace/foobar/Debug</code>. Sometimes, you may want the build output files and executable to be placed in a specific directory in your project directory. Let us assume we want both the Debug and Release builds to put their output files in <code>/home/joe/workspace/foobar/bin</code></p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>Changing the build output directory is not simple in Eclipse CDT. A few of the complex solutions can be seen <a href="http://stackoverflow.com/questions/4882231/set-build-output-directory-in-eclipse-c">here</a>.</p>
 <p>As an alternative, there is a simple trick you can use: create symbolic links named Debug and Release that point to the build output directory you want:</p>
 <p>[code lang=bash] $ cd /home/joe/workspace/foobar $ rm -rf Debug $ rm -rf Release $ mkdir bin $ ln -s bin Debug $ ln -s bin Release ```</p>
 <p>Eclipse CDT will now think it is building to Debug or Release directories, but all those files end up in the build output directory that you wanted :-)</p>
 <p><strong>Tried with:</strong> Eclipse 3.7.2</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

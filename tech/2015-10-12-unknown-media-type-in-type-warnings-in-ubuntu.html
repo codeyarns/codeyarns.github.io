@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Unknown media type in type warnings in Ubuntu</title>
+  <title>Code Yarns – Unknown media type in type warnings in Ubuntu</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Unknown media type in type warnings in Ubuntu</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-10-12 12:04:00+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>Whenever I install or remove a package in <strong>Ubuntu</strong>, I get warnings about certain <strong>MIME</strong> types:</p>
 <pre><code>Processing triggers for shared-mime-info (1.2-0ubuntu3) ...
 Unknown media type in type &#39;all/all&#39;
@@ -34,7 +35,7 @@ Unknown media type in type &#39;uri/mmsu&#39;
 Unknown media type in type &#39;uri/pnm&#39;
 Unknown media type in type &#39;uri/rtspt&#39;
 Unknown media type in type &#39;uri/rtspu&#39;</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>These are the so-called <strong>fake MIME</strong> types and come from the file <code>/usr/share/mime/packages/kde.xml</code> which is installed by the <code>kdelibs5-data</code> package. Every time a package is installed or removed, the MIME database is updated and it complains about these unknown MIME types. This is a bug from 2008 that is still not fixed, as seen <a href="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=469833">here</a>.</p>
 <p>To fix this problem:</p>
 <ul>
@@ -49,6 +50,6 @@ Unknown media type in type &#39;uri/rtspu&#39;</code></pre>
 <pre><code>okular(22776)/okular (app) Okular::Document::openDocument: No plugin for mimetype &#39;&quot;application/zip&quot;&#39;.</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>C++ STL: Inserting Vector into Set</title>
+  <title>Code Yarns – C++ STL: Inserting Vector into Set</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -55,9 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">C++ STL: Inserting Vector into Set</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2010-07-16 07:55:40+00:00</h3>
 </div>
 <p>Initializing a <strong>set</strong> with a <strong>vector</strong> during its <strong>construction</strong> is easy:</p>
@@ -67,6 +68,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong><a href="http://www.sgi.com/tech/stl/copy.html">std::copy</a></strong> should be familiar. It inserts the elements of a source container into a destination container. However, it requires the destination container to have enough space for the copied elements. To get around this hassle, the typical solution is to use <strong>insert iterators</strong>. The commonly used <strong>std::back_inserter</strong> and <strong>std::front_inserter</strong> do not work on sets. So, we resort to the <a href="http://msdn.microsoft.com/en-us/library/702h4h7y.aspx"><strong>std::inserter</strong></a>. But, this requires a position as the second parameter. Thankfully, for associative containers like sets, the second parameter is only a hint, so we can pass any position (like fooSet.end() or fooSet.end()).</p>
 <p>Replace vector with any sequence container (list or deque) and set with any associative container (map), and the above operations will work the same on them.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

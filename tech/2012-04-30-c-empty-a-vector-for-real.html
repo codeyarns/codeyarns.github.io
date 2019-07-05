@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>C++: Empty a vector for real</title>
+  <title>Code Yarns – C++: Empty a vector for real</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -55,9 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">C++: Empty a vector for real</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2012-04-30 08:14:53+00:00</h3>
 </div>
 <p><code>clear()</code> is the method used to <strong>empty</strong> a STL <strong>vector</strong> in <strong>C++</strong>. However, it merely sets the size of the vector to zero. In almost all STL implementations, the vector is still consuming the same amount of memory it was before the call to <code>clear()</code>. This can be seen by calling the <code>capacity()</code> method, which returns the actual number of items which the vector can hold without needing or reallocating any new memory.</p>
@@ -78,6 +79,6 @@ v.shrink_to_fit(); <span class="co">// Capacity of v is now 0</span></code></pre
 <p>Our original vector now points to the (empty) space of the new vector. The new vector now points to the capacity of the old vector. But, the lifetime of the new vector is the scope of this statement. As soon as that scope ends, the new vector is deleted, thus freeing the memory occupied by the old vector.</p>
 <p><strong>Tried with:</strong> Visual C++ 2010</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

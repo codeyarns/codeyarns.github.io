@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to specify architecture to compile CUDA code</title>
+  <title>Code Yarns – How to specify architecture to compile CUDA code</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,15 +18,16 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to specify architecture to compile CUDA code</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-03-03 08:25:14+00:00</h3>
 </div>
 <p>To compile CUDA code, you need to indicate what architecture you want to compile for. And this gets quite confusing because there are three options that can be used: <code>-arch</code>, <code>-code</code> and <code>-gencode</code>.</p>
 <p>It does not have to be this complicated, but due to historical and practical reasons it just is. The best way to understand how to use these options is to recall the two-level hierarchy of CUDA architecture. First, is the high-level PTX architecture that acts as a virtual machine. Next, is a class of low-level GPU architectures that are designed to work with the features available in a particular PTX architecture.</p>
 <p>This is conceptually how a CUDA compiler works too. For the sake of these compiler options, we can break down the compilation phase into two stages. First, the compiler looks at high-level features that are supported by a particular virtual PTX architecture and creates high-level code for that architecture. Next, the compiler translates the PTX code to the SASS code that is optimized for a particular low-level GPU architecture.</p>
-<h1 id="arch">-arch</h1>
+<h2 id="arch">-arch</h2>
 <p>This compiler option is used to tell the compiler what PTX architecture to aim for in the first stage of compilation. PTX architectures are specified in the format of <code>compute_xy</code>, where <code>xy</code> is the version number of a particular architecture.</p>
 <p>For example:</p>
 <pre><code>-arch=compute_35</code></pre>
@@ -35,7 +36,7 @@
 <pre><code>-arch=sm_35</code></pre>
 <p>This makes the compiler produce SASS code that will work correctly only on <code>sm_35</code> GPU. The compiler will pick the PTX architecture that is suitable for <code>sm_35</code> in the first stage, even though you have not indicated that to it.</p>
 <p>Note that only one PTX architecture can be specified using <code>-arch</code> option.</p>
-<h1 id="code">-code</h1>
+<h2 id="code">-code</h2>
 <p>This compiler option is used to tell the compiler what SASS architecture to aim for in the second stage of compilation. It will pick the PTX architecture that is suitable for the SASS architecture you specified.</p>
 <p>For example:</p>
 <pre><code>-code=sm_21</code></pre>
@@ -43,18 +44,18 @@
 <p>You can specify many SASS architectures, but they should all belong to the same class of PTX architecture.</p>
 <p>For example:</p>
 <pre><code>-code=sm_20,sm_21</code></pre>
-<h1 id="arch--code">-arch -code</h1>
+<h2 id="arch--code">-arch -code</h2>
 <p>These two options can be combined to be more specific (and also confusing). Let us see some examples.</p>
 <pre><code>-arch=compute_20 -code=sm_20</code></pre>
 <p>Produces SASS code for <code>sm_20</code>.</p>
 <pre><code>-arch=compute_20 -code=compute_20,sm_20,sm_21</code></pre>
 <p>Produces PTX code for <code>compute_20</code> and SASS code for both <code>sm_20</code> and <code>sm_21</code> GPUs.</p>
-<h1 id="gencode">-gencode</h1>
+<h2 id="gencode">-gencode</h2>
 <p>What if you want to produce PTX or SASS code for many PTX architectures? That is what this option is useful for.</p>
 <pre><code>-gencode arch=compute_20,code=sm_20</code></pre>
 <p>This usage is similar to earlier. But, the real use is to produce for many PTX architectures, like this:</p>
 <pre><code>-gencode arch=compute_20,code=compute_20 -gencode arch=compute_35,code=sm_35</code></pre>
-<h1 id="compute_xy">Compute_XY</h1>
+<h2 id="compute_xy">Compute_XY</h2>
 <p>The different <code>compute_xy</code> values that can be specified are:</p>
 <pre><code>compute_10
 compute_11
@@ -63,7 +64,7 @@ compute_13
 compute_20
 compute_30
 compute_35</code></pre>
-<h1 id="sm_xy">SM_XY</h1>
+<h2 id="sm_xy">SM_XY</h2>
 <p>The different <code>sm_xy</code> values that can be specified are:</p>
 <pre><code>sm_10
 sm_11
@@ -75,6 +76,6 @@ sm_30
 sm_35</code></pre>
 <p><strong>Reference:</strong> NVCC Manual, CUDA 5.5</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

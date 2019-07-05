@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Skype error on libGL shared library</title>
+  <title>Code Yarns – Skype error on libGL shared library</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,16 +18,17 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Skype error on libGL shared library</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-09-15 12:54:00+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I installed <strong>Skype</strong> from <a href="http://www.skype.com/en/download-skype/skype-for-computer/">here</a> using the package for <strong>Ubuntu 12.04 Multiarch</strong>. When I ran Skype from the Dash, nothing happened. When I ran Skype from the shell, I found that it quit with this error:</p>
 <pre><code>$ skype
 skype: error while loading shared libraries: libGL.so.1: cannot open shared object file: No such file or directory</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <ul>
 <li>Let us check the shared library dependencies of this Skype executable. This actually uses the dynamic linker and loader to compare what is required by the executable with what shared libraries are available in the cache:</li>
 </ul>
@@ -71,6 +72,6 @@ libGL.so.1 =&gt; /usr/lib/i386-linux-gnu/mesa/libGL.so.1 (0xf16b5000)</code></pr
 <p>Yes, they are! I ran Skype after this and it worked fine! 😄</p>
 <p><strong>Tried with:</strong> Skype 4.3 (multiarch) and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

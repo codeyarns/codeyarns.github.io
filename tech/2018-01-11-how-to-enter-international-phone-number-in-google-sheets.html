@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to enter international phone number in Google Sheets</title>
+  <title>Code Yarns – How to enter international phone number in Google Sheets</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,18 +18,19 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to enter international phone number in Google Sheets</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2018-01-11 04:48:34+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was trying to enter an international phone number of the format <code>+65-12345678</code> into a cell in Google Sheets and it would turn into <code>ERROR</code>. I changed the formatting of the cell using Format → Number → Plain text. But this error still persisted.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>Because the <code>+</code> sign is treated specially when it appears as first character, there is no standard formatting that will work. We need to create a custom formatting to enter this phone number.</p>
 <p>Click the cell where you want to enter phone number and choose Format → Number → More formats → Custom Number Format. Enter this format: <code>+##-########</code>. This tells Google Sheet that we will enter 10 digits, represented by the hash characters and it should show up as shown in the format.</p>
 <p>Now paste <code>6512345678</code> into the cell and it will be displayed as <code>+65-12345678</code></p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to list environment variables used by program</title>
+  <title>Code Yarns – How to list environment variables used by program</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,18 +18,19 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to list environment variables used by program</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2018-04-20 07:07:28+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>Many programs fail or behave mysteriously because they are looking for or reading environment variables that you may not be aware of. It would be very useful if you could see what environment variables they are probing for.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>If the program is using the <strong>getenv</strong> standard library call, then you can list all those calls, the environment variable requested for and what value was returned using <a href="https://codeyarns.com/2018/04/20/how-to-use-ltrace/"><strong>ltrace</strong></a>:</p>
 <pre><code>$ ltrace -e getenv ./your_program</code></pre>
 <p>You will be surprised how many environment variables you had no idea about are probed by common programs that you use. I find this usage to be immensely useful in increasing my understanding of any program I use.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

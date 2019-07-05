@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>GParted block size warning</title>
+  <title>Code Yarns – GParted block size warning</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,16 +18,17 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">GParted block size warning</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-02-04 05:36:48+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I opened <strong>GParted</strong> to look at the partition information of my drives. It popped up this strange warning:</p>
 <pre><code>The driver descriptor says the physical block size is 2048 bytes, but Linux says it is 512 bytes</code></pre>
 <p>I figured out that this error was about a USB thumb drive that was plugged into my computer. That USB drive was working fine and I could mount and read its files. So, what is this warning and how to fix it?</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>Turns out that the <strong>block size</strong> for this drive was set to 2048 bytes. It should have been 512 bytes. Its disk size was also appearing 4 times larger in GParted!</p>
 <p>On thinking further about this, I remembered that this drive had been formatted as a bootable media to install Ubuntu using GNOME Disks as described <a href="https://codeyarns.com/2016/07/07/how-to-make-ubuntu-usb-flash-drive-using-disk-image-writer/">here</a>. That disk writer must have erroneously set the block size of this drive as 2048 bytes.</p>
 <p>Changing back the block size to 512 was easy:</p>
@@ -35,6 +36,6 @@
 <p>Replace <code>/dev/sdc</code> with the device ID for your USB thumb drive. <strong>Note that this command completely destroys all your data on the drive.</strong></p>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

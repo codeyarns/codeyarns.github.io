@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Segmentation fault at glCreateShader in wxWidgets</title>
+  <title>Code Yarns – Segmentation fault at glCreateShader in wxWidgets</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,16 +18,17 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Segmentation fault at glCreateShader in wxWidgets</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-07-22 04:12:58+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I had a simple graphics program written using OpenGL and using GLUT for windowing. To get more windowing functionality, I wanted to move it to wxWidgets. I picked an <a href="http://wiki.wxwidgets.org/WxGLCanvas">example program</a> that uses OpenGL in wxWidgets. It compiled and worked correctly. When I placed my OpenGL code into this example, I got a segmentation fault at the <code>glCreateShader</code> call in my code.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>I had a <code>glewInit</code> in my original code. I had put this in the application class constructor. Apparently, wxWidgets <a href="http://forums.wxwidgets.org/viewtopic.php?t=35011">requires that</a> the first OpenGL or GLEW call be placed inside the <code>OnPaint</code> event handler function. Look for <code>EVT_PAINT</code> to find this function. Once I did that, the error disappeared and OpenGL worked.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

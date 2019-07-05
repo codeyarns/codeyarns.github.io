@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>target_include_directories does not work with CUDA</title>
+  <title>Code Yarns – target_include_directories does not work with CUDA</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,19 +18,20 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">target_include_directories does not work with CUDA</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-03-26 12:33:53+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p><code>target_include_directories</code> is an useful <strong>CMake</strong> directive to specify the <strong>include directories</strong> for building a particular <strong>target</strong>, as described <a href="2013/10/10/how-to-add-include-directories-in-cmake/">here</a>. The <strong>FindCUDA</strong> module for CMake which handles CUDA compilation seems to completely ignore this directive. The include directories specified for the target are not passed to CUDA compilation by <strong>nvcc</strong>.</p>
 <p>This will most commonly result in errors of the form: <code>someheader.h: No such file or directory</code>.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>This is a well known limitation of the CUDA module of CMake, as documented <a href="http://www.cmake.org/Bug/view.php?id=14201">here</a>. There seems to be no plan currently to support <code>target_include_directories</code> for CUDA compilation.</p>
 <p>The only solution is to switch to <code>include_directories</code> to add these directories for all the targets in the <code>CMakeLists.txt</code> file.</p>
 <p><strong>Tried with:</strong> CMake 2.8.12.2, CUDA 6.5 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

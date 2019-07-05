@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>PyCUDA error: cuInit failed</title>
+  <title>Code Yarns – PyCUDA error: cuInit failed</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">PyCUDA error: cuInit failed</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-02-24 12:07:18+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>After installing <strong>PyCUDA</strong>, I tried to run a sample PyCUDA program and got this error:</p>
 <pre><code>$ python hello_cuda.py
 Traceback (most recent call last):
@@ -32,7 +33,7 @@ Traceback (most recent call last):
   File &quot;/usr/local/lib/python2.7/dist-packages/pycuda/autoinit.py&quot;, line 4, in &lt;module&gt;
     cuda.init()
 pycuda._driver.Error: cuInit failed: unknown</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>The error refers to line 4 in <code>/usr/local/lib/python2.7/dist-packages/pycuda/autoinit.py</code>. The lines relevant to that error in the file are:</p>
 <pre><code>import pycuda.driver as cuda
 cuda.init()</code></pre>
@@ -42,6 +43,6 @@ cuda.init()</code></pre>
 <p>CUDA was able to initialized immediately after this package was installed, no reboot was needed.</p>
 <p><strong>Tried with:</strong> PyCUDA 2014.1, CUDA 5.5, NVIDIA 331 drivers, GTX Titan and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

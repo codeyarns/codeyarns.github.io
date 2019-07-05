@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>NVIDIA module taints Linux kernel</title>
+  <title>Code Yarns – NVIDIA module taints Linux kernel</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,18 +18,19 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">NVIDIA module taints Linux kernel</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-03-30 12:58:50+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I installed CUDA 7.0 on Ubuntu running on an Aftershock notebook with NVIDIA graphics card. The NVIDIA graphics drivers were upgraded to version 346. To my pleasant surprise, the graphics card was now directly visible to the Linux kernel. There was no longer any need to use Bumblebee.</p>
 <p>However, I started noticing that this Ubuntu would not always boot into Unity. On many cold starts, I saw that Ubuntu would show this error:</p>
 <p>https://gist.github.com/ashwin/dce9fbbc0ae11380ff9b</p>
 <p>After displaying this it would get stuck at the Ubuntu bootup screen.</p>
 <p>I also noticed that I could boot up if I first booted into another Ubuntu instance I had on this notebook and later restarted and booted into the current Ubuntu instance.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p><strong>Update:</strong> I no longer have this problem after installing <strong>CUDA 7.5</strong> and the <strong>NVIDIA 352</strong> drivers that come along with it on a fresh <strong>Ubuntu 15.04</strong> system. I still see the syslog errors, but they no longer stop Ubuntu from booting successfully and the GPU/CUDA can be used without problems. Yay! 😄</p>
 <p><strong>Old stuff:</strong></p>
 <p>To analyse this problem I cropped out the relevant portions of <code>/var/log/syslog</code> for the case when Ubuntu booted correctly and when it threw the above kernel panic error. These syslog entries can be seen <a href="https://gist.github.com/ashwin/2a449e05aa7663e795e4">here</a>.</p>
@@ -49,6 +50,6 @@
 </ul>
 <p><strong>Tried with:</strong> NVIDIA GTX 765M, Linux 3.13.0-44-generic and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

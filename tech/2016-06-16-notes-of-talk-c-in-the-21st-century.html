@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Notes of talk: C++ in the 21st century</title>
+  <title>Code Yarns – Notes of talk: C++ in the 21st century</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,18 +18,19 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Notes of talk: C++ in the 21st century</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2016-06-16 13:38:12+00:00</h3>
 </div>
 <p>I recently came across a 2014 talk by <strong>Arvid Norberg</strong> about the new features in C++11. The video is <a href="https://www.youtube.com/watch?v=HRWPbTiNNaI">here</a> and slides are <a href="http://www.slideshare.net/bittorrentinc/c-21st-century">here</a>.</p>
 <p>C++ is huge and getting bigger every day. So, I keep discovering interesting new features that I like to note down for use in my own code. Below are my notes from this talk. I do not note aspects that I already know well. This talk has examples that are small but illustrative, so if you hit any of these features, you should see the video to look at the examples.</p>
-<h1 id="for-loops">For loops</h1>
+<h2 id="for-loops">For loops</h2>
 <ul>
 <li><code>std::begin</code> and <code>std::end</code> work on C arrays too. Note that this is only when the array size is known. So, the array must have been created in the same local scope.</li>
 </ul>
-<h1 id="decltype">decltype</h1>
+<h2 id="decltype">decltype</h2>
 <ul>
 <li><code>decltype</code> deduces the type of an expression. So its use is in type expressions. For example, as template arguments.</li>
 </ul>
@@ -38,27 +39,27 @@ std::vector&lt;decltype(f())&gt; vals;</code></pre>
 <ul>
 <li>Internally, it is used by <code>auto</code> to deduce type of expression</li>
 </ul>
-<h1 id="lambda-functions">lambda functions</h1>
+<h2 id="lambda-functions">lambda functions</h2>
 <ul>
 <li>Lambda expression yields an unnamed function object. The tiny examples in the talk are good.</li>
 </ul>
-<h1 id="override">override</h1>
+<h2 id="override">override</h2>
 <ul>
 <li>This is to help programmers find errors. For example, when virtual method in base class is not const and in derived it is. Programmer might miss this error. If virtual method in derived class is declared <code>override</code> and it is actually not, compiler will complain.</li>
 </ul>
-<h1 id="unique_ptr">unique_ptr</h1>
+<h2 id="unique_ptr">unique_ptr</h2>
 <ul>
 <li><p>This smart pointer is not copyable, but movable. It is deleted when pointer goes out of scope.</p></li>
 <li><p>Many functions create a heap-allocated object and return it. Traditionally, programmers had to worry about the ownership and lifetime of such a returned object. Return it as unique_ptr and forget about these worries.</p></li>
 <li><p>Also great for storing such heap-allocated objects in containers.</p></li>
 </ul>
-<h1 id="error_code">error_code</h1>
+<h2 id="error_code">error_code</h2>
 <p>This C++11 feature was something new to me! I did not understand how to apply it either. I might need to study this in future.</p>
 <ul>
 <li><p><code>error_code</code> represents an error. It has <code>error_value</code> integral value indicating what is the error. It has <code>category</code> indicating domain of error value.</p></li>
 <li><p><code>category</code> is an abstract base class implementing conversion of <code>error_value</code> to human readable message.</p></li>
 </ul>
-<h1 id="chrono">chrono</h1>
+<h2 id="chrono">chrono</h2>
 <ul>
 <li><p>There are a whole bunch of old C, C++, Unix and POSIX time functions. They are not platform agnostic, have low time resolutions, have no type safety (milliseconds value can be passed to a function that takes in microseconds and so on) and are not <strong>monotonic</strong>. Monotonic in this context means that if you measure a time before DST is turned on and after it, the latter value should always be larger, though the wall clock may have been turned back by DST.</p></li>
 <li><p>Chrono introduces a clock with its own epoch (start of life) and its own resolution.</p></li>
@@ -67,6 +68,6 @@ std::vector&lt;decltype(f())&gt; vals;</code></pre>
 <li><p>Because these types have their resolutions embedded inside, two durations of different resolutions can be added together to produce a duration that has resolution that is highest or higher than both. They can be passed to function that accepts in a different resolution. The template machinery ensures that it all converts correctly.</p></li>
 </ul>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

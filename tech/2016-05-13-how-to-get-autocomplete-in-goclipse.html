@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to get autocomplete in GoClipse</title>
+  <title>Code Yarns – How to get autocomplete in GoClipse</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,20 +18,21 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to get autocomplete in GoClipse</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2016-05-13 12:57:24+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I installed the <strong>Go</strong> compiler and set the <code>GOROOT</code> and <code>GOPATH</code> environment variables correctly. To work with Go files, I installed the <strong>GoClipse</strong> plugin in <strong>Eclipse</strong>. When I tried to make Goclipse autocomplete my code, I got this error:</p>
 <pre><code>Cannot run program &quot;gocode&quot;: error=2, No such file or directory</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>The Go compiler is not typically used for autocompletion. There is a separate <a href="https://github.com/nsf/gocode"><strong>gocode</strong></a> tool that is used for this purpose. So, to get autocompletion we need to install this by using this command:</p>
 <pre><code>$ go get -u github.com/nsf/gocode</code></pre>
 <p>I found that this installed the <code>gocode</code> binary in <code>$GOPATH/bin</code>. I opened Window -&gt; Preferences -&gt; Go -&gt; Tools and set this path for gocode. Autocompletion started working immediately after this! :-)</p>
 <p><strong>Tried with:</strong> GoClipse 0.14.1, Eclipse 4.5.2 and Go 1.6.2</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

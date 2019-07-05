@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>SSH connection refused</title>
+  <title>Code Yarns – SSH connection refused</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,21 +18,22 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">SSH connection refused</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-10-10 00:54:27+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I <strong>SSH</strong> to another Linux computer and get this error:</p>
 <pre><code>$ ssh joe@172.20.128.100
 ssh: connect to host 172.20.128.100 port 22: Connection refused</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>Typically, there is no complicated reason of permissions why this failed. Since the <strong>OpenSSH client</strong> is almost always installed by default on Linux computers, people assume that the <strong>OpenSSH server</strong> is also installed. It is not and it gives this error!</p>
 <p>Install the OpenSSH server on the host and you should be able to SSH to it:</p>
 <pre><code>$ sudo apt install openssh-server</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

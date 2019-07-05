@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>ImportError on IPython.paths</title>
+  <title>Code Yarns – ImportError on IPython.paths</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,20 +18,21 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">ImportError on IPython.paths</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2018-03-27 05:39:50+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I installed a Python package using pip3. When I imported that newly installed package, it complained about IPython:</p>
 <pre><code>ImportError: No module named &#39;IPython.paths&#39;</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>It turns out that only recent versions of the IPython package had <code>IPython.paths</code>. I had an older version of IPython installed using <strong>apt</strong>. The newly installed pip3 package was built around a more recent version of IPython. The problem went away once I removed the IPython packaged installed using apt and force installed its recent pip3 package:</p>
 <pre><code>$ sudo apt remove ipython
 $ sudo pip3 install --upgrade ipython</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

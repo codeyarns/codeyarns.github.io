@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to build Caffe</title>
+  <title>Code Yarns – How to build Caffe</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,13 +18,14 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to build Caffe</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-02-22 15:30:29+00:00</h3>
 </div>
 <p>Building <strong>Caffe</strong> from source is easy. There are two options provided: using a Makefile or using CMake.</p>
-<h1 id="required-packages">Required packages</h1>
+<h2 id="required-packages">Required packages</h2>
 <ul>
 <li><p>Download or clone the source code of Caffe from <a href="https://github.com/BVLC/caffe">here</a>.</p></li>
 <li><p>Not surprisingly, you will need a GPU, a graphics driver that can work with that GPU and an installation of CUDA.</p></li>
@@ -48,7 +49,7 @@ $ sudo apt install libopenblas-dev</code></pre>
 ImportError: No module named skimage.io
 
 ImportError: No module named google.protobuf.internal</code></pre>
-<h1 id="build-using-cmake">Build using CMake</h1>
+<h2 id="build-using-cmake">Build using CMake</h2>
 <p>Just follow the usual steps for CMake:</p>
 <pre><code>$ mkdir build
 $ cd build
@@ -60,12 +61,12 @@ $ make</code></pre>
 <pre><code>$ make pycaffe
 $ make install</code></pre>
 <p>By default, the install directory will be a subdirectory inside the <code>build</code> directory. Add this <code>build/install/python</code> path to <code>PYTHONPATH</code> environment variable before you import caffe in Python.</p>
-<h1 id="build-using-make">Build using Make</h1>
+<h2 id="build-using-make">Build using Make</h2>
 <p>On one system, I found that using Makefile was easier, since CMake was erroneously complaining about <code>-lpthreads</code> (which is a Clang library, not a GCC library). Copy the Makefile config file, open it in an editor and check whether all the paths are set correctly:</p>
 <pre><code>$ cp Makefile.config.example Makefile.config
 $ vim Makefile.config
 $ make</code></pre>
-<h1 id="build-matcaffe">Build MatCaffe</h1>
+<h2 id="build-matcaffe">Build MatCaffe</h2>
 <p>Building support for <strong>MATLAB</strong> to use Caffe takes a few more steps:</p>
 <ul>
 <li><p>In Makefile.config, set the <code>MATLAB_DIR</code> to the path that contains <code>bin/mex</code>. On my computer, this was the path <code>/usr/local/MATLAB/R2014a</code>.</p></li>
@@ -74,6 +75,6 @@ $ make</code></pre>
 </ul>
 <pre><code>$ make all matcaffe</code></pre>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

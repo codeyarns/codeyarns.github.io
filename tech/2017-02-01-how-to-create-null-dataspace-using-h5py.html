@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to create NULL dataspace using H5Py</title>
+  <title>Code Yarns – How to create NULL dataspace using H5Py</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to create NULL dataspace using H5Py</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-02-01 15:52:27+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was trying to write a <strong>HDF5</strong> file using the <strong>H5Py</strong> package. What I wanted to create was a HDF5 dataset whose <strong>dataspace</strong> is <code>NULL</code>. This is what I wanted (when dumped by <strong>h5dump</strong>):</p>
 <pre><code>DATASPACE  NULL
 DATA {
@@ -34,11 +35,11 @@ DATA {
 DATA {
 (0): NULL
 }</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>It turns out that the H5Py had no support to create a NULL dataspace! Thankfully, support for this had just been added to v2.7 as mentioned <a href="//github.com/h5py/h5py/pull/664">here</a>.</p>
 <p>I used the latest version of H5Py and was able to create a dataset with NULL dataspace. This is done by passing <code>None</code> to the shape parameter.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Segmentation fault on glGenVertexArrays</title>
+  <title>Code Yarns – Segmentation fault on glGenVertexArrays</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,21 +18,22 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Segmentation fault on glGenVertexArrays</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-07-08 03:18:48+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was trying to compile the code from the book <a href="http://www.cs.unm.edu/~angel/">Interactive Computer Graphics: A Top-Down Approach with Shader-Based OpenGL (6th Edition)</a>. The code compiled fine, but execution failed with <code>SIGSEGV</code> segmentation fault at the line:</p>
 <pre><code>GLuint vao;
 glGenVertexArrays( 1, &amp;vao );</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>The system might be using an old version of GLEW, where <code>glGenVertexArrays</code> is still marked as an experimental OpenGL extension. To enable the use of such experimental extensions add these lines during initialization:</p>
 <pre><code>glewExperimental = GL_TRUE; 
 glewInit();</code></pre>
 <p><strong>Tried with:</strong> NVIDIA GeForce 9600 GT, NVIDIA drivers 331 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

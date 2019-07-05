@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to use smartctl</title>
+  <title>Code Yarns – How to use smartctl</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,16 +18,17 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to use smartctl</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2016-12-21 15:27:45+00:00</h3>
 </div>
 <p><strong>smartctl</strong> is a commandline tool to view <strong>S.M.A.R.T.</strong> information of a storage device and to run SMART tests on it. This is the tool that is used by other GUI tools like GNOME Disks or GSmartControl.</p>
-<h1 id="installation">Installation</h1>
+<h2 id="installation">Installation</h2>
 <p>Installing it is easy:</p>
 <pre><code>$ sudo apt install smartmontools</code></pre>
-<h1 id="device-information">Device information</h1>
+<h2 id="device-information">Device information</h2>
 <ul>
 <li>To print information about a storage device using its device path:</li>
 </ul>
@@ -64,7 +65,7 @@ SMART support is: Enabled</code></pre>
 <ul>
 <li>If nothing works and you have been noticing errors on this hard disk, then it might already be too faulty to be diagnosed. It might be time to check if it can be returned for a replacement or else be discarded.</li>
 </ul>
-<h1 id="enable-or-disable-smart">Enable or disable SMART</h1>
+<h2 id="enable-or-disable-smart">Enable or disable SMART</h2>
 <p>I have come across drives where SMART is not turned on, so you may have to manually enable it.</p>
 <p>This is what I see when I enable SMART:</p>
 <pre><code>$ sudo smartctl --smart=on /dev/sdb
@@ -75,7 +76,7 @@ Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
 === START OF ENABLE/DISABLE COMMANDS SECTION ===
 SMART Enabled.</code></pre>
 <p>Once enabled, SMART should remain enabled through power-cycling. Use <code>off</code> instead of <code>on</code> to disable SMART. I cannot think of any reason why you would disable it cause keeping it enabled does not affect disk performance.</p>
-<h1 id="enable-or-disable-automatic-offline-test">Enable or disable automatic offline test</h1>
+<h2 id="enable-or-disable-automatic-offline-test">Enable or disable automatic offline test</h2>
 <p>This is a test that SMART can perform every four hours to check for disk defects. Enabling this test can degrade disk performance and is <strong>obsoleted</strong>. Most recent disks will not enable this test even if you try to enable it. It is better to disable it in case it is enabled.</p>
 <p>This is what I see when I disable it:</p>
 <pre><code>$ sudo smartctl --offlineauto=off /dev/sdb
@@ -85,7 +86,7 @@ Copyright (C) 2002-16, Bruce Allen, Christian Franke, www.smartmontools.org
 
 === START OF ENABLE/DISABLE COMMANDS SECTION ===
 SMART Automatic Offline Testing Disabled.</code></pre>
-<h1 id="capabilities">Capabilities</h1>
+<h2 id="capabilities">Capabilities</h2>
 <p>You can query and view the capabilities of the storage device. This includes the self-tests that SMART of this device can perform and the estimated time they will take.</p>
 <p>This is what I see when I view capabilities of my device:</p>
 <pre><code>$ sudo smartctl --capabilities /dev/sdb
@@ -128,7 +129,7 @@ SCT capabilities:          (0x103b) SCT Status supported.
                     SCT Feature Control supported.
                     SCT Data Table supported.</code></pre>
 <p>For example, note how this device is telling me that performing a short self-test is estimated to take 1 minute.</p>
-<h1 id="attributes">Attributes</h1>
+<h2 id="attributes">Attributes</h2>
 <p>You can view the SMART attributes supported by the device and their values. With my device I get this output:</p>
 <pre><code>$ sudo smartctl --attributes /dev/sdb
 
@@ -167,7 +168,7 @@ ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_
 <li><p>The <strong>Value</strong> is a normalized value that has been converted from the <strong>Raw Value</strong> by the device firmware. Devices do not necessarily have to provide these values in a way that make sense to normal users. What we can do is to compare the value to the Threshold value and come to a decision.</p></li>
 <li><p><strong>Threshold</strong> is a value in the range 0-255. The most confusing part is that the attribute is said to have failed if the normalized value is less than the threshold (and not greater than as I assumed)! I know it does not make any sense, but that is how it is defined.</p></li>
 </ul>
-<h1 id="self-tests">Self tests</h1>
+<h2 id="self-tests">Self tests</h2>
 <p>I found that the attribute values cannot always indicate there is a problem with your disk. For example, the above values are seem normal, but this disk already has bad sectors and is failing. The best way to be sure is to run the SMART self-tests available in the device firmware. These tests are designed such that they can be performed even if the device is mounted and being used. You might notice some IO performance degradation while the test is running.</p>
 <ul>
 <li>Here is how I ran a short self-test on my device:</li>
@@ -222,6 +223,6 @@ Num  Test_Description    Status                  Remaining  LifeTime(hours)  LBA
 <p>We can see that there are failures, indicating that the disk is already failing.</p>
 <p><strong>Tried with:</strong> smartmontools 6.4 and Ubuntu 16.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

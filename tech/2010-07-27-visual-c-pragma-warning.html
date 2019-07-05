@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Visual C++: pragma warning</title>
+  <title>Code Yarns – Visual C++: pragma warning</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -55,9 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Visual C++: pragma warning</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2010-07-27 15:20:49+00:00</h3>
 </div>
 <p>It is a good practice to compile code at the highest warning level available from the compiler. When the compiler reports warnings on the code, the code should be fixed so that it compiles with zero warnings. But, sometimes this is not possible, for example, if the source of the warnings are headers included from external libraries. Common C++ libraries like <strong>Boost</strong> and special libraries like <strong>CGAL</strong> (Computational Geometry Algorithms Library) are notorious for introducing hundreds of warnings when their header files are included.</p>
@@ -69,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="pp">#pragma warning(disable: 1234)</span>
 <span class="co">// Offending code that produces C1234 warning goes here</span>
 <span class="pp">#pragma warning(pop)</span></code></pre></div>
-<h1 id="pragma-warning-directives-can-be-placed-in-header-files-or-in-source-files.-when-the-directive-needs-to-be-used-across-an-entire-source-file-or-many-files-one-can-get-lazy-and-place-it-in-a-header-that-is-included-in-all-these-files.-this-is-not-a-good-practice-since-the-warning-will-be-disabled-for-all-the-source-files-that-include-that-header-now-or-in-the-future.">pragma warning directives can be placed in header files or in source files. When the directive needs to be used across an entire source file or many files, one can get lazy and place it in a header that is included in all these files. This is <em>not</em> a good practice since the warning will be disabled for all the source files that include that header now or in the future.</h1>
+<h2 id="pragma-warning-directives-can-be-placed-in-header-files-or-in-source-files.-when-the-directive-needs-to-be-used-across-an-entire-source-file-or-many-files-one-can-get-lazy-and-place-it-in-a-header-that-is-included-in-all-these-files.-this-is-not-a-good-practice-since-the-warning-will-be-disabled-for-all-the-source-files-that-include-that-header-now-or-in-the-future.">pragma warning directives can be placed in header files or in source files. When the directive needs to be used across an entire source file or many files, one can get lazy and place it in a header that is included in all these files. This is <em>not</em> a good practice since the warning will be disabled for all the source files that include that header now or in the future.</h2>
 <p>I prefer placing directives at the source file level, so that their effect is localized to the source file. If one is placing the directive at the source file, it should be put at the top, even above the header files inclusion, to be effective:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Foo.cpp</span>
 <span class="pp">#pragma warning(disable: 1234)</span>
@@ -78,6 +79,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 Foo::Foo()
 { <span class="co">/***/</span> }</code></pre></div>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

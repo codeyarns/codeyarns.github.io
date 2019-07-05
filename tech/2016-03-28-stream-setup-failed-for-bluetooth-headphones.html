@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Stream setup failed for Bluetooth headphones</title>
+  <title>Code Yarns – Stream setup failed for Bluetooth headphones</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,21 +18,22 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Stream setup failed for Bluetooth headphones</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2016-03-28 12:57:55+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I have a Bluetooth adapter and a Bluetooth headset which worked fine on an Ubuntu system. I now plug them into another XUbuntu system. It uses <strong>Blueman</strong>, a GTK-based GUI tool for managing Bluetooth devices. I can discover the headset and connect to it. However, it does not appear as an Output Device in Sound Settings. So, I cannot use it as Audio Sink for any playback.</p>
 <p>On diagnosing the problem in Blueman, it gives this error for this headset: <code>Connection Failed: Stream setup failed</code></p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>It turned out that this computer first had Ubuntu and XUbuntu was installed on top of it. Ubuntu uses a GNOME Bluetooth manager and XUbuntu uses Blueman.</p>
 <p>To solve this problem, I uninstalled Blueman:</p>
 <pre><code>$ sudo apt-get purge blueman</code></pre>
 <p>After restarting, I used only the GNOME Bluetooth manager and was able to connect the headset. It appeared as Output Device in Sound Settings and I was able to use it to listen to audio.</p>
 <p><strong>Tried with:</strong> Creative WP-300 headphones, ioGear Bluetooth adapter GBU521 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

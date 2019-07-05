@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Unload of CUDA runtime error with Thrust</title>
+  <title>Code Yarns – Unload of CUDA runtime error with Thrust</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,9 +18,10 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Unload of CUDA runtime error with Thrust</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2013-09-29 14:06:34+00:00</h3>
 </div>
 <p><strong>Problem</strong></p>
@@ -32,6 +33,6 @@ what():  unload of CUDA runtime failed</code></pre>
 <p>For example, this can happen if you have declared a vector as a global variable. At the end of the program, the CUDA runtime is unloaded. If the destructor of the vector is called after this, it cannot destroy fully since it needs the CUDA runtime. Moving these global vectors inside functions or classes might fix the error.</p>
 <p><strong>Tried with:</strong> CUDA 5 and Ubuntu 12.04 LTS</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

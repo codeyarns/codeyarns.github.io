@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to find indices of smallest K items</title>
+  <title>Code Yarns – How to find indices of smallest K items</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,14 +18,15 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to find indices of smallest K items</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2016-06-16 13:13:29+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>Recently I actually faced a problem, the likes of which you see being asked in interviews. Input is a array of N values that is not sorted. We want this array to be untouched, since it is required in the given order for later use. What we want to find out is the indices of the smallest K values in this unsorted array. The K in this case is very small compared to N.</p>
-<h1 id="solution-1">Solution 1</h1>
+<h2 id="solution-1">Solution 1</h2>
 <p>The straightforward solution is:</p>
 <ul>
 <li><p>Make a copy of the array (or vector)</p></li>
@@ -38,7 +39,7 @@
 <li><p>A copy of the input vector needs to be made since our input vector needs to be unmodified. The input vector can be very large, so this copy is wasteful. Especially since K is known to be very small (assume 3 or 5).</p></li>
 <li><p>Since we require the indices of the smallest K values, an additional vector of same length of input vector needs to be created.</p></li>
 </ul>
-<h1 id="solution-2">Solution 2</h1>
+<h2 id="solution-2">Solution 2</h2>
 <p>As you can imagine, the ideal solution would have complexity similar to the above solution. But practically it should not require N new storage, but K size storage. In fact, this can be solved using a <code>std::priority_queue</code>. Here is the pseudocode of my solution:</p>
 <pre><code>GetSmallestKIndices(input_array, K):
     Create priority queue pq
@@ -57,6 +58,6 @@
     What we have left in pq is smallest K values and their indices</code></pre>
 <p>It goes without saying that this solution is only ideal for this particular setup where K is very small compared to N.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

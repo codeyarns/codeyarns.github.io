@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>A simple example to understand CRTP</title>
+  <title>Code Yarns – A simple example to understand CRTP</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,16 +18,17 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">A simple example to understand CRTP</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-07-09 12:28:00+00:00</h3>
 </div>
 <p><strong>Dynamic polymorphism</strong> (or <strong>runtime polymorphism</strong>) using <strong>virtual functions</strong> in C++ is a great savior. However, a tiny fraction of applications might be affected by its disadvantages: an extra function call overhead and space occupied by a vtable pointer in every object.</p>
 <p>For most of these applications, there might be no better choice than virtual functions, they will need to grin and bear it. But among these applications, there might be a further tiny fraction whose problem just might be elegantly solved using a <strong>static polymorphism</strong> technique called <strong>Curiously Recurring Template Pattern (CRTP)</strong>. It is also called the <strong>Barton-Nackman trick</strong>, since this duo introduced it for the first time in their 1997 book <strong>Scientific and Engineering C++</strong> (Section 12.6: Restricted Template Expansion).</p>
 <p>The web is full of articles (like <a href="http://eli.thegreenplace.net/2011/05/17/the-curiously-recurring-template-pattern-in-c/">this</a>) and code explaining CRTP. While I could understand how the code worked, none of them explained what problem this trick was solving. In other words, I did not see the <strong>motivation</strong> for using this trick.</p>
 <p>It is only when I went back to the source, i.e., the Barton-Nackman book that I hit pay dirt. They actually describe a contrived problem which this trick solves. However, their code examples were still quite obscure, so to understand them I created a simpler example, which I describe below.</p>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <ul>
 <li>Say, we have a class hierarchy with <code>Creature</code> base class and thousands of species classes derived from it. As an example, <code>Bird</code> and <code>Fish</code> are both derived from it.</li>
 </ul>
@@ -42,7 +43,7 @@ struct Fish: Creature {};</code></pre>
 // ...
 if (b1 == b2) // Do something
 if (b2 != b3) // Do something</code></pre>
-<h1 id="solutions">Solutions</h1>
+<h2 id="solutions">Solutions</h2>
 <p>Let us see different ways this can be solved elegantly:</p>
 <ul>
 <li><p><strong>Solution 1:</strong> Create pure-virtual <code>==</code> method in <code>Creature</code> and override it in all the derived classes. Create <code>!=</code> method only in <code>Creature</code> that calls the equality method. For <code>N</code> derived classes, this would entail writing <code>N</code> equality methods and <code>1</code> inequality method. This is the perfect solution. However, we started this article with the assumption that its performance is not optimal for our application (see above).</p></li>
@@ -53,6 +54,6 @@ if (b2 != b3) // Do something</code></pre>
 <p>[gist https://gist.github.com/ashwin/4f270ccde1e39218b306 /]</p>
 <p>I hope this example helped you understand this trick! :-)</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

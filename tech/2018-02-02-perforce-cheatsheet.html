@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Perforce cheatsheet</title>
+  <title>Code Yarns – Perforce cheatsheet</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,9 +18,10 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Perforce cheatsheet</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2018-02-02 07:05:46+00:00</h3>
 </div>
 <p><strong>Perforce</strong> is a version control system. <strong>p4</strong> is its primary commandline tool. <strong>p4g</strong> is its GUI tool. The reference for all this is the <a href="https://www.perforce.com/perforce/doc.current/manuals/cmdref/"><strong>p4 command reference</strong></a>.</p>
@@ -77,7 +78,7 @@
 <li>To sync a specific changelist to your working directory:</li>
 </ul>
 <pre><code>$ p4 sync ...@123456</code></pre>
-<h1 id="copy-move-and-delete">Copy, move and delete</h1>
+<h2 id="copy-move-and-delete">Copy, move and delete</h2>
 <ul>
 <li>To copy a file or a directory (including its subdirectories and files):</li>
 </ul>
@@ -93,9 +94,9 @@ $ p4 copy old_dir/... new_dir/...</code></pre>
 </ul>
 <pre><code>$ p4 delete foobar_file
 $ p4 delete foobar_dir/...</code></pre>
-<h1 id="changelist">Changelist</h1>
+<h2 id="changelist">Changelist</h2>
 <p>p4 commands related to changelist are collected <a href="https://codeyarns.com/2018/06/12/p4-changelist-cheatsheet/">here</a>.</p>
-<h1 id="log">Log</h1>
+<h2 id="log">Log</h2>
 <ul>
 <li>To view all the changelists from the server:</li>
 </ul>
@@ -167,7 +168,7 @@ $ p4 revert src/...</code></pre>
 <pre><code>$ p4 opened
 $ p4 opened ...
 $ p4 opened src/...</code></pre>
-<h1 id="file-information">File information</h1>
+<h2 id="file-information">File information</h2>
 <ul>
 <li>To view the changelist of a file:</li>
 </ul>
@@ -193,7 +194,7 @@ $ p4 opened src/...</code></pre>
 <li>To print the user who last changed every line of a file:</li>
 </ul>
 <pre><code>$ p4 annotate -u //somedepot/somepath/foobar.txt</code></pre>
-<h1 id="diff">Diff</h1>
+<h2 id="diff">Diff</h2>
 <ul>
 <li>To view the diff of all currently open files:</li>
 </ul>
@@ -212,7 +213,7 @@ $ p4 opened src/...</code></pre>
 </ul>
 <pre><code>$ p4 diff2 //branch1/some.cpp //branch2/some.cpp</code></pre>
 <p>This prints a diff at the shell. Set the <code>P4DIFF2</code> environment variable to a GUI diff program to view the diff using that.</p>
-<h1 id="branch">Branch</h1>
+<h2 id="branch">Branch</h2>
 <p>To create a new branch from an old branch, there are typically 3 steps:</p>
 <p>First, create the branch:</p>
 <pre><code>$ p4 integrate //foo/old_branch/... //foo/new_branch/...</code></pre>
@@ -222,7 +223,7 @@ $ p4 opened src/...</code></pre>
 $ p4 sync</code></pre>
 <p>Finally, submit the new branch to depot:</p>
 <pre><code>$ p4 submit //foo/new_branch/...</code></pre>
-<h1 id="merge">Merge</h1>
+<h2 id="merge">Merge</h2>
 <ul>
 <li>To merge, resolve automatically and finally only resolve merge conflicts manually:</li>
 </ul>
@@ -240,6 +241,6 @@ $ p4 resolve</code></pre>
 $ p4 resolve to_branch/...
 $ p4 change</code></pre>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

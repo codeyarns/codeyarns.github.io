@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>The strange case of varying floats in Protobuf</title>
+  <title>Code Yarns – The strange case of varying floats in Protobuf</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,20 +18,21 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">The strange case of varying floats in Protobuf</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-09-20 15:20:32+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was using <strong>Google Protobuf</strong> in a Python program to read some text format Protobuf messages, merge them and write them out. Surprisingly, for the same set of input text format message files, I was getting different outputs on two computers! The values that were different were float values. The float values were generally correct, but varied slightly in precision between the two computers.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>This strange observation took quite a long investigation. I initially assumed that maybe the Protobuf library (<code>libprotobuf.so</code>) or the Python Protobuf package were of different versions on these two computers. Surprisingly, they were exactly the same.</p>
 <p>The mystery finally turned out to be the Protobuf <strong>implementation type</strong>. There are currently two possible types: <strong>cpp</strong> and <strong>python</strong>. By default, the cpp implementation is used. However, on one of the computers, the python implementation had been chosen by an engineer during the PIP package installation. The way to pick the engine is by setting an environment variable named <code>PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION</code> to either <code>cpp</code> or <code>python</code>. The engineer had set this environment variable in his shell when playing around with Protobuf and had later installed the PIP package.</p>
 <p>Once I explicitly set the <code>PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION</code> environment variable manually in my Python code before importing protobuf, the float values were the same on both computers!</p>
 <p>Now why should the engine affect the float value? Because Python's float is actually double precision. On the other hand, when a 32-bit float moved between Python code and the C++ engine and back to Python code, it was sometimes changing precision. By using the same engine on all computers, we ensured that at least the float values did not vary between machines.</p>
 <p><strong>Tried with:</strong> Python Protobuf 3.3.0 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

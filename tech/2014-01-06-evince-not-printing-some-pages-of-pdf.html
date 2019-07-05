@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Evince not printing some pages of PDF</title>
+  <title>Code Yarns – Evince not printing some pages of PDF</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,25 +18,26 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Evince not printing some pages of PDF</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-01-06 11:32:23+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p><strong>Evince</strong>, known as <strong>Document Viewer</strong> in Ubuntu, is a PDF viewer program. When printing certain PDF files, I notice that Evince does not print some of the pages. For a problematic PDF file, this problem happens with any printer and even with the <strong>Print to File</strong> option! I am guessing that this problem is the same as the one documented in <a href="https://bugs.launchpad.net/ubuntu/+source/evince/+bug/1032537">this bug</a>.</p>
 <p>Sometimes, I get this error printed on the last page:</p>
 <pre><code>ERROR:
 typecheck
 OFFENDING COMMAND:
 known</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>I am guessing that this problem is caused due to a bug in the printing backend, maybe in <strong>CUPS</strong>. So, I open such PDF file in a PDF viewer with a different backend, like <strong>Okular</strong>.</p>
 <p>Okular can be installed easily:</p>
 <pre><code>$ sudo apt install okular</code></pre>
 <p>When I print from Okular, the PDF is printed correctly! :)</p>
 <p><strong>Tried with:</strong> Evince 3.4.0, Okular 0.14.3 and Ubuntu 12.04 LTS</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

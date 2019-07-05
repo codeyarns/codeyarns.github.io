@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Cursor and Del keys not working in Vim</title>
+  <title>Code Yarns – Cursor and Del keys not working in Vim</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,17 +18,18 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Cursor and Del keys not working in Vim</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-10-02 14:17:37+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>After changing some configurations in a <strong>vimrc</strong>, I noticed that the keys that move the cursor in Insert mode of Vim did not work. Even the Del key did nothing but move the cursor.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>After examining the configuration I had added to my vimrc, I found that this behavior was caused by setting <code>set noesckeys</code>. Turns out that this setting disables cursor keys in Insert mode. I did not really need that feature, so I took out that line. This leaves the default <code>set esckeys</code> setting which works as expected.</p>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 16.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

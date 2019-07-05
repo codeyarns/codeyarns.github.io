@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Prime number buckets in hash table implementations</title>
+  <title>Code Yarns – Prime number buckets in hash table implementations</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,15 +18,16 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Prime number buckets in hash table implementations</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-10-16 12:16:00+00:00</h3>
 </div>
 <p><strong>Prime numbers</strong> are very important in the implementation of <strong>hash tables</strong>. They might be used in computing a <strong>hash</strong> for a given <strong>key</strong> using a <strong>hash function</strong>. Also, they seem to be commonly used as the size of the hash table, i.e., the number of <strong>buckets</strong> in the table.</p>
 <p>Consider, a hash table with <strong>separate chaining</strong>. When there is a <strong>collision</strong>, i.e., multiple keys map to the same bucket, they are maintained in a list at that bucket. The <strong>load factor</strong> of the hash table is the average number of keys per bucket in the table. When the load factor increases beyond a certain threshold, a new hash table with larger number of buckets is chosen, the existing keys are rehashed and inserted anew into the new hash table.</p>
 <p>A key part of a hash table implementation is: what number of buckets to choose when increasing or decreasing the size of a hash table? In containers like vectors, this is easy: in most implementations it grows by 2x the size. But, for hash tables, I found that implementations seem to prefer prime numbers. So, how do hash table implementations pick this prime number?</p>
-<h1 id="hash-table-in-c-stl-of-gcc">Hash table in C++ STL of GCC</h1>
+<h2 id="hash-table-in-c-stl-of-gcc">Hash table in C++ STL of GCC</h2>
 <p>The containers based on hash tables in C++ STL are <code>unordered_set</code>, <code>unordered_multiset</code>, <code>unordered_map</code> and <code>unordered_multimap</code>. All of them are based on the same underlying hash table implementation. Computing an optimal prime number for a given load factor and number of keys is not easy.</p>
 <p>Not surprisingly, the GCC 5.1 implementation of STL has a pre-computed <strong>lookup table of prime numbers</strong>. I found it in <code>/usr/include/c++/5/ext/pb_ds/detail/resize_policy/hash_prime_size_policy_imp.hpp</code>. Here is the array of prime numbers it uses:</p>
 <pre><code>static const std::size_t g_a_sizes[num_distinct_sizes_64_bit] =
@@ -95,7 +96,7 @@
   /* 61    */ (std::size_t)18446744073709551557ull,
 };</code></pre>
 <p>You can create a simple C++ program that inserts keys into an <code>unordered_set</code> and then check the number of buckets using the <code>bucket_count</code> method. You will find that it will be one of the above listed prime numbers.</p>
-<h1 id="hash-table-in-.net-c">Hash table in .Net (C#)</h1>
+<h2 id="hash-table-in-.net-c">Hash table in .Net (C#)</h2>
 <p>Now that the <strong>.Net</strong> source code is available, I also checked out its <code>System.Collections.HashTable</code> implementation. It too seems to be using a lookup table of prime numbers for the table size. Here is the list from <a href="http://referencesource.microsoft.com/#mscorlib/system/collections/hashtable.cs,19337ead89202585">its source code</a>:</p>
 <pre><code>// Table of prime numbers to use as hash table sizes. 
 // A typical resize algorithm would pick the smallest prime number in this array
@@ -117,6 +118,6 @@ public static readonly int[] primes = {
 <p>The prime numbers in .Net are different from that in GCC STL. I'm guessing they are tuned for the .Net load factors, languages and virtual machine.</p>
 <p>A conclusion we can draw from these observations is that though hash tables <a href="http://scottmeyers.blogspot.sg/2015/09/should-you-be-using-something-instead.html">easily beat</a> <strong>balanced binary search tree (BST)</strong> in lookup performance, they are not any easier to implement. Especially a hash table that is built for general purpose applications and data sizes.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

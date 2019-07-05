@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Blank display on installing Kubuntu</title>
+  <title>Code Yarns – Blank display on installing Kubuntu</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,18 +18,19 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Blank display on installing Kubuntu</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-02-04 04:19:43+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I had a computer with <strong>Ubuntu 16.04</strong> running the <strong>Unity</strong> desktop. I wanted to switch to <strong>Kubuntu</strong>, so I installed it using this command:</p>
 <pre><code>$ sudo apt install kubuntu-desktop</code></pre>
 <p>Everything installed fine, except this error at the end:</p>
 <pre><code>kde-telepathy-minimal : Depends: kde-config-telepathy-accounts (&gt;= 0.9.0) but it is not installed</code></pre>
 <p>After this, there is an error about <code>kaccounts-provider</code> whenever I login into Unity. If I try to login into the KDE desktop, I get a blank display!</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>This error seems to be hitting lots of people as seen <a href="https://bugs.launchpad.net/kubuntu-ppa/+bug/1451728">here</a>. This seems to be caused by a conflict between packages required by Unity and KDE. Apparently, Unity (Ubuntu) and KDE (Kubuntu) cannot be installed on the same computer!</p>
 <p>Following some clues given by other users, I forcefully removed <strong>Telepathy</strong> since I did not need it anyway:</p>
 <pre><code>$ sudo dpkg --remove kde-telepathy
@@ -38,6 +39,6 @@ $ sudo apt dist-upgrade</code></pre>
 <p>After this the Unity error on login and the black display in KDE went away. I was able to switch to using KDE as my primary desktop.</p>
 <p>So, if you intend to use Kubuntu, you are better off installing a Kubuntu ISO directly instead of installing it from inside Ubuntu.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

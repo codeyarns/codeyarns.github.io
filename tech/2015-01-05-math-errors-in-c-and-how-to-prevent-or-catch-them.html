@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Math errors in C++ and how to prevent or catch them</title>
+  <title>Code Yarns – Math errors in C++ and how to prevent or catch them</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,23 +18,24 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Math errors in C++ and how to prevent or catch them</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-01-05 12:12:15+00:00</h3>
 </div>
 <p>Math functions provided by the standard C++ library are defined in the <code>cmath</code> header file. Many of these functions require their input values to be in a specific domain. For example, the <code>log</code> function requires its input to be greater than zero. <code>log(-3.14)</code> or <code>log(0)</code> is not defined mathematically. The result of such a call is set to a special <code>NaN</code>, <code>inf</code> or <code>-inf</code> value. However, no exception is thrown and the call has actually <strong>failed silently</strong>. Note that this does not affect the correctness of future math function calls.</p>
-<h1 id="preventing-math-error">Preventing math error</h1>
+<h2 id="preventing-math-error">Preventing math error</h2>
 <p>There is no warning option provided by GCC that can be enabled to detect such errors in the code. Nor is there any compiler option to enable the standard C++ library to thrown an exception, say <code>std::domain_error</code>, when such an error occurs. Other libraries, like Boost, do throw such exceptions.</p>
 <p>The only way to prevent these math errors is to <a href="https://www.securecoding.cert.org/confluence/display/cplusplus/VOID+Prevent+domain+errors+in+math+functions">check the bounds</a> of the inputs passed to these functions. For example, you can write a wrapper function for each of such math functions that does the bounds checking and throws error or exception when the input is wrong. You can change your code to explicitly use only these math wrapper functions instead of those from <code>cmath</code>.</p>
 <p>If the performance of this math code is important to you, then inline this function and enable the bounds checking only in Debug mode or when you want to check the correctness of some inputs. Disable the checking for Release mode.</p>
-<h1 id="catching-math-error">Catching math error</h1>
+<h2 id="catching-math-error">Catching math error</h2>
 <p>When a math function is executed with wrong input, the <code>errno</code> variable from the <code>cerrno</code> header file is set to non-zero value. The list of error values can be seen <a href="http://en.cppreference.com/w/cpp/error/errno_macros">here</a>. Specifically, for math errors, it might be set to either <code>ERANGE</code> or <code>EDOM</code>. This refers to a range or domain error respectively. To get the error string explaining the error, use the <code>std::strerror</code> function.</p>
 <p>For example:</p>
 <p>https://gist.github.com/ashwin/a29abf880ef66a0ca45f</p>
 <p><strong>Reference:</strong> Section 40.3, The C++ Programming Language (4 Ed) by Stroustrup</p>
 <p><strong>Tried with:</strong> GCC 4.9.2 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

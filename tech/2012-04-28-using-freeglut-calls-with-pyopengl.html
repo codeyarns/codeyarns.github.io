@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Using FreeGLUT calls with PyOpenGL</title>
+  <title>Code Yarns – Using FreeGLUT calls with PyOpenGL</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -55,9 +55,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Using FreeGLUT calls with PyOpenGL</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2012-04-28 15:26:32+00:00</h3>
 </div>
 <p><strong>PyOpenGL</strong> exposes OpenGL GL, GLU and GLUT calls to Python programs. The <strong>FreeGLUT</strong> library was developed as an extension to GLUT and adds some important functionality to GLUT. The one which I like the most is the support for the <strong>scroll wheel</strong> of the mouse.</p>
@@ -68,6 +69,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>On further investigation, it turns out that PyOpenGL chooses the first available DLL between glut and freeglut. This can be seen in <code>Python32\Lib\site-packages\OpenGL\platform\win32.py</code>. So, to get FreeGLUT functionality, we need to make PyOpenGL to pick the freeglut DLL file instead of glut. We can do this by deleting the glut DLL file(s) in <code>Python32\Lib\site-packages\OpenGL\DLLS</code>. Once this is done, PyOpenGL should pick the freeglut DLL and the FreeGLUT calls should be routed to it without any problem.</p>
 <p><strong>Tried with:</strong> PyOpenGL 3.0.2a6 and Python 3.2 64-bit</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

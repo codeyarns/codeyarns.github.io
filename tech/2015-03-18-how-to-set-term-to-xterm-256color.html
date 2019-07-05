@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to set TERM to xterm-256color</title>
+  <title>Code Yarns – How to set TERM to xterm-256color</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,28 +18,29 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to set TERM to xterm-256color</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-03-18 13:39:49+00:00</h3>
 </div>
 <p><a href="https://codeyarns.files.wordpress.com/2015/03/20150318_terminator_xterm256color.png"><img src="https://codeyarns.files.wordpress.com/2015/03/20150318_terminator_xterm256color.png" alt="20150318_terminator_xterm256color" /></a></p>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p><strong>GNOME Terminal</strong>, <strong>Terminator</strong> and other terminal programs in X that are based on <strong>VTE</strong> set the <code>TERM</code> environment variable to <code>xterm</code>. Since they support 256 colors, <code>TERM</code> should actually be set to <code>xterm-256color</code>.</p>
 <p>Why is this important? Vim and other terminal programs decide how many colors to support based on <code>TERM</code>. So, if Vim sees <code>xterm</code> it reverts to using 8 colors, instead of 256 colors. That is, it sets its <code>t_Co</code> variable to <code>8</code> instead of <code>256</code>.</p>
-<h1 id="wrong-solution-1">Wrong solution 1</h1>
+<h2 id="wrong-solution-1">Wrong solution 1</h2>
 <p>One common solution to this problem is to add <code>set t_Co=256</code> to your <code>.vimrc</code>.</p>
 <p>This is a crude solution because you are overriding the capability of Vim to automatically detect the terminal type and set colors based on that. For example, if you copy your <code>.vimrc</code> to another computer and run Vim under the <strong>virtual terminal (VT)</strong> which supports only 8 colors, your <code>.vimrc</code> is now setting <code>t_Co</code> erroneously to 256!</p>
-<h1 id="wrong-solution-2">Wrong solution 2</h1>
+<h2 id="wrong-solution-2">Wrong solution 2</h2>
 <p>Another common solution is to set <code>TERM=xterm-256color</code> in <code>.bashrc</code> or similar shell initialization script. For example, it can be set based on the value of <code>COLORTERM</code> which is set to <code>gnome-terminal</code> by GNOME Terminal.</p>
 <p>However, this is a wrong solution because you are setting a terminal capability in a shell!</p>
 <p>Also, think what happens if you now run <code>screen</code> or <code>tmux</code> inside the shell. It will set its own terminal type in <code>TERM</code> and overrides your setting.</p>
-<h1 id="correct-solution">Correct solution</h1>
+<h2 id="correct-solution">Correct solution</h2>
 <p>We first need to identify that this problem lies in VTE and the GNOME-based terminals that use it. This is a well known problem and distributions are <a href="https://fedoraproject.org/wiki/Features/256_Color_Terminals">mulling</a> over <a href="https://bugzilla.gnome.org/show_bug.cgi?id=640940">fixing</a> it. In the meanwhile, we can at least make sure that <code>TERM</code> is set to <code>xterm-256color</code> before a shell is invoked.</p>
 <p>For example, in Terminator I do this by right-click -&gt; Preferences -&gt; Profiles -&gt; Command -&gt; Custom command and adding a <code>env TERM=xterm-256color fish</code> to set it before calling the Fish shell. You can add similar custom commands for Bash or in GNOME Terminal.</p>
 <p><strong>Reference:</strong> <a href="http://blog.sanctum.geek.nz/term-strings/">TERM Strings</a></p>
 <p><strong>Tried with:</strong> Terminator 0.97 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

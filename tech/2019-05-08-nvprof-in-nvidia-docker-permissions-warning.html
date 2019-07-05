@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>nvprof in nvidia-docker permissions warning</title>
+  <title>Code Yarns – nvprof in nvidia-docker permissions warning</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">nvprof in nvidia-docker permissions warning</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2019-05-08 02:33:54+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was running a CUDA application inside a <strong>nvidia-docker</strong> container. Wanting to profile it, I ran the application with <strong>nvprof</strong> and got a permissions warning and no profile information was generated:</p>
 <pre><code>==616== Warning: The user does not have permission to profile on the target device. See the following link for instructions to enable permissions and get more information: https://developer.nvidia.com/NVSOLN1000
 ==616== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.</code></pre>
@@ -34,9 +35,9 @@
 ==643== Profiling result:                                                                                                     
 No kernels were profiled.                                                         
 No API activities were profiled.</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>The warning message has a link, but perusing that documentation is not relevant to this docker problem. Solution turned out to be that I needed to add the <code>--privileged</code> option to my nvidia-docker command invocation.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Wireless card not working on Dell Vostro 3300</title>
+  <title>Code Yarns – Wireless card not working on Dell Vostro 3300</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Wireless card not working on Dell Vostro 3300</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2010-06-18 06:18:17+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I installed <strong>Ubuntu</strong> on a <strong>Dell Vostro 3300</strong> notebook. (Note that I faced the exact same problem with a <strong>Dell Inspiron 1320</strong> and solution is same as below.) After installation, I find that <strong>wireless</strong> is not working. Even the wireless notification light above the keyboard is not turned on.</p>
 <p>I used <code>lspci</code> to check if the wireless card is detected:</p>
 <pre><code>$ sudo lspci -v
@@ -42,9 +43,9 @@
     Capabilities: [16c] Power Budgeting &lt;?&gt;
     Kernel driver in use: b43-pci-bridge</code></pre>
 <p>I find that <strong>Broadcom BCM4312</strong> chip in the <strong>Dell Wireless 1397</strong> wireless card is detected and a <code>b43-pci-bridge</code> driver has been installed. This is not a WLAN driver.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>Broadcom chips need the driver provided by Broadcom. This needs to be installed for the card to work.</p>
-<h2 id="ubuntu-14.04">Ubuntu 14.04</h2>
+<h3 id="ubuntu-14.04">Ubuntu 14.04</h3>
 <ul>
 <li><p>Connect to the internet using a LAN cable.</p></li>
 <li><p>Install the Broadcom driver:</p></li>
@@ -71,9 +72,9 @@ $ sudo apt-get --reinstall install bcmwl-kernel-source</code></pre>
     Capabilities: [160] Device Serial Number xx-xx-xx-xx-xx-xx-xx-xx
     Capabilities: [16c] Power Budgeting &lt;?&gt;
     Kernel driver in use: wl</code></pre>
-<h2 id="ubuntu-10.04">Ubuntu 10.04</h2>
+<h3 id="ubuntu-10.04">Ubuntu 10.04</h3>
 <p>To enable wireless, choose System → Administration → Hardware Drivers. The system will now search for required proprietary drivers. In the list it presents, choose the <strong>Broadcom STA Wireless Driver</strong>. After it is installed, reboot and your wireless card should now work.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

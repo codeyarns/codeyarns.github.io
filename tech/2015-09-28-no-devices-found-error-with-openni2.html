@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>No devices found error with OpenNI2</title>
+  <title>Code Yarns – No devices found error with OpenNI2</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,21 +18,22 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">No devices found error with OpenNI2</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-09-28 12:30:00+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I installed <strong>OpenNI2</strong> on a fresh Ubuntu system as described <a href="/2015/08/04/how-to-install-openni2-on-linux/">here</a>. I plugged in a <strong>Primesense RD1.09</strong> camera. I tried the default <strong>NIViewer</strong> app and it failed with this error:</p>
 <pre><code>openDevice failed:
 DeviceOpen using default: no devices found</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>This error was quite a hard nut to crack. I could see that the Primesense camera was detected without errors in <code>/var/log/syslog</code>. I could see it being listed as <code>ASUS</code> when I run the <code>lsusb</code> command. And yet any OpenNI2 program would quit with the above error!</p>
 <p>I could only solve this cause I remembered a similar error with <strong>SoftKinetic</strong> cameras. I tried the same solution as described <a href="/2014/05/06/depthsense-error-some-dll-files-are-missing/">here</a>: creating a symbolic link to the <code>libudev</code> file.</p>
 <p>After this, OpenNI2 programs began working immediately!</p>
 <p><strong>Tried with:</strong> OpenNI 2.2 x64, Primesense RD1.09 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

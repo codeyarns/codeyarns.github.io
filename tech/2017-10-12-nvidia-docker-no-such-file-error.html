@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>NVIDIA Docker no such file error</title>
+  <title>Code Yarns – NVIDIA Docker no such file error</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">NVIDIA Docker no such file error</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-10-12 14:57:39+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p><a href="https://github.com/NVIDIA/nvidia-docker"><strong>NVIDIA Docker</strong></a> makes it easy to use Docker containers across machines with differing NVIDIA graphics drivers. After installing it, I ran a sample NVIDIA Docker command and got this error:</p>
 <pre><code>$ nvidia-docker run --rm nvidia/cuda nvidia-smi
 docker: Error response from daemon: Post http://%2Frun%2Fdocker%2Fplugins%2Fnvidia-docker.sock/VolumeDriver.Mount: dial unix /run/docker/plugins/nvidia-docker.sock: connect: no such file or direct</code></pre>
@@ -37,11 +38,11 @@ nvidia-docker-plugin | 2017/10/11 10:10:13 Serving plugin API at /run/docker/plu
 nvidia-docker-plugin | 2017/10/11 10:10:13 Serving remote API at localhost:3476
 nvidia-docker-plugin | 2017/10/11 10:10:13 Error: listen tcp 127.0.0.1:3476: bind: address already in use</code></pre>
 <p>That 3476 port turned out to be owned by no process. So what's the problem?</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>I gave up and restarted Docker and everything worked fine after that (haha!):</p>
 <pre><code>$ sudo service docker restart</code></pre>
 <p><strong>Tried with:</strong> NVIDIA Docker 1.x and Docker 1.11</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

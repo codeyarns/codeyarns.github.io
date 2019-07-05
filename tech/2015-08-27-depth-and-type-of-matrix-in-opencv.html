@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Depth and type of matrix in OpenCV</title>
+  <title>Code Yarns – Depth and type of matrix in OpenCV</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,14 +18,15 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Depth and type of matrix in OpenCV</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-08-27 12:13:00+00:00</h3>
 </div>
 <p><code>cv::Mat</code> is the most fundamental datatype used in <strong>OpenCV</strong>. It can be used to store 2D images with 1-4 channels of data.</p>
 <p>When your code receives a <code>cv::Mat</code> from an external library or code, the most common question you have is what is the <strong>data type</strong> of the elements of this image? There seem to be two methods in the <code>cv::Mat</code> class that answer this: <code>depth()</code> and <code>type()</code>.</p>
-<h1 id="depth">Depth</h1>
+<h2 id="depth">Depth</h2>
 <p>Depth is the more fundamental of the two queries. It is the data type of each individual element in the image data. It can take one of these 8 values:</p>
 <pre><code>#define CV_8U   0
 #define CV_8S   1
@@ -36,7 +37,7 @@
 #define CV_64F  6
 #define CV_USRTYPE1 7</code></pre>
 <p>For example, an image with 2 channels of <code>unsigned short</code> data will have depth of <code>CV_16U</code>.</p>
-<h1 id="type">Type</h1>
+<h2 id="type">Type</h2>
 <p>Type combines the data type of the elements along with the number of channels in the image. Since images in OpenCV can have 1-4 channels, it can take one of these 28 values:</p>
 <pre><code>#define CV_8UC1 CV_MAKETYPE(CV_8U,1)
 #define CV_8UC2 CV_MAKETYPE(CV_8U,2)
@@ -77,6 +78,6 @@
 <p>https://gist.github.com/ashwin/8ee64792624b1ef94043</p>
 <p><strong>Reference:</strong> <a href="https://github.com/Itseez/opencv/blob/master/modules/core/include/opencv2/core/hal/interface.h">modules/core/include/opencv2/core/hal/interface.h</a> in OpenCV source code</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

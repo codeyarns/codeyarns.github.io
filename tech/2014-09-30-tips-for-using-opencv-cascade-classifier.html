@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Tips for using OpenCV Cascade Classifier</title>
+  <title>Code Yarns – Tips for using OpenCV Cascade Classifier</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,30 +18,31 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Tips for using OpenCV Cascade Classifier</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-09-30 08:58:56+00:00</h3>
 </div>
 <p>My <a href="2014/09/01/how-to-train-opencv-cascade-classifier/">earlier post</a> describes the basic steps to train the OpenCV Cascade Classifier. Unfortunately, the training process of <code>opencv_traincascade</code> is not for the newbie. It may take days to finish and the classifier might not work as you expected. Here is a list of tips that I found useful to train the classifier.</p>
-<h1 id="rotation-invariance">Rotation invariance</h1>
+<h2 id="rotation-invariance">Rotation invariance</h2>
 <p>The <a href="http://answers.opencv.org/question/32106">cascade classifier is not rotation invariant</a>. If your images can have the object in different rotations, then you have two options:</p>
 <ol style="list-style-type: decimal">
 <li><p>You can generate a training set where the objects in the positive samples are rotated at different angles. You have to generate these yourself, <code>opencv_createsamples</code> will not do this for <code>.vec</code> file output.</p></li>
 <li><p>You strictly use positive samples where the object is in an upright or canonical orientation. For example, positive samples of faces where the face is always upright. You may have to write a program with some user interaction to generate these from your training samples. Later during the testing stage, the cascade classifier will only detect the object, if it appears in canonical position (in which it was trained). So, to get it to detect the object, you need to repeatedly rotate the image and try the classifier.</p></li>
 </ol>
-<h1 id="rotation-angle">Rotation angle</h1>
+<h2 id="rotation-angle">Rotation angle</h2>
 <p>While the cascade classifier is rotation invariant (see above), this does not mean that the object needs to be perfectly in upright or canonical orientation. The classifier should be able to detect object up to about 10 degrees of rotation. What this means is that:</p>
 <ol style="list-style-type: decimal">
 <li><p>If you are using rotated positive samples, you do not need to try very small rotations (say 5 degrees). Instead, a larger rotation should be fine. For example, rotations in increments of 20 degrees.</p></li>
 <li><p>If you are rotating the image during the testing stage, then again no need to try small rotations. Same advice as earlier point.</p></li>
 </ol>
-<h1 id="multithreading">Multithreading</h1>
+<h2 id="multithreading">Multithreading</h2>
 <p>If training is extremely slow, then build OpenCV with Intel TBB support. This can be done by installing the <code>libtbb-dev</code> package and then building OpenCV with the <code>WITH_TBB</code> option enabled. With this feature enabled (along with LBP), I found that <code>opencv_traincascade</code> which used to use 1 core, started to use all the available cores. Again, this can provide another 8x jump in training speed. With a speedup like this, I highly recommend to use this feature for everyone who is using an Intel CPU.</p>
-<h1 id="lbp-features">LBP features</h1>
+<h2 id="lbp-features">LBP features</h2>
 <p>If training is extremely slow, possibly taking days, then consider using the <code>-featureType LBP</code> option. By default, <code>HAAR</code> features are computed, which can be very slow. Local Binary Patterns can be almost an order of magnitude faster to compute. Its testing performance can match HAAR if you provide a good training set with lots of positive samples.</p>
 <p><strong>Related:</strong> <a href="http://answers.opencv.org/question/63/enable-multithreading-with-tbb-during-cascade/">Enable multithreading with TBB during cascade</a></p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

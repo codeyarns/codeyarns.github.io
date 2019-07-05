@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>CMake error on CUDA toolkit</title>
+  <title>Code Yarns – CMake error on CUDA toolkit</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">CMake error on CUDA toolkit</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2014-05-29 03:43:21+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I installed CUDA using this command:</p>
 <pre><code>$ sudo apt install nvidia-cuda-dev</code></pre>
 <p>I tried to compile a CUDA program using CMake and got this error:</p>
@@ -31,13 +32,13 @@
   Specify CUDA_TOOLKIT_ROOT_DIR
 Call Stack (most recent call first):
   CMakeLists.txt:20 (find_package)</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>Turns out that <code>nvidia-cuda-dev</code> does not install the CUDA toolkit or SDK. Though it is named like a development package in Linux typically is, it is not.</p>
 <p>To install the CUDA toolkit use:</p>
 <pre><code>$ sudo apt install nvidia-cuda-toolkit</code></pre>
 <p>The CMake compile error went away after this :)</p>
 <p><strong>Tried with:</strong> CUDA 5.5, CMake 2.8.12.2 and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

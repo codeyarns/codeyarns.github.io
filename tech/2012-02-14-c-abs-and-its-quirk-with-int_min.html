@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>C++: abs() and its quirk with INT_MIN</title>
+  <title>Code Yarns – C++: abs() and its quirk with INT_MIN</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,9 +18,10 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">C++: abs() and its quirk with INT_MIN</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2012-02-14 14:52:10+00:00</h3>
 </div>
 <p>If you use the <code>abs()</code> function from <code>cmath</code>, then you need to be aware of one little quirk. The <code>abs()</code> function returns the absolute value of the signed integer passed as input. It is declared as:</p>
@@ -32,6 +33,6 @@
 <p>The binary representation of <code>0</code> is <code>00000000000000000000000000000000</code> and the binary representation of <code>INT_MIN</code> is <code>10000000000000000000000000000000</code>. That is, <code>INT_MIN</code> is same as 0, with MSB set to 1. Quirks of integers, such as with abs(), could have been avoided if the int format had been defined with two zero values: a positive zero (<code>00000000000000000000000000000000</code>) and a negative zero (<code>10000000000000000000000000000000</code>).</p>
 <p>Anyway, the reason you need to be careful about <code>abs()</code> is because you might be using its return value to index into an array. Indexing an array using a negative value can be disastrous or result in a hard-to-replicate bug.</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

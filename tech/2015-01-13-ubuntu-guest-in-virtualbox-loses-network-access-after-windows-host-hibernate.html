@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Ubuntu guest in VirtualBox loses network access after Windows host hibernate</title>
+  <title>Code Yarns – Ubuntu guest in VirtualBox loses network access after Windows host hibernate</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,17 +18,18 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Ubuntu guest in VirtualBox loses network access after Windows host hibernate</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-01-13 12:36:23+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I have a <strong>Windows</strong> host system which is running an <strong>Ubuntu</strong> guest inside <strong>VirtualBox</strong>. While the Ubuntu guest is running, I <strong>hibernate</strong> the Windows host. Later, after the Windows host is resumed, I find that network connectivity is lost in the Ubuntu guest. The LAN network interface is present and shows as connected. However, no domain name can be resolved or pinged.</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>I found that this bug in VirtualBox is reported <a href="https://www.virtualbox.org/ticket/3625">here</a>. Disconnecting the network interface and connecting back did not work. But, turning off networking and turning it back on worked!</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04, VirtualBox 4.3.20 and Windows 7 Professional 64-bit</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

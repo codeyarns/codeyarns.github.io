@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>How to install CUDA 7.5 on Ubuntu</title>
+  <title>Code Yarns – How to install CUDA 7.5 on Ubuntu</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,19 +18,20 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">How to install CUDA 7.5 on Ubuntu</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-09-25 12:56:00+00:00</h3>
 </div>
-<h1 id="easy-solution">Easy solution</h1>
+<h2 id="easy-solution">Easy solution</h2>
 <p>The easiest method is to visit the <a href="https://developer.nvidia.com/cuda-downloads"><strong>CUDA Downloads</strong></a> webpage and download the <strong>deb (network)</strong> file that matches your Ubuntu. Installing from it is as easy as:</p>
 <pre><code>$ sudo dpkg -i cuda-repo-ubuntu1404_7.5-18_amd64.deb
 $ sudo apt-get update
 $ sudo apt install cuda-7-5</code></pre>
 <p>This worked great on a notebook for me. However, on a desktop I started getting the infamous <strong>login loop</strong> problem.</p>
 <p><strong>Login loop</strong> problem: You start Ubuntu and you get the graphical login, but it is being displayed at an extremely low resolution (like <code>640x480</code> for example). You login, you see the desktop for a second, something fails and you are thrown back to the graphical login screen.</p>
-<h1 id="manual-solution">Manual solution</h1>
+<h2 id="manual-solution">Manual solution</h2>
 <p>There are many solutions to the <strong>login loop</strong> problem. The only one which worked for me is described <a href="https://devtalk.nvidia.com/default/topic/878117/-solved-titan-x-for-cuda-7-5-login-loop-error-ubuntu-14-04-/">here</a>.</p>
 <p>That solution has many steps, not all of which I needed. I also ran into problems not listed there. Here is what worked for me:</p>
 <ul>
@@ -63,6 +64,6 @@ $ sudo ./cuda_7.5.18_linux --no-opengl-libs</code></pre>
 </ul>
 <p><strong>Tried with:</strong> CUDA 7.5, NVIDIA driver 352.21, Ubuntu 14.04, Linux 3.19.0-28-generic and NVIDIA GTX 750 Ti</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

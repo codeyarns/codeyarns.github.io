@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>The strange case of the notebook that woke up at night</title>
+  <title>Code Yarns – The strange case of the notebook that woke up at night</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,14 +18,15 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">The strange case of the notebook that woke up at night</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2017-04-16 05:10:16+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>In the last week, I started noticing that my notebook, that I had suspended before going to sleep would have woken up during the night! This notebook was running <strong>Ubuntu 16.04</strong>. It took a bit of investigation to realize that the notebook was being woken up by my new <strong>Targus AMW071</strong> wireless mouse. Some slight vibration to the desk during the night would move the mouse and it would wake up Linux from its sleep!</p>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>The list of devices that can wake up Linux from sleep is listed in the file <code>/proc/acpi/wakeup</code>. Each line of that file has a four-letter device code, obtained from BIOS, and whether that device is enabled (can wakeup from sleep) or disabled.</p>
 <p>I checked which devices could wakeup my Linux:</p>
 <pre><code>$ cat /proc/acpi/wakeup | grep enabled
@@ -59,6 +60,6 @@ LID0      S3    *enabled   platform:PNP0C0D:00</code></pre>
 <li><p><a href="http://stackoverflow.com/questions/12973777">How to run shell script at startup?</a></p></li>
 </ul>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

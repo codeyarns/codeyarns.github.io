@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>icu.InvalidArgsError</title>
+  <title>Code Yarns – icu.InvalidArgsError</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">icu.InvalidArgsError</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-11-02 12:48:00+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I tried running <strong>gcalcli</strong> and got this error:</p>
 <pre><code>$ gcalcli
 Traceback (most recent call last):
@@ -40,7 +41,7 @@ Traceback (most recent call last):
   File &quot;/usr/lib/python2.7/dist-packages/parsedatetime/pdt_locales.py&quot;, line 151, in __init__
     self.icu = pyicu.Locale(localeID)
 icu.InvalidArgsError: (&lt;type &#39;icu.Locale&#39;&gt;, &#39;__init__&#39;, (None,))</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>This is a well known bug in the <code>parsedatetime</code> package as described <a href="https://bugs.launchpad.net/ubuntu/+source/parsedatetime/+bug/1302963">here</a>.</p>
 <p>The solution is to remove the package installed from Ubuntu archives and install a recent version of it from the Python Package Index:</p>
 <pre><code>$ sudo apt-get remove python-parsedatetime
@@ -48,6 +49,6 @@ icu.InvalidArgsError: (&lt;type &#39;icu.Locale&#39;&gt;, &#39;__init__&#39;, (N
 $ sudo pip install --upgrade parsedatetime</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

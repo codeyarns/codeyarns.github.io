@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>MATLAB parallel pool error</title>
+  <title>Code Yarns – MATLAB parallel pool error</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,12 +18,13 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">MATLAB parallel pool error</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2016-02-23 12:55:59+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I ran a <strong>MATLAB</strong> script that uses a <strong>parallel pool</strong> of workers. It failed with this error:</p>
 <pre><code>The client lost connection to worker 4. This might be due to network problems, or the interactive communicating job might have errored</code></pre>
 <p>The corresponding <code>matlab_crash_dump</code> file had this stack trace starting from <code>mkl.so</code>:</p>
@@ -34,11 +35,11 @@
 [  4] 0x00007f9950525d5a        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+02727258 mkl_blas_sgemm+00001386
 [  5] 0x00007f99503b8ba5        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+01231781 sgemm+00000377
 [  6] 0x00007f991b803154    /opt/intel/mkl/lib/intel64/libmkl_intel_lp64.so+01315156 cblas_sgemm+00000372</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>To run a parallel pool of workers, we need to use the <code>libmkl_rt.so</code> provided by Intel. I added the path of this library path, which was <code>/opt/intel/mkl/lib/intel64</code> in my case, to my <code>LD_LIBRARY_PATH</code>. I also set the <code>BLAS_VERSION</code> environment variable to <code>libmkl_rt.so</code>.</p>
 <p>After this I checked if everything worked fine by going to Parallel -&gt; Manage cluster profiles -&gt; Local -&gt; Validation profiles -&gt; Validate. All the parallel test tasks were validated successfully. My script too worked fine after this.</p>
 <p><strong>Tried with:</strong> MATLAB R2014a and Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

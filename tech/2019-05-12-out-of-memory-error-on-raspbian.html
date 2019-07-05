@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Out of memory error on Raspbian</title>
+  <title>Code Yarns – Out of memory error on Raspbian</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,15 +18,16 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Out of memory error on Raspbian</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2019-05-12 18:19:51+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I was compiling some templated C++ on a Raspberry Pi when the compilation failed with this error:</p>
 <pre><code>cc1plus: out of memory allocating 66574076 bytes after a total of 98316160 bytes</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>The Raspberry Pi had 1GB of RAM. From the error it looked like the compiler needed more memory than that.</p>
 <p>It turns out that Raspbian does not use a <strong>swap</strong> partition. Instead it uses a <code>/var/swap</code> file on the SD card. This is called <strong>dphys-swapfile</strong>. The default size of this swapfile is 100MB. As can be seen from the error above, this swap space was not enough.</p>
 <p>Since I had more than 1GB of free space still available on my SD card, I decided to increase this swapfile. To do that, open the file <code>/etc/dphys-swapfile</code> and increase the number of MB set in the line <code>CONF_SWAPSIZE=100</code>.</p>
@@ -35,6 +36,6 @@
 <p>Or alternately you could restart Raspbian.</p>
 <p><strong>Tried with:</strong> Raspbian 9 and Raspberry Pi B+ Rev3</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>

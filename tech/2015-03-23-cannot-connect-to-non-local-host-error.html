@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Ashwin Nanjappa" />
-  <title>Cannot connect to non-local host error</title>
+  <title>Code Yarns – Cannot connect to non-local host error</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
@@ -18,20 +18,21 @@
   </script>
 </head>
 <body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<hr />
 <div id="header">
 <h1 class="title">Cannot connect to non-local host error</h1>
-<h2 class="author">Ashwin Nanjappa</h2>
 <h3 class="date">2015-03-23 12:22:58+00:00</h3>
 </div>
-<h1 id="problem">Problem</h1>
+<h2 id="problem">Problem</h2>
 <p>I changed the <strong>hostname</strong> of my computer by editing <code>/etc/hostname</code> and <code>/etc/hosts</code>, as explained <a href="2015/03/20/how-to-change-hostname/">here</a>. After this, whenever I ran Vim and some other programs at the terminal, this message was printed:</p>
 <pre><code>_IceTransSocketUNIXConnect: Cannot connect to non-local host old-hostname
 _IceTransSocketUNIXConnect: Cannot connect to non-local host old-hostname</code></pre>
-<h1 id="solution">Solution</h1>
+<h2 id="solution">Solution</h2>
 <p>After a bit of Googling, I found that this error was originating from <strong>ICE</strong>, an IPC protocol used by X clients. This was due to the old hostname still being present in the <code>~/.ICEauthority</code> file.</p>
 <p>I deleted this file and restarted the computer. The new <code>~/.ICEauthority</code> that was automatically generated had the new hostname. Also, the error did not occur after this.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 <hr />
-<p><a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a></p>
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
 </html>
