@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Code Yarns – How to add Google Analytics to Pandoc webpages</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
+</head>
+<body>
+<a href="..">Code Yarns</a>
+<hr />
+<div id="header">
+<h1 class="title">How to add Google Analytics to Pandoc webpages</h1>
+<h3 class="date">2019-07-06 03:00:03.127279</h3>
+</div>
+<p><strong>Pandoc</strong> can be used to convert Markdown files to HTML webpages. If you are hosting these webpages online, it might be useful to get some stats on them. <strong>Google Analytics</strong> is a popular service to do this.</p>
+<ul>
+<li>Signing up for <a href="https://analytics.google.com/analytics/web/">Google Analytics</a> is free.</li>
+<li>After signup, create an <strong>account</strong> for your website.</li>
+<li>You should be able to find the section where it shares a <strong>tracking code</strong>. It looks something like this:</li>
+</ul>
+<pre><code>&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;
+&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=UA-xxxxxxxxx-1&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag(&#39;js&#39;, new Date());
+  gtag(&#39;config&#39;, &#39;UA-xxxxxxxxx-1&#39;);
+&lt;/script&gt;</code></pre>
+<ul>
+<li>Paste your tracking code into a file, say <code>header.txt</code>.</li>
+<li>For the tracking to work, the tracking code needs to be embedded in the <code>head</code> section of every webpage on your website. To embed this tracking code in every HTML webpage you generate using Pandoc, use the <code>--include-in-header</code> or <code>-H</code> option. For example:</li>
+</ul>
+<pre><code>$ pandoc --standalone --include-in-header=header.txt in.markdown -o out.html</code></pre>
+<p><strong>Tried with:</strong> Pandoc 1.19.2.4 and Ubuntu 18.04</p>
+<hr />
+<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
+</body>
+</html>
