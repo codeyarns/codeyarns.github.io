@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </script>
 </head>
 <body>
-<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<a href="..">Code Yarns</a>
 <hr />
 <div id="header">
 <h1 class="title">Visual C++: Warning C4100</h1>
@@ -68,34 +68,48 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 }</code></pre></div>
 <p>There are a few ways to deal with this warning:</p>
 <ul>
-<li><p>If this warning made you aware that you had a redundant parameter, that is good! Remove the unused parameter from both the function declaration and the definition:</p>
+<li>If this warning made you aware that you had a redundant parameter, that is good! Remove the unused parameter from both the function declaration and the definition:</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Foo::OnEvent()
 {
-<span class="cf">return</span>;
-}</code></pre></div></li>
-<li><p>If the function signature cannot be changed but you do not really use the parameter in the function body, then remove the parameter name, while retaining the parameter type:</p>
+    <span class="cf">return</span>;
+}</code></pre></div>
+<ul>
+<li>If the function signature cannot be changed but you do not really use the parameter in the function body, then remove the parameter name, while retaining the parameter type:</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; )
 {
-<span class="cf">return</span>;
-}</code></pre></div></li>
-<li><p>If you are playing around with the code in the function body and will need the parameter in the future, then comment the parameter temporarily:</p>
+    <span class="cf">return</span>;
+}</code></pre></div>
+<ul>
+<li>If you are playing around with the code in the function body and will need the parameter in the future, then comment the parameter temporarily:</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; <span class="co">/* event */</span> )
 {
-<span class="co">// Some commented code that uses &quot;event&quot; parameter</span>
-<span class="cf">return</span>;
-}</code></pre></div></li>
-<li><p><strong><a href="http://codeyarns.wordpress.com/2010/07/27/visual-c-pragma-warning/">pragma warning</a></strong> directives can be used to disable the warning locally:</p>
+    <span class="co">// Some commented code that uses &quot;event&quot; parameter</span>
+    <span class="cf">return</span>;
+}</code></pre></div>
+<ul>
+<li><strong><a href="http://codeyarns.wordpress.com/2010/07/27/visual-c-pragma-warning/">pragma warning</a></strong> directives can be used to disable the warning locally:</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#pragma warning( push )</span>
 <span class="pp">#pragma warning( disable: 4100 )</span>
 <span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )
 {
-<span class="cf">return</span>;
+    <span class="cf">return</span>;
 }
-<span class="pp">#pragma warning( pop )</span></code></pre></div></li>
-<li><p>If you are having many such functions generating warnings and want to do nothing to fix them, then use a pragma warning directive over the entire source file: ```cpp // Foo.cpp #pragma warning( disable: 4100 ) // Disable for entire source file Foo.cpp</p></li>
+<span class="pp">#pragma warning( pop )</span></code></pre></div>
+<ul>
+<li>If you are having many such functions generating warnings and want to do nothing to fix them, then use a pragma warning directive over the entire source file:</li>
 </ul>
-<p>void Foo::OnEvent( const FooEvent&amp; event ) { return; } ```</p>
-<p>A final note: Visual C++ 2010 does not seem to have this warning at all! It has been mysteriously removed without providing any reason :-)</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Foo.cpp</span>
+<span class="pp">#pragma warning( disable: 4100 )  </span><span class="co">// Disable for entire source file Foo.cpp</span>
+
+<span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )
+{
+    <span class="cf">return</span>;
+}</code></pre></div>
+<p>A final note: Visual C++ 2010 does not seem to have this warning at all! It has been mysteriously removed without providing any reason.</p>
 <hr />
 <p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
 </body>
