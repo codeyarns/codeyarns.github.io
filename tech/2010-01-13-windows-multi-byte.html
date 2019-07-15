@@ -16,9 +16,20 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
 </head>
 <body>
-<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
 <div id="header">
 <h1 class="title">Windows: Multi-Byte</h1>
@@ -28,6 +39,6 @@
 <p>You run into <em>Multi-Byte</em> a lot when developing on Windows. For example, <em>Visual Studio 2008</em> supports 2 character sets: <em>Multi-Byte</em> and <em>Unicode</em>. Notice that it does not list English or ASCII or some old comfortable 8-byte character set. Just so that we are not confused, Multi-Byte is <em>not</em> the same as <em><a href="http://en.wikipedia.org/wiki/Wide_character">Wide Character</a></em> types and functions. Those use <code>wchar_t</code>, <code>stl::wstring</code> and their functions have a <code>w</code> in their name, <code>wprintf()</code> or <code>std::wcout()</code> for example.</p>
 <p>On Windows, Multi-Byte is the <strong>old</strong> character set. It is <em>not</em> Unicode, which is the <strong>new</strong> (and recommended) character set. Multi-Byte code looks like old C code written to deal with English characters and strings. It uses the old C char types (<code>char</code> and <code>char *</code>), literal strings (<code>&quot;Hello World&quot;</code>) and <code>stl::string</code>. It only differs in behavior: if Windows notices that it is running a Multi-Byte code/application on a non-English locale, the chars are interpreted and displayed according to that locale. For example, a <code>char</code> string of length 2 (or more) could be combined to display just one <em>glyph</em> in the foreign language. Hence, the name <strong>Multi-Byte</strong> for this character set, its code, libraries and applications.</p>
 <hr />
-<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
 </html>

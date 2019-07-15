@@ -16,9 +16,20 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
 </head>
 <body>
-<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
 <div id="header">
 <h1 class="title">NVCC argument redefinition error</h1>
@@ -33,6 +44,6 @@
 <p>I checked the CMakeLists.txt file and found that indeed the C++11 argument was being passed to the compiler twice by setting it in both <code>CMAKE_CXX_FLAGS</code> and <code>CUDA_NVCC_FLAGS</code>. How and why was this working fine on the first computer? Turns out that the older CMake used on the first computer would not pass the C++ flag to NVCC, so it had to be specifically redefined for CUDA compiler flags.</p>
 <p>The second computer was using a newer version of Ubuntu, with newer version of CMake. This was intelligent enough to pass a C++ flag to the CUDA NVCC compiler too. But since the NVCC flag of the same name also existed, it was causing the argument redefinition error. Removing the flag from the CUDA flags made the problem go away.</p>
 <hr />
-<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
 </html>

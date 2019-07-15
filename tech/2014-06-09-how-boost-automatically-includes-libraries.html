@@ -16,9 +16,20 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
 </head>
 <body>
-<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
 <div id="header">
 <h1 class="title">How Boost automatically includes libraries</h1>
@@ -31,6 +42,6 @@
 <p>For example, I built Boost 1.53 on Visual Studio 2013, even though it is not officially supported. When I used this Boost with my code, the linker complained that it was looking for <code>libboost_thread-vc110-mt-gd-1_53.lib</code>. This is strange, since I have built both Boost and my code using Visual Studio 2013 (<code>vc120</code>), but it is looking for Visual Studio 2012 (<code>vc110</code>). I found that the variable <code>BOOST_LIB_TOOLSET</code> was set to <code>vc110</code> in <code>auto_link.hpp</code>. Changing this fixed the error.</p>
 <p><strong>Tried with:</strong> Boost 1.53, Visual Studio 2013 and Windows 7 x64</p>
 <hr />
-<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
 </html>

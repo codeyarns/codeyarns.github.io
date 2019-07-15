@@ -16,9 +16,20 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
 </head>
 <body>
-<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
 <div id="header">
 <h1 class="title">CGAL: Syntax Errors on intmax_t and uintmax_t</h1>
@@ -30,6 +41,6 @@ CGAL-3.6.1.h(280) : error C2061: syntax error : identifier 'intmax_t' CGAL-3.6.1
 </blockquote>
 <p>The errors are related to the (missing) declaration of <code>intmax_t</code> and <code>uintmax_t</code>. According to <a href="http://comments.gmane.org/gmane.comp.lib.mpfr.general/669">this thread</a> on the <strong><a href="http://www.mpfr.org/">MPFR</a></strong> mailing list, these errors are caused due to changes in Boost 1.42 and later. So, until MPFR is updated to handle these Boost versions, the solution is to use older versions of Boost. I used Boost 1.41 and CGAL compiled successfully! :-)</p>
 <hr />
-<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
 </html>

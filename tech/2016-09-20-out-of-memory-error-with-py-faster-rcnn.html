@@ -16,9 +16,20 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
 </head>
 <body>
-<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
 <div id="header">
 <h1 class="title">Out of memory error with py-faster-rcnn</h1>
@@ -46,6 +57,6 @@ F0919 18:01:51.657281 21310 math_functions.cu:81] Check failed: error == cudaSuc
 <p>Once I saw that the GPU NMS code in <code>lib/nms/nms_kernel.cu</code> was doing the <code>cudaMalloc</code> and <code>cudaFree</code> continuously, fixing it was easy. I changed the allocated memory pointers to <code>static</code> and changed the code to hold on to the memory allocated last time. Only if more memory was required then the old one would be freed and new larger one allocated. I basically used the same strategy used by <code>std:vector</code>, that is doubling of memory. A better solution would be to allocate the maximum required memory, based on the box numbers set in <code>config.py</code>, and use it during training.</p>
 <p><strong>Tried with:</strong> CUDA 7.5 and Ubuntu 14.04</p>
 <hr />
-<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
 </html>

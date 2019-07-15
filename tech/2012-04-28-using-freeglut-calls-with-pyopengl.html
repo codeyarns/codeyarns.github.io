@@ -53,9 +53,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   
     gtag('config', 'UA-143311697-1');
   </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
 </head>
 <body>
-<a href="..">Code Yarns</a> / <a href="index.html">Tech</a>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
 <div id="header">
 <h1 class="title">Using FreeGLUT calls with PyOpenGL</h1>
@@ -69,6 +80,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>On further investigation, it turns out that PyOpenGL chooses the first available DLL between glut and freeglut. This can be seen in <code>Python32\Lib\site-packages\OpenGL\platform\win32.py</code>. So, to get FreeGLUT functionality, we need to make PyOpenGL to pick the freeglut DLL file instead of glut. We can do this by deleting the glut DLL file(s) in <code>Python32\Lib\site-packages\OpenGL\DLLS</code>. Once this is done, PyOpenGL should pick the freeglut DLL and the FreeGLUT calls should be routed to it without any problem.</p>
 <p><strong>Tried with:</strong> PyOpenGL 3.0.2a6 and Python 3.2 64-bit</p>
 <hr />
-<p><a href="mailto:codeyarns@gmail.com?subject=%22Comment%20about%20Code%20Yarns%20blog%20post%22">Contact</a></p>
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
 </html>
