@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Code Yarns – How to git bisect</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
+</head>
+<body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
+<hr />
+<div id="header">
+<h1 class="title">How to git bisect</h1>
+<h3 class="date">2019-08-03T02:57:01.917133-07:00</h3>
+</div>
+<p>Sometimes <strong>bisection</strong> is the fastest or the only way to find out which commit caused a bug or regression. The <code>git bisect</code> command makes the bisection process quite easy by managing the binary search process for you.</p>
+<p>You start by telling git you want to start bisection:</p>
+<pre><code>$ git bisect start</code></pre>
+<p>Next you indicate the bisection range, by specifying the good and bad commits that bookend the range. For example, if my current checked out commit is bad and some past commit <code>1234567</code> was good:</p>
+<pre><code>$ git bisect bad
+$ git bisect good 1234567</code></pre>
+<p>Git now does bisection on the range and checks out a commit in the middle of the range. You now figure out if this commit is good or bad and indicate that to git. Say the commit in the middle is bad:</p>
+<pre><code>$ git bisect bad</code></pre>
+<p>Rinse and repeat until the binary search lands on the bad commit that caused the bug.</p>
+<p>Once your investigation is complete, reset the bisection to return to a normal git workflow:</p>
+<pre><code>$ git bisect reset</code></pre>
+<p>Reference: <a href="https://git-scm.com/docs/git-bisect">git-bisect</a></p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
