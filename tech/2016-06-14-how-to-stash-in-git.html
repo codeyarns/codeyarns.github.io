@@ -37,25 +37,30 @@
 </div>
 <p><strong>Stashing</strong> in <strong>Git</strong> is a very useful technique that eases daily work with code. Many a time, you are in the middle of writing or changing some code when you might be required to quickly checkout a different branch. For example, another team member wants you to quickly run a test in a different branch or fix a bug appearing in a different branch. It is pretty easy to clone a new repository to do these things if the repository is small and building files is quick. If your repository or build setup is large, complicated or time consuming, then stashing is a great addition to your workflow.</p>
 <p>Stashing just saves all your staged or unstaged files that are changed and saves them up in your local repository. The stashed commits are actually stored locally in a reflog for a branch named stash. So, the git stash commands are just simple wrappers over standard git commands.</p>
-<p>The command to stash up all your changed files and have a clean slate:</p>
+<p>To save all your changes to the stash and have a clean slate in the working directory:</p>
 <pre><code>$ git stash</code></pre>
 <p>By default this stash commit is saved with a generic commit message that includes the branch, the commit hash and the log of the commit upon which the stash was created.</p>
 <p>It is very easy to forget what your changes your stash contained. So, I like to stash with my own commit message:</p>
 <pre><code>$ git stash save &quot;WIP on enabling write to disk&quot;</code></pre>
-<p>You can stash many times in a local repository. The stashes are saved in a LIFO stack. You can list and view all the stashes in the stack:</p>
+<p>You can stash many times in a local repository. The stashes are saved in a LIFO stack.</p>
+<p>You can list and view all the stashes in the stack:</p>
 <pre><code>$ git stash list</code></pre>
 <p>You can see that this is just showing the items from the stash reflog:</p>
 <pre><code>$ git reflog stash</code></pre>
-<p>To unstash and apply the top-most item in the stack:</p>
+<p>To pop the top-most item from the stash and apply its changes to your working directory:</p>
+<pre><code>$ git stash pop</code></pre>
+<p>To apply the changes from the top-most item in the stash to your working directory, without popping it from the stash:</p>
 <pre><code>$ git stash apply</code></pre>
 <p>Since the top-most stash is applied, the above command is the same as:</p>
 <pre><code>$ git stash apply stash@{0}</code></pre>
-<p>To unstash a different item from the stack:</p>
+<p>To apply a different item from the stack:</p>
 <pre><code>$ git stash apply stash@{99}</code></pre>
 <p>To checkout a particular file from a particular stash:</p>
 <pre><code>$ git checkout stash@{13} -- foobar/joe.cpp</code></pre>
+<p>To clear all items from the stash:</p>
+<pre><code>$ git stash clear</code></pre>
 <p>That is all there is to it! This is one of the easier and straightforward commands in Git :-)</p>
-<p><strong>Tried with:</strong> Git 2.8.3</p>
+<p><strong>Tried with:</strong> Git 2.17.1</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
