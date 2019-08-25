@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Code Yarns – How to list tags of Docker image on remote registry</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
+</head>
+<body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
+<hr />
+<div id="header">
+<h1 class="title">How to list tags of Docker image on remote registry</h1>
+<h3 class="date">2019-08-23T10:09:05.176162-07:00</h3>
+</div>
+<p>There is no Docker command that can be used to retrieve and list all the tags of a Docker image on a remote Docker registry. This would be useful, for example, to list all the tags of a given Docker image from the <a href="https://hub.docker.com/"><strong>Docker Hub</strong></a> registry.</p>
+<p>Docker Hub enables the retrieval of the list of all tags of a given repository (or image) using the HTTP GET command from this URL: <code>https://registry.hub.docker.com/v1/repositories/your-repository-name/tags</code>. This information will be in the JSON format. A JSON parser like <a href="2017-02-23-process-json-at-the-shell-using-jq.html"><strong>jq</strong></a> can be used to retrieve the tag names from this JSON.</p>
+<p>Putting all this together, we can create a command to list all the tags of a repository named <code>repo1/foobar2</code> from Docker Hub:</p>
+<pre><code>$ wget -q https://registry.hub.docker.com/v1/repositories/repo1/foobar2/tags -O - | jq -r .[].name</code></pre>
+<p>If you do not have <code>jq</code>, it can be installed easily:</p>
+<pre><code>$ sudo apt install jq</code></pre>
+<p>The above command can be easily turned into a shell script that accepts a repository (or image) name as input and list its tags from the Docker Hub.</p>
+<p><strong>Tried with:</strong> Docker 18.09.6 and Ubuntu 18.04</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>

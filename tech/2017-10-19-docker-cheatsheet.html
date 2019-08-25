@@ -36,9 +36,21 @@
 <h3 class="date">2017-10-19 15:23:55+00:00</h3>
 </div>
 <ul>
+<li><p>To list all the tags from a Docker Hub repository: there does not seem to be a command to do this.</p></li>
+<li><p>To pull the image with the <code>latest</code> tag from a repository <code>repo1/foobar2</code>:</p></li>
+</ul>
+<pre><code>$ docker pull repo1/foobar2</code></pre>
+<ul>
+<li>To pull the image with the <code>tag123</code> tag from a repository <code>repo1/foobar2</code>:</li>
+</ul>
+<pre><code>$ docker pull repo1/foobar2:tag123</code></pre>
+<p>Note how the <code>:</code> character is used to separate the repository name and the tag.</p>
+<ul>
 <li>To view Docker images available on your local computer:</li>
 </ul>
 <pre><code>$ docker images</code></pre>
+<p>This is the same as this command:</p>
+<pre><code>$ docker image ls</code></pre>
 <ul>
 <li>By default, only the images that you pulled by name are displayed. To view all images on your local computer, including the unnamed intermediate images that were pulled down to compose the named images that you pulled:</li>
 </ul>
@@ -48,13 +60,23 @@
 </ul>
 <pre><code>$ docker images --no-trunc</code></pre>
 <ul>
+<li>To remove an image with the <code>latest</code> tag:</li>
+</ul>
+<pre><code>$ docker rmi repo1/foobar2</code></pre>
+<ul>
+<li>To remove an image with the <code>tag123</code> tag:</li>
+</ul>
+<pre><code>$ docker rmi repo1/foobar2:tag123</code></pre>
+<ul>
 <li>To run a Docker image as a container:</li>
 </ul>
 <pre><code>$ docker run image_name</code></pre>
+<p>This is only useful if running the container runs a service or a daemon inside it automatically.</p>
 <ul>
 <li>To run a Docker image as a container and get a shell into it:</li>
 </ul>
 <pre><code>$ docker run -it image_name /bin/bash</code></pre>
+<p>This is usually the method to use to have interactive access to a container.</p>
 <ul>
 <li>To view all running containers:</li>
 </ul>
@@ -71,7 +93,17 @@
 <li>To stop a running Docker container provide its container name (not image name) or its container hash:</li>
 </ul>
 <pre><code>$ docker stop container_name</code></pre>
-<p><strong>Tried with:</strong> Docker 17.09 and Ubuntu 16.04</p>
+<ul>
+<li>To remove all images not associated with a container:</li>
+</ul>
+<pre><code>$ docker system prune</code></pre>
+<p>This is useful when your filesystem runs out of space due to docker images.</p>
+<ul>
+<li>To remove all unused images:</li>
+</ul>
+<pre><code>$ docker system prune -a</code></pre>
+<p>This pretty much removes all the Docker images on your system.</p>
+<p><strong>Tried with:</strong> Docker 18.09.6 and Ubuntu 18.04</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
