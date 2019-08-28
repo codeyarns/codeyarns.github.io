@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Code Yarns – How to setup SSH keys for multiple Github repositories</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
+</head>
+<body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
+<hr />
+<div id="header">
+<h1 class="title">How to setup SSH keys for multiple Github repositories</h1>
+<h3 class="date">2019-08-27T21:54:37.043370-07:00</h3>
+</div>
+<h2 id="problem">Problem</h2>
+<p>A local <strong>Git</strong> repository can push and pull from a remote <strong>Github</strong> repository using SSH authentication. This is typically configured by adding your SSH key to your Github account. The default SSH public key is usually obtained from the <code>~/.ssh/id_rsa.pub</code> file.</p>
+<p>If you have two or more Github accounts and try to use the same SSH public key for them, Github rejects the key with the error <em>Key is already in use</em>.</p>
+<h2 id="solution">Solution</h2>
+<p>This problem can be solved by following these steps:</p>
+<ul>
+<li><p>Generate a second SSH key as described <a href="2016-01-20-how-to-ssh-without-username-or-password.html">here</a>. But instead of overwriting the default <code>~/.ssh/id_rsa</code> file, write this key to a separate file. For example: <code>~/.ssh/second_id_rsa</code>.</p></li>
+<li><p>Login to the Github website with the second Github account credentials. Add the second SSH public key <code>~/.ssh/second_id_rsa.pub</code> generated in the above step to this account.</p></li>
+<li><p>Add host entries in <code>~/.ssh/config</code> for the main Github host and a second Github host name of your own creation. For example, let us name the second host: <code>github.com-second</code>. We point the main Github host to the default SSH key file and the second host to the second SSH key file. For example, you might need to add these lines:</p></li>
+</ul>
+<pre><code># Main Github host
+Host github.com
+    HostName github.com
+    User git
+    AddKeysToAgent yes
+    IdentityFile ~/.ssh/id_rsa
+
+# Second Github host
+Host github.com-second
+    HostName github.com
+    User git
+    AddKeysToAgent yes
+    IdentityFile ~/.ssh/second_id_rsa</code></pre>
+<ul>
+<li><p>Git clone, push or pull in repositories from the main Github host should operate normally as before now.</p></li>
+<li><p>To clone, push or pull in repositories from the second Github account, use <code>github.com-second</code> instead of <code>github.com</code> in the SSH remote URL. For example: <code>git@github.com-second:joe/some_repo.git</code>. You can also modify the <code>url</code> field in the <code>.git/config</code> file of these repositories.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Git 2.17.1 and Ubuntu 18.04</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
