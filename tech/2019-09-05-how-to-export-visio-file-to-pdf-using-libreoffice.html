@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Code Yarns – How to export Visio file to PDF using LibreOffice</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
+</head>
+<body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
+<hr />
+<div id="header">
+<h1 class="title">How to export Visio file to PDF using LibreOffice</h1>
+<h3 class="date">2019-09-05T22:26:12.097596-07:00</h3>
+</div>
+<p><strong>Visio Viewer</strong> is a free tool from Microsoft that can be used to view <strong>Visio</strong> files (<code>.vsd</code>). However, it only works on Windows, that too inside Internet Explorer. And printing from it results in cropped and low-resolution export of the diagrams.</p>
+<p>Thankfully, <strong>LibreOffice Draw</strong> can load Visio files. Double-clicking a <code>.vsd</code> file in Linux should automatically open it in LibreOffice Draw, assuming you have LibreOffice installed. You can now export it to PDF by using the Export feature in the File menu.</p>
+<p>As a bonus, LibreOffice has a <strong>headless</strong> mode, where it can be invoked from the shell. Using this headless mode, we can export to PDF directly from the shell like this:</p>
+<pre><code>$ soffice --headless --convert-to pdf foobar.vsd</code></pre>
+<p>This writes to a PDF file of the same name in the same directory.</p>
+<p>If you get a libreglo.so shared library file error, then fix it as described <a href="2019-09-05-libregloso-cannot-open-shared-object-file.html">here</a>.</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
