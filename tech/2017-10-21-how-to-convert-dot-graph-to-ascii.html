@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to convert DOT graph to ASCII</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to convert DOT graph to ASCII</h1>
-<h3 class="date">2017-10-21 01:31:51+00:00</h3>
-</div>
+<p class="date">2017-10-21 01:31:51+00:00</p>
+</header>
 <p><a href="http://codeyarns.com/2017/10/21/how-to-convert-dot-graph-to-ascii/20171021_dot_to_ascii/"><img src="https://codeyarns.files.wordpress.com/2017/10/20171021_dot_to_ascii.png" /></a></p>
 <p>The <a href="http://www.graphviz.org/"><strong>GraphViz</strong></a> <strong>DOT</strong> is a super-simple language that makes it very easy to create graphs and export them to various graphical formats. However, there are situations where you want to generate an <strong>ASCII graph</strong>. For example, to embed a flowchart or digraph in source code or documentation. GraphViz provides no exporter that can output an ASCII graph.</p>
 <p>Thankfully, I found that this can be achieved using a Perl module called <a href="http://search.cpan.org/dist/Graph-Easy/"><strong>Graph::Easy</strong></a>. It can use GraphViz to understand your DOT file and then convert that to an elegant ASCII graph.</p>

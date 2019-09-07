@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Mercurial: Not trusting file from untrusted user or group</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">Mercurial: Not trusting file from untrusted user or group</h1>
-<h3 class="date">2013-01-28 16:32:28+00:00</h3>
-</div>
+<p class="date">2013-01-28 16:32:28+00:00</p>
+</header>
 <p><strong>Mercurial</strong> gives this error for the <strong>hgrc</strong> (Mercurial configuration file) when the user running a Mercurial command is not the same as the owner of hgrc. This typically happens on servers, shares or distributed filesystems.</p>
 <p>To fix this, add a <strong>trusted</strong> section to the configuration file to tell Mercurial to trust the user or group reported in the error.</p>
 <p>For example, if Mercurial complains that it does not trust joe and you happen to trust him, add him to hgrc:</p>

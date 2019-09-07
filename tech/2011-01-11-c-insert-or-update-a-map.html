@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – C++: Insert or Update a Map</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -44,6 +44,7 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -53,25 +54,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">C++: Insert or Update a Map</h1>
-<h3 class="date">2011-01-11 02:13:35+00:00</h3>
-</div>
+<p class="date">2011-01-11 02:13:35+00:00</p>
+</header>
 <p>A C++ STL <strong>map</strong> is used to store and manage <strong>key-value pairs</strong>. The elements are maintained in the <strong>sorted</strong> order of the keys. The keys in a map cannot be changed. Either a new key-value pair can be added or the value of an already existing key-value pair can be changed. These operations are supported by 2 interfaces: <strong>insert()</strong> and the <strong>subscript operator</strong> []. These 2 interfaces differ slightly and it is important to be aware how since it has implications on correctness and efficiency.</p>
 <p>Consider a map:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;map&gt;</span>

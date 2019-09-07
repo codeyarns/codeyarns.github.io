@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to convert to and from bytes in Python</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to convert to and from bytes in Python</h1>
-<h3 class="date">2014-12-29 12:00:58+00:00</h3>
-</div>
+<p class="date">2014-12-29 12:00:58+00:00</p>
+</header>
 <p>A typical scenario in systems programming is to read and write structures and data in a certain binary format. This could be using buffers in memory or binary files on disk. This is pretty straightforward to do in C or C++, all you need is a pointer to the start of the structure or data and the number of bytes to copy or write from that pointer. The <code>struct</code> module can be used to achieve the same in Python.</p>
 <p>The <code>pack</code> method can be used to convert data to a byte string. For details of the parameters and formatting flags passed to this method, see <a href="https://docs.python.org/2/library/struct.html">here</a>. This byte string can be then be passed on the network or written to a binary file. For example:</p>
 <p>https://gist.github.com/ashwin/f1975e7c78aa7b3a8115</p>

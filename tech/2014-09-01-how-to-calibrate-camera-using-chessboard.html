@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to calibrate camera using chessboard</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to calibrate camera using chessboard</h1>
-<h3 class="date">2014-09-01 03:56:26+00:00</h3>
-</div>
+<p class="date">2014-09-01 03:56:26+00:00</p>
+</header>
 <p>Whether you are using a RGB or a depth camera in your setup, you will first need to <strong>calibrate</strong> it to be able to undistort the resulting image and to obtain 3D coordinates of depth values. These are the steps I follow to do this:</p>
 <ul>
 <li><p>If you are using a depth camera, it should have an accompanying RGB camera. Make sure that the depth camera is setup to be registered with the RGB camera. For example, this can be done in OpenNI using <code>setImageRegistrationMode(IMAGE_REGISTRATION_DEPTH_TO_COLOR)</code>.</p></li>

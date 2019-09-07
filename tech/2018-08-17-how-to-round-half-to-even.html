@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to round half to even</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to round half to even</h1>
-<h3 class="date">2018-08-17 05:27:57+00:00</h3>
-</div>
+<p class="date">2018-08-17 05:27:57+00:00</p>
+</header>
 <p>The <a href="https://en.cppreference.com/w/cpp/numeric/math/round"><strong>round</strong></a> function available in C and C++ uses the rounding mode called <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero"><strong>round half away from zero</strong></a>. In this mode, the floating point value is rounded to the nearest integer value. When the floating point value is exactly midway, then the integer value away from zero is picked.</p>
 <p>Many applications require the rounding mode to be <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even"><strong>round half to even</strong></a>. In this mode, when the floating point value is midway, the integer value that is even is chosen.</p>
 <p>If you need round half to even, then you use the <strong>nearbyint</strong> or <strong>rint</strong> methods and set the rounding mode to <code>FE_TONEAREST</code> before you use them. For more information on these rounding modes, see <a href="https://codeyarns.com/2018/09/07/floating-point-rounding-modes-in-c11/">this post</a>.</p>

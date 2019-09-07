@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Reference to pointer in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">Reference to pointer in C++</h1>
-<h3 class="date">2016-12-28 15:44:29+00:00</h3>
-</div>
+<p class="date">2016-12-28 15:44:29+00:00</p>
+</header>
 <p><strong>Reference to pointer</strong> is a useful construct to be aware of in C++. As you might already know, the C++ language allows you to take a reference to any object that is not a temporary. You can take a const reference to any object, including a temporary. So what is special about reference to a pointer?</p>
 <p>A common construct in C++ is to receive a <strong>pointer to a pointer</strong> as input argument to a function. This is typically used to allocate a primitive or an object inside the function. The allocated primitive or object will be available in the caller after the function is called and done with. This idiom is common with C programmers who have moved to C++. It is such code that becomes a lot cleaner and easier to write and read if a reference to pointer is used as input argument to function. As a bonus, since it is a reference it has to always refer to a pointer that actually exists.</p>
 <p>The code example below shows the difference between pointer to pointer and reference to pointer:</p>

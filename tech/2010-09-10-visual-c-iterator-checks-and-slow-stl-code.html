@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Visual C++: Iterator Checks and Slow STL Code</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">Visual C++: Iterator Checks and Slow STL Code</h1>
-<h3 class="date">2010-09-10 03:25:58+00:00</h3>
-</div>
+<p class="date">2010-09-10 03:25:58+00:00</p>
+</header>
 <p>Visual C++ turns on a lot of <strong>checking</strong> on <strong>STL iterators</strong> when compiled in <strong>Debug</strong> mode. This is very helpful since any mistake with an iterator leads immediately to an exception with a helpful exception message. This can catch latent bugs much much earlier while programming.</p>
 <p>However, this huge amount of security is sometimes not tolerable by everyone. For certain applications the debug mode with all the iterator checking turned on can be extremely slow, to the point of being useless. I faced a similar problem and so had to investigate to find the reason for the slow behaviour. I discovered that there are 2 mutually exclusive checking mechanisms in the STL of Visual C++: checked iterators and iterator debugging.</p>
 <p><strong>Checked Iterators</strong></p>

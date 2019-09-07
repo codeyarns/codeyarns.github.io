@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Prime number buckets in hash table implementations</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">Prime number buckets in hash table implementations</h1>
-<h3 class="date">2015-10-16 12:16:00+00:00</h3>
-</div>
+<p class="date">2015-10-16 12:16:00+00:00</p>
+</header>
 <p><strong>Prime numbers</strong> are very important in the implementation of <strong>hash tables</strong>. They might be used in computing a <strong>hash</strong> for a given <strong>key</strong> using a <strong>hash function</strong>. Also, they seem to be commonly used as the size of the hash table, i.e., the number of <strong>buckets</strong> in the table.</p>
 <p>Consider, a hash table with <strong>separate chaining</strong>. When there is a <strong>collision</strong>, i.e., multiple keys map to the same bucket, they are maintained in a list at that bucket. The <strong>load factor</strong> of the hash table is the average number of keys per bucket in the table. When the load factor increases beyond a certain threshold, a new hash table with larger number of buckets is chosen, the existing keys are rehashed and inserted anew into the new hash table.</p>
 <p>A key part of a hash table implementation is: what number of buckets to choose when increasing or decreasing the size of a hash table? In containers like vectors, this is easy: in most implementations it grows by 2x the size. But, for hash tables, I found that implementations seem to prefer prime numbers. So, how do hash table implementations pick this prime number?</p>

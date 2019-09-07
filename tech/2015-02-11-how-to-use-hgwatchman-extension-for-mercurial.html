@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to use hgwatchman extension for Mercurial</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to use hgwatchman extension for Mercurial</h1>
-<h3 class="date">2015-02-11 12:33:22+00:00</h3>
-</div>
+<p class="date">2015-02-11 12:33:22+00:00</p>
+</header>
 <p><code>hg status</code> command can be very slow on a repository with thousands of files. This is because it has to explicitly check the status of every file. A great method to speed it up is the <a href="https://bitbucket.org/facebook/hgwatchman"><strong>hgwatchman</strong></a> extension for Mercurial. It uses the <a href="2015/02/10/how-to-install-and-use-watchman/"><strong>Watchman</strong></a> tool which relies on the <strong>inotify</strong> mechanism of the Linux kernel to be notified directly of only the changes that occurred to the files in a directory. There are no packages of hgwatchman and Watchman for Ubuntu, so we need to build them from source. But it is pretty easy to do:</p>
 <ul>
 <li><p>Install the Watchman tool as described <a href="2015/02/10/how-to-install-and-use-watchman/">here</a>.</p></li>

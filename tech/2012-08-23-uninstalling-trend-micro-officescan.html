@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Uninstalling Trend Micro OfficeScan</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">Uninstalling Trend Micro OfficeScan</h1>
-<h3 class="date">2012-08-23 05:42:50+00:00</h3>
-</div>
+<p class="date">2012-08-23 05:42:50+00:00</p>
+</header>
 <p>The <strong>Trend Micro OfficeScan</strong> anti-virus software tends to be installed on computers in certain work networks. It is usually configured such that the user of the computer cannot change its settings or uninstall it, even if he has Administrator privileges. This can be a hassle since OfficeScan runs scans on the computer at odd times and the software is quite a resource hog. OfficeScan cannot be uninstalled since it asks for a <strong>network password</strong> set by the system administrator of the work network.</p>
 <p>The network password is stored as a MD5 hash in the file <strong>ofcscan.ini</strong> in the directory <code>C:\Program Files\Trend Micro\OfficeScan Client</code>. There are two operations which require passwords: <strong>unloading</strong> the program and <strong>uninstalling</strong> the program. These entries can be found in the file with the strings <strong>Uninstall_Pwd</strong> and <strong>Unload_Pwd</strong>. Details of how to replace these entries with your own can be found <a href="http://experts-share.net/miscellaneous/how-to-removeuninstallunload-trend-micro-officescan-password">here</a>.</p>
 <p>Once you have replaced the password, unload the program and then uninstall it. You will be required to enter the new password at both times. OfficeScan is gone for good! :-)</p>

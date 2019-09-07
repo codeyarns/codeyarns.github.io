@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – CUDA: Timer</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -44,6 +44,7 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -53,25 +54,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">CUDA: Timer</h1>
-<h3 class="date">2011-04-28 08:19:22+00:00</h3>
-</div>
+<p class="date">2011-04-28 08:19:22+00:00</p>
+</header>
 <p>To measure the performance of <strong>CUDA</strong> code it is better to use <strong>events</strong> provided by the <strong>CUDA Runtime API</strong> rather than using CPU-based timers like <a href="http://codeyarns.wordpress.com/2010/05/25/c-timing-the-code/">clock</a> or <a href="http://codeyarns.wordpress.com/2011/04/08/c-high-resolution-timer/">high-resolution timers</a>.</p>
 <p>As a simple illustration, consider that we want to measure the time taken for the execution of a kernel named <code>fooKernel</code>. First, we create CUDA events to handle the begin and end times of the kernel execution:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">cudaEvent_t</span> beginEvent;

@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to use inotify extension for Mercurial</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to use inotify extension for Mercurial</h1>
-<h3 class="date">2015-02-10 12:13:01+00:00</h3>
-</div>
+<p class="date">2015-02-10 12:13:01+00:00</p>
+</header>
 <p><code>hg status</code> is the slowest command in <strong>Mercurial</strong> and can take several seconds on repositories with thousands of files. This is because it needs to check every single file and directory in your repository to see if it has changed. One method to speed up this command is to use the <a href="http://mercurial.selenic.com/wiki/InotifyExtension"><strong>inotify</strong></a> extension for Mercurial.</p>
 <p><strong>Note:</strong> This extension is reported to be buggy and using the alternate <strong>hgwatchman</strong> extension is recommended. <strong>Note:</strong> This extension only works in Mercurial 2.x. It has been explicitly <a href="http://www.selenic.com/repo/hg/rev/352abbb0be88">disabled</a> in Mercurial 3.x and will not work.</p>
 <p>This extension ships with the <code>mercurial-common</code> package and so it will already be installed on your system if you have Mercurial. It relies on the <code>inotify</code> subsystem of the Linux kernel and any kernel later than 2.6.13 will have it. It uses the filesystem to watch for changes and reports these to applications. Using this Mercurial can check the status of gigantic repositories quickly.</p>

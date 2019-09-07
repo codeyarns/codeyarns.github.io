@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – PageDefrag: Does not work with Windows 7</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">PageDefrag: Does not work with Windows 7</h1>
-<h3 class="date">2010-01-13 03:34:17+00:00</h3>
-</div>
+<p class="date">2010-01-13 03:34:17+00:00</p>
+</header>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_13_pagedefrag.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_13_pagedefrag.png" /></a></p>
 <p><strong><a href="http://technet.microsoft.com/en-us/sysinternals/bb897426.aspx">PageDefrag</a></strong> is a useful utility from SysInternals, now owned by Microsoft, that can defragment the <strong>page file</strong> (<code>C:\pagefile.sys</code>), registry hives, log files and the <strong>hibernation file</strong> (<code>C:\hiberfil.sys</code>). Typically these files cannot be defragmented  while Windows is running since they are open for use. PageDefrag would schedule a defragmentation of these files during Windows boot time. This utility has been working well for me with Windows XP for many years now.</p>
 <p>PageDefrag now seems to be useless with Windows 7. The PageDefrag dialog shows an empty list, where as it should have listed the above files. And if scheduled for boot time defragmentation, it gives a &quot;<code>page file not found</code>&quot; message. Thankfully, there are no error messages on Windows 7. Vista users have <a href="http://forum.sysinternals.com/forum_posts.asp?TID=10755">seen errors</a>. I do not see any updates to PageDefrag since its last release in 2006 and it has been many years now since Vista was released. I guess it is RIP for PageDefrag on Vista/Windows 7 then! :-(</p>

@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – GCC: Generate 32-bit code in 64-bit environment</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">GCC: Generate 32-bit code in 64-bit environment</h1>
-<h3 class="date">2012-12-15 05:41:09+00:00</h3>
-</div>
+<p class="date">2012-12-15 05:41:09+00:00</p>
+</header>
 <p>When the <strong>gcc</strong> compiler is used on <strong>64-bit Linux</strong> that is running on a <strong>x86-64 processor</strong>, it produces 64-bit code by default. To request it to produce 32-bit code that can be executed on a x86 processor, use the <strong>-m32</strong> option:</p>
 <pre><code>$ gcc -m32 main.c</code></pre>
 <p>For this command to be successful, your Linux installation needs to have the necessary 32-bit libraries needed for gcc to link with.</p>

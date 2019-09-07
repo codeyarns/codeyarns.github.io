@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to create shoulder joint in PhysX</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to create shoulder joint in PhysX</h1>
-<h3 class="date">2013-11-22 11:53:57+00:00</h3>
-</div>
+<p class="date">2013-11-22 11:53:57+00:00</p>
+</header>
 <p>The <strong>shoulder joint</strong> of the human body can be simulated in <strong>PhysX</strong> by using its <strong>spherical joint</strong>. The spherical joint is used to represent a ball-and-socket joint.</p>
 <p>In the case of the shoulder joint, we assume that the ball-and-socket is placed at the shoulder location and it is connected by the upper arm to elbow. So, we use two PhysX bodies: one located at the shoulder itself and another at the elbow. Alternatively you could put the first body at the neck and connect it by the shoulder bone to the ball-and-socket position.</p>
 <p>The code below creates the shoulder joint:</p>

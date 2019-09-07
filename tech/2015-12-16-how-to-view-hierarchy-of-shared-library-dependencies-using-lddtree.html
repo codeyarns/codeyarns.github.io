@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to view hierarchy of shared library dependencies using lddtree</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to view hierarchy of shared library dependencies using lddtree</h1>
-<h3 class="date">2015-12-16 12:46:19+00:00</h3>
-</div>
+<p class="date">2015-12-16 12:46:19+00:00</p>
+</header>
 <p>[caption id=&quot;attachment_8263&quot; align=&quot;aligncenter&quot; width=&quot;649&quot;][<img src="https://codeyarns.files.wordpress.com/2015/12/20151216_lddtree.png" alt="Tree of library dependencies shown by lddtree" />](http://codeyarns.com/?attachment_id=8263) Tree of library dependencies shown by lddtree[/caption]</p>
 <p><strong>ldd</strong> is one of the key tools that should be familiar to all programmers. It shows the list of all <strong>shared libraries</strong> that an executable binary <strong>depends</strong> on.</p>
 <p>A binary, say ELF file, lists only the immediate shared libraries it depends on in its header. Each of these shared libraries could further depend on other libraries and so on. It would be very useful if you could see the <strong>hierarchical tree</strong> of these dependencies between the shared libraries. Thankfully, there is a tool that does exactly that named <strong>lddtree</strong>.</p>

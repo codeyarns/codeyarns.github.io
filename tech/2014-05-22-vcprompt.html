@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – VCPrompt</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">VCPrompt</h1>
-<h3 class="date">2014-05-22 07:15:17+00:00</h3>
-</div>
+<p class="date">2014-05-22 07:15:17+00:00</p>
+</header>
 <p>Extensions like <strong>Hg-Prompt</strong> help print the version control status to the command prompt, as described <a href="2014/05/22/hg-prompt-extension-for-mercurial/">here</a>. But, it is written in <strong>Python</strong> and launching the Python interpreter on every command is too slow at the command prompt. That is the last place where you need things to be slow!</p>
 <p>The solution for speed is always C/C++! <a href="https://bitbucket.org/gward/vcprompt"><strong>VCPrompt</strong></a> is a tool that is written in C/C++ by <strong>Greg Ward</strong> that can be used to print status of version control in the shell prompt. It is extremely fast due to it being a binary. It can handle <strong>Mercurial</strong>, <strong>Git</strong> and <strong>Subversion</strong> repositories.</p>
 <p>To install from PPA:</p>

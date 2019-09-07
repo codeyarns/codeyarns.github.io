@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to enable debug mode for C++ containers</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to enable debug mode for C++ containers</h1>
-<h3 class="date">2015-02-10 12:41:30+00:00</h3>
-</div>
+<p class="date">2015-02-10 12:41:30+00:00</p>
+</header>
 <p>The <strong>containers</strong> of the C++ standard library are incredibly useful to write compact code without having to reinvent basic data structures. Since the focus of C++ is always on performance, error checking is not performed in the use of these containers. For example, in a <code>std::vector</code> with <code>35</code> elements, you can access <code>v[39]</code> without C++ blinking an eye. You will of course get back invalid data that might silently poison the runtime execution of the program. <code>std::vector</code> offers a safer <code>at(39)</code> method that does the bounds checking, but it is slower and so not all code will use it. When a strange runtime error does occur in code using C++ containers, how to debug it?</p>
 <p>If you are using GCC, thankfully it provides an alternate <strong>debug mode</strong> version of the C++ standard library where all the calls perform error checking. Finding your error becomes easier by using these <a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/debug_mode.html">debug mode C++ standard library containers</a>.</p>
 <h2 id="debug-mode">Debug mode</h2>

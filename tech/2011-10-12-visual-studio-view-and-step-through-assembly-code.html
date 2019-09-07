@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Visual Studio: View and Step Through Assembly Code</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">Visual Studio: View and Step Through Assembly Code</h1>
-<h3 class="date">2011-10-12 11:12:45+00:00</h3>
-</div>
+<p class="date">2011-10-12 11:12:45+00:00</p>
+</header>
 <p><a href="http://codeyarns.files.wordpress.com/2011/10/20111012-assembly.png"><img src="http://codeyarns.files.wordpress.com/2011/10/20111012-assembly.png" /></a></p>
 <p>All C++ compilers (including Visual C++) can be requested to produce the <strong>assembly code</strong> generated from the C++ source code. I find it much more useful to be able to view the assembly code <strong>annotated</strong> with the original C++ code and to be able to <strong>step through</strong> the assembly code when necessary. Not only is this useful for debugging pesky bugs, but can be both entertaining and educational if you are curious about the instructions your processor is actually executing.</p>
 <p>In Visual Studio it is easy to view the assembly code and step through it with the debugger. Just place a <strong>breakpoint</strong> in the C++ code and run the program in <strong>Debug</strong> mode. When the debugger stops at the breakpoint switch to the assembly mode by choosing <em>Debug → Windows → Disassembly</em>. The assembly code corresponding to your source file is displayed, beautifully annotated with the corresponding C++ source statements. You can step through the assembly code instruction-by-instruction using the debugger to your heart's content! :-)</p>

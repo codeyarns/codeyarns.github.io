@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Visual C++: pragma warning</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -44,6 +44,7 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -53,25 +54,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">Visual C++: pragma warning</h1>
-<h3 class="date">2010-07-27 15:20:49+00:00</h3>
-</div>
+<p class="date">2010-07-27 15:20:49+00:00</p>
+</header>
 <p>It is a good practice to compile code at the highest warning level available from the compiler. When the compiler reports warnings on the code, the code should be fixed so that it compiles with zero warnings. But, sometimes this is not possible, for example, if the source of the warnings are headers included from external libraries. Common C++ libraries like <strong>Boost</strong> and special libraries like <strong>CGAL</strong> (Computational Geometry Algorithms Library) are notorious for introducing hundreds of warnings when their header files are included.</p>
 <p>In Visual C++, the <a href="http://msdn.microsoft.com/en-us/library/2c8f766e.aspx"><strong>#pragma warning</strong></a> compiler directive is an effective way to disable these specific warnings. There are many <strong>specifiers</strong> that can be specified with #pragma warning. Here are a couple that I find most useful:</p>
 <p>Warnings that are reported have an identifier and a textual message. The identifier is of the form <strong>CXXXX</strong>, where XXXX is the <strong>warning number</strong>. The <strong>disable</strong> specifier can be used to disable a specific warning, say C1234:</p>

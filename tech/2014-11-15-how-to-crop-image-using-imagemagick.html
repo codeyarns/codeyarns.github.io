@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <meta name="author" content="Ashwin Nanjappa" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to crop image using ImageMagick</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
   <script>
@@ -16,25 +17,14 @@
   
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- CSS styles -->
-  <style>
-  p.caption {
-      text-align: center;
-  }
-  img {
-      max-width: 90%;
-      display: block;
-      margin: 0 auto;
-  }
-  </style>
 </head>
 <body>
 <a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
 <hr />
-<div id="header">
+<header>
 <h1 class="title">How to crop image using ImageMagick</h1>
-<h3 class="date">2014-11-15 02:00:17+00:00</h3>
-</div>
+<p class="date">2014-11-15 02:00:17+00:00</p>
+</header>
 <p>To crop an image using ImageMagick, you need to specify the X and Y coordinates of the top corner of the crop rectangle and the width and height of the crop rectangle. Use the <code>mogrify</code> command if you want the images to be replaced in-place or use the <code>convert</code> command otherwise to make a copy.</p>
 <p>If you want the crop rectangle to start at top corner <code>X: 50 Y: 100</code> and the crop rectangle to be of size <code>W: 640 H:480</code>, then use the command:</p>
 <pre><code>$ mogrify -crop 640x480+50+100 foo.png</code></pre>
