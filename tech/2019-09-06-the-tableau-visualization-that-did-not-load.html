@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Ashwin Nanjappa" />
+  <title>Code Yarns – The Tableau visualization that did not load</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- CSS styles -->
+  <style>
+  p.caption {
+      text-align: center;
+  }
+  img {
+      max-width: 90%;
+      display: block;
+      margin: 0 auto;
+  }
+  </style>
+</head>
+<body>
+<a href="..">Code Yarns</a> / <a href="index.html">Tech Blog</a>
+<hr />
+<div id="header">
+<h1 class="title">The Tableau visualization that did not load</h1>
+<h3 class="date">2019-09-06T20:31:47.086738-07:00</h3>
+</div>
+<h2 id="problem">Problem</h2>
+<p>A friend shared a webpage which was supposed to render a <strong>Tableau</strong> visualization. However, when I opened that URL in my Firefox browser, I got an empty page.</p>
+<h2 id="solution">Solution</h2>
+<p>At first, I suspected that one of my many Firefox extensions was blocking the Tableau visualization. I disabled all extensions and the webpage was still empty.</p>
+<p>I decided to check out the HTML source of the webpage by right-clicking on the page and choosing <strong>View Page Source</strong>. I saw that the HTML was pretty simple. The main suspect seemed to be a <code>script</code> tag that was pulling in a Javascript file from <code>http://tableaureporting.foobar.com/javascripts/api/viz_v1.js</code>.</p>
+<p>So I suspected that Firefox was not loading this Javascript file for some reason. Why might that be?</p>
+<p>Time to break out the <strong>Developer Tools</strong> in Firefox by pressing <code>F12</code>. The <strong>Console</strong> tab showed an error: it had blocked the script due to something called <strong>mixed content</strong> use. Thankfully, the error message was linked to a <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content">Mixed Content</a> page that explained why: I was looking at a HTTPS webpage that was trying to load a Javascript file (<em>active content</em>) from a HTTP URL. To protect me, it was blocking this active content.</p>
+<p>So Firefox is protecting me. That's good, but I knew the URL from my friend is safe and I wanted to <em>really</em> see that visualization.</p>
+<p>Might there be a security setting that I could disable? Turns out there is. Head over to <code>about:config</code> in Firefox and toggle the <code>security.mixed_content.block_active_content</code> setting from <code>default</code> to <code>false</code>.</p>
+<p>Voila, I can see my Tableau visualization!</p>
+<p><strong>Tried with:</strong> Firefox 68 and Ubuntu 18.04 ***</p>
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
