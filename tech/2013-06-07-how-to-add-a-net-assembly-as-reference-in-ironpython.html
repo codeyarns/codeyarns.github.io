@@ -39,7 +39,7 @@
 <p>By installing <a href="http://ironpython.net/"><strong>IronPython</strong></a> and <a href="https://pytools.codeplex.com/"><strong>Python Tools for Visual Studio</strong></a>, I can work with .Net using Python. The typical method of adding a <strong>.Net assembly</strong> file as a <strong>Reference</strong> is to use choose <strong>Add Reference</strong> in Visual Studio. But, doing this did not work for importing a .Net assembly built using C#. The assembly appeared in the References list, but had a <strong>Warning</strong> sign over it. And sure enough, importing a namespace that the assembly exports failed with a <strong>ImportException</strong>.</p>
 <p><strong>Solution</strong></p>
 <p>Apparently, the Add Reference method only works for <strong>Python Extension Modules</strong>, not for .Net assemblies written in C#. Instead use the methods in <strong>clr</strong> module to add the reference:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Place the .Net assembly file, say <strong>Foo.dll</strong>, and any other DLL files that it is dependent on in the directory where your IronPython source file lies.</p></li>
 <li><p>Add a reference to this .Net assembly file in your IronPython using and import the namespace exported by the .Net assembly in your IronPython code.</p></li>
 </ol>

@@ -36,14 +36,14 @@
 <h3 class="date">2009-10-24 08:23:14+00:00</h3>
 </div>
 <p>There is <a href="http://stackoverflow.com/questions/1436320">no straightforward way</a> to remove all the information of a project from the SVN repository and retrieve that diskspace. The only way to achieve this:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Dump the repository to a <em>dumpfile</em>.</p>
 <p>$ svnadmin dump C:_Rep &gt; C:_rep_dump</p></li>
 <li><p><em>Filter</em> out the project you want to remove from the dumpfile.</p>
 <p>$ svndumpfilter exclude Project_to_del &lt; C:_rep_dump &gt; C:_rep_dump_updated</p></li>
 </ol>
 <p>If you have many projects that you want to remove, repeat this step for each of them.</p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="3" type="1">
 <li><p>Create a new repository.</p>
 <p>$ svnadmin create C:_rep_new</p></li>
 <li><p>Load the updated dumpfile to new repository.</p>

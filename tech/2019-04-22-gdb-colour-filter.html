@@ -36,15 +36,13 @@
 <h3 class="date">2019-04-22 13:08:47+00:00</h3>
 </div>
 <p>A problem I face regularly with <strong>GDB</strong> is the backtrace. The stack trace lists out the function frames currently on the stack and it is a wall of text. It is hard to discern the function address, function name, function parameters, source file path and line number.</p>
-<div class="figure">
-<img src="https://codeyarns.files.wordpress.com/2019/04/20190422_gdb_backtrace.png" alt="Normal GDB backtrace" />
-<p class="caption">Normal GDB backtrace</p>
-</div>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2019/04/20190422_gdb_backtrace.png" alt="Normal GDB backtrace" /><figcaption>Normal GDB backtrace</figcaption>
+</figure>
 <p>This is precisely the problem that <a href="https://github.com/daskol/gdb-colour-filter"><strong>GDB Colour Filter</strong></a> solves. Clone its repo and source its Python file inside your <code>~/.gdbinit</code> and you are set. Backtraces are now printed with distinctly different colors and formatting for all the components of a function frame. I especially find it useful to pick out the function name and the source file and line number.</p>
-<div class="figure">
-<img src="https://codeyarns.files.wordpress.com/2019/04/20190422_gdb_colour_filter.png" alt="GDB backtrace with GDB Colour Filter" />
-<p class="caption">GDB backtrace with GDB Colour Filter</p>
-</div>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2019/04/20190422_gdb_colour_filter.png" alt="GDB backtrace with GDB Colour Filter" /><figcaption>GDB backtrace with GDB Colour Filter</figcaption>
+</figure>
 <p>There is only one slight problem: to display the components of a function frame at a consistent column this breaks down a frame into two lines. So your backtrace lines are doubled and might fill up the display when you try this.</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>

@@ -74,7 +74,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <p><a href="http://codeyarns.files.wordpress.com/2010/04/2010_04_02_sd_card.jpg"><img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_02_sd_card.jpg" /></a></p>
 <p>Today a friend deleted a few photos from my camera SD card by mistake. But, recovering those deleted photos turned out to be quite easy. Here is how to recover deleted photos from a memory card on Ubuntu:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>As soon as you discover the deletion, shutdown the device, take out the memory card and make sure it is made <strong>read-only</strong>. Most SD cards have a tiny latch, that when pulled down locks the card into read-only mode. For example, the yellow colored latch on my Kingston SD card in the photo above.</p></li>
 <li><p>Put the card into the memory card reader slot on your computer. Typically, Ubuntu will <strong>mount</strong> it automatically.</p></li>
 <li><p>Figure out the <strong>device name</strong> of the mounted memory card. This can be done by looking at the contents of <code>/etc/mtab</code>. This text file holds the table of mounted devices on the computer. For example, my SD card is named <code>ASH_D40</code> and I found that its device name is <code>/dev/mmcblk0p1</code> by finding this line in <code>/etc/mtab</code>:</p>
@@ -83,7 +83,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>Execute <strong>photorec</strong> as superuser providing it the memory card device name:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">sudo</span> photorec /dev/mmcblk0p1</code></pre></div></li>
 <li><p>Photorec leads the user through a few prompts, each of which is a multiple choice question. Most of them should be easy to answer, here are some of the important ones:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p><strong>Partition table type</strong>: For SD cards used in cameras, the choice should typically be <code>[Intel] Intel/PC partition</code></p></li>
 <li><p><strong>Partition</strong>: Since most SD cards are formatted such that the entire space is a single partition, the choice could be <code>No partition [Whole disk]</code></p></li>
 <li><p><strong>Filesystem type</strong>: Most SD cards are formatted as FAT16, hence the choice could be <code>[Other] FAT/NTFS/HFS+/ReiserFS/...</code></p></li>

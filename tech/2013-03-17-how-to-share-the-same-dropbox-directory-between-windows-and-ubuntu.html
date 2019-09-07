@@ -36,7 +36,7 @@
 <h3 class="date">2013-03-17 12:35:38+00:00</h3>
 </div>
 <p>I use a computer where I <strong>dual boot</strong> between <strong>Windows</strong> and <strong>Ubuntu</strong>. To avoid wasting disk space, I would like to use the same <strong>Dropbox</strong> directory between both Windows and Ubuntu. Here is how I was able to do this:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>I first installed the Dropbox client on Windows. Assume it uses the directory <code>C:\Users\joe\Dropbox</code> in my NTFS partition.</p></li>
 <li><p>Boot into Ubuntu. Edit <code>/etc/fstab</code> so that the NTFS partition which contains the Dropbox directory on Windows is mounted automatically at boot. I assume it is mounted at <code>/media/my-c-drive</code></p></li>
 <li><p>Install the Dropbox client for Ubuntu. During installation, let it pick its default directory as <code>/home/joe/Dropbox</code></p></li>
@@ -45,7 +45,7 @@
 </ol>
 <pre><code>$ rm -rf /home/joe/Dropbox
 $ ln -s /media/my-c-drive/Users/joe/Dropbox /home/joe/Dropbox</code></pre>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Start the Dropbox client again and you are done. It will use the same directory as that used by Windows for syncing.</li>
 </ol>
 <p><strong>Note:</strong> As you might have suspected, there is a small problem with this technique. Every time you switch between Windows and Ubuntu, the Dropbox client will re-index the contents of its directory. This will happen in the background, but it will consume CPU, disk and network bandwidth. How irritating this is depends on the size of your Dropbox directory. If your Dropbox directory is large, then this type of sharing can only be a temporary solution for these reasons.</p>

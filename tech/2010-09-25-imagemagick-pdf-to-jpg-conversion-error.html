@@ -45,7 +45,7 @@ convert: Postscript delegate failed `Foobar.pdf&#39;: No such file or directory 
 convert: missing an image filename `Foobar.jpg&#39; @ error/convert.c/ConvertImageCommand/2970.</code></pre>
 <p><strong>Solution</strong></p>
 <p>It looks like the input or output filenames are missing or have some problem. Look closer and it is an error caused by <code>gswin32c.exe</code>. ImageMagick uses <code>gswin32c.exe</code> from the <strong><a href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a></strong> package to convert PDF files. So, to fix this error make sure that:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Ghostscript package is installed.</p></li>
 <li><p>The directory containing <code>gswin32c.exe</code> is in the <code>PATH</code> environment variable.</p></li>
 </ol>

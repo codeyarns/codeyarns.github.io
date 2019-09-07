@@ -91,7 +91,7 @@ __global__ <span class="dt">void</span> fooKernel( <span class="at">const</span>
 }</code></pre></div>
 <p>One wishes that this were enough, but there seems to be an additional problem with CUDA. If the header file containing these functions is merely included into multiple CUDA compilation units, one faces a <strong>multiple definition error</strong> on the device function:</p>
 <blockquote>
-FooDevice.cu.obj : error LNK2005: &quot;int __cdecl getCurThreadIdx(void)&quot; (?getCurThreadIdx@<span class="citation">@YAHXZ</span>) already defined in Main.cu.obj
+FooDevice.cu.obj : error LNK2005: &quot;int __cdecl getCurThreadIdx(void)&quot; (?getCurThreadIdx@<span class="citation" data-cites="YAHXZ">@YAHXZ</span>) already defined in Main.cu.obj
 </blockquote>
 <p>The only solution for this seems to be that the device function being called by a template kernel also needs to be explicitly inlined! The explicit inlining can be specified using the <code>__forceinline__</code> qualifier on the <strong>device</strong> function:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__forceinline__ __device__ <span class="dt">int</span> getCurThreadIdx()

@@ -37,7 +37,7 @@
 </div>
 <p>Let us assume you want to write the binary representation of variables of native data types (like <code>int</code> or <code>float</code>) or objects to a file. Such a file can read back to recover the original values.</p>
 <p>Writing a binary file can be done in 3 steps in C++:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Include the <code>fstream</code> header file. This holds the classes and flags needed for the writing.</p></li>
 <li><p>Create an object of the <code>ofstream</code> class. This can be used to open the file and write to it. Open the object using the <code>binary</code> flag. Contrary to expectation, opening this file in binary mode does not make the writing using <code>operator &lt;&lt;</code> become magically binary. All the <code>binary</code> flag does it to prevent of special characters like EOL or EOF.</p></li>
 <li><p>Write the bytes of the variable or object to the <code>ofstream</code> object.</p></li>

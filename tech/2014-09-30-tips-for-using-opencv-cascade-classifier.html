@@ -38,13 +38,13 @@
 <p>My <a href="2014/09/01/how-to-train-opencv-cascade-classifier/">earlier post</a> describes the basic steps to train the OpenCV Cascade Classifier. Unfortunately, the training process of <code>opencv_traincascade</code> is not for the newbie. It may take days to finish and the classifier might not work as you expected. Here is a list of tips that I found useful to train the classifier.</p>
 <h2 id="rotation-invariance">Rotation invariance</h2>
 <p>The <a href="http://answers.opencv.org/question/32106">cascade classifier is not rotation invariant</a>. If your images can have the object in different rotations, then you have two options:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>You can generate a training set where the objects in the positive samples are rotated at different angles. You have to generate these yourself, <code>opencv_createsamples</code> will not do this for <code>.vec</code> file output.</p></li>
 <li><p>You strictly use positive samples where the object is in an upright or canonical orientation. For example, positive samples of faces where the face is always upright. You may have to write a program with some user interaction to generate these from your training samples. Later during the testing stage, the cascade classifier will only detect the object, if it appears in canonical position (in which it was trained). So, to get it to detect the object, you need to repeatedly rotate the image and try the classifier.</p></li>
 </ol>
 <h2 id="rotation-angle">Rotation angle</h2>
 <p>While the cascade classifier is rotation invariant (see above), this does not mean that the object needs to be perfectly in upright or canonical orientation. The classifier should be able to detect object up to about 10 degrees of rotation. What this means is that:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>If you are using rotated positive samples, you do not need to try very small rotations (say 5 degrees). Instead, a larger rotation should be fine. For example, rotations in increments of 20 degrees.</p></li>
 <li><p>If you are rotating the image during the testing stage, then again no need to try small rotations. Same advice as earlier point.</p></li>
 </ol>

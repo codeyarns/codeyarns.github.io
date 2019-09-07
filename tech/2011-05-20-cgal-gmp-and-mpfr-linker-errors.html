@@ -43,7 +43,7 @@
 <p>CGAL seems to look for <strong>GMP</strong> and <strong>MPFR</strong> libraries, whose names are suffixed with the Visual C++ version (<code>vc90</code>) and the build type (<code>mt</code>). However, CGAL stopped shipping pre-built GMP and MPFR libraries in such a format a while ago. Instead it ships a single library file for each. For example, in CGAL 3.8, these files are <code>libgmp-10.lib</code> and <code>libmpfr-4.lib</code>.</p>
 <p><a href="http://codeyarns.files.wordpress.com/2011/05/20110520_cgal_linker_errors.png"><img src="http://codeyarns.files.wordpress.com/2011/05/20110520_cgal_linker_errors.png" /></a></p>
 <p>With this knowledge, this error can be fixed and the solution can be compiled like this:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Ignore the library dependencies that are indicated by CGAL. This can be done by going to Properties → Linker → Input → Ignore Specific Library and adding <code>gmp-vc90-mt.lib,mpfr-vc90-mt.lib</code></p></li>
 <li><p>Link with the available libraries instead. This can be done by going to Properties → Linker → Input → Additional Dependencies and adding <code>libgmp-10.lib libmpfr-4.lib</code></p></li>
 </ol>

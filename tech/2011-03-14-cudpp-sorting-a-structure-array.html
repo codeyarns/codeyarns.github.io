@@ -39,7 +39,7 @@
 <p>The <strong>cudppSort</strong> function from the <a href="http://code.google.com/p/cudpp/"><strong>CUDPP</strong></a> library can be used to sort an array of keys and an array of values along with it. However, the value types that are supported are only 32-bit. Thus, an array of structures cannot directly be sorted by using cudppSort.</p>
 <p><strong>Solution</strong></p>
 <p>One way to sort such a structure array is as follows:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Create an index array. Fill it with indices of the array using a simple kernel.</p></li>
 <li><p>Use this index array as the value array and sort the key and value arrays using cudppSort.</p></li>
 <li><p>Pass the sorted index array to a simple kernel and use it write the structures of the array to their sorted destinations.</p></li>

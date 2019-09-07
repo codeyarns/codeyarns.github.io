@@ -36,7 +36,7 @@
 <h3 class="date">2013-03-17 12:19:31+00:00</h3>
 </div>
 <p>I like to have a <strong>static IP address</strong> for my <strong>Ubuntu</strong> notebook computer when it is connected to the home network. This is useful because with a static IP address other devices on the home network know how to talk to my notebook. Setting up a static IP address for a specific network is easy in Ubuntu.</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>By default, my notebook is connected to my home wireless router using DHCP. I would like to use the same settings but with a static IP address. First, I decide what static IP address to use. Then I note down the network mask (check <code>ifconfig</code> output), the network gateway (check <code>route -n</code> output) and DNS servers (<a href="https://developers.google.com/speed/public-dns/">Google</a> or <a href="https://www.opendns.com/setupguide/">OpenDNS</a>). One way to do this is by running <strong>nm-tool</strong>. You can see these details at the end of its output.</p></li>
 <li><p>Click the network icon in the Panel and choose <strong>Edit connections</strong>. Here pick the network connection you are using (wired or wireless) and click Edit. Under <strong>IPv4 settings</strong>, change Automatic (DHCP) to Manual and enter the static IP address you want, the netmask, gateway and DNS servers. If you want to provide two DNS server addresses, separate them with a comma.</p></li>
 <li><p>Disconnect from the network and connect back again. If everything is working fine, you have configured your static IP address.</p></li>

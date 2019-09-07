@@ -37,7 +37,7 @@
 </div>
 <p>When developing a C++ program using <strong>Visual Studio</strong>, you typically compile and run it from the Visual Studio IDE. By default, when you do this, the executable is run with the <strong>working directory</strong> being the directory containing the Visual C++ project (<code>.vcxproj</code>). That is, this is the directory which acts as the <strong>current directory</strong> for your executable, when it run from within Visual Studio. Note that if you ran the executable from a commandline, then the working directory would be the current directory of your command prompt.</p>
 <p>This behavior can be irritating if you have some files that your program needs to read or write. It would be nice if the executable considered the directory it resides in as the working directory. Changing this is easy:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Open Project &gt; Properties &gt; Configuration Properties &gt; Debugging.</p></li>
 <li><p>The Working Directory entry would be <code>$(ProjectDir)</code> by default. Change it to whatever you wish. If you want it to be the same directory as the place where the executable resides in, then change it to <code>$(SolutionDir)$(Configuration)\</code></p></li>
 </ol>

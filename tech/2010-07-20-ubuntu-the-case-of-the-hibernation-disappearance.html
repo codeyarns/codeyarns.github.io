@@ -38,13 +38,13 @@
 <p>I recently noticed that <strong>hibernation</strong> had stopped working in <strong>Ubuntu</strong>. I had set up Ubuntu to hibernate whenever I closed the laptop lid. On opening the lid later, I found that there was a hibernation error message and it had failed. On closer scrutiny, I found that the hibernate option had disappeared from the Ubuntu Ctrl-Alt-Del dialog. It had also disappeared from the Shutdown menu and from Power Options. Running <strong><a href="http://wiki.archlinux.org/index.php/Pm-utils">pm-hibernate</a></strong> at the Terminal would silently fail too.</p>
 <p>After the initial surprise, I found the reason: the swap partition had disappeared! Hibernation requires a swap partition that is mounted correctly to function. The culprit was the Disk Manager that ships in Windows 7. It had silently removed the swap partition when I had edited some other partitions! I was able to get hibernate working again after I discovered this.</p>
 <p>Here is how to get hibernate back:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Open System → Administration → <strong>Disk Utility</strong> or run <strong>palimpsest</strong> at the Terminal. This utility can be used to format back the swap partition.</p></li>
 <li><p>Now the <strong><a href="https://help.ubuntu.com/community/UsingUUID">Universally Unique Identifier (UUID)</a></strong> of the swap partition would have changed. To obtain its current UUID use:</p></li>
 </ol>
 <pre><code>$ sudo blkid</code></pre>
 <p>Copy the UUID for the partition that matches the swap partition.</p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="3" type="1">
 <li>Finally, open <strong>/etc/fstab</strong> and edit the swap partition entry with the new UUID:</li>
 </ol>
 <pre><code>$ sudo vim /etc/fstab</code></pre>

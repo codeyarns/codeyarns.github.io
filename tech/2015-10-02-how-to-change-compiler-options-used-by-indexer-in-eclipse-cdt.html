@@ -38,7 +38,7 @@
 <p><strong>Eclipse CDT</strong> understands the <strong>C++</strong> code in a window by running it through an <strong>indexer</strong>. This indexer is nothing but an invocation of the GCC C++ compiler with certain compilation options. Sometimes, you might want to change the compiler options used by this indexer.</p>
 <p>For example, I recently found that C++11 containers and classes (like <code>future</code>) were not resolved by the indexer and were underlined with red squiggles. This is because the compiler options used by the indexer does not have <code>-std=c++11</code>.</p>
 <p>To change the compiler options of the indexer:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Open <strong>Preferences</strong> and go to C/C++ -&gt; Build -&gt; Settings.</p></li>
 <li><p>Click the <strong>Discovery</strong> tab and choose <strong>CDT GCC Built-in Compiler Settings</strong>.</p></li>
 <li><p>Modify the command string shown below it as you wish. For example, here I added <code>-std=c++11</code>.</p></li>
