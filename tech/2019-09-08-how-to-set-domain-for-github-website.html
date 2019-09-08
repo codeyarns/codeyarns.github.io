@@ -39,7 +39,7 @@
 <p class="date">2019-09-08T11:05:11.368748-07:00</p>
 </header>
 <p><strong>Github</strong> can be used to host a static website as described <a href="2019-09-08-how-to-host-website-using-github-pages.html">here</a>. Github also allows you point your own <strong>domain</strong> at your Github website.</p>
-<p>There are two ways to map your doman to your Github website: redirect or use DNS. For both these methods you should have already bought a domain from a provider like <strong>Dreamhost</strong>.</p>
+<p>There are two methods to map your domain to your Github website: redirect and DNS. For both these methods you should have already bought a domain from a provider like <strong>Dreamhost</strong>.</p>
 <h2 id="redirect">Redirect</h2>
 <p>This method only redirects your domain <code>foobar.com</code> to your Github website root URL <code>your-username.github.io</code>. That is, if you type <code>foobar.com</code> into your browser, the browser is redirected to <code>your-username.github.io</code>. You will see the Github URL in the browser's addressbar.</p>
 <p>This method is highly restricted too, because you cannot type <code>foobar.com/some/path/joe.html</code> to get to <code>your-username.github.io/some/path/joe.html</code>. The redirection is strictly on the bare domain name.</p>
@@ -95,7 +95,7 @@ Type: CNAME
 Value: your-username.github.io</code></pre>
 <ul>
 <li><p>Back at Github, go to the <strong>Settings</strong> section of the <code>your-username.github.io</code> repository. In the Github Pages section, add <code>foobar.com</code> to the <strong>Custom Domain</strong> field and save it.</p></li>
-<li><p>Note that propagation of DNS records takes a long time. Until then your domain will not work and the Github settings might also complain that the DNS is not working. It did not work for me for several hours. Dreamhost has an option to <strong>refresh</strong> DNS records for domain. Only an hour after using this option, did I see my domain work.</p></li>
+<li><p>Note that propagation of DNS records might take several hours. Until then your domain will not work and the Github settings might also complain that the DNS is not working. Dreamhost has an option to <strong>refresh</strong> DNS records for the domain. Since I did not see my domain working even after a few hours, I had to resort to this Dreamhost refresh option. After an hour of doing that I saw my domain work normally.</p></li>
 </ul>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
