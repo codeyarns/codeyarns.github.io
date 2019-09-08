@@ -38,6 +38,65 @@
 <h1 class="title">How to set domain for Github website</h1>
 <p class="date">2019-09-08T11:05:11.368748-07:00</p>
 </header>
+<p><strong>Github</strong> can be used to host a static website as described <a href="2019-09-08-how-to-host-website-using-github-pages.html">here</a>. Github also allows you point your own <strong>domain</strong> at your Github website.</p>
+<p>There are two ways to map your doman to your Github website: redirect or use DNS. For both these methods you should have already bought a domain from a provider like <strong>Dreamhost</strong>.</p>
+<h2 id="redirect">Redirect</h2>
+<p>This method only redirects your domain <code>foobar.com</code> to your Github website root URL <code>your-username.github.io</code>. That is, if you type <code>foobar.com</code> into your browser, the browser is redirected to <code>your-username.github.io</code>. You will see the Github URL in the browser's addressbar.</p>
+<p>This method is highly restricted too, because you cannot type <code>foobar.com/some/path/joe.html</code> to get to <code>your-username.github.io/some/path/joe.html</code>. The redirection is strictly on the bare domain name.</p>
+<p>The advantage of this method is that setting it up is easy. In Dreamhost, I went to <strong>Manage Domains</strong> section and setup these details:</p>
+<pre><code>Domain to redirect: foobar.com
+Redirect to URL: your-username.github.io</code></pre>
+<p>The redirection was working after a few minutes.</p>
+<h2 id="dns">DNS</h2>
+<p>This method completely maps your domain to the Github website. When you type <code>foobar.com</code> or <code>foobar.com/some/path/joe.html</code>, that is transparently mapped to <code>your-username.github.io</code> or <code>your-username.github.io/some/path/joe.html</code> without ever showing the latter URLs in the browser. A normal visitor of <code>foobar.com</code> cannot easily realize that your website is being hosted by Github.</p>
+<p>This method takes a lot more steps, I have shared what I followed with Dreamhost below:</p>
+<ul>
+<li><p>In the Dreamhost console, go to <strong>Manage Domains</strong> and choose the <strong>DNS</strong> option. Once this is setup, go to the DNS section to set up your DNS records.</p></li>
+<li><p>In the Dreamhost DNS setup page, there are many sections. At the bottom are permanent immutable DNS records in the <strong>Non-editable DreamHost DNS records for foobar.com</strong> section. At the top is a form named <strong>Add a custom DNS record to foobar.com</strong>. We will use this form multiple times to add DNS records for our domain. Every record we add will appear below in the <strong>Your custom DNS records for foobar.com</strong> section.</p></li>
+<li><p>Go to the Github documentation for <a href="https://help.github.com/en/articles/setting-up-an-apex-domain">setting up an apex domain</a> and note down the IP addresses listed in the <code>A</code> records section.</p></li>
+</ul>
+<p>I found that the IP addresses listed were:</p>
+<pre><code>185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153</code></pre>
+<ul>
+<li>We need to point our domain to these IP addresses by adding <code>A</code> records for them one by one. In the Dreamhost DNS setup page, use the form to add <code>A</code> records for every one of the above IP addresses. For example, one entry I added in the form would look like:</li>
+</ul>
+<pre><code>Name: foobar.com
+Type: A
+Value: 185.199.108.153</code></pre>
+<ul>
+<li>Next we check if the IP address mapping has worked. We do this by querying the records using the <code>dig</code> tool. Both <code>foobar.com</code> and <code>your-username.github.io</code> should list the same Github IP addresses:</li>
+</ul>
+<pre><code>$ dig your-username.github.io +noall +answer
+
+; &lt;&lt;&gt;&gt; DiG 9.11.3-1ubuntu1.8-Ubuntu &lt;&lt;&gt;&gt; your-username.github.io +noall +answer
+;; global options: +cmd
+your-username.github.io.      3600    IN      A       185.199.108.153
+your-username.github.io.      3600    IN      A       185.199.109.153
+your-username.github.io.      3600    IN      A       185.199.110.153
+your-username.github.io.      3600    IN      A       185.199.111.153
+
+$ dig foobar.com +noall +answer
+
+; &lt;&lt;&gt;&gt; DiG 9.11.3-1ubuntu1.8-Ubuntu &lt;&lt;&gt;&gt; foobar.com +noall +answer
+;; global options: +cmd
+foobar.com.      3600    IN      A       185.199.108.153
+foobar.com.      3600    IN      A       185.199.109.153
+foobar.com.      3600    IN      A       185.199.110.153
+foobar.com.      3600    IN      A       185.199.111.153</code></pre>
+<p>If you don't see your domain mapping to the Github IP addresses, then give it some time. It might take a while for the records to propagate.</p>
+<ul>
+<li>It is a good idea to map the <code>www</code> subdomain to the Github website too. In the Dreamhost DNS setup page, add a <code>CNAME</code> record for this mapping:</li>
+</ul>
+<pre><code>Name: www.foobar.com
+Type: CNAME
+Value: your-username.github.io</code></pre>
+<ul>
+<li><p>Back at Github, go to the <strong>Settings</strong> section of the <code>your-username.github.io</code> repository. In the Github Pages section, add <code>foobar.com</code> to the <strong>Custom Domain</strong> field and save it.</p></li>
+<li><p>Note that propagation of DNS records takes a long time. Until then your domain will not work and the Github settings might also complain that the DNS is not working. It did not work for me for several hours. Dreamhost has an option to <strong>refresh</strong> DNS records for domain. Only an hour after using this option, did I see my domain work.</p></li>
+</ul>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
