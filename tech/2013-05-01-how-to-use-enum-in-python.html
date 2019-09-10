@@ -8,6 +8,8 @@
   <title>Code Yarns – How to use enum in Python</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -38,19 +40,35 @@
 <h1 class="title">How to use enum in Python</h1>
 <p class="date">2013-05-01 02:46:03+00:00</p>
 </header>
-<p><strong>Python 2.x</strong> does not have an equivalent of the <strong>enum</strong> in C or C++. <strong>Python 3.x</strong> (3.4 and later) has a builtin enum type.</p>
-<p>You can install the backported Python 3.4 enum for Python 2.x easily from <a href="https://pypi.python.org/pypi/enum34/">here</a>:</p>
-<pre><code>$ sudo pip install enum34</code></pre>
-<p>Usage of this enum is simple:</p>
+<h2 id="python-3">Python 3</h2>
+<p><strong>Python 3</strong> has support for <a href="https://docs.python.org/3/library/enum.html">enumeration</a> in the standard library.</p>
+<ul>
+<li>Enum values can be set to integers or strings:</li>
+</ul>
 <pre><code>from enum import Enum
 
-class Colors(Enum):
+class Color(Enum):
     Red   = 1
-    Green = 2
+    Green = &quot;green&quot;
     Blue  = 3
+    AnotherBlue = 3  # Values may not be unique
 
-c = Colors.Green</code></pre>
-<p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
+c = Color.Green
+c = Color(&quot;green&quot;)  # Same as setting to Color.Green</code></pre>
+<ul>
+<li>To enforce that enum values be unique:</li>
+</ul>
+<pre><code>from enum import Enum, unique
+
+@unique
+class Colors(Enum):
+    Red   = &quot;red&quot;
+    Green = &quot;green&quot;
+    Blue  = &quot;blue&quot;</code></pre>
+<h2 id="python-2">Python 2</h2>
+<p><strong>Python 2.x</strong> does not have enumeration type. You can install the backported Python 3 enum for Python 2 easily from <a href="https://pypi.python.org/pypi/enum34/">here</a>:</p>
+<pre><code>$ sudo pip install enum34</code></pre>
+<p><strong>Tried with:</strong> Python 3.6.8, Python 2.7.6 and Ubuntu 18.04</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
