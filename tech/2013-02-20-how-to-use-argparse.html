@@ -46,7 +46,44 @@
 <li><p>Parse the inputs and extract the arguments using <code>parse_args</code>. The arguments are returned in an object with the values available using the object members.</p></li>
 </ul>
 <p>Here is a simple program that illustrates usage of argparse with different types of input arguments:</p>
-<p>https://gist.github.com/ashwin/4995724</p>
+<pre><code>import argparse
+import sys
+
+def foo(args):
+    print args
+
+    print &quot;Radius:   &quot;, args.rad
+    print &quot;Distance: &quot;, args.d
+    print &quot;Name:     &quot;, args.name
+    print &quot;Recompute:&quot;, args.recompute
+    print &quot;In files: &quot;, args.in_files
+
+def main():
+
+    # Create parser
+    arg_parser = argparse.ArgumentParser(description=&quot;This program achieves nothing!&quot;)
+
+    # Add arguments you want to handle
+    modes = [&quot;release&quot;, &quot;debug&quot;]
+    arg_parser.add_argument(&quot;--radius&quot;,    type=float,          default=1.2,   help=&quot;Radius of the component&quot;)
+    arg_parser.add_argument(&quot;-d&quot;,          type=int,            default=9,     help=&quot;Distance to the component&quot;)
+    arg_parser.add_argument(&quot;--name&quot;,      type=str,                           help=&quot;Name of component&quot;)
+    arg_parser.add_argument(&quot;--mode&quot;,      type=str,            choices=modes, help=&quot;Mode to use. Should be either release or debug&quot;)
+    arg_parser.add_argument(&quot;--recompute&quot;, action=&quot;store_true&quot;, default=False, help=&quot;Indicate if recomputation is needed&quot;)
+    arg_parser.add_argument(&quot;--in_files&quot;,  type=str,            nargs=&quot;+&quot;,     help=&quot;One or more input file paths&quot;)
+
+    if len(sys.argv) == 1:
+        arg_parser.print_help()
+        sys.exit(1)
+
+    # Parse sys.argv using parser
+    args = arg_parser.parse_args()
+
+    # Pass arguments around
+    foo(args)
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre>
 <h2 id="argumentparser">ArgumentParser</h2>
 <p>This call has many useful options, the only one I actually use is:</p>
 <ul>
