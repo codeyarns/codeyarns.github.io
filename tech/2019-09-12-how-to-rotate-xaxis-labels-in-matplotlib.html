@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Python: Sort a dictionary by value</title>
+  <title>Code Yarns – How to rotate x-axis labels in Matplotlib</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 div.sourceCode { overflow-x: auto; }
@@ -74,17 +74,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </table>
 <hr />
 <header>
-<h1 class="title">Python: Sort a dictionary by value</h1>
-<p class="date">2009-10-26 07:16:28+00:00</p>
+<h1 class="title">How to rotate x-axis labels in Matplotlib</h1>
+<p class="date">2019-09-12T21:50:07.838922-07:00</p>
 </header>
-<p>A dictionary is not a data structure that can be sorted, either by key or by value. But there are times when we would like to iterate through a dictionary in the order of its values.</p>
-<p>One way to do this is to create a list of key-value tuples from the dictionary and sort that based on the value:</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Dictionary that we want to iterate as if it was sorted by value</span>
-adict <span class="op">=</span> {<span class="st">&quot;nine&quot;</span>: <span class="dv">9</span>, <span class="st">&quot;one&quot;</span>: <span class="dv">1</span>, <span class="st">&quot;eight&quot;</span>: <span class="dv">8</span>, <span class="st">&quot;three&quot;</span>: <span class="dv">3</span>}
-
-<span class="im">import</span> operator
-kvals <span class="op">=</span> <span class="bu">sorted</span>(adict.items(), key<span class="op">=</span>operator.itemgetter(<span class="dv">1</span>))
-<span class="co"># kvals: [(&#39;one&#39;, 1), (&#39;three&#39;, 3), (&#39;eight&#39;, 8), (&#39;nine&#39;, 9)]</span></code></pre></div>
+<p>X-axis labels in <strong>Matplotlib</strong> are <em>horizontal</em> by default. If the labels are long strings, then it might appear crowded or overlap with each other.</p>
+<p>A common solution for this is to make the labels vertical or rotated at a certain angle:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> pyplot
+<span class="co"># Plot the graph ... and then</span>
+<span class="co"># Rotate X-axis labels anti-clockwise by 30 degrees</span>
+pyplot.xticks(rotation<span class="op">=</span><span class="dv">30</span>)</code></pre></div>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
