@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to stop websites from messing with Firefox scrollbars</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Site Search -->
+  <script async src="https://cse.google.com/cse.js?cx=003521915278168649297:cryrlg7hahe">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td>
+            <div class="gcse-search"></div>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">How to stop websites from messing with Firefox scrollbars</h1>
+<p class="date">2019-09-14T18:34:00.164962-07:00</p>
+</header>
+<h2 id="problem">Problem</h2>
+<p>Of late, websites have begun to style the <strong>scrollbars</strong> displayed inside <strong>Firefox</strong>. They try to change the width and color of the scrollbars. This usually makes the scrollbar hard to grab and drag with the mouse.</p>
+<h2 id="solution">Solution</h2>
+<p>By default, Firefox uses the scrollbar style of your OS or windowing environment for its websites. Websites manipulate the scrollbar using the CSS properties <code>scrollbar-color</code> and <code>scrollbar-width</code>.</p>
+<p>To take back control, open <code>about:config</code> and set the following two settings to <code>false</code>:</p>
+<pre><code>layout.css.scrollbar-color.enabled
+layout.css.scrollbar-width.enabled</code></pre>
+<p><strong>Tried with:</strong> Firefox 69.0 and Windows 10</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
