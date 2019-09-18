@@ -8,6 +8,8 @@
   <title>Code Yarns – How to use hgwatchman extension for Mercurial</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to use hgwatchman extension for Mercurial</h1>
-<p class="date">2015-02-11 12:33:22+00:00</p>
+<p class="date">(First posted on: 2015-02-11 12:33:22+00:00)</p>
 </header>
 <p><code>hg status</code> command can be very slow on a repository with thousands of files. This is because it has to explicitly check the status of every file. A great method to speed it up is the <a href="https://bitbucket.org/facebook/hgwatchman"><strong>hgwatchman</strong></a> extension for Mercurial. It uses the <a href="2015/02/10/how-to-install-and-use-watchman/"><strong>Watchman</strong></a> tool which relies on the <strong>inotify</strong> mechanism of the Linux kernel to be notified directly of only the changes that occurred to the files in a directory. There are no packages of hgwatchman and Watchman for Ubuntu, so we need to build them from source. But it is pretty easy to do:</p>
 <ul>

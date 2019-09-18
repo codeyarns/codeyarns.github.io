@@ -45,6 +45,8 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -73,7 +75,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <hr />
 <header>
 <h1 class="title">CUDA: Timer</h1>
-<p class="date">2011-04-28 08:19:22+00:00</p>
+<p class="date">(First posted on: 2011-04-28 08:19:22+00:00)</p>
 </header>
 <p>To measure the performance of <strong>CUDA</strong> code it is better to use <strong>events</strong> provided by the <strong>CUDA Runtime API</strong> rather than using CPU-based timers like <a href="http://codeyarns.wordpress.com/2010/05/25/c-timing-the-code/">clock</a> or <a href="http://codeyarns.wordpress.com/2011/04/08/c-high-resolution-timer/">high-resolution timers</a>.</p>
 <p>As a simple illustration, consider that we want to measure the time taken for the execution of a kernel named <code>fooKernel</code>. First, we create CUDA events to handle the begin and end times of the kernel execution:</p>

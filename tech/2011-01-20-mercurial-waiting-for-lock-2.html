@@ -8,6 +8,8 @@
   <title>Code Yarns – Mercurial: Waiting for Lock</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">Mercurial: Waiting for Lock</h1>
-<p class="date">2011-01-20 05:05:58+00:00</p>
+<p class="date">(First posted on: 2011-01-20 05:05:58+00:00)</p>
 </header>
 <p><strong>Problem</strong></p>
 <p><strong>Mercurial</strong> repositories can sometimes be left in a locked state. A lock is created whenever a client is connected to a repository. But, this lock is not removed if the client got disconnected, say over the network. If any client now tries to change the repository (say <em>push</em> changes), Mercurial complains that it is waiting for the lock.</p>

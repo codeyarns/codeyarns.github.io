@@ -45,6 +45,8 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -73,7 +75,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <hr />
 <header>
 <h1 class="title">Thrust: Remove Duplicates in Multiple Vectors</h1>
-<p class="date">2011-04-21 03:56:36+00:00</p>
+<p class="date">(First posted on: 2011-04-21 03:56:36+00:00)</p>
 </header>
 <p>With the magical <code>thrust::zip_iterator</code> duplicates in multiple vectors can be easily removed and the vectors can be trimmed in <strong>Thrust</strong>.</p>
 <p>Consider two vectors, one of <strong>key</strong> values and the other holding their <strong>values</strong>. There can be many values associated with each key. The keys are sorted and the values associated with each key are also sorted. Finding duplicates in these vectors boils down to finding duplicate pairs and removing them. Here is how to achieve this easily using <code>thrust::unique</code> and <code>thrust::zip_iterator</code>:</p>

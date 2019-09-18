@@ -8,6 +8,8 @@
   <title>Code Yarns – Math errors in C++ and how to prevent or catch them</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">Math errors in C++ and how to prevent or catch them</h1>
-<p class="date">2015-01-05 12:12:15+00:00</p>
+<p class="date">(First posted on: 2015-01-05 12:12:15+00:00)</p>
 </header>
 <p>Math functions provided by the standard C++ library are defined in the <code>cmath</code> header file. Many of these functions require their input values to be in a specific domain. For example, the <code>log</code> function requires its input to be greater than zero. <code>log(-3.14)</code> or <code>log(0)</code> is not defined mathematically. The result of such a call is set to a special <code>NaN</code>, <code>inf</code> or <code>-inf</code> value. However, no exception is thrown and the call has actually <strong>failed silently</strong>. Note that this does not affect the correctness of future math function calls.</p>
 <h2 id="preventing-math-error">Preventing math error</h2>

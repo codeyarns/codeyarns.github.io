@@ -8,6 +8,8 @@
   <title>Code Yarns – How to use inotify extension for Mercurial</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to use inotify extension for Mercurial</h1>
-<p class="date">2015-02-10 12:13:01+00:00</p>
+<p class="date">(First posted on: 2015-02-10 12:13:01+00:00)</p>
 </header>
 <p><code>hg status</code> is the slowest command in <strong>Mercurial</strong> and can take several seconds on repositories with thousands of files. This is because it needs to check every single file and directory in your repository to see if it has changed. One method to speed up this command is to use the <a href="http://mercurial.selenic.com/wiki/InotifyExtension"><strong>inotify</strong></a> extension for Mercurial.</p>
 <p><strong>Note:</strong> This extension is reported to be buggy and using the alternate <strong>hgwatchman</strong> extension is recommended. <strong>Note:</strong> This extension only works in Mercurial 2.x. It has been explicitly <a href="http://www.selenic.com/repo/hg/rev/352abbb0be88">disabled</a> in Mercurial 3.x and will not work.</p>

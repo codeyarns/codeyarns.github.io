@@ -8,6 +8,8 @@
   <title>Code Yarns – Relational operators and Mat in OpenCV</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">Relational operators and Mat in OpenCV</h1>
-<p class="date">2014-02-20 03:07:36+00:00</p>
+<p class="date">(First posted on: 2014-02-20 03:07:36+00:00)</p>
 </header>
 <p><strong>Mat</strong> is a common structure used in <strong>OpenCV</strong> to store two and higher dimensional data. It is a derivation of the internal <strong>Array</strong> structure. A <strong>relational operator</strong> can applied between two Mat objects or a Mat object and a scalar, and the result is a 8-bit single-channel Mat.</p>
 <p>Any of these operations is nothing but a call to <a href="http://docs.opencv.org/modules/core/doc/operations_on_arrays.html">compare</a> function. This results in a per-element comparison of the Mat. The key information to remember is that for every element whose result is true, the value in the result Mat is set to <code>0xFF</code>, that is <code>255</code>. If result is false, it is set to <code>0</code>. This behavior is so that the resulting Mat can be used as a mask image if needed for other operations.</p>

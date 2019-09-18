@@ -8,6 +8,8 @@
   <title>Code Yarns – Prime number buckets in hash table implementations</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">Prime number buckets in hash table implementations</h1>
-<p class="date">2015-10-16 12:16:00+00:00</p>
+<p class="date">(First posted on: 2015-10-16 12:16:00+00:00)</p>
 </header>
 <p><strong>Prime numbers</strong> are very important in the implementation of <strong>hash tables</strong>. They might be used in computing a <strong>hash</strong> for a given <strong>key</strong> using a <strong>hash function</strong>. Also, they seem to be commonly used as the size of the hash table, i.e., the number of <strong>buckets</strong> in the table.</p>
 <p>Consider, a hash table with <strong>separate chaining</strong>. When there is a <strong>collision</strong>, i.e., multiple keys map to the same bucket, they are maintained in a list at that bucket. The <strong>load factor</strong> of the hash table is the average number of keys per bucket in the table. When the load factor increases beyond a certain threshold, a new hash table with larger number of buckets is chosen, the existing keys are rehashed and inserted anew into the new hash table.</p>

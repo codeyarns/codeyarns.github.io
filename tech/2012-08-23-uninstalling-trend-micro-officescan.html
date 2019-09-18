@@ -8,6 +8,8 @@
   <title>Code Yarns – Uninstalling Trend Micro OfficeScan</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">Uninstalling Trend Micro OfficeScan</h1>
-<p class="date">2012-08-23 05:42:50+00:00</p>
+<p class="date">(First posted on: 2012-08-23 05:42:50+00:00)</p>
 </header>
 <p>The <strong>Trend Micro OfficeScan</strong> anti-virus software tends to be installed on computers in certain work networks. It is usually configured such that the user of the computer cannot change its settings or uninstall it, even if he has Administrator privileges. This can be a hassle since OfficeScan runs scans on the computer at odd times and the software is quite a resource hog. OfficeScan cannot be uninstalled since it asks for a <strong>network password</strong> set by the system administrator of the work network.</p>
 <p>The network password is stored as a MD5 hash in the file <strong>ofcscan.ini</strong> in the directory <code>C:\Program Files\Trend Micro\OfficeScan Client</code>. There are two operations which require passwords: <strong>unloading</strong> the program and <strong>uninstalling</strong> the program. These entries can be found in the file with the strings <strong>Uninstall_Pwd</strong> and <strong>Unload_Pwd</strong>. Details of how to replace these entries with your own can be found <a href="http://experts-share.net/miscellaneous/how-to-removeuninstallunload-trend-micro-officescan-password">here</a>.</p>

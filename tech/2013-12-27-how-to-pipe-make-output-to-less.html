@@ -8,6 +8,8 @@
   <title>Code Yarns – How to pipe make output to less</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to pipe make output to less</h1>
-<p class="date">2013-12-27 11:34:11+00:00</p>
+<p class="date">(First posted on: 2013-12-27 11:34:11+00:00)</p>
 </header>
 <p>When you compile your code using <code>make</code> it can throw output that can run many lines. Piping this output directly to a pager like <code>less</code> does not work. This is because make is writing its output to the <code>stderr</code> stream. To get it into <code>less</code> this needs to be redirected to the <code>stdout</code> stream. That can be done like this:</p>
 <p>[code lang=bash] $ make 2&gt;&amp;1 | less ```</p>

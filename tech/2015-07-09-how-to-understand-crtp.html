@@ -8,6 +8,8 @@
   <title>Code Yarns – A simple example to understand CRTP</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">A simple example to understand CRTP</h1>
-<p class="date">2015-07-09 12:28:00+00:00</p>
+<p class="date">(First posted on: 2015-07-09 12:28:00+00:00)</p>
 </header>
 <p><strong>Dynamic polymorphism</strong> (or <strong>runtime polymorphism</strong>) using <strong>virtual functions</strong> in C++ is a great savior. However, a tiny fraction of applications might be affected by its disadvantages: an extra function call overhead and space occupied by a vtable pointer in every object.</p>
 <p>For most of these applications, there might be no better choice than virtual functions, they will need to grin and bear it. But among these applications, there might be a further tiny fraction whose problem just might be elegantly solved using a <strong>static polymorphism</strong> technique called <strong>Curiously Recurring Template Pattern (CRTP)</strong>. It is also called the <strong>Barton-Nackman trick</strong>, since this duo introduced it for the first time in their 1997 book <strong>Scientific and Engineering C++</strong> (Section 12.6: Restricted Template Expansion).</p>

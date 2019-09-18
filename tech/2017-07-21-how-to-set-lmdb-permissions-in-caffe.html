@@ -8,6 +8,8 @@
   <title>Code Yarns – How to set LMDB permissions in Caffe</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to set LMDB permissions in Caffe</h1>
-<p class="date">2017-07-21 14:13:51+00:00</p>
+<p class="date">(First posted on: 2017-07-21 14:13:51+00:00)</p>
 </header>
 <p><strong>Caffe</strong> can create, read and write images from an <strong>LMDB</strong> database. This is much faster than using the files from filesystem during training. However, I noticed that by default Caffe would not set <strong>write</strong> permissions for my <strong>group</strong> for the lmdb directory.</p>
 <p>A quick investigation into <code>src/caffe/util/db_lmdb.cpp</code> showed that this was because new lmdb directory was being created with <code>0744</code> permissions. I changed this to <code>0774</code> in the code and recompiled Caffe.</p>

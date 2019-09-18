@@ -8,6 +8,8 @@
   <title>Code Yarns – How to view NFS mount options</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to view NFS mount options</h1>
-<p class="date">2016-03-07 12:49:15+00:00</p>
+<p class="date">(First posted on: 2016-03-07 12:49:15+00:00)</p>
 </header>
 <p>If your NFS directory is automatically mounted at boot, then find its mount options in <code>/etc/fstab</code>. There might be options such as <code>defaults</code> which are expanded to actual options at mount. These can be found in its actual mounted entry in <code>/etc/mtab</code>. For example, using <code>defaults</code> on my machine expands to <code>rw,vers=4,addr=nfs_server_ip,clientaddr=nfs_client_addr</code></p>
 <p>If it is mounted manually at the shell, then find its mount options in <code>/etc/mtab</code>.</p>

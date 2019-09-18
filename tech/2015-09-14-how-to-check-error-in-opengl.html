@@ -8,6 +8,8 @@
   <title>Code Yarns – How to check error in OpenGL</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to check error in OpenGL</h1>
-<p class="date">2015-09-14 12:46:00+00:00</p>
+<p class="date">(First posted on: 2015-09-14 12:46:00+00:00)</p>
 </header>
 <p>In <strong>OpenGL</strong>, multiple types of errors might have occurred by the time you check for them. The errors are stored using the data type <code>GLenum</code>. <code>GL_NO_ERROR</code> always has the value <code>0</code> and you need to call <code>glGetError()</code> multiple times (one for each error that has occurred) until it returns <code>GL_NO_ERROR</code>. A general rule of thumb is to check for error at least once in a rendering cycle.</p>
 <p>The standard OpenGL errors I found defined on my system:</p>

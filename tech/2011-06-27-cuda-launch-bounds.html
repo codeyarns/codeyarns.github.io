@@ -45,6 +45,8 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -73,7 +75,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <hr />
 <header>
 <h1 class="title">CUDA: Launch Bounds</h1>
-<p class="date">2011-06-27 03:50:22+00:00</p>
+<p class="date">(First posted on: 2011-06-27 03:50:22+00:00)</p>
 </header>
 <p>The <strong>CUDA</strong> compiler decides on the number of <strong>registers</strong> to use for a kernel based on its complexity. Such a compiled kernel is flexible enough to be launched with any number of threads or blocks. However, if an approximate idea of the number of threads and blocks is known at compile-time, then this can be used to optimize the kernel for such launches. This is done by informing the compiler of this launch configuration, so that it has a better chance of tweaking the number of registers it will use for the kernel during compilation.</p>
 <p>Such a launch bound is set for a kernel as follows:</p>

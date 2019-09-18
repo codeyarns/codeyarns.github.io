@@ -45,6 +45,8 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -73,7 +75,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <hr />
 <header>
 <h1 class="title">CUDA: Memory Usage</h1>
-<p class="date">2011-03-30 07:44:26+00:00</p>
+<p class="date">(First posted on: 2011-03-30 07:44:26+00:00)</p>
 </header>
 <p><strong>CUDA</strong> kernel calls or runtime memory allocation calls can sometimes fail due to insufficient <strong>memory</strong>. The real-time memory usage on the CUDA device can be tracked by using applications like <a href="http://codeyarns.wordpress.com/2011/02/25/gpu-z-sensors/"><strong>GPU-Z</strong></a>.</p>
 <p>If you want to know the exact device memory usage at particular points in your program, the <strong>cudaMemGetInfo</strong> runtime call can be used. It returns the free and total memory in bytes. Subtract the free from total to get your memory usage:</p>

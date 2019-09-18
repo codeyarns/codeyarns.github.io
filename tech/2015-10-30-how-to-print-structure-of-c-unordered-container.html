@@ -8,6 +8,8 @@
   <title>Code Yarns – How to print structure of C++ unordered container</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to print structure of C++ unordered container</h1>
-<p class="date">2015-10-30 12:11:00+00:00</p>
+<p class="date">(First posted on: 2015-10-30 12:11:00+00:00)</p>
 </header>
 <p>The <strong>unordered containers</strong> in C++ are implemented as <strong>hash tables</strong> with <strong>separate chaining</strong>. The standard does not specify this implementation explicitly. But, by examining the requirements of the container, this is and will be the implementation in any C++ standard library.</p>
 <p>Given this implementation, it would be an instructive exercise to be able to print out the actual structure of the hash table, with its buckets and linked list of keys. Thankfully, this is possible since the standard provides a <code>bucket_count</code> method and a <code>begin</code> method that takes a bucket index as input.</p>

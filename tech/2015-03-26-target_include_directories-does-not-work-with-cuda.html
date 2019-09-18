@@ -8,6 +8,8 @@
   <title>Code Yarns – target_include_directories does not work with CUDA</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">target_include_directories does not work with CUDA</h1>
-<p class="date">2015-03-26 12:33:53+00:00</p>
+<p class="date">(First posted on: 2015-03-26 12:33:53+00:00)</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p><code>target_include_directories</code> is an useful <strong>CMake</strong> directive to specify the <strong>include directories</strong> for building a particular <strong>target</strong>, as described <a href="2013/10/10/how-to-add-include-directories-in-cmake/">here</a>. The <strong>FindCUDA</strong> module for CMake which handles CUDA compilation seems to completely ignore this directive. The include directories specified for the target are not passed to CUDA compilation by <strong>nvcc</strong>.</p>

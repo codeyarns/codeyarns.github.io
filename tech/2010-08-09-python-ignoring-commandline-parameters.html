@@ -8,6 +8,8 @@
   <title>Code Yarns – Python: Ignoring Commandline Parameters</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">Python: Ignoring Commandline Parameters</h1>
-<p class="date">2010-08-09 08:32:18+00:00</p>
+<p class="date">(First posted on: 2010-08-09 08:32:18+00:00)</p>
 </header>
 <p>After changing <strong>Python</strong> installations on Windows, you may find that Python is ignoring the commandline parameters passed to a Python script.</p>
 <p>To fix this, open <strong>regedit.exe</strong>, head over to <code>HKEY_CLASSES_ROOT\Applications\python.exe\shell\open\command</code> and make sure the value field is <code>&quot;C:\PYTHON_PATH\python.exe&quot; &quot;%1&quot; %*</code>. If the <code>%*</code> is missing, then the Python script will not have access to the commandline parameters passed to it.</p>

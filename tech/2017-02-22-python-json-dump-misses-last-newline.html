@@ -8,6 +8,8 @@
   <title>Code Yarns – Python JSON dump misses last newline</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">Python JSON dump misses last newline</h1>
-<p class="date">2017-02-22 15:55:20+00:00</p>
+<p class="date">(First posted on: 2017-02-22 15:55:20+00:00)</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>The <code>dump</code> method from the <strong>Python</strong> <a href="https://docs.python.org/3/library/json.html"><strong>json</strong></a> package can be used to write a suitable Python object, usually a dictionary or list, to a JSON file. However, I discovered that Unix shell programs have problems working with such a JSON file. This turned out to be because this dump method does not end the last line with a newline character! According to the <strong>POSIX</strong> definition of a <strong>line</strong> in a text file, it needs to end with a newline character. (See <a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_206">here</a>).</p>

@@ -8,6 +8,8 @@
   <title>Code Yarns – C++: pragma once</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">C++: pragma once</h1>
-<p class="date">2011-05-30 09:34:37+00:00</p>
+<p class="date">(First posted on: 2011-05-30 09:34:37+00:00)</p>
 </header>
 <p>With both Visual C++ and GCC supporting <code>pragma once</code> completely, I do not see any reason to still use the <strong>include guards</strong>. Include guards were always a messy solution and I am glad that their death certificate has been written. For example, I would typically use a <code>ALL_CAPS</code> version of the header filename as the defined name. But then, one had to remember to change this whenever the file was renamed. Also, an include guard involved two pieces of code (the <code>#ifndef-#define</code> and the <code>#endif</code>) between which the header code was placed, again too messy and problematic.</p>
 <p>In comparison, using <code>#pragma once</code> is straightforward. As a bonus, the horrendous C++ compilation time might be reduced a bit due to optimizations for pragma once by both these compilers.</p>

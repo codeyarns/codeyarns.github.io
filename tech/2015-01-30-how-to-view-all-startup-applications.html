@@ -8,6 +8,8 @@
   <title>Code Yarns – How to view all startup applications and services</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to view all startup applications and services</h1>
-<p class="date">2015-01-30 14:33:23+00:00</p>
+<p class="date">(First posted on: 2015-01-30 14:33:23+00:00)</p>
 </header>
 <p>In Ubuntu, the <strong>Startup Applications</strong> application can be invoked from the Dash to view, disable, enable or remove startup applications. It can be started from the shell by the confusing command: <code>gnome-session-properties</code>. However, this application does not actually show all the applications and background services that are invoked when you login to a new desktop session.</p>
 <p>There is a global directory that holds other startup applications and services: <code>/etc/xdg/autostart</code>. The <code>.desktop</code> files here are also started on login to a desktop. If you would like the entries here to appear in Startup Applications, then edit the files and change their <code>NoDisplay=true</code> entry to <code>NoDisplay=false</code>. Once they appear in Startup Applications, it is easy to enable, disable or remove them.</p>

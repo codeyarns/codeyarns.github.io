@@ -8,6 +8,8 @@
   <title>Code Yarns – How to make CUDA and nvidia-smi use same GPU ID</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to make CUDA and nvidia-smi use same GPU ID</h1>
-<p class="date">2016-07-05 14:04:58+00:00</p>
+<p class="date">(First posted on: 2016-07-05 14:04:58+00:00)</p>
 </header>
 <p>One of the irritating problems I encounter while working with <strong>CUDA</strong> programs is the GPU ID. This is the identifier used to associate an integer with a GPU on the system. This is just 0 if you have one GPU in the computer. But when dealing with a system having multiple GPUs, the GPU ID that is used by CUDA and GPU ID used by non-CUDA programs like <strong>nvidia-smi</strong> are different! CUDA tries to associate the fastest GPU with the lowest ID. Non-CUDA tools use the PCI Bus ID of the GPUs to give them a GPU ID.</p>
 <p>One solution that I was using was to use <a href="https://github.com/al42and/cuda-smi"><strong>cuda-smi</strong></a> that shows GPU information using CUDA GPU IDs.</p>

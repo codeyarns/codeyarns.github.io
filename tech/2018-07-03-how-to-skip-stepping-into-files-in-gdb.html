@@ -8,6 +8,8 @@
   <title>Code Yarns – How to skip stepping into files in GDB</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to skip stepping into files in GDB</h1>
-<p class="date">2018-07-03 06:43:21+00:00</p>
+<p class="date">(First posted on: 2018-07-03 06:43:21+00:00)</p>
 </header>
 <p><strong>Visual Studio</strong> C++ debugger has a feature called <a href="https://blogs.msdn.microsoft.com/vcblog/2018/06/29/announcing-jmc-stepping-in-visual-studio/"><strong>Just My Code</strong></a> which helps you to step over external code, like that in STL, and only step through the code of your own project. GDB does not have this feature at the time of this writing.</p>
 <p>However, GDB has a <strong>skip -gfile</strong> feature that can be used in a similar way. You pass this command a <strong>glob pattern</strong> of files to ignore during stepping.</p>

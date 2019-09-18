@@ -8,6 +8,8 @@
   <title>Code Yarns – How to specify number of bits in a byte</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to specify number of bits in a byte</h1>
-<p class="date">2018-05-02 03:24:22+00:00</p>
+<p class="date">(First posted on: 2018-05-02 03:24:22+00:00)</p>
 </header>
 <p>In C and C++ code, I sometimes need to specify the number of bits in a byte. For example, when creating a <strong>bitset</strong> object. In old architectures, the number of bits that make a byte has varied, from 1 to 48 bits. But for all practical purposes today, 8 bits make a byte. However, I am not comfortable using the magic number 8 in my code or creating a new constant variable with that value whenever I need it.</p>
 <p>Thankfully, the C and C++ standards have a constant for that: <code>CHAR_BIT</code>. It is defined in <strong>limits.h</strong> and <strong>climits</strong>. It is guaranteed to be set to the number of bits in a byte on the architecture you are running on.</p>

@@ -45,6 +45,8 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -73,7 +75,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <hr />
 <header>
 <h1 class="title">C++ STL: Push Back Array into Container</h1>
-<p class="date">2010-07-11 06:32:38+00:00</p>
+<p class="date">(First posted on: 2010-07-11 06:32:38+00:00)</p>
 </header>
 <p>Pushing the elements of an array into the back of a STL container, in a single statement, is easy using the STL <strong><a href="http://www.sgi.com/tech/stl/copy.html">std::copy</a></strong> algorithm. This algorithm relies on the destination having enough space to hold the source elements. So, a convenient way to apply it on a container without allocating the required space is to use a <strong><a href="http://msdn.microsoft.com/en-us/library/12awccbs.aspx">std::back_inserter</a></strong>. This works on all containers that have a <strong>push_back</strong> method: vector, list and deque.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;algorithm&gt;</span>

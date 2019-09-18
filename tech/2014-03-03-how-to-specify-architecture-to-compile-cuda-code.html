@@ -8,6 +8,8 @@
   <title>Code Yarns – How to specify architecture to compile CUDA code</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">How to specify architecture to compile CUDA code</h1>
-<p class="date">2014-03-03 08:25:14+00:00</p>
+<p class="date">(First posted on: 2014-03-03 08:25:14+00:00)</p>
 </header>
 <p>To compile CUDA code, you need to indicate what architecture you want to compile for. And this gets quite confusing because there are three options that can be used: <code>-arch</code>, <code>-code</code> and <code>-gencode</code>.</p>
 <p>It does not have to be this complicated, but due to historical and practical reasons it just is. The best way to understand how to use these options is to recall the two-level hierarchy of CUDA architecture. First, is the high-level PTX architecture that acts as a virtual machine. Next, is a class of low-level GPU architectures that are designed to work with the features available in a particular PTX architecture.</p>

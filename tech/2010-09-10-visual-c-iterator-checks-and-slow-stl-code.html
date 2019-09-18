@@ -8,6 +8,8 @@
   <title>Code Yarns – Visual C++: Iterator Checks and Slow STL Code</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -36,7 +38,7 @@
 <hr />
 <header>
 <h1 class="title">Visual C++: Iterator Checks and Slow STL Code</h1>
-<p class="date">2010-09-10 03:25:58+00:00</p>
+<p class="date">(First posted on: 2010-09-10 03:25:58+00:00)</p>
 </header>
 <p>Visual C++ turns on a lot of <strong>checking</strong> on <strong>STL iterators</strong> when compiled in <strong>Debug</strong> mode. This is very helpful since any mistake with an iterator leads immediately to an exception with a helpful exception message. This can catch latent bugs much much earlier while programming.</p>
 <p>However, this huge amount of security is sometimes not tolerable by everyone. For certain applications the debug mode with all the iterator checking turned on can be extremely slow, to the point of being useless. I faced a similar problem and so had to investigate to find the reason for the slow behaviour. I discovered that there are 2 mutually exclusive checking mechanisms in the STL of Visual C++: checked iterators and iterator debugging.</p>
