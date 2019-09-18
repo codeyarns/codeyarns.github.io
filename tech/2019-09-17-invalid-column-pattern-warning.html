@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Docker no pull access error</title>
+  <title>Code Yarns – Invalid column pattern warning</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -37,17 +37,24 @@
 </table>
 <hr />
 <header>
-<h1 class="title">Docker no pull access error</h1>
-<p class="date">2017-10-12 14:53:24+00:00</p>
+<h1 class="title">Invalid column pattern warning</h1>
+<p class="date">2019-09-17T22:19:58.677265-07:00</p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>A <strong>Docker</strong> pull command to Docker hub that worked fine for all users failed only for one user. When she tried to pull, it threw up this error:</p>
-<pre><code>repository some_org/some_image not found: does not exist or no pull access
-The push refers to a repository [docker.io/some_org/some_image]</code></pre>
-<p>Docker hub authentication and other details seemed to be in order.</p>
+<p>I use the <a href="2013-12-24-csv-vim-plugin.html"><strong>csv.vim</strong></a> plugin to view CSV files in Vim. When I opened a CSV file today, the plugin showed this warning:</p>
+<pre><code>CSV Syntax:Invalid column pattern, using default pattern \%([^,]*,\|$\)</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Turns out this user had run some docker commands before adding the Docker hub authentication. Those early commands had created a <code>~/.docker</code> directory. Details from this were conflicting with Docker hub authentication that was introduced later. Removing this directory fixed the issue.</p>
-<p><strong>Tried with:</strong> Docker 1.11 and Ubuntu 14.04</p>
+<p><a href="https://github.com/chrisbra/csv.vim/issues/29">Turns out</a> that this cryptic warning has nothing to do with the content in my CSV file. The root cause was that my <code>.vimrc</code> had the syntax and filetype settings turned on in this order:</p>
+<pre><code>syntax on
+filetype on
+filetype plugin on
+filetype indent on</code></pre>
+<p>Due to this order of enablement, the syntax script could not access the config variables setup by the filetype plugin. The solution was to place the syntax enabling after the filetype settings, like this:</p>
+<pre><code>filetype on
+filetype plugin on
+filetype indent on
+syntax on</code></pre>
+<p><strong>Tried with:</strong> Vim 8.0 and Ubuntu 18.04</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
