@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to convert Mercurial repository to Git</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Site Search -->
+  <script async src="https://cse.google.com/cse.js?cx=003521915278168649297:cryrlg7hahe">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td>
+            <div class="gcse-search"></div>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">How to convert Mercurial repository to Git</h1>
+<p class="date">(First posted on: 2019-09-20T18:48:50.377064-07:00)</p>
+</header>
+<p>With <strong>Mercurial</strong> losing the DVCS race to <strong>Git</strong>, I had a bunch of Hg repositories that I needed to convert to Git. I did that using the <strong>hg-git</strong> extension to Mercurial like this:</p>
+<ul>
+<li>Get the hg-git Mercurial extension by grabbing its latest source:</li>
+</ul>
+<pre><code>$ hg clone ssh://hg@bitbucket.org/durin42/hg-git</code></pre>
+<p>hg-git is available through PyPI, but I had problems when I used it. hg-git is also available on a <a href="https://github.com/schacon/hg-git">Github mirror</a>. However, that mirror has not been updated since 2016 and I ran into problems when I used the tool.</p>
+<ul>
+<li>Add the following lines to your <code>.hgrc</code>:</li>
+</ul>
+<pre><code>[extensions]
+hggit = /path/to/hg-git/hggit
+hgext.bookmarks =</code></pre>
+<ul>
+<li>Install the dulwich Python Git library, which is used by hg-git:</li>
+</ul>
+<pre><code>$ pip install -U --user dulwich</code></pre>
+<ul>
+<li>Create a bare Git repository to populate from your Mercurial repository:</li>
+</ul>
+<pre><code>$ git init --bare foobar_git_bare</code></pre>
+<ul>
+<li>In our Mercurial repository, we add a <code>hg</code> bookmark at the top:</li>
+</ul>
+<pre><code>$ hg bookmarks hg</code></pre>
+<ul>
+<li>To convert from Mercurial to Git, just push to the Git repository:</li>
+</ul>
+<pre><code>$ hg push /path/to/foobar_git_bare</code></pre>
+<ul>
+<li>Now our bare Git repository is ready to be cloned to a general Git repository:</li>
+</ul>
+<pre><code>$ git clone foobar_git_bare foobar_git</code></pre>
+<p>You can change to the <code>foobar_git</code> repository and view all your commits and branches from the old Mercurial repository. This Git repository is now ready for action.</p>
+<ul>
+<li>If you want to push the new Git repository to Github, then create a repository on Github, delete the existing <code>origin</code> remote and push it:</li>
+</ul>
+<pre><code>$ git remote remove origin
+$ git remote add origin git@github.com:joe/foobar.git
+$ git push --set-upstream origin master</code></pre>
+<p><strong>Tried with:</strong> Mercurial 4.5.3 and Git 2.17.1</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
