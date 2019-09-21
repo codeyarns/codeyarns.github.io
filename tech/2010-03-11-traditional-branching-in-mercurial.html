@@ -78,14 +78,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p class="date">(First posted on: 2010-03-11 14:44:49+00:00)</p>
 </header>
 <p>Despite the allure of working in a distributed fashion in separate repositories and later merging the changes together, there are genuine cases when working in isolation in a separate branch is necessary. This kind of traditional <strong>branching</strong> is just as easy as everything else in Mercurial.</p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/03/2010_03_11_hgbranching1.png"><img src="http://codeyarns.files.wordpress.com/2010/03/2010_03_11_hgbranching1.png" /></a></p>
-<p>For example, assume we are working on a <code>Car</code> project. It has only one branch, the <code>default</code>. At some point in time we decide to spin off a separate project from the car to work on a fuel efficient car. This project may or may not ever merge back to the main <code>Car</code> project. Hence, branching instead of cloning is the better option for this.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/03/2010_03_11_hgbranching1.png" />
+</figure>
+<p>Assume we are working on a <code>Car</code> project. It has only one branch, the <code>default</code>. At some point in time we decide to spin off a separate project from the car to work on a fuel efficient car. This project may or may not ever merge back to the main <code>Car</code> project. Hence, branching instead of cloning is the better option for this.</p>
 <p>First we clone the existing repository:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">hg</span> clone Car EfficientCar</code></pre></div>
 <p>To see the current branch in the new repository:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">hg</span> branch
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="bu">cd</span> EfficientCar
+$ <span class="ex">hg</span> branch
 <span class="ex">default</span></code></pre></div>
-<p>To create a branch for the fuel efficient car from the default branch:</p>
+<p>To create a branch for the fuel efficient car from the <code>default</code> branch:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">hg</span> branch EfficientCar</code></pre></div>
 <p>We need to commit this new branch before we do anything else:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">hg</span> commit</code></pre></div>
