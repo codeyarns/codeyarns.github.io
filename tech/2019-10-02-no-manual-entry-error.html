@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – No manual entry error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Site Search -->
+  <script async src="https://cse.google.com/cse.js?cx=003521915278168649297:cryrlg7hahe">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td>
+            <div class="gcse-search"></div>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">No manual entry error</h1>
+<p class="date">(First posted on: 2019-10-02T22:18:03.888970-07:00)</p>
+</header>
+<h2 id="problem">Problem</h2>
+<p>After installing some applications, I found that <code>man</code> no longer worked on my computer:</p>
+<pre><code>$ man gcc
+No manual entry for gcc
+See &#39;man 7 undocumented&#39; for help when manual pages are not available.</code></pre>
+<h2 id="solution">Solution</h2>
+<p>Turns out that one of the applications needed to add its manpage. It did this by adding its path to <code>MANPATH</code> like this in Fish's <code>config.fish</code>:</p>
+<pre><code>set --export MANPATH $MANPATH /path/to/app</code></pre>
+<p>Changing it to the below fixed the error:</p>
+<pre><code>set --export MANPATH &quot;:/path/to/app&quot;</code></pre>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>

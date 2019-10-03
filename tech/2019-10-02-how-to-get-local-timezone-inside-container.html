@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to get local timezone inside container</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Site Search -->
+  <script async src="https://cse.google.com/cse.js?cx=003521915278168649297:cryrlg7hahe">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td>
+            <div class="gcse-search"></div>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">How to get local timezone inside container</h1>
+<p class="date">(First posted on: 2019-10-02T22:02:42.333794-07:00)</p>
+</header>
+<p>When you run a <strong>Docker</strong> container of Linux, you can notice that it uses UTC timezone by default:</p>
+<pre><code>$ docker run -it ubuntu
+root@bd08a5ee9d0b:/# date
+Thu Oct  3 05:13:25 UTC 2019</code></pre>
+<p>This can be inconvenient if you plan to use the container to run applications that log with timestamps. Such timestamps would be confusing when you view them outside the container.</p>
+<p>To run a Docker container of Linux with your local timezone, map your local <code>/etc/localtime</code> inside the container:</p>
+<pre><code>$ docker run -v /etc/localtime:/etc/localtime -it ubuntu
+root@ce119be54aca:/# date
+Wed Oct  2 22:16:03 PDT 2019</code></pre>
+<p><strong>Tried with:</strong> Docker 18.09.6 and Ubuntu 18.04</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>

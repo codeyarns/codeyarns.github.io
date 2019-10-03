@@ -43,28 +43,36 @@
 <p><strong>Git</strong> incantations that I need to lookup sometimes:</p>
 <h2 id="working-copy">Working copy</h2>
 <ul>
-<li><p><a href="2014-06-07-how-to-git-clone-only-the-latest-revision.html">How to clone only the latest revision</a></p></li>
-<li><p>How to unstage a file:</p></li>
+<li><p><a href="2014-06-07-how-to-git-clone-only-the-latest-revision.html">To clone only the latest revision</a></p></li>
+<li><p>To unstage a file:</p></li>
 </ul>
 <pre><code>$ git reset HEAD that_file</code></pre>
 <ul>
-<li>How to revert a staged or modified file back to its last commit:</li>
+<li>To revert a staged or modified file back to its last commit:</li>
 </ul>
 <pre><code>$ git checkout -- file_path</code></pre>
 <ul>
-<li>How to revert all modified tracked files:</li>
+<li>To revert all modified tracked files:</li>
 </ul>
 <pre><code>$ git reset --hard</code></pre>
 <ul>
-<li>How to revert the effect of a particular commit:</li>
+<li>To revert the effect of a particular commit:</li>
 </ul>
 <pre><code>$ git revert sha_hash_of_that_commit</code></pre>
 <ul>
-<li>How to remove all untracked files:</li>
+<li>To delete last commit and losing its changes:</li>
+</ul>
+<pre><code>$ git reset --hard HEAD~1</code></pre>
+<ul>
+<li>To delete last commit, but apply its changes to working directory:</li>
+</ul>
+<pre><code>$ git reset --soft HEAD~1</code></pre>
+<ul>
+<li>To remove all untracked files:</li>
 </ul>
 <pre><code>$ git clean -fd</code></pre>
 <ul>
-<li>How to revert non-staged non-committed changes:</li>
+<li>To revert non-staged non-committed changes:</li>
 </ul>
 <pre><code>$ git checkout that_file</code></pre>
 <h2 id="branches">Branches</h2>
@@ -85,105 +93,105 @@
 </ul>
 <pre><code>$ git branch -m old_branch_name new_branch_name</code></pre>
 <ul>
-<li>How to delete a local branch:</li>
+<li>To delete a local branch:</li>
 </ul>
 <pre><code>$ git branch -d branch_name</code></pre>
 <p>Note that you cannot delete the current branch. Checkout to a different branch and then delete the branch you wanted to. This is because imagine chopping off the branch of a tree you are sitting on. You will fall down! 😁</p>
 <ul>
-<li>How to view the branches that contain a given commit <code>01234</code>:</li>
+<li>To view the branches that contain a given commit <code>01234</code>:</li>
 </ul>
 <pre><code>$ git branch -vva --contains 01234</code></pre>
 <ul>
-<li>How to diff a file between two branches:</li>
+<li>To diff a file between two branches:</li>
 </ul>
 <pre><code>$ git diff branch1 branch2 -- path/to/file
 $ git difftool branch1 branch2 -- path/to/file</code></pre>
 <h2 id="merge">Merge</h2>
 <ul>
-<li>How to merge other branch to master branch:</li>
+<li>To merge other branch to master branch:</li>
 </ul>
 <pre><code>$ git checkout master_branch
 $ git merge other_branch</code></pre>
 <ul>
-<li>How to resolve merge conflicts using GUI tool:</li>
+<li>To resolve merge conflicts using GUI tool:</li>
 </ul>
 <pre><code>$ git mergetool</code></pre>
 <h2 id="rebase">Rebase</h2>
 <ul>
-<li>How to rebase my_branch on top of main_branch:</li>
+<li>To rebase my_branch on top of main_branch:</li>
 </ul>
 <pre><code>$ git checkout my_branch
 $ git rebase main_branch</code></pre>
 <h2 id="remotes">Remotes</h2>
 <ul>
-<li>How to see all info about remote, its branches and push-pull to it:</li>
+<li>To see all info about remote, its branches and push-pull to it:</li>
 </ul>
 <pre><code>$ git remote show remote_name</code></pre>
 <ul>
-<li>How to rename a remote:</li>
+<li>To rename a remote:</li>
 </ul>
 <pre><code>$ git remote rename old_remote_name new_remote_name</code></pre>
 <ul>
-<li>How to checkout a remote branch:</li>
+<li>To checkout a remote branch:</li>
 </ul>
 <pre><code>$ git checkout -b local_branch remote_name/remote_branch</code></pre>
 <ul>
-<li>How to push the current local branch to a remote branch:</li>
+<li>To push the current local branch to a remote branch:</li>
 </ul>
 <pre><code>$ git push remote_name remote_branch_name</code></pre>
 <ul>
-<li>How to push a branch on local to branch on remote:</li>
+<li>To push a branch on local to branch on remote:</li>
 </ul>
 <pre><code>$ git push remote_name local_branch_name:remote_branch_name</code></pre>
 <ul>
-<li>How to push the current local branch to a remote branch and make the current local branch track that remote branch:</li>
+<li>To push the current local branch to a remote branch and make the current local branch track that remote branch:</li>
 </ul>
 <pre><code>$ git push -u remote_name remote_branch_name</code></pre>
 <ul>
-<li>How to push a local branch to a remote branch and make the local branch track that remote branch:</li>
+<li>To push a local branch to a remote branch and make the local branch track that remote branch:</li>
 </ul>
 <pre><code>$ git push -u remote_name local_branch_name:remote_branch_name</code></pre>
 <ul>
-<li>How to delete a remote branch:</li>
+<li>To delete a remote branch:</li>
 </ul>
 <pre><code>$ git push remote_name --delete remote_branch</code></pre>
 <ul>
-<li>How to checkout a remote branch to a new local branch (of same name) with tracking:</li>
+<li>To checkout a remote branch to a new local branch (of same name) with tracking:</li>
 </ul>
 <pre><code>$ git checkout -t remote_name/remote_branch</code></pre>
 <ul>
-<li>How to make an existing local branch track a remote branch (or change remote tracking branch):</li>
+<li>To make an existing local branch track a remote branch (or change remote tracking branch):</li>
 </ul>
 <pre><code>$ git branch local_branch -u remote_name/remote_branch</code></pre>
 <ul>
-<li><p><a href="2017-10-12-how-to-rename-remote-branch-in-git.html">How to rename a remote branch</a></p></li>
+<li><p><a href="2017-10-12-how-to-rename-remote-branch-in-git.html">To rename a remote branch</a></p></li>
 <li><p>If some branches have been removed at the remote and you want them removed from the local repository too:</p></li>
 </ul>
 <pre><code>$ git remote prune FOOBAR_REMOTE</code></pre>
 <h2 id="submodules">Submodules</h2>
 <ul>
-<li>How to list all submodules:</li>
+<li>To list all submodules:</li>
 </ul>
 <pre><code>$ git submodule status --recursive</code></pre>
 <ul>
-<li>How to fetch all submodules:</li>
+<li>To fetch all submodules:</li>
 </ul>
 <pre><code>$ git fetch --all --recurse-submodules</code></pre>
 <ul>
-<li>How to update all submodules to revision required by main module revision:</li>
+<li>To update all submodules to revision required by main module revision:</li>
 </ul>
 <pre><code>$ git submodule update --recursive</code></pre>
 <ul>
-<li>How to initialize all submodules the first time and update them to revision required by main module revision:</li>
+<li>To initialize all submodules the first time and update them to revision required by main module revision:</li>
 </ul>
 <pre><code>$ git submodule update --init --recursive</code></pre>
 <ul>
-<li>How to view the commit of a submodule (named <code>foobar</code>) corresponding to a commit (say <code>999792b</code>) of the main module:</li>
+<li>To view the commit of a submodule (named <code>foobar</code>) corresponding to a commit (say <code>999792b</code>) of the main module:</li>
 </ul>
 <pre><code>$ git ls-tree 999792b foobar</code></pre>
 <h2 id="misc">Misc</h2>
 <ul>
-<li>How to view HEAD history of your local repository:</li>
+<li>To view HEAD history of your local repository:</li>
 </ul>
 <pre><code>$ git reflog</code></pre>
 <ul>
@@ -195,7 +203,7 @@ $ git rebase main_branch</code></pre>
 </ul>
 <pre><code>$ git log -L :funcname:filename</code></pre>
 <ul>
-<li>How to change the last commit message:</li>
+<li>To change the last commit message:</li>
 </ul>
 <pre><code>$ git commit --amend</code></pre>
 <ul>
@@ -208,12 +216,12 @@ $ git rebase main_branch</code></pre>
 <pre><code>$ git show 123456</code></pre>
 <h2 id="tags">Tags</h2>
 <ul>
-<li><a href="2017-10-04-how-to-use-tags-in-git.html">How to use tags in Git</a></li>
+<li><a href="2017-10-04-how-to-use-tags-in-git.html">To use tags in Git</a></li>
 </ul>
 <h2 id="misc-1">Misc</h2>
 <ul>
-<li><p><a href="2011-06-03-how-to-generate-patch-of-commit-in-git.html">How to generate patch of commit</a></p></li>
-<li><p><a href="2012-12-04-how-to-list-configuration-settings-in-git.html">How to list configuration settings</a></p></li>
+<li><p><a href="2011-06-03-how-to-generate-patch-of-commit-in-git.html">To generate patch of commit</a></p></li>
+<li><p><a href="2012-12-04-how-to-list-configuration-settings-in-git.html">To list configuration settings</a></p></li>
 </ul>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
