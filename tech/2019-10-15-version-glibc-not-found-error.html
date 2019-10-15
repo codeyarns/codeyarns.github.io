@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Version GLIBC not found error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Site Search -->
+  <script async src="https://cse.google.com/cse.js?cx=003521915278168649297:cryrlg7hahe">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td>
+            <div class="gcse-search"></div>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Version GLIBC not found error</h1>
+<p class="date">(First posted on: 2019-10-15T06:04:35.530142-07:00)</p>
+</header>
+<h2 id="problem">Problem</h2>
+<p>I built an application on my computer and tried to run it on another computer and got this error:</p>
+<pre><code>$ ./foobar
+./foobar: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27&#39; not found (required by ./libfoobar.so.6)
+./foobar: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.11&#39; not found (required by ./libfoobar.so.6)
+./foobar: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.22&#39; not found (required by ./libfoobar.so.6)
+./foobar: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27&#39; not found (required by ./libfoobar.so.6)</code></pre>
+<h2 id="solution">Solution</h2>
+<p>The error messages complain that the <code>GLIBC</code> and <code>CXXABI</code> versions from the binary I was running was not found on the destination computer. This error is typically caused when the glibc, compiler and linker versions differ widely between the source and destination system. Especially if the source system is newer than the destination system.</p>
+<p>In my case, I found that my source computer was running Ubuntu 18.04 and the destination was using Ubuntu 16.04. Since installing an older compiler and library toolchain is not ideal, I instead compiled the application inside a Ubuntu 16.04 container and used those binaries on the destination computer. That worked without any further errors.</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
