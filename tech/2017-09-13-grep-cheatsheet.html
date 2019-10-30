@@ -52,6 +52,10 @@
 <pre><code>$ ls -1 | grep Xanadu</code></pre>
 <p>Note that the search text can be a <strong>regular expression</strong>. You can find more info about regular expressions from other detailed sources.</p>
 <ul>
+<li>To search for <strong>any</strong> of a set of words, separate the words with <code>\|</code>:</li>
+</ul>
+<pre><code>$ ls -1 | grep &quot;rat\|cat\|bat&quot;</code></pre>
+<ul>
 <li>The other common use of grep is to search for text in files. For example:</li>
 </ul>
 <pre><code>$ grep Xanadu *.txt</code></pre>
@@ -100,7 +104,7 @@
 <li>Grep does look through <strong>binary files</strong> by default. If the searched text was found, it will just report that the binary file has that text, it does not try to print the matching line, for obvious reasons (no line separators in binary file). However, if you do not want grep poking around in binary files, use the <code>-I</code> or <code>--binary-file=without-match</code> option:</li>
 </ul>
 <pre><code>$ grep --binary-file=without-match Xanadu *</code></pre>
-<p><strong>Tried with:</strong> Grep 2.25 and Ubuntu 16.04</p>
+<p><strong>Tried with:</strong> Grep 3.1 and Ubuntu 18.04</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
