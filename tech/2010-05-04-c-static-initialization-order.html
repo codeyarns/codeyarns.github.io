@@ -77,15 +77,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">C++: Static Initialization Order</h1>
 <p class="date">(First posted on: 2010-05-04 02:48:17+00:00)</p>
 </header>
-<p>There are so many aspects of C++ that are not nailed down that it is crazy! If you are using a <strong>static object</strong> from one file to <strong>initialize</strong> a static object in another file, you are in big trouble!</p>
+<p>There are so many aspects of C++ that are undefined. For example, if you are using a <strong>static object</strong> from one file to <strong>initialize</strong> a static object in another file, you are in big trouble!</p>
 <p>For example:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Point2D.h</span>
 <span class="kw">class</span> Point<span class="er">2D</span>
 {
 <span class="kw">private</span>:
-    <span class="dt">int</span> _x, _y;
+    <span class="dt">int</span> <span class="va">x_</span>, <span class="va">y_</span>;
 <span class="kw">public</span>:
-    Point2D(<span class="dt">int</span> x, <span class="dt">int</span> y) : _x(x), _y(y) {}
+    Point2D(<span class="dt">int</span> x, <span class="dt">int</span> y) : <span class="va">x_</span>(x), <span class="va">y_</span>(y) {}
     <span class="at">static</span> <span class="at">const</span> Point2D INVALID;
 };</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Point2D.cpp</span>
@@ -103,17 +103,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span>
 
 <span class="co">// Point2D::INVALID may not even be initialized to (-1, -1) when foobar is constructed!</span>
-Foobar Main::foobar( Point2D::INVALID );</code></pre></div>
-<p>In the above example, you are bitten by the <strong>static initialization order problem</strong> in C++. The problem is, there is no order! <code>Point2D</code> and <code>Main</code> classes are defined in different source files, or in C/C++ parlance, called different <strong>translation units</strong>. So, the <code>Main::foobar</code> object could be created even before the <code>Point2D::INVALID</code> object is created!</p>
+Foobar Main::foobar(Point2D::INVALID);</code></pre></div>
+<p>In the above example, you are bitten by the <strong>static initialization order problem</strong> in C++. The problem is there is no initialization order! <code>Point2D</code> and <code>Main</code> classes are defined in different source files, or in C/C++ parlance, called different <strong>translation units</strong>. So, the <code>Main::foobar</code> object could be created even before the <code>Point2D::INVALID</code> object is created.</p>
 <p>The best solution for such cross-translation unit initializations seems to be the use of a <strong>static method</strong> that returns a reference to a <strong>function-local static object</strong>. The function-local static object is guaranteed to be created only once, the first time that function is called.</p>
 <p>For example, to fix the above error, we change <code>Point2D::INVALID</code> into a function:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Point2D.h</span>
 <span class="kw">class</span> Point<span class="er">2D</span>
 {
 <span class="kw">private</span>:
-    <span class="dt">int</span> _x, _y;
+    <span class="dt">int</span> <span class="va">x_</span>, <span class="va">y_</span>;
 <span class="kw">public</span>:
-    Point2D(<span class="dt">int</span> x, <span class="dt">int</span> y) : _x(x), _y(y) {}
+    Point2D(<span class="dt">int</span> x, <span class="dt">int</span> y) : <span class="va">x_</span>(x), <span class="va">y_</span>(y) {}
     <span class="at">static</span> Point2D&amp; INVALID()
     {
         <span class="at">static</span> Point2D* pt = <span class="kw">new</span> Point2D(<span class="dv">-1</span>, <span class="dv">-1</span>);

@@ -40,20 +40,24 @@
 <h1 class="title">scp cheatsheet</h1>
 <p class="date">(First posted on: 2019-10-15T06:14:29.197912-07:00)</p>
 </header>
-<p><strong>scp</strong> is a tool to securely copy files across remote and local systems using the <strong>SSH</strong> protocol. There are similar tools like sftp and rsync. However, scp is the closest analog of the Unix <strong>cp</strong> command. It is the best tool when you know the source and destination paths and all you want is to copy files.</p>
+<p><strong>scp</strong> is a tool to securely copy files across remote and local systems using the <strong>SSH</strong> protocol. There are similar tools like sftp and rsync. However, scp is simpler than those tools and is the closest analog of the Unix <strong>cp</strong> command. It is the best tool when you know the source and destination paths and all you want is to copy files.</p>
 <ul>
-<li>To copy from a remote system to local system:</li>
+<li>To copy a file from a remote system to your local system:</li>
 </ul>
 <pre><code>$ scp your-name@remote-system:/path/on/remote/system /path/on/local/system</code></pre>
 <p>Since scp uses SSH, it will use your SSH key pairs if they are available or prompt you for the remote password if needed.</p>
 <ul>
-<li>To copy from local system to a remote system:</li>
+<li>To copy a file from your local system to a remote system:</li>
 </ul>
 <pre><code>$ scp /path/on/local/system your-name@remote-system:/path/on/remote/system</code></pre>
 <ul>
-<li>If you are using <strong>wildcards</strong> or <strong>globbing patterns</strong> to filter the files you are copying, then enclose them in single quotes so that the local shell does not try to expand them:</li>
+<li><strong>Wildcards</strong> or <strong>globbing patterns</strong> can be used to filter and copy multiple files. But remember to enclose them in single quotes so that the local shell does not try to expand them:</li>
 </ul>
 <pre><code>$ scp &#39;your-name@remote-system:/path/on/remote/system/*.h&#39; /path/on/local/system</code></pre>
+<ul>
+<li>To copy all the contents of a directory:</li>
+</ul>
+<pre><code>$ scp -r your-name@remote-system:/path/on/remote/system /path/on/local/system</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 18.04</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
