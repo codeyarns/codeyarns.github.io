@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Jupyter Cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Site Search -->
+  <script async src="https://cse.google.com/cse.js?cx=003521915278168649297:cryrlg7hahe">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td>
+            <div class="gcse-search"></div>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Jupyter Cheatsheet</h1>
+<p class="date">(First posted on: 2019-12-28T19:03:49.274371-08:00)</p>
+</header>
+<ul>
+<li>Extract just the Python code from a Jupyter notebook file named <code>foobar.ipynb</code> as a text file named <code>foobar.txt</code>:</li>
+</ul>
+<pre><code>$ jupyter nbconvert --to script foobar.ipynb</code></pre>
+<p>The output text file will only have the Python code from the notebook and will not have all the explanatory text.</p>
+<p>This will drop all the explanatory text that might have been in the notebook.</p>
+<ul>
+<li>Extract both text and Python code from a Jupyter notebook file named <code>foobar.ipynb</code> to a Python file named <code>foobar.py</code>:</li>
+</ul>
+<pre><code>$ jupyter nbconvert --to python foobar.ipynb</code></pre>
+<p>The output Python file will have the Python code from the notebook interspersed with the explanatory text from the notebook added as Python comments.</p>
+<p><strong>Tried with:</strong> Jupyter 4.4.0 and Ubuntu 18.04</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
