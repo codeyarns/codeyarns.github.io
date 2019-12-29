@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to check if file is UTF-8</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td style="text-align: right;">
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">How to check if file is UTF-8</h1>
+<p class="date">(First posted on: 2019-12-29T10:52:39.318854-08:00)</p>
+</header>
+<p>The war of the character encodings for text files is over and <a href="https://en.wikipedia.org/wiki/UTF-8"><strong>UTF-8</strong></a> has won. Occasionally, I need to check if a text file is UTF-8 or some other encoding like ASCII or UTF-16.</p>
+<ul>
+<li><strong>Do not</strong> use the <code>file</code> command for this! It is not reliable and might detect a UTF-8 file as ASCII:</li>
+</ul>
+<pre><code>$ file foobar.json
+foobar.json: ASCII text</code></pre>
+<ul>
+<li>Instead use the <code>isutf8</code> tool:</li>
+</ul>
+<pre><code>$ isutf8 foobar.json
+
+$ isutf8 /bin/ls
+/bin/ls: line 1, char 1, byte offset 25: invalid UTF-8 code</code></pre>
+<p>Notice how it is a quiet tool that returns exit code 0 if the file is UTF-8 and prints nothing. If the file is not UTF-8, then it prints some details.</p>
+<ul>
+<li>If you do not have this tool, installing it is easy:</li>
+</ul>
+<pre><code>$ sudo apt install moreutils</code></pre>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>

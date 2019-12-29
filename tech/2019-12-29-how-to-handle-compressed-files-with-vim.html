@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to handle compressed files with Vim</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td style="text-align: right;">
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">How to handle compressed files with Vim</h1>
+<p class="date">(First posted on: 2019-12-29T11:14:05.598644-08:00)</p>
+</header>
+<p><strong>Vim</strong> has support for compressed file formats such as zip, tar, bgzip, bzip2 and many others. The supported operations are pretty simple: list the files inside the compressed file, view or edit one of those files and save the edited file back to the compressed file.</p>
+<ul>
+<li>To open a compressed file in Vim:</li>
+</ul>
+<pre><code>$ vim foobar.zip
+$ vim foobar.tar.bz2</code></pre>
+<p>This will display the list of files inside the compressed file in the Vim edit window. The listing is flat: subdirectories and files within them are all listed in the edit window with the absolute file paths.</p>
+<ul>
+<li><p>Normal Vim navigation <code>j</code> <code>k</code> and search commands are available to navigate this file listing.</p></li>
+<li><p>Press <code>Enter</code> on any listed file to open it in a new buffer for viewing and editing. You can edit this file as you normally do in Vim and when you write <code>:w</code> the changed file, it is written back to the compressed file.</p></li>
+<li><p>The support for compressed files is <em>not</em> recursive: if compressed file <code>1.zip</code> has another compressed file <code>2.zip</code> inside it, you will not be able to open <code>2.zip</code> from inside <code>1.zip</code> in Vim. You can open it, but it will appear as a binary file.</p></li>
+<li><p>Only classic compressed file formats are supported:</p></li>
+</ul>
+<pre><code>.zip
+.tar
+.gz
+.bz2
+.Z
+.lzma
+.xz
+.lz
+.zst</code></pre>
+<ul>
+<li>This compressed file support is actually provided by a combination of multiple plugins. For details, see <code>:help zip</code>, <code>:help tar</code> and <code>:help gzip</code>.</li>
+</ul>
+<p><strong>Tried with:</strong> Vim 8.0 and Ubuntu 18.04</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
