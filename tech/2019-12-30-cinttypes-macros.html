@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – cinttypes macros</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td style="text-align: right;">
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">cinttypes macros</h1>
+<p class="date">(First posted on: 2019-12-30T19:46:45.499599-08:00)</p>
+</header>
+<p>Using fixed width integer types, such as <code>int32_t</code>, from the <code>cstdint</code> header file is important for writing portable C++ code. Once you are using such fixed width types, how do you print them using <code>printf</code> or read them in using <code>scanf</code>? This is the problem that the <strong>macros</strong> defined in the <code>cinttypes</code> header file were created to solve.</p>
+<p>The <a href="2018-08-22-how-to-get-the-cpp-standard.html">C++11 standard</a> succintly lists the cinttypes macros as:</p>
+<pre><code>PRI{d i o u x X}[FAST LEAST]{8 16 32 64}
+PRI{d i o u x X}{MAX PTR}
+SCN{d i o u x X}[FAST LEAST]{8 16 32 64}
+SCN{d i o u x X}{MAX PTR}</code></pre>
+<p>What this means is that you can use the macro <code>PRIi32</code> as the format specifier in printf for an <code>int32_t</code> variable. Or if you want to scan in an <code>uint8_t</code> variable, then use the <code>SCNu8</code> macro and so on.</p>
+<p>These macros define the correct format specifier character, so using them entails combining string literals. Their usage is illustrated by this code example:</p>
+<pre><code>// Classic types
+
+int i;
+scanf(&quot;%i\n&quot;, &amp;i);
+printf(&quot;%i\n&quot;, i);
+
+// Fixed width types
+
+#include &lt;cinttypes&gt;
+
+int32_t i32;
+scanf(&quot;%&quot; SCNi32 &quot;\n&quot;, &amp;i32);
+printf(&quot;%&quot; PRIi32 &quot;\n&quot;, i32);  // Print int value
+printf(&quot;%&quot; PRIx32 &quot;\n&quot;, i32);  // Print int value as hex
+
+uint8_t u8;
+scanf(&quot;%&quot; SCNu8 &quot;\n&quot;, &amp;u8);
+printf(&quot;%&quot; PRIu8 &quot;\n&quot;, u8);</code></pre>
+<p>Note that the C++ standard says that <code>cinttypes</code> will include <code>cstdint</code>, so the latter header does not need to be included if you are using these macros.</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>

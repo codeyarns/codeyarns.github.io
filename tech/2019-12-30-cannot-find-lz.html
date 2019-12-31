@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – View CHM files on Ubuntu using CHMSee</title>
+  <title>Code Yarns – Cannot find -lz</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -37,17 +37,16 @@
 </table>
 <hr />
 <header>
-<h1 class="title">View CHM files on Ubuntu using CHMSee</h1>
-<p class="date">(First posted on: 2013-01-13 01:45:43+00:00)</p>
+<h1 class="title">Cannot find -lz</h1>
+<p class="date">(First posted on: 2019-12-30T07:11:46.239364-08:00)</p>
 </header>
-<p><strong>Update:</strong> chmsee is no longer maintained. You might want to try xchm instead.</p>
-<p>There is no viewer for <strong>CHM</strong> files installed by default on <strong>Ubuntu</strong>. <a href="http://code.google.com/p/chmsee/"><strong>CHMSee</strong></a> is a good CHM viewer written in GTK that can be used for this purpose.</p>
-<h2 id="ubuntu-12.04">Ubuntu 12.04</h2>
-<p>Install it from the Ubuntu repositories:</p>
-<pre><code>$ sudo apt-get install chmsee</code></pre>
-<h2 id="ubuntu-14.04">Ubuntu 14.04</h2>
-<p>CHMSee is no longer included in the Ubuntu repositories. However, it is available from GetDeb. <a href="2014/05/04/how-to-install-applications-from-getdeb-on-ubuntu/">Install GetDeb</a> if you have not done already and update your APT cache. After that you can install CHMSee just as shown above.</p>
-<p><strong>Tried with:</strong> CHMSee 1.3.0, Ubuntu 12.04.1 LTS and Ubuntu 14.04</p>
+<h2 id="problem">Problem</h2>
+<p>This is a common linking error I get on Ubuntu systems:</p>
+<pre><code>$ /usr/bin/ld: cannot find -lz</code></pre>
+<h2 id="solution">Solution</h2>
+<p>Installing this library solves the problem:</p>
+<pre><code>$ sudo apt install zlib1g-dev</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>

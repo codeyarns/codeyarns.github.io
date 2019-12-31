@@ -49,13 +49,14 @@
 <ul>
 <li><p>To open a program with GDB: <code>gdb a.out</code></p></li>
 <li><p>To open a program which has commandline arguments with GDB: <code>gdb --args a.out --infile /home/joe/zoo.json</code></p></li>
-<li><p>To load a core dump file, see <a href="https://codeyarns.com/2015/09/06/how-to-load-core-dump-in-gdb/">here</a>.</p></li>
+<li><p>To load a core dump file, see <a href="2015-09-06-how-to-load-core-dump-in-gdb.html">my post</a>.</p></li>
 <li><p>To debug a running process, use its PID. For example, to connect and debug a process with PID 945: <code>gdb -p 945</code></p></li>
 </ul>
 <h2 id="debugging">Debugging</h2>
 <ul>
 <li><p>To start the program: <code>r</code> which is an alias for <strong>run</strong>.</p></li>
 <li><p>To set a breakpoint: <code>b</code> which is an alias for <strong>breakpoint</strong>. Breakpoint can be set by specifying a line number (in the current file where the debugger has stopped) or function name or file path (partial or full) combined with line number or function name. For more info on locations that can be used with breakpoint command see <a href="https://sourceware.org/gdb/onlinedocs/gdb/Specify-Location.html">here</a>.</p></li>
+<li><p>To set a conditional breakpoint: <code>b foobar.cpp:35 if x &gt; 5</code></p></li>
 <li><p>To continue from the current stopped location: <code>c</code> which is an alias for <strong>continue</strong>.</p></li>
 <li><p>To execute next instruction <code>n</code>, step into the next instruction <code>s</code> and step out from a function <code>finish</code>.</p></li>
 <li><p>To execute until a specified line number: <code>until 420</code>.</p></li>
@@ -67,7 +68,7 @@
 <li><p>To print the current method, line number and filename: <code>frame</code></p></li>
 <li><p>To see list of breakpoints: <code>info breakpoint</code> or <code>i b</code></p></li>
 <li><p>To see list of shared library files that are loaded right now: <code>info shared</code>. Note that more shared libraries might be loaded during execution later.</p></li>
-<li><p>To print value of a variable in the code right now: <code>p foo_var</code></p></li>
+<li><p>To print value of a variable in the code right now: <code>p foobar.</code> To print value in hex: <code>p/x foobar</code>. To print value in binary: <code>p/t foobar</code>. To print value in float: <code>p/f foobar</code>.</p></li>
 <li><p>To print the data type of a variable or type in the code: <code>ptype foo_type</code></p></li>
 </ul>
 <p><strong>Tried with:</strong> GDB 7.11.1 and Ubuntu 14.04</p>
