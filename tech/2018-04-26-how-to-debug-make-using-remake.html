@@ -40,7 +40,7 @@
 <h1 class="title">How to debug make using remake</h1>
 <p class="date">(First posted on: 2018-04-26 04:09:00+00:00)</p>
 </header>
-<p>In big projects that use <strong>Make</strong>, it can be hard to examine how a make build is working and to diagnose a build problem. Imagine my joy when I finally discovered <a href="https://github.com/rocky/remake"><strong>ReMake</strong></a>. This is a debugger, you heard it right, built off a version of GNU Make. It essentially allows you to step through a make build just like you would step through a program using GDB and examine state at any point in time.</p>
+<p>In big projects that use <strong>Make</strong>, it can be hard to examine how a make build is working and to diagnose a build problem. Imagine my joy when I finally discovered <a href="https://github.com/rocky/remake"><strong>ReMake</strong></a>. This is a debugger built off a version of GNU Make. It essentially allows you to step through a make build just like you would step through a program using GDB and examine state at any point in time.</p>
 <ul>
 <li>Installing remake is easy on Ubuntu:</li>
 </ul>
@@ -54,6 +54,14 @@ $ remake some_target</code></pre>
 <li>If you want a verbose output of what is happening with your build use <code>-x</code> option:</li>
 </ul>
 <pre><code>$ remake -x</code></pre>
+<ul>
+<li>To print explicitly named targets in makefiles:</li>
+</ul>
+<pre><code>$ remake --targets</code></pre>
+<ul>
+<li>To print the subset of targets which have commands associated with them:</li>
+</ul>
+<pre><code>$ remake --tasks</code></pre>
 <ul>
 <li>To actually debug a build with its debugger:</li>
 </ul>
