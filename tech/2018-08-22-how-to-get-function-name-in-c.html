@@ -41,18 +41,23 @@
 <p class="date">(First posted on: 2018-08-22 04:59:08+00:00)</p>
 </header>
 <p>Being able to access and print the <strong>function name</strong> from any location inside a C++ function can be useful for investigating programs.</p>
-<p>There are multiple function name strings depending on the compiler you are using:</p>
+<p>There are many ways to obtain the function name in C++:</p>
 <ul>
-<li><code>__func__</code> is a constant that holds only the name of the function. It is part of the C and C++ standards. This is the only standards compliant constant.</li>
+<li><code>__func__</code> is a constant that holds the name of the function:</li>
 </ul>
 <pre><code>int A::foobar(const std::vector&lt;float&gt;&amp; fvec, bool isDragon)
 {
     std::cout &lt;&lt; __func__ &lt;&lt; std::endl;
     // Output: foobar
 }</code></pre>
+<p>This is the only constant that is defined in the C and C++ standards. This is what the C++11 standard §8.4 says about this constant:</p>
+<blockquote>
+<p>The function-local predefined variable <code>__func__</code> is defined as if a definition of the form <code>static const char __func__[] = &quot;function-name &quot;;</code> had been provided, where <code>function-name</code> is an implementation-defined string.</p>
+</blockquote>
+<p>Though the standards provide compilers the freedom to store whatever function details they want in this string, all the compilers that I have tried store only the function name in this string.</p>
 <ul>
 <li><p><code>__FUNCTION__</code> is a GCC and Visual CPP constant whose output is exactly the same as <code>__func__</code>.</p></li>
-<li><p><code>__PRETTY_FUNCTION__</code> is a GCC constant that is more useful for C++, because it holds the entire function signature:</p></li>
+<li><p><code>__PRETTY_FUNCTION__</code> is a GCC constant that is useful for C++, because it holds the entire function signature:</p></li>
 </ul>
 <pre><code>int A::foobar(const std::vector&lt;float&gt;&amp; fvec, bool isDragon)
 {
@@ -122,8 +127,8 @@ int main()
 // void __cdecl foo&lt;float&gt;(float)</code></pre>
 <p><strong>References:</strong></p>
 <ul>
-<li><p><a href="https://gcc.gnu.org/onlinedocs/gcc/Function-Names.html">GCC: Function names as strings</a></p></li>
-<li><p><a href="https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=vs-2019">Visual CPP Predefined Macros</a></p></li>
+<li><a href="https://gcc.gnu.org/onlinedocs/gcc/Function-Names.html">GCC: Function names as strings</a></li>
+<li><a href="https://docs.microsoft.com/en-us/cpp/preprocessor/predefined-macros?view=vs-2019">Visual CPP Predefined Macros</a></li>
 </ul>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
