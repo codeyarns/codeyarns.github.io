@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Default arguments in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td style="text-align: right;">
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Default arguments in C++</h1>
+<p class="date">(First posted on: 2020-01-01T16:55:05.680986-08:00)</p>
+</header>
+<p>Functions in C++ can be declared with <strong>default arguments</strong> for one, more or all parameters. This allows the caller the option of not having to specify these arguments in a function call. When the caller does not specify arguments for these parameters, the default arguments are used instead.</p>
+<p>For example:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> foobar(<span class="dt">int</span> x, <span class="dt">int</span> y)
+{
+    <span class="co">// ...</span>
+}
+
+<span class="dt">void</span> foobar(<span class="dt">int</span> = <span class="dv">10</span>, <span class="dt">int</span> = <span class="dv">20</span>);
+
+<span class="dt">int</span> main()
+{
+    foobar(<span class="dv">99</span>, <span class="dv">99</span>);
+    foobar(<span class="dv">99</span>);  <span class="co">// Same as foobar(99, 20);</span>
+    foobar();  <span class="co">// Same as foobar(10, 20);</span>
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>Default arguments should be specified in the <strong>function declaration</strong> if the declaration exists, and not in the function definition. When there is no function declaration, default arguments can be specified in the function definition.</p>
+<p>Default arguments are allowed only for <strong>trailing parameters</strong>.</p>
+<p><strong>Multiple function declarations</strong> with default arguments are allowed, as long as each provides a default arguments for a different set of parameters. So, for a function defined with <code>N</code> parameters, there are <code>N</code> possible default argument function declarations. For example:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> foobar(<span class="dt">int</span> x, <span class="dt">int</span> y, <span class="dt">int</span> z, <span class="dt">int</span> w)
+{
+    <span class="co">// ...</span>
+}
+
+<span class="dt">void</span> foobar(<span class="dt">int</span> = <span class="dv">1</span>, <span class="dt">int</span> = <span class="dv">2</span>, <span class="dt">int</span> = <span class="dv">3</span>, <span class="dt">int</span> = <span class="dv">4</span>);
+<span class="dt">void</span> foobar(<span class="dt">int</span>, <span class="dt">int</span> = <span class="dv">20</span>, <span class="dt">int</span> = <span class="dv">30</span>, <span class="dt">int</span> = <span class="dv">40</span>);
+<span class="dt">void</span> foobar(<span class="dt">int</span>, <span class="dt">int</span>, <span class="dt">int</span> = <span class="dv">300</span>, <span class="dt">int</span> = <span class="dv">400</span>);
+<span class="dt">void</span> foobar(<span class="dt">int</span>, <span class="dt">int</span>, <span class="dt">int</span>, <span class="dt">int</span> = <span class="dv">4000</span>);</code></pre></div>
+<p>The compiler <strong>generates</strong> a single copy of the code for a function definition, no matter how many possible function declarations with differing sets of default arguments are available for that function. So, the existence of default arguments has no effect on the code generated by the compiler for a function definition. The code that is generated assumes that arguments are set for all the parameters of the function by the caller.</p>
+<p>Default arguments are handled by the compiler at the <strong>call site</strong>. If the user has not provided arguments for one or more of the trailing parameters of the function, then the compiler examines the available function declarations and picks the appropriate arguments for every one of the function parameters. Thus the compiler sets all these arguments at the call site and then calls the function.</p>
+<p>For example, consider this code:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> foobar(<span class="dt">int</span> x = <span class="dv">99</span>)
+{
+}
+
+<span class="dt">int</span> main()
+{
+    foobar();
+}</code></pre></div>
+<p>If we generate assembler code, we can see that the default argument <code>99</code> is set at the call site before calling the function:</p>
+<pre class="assembly"><code># tmp.cpp:7:     foobar();
+        movl    $99, %edi  # Set 99 as function argument
+        call    _Z6foobari # Call foobar()</code></pre>
+<p><strong>Reference:</strong> §8.3.6 Default arguments in the C++11 standard</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
