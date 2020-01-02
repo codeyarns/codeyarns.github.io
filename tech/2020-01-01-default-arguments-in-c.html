@@ -116,8 +116,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 {
     foobar();
 }</code></pre></div>
-<p>If we generate assembler code, we can see that the default argument <code>99</code> is set at the call site before calling the function:</p>
-<pre class="assembly"><code># tmp.cpp:7:     foobar();
+<p>If we generate assembly code, we can see that the default argument <code>99</code> is set at the call site before calling the function:</p>
+<pre><code># tmp.cpp:7:     foobar();
         movl    $99, %edi  # Set 99 as function argument
         call    _Z6foobari # Call foobar()</code></pre>
 <p><strong>Reference:</strong> §8.3.6 Default arguments in the C++11 standard</p>
