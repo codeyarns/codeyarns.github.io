@@ -56,7 +56,7 @@
 <pre><code>$ gcc -g -Wa,-adhln foobar.cpp &gt; foobar.s</code></pre>
 <p>The <code>-adhln</code> options are passed to the assembler since we prefixed it with <code>-Wa</code>. The <code>-adhln</code> options essentially ask the assembler to enable assembler code listings (<code>-a</code>), omit debugging directives (<code>-d</code>), include C++ source code (<code>-h</code>), include assembly (<code>-l</code>) and omit other stuff (<code>-n</code>).</p>
 <p>The above option provides the most pleasing annotations for assembler code. Unlike the <code>-fverbose-asm</code> option, this one includes all the C++ source lines including function definition lines. However, this invocation does not have commentary beside each assembler line indicating which C++ variable is being held in registers in that line.</p>
-<p>Thankfully, all these options can be combined the most detailed annotated assembler code:</p>
+<p>Thankfully, all these options can be combined to generate the most detailed annotated assembler code:</p>
 <pre><code>$ gcc -g -Wa,-adhln -fverbose-asm foobar.cpp &gt; foobar.s</code></pre>
 <p><strong>Tried with:</strong> GCC 7.4.0 and Ubuntu 18.04</p>
 <hr />
