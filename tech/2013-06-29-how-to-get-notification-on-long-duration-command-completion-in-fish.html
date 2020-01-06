@@ -44,8 +44,7 @@
 <p>One technique to get such a <strong>notification</strong> in the <strong>Fish</strong> shell is by using the <code>CMD_DURATION</code> environment variable. Fish sets this to the number of milliseconds taken by the last executed command. It is set only if the last command took more than 1 second to complete.</p>
 <p>By adding few lines of code to the <code>fish_prompt</code> function in the <code>~/.config/fish/functions/fish_prompt.fish</code> file, we can get a notification. I like to trigger a notification using the <strong>notify-send</strong> program, which displays a notification in Unity:</p>
 <p>https://gist.github.com/ashwin/5891060</p>
-<p>If you want to customize the display properties of the notification prompt, that can be done as explained in <a href="https://codeyarns.com/2015/05/14/how-to-configure-ubuntu-notifications/">this post</a>.</p>
-<p><strong>Note:</strong></p>
+<p>If you want to customize the display properties of the notification prompt, that can be done as explained in <a href="2015-05-14-how-to-configure-ubuntu-notifications.html">this post</a>. <strong>Note:</strong></p>
 <ul>
 <li><p>You get a notification on your computer even if the command you are running is on a remote machine over SSH! For this to work, the Fish shell on the remote computer should have the above configuration files and you must have connected to it with X11 Forwarding enabled. A useful trick is to add the hostname of the computer to your notification message so that when it pops up you know which remote computer finished its command.</p></li>
 <li><p>You need Fish v2.2 or later for this technique to work. In earlier versions <code>CMD_DURATION</code> is returned as a string value with different suffixes that is difficult to parse.</p></li>

@@ -51,7 +51,7 @@
 <pre><code>$ pip3 install -U --user six numpy wheel setuptools mock
 $ pip3 install -U --user keras_applications==1.0.6 --no-deps
 $ pip3 install -U --user keras_preprocessing==1.0.5 --no-deps</code></pre>
-<p>These packages are installed to your <code>~/.local/lib/python3.x/site-packages</code> directory. TF documentation also installs the latest pip3 from PyPI. However, doing that causes the infamous <a href="https://codeyarns.com/2018/08/03/cannot-import-name-main/">&quot;Cannot import name main&quot;</a> error, so I do not do that.</p>
+<p>These packages are installed to your <code>~/.local/lib/python3.x/site-packages</code> directory. TF documentation also installs the latest pip3 from PyPI. However, doing that causes the infamous <a href="2018-08-03-cannot-import-name-main.html">&quot;Cannot import name main&quot;</a> error, so I do not do that.</p>
 <ul>
 <li><p>TF uses Bazel as its build tool. Install it as described <a href="https://docs.bazel.build/versions/master/install.html">here</a>. I ended up placing its binary in my <code>~/bin</code>. Since my <code>~/bin</code> is in my <code>PATH</code>, the Bazel binary can be executed from any place.</p></li>
 <li><p>I recommend creating a <code>tensorflow_root</code> directory. This is because the TF packaging tends to write out to a location outside the TF source directory. Also, TF needs to access other libraries. So this root directory makes it easy to create all TF related directories under one umbrella.</p></li>

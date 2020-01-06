@@ -48,7 +48,7 @@
 <ul>
 <li><p>On installation, tmpreader adds a cron job that runs once a day. This can be seen in <code>/etc/cron.daily/tmpreaper</code>. It calls the tmpreaper program with the options you set in <code>/etc/tmpreaper.conf</code></p></li>
 <li><p>The tmpreaper tool will work on any directory passed to it, including the root directory. Since deleting the root directory is catastrophic, tmpreaper shows a warning all the time. You can disable this warning by setting <code>SHOWWARNING=false</code> in <code>/etc/tmpreaper.conf</code></p></li>
-<li><p>When tmpreaper is run once a day by cron, it uses the <code>TMPTIME</code> value set for the tmp directory init scripts as described <a href="https://codeyarns.com/2017/11/06/how-tmp-directory-is-cleaned/">here</a> to decide which files and directories to delete. For example, if <code>TMPTIME=1</code>, then tmpreaper will delete everything in tmp directory that is older than a day.</p></li>
+<li><p>When tmpreaper is run once a day by cron, it uses the <code>TMPTIME</code> value set for the tmp directory init scripts as described <a href="2017-11-06-how-tmp-directory-is-cleaned.html">here</a> to decide which files and directories to delete. For example, if <code>TMPTIME=1</code>, then tmpreaper will delete everything in tmp directory that is older than a day.</p></li>
 <li><p>If you want to apply tmpreaper on directories other than <code>/tmp</code>, then add them to the <code>TMPREAPER_DIRS</code> value in <code>/etc/tmpreaper.conf</code></p></li>
 <li><p>You can call the tmpreaper program directly at the shell to reap your own directories. For example, to reap all files and directories older than 2 days from the tmp directory:</p></li>
 </ul>

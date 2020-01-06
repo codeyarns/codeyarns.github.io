@@ -43,8 +43,7 @@
 <h2 id="problem">Problem</h2>
 <p><strong>Vim</strong> has a built-in plugin named <strong>NetRW</strong> that acts as a file explorer to navigate directories and read-write files. I found that all the buffers used by NetRW to show directory listings would exist even after opening a file from them. This cluttered up my buffer list. Furthermore, while inside NetRW I could not close its buffer by using <code>:q</code>.</p>
 <h2 id="solution">Solution</h2>
-<p>This turned out to be a problem created by <a href="https://codeyarns.com/2015/02/02/vinegar-plugin-for-vim/"><strong>Vinegar</strong></a>, a plugin that makes using NetRW easier. This problem has been discussed <a href="https://github.com/tpope/vim-vinegar/issues/13">here</a>.</p>
-<p>From the many solutions offered, adding this line to <code>.vimrc</code> worked for me:</p>
+<p>This turned out to be a problem created by <a href="2015-02-02-vinegar-plugin-for-vim.html"><strong>Vinegar</strong></a>, a plugin that makes using NetRW easier. This problem has been discussed <a href="https://github.com/tpope/vim-vinegar/issues/13">here</a>. From the many solutions offered, adding this line to <code>.vimrc</code> worked for me:</p>
 <pre><code>autocmd FileType netrw setl bufhidden=wipe</code></pre>
 <p>Note that this still retains the very first buffer used by NetRW to show file listing. All the NetRW buffers that were created later, do not appear in the buffer list. Not a perfect solution, but I can live with it.</p>
 <p>Another solution is to use the <a href="https://github.com/jeetsukumaran/vim-filebeagle">FileBeagle</a> plugin instead of NetRW and Vinegar. It works the same as NetRW for viewing and opening files from a directory hierarchy. However, you cannot rename or delete files from it.</p>
