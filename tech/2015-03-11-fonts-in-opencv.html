@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Fonts in OpenCV</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -40,21 +77,23 @@
 <h1 class="title">Fonts in OpenCV</h1>
 <p class="date">(First posted on: 2015-03-11 12:23:33+00:00)</p>
 </header>
-<p>[caption id=&quot;attachment_6253&quot; align=&quot;aligncenter&quot; width=&quot;788&quot;][<img src="https://codeyarns.files.wordpress.com/2015/03/20150311_opencv_fonts.png" alt="Fonts available in OpenCV" />](https://codeyarns.files.wordpress.com/2015/03/20150311_opencv_fonts.png) Fonts available in OpenCV[/caption]</p>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2015/03/20150311_opencv_fonts.png" />
+</figure>
 <p><strong>OpenCV</strong> can be used to render text on an image buffer using the <code>putText</code> function. Several simple <strong>fonts</strong> are available in OpenCV which can be used to write text.</p>
 <p>The available fonts can be seen defined in <a href="https://github.com/Itseez/opencv/blob/master/modules/core/include/opencv2/core/core.hpp"><code>modules/core/include/opencv2/core/core.hpp</code></a> header file:</p>
-<pre><code>enum
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">enum</span>
 {
-    FONT_HERSHEY_SIMPLEX = 0,
-    FONT_HERSHEY_PLAIN = 1,
-    FONT_HERSHEY_DUPLEX = 2,
-    FONT_HERSHEY_COMPLEX = 3,
-    FONT_HERSHEY_TRIPLEX = 4,
-    FONT_HERSHEY_COMPLEX_SMALL = 5,
-    FONT_HERSHEY_SCRIPT_SIMPLEX = 6,
-    FONT_HERSHEY_SCRIPT_COMPLEX = 7,
-    FONT_ITALIC = 16
-};</code></pre>
+    FONT_HERSHEY_SIMPLEX = <span class="dv">0</span>,
+    FONT_HERSHEY_PLAIN = <span class="dv">1</span>,
+    FONT_HERSHEY_DUPLEX = <span class="dv">2</span>,
+    FONT_HERSHEY_COMPLEX = <span class="dv">3</span>,
+    FONT_HERSHEY_TRIPLEX = <span class="dv">4</span>,
+    FONT_HERSHEY_COMPLEX_SMALL = <span class="dv">5</span>,
+    FONT_HERSHEY_SCRIPT_SIMPLEX = <span class="dv">6</span>,
+    FONT_HERSHEY_SCRIPT_COMPLEX = <span class="dv">7</span>,
+    FONT_ITALIC = <span class="dv">16</span>
+};</code></pre></div>
 <p><code>FONT_ITALIC</code> is not a font, but can be combined with the other fonts to get italic text.</p>
 <p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
 <hr />
