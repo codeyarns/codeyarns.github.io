@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to read contents of zip file in Python</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -40,8 +77,16 @@
 <h1 class="title">How to read contents of zip file in Python</h1>
 <p class="date">(First posted on: 2013-10-03 06:26:48+00:00)</p>
 </header>
-<p>Reading the contents of files inside a zip file is easy with <strong>Python</strong>. We can use the <a href="http://docs.python.org/2/library/zipfile"><strong>zipfile</strong></a> module to achieve this. Open the zip file using the <code>ZipFile</code> constructor. Get the list of files inside it using <code>infolist()</code> and open each of those files using <code>open()</code>. After that you can read from it just like a normal file.</p>
-<p>https://gist.github.com/ashwin/6805823</p>
+<p>Reading the contents of files inside a zip file is easy with <strong>Python</strong>. We can use the <a href="http://docs.python.org/2/library/zipfile"><strong>zipfile</strong></a> module to achieve this.</p>
+<p>Open the zip file using the <code>ZipFile</code> constructor. Get the list of files inside it using <code>infolist()</code> and open each of those files using <code>open()</code>. After that you can read from it just like a normal file.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> zipfile
+
+<span class="kw">def</span> read_zip_file(filepath):
+    zfile <span class="op">=</span> zipfile.ZipFile(filepath)
+    <span class="cf">for</span> finfo <span class="kw">in</span> zfile.infolist():
+        ifile <span class="op">=</span> zfile.<span class="bu">open</span>(finfo)
+        line_list <span class="op">=</span> ifile.readlines()
+        <span class="bu">print</span> line_list</code></pre></div>
 <p><strong>Tried with:</strong> Python 2.7.3</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
