@@ -63,16 +63,14 @@ $ readelf --symbols a.out | c++filt | grep -E &quot;vtable|A::|B::&quot;
     63: 0000000000400a88    32 OBJECT  WEAK   DEFAULT   16 vtable for A</code></pre>
 <p>Here we use the <strong>readelf</strong> program to extract the symbols from the binary. The symbols are in mangled form that is difficult to decipher for humans. So, we pipe it through a demangler.</p>
 <p>Here is the output I got on my computer:</p>
-<p>[caption id=&quot;attachment_9093&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2017/06/20170613_readelf.png" />](http://codeyarns.com/2017/06/13/an-examination-of-c-virtual-functions/20170613_readelf/) (Click to enlarge)[/caption]</p>
-<p>We can check which sections of virtual memory the class methods and virtual tables will be loaded into by examining the sections of the binary:</p>
+<p>[caption id=&quot;attachment_9093&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2017/06/20170613_readelf.png" />](2017-06-13-an-examination-of-c-virtual-functions/20170613_readelf.html) (Click to enlarge)[/caption] We can check which sections of virtual memory the class methods and virtual tables will be loaded into by examining the sections of the binary:</p>
 <p>[code lang=&quot;text&quot;] $ readelf --sections a.out There are 37 section headers, starting at offset 0x6b78:</p>
 <p>Section Headers: [Nr] Name Type Address Off Size ES Flg Lk Inf Al [..][14] .text PROGBITS 00000000004007a0 0007a0 0002a2 00 AX 0 0 16 [..][16] .rodata PROGBITS 0000000000400a50 000a50 00008b 00 A 0 0 8 [..]</p>
 <p>Key to Flags: W (write), A (alloc), X (execute), M (merge), S (strings), l (large) I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown) O (extra OS processing required) o (OS specific), p (processor specific)</p>
 <pre><code>
 We can cross-examine the addresses of the class methods and virtual tables with the starting addresses and sizes of the sections. We see that the class methods will be loaded into the `.text` section and the virtual tables into the `.rodata` segment. The flags of these sections indicate that only the `.text` section is executable, as it should be.
 
-[caption id=&quot;attachment_9094&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][![](https://codeyarns.files.wordpress.com/2017/06/20170703_readelf_2.png)](http://codeyarns.com/2017/06/13/an-examination-of-c-virtual-functions/20170703_readelf_2/) (Click to enlarge)[/caption]
-
+[caption id=&quot;attachment_9094&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][![](https://codeyarns.files.wordpress.com/2017/06/20170703_readelf_2.png)](2017-06-13-an-examination-of-c-virtual-functions/20170703_readelf_2.html) (Click to enlarge)[/caption]
 Finally, let us examine how the virtual tables are used at runtime to determine which method to execute. To do this, we disassemble the binary instructions in the binary:
 
 [code lang=&quot;text&quot;]
@@ -117,7 +115,7 @@ int main()
 <li><p>Finally, jump to the address of the virtual method and start executing its instructions. This is in the <code>.text</code> section of the process virtual memory.</p></li>
 </ul>
 <p>Here is an illustration of the code disassembly:</p>
-<p>[caption id=&quot;attachment_9095&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2017/06/20170703_objdump.png" />](http://codeyarns.com/2017/06/13/an-examination-of-c-virtual-functions/20170703_objdump/) (Click to enlarge)[/caption]</p>
+<p>[caption id=&quot;attachment_9095&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2017/06/20170703_objdump.png" />](2017-06-13-an-examination-of-c-virtual-functions/20170703_objdump.html) (Click to enlarge)[/caption]</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
