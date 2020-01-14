@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to convert datetime to and from ISO 8601 string</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -44,17 +81,17 @@
 <ul>
 <li>Convert a <code>datetime</code> object to string in ISO 8601 format:</li>
 </ul>
-<pre><code>import datetime
-some_datetime_obj = datetime.datetime.now()  # Store current datetime
-datetime_str = some_datetime_obj.isoformat()  # Convert to ISO 8601 string
-print(datetime_str)  # Print the string</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> datetime
+some_datetime_obj <span class="op">=</span> datetime.datetime.now()  <span class="co"># Store current datetime</span>
+datetime_str <span class="op">=</span> some_datetime_obj.isoformat()  <span class="co"># Convert to ISO 8601 string</span>
+<span class="bu">print</span>(datetime_str)  <span class="co"># Print the string</span></code></pre></div>
 <p>This prints a date string in ISO 8601 format. For example: <code>2019-01-23T06:17:59.273519</code>.</p>
 <ul>
 <li>To convert a ISO 8601 format string to <code>datetime</code> object we need a package named <code>dateutil</code>. This is available as <code>python-dateutil</code> and <code>python3-dateutil</code> in Ubuntu or <code>dateutil</code> as PIP package. Once this package is installed, you can do:</li>
 </ul>
-<pre><code>import dateutil.parser
-datetime_str = &quot;2019-01-23T06:17:59.273519&quot;  # Datestring in ISO 8601 format
-some_datetime_obj = dateutil.parser.parse(datetime_str)  # Convert to datetime object</code></pre>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> dateutil.parser
+datetime_str <span class="op">=</span> <span class="st">&quot;2019-01-23T06:17:59.273519&quot;</span>  <span class="co"># Datestring in ISO 8601 format</span>
+some_datetime_obj <span class="op">=</span> dateutil.parser.parse(datetime_str)  <span class="co"># Convert to datetime object</span></code></pre></div>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>

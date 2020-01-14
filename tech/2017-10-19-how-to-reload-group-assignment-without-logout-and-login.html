@@ -41,7 +41,9 @@
 <p class="date">(First posted on: 2017-10-19 15:11:20+00:00)</p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was working in a shell in KDE. I installed <strong>Docker</strong> as described <a href="2017-10-19-how-to-install-docker.html">here</a>. To be able to run Docker commands, my username should be in the <code>docker</code> group, so I added that. Now I need to logout and login out of my desktop environment for my username's new group assignments to be picked up. Otherwise, running any Docker command throws this error:</p>
+<p>I was working in a shell in KDE. I installed <strong>Docker</strong> as described <a href="2017-10-19-how-to-install-docker.html">here</a>. To be able to run Docker commands, my username should be in the <code>docker</code> group, so I added that using this command:</p>
+<pre><code>$ sudo adduser joe docker</code></pre>
+<p>Now I need to logout and login out of my desktop environment for my username's new group assignments to be picked up. Otherwise, running any Docker command throws this error:</p>
 <pre><code>$ docker images
 Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.32/images/json: dial unix /var/run/docker.sock: connect: permission denied</code></pre>
 <p>We can see that our user's new group assignment is not reflected in the shell by running this command:</p>
