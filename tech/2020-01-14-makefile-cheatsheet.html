@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Makefile cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td style="text-align: right;">
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Makefile cheatsheet</h1>
+<p class="date">(First posted on: 2020-01-14T21:39:24.695696-08:00)</p>
+</header>
+<ul>
+<li>To check if a file path, directory path or path wildcard exists:</li>
+</ul>
+<pre><code>ifneq (&quot;$(wildcard $(SOME_PATH_VAR))&quot;,&quot;&quot;)</code></pre>
+<p>Here we are applying the <a href="https://www.gnu.org/software/make/manual/html_node/Wildcard-Function.html"><code>wildcard</code></a> function on the variable holding a path or a wildcard to expand it to a list of files or directories. We then check if this list is not empty by comparing it to an empty string with the <code>ifneq</code> if-not-equal check.</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>

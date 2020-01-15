@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to use Valgrind Memcheck</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td style="text-align: right;">
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">How to use Valgrind Memcheck</h1>
+<p class="date">(First posted on: 2020-01-14T21:26:33.074602-08:00)</p>
+</header>
+<p><strong>Memcheck</strong> is the most commonly used tool in <a href="https://valgrind.org/"><strong>Valgrind</strong></a>. It can be used to detect memory leaks and errors in your programs.</p>
+<ul>
+<li>To run memcheck on a program:</li>
+</ul>
+<pre><code>$ valgrind ./a.out
+$ valgrind --tool=memcheck ./a.out</code></pre>
+<p>This should report any leaks.</p>
+<ul>
+<li>For more detailed leak reporting:</li>
+</ul>
+<pre><code>$ valgrind --leak-check=full ./a.out</code></pre>
+<h2 id="example">Example</h2>
+<p>Here is an example C++ program which is forgetting to free 12 bytes of memory:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
+{
+    <span class="dt">int</span> * vp = <span class="kw">new</span> <span class="dt">int</span>[<span class="dv">3</span>];
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>When we compile and run the binary with valgrind, we see this report of a memory leak:</p>
+<pre><code>$ valgrind  ./a.out
+==1855== Memcheck, a memory error detector
+==1855== Copyright (C) 2002-2017, and GNU GPL&#39;d, by Julian Seward et al.
+==1855== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==1855== Command: ./a.out
+==1855==
+==1855== error calling PR_SET_PTRACER, vgdb might block
+==1855==
+==1855== HEAP SUMMARY:
+==1855==     in use at exit: 12 bytes in 1 blocks
+==1855==   total heap usage: 2 allocs, 1 frees, 72,716 bytes allocated
+==1855==
+==1855== LEAK SUMMARY:
+==1855==    definitely lost: 12 bytes in 1 blocks
+==1855==    indirectly lost: 0 bytes in 0 blocks
+==1855==      possibly lost: 0 bytes in 0 blocks
+==1855==    still reachable: 0 bytes in 0 blocks
+==1855==         suppressed: 0 bytes in 0 blocks
+==1855== Rerun with --leak-check=full to see details of leaked memory
+==1855==
+==1855== For counts of detected and suppressed errors, rerun with: -v
+==1855== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)</code></pre>
+<p><strong>Tried with:</strong> Valgrind 3.13.0 and Ubuntu 18.04</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
