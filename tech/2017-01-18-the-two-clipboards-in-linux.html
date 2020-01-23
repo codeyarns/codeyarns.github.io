@@ -40,14 +40,16 @@
 <h1 class="title">The two clipboards in Linux</h1>
 <p class="date">(First posted on: 2017-01-18 14:16:52+00:00)</p>
 </header>
-<p>If you have come to Linux from Windows or Mac, you might have observed some strange behavior when copying or pasting content. This confusing behavior is caused because there are usually <strong>two clipboards</strong> in Linux.</p>
-<h2 id="x-clipboard">X clipboard</h2>
-<p>The X window system has its own clipboard. It is also known as a cutbuffer. Any text or content you mark by highlighting with the mouse cursor is automatically copied to this clipboard. This is known as the <a href="https://wiki.archlinux.org/index.php/Xterm#Copy_and_paste"><strong>PRIMARY selection</strong></a> or <a href="https://en.wikipedia.org/wiki/X_Window_selection"><strong>X Window selection</strong></a> or just <strong>selection</strong> in X jargon. When you middle-click the mouse cursor at the destination location, this copied content is pasted there.</p>
-<h2 id="window-manager-clipboard">Window manager clipboard</h2>
-<p>In addition to the X clipboard, your window manager or desktop environment (like KDE or GNOME) typically maintains its own clipboard. It might even have a clipboard manager which can maintain a historical buffer of content copied to the clipboard.</p>
-<p>Typically, text or content is copied to this clipboard when you highlight it and use the keyboard shortcut <code>Ctrl+C</code> or right-click with mouse and choose <strong>Copy</strong>. Content from this clipboard is pasted when you use the keyboard shortcut <code>Ctrl+V</code> or right-click with mouse and choose <strong>Paste</strong>.</p>
-<h2 id="syncing-clipboards">Syncing clipboards</h2>
-<p>Typically, the window manager or its clipboard manager will have an option that allows you to sync this clipboard with the X window selection clipboard. That is, content copied in either clipboard appears in the other ready for pasting.</p>
+<p>If you have come to Linux from Windows or Mac, you might have observed some strange behavior when selecting, copying or pasting content. This confusing behavior is caused because there are <strong>two clipboards</strong> in Linux. In X Windows jargon, these clipboards are called <strong>selections</strong>.</p>
+<p>There is even older concept called the <strong>cutbuffer</strong> in X, which is deprecated and we will not discuss that here.</p>
+<h2 id="primary">PRIMARY</h2>
+<p>Any text or content you mark by selecting with the mouse cursor is automatically copied to this <a href="https://wiki.archlinux.org/index.php/Xterm#Copy_and_paste"><strong>PRIMARY selection</strong></a> or <a href="https://en.wikipedia.org/wiki/X_Window_selection"><strong>X Window selection</strong></a> or just <strong>selection</strong>. When you middle-click the mouse cursor at a destination location, the content of the PRIMARY selection is pasted there.</p>
+<h2 id="clipboard">CLIPBOARD</h2>
+<p>The <strong>CLIPBOARD</strong> selection works similar to the Windows or Mac clipboard. Windowing environments might even have a clipboard manager which can maintain a historical list of the entries of this CLIPBOARD selection.</p>
+<p>Text or content is copied to CLIPBOARD when you use the cut/copy menu items, <code>Ctrl+C</code>/<code>Ctrl+X</code> keyboard shortcuts. Content from the CLIPBOARD selection is pasted at the destination where you use the paste menu item or use <code>Ctrl+V</code> keyboard shortcut.</p>
+<h2 id="syncing-selections">Syncing selections</h2>
+<p>Well written applications are supposed to keep PRIMARY and CLIPBOARD in sync, so that the user has no surprises. Not all applications do that, so it is useful to know the above information. When the PRIMARY and CLIPBOARD are not synced, a new user to Linux can be surprised. They select text using the mouse and expect to be able to paste it using <code>Ctrl+V</code>.</p>
+<p>Thankfully, clipboard managers of KDE and GNOME have options to keep both PRIMARY and CLIPBOARD in sync that you can enable if you want such synced behavior.</p>
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://specifications.freedesktop.org/clipboards-spec/clipboards-latest.txt">FreeDesktop clipboard specifications</a></li>
