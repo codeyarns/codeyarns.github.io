@@ -128,6 +128,7 @@ Foobar Main::foobar(Point2D::INVALID);</code></pre></div>
 <blockquote>
 <p>§6.7 If control enters the declaration concurrently while the variable is being initialized, the concurrent execution shall wait for completion of the initialization.</p>
 </blockquote>
+<p>Beware that not all compilers that say that they support C++11 might support this thread safety. For example, compilers earlier than Visual C++ 2015 <a href="https://blog.mbedded.ninja/programming/languages/c-plus-plus/magic-statics/">do not support</a> thread safety for magic static, though they might be C++11.</p>
 <p><strong>References:</strong></p>
 <p>For more on this, check out <strong>Item 4: Make sure the objects are initialized before they are used</strong> from the book <strong><a href="http://www.amazon.com/Effective-Specific-Improve-Programs-Designs/dp/0321334876/">Effective C++</a></strong> (3rd Edition) by Scott Meyers. He uses a function-local static object, instead of a function-local static pointer. Using a pointer seems to be a better strategy as explained in the answer to <a href="http://www.parashift.com/c++-faq-lite/ctors.html#faq-10.14">this question</a> at <strong><a href="http://www.parashift.com/c++-faq-lite/">C++ FAQ Lite</a></strong>.</p>
 <hr />
