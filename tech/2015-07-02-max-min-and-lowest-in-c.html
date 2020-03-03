@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Max, min and lowest in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -40,17 +77,32 @@
 <h1 class="title">Max, min and lowest in C++</h1>
 <p class="date">(First posted on: 2015-07-02 12:50:00+00:00)</p>
 </header>
-<p>https://gist.github.com/ashwin/7bc165d9c8a1e4667d05</p>
 <p>The <code>limits</code> header provides template methods to obtain the <strong>maximum</strong>, <strong>minimum</strong> and <strong>lowest</strong> values of any numeric type in C++. The names of these methods and a slight distinction in these methods between integral types and floating point types causes a bit of confusion.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;limits&gt;</span>
+
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">int</span>&gt;::max()    <span class="co">// INT_MAX</span>
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">int</span>&gt;::min()    <span class="co">// INT_MIN</span>
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">int</span>&gt;::lowest() <span class="co">// INT_MIN</span>
+
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">float</span>&gt;::max()    <span class="co">// FLT_MAX</span>
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">float</span>&gt;::min()    <span class="co">// FLT_MIN</span>
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">float</span>&gt;::lowest() <span class="co">// -FLT_MAX</span>
+
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">double</span>&gt;::max()    <span class="co">// DBL_MAX</span>
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">double</span>&gt;::min()    <span class="co">// DBL_MIN</span>
+<span class="bu">std::</span>numeric_limits&lt;<span class="dt">double</span>&gt;::lowest() <span class="co">// -DBL_MAX</span></code></pre></div>
 <p>For integral types, <code>max</code> is the largest integral value and <code>min</code> is the least representable integral value for that type. That is, all the integral values range from <code>min</code> to <code>max</code>. <code>lowest</code> is the same value as <code>min</code> for integral types.</p>
-<p>For floating point types, <code>max</code> is the largest value that can be represented. That is, no other floating point value lies to the right of this value on the number line. <code>lowest</code> is the least value, no other value lies to the left of this value on the number line. Thus, all the floating point values range from <code>lowest</code> to <code>max</code>. Finally, <code>min</code> for floating point types is the tiniest positive value that can be represented.</p>
-<p>It is easier to understand by looking at the actual values for these types:</p>
+<p>For floating point types, <code>max</code> is the largest value that can be represented. That is, no other floating point value lies to the right of this value on the number line. <code>lowest</code> is the least value, no other value lies to the left of this value on the number line. Thus, all the floating point values range from <code>lowest</code> to <code>max</code>.</p>
+<p><code>min</code> is where floating point types differ from integral types. For floating point types, <code>min</code> is the tiniest positive value that can be represented. If <code>min</code> of integral values had been defined similar to floating point types, then that value would have been <code>1</code>.</p>
+<p>I maintain this table for easy lookup of these values:</p>
 <pre><code>2147483647    // int max
 -2147483648   // int min
 -2147483648   // int lowest
+
 3.40282e+38   // float max
 1.17549e-38   // float min
 -3.40282e+38  // float lowest
+
 1.79769e+308  // double max
 2.22507e-308  // double min
 -1.79769e+308 // double lowest</code></pre>
