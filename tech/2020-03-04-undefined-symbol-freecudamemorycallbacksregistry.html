@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Undefined symbol FreeCudaMemoryCallbacksRegistry</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns &#128187;</a>
+        </td>
+        <td style="text-align: right;">
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Undefined symbol FreeCudaMemoryCallbacksRegistry</h1>
+<p class="date">(First posted on: 2020-03-04T06:02:23.664173-08:00)</p>
+</header>
+<h2 id="problem">Problem</h2>
+<p>I installed <strong>PyTorch</strong> on my system and the very first import failed with this error:</p>
+<pre><code>&gt;&gt;&gt; import torch
+Traceback (most recent call last):
+  File &quot;&lt;input&gt;&quot;, line 1, in &lt;module&gt;
+    import torch
+  File &quot;/usr/lib/python3/dist-packages/bpython/curtsiesfrontend/repl.py&quot;, line 251, in load_module
+    module = self.loader.load_module(name)
+  File &quot;/home/joe/.local/lib/python3.6/site-packages/torch/__init__.py&quot;, line 81, in &lt;module&gt;
+    from torch._C import *
+  File &quot;/usr/lib/python3/dist-packages/bpython/curtsiesfrontend/repl.py&quot;, line 251, in load_module
+    module = self.loader.load_module(name)
+ImportError: /home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so: undefined symbol: _ZN3c1031FreeCudaMemoryCallbacksRegistryEv</code></pre>
+<h2 id="solution">Solution</h2>
+<p>It was obvious that the problem was CUDA or PyTorch's interface to CUDA.</p>
+<p>I checked that <code>/usr/local/cuda</code> symlink was pointing to my CUDA 10.1 installation. I also made sure that <code>/usr/local/cuda/lib64</code> was in my <code>LD_LIBRARY_PATH</code>. However, this did not fix the problem.</p>
+<p>I then started checking which libraries <code>/home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so</code> was dynamically loading at runtime using the <code>ldd</code> command. This investigation revealed that all the dependent libraries were in <code>/home/joe/.local/lib/python3.6/site-packages</code>, except for one: <code>/usr/local/lib/libc10_cuda.so</code>. Turns out that this is a library installed by PyTorch and I had no idea why there was an old copy of this file in <code>/usr/local/lib</code>. It was probably from an old Ubuntu installation of PyTorch that did not uninstall properly.</p>
+<p>I removed this file and PyTorch picked up its local <code>libc10_cuda.so</code> and everything was fine!</p>
+<hr />
+<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+</body>
+</html>
