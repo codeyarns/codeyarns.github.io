@@ -40,15 +40,23 @@
 <h1 class="title">Visual C++: Stack Overflow</h1>
 <p class="date">(First posted on: 2006-06-09 09:34:28+00:00)</p>
 </header>
-<p>On <em>Visual C++ 2005</em>, I allocated a large local array in a function. The program got a <em>stack overflow</em> exception and ended inside chkstk.asm.</p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_1.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_1.png" /></a> <a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_2.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_2.png" /></a></p>
-<p>I'm used to the stack size limit on Linux/Cygwin which is usually 2MB. The limit can be found using the bash builtin command ulimit.</p>
+<p>On Visual C++ 2005, I allocated a large local array in a function. The program got a stack overflow exception and ended inside chkstk.asm.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_1.png" />
+</figure>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_2.png" />
+</figure>
+<p>I am used to the stack size limit on Linux/Cygwin which is usually 2MB.</p>
+<p>The limit can be found using the bash builtin command ulimit:</p>
 <pre><code>$ ulimit -s
 2042 (KB)</code></pre>
 <p>But, the array I was allocating under VC++ 2005 was just a bit larger than 1MB. On further digging, I found that the default stack size on VC++ 2005 is 1MB.</p>
 <p>This stack size limit can be modified using: Project → Properties → Configuration Properties → Linker → System → Stack Reserve Size.</p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_3.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_3.png" /></a></p>
-<p>More information on the stack size limit can be found from the MSDN page on <em><a href="http://msdn.microsoft.com/library/en-us/vccore/html/_core_.2f.stack_linker.asp">/STACK linker option</a></em>.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_stack_overflow_3.png" />
+</figure>
+<p>More information on the stack size limit can be found from the MSDN page on <a href="http://msdn.microsoft.com/library/en-us/vccore/html/_core_.2f.stack_linker.asp">/STACK linker option</a>.</p>
 <hr />
 <p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
 </body>
