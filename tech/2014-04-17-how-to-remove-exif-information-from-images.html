@@ -40,8 +40,11 @@
 <h1 class="title">How to remove EXIF information from images</h1>
 <p class="date">(First posted on: 2014-04-17 07:49:16+00:00)</p>
 </header>
-<p>The <a href="http://www.sno.phy.queensu.ca/~phil/exiftool/">EXIFTool</a> program can be used remove all EXIF tags from an image file.</p>
-<p>This tool can be installed from the <code>libimage-exiftool-perl</code> package:</p>
+<h2 id="using-imagemagick">Using ImageMagick</h2>
+<p>The <strong>convert</strong> tool in <strong>ImageMagick</strong> can be used to strip out all EXIF information from an image like this:</p>
+<pre><code>$ convert in.jpg -strip out.jpg</code></pre>
+<h2 id="using-exiftool">Using EXIFTool</h2>
+<p>The <a href="http://www.sno.phy.queensu.ca/~phil/exiftool/">EXIFTool</a> tool can be installed from the <code>libimage-exiftool-perl</code> package:</p>
 <pre><code>$ sudo apt-get install libimage-exiftool-perl</code></pre>
 <p>To remove all EXIF tags from an image file:</p>
 <pre><code>$ exiftool -all= foo.jpg</code></pre>
