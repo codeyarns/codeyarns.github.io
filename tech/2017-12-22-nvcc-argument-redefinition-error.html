@@ -23,6 +23,8 @@
   <!-- Google Adsense -->
   <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
   </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 <body>
 <table style="width: 100%;">
@@ -48,6 +50,8 @@
 <p>This project was using CMake, so the actual compilation commands invoked by make are hidden. I used the VERBOSE trick, described <a href="2013-10-07-how-to-view-commands-executed-by-make.html">here</a>, to view the actual commands issued to the C++ and CUDA compilers. Not surprisingly, I found that the <code>-std=c++11</code> argument was being passed twice. But why? I checked the CMakeLists.txt file and found that indeed the C++11 argument was being passed to the compiler twice by setting it in both <code>CMAKE_CXX_FLAGS</code> and <code>CUDA_NVCC_FLAGS</code>. How and why was this working fine on the first computer? Turns out that the older CMake used on the first computer would not pass the C++ flag to NVCC, so it had to be specifically redefined for CUDA compiler flags.</p>
 <p>The second computer was using a newer version of Ubuntu, with newer version of CMake. This was intelligent enough to pass a C++ flag to the CUDA NVCC compiler too. But since the NVCC flag of the same name also existed, it was causing the argument redefinition error. Removing the flag from the CUDA flags made the problem go away.</p>
 <hr />
-<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
 </body>
 </html>

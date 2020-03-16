@@ -23,6 +23,8 @@
   <!-- Google Adsense -->
   <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
   </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 <body>
 <table style="width: 100%;">
@@ -62,6 +64,8 @@ F0919 18:01:51.657281 21310 math_functions.cu:81] Check failed: error == cudaSuc
 <p>Once I saw that the GPU NMS code in <code>lib/nms/nms_kernel.cu</code> was doing the <code>cudaMalloc</code> and <code>cudaFree</code> continuously, fixing it was easy. I changed the allocated memory pointers to <code>static</code> and changed the code to hold on to the memory allocated last time. Only if more memory was required then the old one would be freed and new larger one allocated. I basically used the same strategy used by <code>std:vector</code>, that is doubling of memory. A better solution would be to allocate the maximum required memory, based on the box numbers set in <code>config.py</code>, and use it during training.</p>
 <p><strong>Tried with:</strong> CUDA 7.5 and Ubuntu 14.04</p>
 <hr />
-<p><a href="rss.xml">RSS</a> - <a href="mailto:codeyarns@gmail.com">Contact</a></p>
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
 </body>
 </html>
