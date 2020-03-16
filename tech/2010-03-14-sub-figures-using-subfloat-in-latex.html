@@ -42,10 +42,30 @@
 <h1 class="title">Sub-figures using subfloat in LaTeX</h1>
 <p class="date">(First posted on: 2010-03-14 00:33:04+00:00)</p>
 </header>
-<p>[caption id=&quot;attachment_2689&quot; align=&quot;aligncenter&quot; width=&quot;628&quot;][<br />
-<img src="http://codeyarns.files.wordpress.com/2010/03/20120731-subfloat.png" />](http://codeyarns.files.wordpress.com/2010/03/20120731-subfloat.png) Two subfigures in a figure in LaTeX[/caption]</p>
-<p>To include more than one figures inside a figure the <a href="http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/"><strong>subfig</strong></a> package can be used. It provides the <code>subfloat</code> command that is used to specify each of the sub-figures as a figure. Its usage is shown below in a simple example:</p>
-<p>https://gist.github.com/3214225</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/03/20120731-subfloat.png" alt="Two subfigures in a figure in LaTeX" /><figcaption>Two subfigures in a figure in LaTeX</figcaption>
+</figure>
+<p>To include more than one figures inside a figure the <a href="http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/"><strong>subfig</strong></a> package can be used. It provides the <code>subfloat</code> command that is used to specify each of the sub-figures as a figure.</p>
+<p>Its usage is shown below in a simple example:</p>
+<pre><code>% Package for subfloat
+\usepackage{subfig}
+
+% Figure with two sub-figures
+\begin{figure}
+\centering
+\subfloat[]
+{
+    \includegraphics[scale=.5]{fig-1.pdf}
+    \label{fig:foo-1}
+}
+\subfloat[]
+{
+    \includegraphics[scale=.5]{fig-2.pdf}
+    \label{fig:foo-2}
+}
+\caption{ Two foo figures. }
+\label{fig:foo}
+\end{figure}</code></pre>
 <p>Note that each of the subfigures can be given an optional label which can be used to refer to them in the text of the document.</p>
 <p>If you are using <a href="http://en.wikipedia.org/wiki/TeX_Live"><strong>TeX Live</strong></a>, in Ubuntu for example, <strong>subfig</strong> can be found in the <strong>texlive-latex-recommended</strong> package. Note that I have seen that subfig has problems working with <strong>Beamer</strong>.</p>
 <hr />

@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to get function name in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -47,11 +84,11 @@
 <ul>
 <li><code>__func__</code> is a constant that holds the name of the function:</li>
 </ul>
-<pre><code>int A::foobar(const std::vector&lt;float&gt;&amp; fvec, bool isDragon)
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> A::foobar(<span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt;&amp; fvec, <span class="dt">bool</span> isDragon)
 {
-    std::cout &lt;&lt; __func__ &lt;&lt; std::endl;
-    // Output: foobar
-}</code></pre>
+    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="co">// Output: foobar</span>
+}</code></pre></div>
 <p>This is the only constant related to the function name that is defined in the C and C++ standards. The <strong>C++11 standard</strong> §8.4 describes this constant:</p>
 <blockquote>
 <p>The function-local predefined variable <code>__func__</code> is defined as if a definition of the form <code>static const char __func__[] = &quot;function-name &quot;;</code> had been provided, where <code>function-name</code> is an implementation-defined string.</p>
@@ -61,72 +98,72 @@
 <li><p><code>__FUNCTION__</code> is a GCC and Visual CPP constant whose output is exactly the same as <code>__func__</code>.</p></li>
 <li><p><code>__PRETTY_FUNCTION__</code> is a GCC constant that is useful for C++, because it holds the entire function signature:</p></li>
 </ul>
-<pre><code>int A::foobar(const std::vector&lt;float&gt;&amp; fvec, bool isDragon)
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> A::foobar(<span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt;&amp; fvec, <span class="dt">bool</span> isDragon)
 {
-    std::cout &lt;&lt; __func__ &lt;&lt; std::endl;
-    // Output: int A::foobar(const std::vector&lt;float&gt;&amp;, bool)
-}</code></pre>
+    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="co">// Output: int A::foobar(const std::vector&lt;float&gt;&amp;, bool)</span>
+}</code></pre></div>
 <ul>
 <li><p><code>__FUNCDNAME__</code> is a Visual CPP constant holding the mangled function name.</p></li>
 <li><p><code>__FUNCSIG__</code> is a Visual CPP constant holding the function signature with information about input, output and template types.</p></li>
 <li><p>Example program and its output with GCC compiler:</p></li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
 
-template &lt;typename T&gt;
-void foo(T i)
+<span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;
+<span class="dt">void</span> foo(T i)
 {
-    std::cout &lt;&lt; __func__ &lt;&lt; std::endl;
-    std::cout &lt;&lt; __FUNCTION__ &lt;&lt; std::endl;
-    std::cout &lt;&lt; __PRETTY_FUNCTION__ &lt;&lt; std::endl &lt;&lt; std::endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__PRETTY_FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl &lt;&lt; <span class="bu">std::</span>endl;
 }
 
-int main()
+<span class="dt">int</span> main()
 {
-    foo&lt;int&gt;(10);
-    foo&lt;float&gt;(3.14);
-    return 0;
+    foo&lt;<span class="dt">int</span>&gt;(<span class="dv">10</span>);
+    foo&lt;<span class="dt">float</span>&gt;(<span class="fl">3.14</span>);
+    <span class="cf">return</span> <span class="dv">0</span>;
 }
 
-// Output:
-// foo
-// foo
-// void foo(T) [with T = int]
-// 
-// foo
-// foo
-// void foo(T) [with T = float]</code></pre>
+<span class="co">// Output:</span>
+<span class="co">// foo</span>
+<span class="co">// foo</span>
+<span class="co">// void foo(T) [with T = int]</span>
+<span class="co">// </span>
+<span class="co">// foo</span>
+<span class="co">// foo</span>
+<span class="co">// void foo(T) [with T = float]</span></code></pre></div>
 <ul>
 <li>Example program and its output with Visual CPP compiler:</li>
 </ul>
-<pre><code>#include &lt;iostream&gt;
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
 
-template &lt;typename T&gt;
-void foo(T i)
+<span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;
+<span class="dt">void</span> foo(T i)
 {
-    std::cout &lt;&lt; __func__ &lt;&lt; std::endl;
-    std::cout &lt;&lt; __FUNCTION__ &lt;&lt; std::endl;
-    std::cout &lt;&lt; __FUNCDNAME__ &lt;&lt; std::endl;
-    std::cout &lt;&lt; __FUNCSIG__ &lt;&lt; std::endl &lt;&lt; std::endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; __FUNCDNAME__ &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; __FUNCSIG__ &lt;&lt; <span class="bu">std::</span>endl &lt;&lt; <span class="bu">std::</span>endl;
 }
 
-int main()
+<span class="dt">int</span> main()
 {
-    foo&lt;int&gt;(10);
-    foo&lt;float&gt;(3.14);
-    return 0;
+    foo&lt;<span class="dt">int</span>&gt;(<span class="dv">10</span>);
+    foo&lt;<span class="dt">float</span>&gt;(<span class="fl">3.14</span>);
+    <span class="cf">return</span> <span class="dv">0</span>;
 }
 
-// Output:
-// foo
-// foo
-// ??$foo@H@@YAXH@Z
-// void __cdecl foo&lt;int&gt;(int)
-// 
-// foo
-// foo
-// ??$foo@M@@YAXM@Z
-// void __cdecl foo&lt;float&gt;(float)</code></pre>
+<span class="co">// Output:</span>
+<span class="co">// foo</span>
+<span class="co">// foo</span>
+<span class="co">// ??$foo@H@@YAXH@Z</span>
+<span class="co">// void __cdecl foo&lt;int&gt;(int)</span>
+<span class="co">// </span>
+<span class="co">// foo</span>
+<span class="co">// foo</span>
+<span class="co">// ??$foo@M@@YAXM@Z</span>
+<span class="co">// void __cdecl foo&lt;float&gt;(float)</span></code></pre></div>
 <p><strong>References:</strong></p>
 <ul>
 <li><a href="https://gcc.gnu.org/onlinedocs/gcc/Function-Names.html">GCC: Function names as strings</a></li>

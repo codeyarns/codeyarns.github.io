@@ -42,7 +42,9 @@
 <h1 class="title">How to set TERM to xterm-256color</h1>
 <p class="date">(First posted on: 2015-03-18 13:39:49+00:00)</p>
 </header>
-<p><a href="https://codeyarns.files.wordpress.com/2015/03/20150318_terminator_xterm256color.png"><img src="https://codeyarns.files.wordpress.com/2015/03/20150318_terminator_xterm256color.png" alt="20150318_terminator_xterm256color" /></a></p>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2015/03/20150318_terminator_xterm256color.png" />
+</figure>
 <h2 id="problem">Problem</h2>
 <p><strong>GNOME Terminal</strong>, <strong>Terminator</strong> and other terminal programs in X that are based on <strong>VTE</strong> set the <code>TERM</code> environment variable to <code>xterm</code>. Since they support 256 colors, <code>TERM</code> should actually be set to <code>xterm-256color</code>.</p>
 <p>Why is this important? Vim and other terminal programs decide how many colors to support based on <code>TERM</code>. So, if Vim sees <code>xterm</code> it reverts to using 8 colors, instead of 256 colors. That is, it sets its <code>t_Co</code> variable to <code>8</code> instead of <code>256</code>.</p>
