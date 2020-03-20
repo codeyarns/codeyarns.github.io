@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to disable default copy constructor or assignment in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td>
+            <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+        </td>
+        <td style="text-align: right;">
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">How to disable default copy constructor or assignment in C++</h1>
+<p class="date">(First posted on: 2020-03-19T22:29:19.225051-07:00)</p>
+</header>
+<p>There are situations when you would like to disable the default <strong>copy constructor</strong> and/or default <strong>copy assignment operator</strong> for a set of classes or all the classes in a class hierarchy.</p>
+<p>The solution is easy: create a class where the default copy constructor and/or default copy assignment operator are deleted. Derive all your classes or the base class of your class hierarchy from this special class. Copy construction and/or copy assignment will now be disabled for all these classes automatically.</p>
+<p>Here is an example of such a special class:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">class</span> DelCopy
+{
+<span class="kw">public</span>:
+    DelCopy() = <span class="cf">default</span>;
+    ~DelCopy() = <span class="cf">default</span>;
+
+    DelCopy(<span class="at">const</span> DelCopy&amp;) = <span class="kw">delete</span>;
+    DelCopy&amp; <span class="kw">operator</span>=(DelCopy&amp;) = <span class="kw">delete</span>;
+};
+
+<span class="kw">class</span> MyBaseClass : </code></pre></div>
+<p>Here is an example of deriving from the above class:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">class</span> A : DelCopy
+{
+<span class="kw">public</span>:
+    A(<span class="dt">int</span> x) : <span class="va">x_</span>(x)
+    {}
+
+    <span class="dt">int</span> <span class="va">x_</span>;
+};
+
+<span class="dt">int</span> main()
+{
+    A a(<span class="dv">10</span>);
+    A b(a); <span class="co">// This copy construction will fail</span>
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>Here is the gcc compiler error I got:</p>
+<pre><code>$ g++ tmp.cpp
+tmp.cpp: In function ‘int main()’:
+tmp.cpp:27:10: error: use of deleted function ‘A::A(const A&amp;)’
+     A b(a);
+          ^
+tmp.cpp:13:7: note: ‘A::A(const A&amp;)’ is implicitly deleted because the default definition would be ill-formed:
+ class A : DelCopy
+       ^
+tmp.cpp:13:7: error: use of deleted function ‘DelCopy::DelCopy(const DelCopy&amp;)’
+tmp.cpp:9:5: note: declared here
+     DelCopy(const DelCopy&amp;) = delete;
+     ^~~~~~~</code></pre>
+<p>Note that this only disables the <strong>default</strong> copy constructor and/or copy assignment operator. You cannot stop a child class from defining a custom copy constructor and/or copy assignment.</p>
+<hr />
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
+</body>
+</html>
