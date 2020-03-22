@@ -47,7 +47,7 @@
 <li>Installing this tool is easy:</li>
 </ul>
 <pre><code>$ sudo apt install clang-tidy</code></pre>
-<p>This typically installs a stable but older version of the tool with less number of checks.</p>
+<p>This typically installs a stable but older version of the tool with less number of checks. It is recommended the latest version if you like a larger number of checks to use.</p>
 <ul>
 <li>To list the checks it performs by default:</li>
 </ul>
@@ -68,9 +68,14 @@
 <pre><code>$ clang-tidy -fix foobar.cpp
 $ clang-tidy -fix-errors foobar.cpp</code></pre>
 <ul>
-<li>To use a specific check, say <code>modernize-use-nullptr</code>:</li>
+<li>To use a specific check, for example to use <code>modernize-use-nullptr</code>:</li>
 </ul>
 <pre><code>$ clang-tidy -checks=&quot;-*,modernize-use-nullptr&quot; foobar.cpp</code></pre>
+<ul>
+<li><p>The tool looks for a file named <code>.clang-tidy</code> in any parent directory. You can store checks and settings you want in this file to use by default.</p></li>
+<li><p>To get an idea of how to create the config file, you can use a command that dumps an example config:</p></li>
+</ul>
+<pre><code>$ clang-tidy -dump-config</code></pre>
 <p><strong>Tried with:</strong> clang-tidy 6.0.0 and Ubuntu 18.04</p>
 <hr />
 <div class="footer">
