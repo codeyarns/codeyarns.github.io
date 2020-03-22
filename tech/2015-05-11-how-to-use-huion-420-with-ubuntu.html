@@ -42,20 +42,22 @@
 <h1 class="title">How to use Huion 420 with Ubuntu</h1>
 <p class="date">(First posted on: 2015-05-11 15:11:00+00:00)</p>
 </header>
-<p>[caption id=&quot;attachment_6877&quot; align=&quot;alignnone&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2015/05/20150511_huion_420.png" alt="Writing using Huion 420 in the Xournal app on Ubuntu" />](https://codeyarns.files.wordpress.com/2015/05/20150511_huion_420.png) Writing using Huion 420 in the Xournal app on Ubuntu[/caption]</p>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2015/05/20150511_huion_420.png" alt="Writing using Huion 420 in the Xournal app on Ubuntu" /><figcaption>Writing using Huion 420 in the Xournal app on Ubuntu</figcaption>
+</figure>
 <p><strong>Huion 420</strong> is an inexpensive graphics tablet and stylus. It can be used to write, mark, draw or sign in Linux apps.</p>
 <ul>
-<li><p>The <a href="https://github.com/DIGImend/digimend-kernel-drivers"><strong>DIGImend</strong></a> drivers support Huion graphics tablets. The 420 is supported in v5 of these drivers.</p></li>
-<li><p>If you are using Linux kernel v3.17 or later, these drivers are already merged into it. Huion 420 will work correctly when you plug the tablet in.</p></li>
-<li><p>If you are using Linux kernel version less than 3.17, then the Huion 420 stylus will appear to move on the display, but it has problems. For example, it will be restricted to the top-left region of the display.</p></li>
-<li><p>To get full support for Huion 420, download the DIGImend v5 drivers from <a href="https://github.com/DIGImend/digimend-kernel-drivers/releases">here</a>. The file to download is named <code>digimend-kernel-drivers-5.tar.gz</code>.</p></li>
-<li><p>Unzip the downloaded file. Run <code>make</code> to build the drivers.</p></li>
-<li><p>Remove the existing Huion driver that might have been loaded:</p></li>
+<li>The <a href="https://github.com/DIGImend/digimend-kernel-drivers"><strong>DIGImend</strong></a> drivers support Huion graphics tablets. The 420 is supported in v5 of these drivers.</li>
+<li>If you are using Linux kernel v3.17 or later, these drivers are already merged into it. Huion 420 will work correctly when you plug the tablet in.</li>
+<li>If you are using Linux kernel version less than 3.17, then the Huion 420 stylus will appear to move on the display, but it has problems. For example, it will be restricted to the top-left region of the display.</li>
+<li>To get full support for Huion 420, download the DIGImend v5 drivers from <a href="https://github.com/DIGImend/digimend-kernel-drivers/releases">here</a>. The file to download is named <code>digimend-kernel-drivers-5.tar.gz</code>.</li>
+<li>Unzip the downloaded file. Run <code>make</code> to build the drivers.</li>
+<li>Remove the existing Huion driver that might have been loaded:</li>
 </ul>
 <pre><code>$ sudo rmmod hid-huion</code></pre>
 <ul>
-<li><p>Install the new drivers using <code>sudo make install</code></p></li>
-<li><p>Unplug and plug back the Huion 420. You should be able to use the stylus to operate the whole display area, write and draw now.</p></li>
+<li>Install the new drivers using <code>sudo make install</code></li>
+<li>Unplug and plug back the Huion 420. You should be able to use the stylus to operate the whole display area, write and draw now.</li>
 </ul>
 <p><strong>Tried with:</strong> Linux kernel 3.13.0-44 and Ubuntu 14.04</p>
 <hr />
