@@ -79,8 +79,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">How to disable default copy constructor or assignment in C++</h1>
 <p class="date">(First posted on: 2020-03-19T22:29:19.225051-07:00)</p>
 </header>
-<p>There are situations when you would like to disable the default <strong>copy constructor</strong> and/or default <strong>copy assignment operator</strong> for a set of classes or all the classes in a class hierarchy.</p>
-<p>The solution is easy: create a class where the default copy constructor and/or default copy assignment operator are deleted. Derive all your classes or the base class of your class hierarchy from this special class. Copy construction and/or copy assignment will now be disabled for all these classes automatically.</p>
+<p>There are situations when you would like to disable the default <strong>copy constructor</strong> and/or default <strong>copy assignment operator</strong> for many classes or many class hierarchies in your code.</p>
+<p>You could delete the default copy constructor or default copy assignment operator for each base class, but that would be onerous and result in lots of duplicated code. Also, the deletion would get hidden among the base class methods.</p>
+<p>A cleaner solution: create a class where the default copy constructor and/or default copy assignment operator are deleted. Derive all your classes or the base class of the class hierarchies from this special class. Copy construction and/or copy assignment will now be disabled for all these classes automatically.</p>
 <p>Here is an example of such a special class:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">class</span> DelCopy
 {
