@@ -92,9 +92,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     ? (reqmaxsize &lt; 4 ? 4 : reqmaxsize)
     : a-&gt;maxsize * 2;</code></pre>
 <ul>
-<li><strong>Python:</strong> List in the CPython implementation <a href="https://github.com/python/cpython/blob/bace59d8b8e38f5c779ff6296ebdc0527f6db14a/Objects/listobject.c#L67">seems to have</a> a growth factor of 1.125:</li>
+<li><strong>Python:</strong> List in the CPython implementation <a href="https://github.com/python/cpython/blob/bace59d8b8e38f5c779ff6296ebdc0527f6db14a/Objects/listobject.c#L62">seems to have</a> a growth factor of 1.125:</li>
 </ul>
-<pre><code>new_allocated = ((size_t)newsize + 3) &amp; ~(size_t)3;</code></pre>
+<pre><code>new_allocated = ((size_t)newsize + (newsize &gt;&gt; 3) + 6) &amp; ~(size_t)3;</code></pre>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
