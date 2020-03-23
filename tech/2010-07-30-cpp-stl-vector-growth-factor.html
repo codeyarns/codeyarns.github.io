@@ -79,8 +79,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">C++ STL Vector Growth Factor</h1>
 <p class="date">(First posted on: 2010-07-30 06:35:47+00:00)</p>
 </header>
-<p>The STL <strong>vector</strong> is a dynamic array. When it grows its internal memory is reallocated and the old content is copied over to the new space. Because of this, when the vector capacity increases the iterators, references and pointers to its elements become invalid.</p>
-<p>The capacity increase factor of a vector depends on the STL implementation. The current capacity of a vector can be found by calling its <strong>capacity()</strong> method. By running a simple program (like below), one can figure out the factor. I found that this factor is <strong>1.5</strong> for Visual C++ 2010, which uses the STL implementation from <a href="http://www.dinkumware.com/">Dinkumware</a> and it is <strong>2.0</strong> on G++ 3.4.4 running under Cygwin.</p>
+<p>The STL <strong>vector</strong> is a dynamic array. When it grows, its internal memory is reallocated and the old values are copied over to the new space. Because of this, when the vector capacity increases the iterators, references and pointers to its elements become invalid.</p>
+<p>The capacity increase factor of a vector depends on the STL implementation. The current capacity of a vector can be found by calling its <strong>capacity()</strong> method. By running a simple program shown below, we can figure out the factor. I found that this factor is <strong>1.5</strong> for Visual C++ 2010, which uses the STL implementation from <a href="http://www.dinkumware.com/">Dinkumware</a>. I also found that the factor is <strong>2.0</strong> on G++ 3.4.4 running under Cygwin.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span>
 <span class="pp">#include </span>
 <span class="kw">using</span> <span class="kw">namespace</span> std;
