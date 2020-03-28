@@ -42,17 +42,18 @@
 <h1 class="title">How to fold code in Vim</h1>
 <p class="date">(First posted on: 2014-09-02 09:36:10+00:00)</p>
 </header>
-<p>Vim ships with support to perform code folding. It supports many methods of code folding. By default, it is in <code>manual</code> method. So, when you open a file you will find that no code is folded. You can specify which lines form a fold and then open or close that fold. I find this useless and never use it.</p>
+<p>Vim ships with support to perform code folding. It supports many methods of code folding.</p>
+<p>By default, Vim will be in the <code>manual</code> code folding method. So, when you open a file you will find that no code is folded. You can specify which lines form a fold and then open or close that fold. I find this useless and never use it.</p>
 <p>The code folding method that I find most useful is <code>indent</code>. This uses the indentation of the code to figure out automatically the block of code that needs to be folded.</p>
 <p>To have code folding by <code>indent</code> by default, add this to your vimrc:</p>
 <pre><code>set foldmethod=indent</code></pre>
 <p>Some of the common commands I use to fold code:</p>
 <ul>
-<li><p><code>za</code>: Toggle code folding at the current line. The block that the current line belongs to is folded (closed) or unfolded (opened).</p></li>
-<li><p><code>zo</code>: Open fold.</p></li>
-<li><p><code>zc</code>: Close fold.</p></li>
-<li><p><code>zR</code>: Open all folds.</p></li>
-<li><p><code>zM</code>: Close all folds.</p></li>
+<li><code>za</code>: Toggle code folding at the current line. The block that the current line belongs to is folded (closed) or unfolded (opened).</li>
+<li><code>zo</code>: Open fold.</li>
+<li><code>zc</code>: Close fold.</li>
+<li><code>zR</code>: Open all folds.</li>
+<li><code>zM</code>: Close all folds.</li>
 </ul>
 <p>With code folding enabled, when I open a file, all the code is folded up. I would rather have all folds open when I open a file.</p>
 <p>To do this, add these lines to your vimrc:</p>

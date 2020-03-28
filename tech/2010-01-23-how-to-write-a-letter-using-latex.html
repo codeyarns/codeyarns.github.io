@@ -42,24 +42,48 @@
 <h1 class="title">How to write a letter using LaTeX</h1>
 <p class="date">(First posted on: 2010-01-23 16:30:07+00:00)</p>
 </header>
-<p>Occasionally, I need to write formal letters. For one such recent letter I decided to try LaTeX instead of Microsoft Word. I was surprised how easy it was to produce simple and elegant letters using LaTeX! :-)</p>
+<p>Occasionally, I need to write formal letters. For one such recent letter I decided to try LaTeX instead of Microsoft Word. I was surprised how easy it was to produce simple and elegant letters using LaTeX!</p>
 <p>Here is a sample letter in PDF produced from a LaTeX file:</p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_23_latex_letter.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_23_latex_letter.png" /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_23_latex_letter.png" />
+</figure>
 <p>The above letter was produced from <strong><a href="https://gist.github.com/4432684">latex-letter.tex</a></strong>. Grab it and edit its contents to create your own letters.</p>
 <p>Here is a dissection of the LaTeX commands to create a letter:</p>
 <ol type="1">
-<li><p>Use the <em>letter</em> <code>documentclass</code>. It provides commands and formatting that are meant for letter writing.</p>
-<p>\documentclass[a4paper, 10pt]{letter}</p></li>
-<li><p>Provide the name, signature and address of the sender.</p>
-<p>  </p></li>
-<li><p>Begin the letter, provide the name and address of the receiver.</p>
-<p>\begin{document} \begin{letter} { Kathleen Kelly,\ The Shop Around The Corner,\ Small Corner, NYC. }</p></li>
-<li><p>Provide an opening statement, the letter body and the closing statement.</p>
-
-<p>I am aware that you are pretty miffed at me and so on. </p></li>
-<li><p>End the letter. The name for the signature is automatically added.</p>
-<p>\end{letter} \end{document}</p></li>
+<li>Use the <em>letter</em> <code>documentclass</code>. It provides commands and formatting that are meant for letter writing.</li>
 </ol>
+<pre><code>\documentclass[a4paper, 10pt]{letter}</code></pre>
+<ol start="2" type="1">
+<li>Provide the name, signature and address of the sender.</li>
+</ol>
+<pre><code>\name{Joe Fox}
+\signature{Joe Fox}
+\address
+{
+  Fox Books,\\
+  Times Square, NYC.
+}</code></pre>
+<ol start="3" type="1">
+<li>Begin the letter, provide the name and address of the receiver.</li>
+</ol>
+<pre><code>\begin{document}
+\begin{letter}
+{
+    Kathleen Kelly,\\
+    The Shop Around The Corner,\\
+    Small Corner, NYC.
+}</code></pre>
+<ol start="4" type="1">
+<li>Provide an opening statement, the letter body and the closing statement.</li>
+</ol>
+<pre><code>\opening{Dear Kathleen,}
+I am aware that you are pretty miffed at me and so on.
+\closing{Yours truly,}</code></pre>
+<ol start="5" type="1">
+<li>End the letter. The name for the signature is automatically added.</li>
+</ol>
+<pre><code>\end{letter}
+\end{document}</code></pre>
 <p>For more information, see the Wikibook on <em><a href="http://en.wikibooks.org/wiki/LaTeX/Letters">LaTeX Letters</a></em>.</p>
 <hr />
 <div class="footer">

@@ -86,14 +86,14 @@ dim3 block( <span class="dv">1024</span>, <span class="dv">1024</span> ); <span 
 fooKernel&lt;&lt;&lt; grid, block &gt;&gt;&gt;();</code></pre></div>
 <p>The only facts to know about dim3 are:</p>
 <ul>
-<li><p>dim3 is a simple structure that is defined in <code>%CUDA_INC_PATH%/vector_types.h</code></p></li>
-<li><p>dim3 has 3 elements x, y and z.</p></li>
-<li><p>In C code, dim3 can be initialized as <code>dim3 grid = { 512, 512, 1 };</code></p></li>
-<li><p>In C++ code, dim3 can be initialized as <code>dim3 grid( 512, 512, 1 );</code></p></li>
-<li><p>Not all the 3 elements need to be provided. Any element not provided during initialization is initialized to 1. Please note that they are initialized to 1, not 0!</p></li>
-<li><p>dim3 can be converted to and from <code>uint3</code>, another similar CUDA data type.</p></li>
+<li>dim3 is a simple structure that is defined in <code>%CUDA_INC_PATH%/vector_types.h</code></li>
+<li>dim3 has 3 elements x, y and z.</li>
+<li>In C code, dim3 can be initialized as <code>dim3 grid = { 512, 512, 1 };</code></li>
+<li>In C++ code, dim3 can be initialized as <code>dim3 grid( 512, 512, 1 );</code></li>
+<li>Not all the 3 elements need to be provided. Any element not provided during initialization is initialized to 1. Please note that they are initialized to 1, not 0!</li>
+<li>dim3 can be converted to and from <code>uint3</code>, another similar CUDA data type.</li>
 </ul>
-<p>dim3 is modeled after similar vector types that are available in shader languages like <strong>Cg</strong>, <strong>GLSL</strong> or <strong>HLSL</strong>. However, unlike them dim3 is disappointingly simple and incapable of anything useful. It cannot be used directly in any <strong>arithmetic</strong> operations ( <code>grid + block</code> ) or in any sort of <strong>vector swizzling</strong> ( <code>grid.xyz = block.zyx</code> ). :-(</p>
+<p>dim3 is modeled after similar vector types that are available in shader languages like <strong>Cg</strong>, <strong>GLSL</strong> or <strong>HLSL</strong>. However, unlike them dim3 is disappointingly simple and incapable of anything useful. It cannot be used directly in any <strong>arithmetic</strong> operations ( <code>grid + block</code> ) or in any sort of <strong>vector swizzling</strong> ( <code>grid.xyz = block.zyx</code> ).</p>
 <p><strong>Tried with</strong>: CUDA 3.2</p>
 <hr />
 <div class="footer">
