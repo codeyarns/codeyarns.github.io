@@ -44,7 +44,7 @@
 </header>
 <p>My mental model of how TLB and cache are organized and used in modern processors:</p>
 <p>Binary code in programs of modern computers only use <strong>virtual addresses</strong>. Addresses are necessary to load instructions (for example, at the address pointed to by the program counter (PC)) or load data (for example, at an offset from the base address of an array in the program). <strong>Address translation</strong> is the process of converting a virtual address in the process's virtual memory to a physical address in main memory (RAM).</p>
-<p><strong>Page tables</strong> hold the mappings from virtual addresses to physical addresses. Page tables can be large and are themselves organized as a tree with multiple levels, where each node is a page and the leaf nodes hold the mappings. Page tables are themselves stored in main memory or might need to be demand-paged into main memory from disk.</p>
+<p><strong>Page tables</strong> hold the mappings from virtual page numbers to page frame numbers. Thus they can be used to map virtual addresses to physical addresses. Page tables can be large and are themselves organized as a tree with multiple levels, where each node is a page and the leaf nodes hold the mappings. Page tables are themselves stored in main memory or might need to be demand-paged into main memory from disk.</p>
 <p>Since accessing main memory for address translation is slow, the <strong>translation lookaside buffer (TLB)</strong> is used as a cache for address translation. Similarly, since accessing main memory to load instructions or data is slow, the <strong>cache</strong> (as it is generally called) is used. In modern processors, both TLBs and caches might have multiple levels and might be split for instruction and data.</p>
 <p>As an example, a modern processor might have a 3-level cache hierarchy. There might be separate <strong>L1 instruction cache</strong> (i-cache) and <strong>L1 data cache</strong> (d-cache) per core. And then larger L2 and L3 caches, which hold both instructions and data, shared across all the cores.</p>
 <p>What is less well known is that the TLB might also be split up in modern processors. For example, a <strong>L1 instruction TLB</strong> and a <strong>L1 data TLB</strong>, followed by a L2 TLB that handles both instruction and data addresses. Another design might just have a L1 TLB and L2 TLB, both of them handling both instruction and data addresses.</p>
@@ -54,8 +54,10 @@
 </figure>
 <ul>
 <li>There is a virtual address in the program or a register that points to instructions or data that is needed.</li>
-<li>The CPU tries to use the L1 and L2 TLBs for translating the virtual address to a physical address. If there is a miss in both L1 and L2 TLBs, then the translation is done by going to the page tables. This will be orders of magnitude slower.</li>
-<li>The physical address obtained by translation is used on the L1, L2 and L3 caches to get the instructions or data. If there is a miss in the cache hierarchy, then the instruction or data needs to be loaded from main memory. This will be orders of magnitude slower.</li>
+<li>The CPU tries to use the L1 and L2 TLBs for translating the virtual address to a physical address. If there is a miss in both L1 and L2 TLBs, then the translation is done by going to the page tables. This might be an order of magnitude slower than TLB.</li>
+<li>If the portion of the page table needed is not in main memory, then that needs to be loaded from disk to main memory and then used for translation. This might be orders of magnitude slower than reading from main memory.</li>
+<li>The physical address obtained by translation is used on the L1, L2 and L3 caches to get the instructions or data. If there is a miss in the cache hierarchy, then the instruction or data needs to be loaded from main memory.</li>
+<li>If there is a page miss, i.e., the page is not in main memory then it has to be loaded from disk. This will be orders of magnitude slower.</li>
 </ul>
 <p><strong>References</strong>:</p>
 <ul>
