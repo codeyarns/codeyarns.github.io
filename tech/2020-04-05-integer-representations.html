@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Integer representations</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td style="text-align: left;">
+            <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+        </td>
+        <td style="text-align: right;">
+            <div class="header2"><a class="header2" href="https://codeyarns.github.io/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.github.io/personal/">Personal Blog</a></div>
+            </br>
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Integer representations</h1>
+<p class="date">(First posted on: 2020-04-05T21:25:54.712722-07:00)</p>
+</header>
+<figure>
+<img src="2020-04-05-integer-representations.png" />
+</figure>
+<ul>
+<li>In C/C++, both signed and unsigned integer types are available. Other languages like Java have only signed integer types.</li>
+<li><strong>Unsigned integer</strong> in almost all languages and computers have a single possible implementation show in the above figure.</li>
+<li><strong>Signed integers</strong> have 3 known implementations: two's complement, ones' complement and signed magnitude. Two's complement is what is universally used in computers today. Ones' complement used to be used in computers until the 1960s, like the <a href="https://en.wikipedia.org/wiki/CDC_160_series">CDC-160</a> for example. Signed magnitude was also used in computers until the 1960s, and is only used in the IEEE 954 floating point format now.</li>
+<li>My mental model of how bits are interpreted in these 3 implementations is depicted in the above figure using a 4-bit integer type as an example.</li>
+<li><strong>Two's complement</strong> is a bit unintuitive for humans. But it won the race because addition, subtraction and multiplication are the simplest to implement in it and are the same for both unsigned and signed integers. For example, addition of unsigned integers and signed integers (in two's complement form) is the same bit-wise process: add the bits from LSB to MSB and ignore the final carry bit. So simple!</li>
+<li>Two's complement, by its nature, has an uneven range. For example, 8-bit signed integer has range -128 to +127. Notice how negating -128 will not give you +128 because that value cannot be represented in a two's complement 8-bit signed integer. Computers using two's complement choose to return -128 as the negated value of -128.</li>
+<li><strong>Ones' complement</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes: +0 (when all bits are zero) and -0 (when all bits are one).</li>
+<li><strong>Signed magnitude</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes. You can see this in the IEEE 754 floating point format, which has two zeroes.</li>
+<li>C/C++ standard allows signed integer to be in any of these 3 implementations in a bid to support old computers of the 1960s. This is the reason why the minimum ranges of signed integers in C/C++ standard have an even range. For example, the minimum range of 8-bit signed integers in C/C++ is -127 to +127. But implementations are allowed to have signed integer types whose range is larger, which is what all computers do today: their 8-bit signed integers have range -128 to +127 because they use two's complement.</li>
+</ul>
+<p><strong>References:</strong></p>
+<ul>
+<li>Computer Systems: A Programmer's Perspective (3 Ed)</li>
+<li>CDC 160-A Computer Programming Manual</li>
+</ul>
+<hr />
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
+</body>
+</html>

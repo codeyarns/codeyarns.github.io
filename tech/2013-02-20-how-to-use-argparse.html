@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to use argparse</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -52,44 +89,44 @@
 <li><p>Parse the inputs and extract the arguments using <code>parse_args</code>. The arguments are returned in an object with the values available using the object members.</p></li>
 </ul>
 <p>Here is a simple program that illustrates usage of argparse with different types of input arguments:</p>
-<pre><code>import argparse
-import sys
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> argparse
+<span class="im">import</span> sys
 
-def foo(args):
-    print args
+<span class="kw">def</span> foo(args):
+    <span class="bu">print</span> args
 
-    print &quot;Radius:   &quot;, args.rad
-    print &quot;Distance: &quot;, args.d
-    print &quot;Name:     &quot;, args.name
-    print &quot;Recompute:&quot;, args.recompute
-    print &quot;In files: &quot;, args.in_files
+    <span class="bu">print</span> <span class="st">&quot;Radius:   &quot;</span>, args.rad
+    <span class="bu">print</span> <span class="st">&quot;Distance: &quot;</span>, args.d
+    <span class="bu">print</span> <span class="st">&quot;Name:     &quot;</span>, args.name
+    <span class="bu">print</span> <span class="st">&quot;Recompute:&quot;</span>, args.recompute
+    <span class="bu">print</span> <span class="st">&quot;In files: &quot;</span>, args.in_files
 
-def main():
+<span class="kw">def</span> main():
 
-    # Create parser
-    arg_parser = argparse.ArgumentParser(description=&quot;This program achieves nothing!&quot;)
+    <span class="co"># Create parser</span>
+    arg_parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">&quot;This program achieves nothing!&quot;</span>)
 
-    # Add arguments you want to handle
-    modes = [&quot;release&quot;, &quot;debug&quot;]
-    arg_parser.add_argument(&quot;--radius&quot;,    type=float,          default=1.2,   help=&quot;Radius of the component&quot;)
-    arg_parser.add_argument(&quot;-d&quot;,          type=int,            default=9,     help=&quot;Distance to the component&quot;)
-    arg_parser.add_argument(&quot;--name&quot;,      type=str,                           help=&quot;Name of component&quot;)
-    arg_parser.add_argument(&quot;--mode&quot;,      type=str,            choices=modes, help=&quot;Mode to use. Should be either release or debug&quot;)
-    arg_parser.add_argument(&quot;--recompute&quot;, action=&quot;store_true&quot;, default=False, help=&quot;Indicate if recomputation is needed&quot;)
-    arg_parser.add_argument(&quot;--in_files&quot;,  type=str,            nargs=&quot;+&quot;,     help=&quot;One or more input file paths&quot;)
+    <span class="co"># Add arguments you want to handle</span>
+    modes <span class="op">=</span> [<span class="st">&quot;release&quot;</span>, <span class="st">&quot;debug&quot;</span>]
+    arg_parser.add_argument(<span class="st">&quot;--radius&quot;</span>,    <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>,          default<span class="op">=</span><span class="fl">1.2</span>,   <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Radius of the component&quot;</span>)
+    arg_parser.add_argument(<span class="st">&quot;-d&quot;</span>,          <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>,            default<span class="op">=</span><span class="dv">9</span>,     <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Distance to the component&quot;</span>)
+    arg_parser.add_argument(<span class="st">&quot;--name&quot;</span>,      <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>,                           <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Name of component&quot;</span>)
+    arg_parser.add_argument(<span class="st">&quot;--mode&quot;</span>,      <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>,            choices<span class="op">=</span>modes, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Mode to use. Should be either release or debug&quot;</span>)
+    arg_parser.add_argument(<span class="st">&quot;--recompute&quot;</span>, action<span class="op">=</span><span class="st">&quot;store_true&quot;</span>, default<span class="op">=</span><span class="va">False</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Indicate if recomputation is needed&quot;</span>)
+    arg_parser.add_argument(<span class="st">&quot;--in_files&quot;</span>,  <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>,            nargs<span class="op">=</span><span class="st">&quot;+&quot;</span>,     <span class="bu">help</span><span class="op">=</span><span class="st">&quot;One or more input file paths&quot;</span>)
 
-    if len(sys.argv) == 1:
+    <span class="cf">if</span> <span class="bu">len</span>(sys.argv) <span class="op">==</span> <span class="dv">1</span>:
         arg_parser.print_help()
-        sys.exit(1)
+        sys.exit(<span class="dv">1</span>)
 
-    # Parse sys.argv using parser
-    args = arg_parser.parse_args()
+    <span class="co"># Parse sys.argv using parser</span>
+    args <span class="op">=</span> arg_parser.parse_args()
 
-    # Pass arguments around
+    <span class="co"># Pass arguments around</span>
     foo(args)
 
-if __name__ == &quot;__main__&quot;:
-    main()</code></pre>
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:
+    main()</code></pre></div>
 <h2 id="argumentparser">ArgumentParser</h2>
 <p>This call has many useful options, the only one I actually use is:</p>
 <ul>
