@@ -93,7 +93,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Two's complement, by its nature, has an uneven range. For example, 8-bit signed integer has range -128 to +127. Notice how negating -128 will not give you +128 because that value cannot be represented in a two's complement 8-bit signed integer. Computers using two's complement choose to return -128 as the negated value of -128.</li>
 <li><strong>Ones' complement</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes: +0 (when all bits are zero) and -0 (when all bits are one).</li>
 <li><strong>Sign magnitude</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes. You can see this in the IEEE 754 floating point format, which has two zeroes.</li>
-<li>C/C++ standard allows signed integer to be in any of these 3 implementations in a bid to support old computers of the 1960s. This is the reason why the minimum ranges of signed integers in C/C++ standard have an even range. For example, the minimum range of 8-bit signed integers in C/C++ is -127 to +127. But implementations are allowed to have signed integer types whose range is larger, which is what all computers do today: their 8-bit signed integers have range -128 to +127 because they use two's complement.</li>
+<li>C/C++ standard allows signed integer to be in any of these 3 implementations in a bid to support old computers. This is the reason why the minimum ranges of signed integers in C/C++ standard have an even range. For example, the minimum range of 8-bit signed integers in C/C++ is -127 (<code>SCHAR_MIN</code>) to +127 (<code>SCHAR_MAX</code>). But implementations are allowed to have signed integer types whose range is larger, which is what all computers do today: their 8-bit signed integers have range -128 to +127 because they use two's complement.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// C99 standard defines these minimum ranges for signed integer types:</span>
 <span class="pp">#define SCHAR_MAX +127</span>
@@ -105,7 +105,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="pp">#define LONG_MAX +2147483647</span>
 <span class="pp">#define LONG_MIN -2147483647</span>
 
-<span class="co">// Implementation-defined ranges in limits.h found in limits.h on my Intel x64:</span>
+<span class="co">// Implementation-defined ranges found in limits.h on my Intel x64:</span>
 <span class="pp">#define SCHAR_MAX +127</span>
 <span class="pp">#define SCHAR_MIN -128  </span><span class="co">// &lt;&lt;&lt;&lt;</span>
 <span class="pp">#define SHRT_MAX +32767</span>
