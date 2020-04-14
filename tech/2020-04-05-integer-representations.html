@@ -93,7 +93,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Two's complement, by its nature, has an uneven range. For example, 8-bit signed integer has range -128 to +127. Notice how negating -128 will not give you +128 because that value cannot be represented in a two's complement 8-bit signed integer. Computers using two's complement choose to return -128 as the negated value of -128.</p>
 <p><strong>Ones' complement</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes: +0 (when all bits are zero) and -0 (when all bits are one).</p>
 <p><strong>Sign magnitude</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes. You can see this in the IEEE 754 floating point format, which has two zeroes.</p>
-<p>C/C++ standard allows signed integer to be in any of these 3 implementations in a bid to support old computers. This is the reason why the minimum ranges of signed integers in C/C++ standard have an even range. For example, the minimum range of 8-bit signed integers in C/C++ is -127 (<code>SCHAR_MIN</code>) to +127 (<code>SCHAR_MAX</code>). But implementations are allowed to have signed integer types whose range is larger, which is what all computers do today: their 8-bit signed integers have range -128 to +127 because they use two's complement.</p>
+<p>Both the C and C++ standards allow signed integers to be represented in any of these 3 formats. This is in an attempt to support old computers which might use either two's complement or sign magnitude. Some of the famous computers which used these decrepit formats include the CDC computers (CDC-160) and the PDP-1. But these computers were out of use by the time the C language was taking shape in 1972. But apparently, there are companies that sell mainframes built on Intel CPUs that emulate these old computers, so there might still be some use to supporting these formats.</p>
+<p>In any case, the C/C++ standard support of these old formats is why the minimum ranges of signed integers in C/C++ standards have an even range. For example, the minimum range of 8-bit signed integers in C/C++ is -127 (<code>SCHAR_MIN</code>) to +127 (<code>SCHAR_MAX</code>). But implementations are allowed to have signed integer types whose range is larger, which is what all computers do today: their 8-bit signed integers have range -128 to +127 because they use two's complement.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// C99 standard defines these minimum ranges for signed integer types:</span>
 <span class="pp">#define SCHAR_MAX +127</span>
 <span class="pp">#define SCHAR_MIN -127   </span><span class="co">// &lt;&lt;&lt;&lt;</span>
@@ -114,7 +115,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>References:</strong></p>
 <ul>
 <li>Computer Systems: A Programmer's Perspective (3 Ed)</li>
+<li>Eric S. Raymond on <a href="http://esr.ibiblio.org/?p=7413">One's complement arithmetic: It lives!</a></li>
 <li>CDC 160-A Computer Programming Manual</li>
+<li>PDP-1 Handbook</li>
 <li>C99 standard</li>
 </ul>
 <hr />
