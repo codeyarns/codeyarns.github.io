@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – A dissection of C++ virtual functions</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -46,16 +83,38 @@
 </header>
 <p><strong>Virtual functions</strong> are a key feature of C++ to enable runtime polymorphism. This post is my attempt in understanding how they are implemented and executed at runtime. The compiler used is GCC 5.4.0 on Ubuntu 16.04.</p>
 <p>Here is a simple program that uses virtual functions that we will use as an example:</p>
-<p>https://gist.github.com/ashwin/970b18c10c885c0856b5beee1112050c</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+
+<span class="kw">struct</span> A
+{
+    <span class="kw">virtual</span> <span class="dt">void</span> do_something() {}
+    <span class="kw">virtual</span> <span class="dt">void</span> do_something2() { <span class="bu">std::</span>cerr &lt;&lt; <span class="st">&quot;In A</span><span class="sc">\n</span><span class="st">&quot;</span>; }
+};
+
+<span class="kw">struct</span> B : <span class="kw">public</span> A
+{
+    <span class="dt">void</span> do_something() {}
+    <span class="dt">void</span> do_something2() { <span class="bu">std::</span>cerr &lt;&lt; <span class="st">&quot;In B</span><span class="sc">\n</span><span class="st">&quot;</span>; }
+};
+
+<span class="dt">int</span> main()
+{
+    A* a = <span class="kw">new</span> B();
+    a-&gt;do_something2();
+    
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+<span class="co">// When executed, this program will print:</span>
+<span class="co">// $ ./a.out</span>
+<span class="co">// In B</span></code></pre></div>
 <p>To aid us in understanding what this code is compiled into, we request GCC to add debugging information (using option <code>-g</code>) when we compile it:</p>
-<p>[code lang=&quot;text&quot;] $ g++ -g virtual_function_example.cpp $ ./a.out In B</p>
-<pre><code>
-Almost all C++ compilers implement virtual functions by using **virtual tables**, more commonly called as **vtables**. This is a table of function addresses, one for each virtual function in the class. One virtual table is created for each class that has virtual functions.
-
-We can see the existence of the methods and virtual tables of each class and their addresses by examining the binary:
-
-[code lang=&quot;text&quot;]
-$ readelf --symbols a.out | c++filt | grep -E &quot;vtable|A::|B::&quot;
+<pre><code>$ g++ -g virtual_function_example.cpp
+$ ./a.out
+In B</code></pre>
+<p>Almost all C++ compilers implement virtual functions by using <strong>virtual tables</strong>, more commonly called as <strong>vtables</strong>. This is a table of function addresses, one for each virtual function in the class. One virtual table is created for each class that has virtual functions.</p>
+<p>We can see the existence of the methods and virtual tables of each class and their addresses by examining the binary:</p>
+<pre><code>$ readelf --symbols a.out | c++filt | grep -E &quot;vtable|A::|B::&quot;
 
     86: 0000000000400936    11 FUNC    WEAK   DEFAULT   14 A::do_something()
     81: 0000000000400942    30 FUNC    WEAK   DEFAULT   14 A::do_something2()
@@ -67,18 +126,31 @@ $ readelf --symbols a.out | c++filt | grep -E &quot;vtable|A::|B::&quot;
     63: 0000000000400a88    32 OBJECT  WEAK   DEFAULT   16 vtable for A</code></pre>
 <p>Here we use the <strong>readelf</strong> program to extract the symbols from the binary. The symbols are in mangled form that is difficult to decipher for humans. So, we pipe it through a demangler.</p>
 <p>Here is the output I got on my computer:</p>
-<p>[caption id=&quot;attachment_9093&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2017/06/20170613_readelf.png" />](2017-06-13-an-examination-of-c-virtual-functions/20170613_readelf.html) (Click to enlarge)[/caption] We can check which sections of virtual memory the class methods and virtual tables will be loaded into by examining the sections of the binary:</p>
-<p>[code lang=&quot;text&quot;] $ readelf --sections a.out There are 37 section headers, starting at offset 0x6b78:</p>
-<p>Section Headers: [Nr] Name Type Address Off Size ES Flg Lk Inf Al [..][14] .text PROGBITS 00000000004007a0 0007a0 0002a2 00 AX 0 0 16 [..][16] .rodata PROGBITS 0000000000400a50 000a50 00008b 00 A 0 0 8 [..]</p>
-<p>Key to Flags: W (write), A (alloc), X (execute), M (merge), S (strings), l (large) I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown) O (extra OS processing required) o (OS specific), p (processor specific)</p>
-<pre><code>
-We can cross-examine the addresses of the class methods and virtual tables with the starting addresses and sizes of the sections. We see that the class methods will be loaded into the `.text` section and the virtual tables into the `.rodata` segment. The flags of these sections indicate that only the `.text` section is executable, as it should be.
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2017/06/20170613_readelf.png" />
+</figure>
+<p>We can check which sections of virtual memory the class methods and virtual tables will be loaded into by examining the sections of the binary:</p>
+<pre><code>$ readelf --sections a.out
+There are 37 section headers, starting at offset 0x6b78:
 
-[caption id=&quot;attachment_9094&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][![](https://codeyarns.files.wordpress.com/2017/06/20170703_readelf_2.png)](2017-06-13-an-examination-of-c-virtual-functions/20170703_readelf_2.html) (Click to enlarge)[/caption]
-Finally, let us examine how the virtual tables are used at runtime to determine which method to execute. To do this, we disassemble the binary instructions in the binary:
+Section Headers:
+  [Nr] Name              Type            Address          Off    Size   ES Flg Lk Inf Al
+  [..]
+  [14] .text             PROGBITS        00000000004007a0 0007a0 0002a2 00  AX  0   0 16
+  [..]
+  [16] .rodata           PROGBITS        0000000000400a50 000a50 00008b 00   A  0   0  8
+  [..]
 
-[code lang=&quot;text&quot;]
-$ objdump --disassemble --demangle --source a.out
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), l (large)
+  I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
+  O (extra OS processing required) o (OS specific), p (processor specific)</code></pre>
+<p>We can cross-examine the addresses of the class methods and virtual tables with the starting addresses and sizes of the sections. We see that the class methods will be loaded into the <code>.text</code> section and the virtual tables into the <code>.rodata</code> segment. The flags of these sections indicate that only the <code>.text</code> section is executable, as it should be.</p>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2017/06/20170703_readelf_2.png" />
+</figure>
+<p>Finally, let us examine how the virtual tables are used at runtime to determine which method to execute. To do this, we disassemble the binary instructions in the binary:</p>
+<pre><code>$ objdump --disassemble --demangle --source a.out
 
 int main()
 {
@@ -113,13 +185,15 @@ int main()
 <p>By examining the disassembled code, the runtime mystery is revealed. We need to note that every object of a class, that has virtual methods, stores a pointer to its class virtual table. On a 64-bit computer, this means that objects of such classes need extra space of 8 bytes. This pointer is placed at the beginning of the memory layout of the object, even before other members of the object.</p>
 <p>When you call a virtual method in C++ code, the compiler generates these instructions:</p>
 <ul>
-<li><p>Jump to the beginning of the object. This is a location on the <strong>heap</strong> or <strong>stack</strong>, depending on how the object was created. This is where a pointer to its class virtual table is stored.</p></li>
-<li><p>Jump to the start of the class virtual table. This is a location in the <code>.rodata</code> section of the process virtual memory, as we noted earlier.</p></li>
-<li><p>Depending on which virtual method is needed, jump to that entry in the virtual table. This entry has the address of that virtual method.</p></li>
-<li><p>Finally, jump to the address of the virtual method and start executing its instructions. This is in the <code>.text</code> section of the process virtual memory.</p></li>
+<li>Jump to the beginning of the object. This is a location on the <strong>heap</strong> or <strong>stack</strong>, depending on how the object was created. This is where a pointer to its class virtual table is stored.</li>
+<li>Jump to the start of the class virtual table. This is a location in the <code>.rodata</code> section of the process virtual memory, as we noted earlier.</li>
+<li>Depending on which virtual method is needed, jump to that entry in the virtual table. This entry has the address of that virtual method.</li>
+<li>Finally, jump to the address of the virtual method and start executing its instructions. This is in the <code>.text</code> section of the process virtual memory.</li>
 </ul>
 <p>Here is an illustration of the code disassembly:</p>
-<p>[caption id=&quot;attachment_9095&quot; align=&quot;aligncenter&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2017/06/20170703_objdump.png" />](2017-06-13-an-examination-of-c-virtual-functions/20170703_objdump.html) (Click to enlarge)[/caption]</p>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2017/06/20170703_objdump.png" />
+</figure>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
