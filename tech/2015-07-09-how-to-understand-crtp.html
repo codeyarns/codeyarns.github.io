@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – A simple example to understand CRTP</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -52,27 +89,87 @@
 <ul>
 <li>Say, we have a class hierarchy with <code>Creature</code> base class and thousands of species classes derived from it. As an example, <code>Bird</code> and <code>Fish</code> are both derived from it.</li>
 </ul>
-<pre><code>struct Creature {};
-struct Bird: Creature {};
-struct Fish: Creature {};</code></pre>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">struct</span> Creature {};
+<span class="kw">struct</span> Bird: Creature {};
+<span class="kw">struct</span> Fish: Creature {};</code></pre></div>
 <ul>
-<li><p>Species like <code>Bird</code> and <code>Fish</code> have some common features (say <code>eye_num</code>) and some specialized features (say <code>wing_num</code> for <code>Bird</code> and <code>fin_num</code> for <code>Fish</code>). If this were not the case, there would be no need to arrange them in a hierarchy.</p></li>
-<li><p>Suppose we want to write <strong>equality</strong> (<code>==</code>) and <strong>inequality</strong> (<code>!=</code>) comparison methods to compare any two objects of <strong>same species</strong>. That is to compare two <code>Bird</code> objects or two <code>Fish</code> objects. Also assume that inequality in this case is nothing but the negation of equality, but we want this inequality method anyway to write elegant code. We want to have the most maintainable and least amount of code that can achieve this:</p></li>
+<li>Species like <code>Bird</code> and <code>Fish</code> have some common features (say <code>eye_num</code>) and some specialized features (say <code>wing_num</code> for <code>Bird</code> and <code>fin_num</code> for <code>Fish</code>). If this were not the case, there would be no need to arrange them in a hierarchy.</li>
+<li>Suppose we want to write <strong>equality</strong> (<code>==</code>) and <strong>inequality</strong> (<code>!=</code>) comparison methods to compare any two objects of <strong>same species</strong>. That is to compare two <code>Bird</code> objects or two <code>Fish</code> objects. Also assume that inequality in this case is nothing but the negation of equality, but we want this inequality method anyway to write elegant code. We want to have the most maintainable and least amount of code that can achieve this:</li>
 </ul>
-<pre><code>Bird b1, b2, b3;
-// ...
-if (b1 == b2) // Do something
-if (b2 != b3) // Do something</code></pre>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Bird b1, b2, b3;
+<span class="co">// ...</span>
+<span class="cf">if</span> (b1 == b2) <span class="co">// Do something</span>
+<span class="cf">if</span> (b2 != b3) <span class="co">// Do something</span></code></pre></div>
 <h2 id="solutions">Solutions</h2>
 <p>Let us see different ways this can be solved elegantly:</p>
 <ul>
-<li><p><strong>Solution 1:</strong> Create pure-virtual <code>==</code> method in <code>Creature</code> and override it in all the derived classes. Create <code>!=</code> method only in <code>Creature</code> that calls the equality method. For <code>N</code> derived classes, this would entail writing <code>N</code> equality methods and <code>1</code> inequality method. This is the perfect solution. However, we started this article with the assumption that its performance is not optimal for our application (see above).</p></li>
-<li><p><strong>Solution 2:</strong> Create non-virtual <code>==</code> and <code>!=</code> operator methods in <code>Creature</code>. This means we write just <code>1</code> equality and <code>1</code> inequality method. Problem: This will take <code>Creature</code> as input, so features specific to <code>Bird</code> or <code>Fish</code> cannot be compared. This is useless because <strong>any reasonable equality test should be type dependent</strong>.</p></li>
-<li><p><strong>Solution 3:</strong> Create non-virtual <code>==</code> operator methods in both <code>Bird</code> and <code>Fish</code>. Problem is that you will now need to create the non-virtual <code>!=</code> method also in <strong>all</strong> the derived classes! This means writing <code>N</code> equality and <code>N</code> inequality methods. Too much work!</p></li>
-<li><p><strong>Solution 4:</strong> Use CRTP as shown in the code below. Both equality and inequality tests are fully type dependent. However, note that the inequality test is only written once in the base class. So, we end up writing <code>N + 1</code> equality and <code>1</code> inequality methods. This is optimal. The peculiar feature you can use to identify a CRTP is a type passing itself as template type to the base type it is deriving from, as seen in <code>Bird</code> and <code>Fish</code> below.</p></li>
+<li><strong>Solution 1:</strong> Create pure-virtual <code>==</code> method in <code>Creature</code> and override it in all the derived classes. Create <code>!=</code> method only in <code>Creature</code> that calls the equality method. For <code>N</code> derived classes, this would entail writing <code>N</code> equality methods and <code>1</code> inequality method. This is the ideal solution. However, we started this article with the assumption that its performance is not optimal for our application.</li>
+<li><strong>Solution 2:</strong> Create non-virtual <code>==</code> and <code>!=</code> operator methods in <code>Creature</code>. This means we write just <code>1</code> equality and <code>1</code> inequality method. Problem: This will take <code>Creature</code> as input, so features specific to <code>Bird</code> or <code>Fish</code> cannot be compared. This is useless because <strong>any reasonable equality test should be type dependent</strong>.</li>
+<li><strong>Solution 3:</strong> Create non-virtual <code>==</code> operator methods in both <code>Bird</code> and <code>Fish</code>. Problem is that you will now need to create the non-virtual <code>!=</code> method also in <strong>all</strong> the derived classes. This means writing <code>N</code> equality and <code>N</code> inequality methods. Too much work!</li>
+<li><strong>Solution 4:</strong> Use CRTP as shown in the code below. Both equality and inequality tests are fully type dependent. However, note that the inequality test is only written once in the base class. So, we end up writing <code>N + 1</code> equality and <code>1</code> inequality methods. This is optimal. The peculiar feature you can use to identify a CRTP is a type passing itself as template type to the base type it is deriving from, as seen in <code>Bird</code> and <code>Fish</code> below.</li>
 </ul>
-<p>[gist https://gist.github.com/ashwin/4f270ccde1e39218b306 /]</p>
-<p>I hope this example helped you understand this trick! :-)</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">template</span> &lt;<span class="kw">typename</span> Derived&gt;
+<span class="kw">struct</span> Creature
+{
+    <span class="dt">int</span> eye_num;
+
+    <span class="kw">friend</span> <span class="dt">bool</span> <span class="kw">operator</span> == (<span class="at">const</span> Derived&amp; lhs, <span class="at">const</span> Derived&amp; rhs)
+    {
+        <span class="cf">return</span> lhs.IsEqual(rhs);
+    }
+
+    <span class="kw">friend</span> <span class="dt">bool</span> <span class="kw">operator</span> != (<span class="at">const</span> Derived&amp; lhs, <span class="at">const</span> Derived&amp; rhs)
+    {
+        <span class="cf">return</span> !(lhs.IsEqual(rhs));
+    }
+};
+
+<span class="kw">struct</span> Bird: Creature&lt;Bird&gt;
+{
+    <span class="dt">int</span> wing_num;
+
+    <span class="dt">bool</span> IsEqual(<span class="at">const</span> Bird&amp; b) <span class="at">const</span>
+    {
+        <span class="cf">return</span> eye_num == b.eye_num &amp;&amp; wing_num == b.wing_num;
+    }
+};
+
+<span class="kw">struct</span> Fish: Creature&lt;Fish&gt;
+{
+    <span class="dt">int</span> fin_num;
+
+    <span class="dt">bool</span> IsEqual(<span class="at">const</span> Fish&amp; f) <span class="at">const</span>
+    {
+        <span class="cf">return</span> eye_num == f.eye_num &amp;&amp; fin_num == f.fin_num;
+    }
+};
+
+<span class="dt">int</span> main()
+{
+    Bird b1, b2, b3;
+
+    b1.eye_num  = <span class="dv">2</span>;
+    b2.eye_num  = <span class="dv">2</span>;
+    b3.eye_num  = <span class="dv">2</span>;
+
+    b1.wing_num = <span class="dv">2</span>;
+    b2.wing_num = <span class="dv">2</span>;
+    b3.wing_num = <span class="dv">3</span>;
+
+    <span class="cf">if</span> (b1 != b2) cout &lt;&lt; <span class="st">&quot;Bird equal</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    <span class="cf">else</span>          cout &lt;&lt; <span class="st">&quot;Bird not equal</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    <span class="cf">if</span> (b1 == b3) cout &lt;&lt; <span class="st">&quot;Bird equal</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    <span class="cf">else</span>          cout &lt;&lt; <span class="st">&quot;Bird not equal</span><span class="sc">\n</span><span class="st">&quot;</span>;
+
+    <span class="co">// You can do the same with Fish:</span>
+    <span class="co">// Fish f1, f2, f3;</span>
+    <span class="co">// f1.fin_num = 5;</span>
+    <span class="co">// and so on ...</span>
+}</code></pre></div>
+<p>I hope this example helped you understand this trick.</p>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>

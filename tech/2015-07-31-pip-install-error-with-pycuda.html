@@ -60,14 +60,14 @@ compilation terminated.
 error: command &#39;x86_64-linux-gnu-gcc&#39; failed with exit status 1</code></pre>
 <h2 id="investigation">Investigation</h2>
 <ul>
-<li><p>This error was strange because I had set <code>CUDA_ROOT</code> and had added the <code>bin</code> path of CUDA installation to <code>PATH</code> environment variable. So, the installer should have found <code>cuda.h</code> which I could see was present in <code>$CUDA_ROOT/include</code></p></li>
-<li><p>To see what was happening, I tried the same command with verbosity:</p></li>
+<li>This error was strange because I had set <code>CUDA_ROOT</code> and had added the <code>bin</code> path of CUDA installation to <code>PATH</code> environment variable. So, the installer should have found <code>cuda.h</code> which I could see was present in <code>$CUDA_ROOT/include</code></li>
+<li>To see what was happening, I tried the same command with verbosity:</li>
 </ul>
 <pre><code>$ sudo pip -vvv install pycuda</code></pre>
 <ul>
-<li><p>Now I could see that it was failing to find <code>nvcc</code>.</p></li>
-<li><p>On downloading the source code of PyCUDA and checking <code>setup.py</code>, I saw that the check for <code>nvcc</code> was used to figure out the <code>CUDA_ROOT</code> and <code>CUDA_INC_DIR</code>.</p></li>
-<li><p>The reason <code>nvcc</code> was not visible was that <code>CUDA_ROOT</code> was set for my user, but this <code>PATH</code> is not visible when a command is run under <code>sudo</code>, as described here. The solution was to make the CUDA <code>bin</code> path visible to <code>sudo</code>.</p></li>
+<li>Now I could see that it was failing to find <code>nvcc</code>.</li>
+<li>On downloading the source code of PyCUDA and checking <code>setup.py</code>, I saw that the check for <code>nvcc</code> was used to figure out the <code>CUDA_ROOT</code> and <code>CUDA_INC_DIR</code>.</li>
+<li>The reason <code>nvcc</code> was not visible was that <code>CUDA_ROOT</code> was set for my user, but this <code>PATH</code> is not visible when a command is run under <code>sudo</code>, as described here. The solution was to make the CUDA <code>bin</code> path visible to <code>sudo</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
 <p>To make the <code>$CUDA_ROOT/bin</code> available in <code>PATH</code> for <code>sudo</code>, we can follow the steps described here. For example, on my system with CUDA 7.0 I followed these steps:</p>
@@ -80,7 +80,7 @@ error: command &#39;x86_64-linux-gnu-gcc&#39; failed with exit status 1</code></
 </ul>
 <pre><code>$ sudo su -
 $ pip install pycuda</code></pre>
-<p>This worked and PyCUDA was installed successfully! :-)</p>
+<p>This worked and PyCUDA was installed successfully.</p>
 <p><strong>Tried with:</strong> PyCUDA 2015.1.2, CUDA 7.0 and Ubuntu 14.04</p>
 <hr />
 <div class="footer">
