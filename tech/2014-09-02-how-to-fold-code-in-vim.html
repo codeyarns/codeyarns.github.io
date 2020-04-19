@@ -44,21 +44,32 @@
 <h1 class="title">How to fold code in Vim</h1>
 <p class="date">(First posted on: 2014-09-02 09:36:10+00:00)</p>
 </header>
-<p>Vim ships with support to perform code folding. It supports many methods of code folding.</p>
-<p>By default, Vim will be in the <code>manual</code> code folding method. So, when you open a file you will find that no code is folded. You can specify which lines form a fold and then open or close that fold. I find this useless and never use it.</p>
-<p>The code folding method that I find most useful is <code>indent</code>. This uses the indentation of the code to figure out automatically the block of code that needs to be folded.</p>
-<p>To have code folding by <code>indent</code> by default, add this to your vimrc:</p>
+<p><strong>Vim</strong> ships with support to perform <strong>code folding</strong>. It supports many methods of code folding.</p>
+<h2 id="manual-code-folding">Manual code folding</h2>
+<p>By default, Vim will be in the <strong>manual</strong> code folding method. So, when you open a file you will find that no code is folded. In the manual code folding methd, you specify which lines form a fold and then you open or close that fold. I find this a tedious exercise and never use it.</p>
+<h2 id="indent-code-folding">Indent code folding</h2>
+<p>The code folding method that I find most useful is <strong>indent</strong>. When this method is enabled, Vim uses the indentation of the code to figure out automatically the block of code that needs to be folded.</p>
+<p>To have code folding by indent by default, add this to your vimrc:</p>
 <pre><code>set foldmethod=indent</code></pre>
-<p>Some of the common commands I use to fold code:</p>
+<h2 id="enable-code-folding">Enable code folding</h2>
+<p>When you have chosen a code folding method and open a file, code folding is already enabled. What this means is that all the folds will be closed, because by default the <code>foldenable</code> option is enabled.</p>
+<p>If you wish to keep code folding disabled by default:</p>
+<pre><code>set nofoldenable</code></pre>
+<p>Note that the <em>first code folding command</em> you use will enable this option and also close all the folds.</p>
+<h2 id="folding-commands">Folding commands</h2>
+<p>There are many commands to open and close folds. These commands can be invoked at any line and it affects the fold that the line belongs to.</p>
+<p>The commands I commonly use are:</p>
 <ul>
-<li><code>za</code>: Toggle code folding at the current line. The block that the current line belongs to is folded (closed) or unfolded (opened).</li>
-<li><code>zo</code>: Open fold.</li>
-<li><code>zc</code>: Close fold.</li>
+<li><code>za</code>: Toggle code folding.</li>
 <li><code>zR</code>: Open all folds.</li>
 <li><code>zM</code>: Close all folds.</li>
+<li><code>zo</code>: Open current fold.</li>
+<li><code>zc</code>: Close current fold.</li>
 </ul>
-<p>With code folding enabled, when I open a file, all the code is folded up. I would rather have all folds open when I open a file.</p>
-<p>To do this, add these lines to your vimrc:</p>
+<p>Like I mentioned above, if you had <code>foldenable</code> disabled, then the first use of any of these commands will enable that and close all folds. This is why I choose to keep <code>foldenable</code> enabled (its default option).</p>
+<h2 id="keep-folds-open-by-default">Keep folds open by default</h2>
+<p>With code folding enabled, when I open a file, all the code is folded up. I would rather have all folds be open when I open a file.</p>
+<p>To do this, I added these lines to my vimrc:</p>
 <pre><code>&quot; Keep all folds open when a file is opened
 augroup OpenAllFoldsOnFileOpen
     autocmd!
