@@ -53,18 +53,18 @@ FE_DOWNWARD
 FE_UPWARD
 FE_TOWARDZERO</code></pre>
 <ul>
-<li><p><code>FE_TONEAREST</code> rounds to the nearest integer. If the floating point value is exactly midway between two integers, then it does <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even">round half to even</a>. The rest of the rounding modes are self explanatory.</p></li>
-<li><p>None of the 4 rounding modes is equivalent to the <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero">round half away from zero</a> which the <code>round</code> method does.</p></li>
-<li><p>Anything to do with floating point operations is dependent on the FPU of the processor. So, the availability of these rounding modes and their values are highly dependent on the FPU of your processor.</p></li>
-<li><p>On my x86_64 computer, all the 4 rounding modes were available and the values of these rounding modes were found to be:</p></li>
+<li><code>FE_TONEAREST</code> rounds to the nearest integer. If the floating point value is exactly midway between two integers, then it does <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even">round half to even</a>. This rounding mode is also called round-to-nearest-even (RNE). The rest of the rounding modes are self explanatory.</li>
+<li>None of the 4 rounding modes is equivalent to the <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero">round half away from zero</a> which the <code>round</code> method does.</li>
+<li>Anything to do with floating point operations is dependent on the FPU of the processor. So, the availability of these rounding modes and their values are highly dependent on the FPU of your processor.</li>
+<li>On my x86_64 computer, all the 4 rounding modes were available and the values of these rounding modes were found to be:</li>
 </ul>
-<pre><code>#define FE_TONEAREST 0x000
-#define FE_DOWNWARD 0x400
-#define FE_UPWARD 0x800
+<pre><code>#define FE_TONEAREST  0x000
+#define FE_DOWNWARD   0x400
+#define FE_UPWARD     0x800
 #define FE_TOWARDZERO 0xC00</code></pre>
 <ul>
-<li><p>The FPU of your processor may support many other rounding modes in addition to these 4 modes.</p></li>
-<li><p>On my x86_64 computer, I found that <code>FE_TONEAREST</code> was the <strong>default rounding mode</strong> when I used methods like <code>rint</code> and <code>nearbyint</code> to perform rounding.</p></li>
+<li>The FPU of your processor may support many other rounding modes in addition to these 4 modes.</li>
+<li>On my x86_64 computer, I found that <code>FE_TONEAREST</code> was the <strong>default rounding mode</strong> when I used methods like <code>rint</code> and <code>nearbyint</code> to perform rounding.</li>
 </ul>
 <hr />
 <div class="footer">

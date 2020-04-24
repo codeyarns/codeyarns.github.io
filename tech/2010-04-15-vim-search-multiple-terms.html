@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Search multiple terms with multiple colors in Vim</title>
+  <title>Code Yarns – Search multiple terms in Vim using multisearch plugin</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,12 +41,14 @@
 </table>
 <hr />
 <header>
-<h1 class="title">Search multiple terms with multiple colors in Vim</h1>
+<h1 class="title">Search multiple terms in Vim using multisearch plugin</h1>
 <p class="date">(First posted on: 2010-04-15 13:01:45+00:00)</p>
 </header>
-<p><a href="http://codeyarns.files.wordpress.com/2010/04/20101021_vim_multisearch.png"><img src="http://codeyarns.files.wordpress.com/2010/04/20101021_vim_multisearch.png" /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/04/20101021_vim_multisearch.png" />
+</figure>
 <p>Today I was trying to look up the occurrence of either of 3 terms in a huge log file. I had the text file open in Vim and wanted to hop to the occurrences of either term. I could have grepped the file, but highlighting of the search terms and having the ability to peek around the occurrence of these terms was important to me.</p>
-<p>I was able to do this using the <strong><a href="http://www.vim.org/scripts/script.php?script_id=2826">multisearch</a></strong> plugin. This is the latest in a series of Vim plugins written for this purpose by several authors over the years. The multisearch plugin is offered as a <strong>vimball</strong> file and can be downloaded from the bottom of the <a href="http://www.vim.org/scripts/script.php?script_id=2826">plugin page</a>. There are 2 versions available, pick the Unix version if you are on Linux, pick the other one if you are on Windows. For help with installing a vimball, see <a href="http://codeyarns.wordpress.com/2010/04/15/vim-vimballs/">this post</a>.</p>
+<p>I was able to do this using the <strong><a href="http://www.vim.org/scripts/script.php?script_id=2826">multisearch</a></strong> plugin. This is the latest in a series of Vim plugins written for this purpose by several authors over the years. The multisearch plugin is offered as a <strong>vimball</strong> file and can be downloaded from the bottom of the <a href="http://www.vim.org/scripts/script.php?script_id=2826">plugin page</a>. There are 2 versions available, pick the Unix version if you are on Linux, pick the other one if you are on Windows. For help with installing a vimball, see <a href="2010-04-15-vim-vimballs.html">this post</a>.</p>
 <p>Once multisearch is installed, open up the text file you want to search. To search for the occurrence of 3 terms, say <code>Amar</code>, <code>Akbar</code> and <code>Anthony</code> use:</p>
 <pre><code>:Msearch add /Amar/
 :Msearch add /Akbar/
@@ -54,7 +56,7 @@
 <p>You will find each of these search terms highlighted with different colors across your text file. Very nice!</p>
 <p>To hop to the next occurrence of any of these terms in sequence use repeatedly:</p>
 <pre><code>:Msearch</code></pre>
-<p>Note that if you do not mind your multiple search terms being highlighted with the same color, then you need no plugin. Such a search capability is built into Vim. See <a href="http://codeyarns.wordpress.com/2012/05/07/search-multiple-terms-in-vim/">this post</a> for more information.</p>
+<p>Note that if you do not mind your multiple search terms being highlighted with the same color, then you need no plugin. Such a search capability is built into Vim. See <a href="2012-05-07-search-multiple-terms-in-vim.html">this post</a> for more information.</p>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
