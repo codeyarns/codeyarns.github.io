@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Vim-ASCIIDoc plugin</title>
+  <title>Code Yarns – Fugitive plugin for Vim</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,30 +41,19 @@
 </table>
 <hr />
 <header>
-<h1 class="title">Vim-ASCIIDoc plugin</h1>
-<p class="date">(First posted on: 2015-04-20 14:11:03+00:00)</p>
+<h1 class="title">Fugitive plugin for Vim</h1>
+<p class="date">(First posted on: 2020-04-27T18:21:53.021181-07:00)</p>
 </header>
-<p><a href="https://github.com/dahu/vim-asciidoc"><strong>Vim-ASCIIDoc</strong></a> is a useful plugin for <strong>Vim</strong> if you frequently edit ASCIIDoc files.</p>
-<h2 id="install">Install</h2>
-<p>In addition, to the <a href="https://github.com/dahu/vim-asciidoc">Vim-ASCIIDoc</a> plugin, it also requires the installation of <a href="https://github.com/dahu/vimple">Vimple</a> and <a href="https://github.com/dahu/Asif">Asif</a>, two plugins by the same author.</p>
-<h2 id="usage">Usage</h2>
+<p><strong>Fugitive</strong> is a plugin written by <strong>Tim Pope</strong> that enables you to use Git features in Vim.</p>
 <ul>
-<li><p>Plugin sets the compiler by default to <code>asciidoc</code>.</p></li>
-<li><p>If you want to use <code>asciidoctor</code> as compiler, use the command <code>:compiler asciidoctor</code></p></li>
-<li><p>If you want to set the default compiler, add this line to Vimrc:</p></li>
+<li>Install it using your favorite plugin manager using the Github URL: <code>https://github.com/tpope/vim-fugitive</code></li>
+<li><strong>Status</strong>: Get the status of the current Git repository using the command <code>:Git</code>. It shows the head, current branch, untracked files and unstaged files.</li>
+<li><strong>Add</strong>: Add the currently open file to Git using the command <code>:Git add</code>.</li>
+<li><strong>Blame</strong>: For a file open in Vim, use the command <code>:Git blame</code> to get blame information for each line: commit, user and date-time.</li>
+<li><strong>Diff</strong>: View the diff of unstaged changes using the command <code>:Git diff</code>.</li>
+<li><strong>Difftool</strong>: View the diff of current file in split vimdiff view using the command: <code>:Gdiffsplit</code>.</li>
 </ul>
-<pre><code>&quot; Vim-Asciidoc plugin sets compiler by default to asciidoc
-&quot; Here we set it to asciidoctor
-autocmd Filetype asciidoc compiler asciidoctor</code></pre>
-<ul>
-<li>If you use <code>asciidoctor</code> as compiler, the plugin will keep complaining that it needs to know the <strong>themes</strong> directory for this compiler. To set the themes directory, I set this in my Vimrc:</li>
-</ul>
-<pre><code>&quot; Set themes directory for ASCIIDoctor in Vim
-let g:asciidoctor_themes_dir=&#39;~/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/asciidoctor-1.5.2/data/stylesheets&#39;</code></pre>
-<ul>
-<li>Once the compiler is set correctly, you can build a ASCIIDoc file by typing <code>:make</code></li>
-</ul>
-<p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Vim 8.0 and Ubuntu 18.04</p>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
