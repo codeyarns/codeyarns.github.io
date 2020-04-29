@@ -44,10 +44,22 @@
 <h1 class="title">How to find the package associated with a file in Ubuntu</h1>
 <p class="date">(First posted on: 2013-01-19 11:29:56+00:00)</p>
 </header>
-<p>Sometimes you might be in a sticky situation where you know a <strong>filename</strong>, directory or path, but would like to know which <strong>package</strong> installed it or can be installed to obtain it.</p>
-<p>The <strong>apt-file</strong> program is your savior for this situation. Use its <strong>search</strong> option to find the packages which contain the filename you are looking for. If this program is not present, it can be <a href="2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">installed from the Ubuntu repositories</a>.</p>
-<p>For example, to find which packages have a filename with Foo in it:</p>
-<pre><code>$ apt-file search Foo</code></pre>
+<p>When compiling new code, building projects or running scripts you sometimes find yourself in a sticky situation where the step requires a certain header/library/binary/script. In these cases, you know a <strong>filename</strong>, a partial/absolute directory or path, but would like to know which <strong>package</strong> installed that file or can be installed to obtain that file.</p>
+<p>This type of reverse search is what the <strong>apt-file</strong> program is good for.</p>
+<ul>
+<li>Installing it is easy:</li>
+</ul>
+<pre><code>$ sudo apt install apt-file</code></pre>
+<ul>
+<li>You need to build its file database before using it the first time:</li>
+</ul>
+<pre><code>$ sudo apt-file update</code></pre>
+<p>You may need to do this update step whenever you believe the files for your current Ubuntu distribution might have changed in the Ubuntu repositories due to updated packages.</p>
+<ul>
+<li>To find which packages have the file <code>foobar.h</code> use the search option:</li>
+</ul>
+<pre><code>$ apt-file search foobar.h</code></pre>
+<p>It lists the package names and the full paths of <code>foobar.h</code>.</p>
 <p><strong>Tried with:</strong> Ubuntu 12.04.1 LTS</p>
 <hr />
 <div class="footer">
