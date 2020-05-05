@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to find size of webpage</title>
+  <title>Code Yarns – How to find download size of URL</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,18 +41,32 @@
 </table>
 <hr />
 <header>
-<h1 class="title">How to find size of webpage</h1>
-<p class="date">(First posted on: 2020-04-30T00:11:13.081971-07:00)</p>
+<h1 class="title">How to find download size of URL</h1>
+<p class="date">(First posted on: 2020-05-04T21:47:40.366966-07:00)</p>
 </header>
-<p><img src="2020-04-30-how-to-find-size-of-webpage.png" /></p>
-<p>Most contemporary webpages we visit are quite heavy, downloading and using lots of big files. It can be instructive to understand the actual size of a webpage. This can be done easily using the <strong>Developer Tools</strong> built into <strong>Firefox</strong>.</p>
-<ul>
-<li>Visit the webpage you want to measure. Press F12 to open Developer Tools. This window typically opens at the bottom of Firefox.</li>
-<li>Open the <strong>Network</strong> tab. Here you have two options: <strong>Reload</strong> the page so that Firefox can log the network requests. The other option is to do <strong>Performance Analysis</strong>.</li>
-<li>Click Reload and watch the network requests while Firefox reloads the webpage. Once the webpage is loaded, you can see the <strong>size of the webpage</strong> listed at the bottom-left of the window. This is listed as two numbers: <code>X / Y transferred</code>. <code>Y</code> is the total size of the files downloaded. Since some of these downloaded files could be compressed, <code>X</code> is the total uncompressed size.</li>
-<li>You could also click the Stopclock icon (Performance Analysis) at the bottom-left. This runs two rounds of analysis: with an empty cache and with a primed cache. It displays both of these stats using pie charts that split the content into HTML, JS, Images, XHR and CSS. For the size of a webpage, what we want is the <strong>Empty cache</strong> details. Here you can again find the <strong>Size</strong> and <strong>Transferred Size</strong> items which indicate the size of the webpage.</li>
-</ul>
-<p><strong>Tried with:</strong> Firefox 75.0</p>
+<p>Sometimes colleagues share a <strong>URL</strong> to me that points to a file that I need to download. Since these links can sometimes point to huge files, I like to know what is the <strong>file size</strong> beforehand.</p>
+<p>The file size information is in the header of the <strong>GET</strong> response from the web server when downloading a file. But how to get this information without downloading the file? Turns out you can use the <strong>HEAD</strong> command to get just the header information.</p>
+<h2 id="using-curl">Using CURL</h2>
+<p>The <code>--head</code> option of CURL can be used to get just the header, which should have the file size in the <code>Content-Length</code> field.</p>
+<p>Here is an example:</p>
+<pre><code>$ curl --head http://foobar.com/haha.zip
+HTTP/1.1 200 OK
+Date: Mon, 04 May 2020 17:27:00 GMT
+Last-Modified: Thu, 30 Apr 2020 18:09:28 GMT
+Content-Disposition: attachment; filename=&quot;haha.zip&quot;; filename*=UTF-8&#39;&#39;haha.zip
+Content-Type: application/zip
+Content-Length: 754816341</code></pre>
+<h2 id="using-wget">Using WGET</h2>
+<p>The <code>--spider</code> option of WGET behaves similar to the above - just getting the header information without downloading the file contents. The file size is listed in the <code>Length</code> field.</p>
+<p>Here is an example:</p>
+<pre><code>$ wget --spider http://foobar.com/haha.zip
+Spider mode enabled. Check if remote file exists.
+--2020-05-04 10:26:39--  http://foobar.com/haha.zip
+Resolving foobar.com (foobar.com)... 185.199.110.153
+Connecting to foobar.com (foobar.com)|185.199.110.153|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 754816341 (720M) [application/zip]
+Remote file exists.</code></pre>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
