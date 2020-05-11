@@ -7,6 +7,69 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to get a fortune greeting in every terminal session</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -44,11 +107,26 @@
 <h1 class="title">How to get a fortune greeting in every terminal session</h1>
 <p class="date">(First posted on: 2013-08-14 14:27:46+00:00)</p>
 </header>
-<p>[caption id=&quot;attachment_3747&quot; align=&quot;aligncenter&quot; width=&quot;354&quot;][<img src="http://codeyarns.files.wordpress.com/2013/08/20130814-cowsayfortune.png" alt="Cowsay-Fortune greeting" />](http://codeyarns.files.wordpress.com/2013/08/20130814-cowsayfortune.png) Cowsay-Fortune greeting[/caption]</p>
-<p>This is probably the oldest trick in the book: getting a fun greeting every time you open a new terminal session. The typical way to do this to call <strong>fortune</strong>. If you combine it with the many ASCII cow and other animal characters available in <strong>cowsay</strong>, it becomes really cool.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2013/08/20130814-cowsayfortune.png" alt="Cowsay-Fortune greeting" /><figcaption>Cowsay-Fortune greeting</figcaption>
+</figure>
+<p>This is probably the oldest trick in Unix: getting a fun greeting every time you open a new terminal session. The typical way to do this to call <strong>fortune</strong>. If you pipe it to the ASCII cow and other animal characters available in <strong>cowsay</strong>, it becomes really cool.</p>
 <p>One way to do this is to add this to your bashrc:</p>
-<p>https://gist.github.com/ashwin/6231544</p>
-<p>This works on Ubuntu. If you're on some other Linux, you may have to change the directory of the cow files.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="va">RANGE=</span>2</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="va">number=$RANDOM</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="bu">let</span> <span class="st">&quot;number %= </span><span class="va">$RANGE</span><span class="st">&quot;</span></a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">case</span> <span class="va">$number</span><span class="kw"> in</span></a>
+<a class="sourceLine" id="cb1-6" title="6">    0<span class="kw">)</span></a>
+<a class="sourceLine" id="cb1-7" title="7">        <span class="va">cowcommand=</span><span class="st">&quot;cowsay&quot;</span></a>
+<a class="sourceLine" id="cb1-8" title="8">        <span class="kw">;;</span></a>
+<a class="sourceLine" id="cb1-9" title="9">    1<span class="kw">)</span></a>
+<a class="sourceLine" id="cb1-10" title="10">        <span class="va">cowcommand=</span><span class="st">&quot;cowthink&quot;</span></a>
+<a class="sourceLine" id="cb1-11" title="11">        <span class="kw">;;</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="kw">esac</span></a>
+<a class="sourceLine" id="cb1-13" title="13"></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="va">$cowcommand</span> <span class="ex">-f</span> <span class="va">$(</span><span class="fu">ls</span> /usr/share/cowsay/cows/ <span class="kw">|</span> <span class="ex">shuf</span> -n1<span class="va">)</span> <span class="va">$(</span><span class="ex">fortune</span> -s<span class="va">)</span></a></code></pre></div>
+<p>This works on Ubuntu. If you’re on some other Linux, you may have to change the directory of the cow files.</p>
 <p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
 <hr />
 <div class="footer">
