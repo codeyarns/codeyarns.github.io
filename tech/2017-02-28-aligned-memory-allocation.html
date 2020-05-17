@@ -108,7 +108,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="date">(First posted on: 2017-02-28 14:04:42+00:00)</p>
 </header>
 <p>In some scenarios, we want the system to allocate memory for us that is <strong>aligned</strong> at an address that is a certain power of 2. Certain CPU architectures and certain operations require (or are faster) if their operands are located at an address that is a multiple of a certain power-of-2 number. For these reasons, you might see that many multi-platform libraries use an aligned memory allocator instead of <strong>malloc</strong> in their code. For example, OpenCV uses methods named <strong>fastMalloc</strong> and <strong>fastFree</strong> inside its code that do this type of allocation and freeing.</p>
-<p><img src="2017-02-28-aligned-memory-allocation.png" /></p>
+<figure>
+<img src="2017-02-28-aligned-memory-allocation.png" alt="Aligned memory allocation" /><figcaption>Aligned memory allocation</figcaption>
+</figure>
 <p>Many of these methods work as follows:</p>
 <ol type="1">
 <li>User requests for <code>N</code> bytes of memory.</li>
