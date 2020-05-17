@@ -108,13 +108,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="date">(First posted on: 2017-02-28 14:04:42+00:00)</p>
 </header>
 <p>In some scenarios, we want the system to allocate memory for us that is <strong>aligned</strong> at an address that is a certain power of 2. Certain CPU architectures and certain operations require (or are faster) if their operands are located at an address that is a multiple of a certain power-of-2 number. For these reasons, you might see that many multi-platform libraries use an aligned memory allocator instead of <strong>malloc</strong> in their code. For example, OpenCV uses methods named <strong>fastMalloc</strong> and <strong>fastFree</strong> inside its code that do this type of allocation and freeing.</p>
+<p><img src="2017-02-28-aligned-memory-allocation.png" /></p>
 <p>Many of these methods work as follows:</p>
-<ul>
-<li>It internally gets memory from malloc. However, if you requested for <code>N</code> bytes, the wrapper will request for <code>N+P+A</code> bytes from malloc. Here, <code>P</code> is the size of a pointer on that CPU architecture and <code>A</code> is the alignment required, expressed in power-of-2 number of bytes. For example, if I request for 100 bytes on a 64-bit CPU and require the memory to be aligned to a multiple of 32, then the wrapper will request for 140 bytes.</li>
-<li>After getting the memory from malloc, it aligns the pointer forward so that (1) the pointer is at an address that is aligned as per requirement and (2) there is space behind the pointer to store a memory address.</li>
-<li>Then it sneaks and store the address actually returned by malloc behind the pointer address and returns the forward-aligned pointer to the user.</li>
-<li>After the user is done with the memory, they call the custom free method. This free wrapper then sneaks behind the aligned pointer to get the actual address returned by malloc and free that.</li>
-</ul>
+<ol type="1">
+<li>User requests for <code>N</code> bytes of memory.</li>
+<li>We ask <code>malloc</code> for <code>N + P + (A - 1)</code> bytes. Here, <code>P</code> is the size of a pointer of that system and <code>A</code> is the alignment required. <code>A</code> is a power-of-2 number. For example, if I request for 100 bytes on a 32-bit CPU and require the memory to be aligned to a multiple of 8, then the wrapper will request for 111 bytes.</li>
+<li>After getting the memory from malloc, we align the pointer forward so that (1) the pointer is at an address that is aligned as per requirement and (2) there is space behind the pointer to store a memory address. We return this pointer to the user.</li>
+<li>We reach back <code>P</code> bytes behind the address we gave the user and store the address we got from malloc there.</li>
+<li>Once the user is done they call our version of free with the pointer we had given them.</li>
+<li>We reach behind this pointer by <code>P</code> bytes to get the address we got from malloc.</li>
+<li>We call <code>free</code> on that pointer to cleanly free all the memory.</li>
+</ol>
 <p>Here is some example code that illustrates aligned memory allocation:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="co">// Assume we need 32-byte alignment for AVX instructions</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="pp">#define ALIGN </span><span class="dv">32</span></a>
