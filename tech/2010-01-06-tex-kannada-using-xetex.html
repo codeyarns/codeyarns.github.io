@@ -44,20 +44,24 @@
 <h1 class="title">TeX: Kannada using XeTeX</h1>
 <p class="date">(First posted on: 2010-01-06 09:52:11+00:00)</p>
 </header>
-<p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_06_xetex_kannada1.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_06_xetex_kannada1.png" /></a></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_06_xetex_kannada1.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_06_xetex_kannada1.png" alt=" " /></a></p>
 <p>LaTeX neither supports Windows fonts nor Unicode text. This makes creating documents in Indian languages with LaTeX very hard. But, there is a solution: <em><a href="http://en.wikipedia.org/wiki/XeTeX">XeTeX</a></em>. It extends the TeX implementation to work with Windows fonts and Unicode text.</p>
 <p>If you are using <em><a href="http://en.wikipedia.org/wiki/MiKTeX">MikTeX</a></em> on Windows, XeTeX is already included in its default installation! Here is how to obtain the Kannada PDF shown above:</p>
 <ol type="1">
-<li><p>Create a <code>kannada.tex</code> file with this text:</p>
-
-</li>
+<li>Create a <code>kannada.tex</code> file with this text:</li>
 </ol>
+<pre><code>\documentclass{article}
+\usepackage{fontspec}
+\setmainfont[Script=Kannada]{Tunga}
+\begin{document}
+ಏನಿದು ಲಾಟೆಕ್! ಗೊತ್ತಾ ನಿಮಗೆ?
+\end{document}</code></pre>
 <p><code>Script</code> indicates the language (Kannada) and <code>Tunga</code> is the name of a Kannada font on Windows. The Kannada text was typed using the <em><a href="http://www.baraha.com/">Baraha IME</a></em> transliteration software.</p>
 <ol start="2" type="1">
 <li><p>Make sure to save the file as UTF-8 or any other Unicode encoding.</p></li>
-<li><p>Compile the file to PDF using <code>xelatex</code>, which is <code>latex</code> built on top of XeTeX:</p>
-<p>$ xelatex kannada.tex</p></li>
+<li><p>Compile the file to PDF using <code>xelatex</code>, which is <code>latex</code> built on top of XeTeX:</p></li>
 </ol>
+<pre><code>$ xelatex kannada.tex</code></pre>
 <p>That is it, it is that simple! :-) To create a PDF in a different Indian language, change the respective parameters in <code>\setmainfont</code>.</p>
 <hr />
 <div class="footer">

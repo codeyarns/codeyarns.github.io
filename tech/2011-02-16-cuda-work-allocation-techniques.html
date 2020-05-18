@@ -8,41 +8,67 @@
   <title>Code Yarns – CUDA: Work Allocation Techniques</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -81,69 +107,69 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">CUDA: Work Allocation Techniques</h1>
 <p class="date">(First posted on: 2011-02-16 07:18:32+00:00)</p>
 </header>
-<p><a href="http://codeyarns.files.wordpress.com/2011/02/20110216_work_allocation.png"><img src="http://codeyarns.files.wordpress.com/2011/02/20110216_work_allocation.png" /></a></p>
+<p><a href="http://codeyarns.files.wordpress.com/2011/02/20110216_work_allocation.png"><img src="http://codeyarns.files.wordpress.com/2011/02/20110216_work_allocation.png" alt=" " /></a></p>
 <p><strong>Threads</strong> in CUDA are the workers who work on data. In the CUDA architecture, threads are grouped into <strong>blocks</strong> and blocks are grouped into a <strong>grid</strong>. Given such an architecture, there are 2 common techniques to allocate the data among the threads. Or put another way, there are 2 ways for each thread to pick the data it should work on.</p>
 <p><strong>Technique 1: Chunks of Data Per Thread</strong></p>
 <p>In this technique, data is broken into many contiguous <strong>chunks</strong> and each thread works on one (or none) such chunk. Here is sample code for illustration:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>* dataArray, <span class="dt">int</span> dataNum )
-{
-    <span class="co">// Thread info</span>
-    <span class="at">const</span> <span class="dt">int</span> blocksPerGrid   = gridDim.x;
-    <span class="at">const</span> <span class="dt">int</span> threadsPerBlock = blockDim.x;
-    <span class="at">const</span> <span class="dt">int</span> totalThreadNum  = blocksPerGrid * threadsPerBlock;
-    <span class="at">const</span> <span class="dt">int</span> curThreadIdx    = ( blockIdx.x * threadsPerBlock ) + threadIdx.x;
-
-    <span class="co">// Work allocation</span>
-    <span class="at">const</span> <span class="dt">int</span> dataPerThread  = ( dataNum + ( totalThreadNum - <span class="dv">1</span> ) ) / totalThreadNum;
-    <span class="at">const</span> <span class="dt">int</span> curThreadDataBegin = dataPerThread * curThreadIdx;
-    <span class="at">const</span> <span class="dt">int</span> curThreadDataEnd   = curThreadDataBegin + dataPerThread;
-
-    <span class="co">// Iterate data chunk of this thread</span>
-    <span class="cf">for</span> ( <span class="dt">int</span> idx = curThreadDataBegin; idx &lt; curThreadDataEnd; ++idx )
-    {
-        <span class="co">// Check if data out of bounds</span>
-        <span class="cf">if</span> ( idx &gt;= dataNum )
-            <span class="cf">continue</span>;
-
-        <span class="co">// Do something with data</span>
-        <span class="dt">int</span> val = dataArray[ idx ];
-    }
-
-    <span class="cf">return</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1">__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>* dataArray, <span class="dt">int</span> dataNum )</a>
+<a class="sourceLine" id="cb1-2" title="2">{</a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="co">// Thread info</span></a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="at">const</span> <span class="dt">int</span> blocksPerGrid   = gridDim.x;</a>
+<a class="sourceLine" id="cb1-5" title="5">    <span class="at">const</span> <span class="dt">int</span> threadsPerBlock = blockDim.x;</a>
+<a class="sourceLine" id="cb1-6" title="6">    <span class="at">const</span> <span class="dt">int</span> totalThreadNum  = blocksPerGrid * threadsPerBlock;</a>
+<a class="sourceLine" id="cb1-7" title="7">    <span class="at">const</span> <span class="dt">int</span> curThreadIdx    = ( blockIdx.x * threadsPerBlock ) + threadIdx.x;</a>
+<a class="sourceLine" id="cb1-8" title="8"></a>
+<a class="sourceLine" id="cb1-9" title="9">    <span class="co">// Work allocation</span></a>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="at">const</span> <span class="dt">int</span> dataPerThread  = ( dataNum + ( totalThreadNum - <span class="dv">1</span> ) ) / totalThreadNum;</a>
+<a class="sourceLine" id="cb1-11" title="11">    <span class="at">const</span> <span class="dt">int</span> curThreadDataBegin = dataPerThread * curThreadIdx;</a>
+<a class="sourceLine" id="cb1-12" title="12">    <span class="at">const</span> <span class="dt">int</span> curThreadDataEnd   = curThreadDataBegin + dataPerThread;</a>
+<a class="sourceLine" id="cb1-13" title="13"></a>
+<a class="sourceLine" id="cb1-14" title="14">    <span class="co">// Iterate data chunk of this thread</span></a>
+<a class="sourceLine" id="cb1-15" title="15">    <span class="cf">for</span> ( <span class="dt">int</span> idx = curThreadDataBegin; idx &lt; curThreadDataEnd; ++idx )</a>
+<a class="sourceLine" id="cb1-16" title="16">    {</a>
+<a class="sourceLine" id="cb1-17" title="17">        <span class="co">// Check if data out of bounds</span></a>
+<a class="sourceLine" id="cb1-18" title="18">        <span class="cf">if</span> ( idx &gt;= dataNum )</a>
+<a class="sourceLine" id="cb1-19" title="19">            <span class="cf">continue</span>;</a>
+<a class="sourceLine" id="cb1-20" title="20"></a>
+<a class="sourceLine" id="cb1-21" title="21">        <span class="co">// Do something with data</span></a>
+<a class="sourceLine" id="cb1-22" title="22">        <span class="dt">int</span> val = dataArray[ idx ];</a>
+<a class="sourceLine" id="cb1-23" title="23">    }</a>
+<a class="sourceLine" id="cb1-24" title="24"></a>
+<a class="sourceLine" id="cb1-25" title="25">    <span class="cf">return</span>;</a>
+<a class="sourceLine" id="cb1-26" title="26">}</a></code></pre></div>
 <p>Note that the work allocation calculation is:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="at">const</span> <span class="dt">int</span> dataPerThread  = ( dataNum + ( totalThreadNum - <span class="dv">1</span> ) ) / totalThreadNum;</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="at">const</span> <span class="dt">int</span> dataPerThread  = ( dataNum + ( totalThreadNum - <span class="dv">1</span> ) ) / totalThreadNum;</a></code></pre></div>
 <p>It is not a mere division of available work (data) by available labour (threads). Due to integer division, such a simple calculation would lead to trouble if <code>dataNum</code> is not a multiple of <code>totalThreadNum</code>.</p>
 <p>So, if <code>dataNum</code> is not a multiple of <code>totalThreadNum</code> there will always be a few threads with no work. This is an unavoidable fact of life for this technique! :-)</p>
 <p>This is also why we need to ensure we are always accessing something inside of the input data:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">if</span> ( idx &gt;= dataNum )
-    <span class="cf">continue</span>;</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="cf">if</span> ( idx &gt;= dataNum )</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="cf">continue</span>;</a></code></pre></div>
 <p>This work allocation technique is advantageous if the work done by the thread benefits by having access to elements lying in the same chunk. If this is not the case, then Technique 2 is far easier to write and understand.</p>
 <p><strong>Technique 2: Iterate With a Large Increment</strong></p>
 <p>Simply put, in each iteration each thread accesses the data that is a long distance away from its current data. How far away? A distance equal to the <em>total number of threads</em>. This iteration is very simple to write:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>* dataArray, <span class="dt">int</span> dataNum )
-{
-    <span class="co">// Thread info</span>
-    <span class="at">const</span> <span class="dt">int</span> blocksPerGrid   = gridDim.x;
-    <span class="at">const</span> <span class="dt">int</span> threadsPerBlock = blockDim.x;
-    <span class="at">const</span> <span class="dt">int</span> totalThreadNum  = blocksPerGrid * threadsPerBlock;
-    <span class="at">const</span> <span class="dt">int</span> curThreadIdx    = ( blockIdx.x * threadsPerBlock ) + threadIdx.x;
-
-    <span class="co">// Iterate over data</span>
-    <span class="cf">for</span> ( <span class="dt">int</span> idx = curThreadIdx; idx &lt; dataNum; idx += totalThreadNum )
-    {
-        <span class="co">// Do something with data</span>
-        <span class="dt">int</span> val = dataArray[ idx ];
-    }
-
-    <span class="cf">return</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1">__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>* dataArray, <span class="dt">int</span> dataNum )</a>
+<a class="sourceLine" id="cb4-2" title="2">{</a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="co">// Thread info</span></a>
+<a class="sourceLine" id="cb4-4" title="4">    <span class="at">const</span> <span class="dt">int</span> blocksPerGrid   = gridDim.x;</a>
+<a class="sourceLine" id="cb4-5" title="5">    <span class="at">const</span> <span class="dt">int</span> threadsPerBlock = blockDim.x;</a>
+<a class="sourceLine" id="cb4-6" title="6">    <span class="at">const</span> <span class="dt">int</span> totalThreadNum  = blocksPerGrid * threadsPerBlock;</a>
+<a class="sourceLine" id="cb4-7" title="7">    <span class="at">const</span> <span class="dt">int</span> curThreadIdx    = ( blockIdx.x * threadsPerBlock ) + threadIdx.x;</a>
+<a class="sourceLine" id="cb4-8" title="8"></a>
+<a class="sourceLine" id="cb4-9" title="9">    <span class="co">// Iterate over data</span></a>
+<a class="sourceLine" id="cb4-10" title="10">    <span class="cf">for</span> ( <span class="dt">int</span> idx = curThreadIdx; idx &lt; dataNum; idx += totalThreadNum )</a>
+<a class="sourceLine" id="cb4-11" title="11">    {</a>
+<a class="sourceLine" id="cb4-12" title="12">        <span class="co">// Do something with data</span></a>
+<a class="sourceLine" id="cb4-13" title="13">        <span class="dt">int</span> val = dataArray[ idx ];</a>
+<a class="sourceLine" id="cb4-14" title="14">    }</a>
+<a class="sourceLine" id="cb4-15" title="15"></a>
+<a class="sourceLine" id="cb4-16" title="16">    <span class="cf">return</span>;</a>
+<a class="sourceLine" id="cb4-17" title="17">}</a></code></pre></div>
 <p>The work allocation calculation and the bounds check of Technique 1 are both not needed. All the magic is in the details of the loop:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">for</span> (
-    <span class="dt">int</span> idx = curThreadIdx; <span class="co">// Use thread index as beginning location</span>
-    idx &lt; dataNum;          <span class="co">// Thread never goes outside the data</span>
-    idx += totalThreadNum   <span class="co">// Jump a long way</span>
-    )</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" title="1"><span class="cf">for</span> (</a>
+<a class="sourceLine" id="cb5-2" title="2">    <span class="dt">int</span> idx = curThreadIdx; <span class="co">// Use thread index as beginning location</span></a>
+<a class="sourceLine" id="cb5-3" title="3">    idx &lt; dataNum;          <span class="co">// Thread never goes outside the data</span></a>
+<a class="sourceLine" id="cb5-4" title="4">    idx += totalThreadNum   <span class="co">// Jump a long way</span></a>
+<a class="sourceLine" id="cb5-5" title="5">    )</a></code></pre></div>
 <p>You can easily see that these techniques lie at the ends of a spectrum of possible work allocation techniques. For example, a hybrid technique would handle chunks of size <code>n</code> and then increment by <code>n * totalThreadNum</code>. Look at your application closely and use what works best for you! :-)</p>
 <hr />
 <div class="footer">

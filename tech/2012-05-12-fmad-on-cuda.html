@@ -44,7 +44,7 @@
 <h1 class="title">FMAD on CUDA</h1>
 <p class="date">(First posted on: 2012-05-12 07:24:55+00:00)</p>
 </header>
-<p>[caption id=&quot;attachment_2543&quot; align=&quot;aligncenter&quot; width=&quot;812&quot;][<img src="https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png" />](https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png) PTX instructions produced with FMAD off (left) and FMAD on (right)[/caption]</p>
+<p>[caption id=“attachment_2543” align=“aligncenter” width=“812”][<img src="https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png" alt=" " />](https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png) PTX instructions produced with FMAD off (left) and FMAD on (right)[/caption]</p>
 <p>If you are using <strong>CUDA</strong> to perform any sort of non-graphics <strong>floating-point computation</strong>, be aware of the <strong>FMAD</strong> (floating-point multiply-add) instruction. Since CUDA hardware needs to straddle not only the world of computation, but also graphics and gaming, it has lots of FMAD units. So, by default the CUDA compiler will try to replace as much of your floating-point computation code with FMAD instructions.</p>
 <p>This is fine if you do not rely on the precision of your results. However, this can lead to hard-to-find bugs if you do rely on the precision. If you need the CUDA computation to mimic the floating-point computation on the CPU, then you are better off without the FMAD instructions.</p>
 <p>The CUDA compiler (<code>nvcc</code>) is configured to produce FMAD instructions by default. To request it to stop producing FMAD instructions and use the normal floating-point instructions use the compiler directive <code>--fmad=false</code></p>

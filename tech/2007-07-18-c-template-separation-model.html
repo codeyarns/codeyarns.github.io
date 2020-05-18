@@ -50,13 +50,13 @@ T min(T a, T b)
 {
     return (a &gt; b) ? b : a;
 }</code></pre>
-<p>There are 2 ways to organize the template code: <em>inclusion model</em> and <em>separation model</em>. In the inclusion model, the complete function definition is included in the header file. In the separation model, the function declaration is in the header file and the function definition is put in the source file. However, it won't work as expected. The keyword <code>export</code> needs to be used with the function definition (i.e., <code>export template &lt;typename T&gt;</code> ...)</p>
-<p>Though this is Standard C++, this won't work! Welcome to the real world of C++. No major compiler out there supports this clean separation model (export keyword). Even the latest VC++ 8 <a href="http://support.microsoft.com/kb/239436/">doesnot support</a> it. Nor <a href="http://www.network-theory.co.uk/docs/gccintro/gccintro_61.html">does gcc</a>.</p>
+<p>There are 2 ways to organize the template code: <em>inclusion model</em> and <em>separation model</em>. In the inclusion model, the complete function definition is included in the header file. In the separation model, the function declaration is in the header file and the function definition is put in the source file. However, it won’t work as expected. The keyword <code>export</code> needs to be used with the function definition (i.e., <code>export template &lt;typename T&gt;</code> …)</p>
+<p>Though this is Standard C++, this won’t work! Welcome to the real world of C++. No major compiler out there supports this clean separation model (export keyword). Even the latest VC++ 8 <a href="http://support.microsoft.com/kb/239436/">doesnot support</a> it. Nor <a href="http://www.network-theory.co.uk/docs/gccintro/gccintro_61.html">does gcc</a>.</p>
 <p>References:</p>
 <ul>
 <li><p>Chapter 10: Function Templates, The C++ Primer (3rd Ed.) by Lippman and Lajoie.</p></li>
 <li><p><a href="http://www.network-theory.co.uk/docs/gccintro/gccintro_61.html">§ 7.4.4 The export keyword</a>, An Introduction to gcc.</p></li>
-<li><p><a href="http://std.dkuug.dk/JTC1/SC22/WG21/docs/papers/2003/n1426.pdf">Why We Can't Afford Export.</a> [PDF]</p></li>
+<li><p><a href="http://std.dkuug.dk/JTC1/SC22/WG21/docs/papers/2003/n1426.pdf">Why We Can’t Afford Export.</a> [PDF]</p></li>
 <li><p><a href="http://www.comeaucomputing.com/iso/promises.html">Serious Promises and Standard C++</a> by Greg Comeau.</p></li>
 </ul>
 <hr />

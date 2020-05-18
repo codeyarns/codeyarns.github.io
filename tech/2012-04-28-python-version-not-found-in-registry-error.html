@@ -44,11 +44,11 @@
 <h1 class="title">Python version not found in registry error</h1>
 <p class="date">(First posted on: 2012-04-28 14:31:33+00:00)</p>
 </header>
-<p><a href="https://codeyarns.files.wordpress.com/2012/04/20120428-python-registry.png"><img src="https://codeyarns.files.wordpress.com/2012/04/20120428-python-registry.png" /></a></p>
+<p><a href="https://codeyarns.files.wordpress.com/2012/04/20120428-python-registry.png"><img src="https://codeyarns.files.wordpress.com/2012/04/20120428-python-registry.png" alt=" " /></a></p>
 <p><strong>Problem</strong></p>
 <p>Once you start installing many <strong>Python</strong> <strong>modules</strong>, you are sure to run into this error. When installing a Python module, it pops up this error:</p>
 <pre><code>Python version 3.2 required, which was not found in the registry.</code></pre>
-<p>I do have Python 3.2 installed, so what's up?</p>
+<p>I do have Python 3.2 installed, so what’s up?</p>
 <p><strong>Solution</strong></p>
 <p>The problem is that some module installers look in the wrong place for Python version information. For example, in the case of this one module, the installer was looking for <code>HKEY_CURRENT_USER\SOFTWARE\Python\PythonCore\3.2</code> in the registry. I found that my Python 3.2 installer had placed this information in <code>HKEY_LOCAL_MACHINE\SOFTWARE\Python\PythonCore\3.2</code> instead.</p>
 <p>Once you know the reason, solving it is easy. Open <strong>Registry Editor</strong> (may need administrator privilege) and <strong>export</strong> <code>HKEY_LOCAL_MACHINE\SOFTWARE\Python\PythonCore\3.2</code> into a text file. Open the exported <code>.reg</code> file in a text editor and replace the <code>HKEY_LOCAL_MACHINE</code> entries to <code>HKEY_CURRENT_USER</code>. Add these new entries back to the registry (<a href="http://codeyarns.wordpress.com/2010/01/27/windows-7-registration-entries-reg-file/">here</a> is how). The module installer should now be able to proceed without throwing the error.</p>

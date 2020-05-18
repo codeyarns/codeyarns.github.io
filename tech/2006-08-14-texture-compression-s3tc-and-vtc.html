@@ -44,21 +44,24 @@
 <h1 class="title">Texture Compression (S3TC and VTC)</h1>
 <p class="date">(First posted on: 2006-08-14 10:15:51+00:00)</p>
 </header>
-<p>One of the most popular texture compression algorithms used in OpenGL are the DXTn series which were introduced by S3 Graphics. Hence, they're known as S3TC. The working of this algorithm can be found in the Appendix of <a href="http://oss.sgi.com/projects/ogl-sample/registry/EXT/texture_compression_s3tc.txt">GL_EXT_texture_compression_s3tc</a>. There are 5 versions available ranging from DXT1 to DXT5. DXT1 is briefly explained below:</p>
-<p><strong>Compression:</strong></p>
+<p>One of the most popular texture compression algorithms used in OpenGL are the DXTn series which were introduced by S3 Graphics. Hence, they are known as S3TC. The working of this algorithm can be found in the Appendix of <a href="http://oss.sgi.com/projects/ogl-sample/registry/EXT/texture_compression_s3tc.txt">GL_EXT_texture_compression_s3tc</a>.</p>
+<p>There are 5 versions available ranging from DXT1 to DXT5. DXT1 is briefly explained below:</p>
+<h2 id="compression">Compression</h2>
 <p>A 4x4 texel block (48 bytes if texel is RGB) is compressed into 2 16-bit color values (c0 and c1) and a 4x4 2-bit lookup block.</p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_texture_compression.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_texture_compression.png" /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_texture_compression.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <p>c2 and c3 are calculated from c0 and c1 as follows:</p>
-<p>If c0 &lt;= c1,</p>
-<p>c2 = (c0 + c1) / 2;</p>
-<p>c3 = not defined;</p>
-<p>else</p>
-<p>c2 = (2 * c0 + c1) / 3;</p>
-<p>c3 = (c0 + 2 * c1) / 3;</p>
-<p><strong>Decompression:</strong></p>
+<pre><code>If c0 &lt;= c1,
+  c2 = (c0 + c1) / 2;
+  c3 = not defined;
+else
+  c2 = (2 * c0 + c1) / 3;
+  c3 = (c0 + 2 * c1) / 3;</code></pre>
+<h2 id="decompression">Decompression</h2>
 <p>Decompression is extremely fast. It is just a lookup of 2-4 precomputed values.</p>
 <p>Read the 2-bit value of each compressed pixel. If 00 then read RGB of c0, if 01 then read RGB of c1 and so on.</p>
-<p><strong>VTC:</strong></p>
+<h2 id="vtc">VTC</h2>
 <p>VTC (<a href="http://oss.sgi.com/projects/ogl-sample/registry/NV/texture_compression_vtc.txt">GL_NV_texture_compression_vtc</a>) is also based on the above ideas, just extend the texel blocks in the z direction.</p>
 <hr />
 <div class="footer">

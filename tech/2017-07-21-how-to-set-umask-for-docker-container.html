@@ -46,7 +46,7 @@
 </header>
 <h2 id="problem">Problem</h2>
 <p>Once you run a <strong>Docker</strong> container using <code>docker run</code> and get a shell inside it, you can set the file creation mode mask there with the <code>umask</code> command of the shell. This is usually <code>0022</code> and you can set it to whatever you want. All consecutive operations at the shell and child processes forked from the shell will have with umask.</p>
-<p>What if you don't want to manually type this umask command, but want it set automatically in the container?</p>
+<p>What if you don’t want to manually type this umask command, but want it set automatically in the container?</p>
 <h2 id="solution">Solution</h2>
 <ul>
 <li><p>Note that there is no way to do this directly in the Dockerfile. You can have a <code>RUN umask 0002</code> command in the Dockerfile, but that does not have any effect for when you run the container.</p></li>

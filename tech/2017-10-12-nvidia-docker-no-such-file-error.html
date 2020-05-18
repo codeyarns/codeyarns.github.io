@@ -57,7 +57,7 @@ nvidia-docker-plugin | 2017/10/11 10:10:13 Provisioning volumes at /var/lib/nvid
 nvidia-docker-plugin | 2017/10/11 10:10:13 Serving plugin API at /run/docker/plugins
 nvidia-docker-plugin | 2017/10/11 10:10:13 Serving remote API at localhost:3476
 nvidia-docker-plugin | 2017/10/11 10:10:13 Error: listen tcp 127.0.0.1:3476: bind: address already in use</code></pre>
-<p>That 3476 port turned out to be owned by no process. So what's the problem?</p>
+<p>That 3476 port turned out to be owned by no process. So what’s the problem?</p>
 <h2 id="solution">Solution</h2>
 <p>I gave up and restarted Docker and everything worked fine after that (haha!):</p>
 <pre><code>$ sudo service docker restart</code></pre>

@@ -50,7 +50,7 @@
 No manual entry for gcc
 See &#39;man 7 undocumented&#39; for help when manual pages are not available.</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Turns out that one of the applications needed to add its manpage. It did this by adding its path to <code>MANPATH</code> like this in Fish's <code>config.fish</code>:</p>
+<p>Turns out that one of the applications needed to add its manpage. It did this by adding its path to <code>MANPATH</code> like this in Fish’s <code>config.fish</code>:</p>
 <pre><code>set --export MANPATH $MANPATH /path/to/app</code></pre>
 <p>Changing it to the below fixed the error:</p>
 <pre><code>set --export MANPATH &quot;:/path/to/app&quot;</code></pre>

@@ -44,7 +44,7 @@
 <h1 class="title">How to set encoder format for Python JSON</h1>
 <p class="date">(First posted on: 2017-07-12 13:46:45+00:00)</p>
 </header>
-<p>Python's <strong>JSON</strong> module makes it very easy to dump data into a JSON file. However, I have found that the <strong>float</strong> values are encoded with a lot of decimal places or in scientific notation. There is no elegant method to set the formatting in the float encoder of the JSON module. The best solution seems to be to monkey patch its formatting option:</p>
+<p>Python’s <strong>JSON</strong> module makes it very easy to dump data into a JSON file. However, I have found that the <strong>float</strong> values are encoded with a lot of decimal places or in scientific notation. There is no elegant method to set the formatting in the float encoder of the JSON module. The best solution seems to be to monkey patch its formatting option:</p>
 <pre><code># Make json.dump() encode floats with 5 places of precision
 import json
 json.encoder.FLOAT_REPR = lambda x: format(x, &#39;.5f&#39;)</code></pre>

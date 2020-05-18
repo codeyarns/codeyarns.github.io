@@ -56,7 +56,7 @@ The following packages have unmet dependencies:
  cuda : Depends: cuda-6-5 (= 6.5-14) but it is not going to be installed
 E: Unable to correct problems, you have held broken packages.</code></pre>
 <p>On searching, a lot of folks had this error. Their errors were solved when they removed old NVIDIA packages they had installed. But, I did not have any NVIDIA package installed!</p>
-<p>What were these <strong>broken packages</strong> I had on the system, I didn't know! I followed the dependency chain by trying to install <code>cuda-6-5</code>, which complained on another package and so on. In the end, I found that I had a lot of unnecessary packages, all of which had <code>:i386</code> at the end of their name.</p>
+<p>What were these <strong>broken packages</strong> I had on the system, I didn’t know! I followed the dependency chain by trying to install <code>cuda-6-5</code>, which complained on another package and so on. In the end, I found that I had a lot of unnecessary packages, all of which had <code>:i386</code> at the end of their name.</p>
 <p>The strangest part was that running <code>sudo apt-get autoremove</code> had no effect on these packages, they were not removed. So, I manually removed all of them using <code>sudo apt-get remove</code>.</p>
 <p>When I tried to install CUDA after this, it worked fine! :-)</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>

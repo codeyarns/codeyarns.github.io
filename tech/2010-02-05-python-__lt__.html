@@ -44,7 +44,7 @@
 <h1 class="title">Python: <strong>lt</strong>()</h1>
 <p class="date">(First posted on: 2010-02-05 02:45:56+00:00)</p>
 </header>
-<p>If you try to sort a list of objects of your own class ...</p>
+<p>If you try to sort a list of objects of your own class …</p>
 <pre><code>class Foobar:
     def __init__(self, idx):
         self.idx = idx
@@ -52,7 +52,7 @@
 
 fooList = [Foobar(10), Foobar(2)]
 fooList.sort()</code></pre>
-<p>... you get a <em><a href="http://docs.python.org/library/exceptions.html#exceptions.TypeError">TypeError</a></em> error:</p>
+<p>… you get a <em><a href="http://docs.python.org/library/exceptions.html#exceptions.TypeError">TypeError</a></em> error:</p>
 <pre><code>TypeError: unorderable types: Foobar() &lt; Foobar()</code></pre>
 <p>Python is reporting that it does not know how to compare Foobar objects.</p>
 <p>Define a <a href="http://docs.python.org/reference/datamodel.html#object.__lt__"><code>__lt__()</code></a> method in the Foobar class. This <em>rich comparison method</em> is preferred over the generic <a href="http://docs.python.org/reference/datamodel.html#object.__cmp__"><code>__cmp__()</code></a> method.</p>

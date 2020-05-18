@@ -8,41 +8,67 @@
   <title>Code Yarns – C++: Insert or Update a Map</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -83,18 +109,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </header>
 <p>A C++ STL <strong>map</strong> is used to store and manage <strong>key-value pairs</strong>. The elements are maintained in the <strong>sorted</strong> order of the keys. The keys in a map cannot be changed. Either a new key-value pair can be added or the value of an already existing key-value pair can be changed. These operations are supported by 2 interfaces: <strong>insert()</strong> and the <strong>subscript operator</strong> []. These 2 interfaces differ slightly and it is important to be aware how since it has implications on correctness and efficiency.</p>
 <p>Consider a map:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;map&gt;</span>
-<span class="kw">using</span> <span class="kw">namespace</span> std;
-
-<span class="kw">typedef</span> map&lt;KeyType, ValType&gt; KVMap;
-
-KVMap kvmap;</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;map&gt;</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">using</span> <span class="kw">namespace</span> std;</a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">typedef</span> map&lt;KeyType, ValType&gt; KVMap;</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6">KVMap kvmap;</a></code></pre></div>
 <p>To <strong>insert</strong> a new key-value pair to the map use:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">kvmap.insert( KVMap::<span class="dt">value_type</span>( key0, val0 ) );</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1">kvmap.insert( KVMap::<span class="dt">value_type</span>( key0, val0 ) );</a></code></pre></div>
 <p>It is important to note that if <code>key0</code> already exists in the map, this operation silently fails, returning a <code>bool</code> value of <code>false</code>! This might seem obvious, put another way, the insert operation <em>cannot</em> be used to update an element of the map.</p>
 <p>If the key does not already exist in the map, this is the most convenient and most efficient method to insert a key-value pair into the map.</p>
 <p>To update the value of an existing element of the map, use the <strong>subscript operator</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">kvmap[ key0 ] = val1;</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1">kvmap[ key0 ] = val1;</a></code></pre></div>
 <p>This interface is very convenient, but the user needs to be acutely aware of how this works:</p>
 <ol type="1">
 <li><p>The subscript operator [] uses the <code>key0</code> to search for that element in the map. If the element exists, a reference to its value is returned. If the element does not exist, a new element with the given key and a value <em>constructed</em> using the default constructor is used.</p></li>
@@ -102,9 +128,9 @@ KVMap kvmap;</code></pre></div>
 </ol>
 <p>What all of this means is that the subscript operator is both convenient and efficient to <em>update</em> the value of an already existing element in the map. Since the value is constructed by default once and then assigned again, it is <em>not</em> an efficient way to insert a key-value pair to the map!</p>
 <p>The subscript operator can be dangerous when used without assigning any value! If the map does not have an element with <code>key99</code>, the following statement creates a new element with <code>key99</code> in the map:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">kvmap[ key99 ];
-<span class="co">// or ...</span>
-cout &lt;&lt; kvmap[ key99 ];</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1">kvmap[ key99 ];</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">// or ...</span></a>
+<a class="sourceLine" id="cb4-3" title="3">cout &lt;&lt; kvmap[ key99 ];</a></code></pre></div>
 <p>Inserting and updating elements in a map has these few potholes, so drive carefully when using them! 😁</p>
 <hr />
 <div class="footer">

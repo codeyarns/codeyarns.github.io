@@ -52,13 +52,13 @@
 <pre><code>$ bash Anaconda3-5.1.0-Linux-x86_64.sh</code></pre>
 <ul>
 <li><p>The bash script asks you for a place to install Anaconda. Typically this is <code>$HOME/anaconda3</code>. But you can provide it any alternate location you wish. Conda will store the environments you create in an <code>envs</code> subdirectory inside this base directory.</p></li>
-<li><p>The bash script asks if you want to add the <code>bin</code> subdirectory inside the base directory to your <code>PATH</code> environment variable. You can choose to do this on your own too. In either case, remember to make sure the Conda bin path is <strong>appended</strong> to <code>PATH</code>. If it is instead <strong>prepended</strong> to <code>PATH</code>, then Conda's Python interpreter will be invoked as the default one at the shell. Typically, you do not want this behavior. You want Conda's Python to be used only inside a Conda environment.</p></li>
+<li><p>The bash script asks if you want to add the <code>bin</code> subdirectory inside the base directory to your <code>PATH</code> environment variable. You can choose to do this on your own too. In either case, remember to make sure the Conda bin path is <strong>appended</strong> to <code>PATH</code>. If it is instead <strong>prepended</strong> to <code>PATH</code>, then Conda’s Python interpreter will be invoked as the default one at the shell. Typically, you do not want this behavior. You want Conda’s Python to be used only inside a Conda environment.</p></li>
 <li><p>After the script is done, restart your shell, so that your <code>PATH</code> has the Anaconda <code>bin</code> subdirectory.</p></li>
 <li><p>Run this command to check if everything is working:</p></li>
 </ul>
 <pre><code>$ conda info</code></pre>
 <ul>
-<li>I use the Fish shell, so I need to add this line to the <code>config.fish</code> to be able to use Conda's environment activate and deactivate commands:</li>
+<li>I use the Fish shell, so I need to add this line to the <code>config.fish</code> to be able to use Conda’s environment activate and deactivate commands:</li>
 </ul>
 <pre><code>source (conda info --root)/etc/fish/conf.d/conda.fish</code></pre>
 <p>I was able to create environments and use Conda after this.</p>

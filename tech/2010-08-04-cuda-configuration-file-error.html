@@ -46,7 +46,7 @@
 </header>
 <p>I got this error from the <strong>CUDA C compiler</strong> (<code>nvcc.exe</code>) when compiling a <strong>.cu</strong> file:</p>
 <blockquote>
-Visual Studio configuration file '(null)' could not be found for installation at 'C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/../..'
+Visual Studio configuration file ‘(null)’ could not be found for installation at ‘C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/../..’
 </blockquote>
 <p>The error gives very little clue on how to fix it. I checked the <strong>Cuda.rules</strong> file and the CUDA toolkit files and found no problems.</p>
 <p>It turns out that this is one more icky problem when transitioning to 64-bit computers. I was on a 64-bit machine and using a 32-bit Visual C++ compiler. I had installed the 64-bit versions of the <strong><a href="http://www.nvidia.com/object/cuda_get.html">CUDA Toolkit</a></strong> and <strong>GPU Computing SDK</strong>. The above error was caused by this mismatch.</p>

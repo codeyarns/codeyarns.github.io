@@ -60,10 +60,10 @@ int main()
 <p>On examining the code above, it is natural to think that 32 right shifts applied on <code>val</code> would boot out the puny 1 and the result would be 0. Though this is right almost always, it has some exceptions.</p>
 <p>From The C Programming Language [1]:</p>
 <blockquote>
-The result is undefined if the right operand is negative, or greater than or <strong>equal</strong> to the number of bits in the left expression's type.
+The result is undefined if the right operand is negative, or greater than or <strong>equal</strong> to the number of bits in the left expression’s type.
 </blockquote>
 <p>(Taking <code>val &gt;&gt; count</code> as example, left expression is <code>val</code> and right operand is <code>count</code>.)</p>
-<p>So, that explains why the result should not be relied on. But why <code>val</code> is 1? On digging deeper for that, I found that the compiler [2] generated the Intel instruction <code>sar</code> or <code>shr</code> (or it's variants) for the C shift operation. And here lies another nasty info ...</p>
+<p>So, that explains why the result should not be relied on. But why <code>val</code> is 1? On digging deeper for that, I found that the compiler [2] generated the Intel instruction <code>sar</code> or <code>shr</code> (or it’s variants) for the C shift operation. And here lies another nasty info …</p>
 <p>From the IA-32 Intel Architecture Software Developer’s Manual [3]:</p>
 <blockquote>
 The 8086 does not mask the shift count. However, all other IA-32 processors (starting with the Intel 286 processor) do mask the shift count to 5 bits, resulting in a maximum count of 31. This masking is done in all operating modes (including the virtual-8086 mode) to reduce the maximum execution time of the instructions.

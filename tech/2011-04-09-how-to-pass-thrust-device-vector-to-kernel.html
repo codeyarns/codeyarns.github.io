@@ -83,7 +83,7 @@ __global__ fooKernel(KernelArray&lt;int&gt; inArray)
     // ...
     return;
 }</code></pre>
-<p>You can take it a notch higher and make the conversion from <code>device_vector</code> to <code>KernelArray</code> to be implicit. This can be done by adding a constructor to <code>KernelArray</code> that takes one input parameter of type <code>device_vector</code>. (See Stephen's comment below the post.)</p>
+<p>You can take it a notch higher and make the conversion from <code>device_vector</code> to <code>KernelArray</code> to be implicit. This can be done by adding a constructor to <code>KernelArray</code> that takes one input parameter of type <code>device_vector</code>. (See Stephen’s comment below the post.)</p>
 <p>With such a constructor, you can now pass a <code>device_vector</code> seamlessly to the kernel:</p>
 <pre><code>thrust::device_vector&lt;int&gt; iVec;
 

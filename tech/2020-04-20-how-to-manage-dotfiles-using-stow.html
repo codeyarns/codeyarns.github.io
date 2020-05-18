@@ -48,12 +48,12 @@
 <p>Configuration and settings of my shell, Vim editor and of lots of other applications are stored as <strong>dotfiles</strong>. These dotfiles need to be located at my home directory (<code>~/.bashrc</code> for example) or at certain subdirectories inside it (<code>~/.config/fish/functions/fish_prompt.fish</code> for example). How do I update, replicate and manage all these dotfiles across multiple computers easily?</p>
 <h2 id="solution">Solution</h2>
 <p>A good solution to replicate and update these dotfiles across multiple computers is to check in all of them into a <strong>single Git repository</strong>. This allows me to clone the repo on any computer and update changes from one computer to all other computers.</p>
-<p>Since we are managing dotfiles that will end up being at the home directory and its subdirectories, the Git repo would need to be the home directory itself -- but this is a terrible solution!</p>
+<p>Since we are managing dotfiles that will end up being at the home directory and its subdirectories, the Git repo would need to be the home directory itself – but this is a terrible solution!</p>
 <p>What I would like is to have a Git repo that I can place anywhere I want. It would contain dotfiles in subdirectories inside the Git repo just as if they were in the home directory. What I would then need is a simple tool or script to copy or symlink these dotfiles to the actual locations in the home directory.</p>
 <p>And this is exactly what the tool <strong>stow</strong> does.</p>
 <p>It can be installed easily:</p>
 <pre><code>$ sudo apt install stow</code></pre>
-<p>Not only can stow do the above, it can do one better -- it allows me to store the dotfiles of each tool into its own subdirectory. This makes managing dotfiles far more easier.</p>
+<p>Not only can stow do the above, it can do one better – it allows me to store the dotfiles of each tool into its own subdirectory. This makes managing dotfiles far more easier.</p>
 <p>For example, I can store the Fish shell prompt file at <code>~/some/path/git_dotfiles/fish_dotfiles/.config/fish/functions/fish_prompt.fish</code>. And then I can ask stow to create a symlink at <code>~/.config/fish/functions/fish_prompt.fish</code> pointing to this file by running a command at the root of the Git repo directory: <code>stow --restow -v -t $HOME fish_dotfiles</code>.</p>
 <p>So what I have ended up having is dotfiles for each of my tools in their own subdirectories in the Git repo and then I run one command to create symlinks of their dotfiles in the home directory:</p>
 <pre><code>$ stow --restow -v -t $HOME bash_dotfiles fish_dotfiles ssh_dotfiles vim_dotfiles</code></pre>

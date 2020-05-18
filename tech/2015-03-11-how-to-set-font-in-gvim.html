@@ -45,11 +45,11 @@
 <p class="date">(First posted on: 2015-03-11 12:37:23+00:00)</p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/03/20150311_guifont.png" />
+<img src="https://codeyarns.files.wordpress.com/2015/03/20150311_guifont.png" alt=" " /><figcaption> </figcaption>
 </figure>
 <p>The <strong>font</strong> used by <strong>GVim</strong> can be set by choosing Edit -&gt; Select Font, which displays a dialog to pick the font. You can get the same dialog by using the command <code>:set guifont=*</code></p>
 <p>The chosen font is used only for the current session and GVim reverts back to its default font after that.</p>
-<p>To set the default font used by GVim, add a command of the form <code>set guifont=</code> to your <code>gvimrc</code>. If you want to add it to <code>vimrc</code> file, then enclose this command in a <code>if has(&quot;gui_running&quot;)</code> block.</p>
+<p>To set the default font used by GVim, add a command of the form <code>set guifont=</code> to your <code>gvimrc</code>. If you want to add it to <code>vimrc</code> file, then enclose this command in a <code>if has("gui_running")</code> block.</p>
 <p>The only tricky part here is, what is the format in which the font and font size should be specified? An easy trick is to set the font and font size in the font dialog and then query it back using <code>:set guifont?</code>. Use the exact value that it displays. Note that the format of the font string varies according to the platform. A <strong>Ubuntu Mono</strong> font in size 10 is given as <code>Ubuntu Mono:h10</code> on Windows and as <code>Ubuntu Mono 10</code> on Linux.</p>
 <p>Also on Linux, note that you should not enclose the font string in single or double quotes. If the font string has <strong>spaces</strong>, then escape them using backslashes. Enclosing in quotes works fine on Windows.</p>
 <pre><code>&quot; This works on Windows, but is ineffective on Linux

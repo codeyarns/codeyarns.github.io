@@ -44,8 +44,8 @@
 <h1 class="title">How does Windows block files downloaded from the Internet?</h1>
 <p class="date">(First posted on: 2012-10-28 15:43:57+00:00)</p>
 </header>
-<p>[caption id=&quot;attachment_2859&quot; align=&quot;aligncenter&quot; width=&quot;474&quot;][<br />
-<img src="http://codeyarns.files.wordpress.com/2012/10/20121029-zone-stream.png" />](http://codeyarns.files.wordpress.com/2012/10/20121029-zone-stream.png) Windows blocks execution of downloaded files.[/caption]</p>
+<p>[caption id=“attachment_2859” align=“aligncenter” width=“474”][<br />
+<img src="http://codeyarns.files.wordpress.com/2012/10/20121029-zone-stream.png" alt=" " />](http://codeyarns.files.wordpress.com/2012/10/20121029-zone-stream.png) Windows blocks execution of downloaded files.[/caption]</p>
 <p><strong>Windows</strong> warns you if you try to open or execute a file that you <strong>downloaded</strong> from the Internet. This is a security feature of Windows that helps avoid execution or propagation of malicious files.</p>
 <p>This is possible because applications, like the browser, use the Windows API to save files from the Internet. Windows invokes the <strong>Attachment Execution Service</strong> when such an API is called. This service adds a <strong>Zone Identifier stream</strong> to the saved file. Later when the file is opened or executed by Explorer, it sees this stream and warns the user about the file. Such a file is said to be <strong>blocked</strong> by Windows.</p>
 <p><strong>Reference:</strong> Page 427 of Windows Internals (6 Edition) Part 2</p>

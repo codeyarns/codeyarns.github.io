@@ -45,22 +45,22 @@
 <p class="date">(First posted on: 2010-12-09 12:12:13+00:00)</p>
 </header>
 <p><a href="http://www.vim.org/scripts/script.php?script_id=2332"><strong>Pathogen</strong></a> is a simple <strong>Vim</strong> plugin written by <strong>Tim Pope</strong> that makes managing plugin files easy. Typically, plugin files are scattered all over the plugin, autoload and doc subdirectories of vimfiles. It becomes hard to distinguish which <code>.vim</code> files belongs to which plugin. This makes updating or uninstalling plugins quite hard.</p>
-<p>Pathogen allows the user to place the files of each plugin in their own private subdirectory. To update or uninstall a plugin, just manage that plugin's subdirectory. By default, the root directory that Pathogen looks for is named <strong>bundle</strong>. At runtime, Pathogen forms a list of all these plugin subdirectories and appends them all to <a href="http://codeyarns.wordpress.com/2010/11/27/vim-run-time-path/"><strong>runtimepath</strong></a>, which is the path that Vim looks through for loading plugins.</p>
+<p>Pathogen allows the user to place the files of each plugin in their own private subdirectory. To update or uninstall a plugin, just manage that plugin’s subdirectory. By default, the root directory that Pathogen looks for is named <strong>bundle</strong>. At runtime, Pathogen forms a list of all these plugin subdirectories and appends them all to <a href="http://codeyarns.wordpress.com/2010/11/27/vim-run-time-path/"><strong>runtimepath</strong></a>, which is the path that Vim looks through for loading plugins.</p>
 <p><strong>Installation</strong></p>
 <ol type="1">
 <li><p>Place <code>pathogen.vim</code> in <code>vimfiles/autoload</code> directory.</p></li>
-<li><p>Add this line to your vimrc:</p>
-<pre><code>call pathogen#runtime_append_all_bundles()</code></pre></li>
+<li>Add this line to your vimrc:</li>
 </ol>
+<pre><code>call pathogen#runtime_append_all_bundles()</code></pre>
 <p><strong>Usage</strong></p>
 <ol type="1">
 <li><p>Create a <code>bundle</code> subdirectory inside the <code>vimfiles</code> subdirectory.</p></li>
-<li><p>Create a subdirectory inside bundle for each plugin you use. You can use the plugin name as the directory name.</p>
-<ol type="1">
-<li><p>For plugins that ship with a plugin-autoload-doc directory structure, just unzip the plugin files inside this subdirectory.</p></li>
-<li><p>For plugins that ship as a single .vim file, create a further plugin or autoload subdirectory (as required) and place the plugin file in it.</p></li>
-</ol></li>
+<li><p>Create a subdirectory inside bundle for each plugin you use. You can use the plugin name as the directory name.</p></li>
 </ol>
+<pre><code>1. For plugins that ship with a plugin-autoload-doc directory structure, just unzip the plugin files inside this subdirectory.
+
+
+2. For plugins that ship as a single .vim file, create a further plugin or autoload subdirectory (as required) and place the plugin file in it.</code></pre>
 <p><strong>Note</strong>: If you prefer that installation, updation and uninstallation of plugins be automated, check out the <a href="http://codeyarns.wordpress.com/2010/12/09/using-vim-addon-manager-on-windows/"><strong>vim-addon-manager</strong></a> plugin.</p>
 <hr />
 <div class="footer">

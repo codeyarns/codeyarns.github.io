@@ -48,11 +48,13 @@
 <ol type="1">
 <li><p>Make sure your C or C++ code compiles without errors. Make sure your compiled program starts, executes and exits without any errors.</p></li>
 <li><p>Add the <code>-pg</code> option to <strong>both</strong> the object <strong>compilation</strong> and <strong>linking</strong> stages of the program compilation. Compile the program from scratch.</p></li>
-<li><p>Execute the program as you normally do. It might take a while longer to finish due to the profiling. After the program exits, it writes a <code>gmon.out</code> file with profiling information.</p>
-<pre><code>$ ./foo</code></pre></li>
-<li><p>Invoke gprof with your program executable as input. It prints out profiling information in the form of both a flat profile and a call graph. You can pipe this to a pager or redirect it to a text file for examination.</p>
-<pre><code>$ gprof foo</code></pre></li>
+<li>Execute the program as you normally do. It might take a while longer to finish due to the profiling. After the program exits, it writes a <code>gmon.out</code> file with profiling information.</li>
 </ol>
+<pre><code>$ ./foo</code></pre>
+<ol start="4" type="1">
+<li>Invoke gprof with your program executable as input. It prints out profiling information in the form of both a flat profile and a call graph. You can pipe this to a pager or redirect it to a text file for examination.</li>
+</ol>
+<pre><code>$ gprof foo</code></pre>
 <p>Examining the output of gprof gives you an idea of which functions in the program are taking the most execution time. This information can be used to optimize such functions.</p>
 <p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
 <hr />

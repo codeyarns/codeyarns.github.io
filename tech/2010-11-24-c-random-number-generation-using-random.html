@@ -8,41 +8,67 @@
   <title>Code Yarns – C++: Random Number Generation Using</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -93,56 +119,56 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p><strong>Simple Random Number Generation</strong></p>
 <p>Here is a simple random number generator that produces random float values. It uses the variate_generator to wrap a minstd_rand engine and uniform_real_distribution.</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;random&gt;</span>
-<span class="kw">using</span> <span class="kw">namespace</span> std;
-
-<span class="kw">typedef</span> minstd_rand                             Engine;
-<span class="kw">typedef</span> uniform_real_distribution&lt;<span class="dt">float</span>&gt;        Distribution;
-<span class="kw">typedef</span> variate_generator&lt;Engine, Distribution&gt; Generator;
-
-Generator gen( Engine(<span class="dv">9999</span>), Distribution( <span class="dv">10</span>, <span class="dv">100</span> ) );
-
-cout &lt;&lt; <span class="st">&quot;Random value: &quot;</span> &lt;&lt; gen() &lt;&lt; endl;</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;random&gt;</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">using</span> <span class="kw">namespace</span> std;</a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">typedef</span> minstd_rand                             Engine;</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">typedef</span> uniform_real_distribution&lt;<span class="dt">float</span>&gt;        Distribution;</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">typedef</span> variate_generator&lt;Engine, Distribution&gt; Generator;</a>
+<a class="sourceLine" id="cb1-7" title="7"></a>
+<a class="sourceLine" id="cb1-8" title="8">Generator gen( Engine(<span class="dv">9999</span>), Distribution( <span class="dv">10</span>, <span class="dv">100</span> ) );</a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10">cout &lt;&lt; <span class="st">&quot;Random value: &quot;</span> &lt;&lt; gen() &lt;&lt; endl;</a></code></pre></div>
 <p>The minstd_rand engine requires a seed, here we seed it with 9999. We also provide the uniform_real_distribution an output range of [10.0,100.0).</p>
 <p><strong>Simple Random Generator Class</strong></p>
 <p>If all I want is to generate some random number simply and quickly, the C++ <random> looks truly foreboding! :-(</p>
 <p>Here is a simple random number generator class that wraps up the complexity to provide a simple interface:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;random&gt;</span>
-<span class="kw">using</span> <span class="kw">namespace</span> std;
-
-<span class="kw">class</span> MyRandom
-{
-<span class="kw">private</span>:
-    <span class="co">// Types</span>
-    <span class="kw">typedef</span> minstd_rand                             Engine;
-    <span class="kw">typedef</span> uniform_real_distribution&lt;<span class="dt">float</span>&gt;        Distribution;
-    <span class="kw">typedef</span> variate_generator&lt;Engine, Distribution&gt; Generator;
-
-    <span class="co">// To hold the generator</span>
-    Generator* _gen;
-
-<span class="kw">public</span>:
-    MyRandom( <span class="dt">int</span> seed, <span class="dt">float</span> minVal, <span class="dt">float</span> maxVal )
-    {
-        _gen = <span class="kw">new</span> Generator( Engine( seed ), Distribution( minVal, maxVal ) );
-    }
-
-    ~MyRandom()
-    {
-        <span class="kw">delete</span> _gen;
-    }
-
-    <span class="dt">float</span> next()
-    {
-        <span class="cf">return</span> (*_gen)();
-    }
-};</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="pp">#include </span><span class="im">&lt;random&gt;</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">using</span> <span class="kw">namespace</span> std;</a>
+<a class="sourceLine" id="cb2-3" title="3"></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="kw">class</span> MyRandom</a>
+<a class="sourceLine" id="cb2-5" title="5">{</a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="kw">private</span>:</a>
+<a class="sourceLine" id="cb2-7" title="7">    <span class="co">// Types</span></a>
+<a class="sourceLine" id="cb2-8" title="8">    <span class="kw">typedef</span> minstd_rand                             Engine;</a>
+<a class="sourceLine" id="cb2-9" title="9">    <span class="kw">typedef</span> uniform_real_distribution&lt;<span class="dt">float</span>&gt;        Distribution;</a>
+<a class="sourceLine" id="cb2-10" title="10">    <span class="kw">typedef</span> variate_generator&lt;Engine, Distribution&gt; Generator;</a>
+<a class="sourceLine" id="cb2-11" title="11"></a>
+<a class="sourceLine" id="cb2-12" title="12">    <span class="co">// To hold the generator</span></a>
+<a class="sourceLine" id="cb2-13" title="13">    Generator* _gen;</a>
+<a class="sourceLine" id="cb2-14" title="14"></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb2-16" title="16">    MyRandom( <span class="dt">int</span> seed, <span class="dt">float</span> minVal, <span class="dt">float</span> maxVal )</a>
+<a class="sourceLine" id="cb2-17" title="17">    {</a>
+<a class="sourceLine" id="cb2-18" title="18">        _gen = <span class="kw">new</span> Generator( Engine( seed ), Distribution( minVal, maxVal ) );</a>
+<a class="sourceLine" id="cb2-19" title="19">    }</a>
+<a class="sourceLine" id="cb2-20" title="20"></a>
+<a class="sourceLine" id="cb2-21" title="21">    ~MyRandom()</a>
+<a class="sourceLine" id="cb2-22" title="22">    {</a>
+<a class="sourceLine" id="cb2-23" title="23">        <span class="kw">delete</span> _gen;</a>
+<a class="sourceLine" id="cb2-24" title="24">    }</a>
+<a class="sourceLine" id="cb2-25" title="25"></a>
+<a class="sourceLine" id="cb2-26" title="26">    <span class="dt">float</span> next()</a>
+<a class="sourceLine" id="cb2-27" title="27">    {</a>
+<a class="sourceLine" id="cb2-28" title="28">        <span class="cf">return</span> (*_gen)();</a>
+<a class="sourceLine" id="cb2-29" title="29">    }</a>
+<a class="sourceLine" id="cb2-30" title="30">};</a></code></pre></div>
 <p>The above class interface is influenced by C# Random, which is how simple and accessible C++ should have been! Writing code using the above class is easy:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="at">const</span> <span class="dt">int</span> seed      = <span class="dv">9999</span>;
-<span class="at">const</span> <span class="dt">float</span> minVal  = <span class="dv">10</span>;
-<span class="at">const</span> <span class="dt">float</span> maxVal  = <span class="dv">100</span>;
-MyRandom myRand( seed, minVal, maxVal );
-cout &lt;&lt; <span class="st">&quot;Random value: &quot;</span> &lt;&lt; myRand.next() &lt;&lt; endl;</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="at">const</span> <span class="dt">int</span> seed      = <span class="dv">9999</span>;</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="at">const</span> <span class="dt">float</span> minVal  = <span class="dv">10</span>;</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="at">const</span> <span class="dt">float</span> maxVal  = <span class="dv">100</span>;</a>
+<a class="sourceLine" id="cb3-4" title="4">MyRandom myRand( seed, minVal, maxVal );</a>
+<a class="sourceLine" id="cb3-5" title="5">cout &lt;&lt; <span class="st">&quot;Random value: &quot;</span> &lt;&lt; myRand.next() &lt;&lt; endl;</a></code></pre></div>
 <p>I hope this post made digesting <random> a wee bit easier! :-)</p>
 <hr />
 <div class="footer">

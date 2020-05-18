@@ -44,13 +44,14 @@
 <h1 class="title">Windows 7: Fixedsys as Console Font</h1>
 <p class="date">(First posted on: 2010-12-10 08:45:39+00:00)</p>
 </header>
-<p><a href="http://codeyarns.files.wordpress.com/2010/12/20101210_fixedsys_console.png"><img src="http://codeyarns.files.wordpress.com/2010/12/20101210_fixedsys_console.png" /></a></p>
+<p><a href="http://codeyarns.files.wordpress.com/2010/12/20101210_fixedsys_console.png"><img src="http://codeyarns.files.wordpress.com/2010/12/20101210_fixedsys_console.png" alt=" " /></a></p>
 <p>It does not seem to be possible to set <a href="http://en.wikipedia.org/wiki/Fixedsys"><strong>Fixedsys</strong></a> as the <strong>Console font</strong> for the Windows 7 command prompt. Setting it in the Registry silently fails and it does not appear in the Fonts list of the console. This might be due to several reasons:</p>
 <ul>
 <li><p>Fixedsys is the oldest Windows font. It might not support all the current <a href="http://support.microsoft.com/kb/247815">criteria of a console font</a>.</p></li>
 <li><p>Fixedsys is a progenitor of the font <strong>Lucida Console</strong>, which already appears as an option in the console.</p></li>
 <li><p>Fixedsys is a <strong>raster font</strong> (also called <strong>bitmap font</strong>) and the only raster fonts supported for the Windows Console are already listed in the Console.</p></li>
-<li><p>There is no font file named <code>fixedsys.*</code>. Fixedsys is a font name mapped to several old raster fonts with the name pattern <code>*fix*.fon</code> found in the <code>C:\Windows\Fonts</code> directory. These fonts are aimed at different old terminals like VGA, CVGA and others. On Windows 7, these fonts are:</p>
+<li>There is no font file named <code>fixedsys.*</code>. Fixedsys is a font name mapped to several old raster fonts with the name pattern <code>*fix*.fon</code> found in the <code>C:\Windows\Fonts</code> directory. These fonts are aimed at different old terminals like VGA, CVGA and others. On Windows 7, these fonts are:</li>
+</ul>
 <pre><code>8514fix.fon
 8514fixe.fon
 8514fixg.fon
@@ -68,8 +69,7 @@ vgafix.fon
 vgafixe.fon
 vgafixg.fon
 vgafixr.fon
-vgafixt.fon</code></pre></li>
-</ul>
+vgafixt.fon</code></pre>
 <p>If you really want Fixedsys as a console font, get a Fixedsys clone that is available as a TrueType Font (TTF). One such clone is <a href="http://fixedsys.moviecorner.de/"><strong>FixedsysTTF</strong></a> which can be used on the console. Set it to size 16 and Bold and it looks exactly like Fixedsys does by default.</p>
 <hr />
 <div class="footer">

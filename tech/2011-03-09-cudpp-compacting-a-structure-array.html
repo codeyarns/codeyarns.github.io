@@ -8,41 +8,67 @@
   <title>Code Yarns – CUDPP: Compacting a Structure Array</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -86,54 +112,54 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p><strong>Solution</strong></p>
 <p>One solution for this problem is to create an index array, compact the index array and use the compacted index array to manually compact the device array of structures.</p>
 <p>Here is a simple example for illustration. Assume we are dealing with data of type <code>Foo</code>:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">struct</span> Foo
-{
-    <span class="co">// Composed of something</span>
-};
-
-<span class="co">// Arrays are assumed to be allocated and filled</span>
-Foo* devFooArray;             <span class="co">// Device array with content to be compacted</span>
-<span class="dt">int</span> Num;                      <span class="co">// Size of array</span>
-<span class="dt">unsigned</span> <span class="dt">int</span>* devValidArrary; <span class="co">// Device array with 1/0 flags already set</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">struct</span> Foo</a>
+<a class="sourceLine" id="cb1-2" title="2">{</a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="co">// Composed of something</span></a>
+<a class="sourceLine" id="cb1-4" title="4">};</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co">// Arrays are assumed to be allocated and filled</span></a>
+<a class="sourceLine" id="cb1-7" title="7">Foo* devFooArray;             <span class="co">// Device array with content to be compacted</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="dt">int</span> Num;                      <span class="co">// Size of array</span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="dt">unsigned</span> <span class="dt">int</span>* devValidArrary; <span class="co">// Device array with 1/0 flags already set</span></a></code></pre></div>
 <p>Create an integer array on the device and set each element of index array using a simple kernel:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__global__ <span class="dt">void</span> setIndexKernel( <span class="dt">int</span>* indexArr, <span class="dt">int</span> num )
-{
-    <span class="at">const</span> <span class="dt">int</span> threadNum         = gridDim.x * blockDim.x;
-    <span class="at">const</span> <span class="dt">int</span> curThreadIndex    = ( blockIdx.x * blockDim.x ) + threadIdx.x;
-
-    <span class="cf">for</span> ( <span class="dt">int</span> index = curThreadIndex; index &lt; num; index += threadNum )
-        indexArr[ index ] = index;
-
-    <span class="cf">return</span>;
-}
-
-<span class="dt">int</span>* devIndexArray; <span class="co">// Device index array</span>
-setIndexKernel&lt;&lt;&lt; BlocksPerGrid, ThreadsPerBlock &gt;&gt;&gt;( devIndexArray, Num );</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1">__global__ <span class="dt">void</span> setIndexKernel( <span class="dt">int</span>* indexArr, <span class="dt">int</span> num )</a>
+<a class="sourceLine" id="cb2-2" title="2">{</a>
+<a class="sourceLine" id="cb2-3" title="3">    <span class="at">const</span> <span class="dt">int</span> threadNum         = gridDim.x * blockDim.x;</a>
+<a class="sourceLine" id="cb2-4" title="4">    <span class="at">const</span> <span class="dt">int</span> curThreadIndex    = ( blockIdx.x * blockDim.x ) + threadIdx.x;</a>
+<a class="sourceLine" id="cb2-5" title="5"></a>
+<a class="sourceLine" id="cb2-6" title="6">    <span class="cf">for</span> ( <span class="dt">int</span> index = curThreadIndex; index &lt; num; index += threadNum )</a>
+<a class="sourceLine" id="cb2-7" title="7">        indexArr[ index ] = index;</a>
+<a class="sourceLine" id="cb2-8" title="8"></a>
+<a class="sourceLine" id="cb2-9" title="9">    <span class="cf">return</span>;</a>
+<a class="sourceLine" id="cb2-10" title="10">}</a>
+<a class="sourceLine" id="cb2-11" title="11"></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="dt">int</span>* devIndexArray; <span class="co">// Device index array</span></a>
+<a class="sourceLine" id="cb2-13" title="13">setIndexKernel&lt;&lt;&lt; BlocksPerGrid, ThreadsPerBlock &gt;&gt;&gt;( devIndexArray, Num );</a></code></pre></div>
 <p>Now, use this array as input to <code>cudppCompact()</code> and obtain a compacted index array from it:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">cudppCompact( compactPlan, devCompactIndexArray, devCompactNum, devIndexArr, devValidArray, Num );</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1">cudppCompact( compactPlan, devCompactIndexArray, devCompactNum, devIndexArr, devValidArray, Num );</a></code></pre></div>
 <p>Allocate for a compacted size Foo-type array and compact the elements using another simple kernel:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">__global__ <span class="dt">void</span> compactKernel
-(
-<span class="at">const</span> Foo*  srcFooArray,
-Foo*        destFooArray,
-<span class="at">const</span> <span class="dt">int</span>*  compactIndexArray,
-<span class="dt">int</span>         compactNum
-)
-{
-    <span class="at">const</span> <span class="dt">int</span> threadNum         = gridDim.x * blockDim.x;
-    <span class="at">const</span> <span class="dt">int</span> curThreadIndex    = ( blockIdx.x * blockDim.x ) + threadIdx.x;
-
-    <span class="cf">for</span> ( <span class="dt">int</span> index = curThreadIndex; index &lt; compactNum; index += threadNum )
-    {
-        <span class="at">const</span> <span class="dt">int</span> fromIndex   = compactIndexArray[ index ];
-        destFooArray[ index ] = srcFooArray[ fromIndex ];
-    }
-
-    <span class="cf">return</span>;
-}
-
-Foo* devCompactFooArray; <span class="co">// Allocated to size devCompactNum</span>
-compactKernel&lt;&lt;&lt; BlocksPerGrid, ThreadsPerBlock &gt;&gt;&gt;( devFooArray, devCompactFooArray, devCompactIndexArray, devCompactNum );</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1">__global__ <span class="dt">void</span> compactKernel</a>
+<a class="sourceLine" id="cb4-2" title="2">(</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="at">const</span> Foo*  srcFooArray,</a>
+<a class="sourceLine" id="cb4-4" title="4">Foo*        destFooArray,</a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="at">const</span> <span class="dt">int</span>*  compactIndexArray,</a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="dt">int</span>         compactNum</a>
+<a class="sourceLine" id="cb4-7" title="7">)</a>
+<a class="sourceLine" id="cb4-8" title="8">{</a>
+<a class="sourceLine" id="cb4-9" title="9">    <span class="at">const</span> <span class="dt">int</span> threadNum         = gridDim.x * blockDim.x;</a>
+<a class="sourceLine" id="cb4-10" title="10">    <span class="at">const</span> <span class="dt">int</span> curThreadIndex    = ( blockIdx.x * blockDim.x ) + threadIdx.x;</a>
+<a class="sourceLine" id="cb4-11" title="11"></a>
+<a class="sourceLine" id="cb4-12" title="12">    <span class="cf">for</span> ( <span class="dt">int</span> index = curThreadIndex; index &lt; compactNum; index += threadNum )</a>
+<a class="sourceLine" id="cb4-13" title="13">    {</a>
+<a class="sourceLine" id="cb4-14" title="14">        <span class="at">const</span> <span class="dt">int</span> fromIndex   = compactIndexArray[ index ];</a>
+<a class="sourceLine" id="cb4-15" title="15">        destFooArray[ index ] = srcFooArray[ fromIndex ];</a>
+<a class="sourceLine" id="cb4-16" title="16">    }</a>
+<a class="sourceLine" id="cb4-17" title="17"></a>
+<a class="sourceLine" id="cb4-18" title="18">    <span class="cf">return</span>;</a>
+<a class="sourceLine" id="cb4-19" title="19">}</a>
+<a class="sourceLine" id="cb4-20" title="20"></a>
+<a class="sourceLine" id="cb4-21" title="21">Foo* devCompactFooArray; <span class="co">// Allocated to size devCompactNum</span></a>
+<a class="sourceLine" id="cb4-22" title="22">compactKernel&lt;&lt;&lt; BlocksPerGrid, ThreadsPerBlock &gt;&gt;&gt;( devFooArray, devCompactFooArray, devCompactIndexArray, devCompactNum );</a></code></pre></div>
 <p><strong>Tried with</strong>: CUDPP 1.1.1 and CUDA 3.2</p>
 <hr />
 <div class="footer">

@@ -8,41 +8,67 @@
   <title>Code Yarns – max and min in Python</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -82,23 +108,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p class="date">(First posted on: 2012-04-24 15:21:19+00:00)</p>
 </header>
 <p>With multiple input arguments, <strong>max</strong> returns the maximum amongst them.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="bu">max</span>( <span class="dv">33</span>, <span class="dv">99</span>, <span class="dv">45</span> )
-<span class="co"># 99</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb1-1" title="1"><span class="bu">max</span>( <span class="dv">33</span>, <span class="dv">99</span>, <span class="dv">45</span> )</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co"># 99</span></a></code></pre></div>
 <p>With single argument, which must be an <strong>iterable</strong>, max returns the maximum item in the iterable.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">a <span class="op">=</span> ( <span class="dv">33</span>, <span class="dv">99</span>, <span class="dv">45</span> )
-<span class="bu">max</span>( a )
-<span class="co"># 99</span>
-<span class="bu">max</span>( <span class="st">&quot;Gandhi&quot;</span> )
-<span class="co"># &#39;n&#39;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb2-1" title="1">a <span class="op">=</span> ( <span class="dv">33</span>, <span class="dv">99</span>, <span class="dv">45</span> )</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="bu">max</span>( a )</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co"># 99</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="bu">max</span>( <span class="st">&quot;Gandhi&quot;</span> )</a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co"># &#39;n&#39;</span></a></code></pre></div>
 <p>max also takes an optional <strong>ordering function</strong> through its <strong>key</strong> argument. This function will be called with each item and is expected to return a value that max can use for finding its maximum.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> myfoo( i ):
-    <span class="cf">if</span> <span class="st">&quot;a&quot;</span> <span class="op">==</span> i: <span class="cf">return</span> <span class="dv">10</span>
-    <span class="cf">if</span> <span class="st">&quot;b&quot;</span> <span class="op">==</span> i: <span class="cf">return</span> <span class="dv">99</span>
-    <span class="cf">if</span> <span class="st">&quot;c&quot;</span> <span class="op">==</span> i: <span class="cf">return</span> <span class="dv">50</span>
-<span class="bu">max</span>( <span class="st">&quot;abc&quot;</span> )
-<span class="co"># &#39;c&#39;</span>
-<span class="bu">max</span>( <span class="st">&quot;abc&quot;</span>, key<span class="op">=</span>myfoo )
-<span class="co"># &#39;b&#39;</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">def</span> myfoo( i ):</a>
+<a class="sourceLine" id="cb3-2" title="2">    <span class="cf">if</span> <span class="st">&quot;a&quot;</span> <span class="op">==</span> i: <span class="cf">return</span> <span class="dv">10</span></a>
+<a class="sourceLine" id="cb3-3" title="3">    <span class="cf">if</span> <span class="st">&quot;b&quot;</span> <span class="op">==</span> i: <span class="cf">return</span> <span class="dv">99</span></a>
+<a class="sourceLine" id="cb3-4" title="4">    <span class="cf">if</span> <span class="st">&quot;c&quot;</span> <span class="op">==</span> i: <span class="cf">return</span> <span class="dv">50</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="bu">max</span>( <span class="st">&quot;abc&quot;</span> )</a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co"># &#39;c&#39;</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="bu">max</span>( <span class="st">&quot;abc&quot;</span>, key<span class="op">=</span>myfoo )</a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co"># &#39;b&#39;</span></a></code></pre></div>
 <p>All of the above applies to the <strong>min</strong> function too.</p>
 <p>For more information, see <a href="http://docs.python.org/library/functions.html">Built-in Functions</a>.</p>
 <p><strong>Tried with:</strong> Python 3.2.2</p>
