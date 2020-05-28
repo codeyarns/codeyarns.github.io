@@ -46,7 +46,17 @@
 </header>
 <p>The <a href="2014/08/25/y-ppa-manager/"><strong>Y PPA Manager</strong></a> is a GUI that can be used to view, add or remove <strong>PPA repositories</strong> in Ubuntu. If you prefer the shell, the <code>add-apt-repository</code> program can be used to add or remove PPA repositories. However, there is no program that lists the PPA repositories you have added to your system.</p>
 <p>Here is a popular shell script that lists PPA repositories:</p>
-<p>https://gist.github.com/ashwin/37663495096b44eb52d6</p>
+<pre><code>#! /bin/sh 
+# listppa Script to get all the PPA installed on a system ready to share for reininstall
+# From: http://askubuntu.com/questions/148932/how-can-i-get-a-list-of-all-repositories-and-ppas-from-the-command-line
+
+for APT in `find /etc/apt/ -name \*.list`; do
+    grep -o &quot;^deb http://ppa.launchpad.net/[a-z0-9\-]\+/[a-z0-9\-]\+&quot; $APT | while read ENTRY ; do
+        USER=`echo $ENTRY | cut -d/ -f4`
+        PPA=`echo $ENTRY | cut -d/ -f5`
+        echo sudo apt-add-repository ppa:$USER/$PPA
+    done
+done</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 <hr />
 <div class="footer">
