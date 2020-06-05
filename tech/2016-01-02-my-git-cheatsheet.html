@@ -60,9 +60,24 @@
 </ul>
 <pre><code>$ git reset --hard</code></pre>
 <ul>
-<li>To revert the effect of a particular commit:</li>
+<li>To revert a specific commit and add that reverted change as a commit:</li>
 </ul>
-<pre><code>$ git revert sha_hash_of_that_commit</code></pre>
+<pre><code>$ git revert sha_hash_of_commit_1</code></pre>
+<ul>
+<li>To revert a series of specific commits and add each of those reverted changes as new commits:</li>
+</ul>
+<pre><code>$ git revert sha_hash_of_commit_700
+$ git revert sha_hash_of_commit_99
+$ git revert sha_hash_of_commit_1</code></pre>
+<p>Though you can revert commits in any order, it is best if you revert in opposite order of history. That is, revert the latest commit first and so on.</p>
+<ul>
+<li>To revert a series of specific commits and create only a single commit out of them:</li>
+</ul>
+<pre><code>$ git revert --no-commit sha_hash_of_commit_700
+$ git revert --no-commit sha_hash_of_commit_99
+$ git revert --no-commit sha_hash_of_commit_1
+$ git commit</code></pre>
+<p>The <code>--no-commit</code> stages the reverted changes, but does not commit them. So, we follow them up with a commit.</p>
 <ul>
 <li>To delete last commit and losing its changes:</li>
 </ul>
