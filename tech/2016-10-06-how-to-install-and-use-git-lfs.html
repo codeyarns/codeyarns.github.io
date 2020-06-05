@@ -44,19 +44,47 @@
 <h1 class="title">How to install and use Git LFS</h1>
 <p class="date">(First posted on: 2016-10-06 15:00:16+00:00)</p>
 </header>
-<p><a href="https://git-lfs.github.com/"><strong>Large File Storage (LFS)</strong></a> is an extension to <strong>Git</strong> to handle large files. This is usually used to store binaries or graphics or video game assets.</p>
+<p><strong>Git</strong> repositories and its hosts like Github have limits on the file size of what can be stored there. While the file size is not really an issue for text files, it becomes a problem if you are trying to use Git to store large binary files. This is usually the case for executable files or libraries, video game assets or deep learning models. <a href="https://git-lfs.github.com/"><strong>Large File Storage (LFS)</strong></a> is an extension to Git that can help you to handle large files. For the rest of this post, we need to assume that your Git server or host (like Github) supports LFS.</p>
 <ul>
-<li><strong>Install</strong>: The easiest way is to install a package from the LFS repository:</li>
+<li><strong>Install</strong>: Installing is easy:</li>
 </ul>
+<pre><code>$ sudo apt install git-lfs</code></pre>
+<p>In older versions of Ubuntu, you had to install from the LFS repository like this:</p>
 <pre><code>$ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 $ sudo apt install git-lfs</code></pre>
 <ul>
-<li><strong>Use</strong>: To fetch the files from a remote repository to local repository and checkout a large file:</li>
+<li><strong>Clone all the large files</strong>: Cloning a LFS repository uses the same command as always:</li>
+</ul>
+<pre><code>$ git clone https://github.com/joe/foobar</code></pre>
+<p>However, note that this will download all the large files in their full size. For a large repository, this will take a long time and you need to make sure you have the space to hold the entire repository of files.</p>
+<ul>
+<li><strong>Clone just the pointer files</strong>: If you just want to clone the pointer files, we need to skip the <strong>smudge</strong> filter used by git-lfs. This is the filter used to look up the large file based on the pointer file. There are a couple of ways to clone just the pointer files.</li>
+</ul>
+<p>Set an environment variable to skip smudge filter and then clone:</p>
+<pre><code>$ GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/joe/foobar</code></pre>
+<p>An alternative is to use a git config that does the same:</p>
+<pre><code>$ git config --global filter.lfs.smudge &quot;git-lfs smudge --skip&quot;
+$ git clone https://github.com/joe/foobar</code></pre>
+<ul>
+<li><strong>Checkout all large files</strong>: To fetch the latest version of all large files from a remote repository to local repository and checkout a large file:</li>
 </ul>
 <pre><code>$ git lfs fetch
 $ git lfs checkout foobar.bin</code></pre>
-<p>This replaces the <code>foobar.bin</code> which was a placeholder with the actual large file fetched from the remote repository (which should also have LFS support, like Github for example).</p>
-<p><strong>Tried with:</strong> Git 2.9 and Ubuntu 14.04</p>
+<ul>
+<li><strong>Checkout a single large file</strong>: If you are keeping only pointer files in your repo and want to pull down only a single large file:</li>
+</ul>
+<pre><code>$ git lfs fetch --include foobar.bin
+$ git lfs checkout --include foobar.bin</code></pre>
+<p>Alternatively:</p>
+<pre><code>$ git lfs pull --include foobar.bin</code></pre>
+<ul>
+<li><strong>Replace large file back with its pointer file</strong>:</li>
+</ul>
+<pre><code>$ git lfs pointer --file foobar.bin &gt; foobar.bin.pf
+$ rm foobar.bin
+$ mv foobar.bin.pf foobar.bin
+$ git add foobar.bin</code></pre>
+<p><strong>Tried with:</strong> Git 2.17.1 and Ubuntu 18.04</p>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
