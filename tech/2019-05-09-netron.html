@@ -44,8 +44,8 @@
 <h1 class="title">Netron</h1>
 <p class="date">(First posted on: 2019-05-09 12:43:08+00:00)</p>
 </header>
-<p>Visualizing deep learning models has become a difficult task with the explosion of Deep Learning frameworks and formats used to store trained models. Every framework ships with its own visualization tool or not. For people working with multiple frameworks, this means learning and using different tools for the same task.</p>
-<p><a href="https://github.com/lutzroeder/netron"><strong>Netron</strong></a> aims to solve this problem by being a model visualization tool that supports pretty much every DL framework and model format. All the important ones that I care about are supported: Caffe prototxt, TensorFlow protobuf and ONNX.</p>
+<p>Visualizing deep learning models has become a difficult task with the explosion of Deep Learning frameworks and formats used to store trained models. Some frameworks ship with their own visualization tool and many do not. For people working with multiple frameworks, this means learning and using different tools for the same task. <a href="2016-03-10-netscope.html"><strong>Netscope</strong></a> is a great in-browser visualizer, but it only works for prototxt files.</p>
+<p><a href="https://github.com/lutzroeder/netron"><strong>Netron</strong></a> aims to solve this problem by being a model visualization tool that supports all DL frameworks and model formats. All the important ones that I care were found to be supported: Caffe prototxt, TensorFlow protobuf and ONNX.</p>
 <ul>
 <li>Netron can be installed as a Python package from PyPI:</li>
 </ul>
@@ -56,6 +56,7 @@
 <pre><code>$ netron -b foobar.pb
 $ netron -b foobar.prototxt
 $ netron -b foobar.onnx</code></pre>
+<p>Note: This works even from within WSL-Ubuntu! Running this command opened a new tab in my browser pointing to <a href="http://localhost:8080">localhost:8080</a>.</p>
 <ul>
 <li>On some systems I get a <code>No hostname specified</code> error. In such cases, I add the <code>--host</code> option to the command:</li>
 </ul>
