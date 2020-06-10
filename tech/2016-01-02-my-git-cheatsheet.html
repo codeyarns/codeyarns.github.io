@@ -48,21 +48,21 @@
 <h2 id="working-copy">Working copy</h2>
 <ul>
 <li><p><a href="2014-06-07-how-to-git-clone-only-the-latest-revision.html">To clone only the latest revision</a></p></li>
-<li><p>To unstage a file:</p></li>
+<li><p>To unstage a staged file:</p></li>
 </ul>
-<pre><code>$ git reset HEAD that_file</code></pre>
+<pre><code>$ git reset HEAD file123</code></pre>
 <ul>
 <li>To revert a staged or modified file back to its last commit:</li>
 </ul>
-<pre><code>$ git checkout -- file_path</code></pre>
+<pre><code>$ git checkout -- file123</code></pre>
 <ul>
-<li>To revert all modified tracked files:</li>
+<li>To revert all modified files:</li>
 </ul>
 <pre><code>$ git reset --hard</code></pre>
 <ul>
 <li>To revert a specific commit and add that reverted change as a commit:</li>
 </ul>
-<pre><code>$ git revert sha_hash_of_commit_1</code></pre>
+<pre><code>$ git revert commit_123_sha_hash</code></pre>
 <ul>
 <li>To revert a series of specific commits and add each of those reverted changes as new commits:</li>
 </ul>
@@ -79,7 +79,7 @@ $ git revert --no-commit sha_hash_of_commit_1
 $ git commit</code></pre>
 <p>The <code>--no-commit</code> stages the reverted changes, but does not commit them. So, we follow them up with a commit.</p>
 <ul>
-<li>To delete last commit and losing its changes:</li>
+<li>To delete last commit and also completely lose all of its changes:</li>
 </ul>
 <pre><code>$ git reset --hard HEAD~1</code></pre>
 <ul>
@@ -93,18 +93,18 @@ $ git commit</code></pre>
 <ul>
 <li>To revert non-staged non-committed changes:</li>
 </ul>
-<pre><code>$ git checkout that_file</code></pre>
+<pre><code>$ git checkout file123</code></pre>
 <h2 id="branches">Branches</h2>
 <ul>
-<li>Create branch at current revision or branch:</li>
+<li>Create a new branch from current revision of current branch:</li>
 </ul>
-<pre><code>$ git branch branch_name</code></pre>
+<pre><code>$ git branch branch123</code></pre>
 <ul>
-<li>Create branch at specific revision:</li>
+<li>Create branch from a specific revision:</li>
 </ul>
-<pre><code>$ git branch branch_name hash_of_revision</code></pre>
+<pre><code>$ git branch branch123 revision_hash_678</code></pre>
 <ul>
-<li>Rename current branch:</li>
+<li>Rename the current branch:</li>
 </ul>
 <pre><code>$ git branch -m new_branch_name</code></pre>
 <ul>
@@ -117,7 +117,7 @@ $ git commit</code></pre>
 <pre><code>$ git branch -d branch_name</code></pre>
 <p>Note that you cannot delete the current branch. Checkout to a different branch and then delete the branch you wanted to. This is because imagine chopping off the branch of a tree you are sitting on. You will fall down! 😁</p>
 <ul>
-<li>To view the branches that contain a given commit <code>01234</code>:</li>
+<li>To list all the branches that contain a given commit <code>01234</code>:</li>
 </ul>
 <pre><code>$ git branch -vva --contains 01234</code></pre>
 <ul>
@@ -127,20 +127,30 @@ $ git commit</code></pre>
 $ git difftool branch1 branch2 -- path/to/file</code></pre>
 <h2 id="merge">Merge</h2>
 <ul>
-<li>To merge other branch to master branch:</li>
+<li>To merge other branch to current branch:</li>
 </ul>
-<pre><code>$ git checkout master_branch
+<pre><code>$ git checkout current_branch
 $ git merge other_branch</code></pre>
+<ul>
+<li>To merge remote branch to current branch:</li>
+</ul>
+<pre><code>$ git fetch remote_123
+$ git merge remote_123/remote_branch_678</code></pre>
 <ul>
 <li>To resolve merge conflicts using GUI tool:</li>
 </ul>
 <pre><code>$ git mergetool</code></pre>
 <h2 id="rebase">Rebase</h2>
 <ul>
-<li>To rebase my_branch on top of main_branch:</li>
+<li>To rebase current branch on top of another branch:</li>
 </ul>
-<pre><code>$ git checkout my_branch
-$ git rebase main_branch</code></pre>
+<pre><code>$ git checkout current_branch_123
+$ git rebase another_branch_678</code></pre>
+<ul>
+<li>To rebase current branch on top of remote branch:</li>
+</ul>
+<pre><code>$ git fetch remote_123
+$ git rebase remote_123/remote_branch_678</code></pre>
 <h2 id="remotes">Remotes</h2>
 <ul>
 <li>To see all info about remote, its branches and push-pull to it:</li>
@@ -208,9 +218,15 @@ $ git rebase main_branch</code></pre>
 <li>To view the commit of a submodule (named <code>foobar</code>) corresponding to a commit (say <code>999792b</code>) of the main module:</li>
 </ul>
 <pre><code>$ git ls-tree 999792b foobar</code></pre>
+<h2 id="tags">Tags</h2>
+<ul>
+<li><a href="2017-10-04-how-to-use-tags-in-git.html">To use tags in Git</a></li>
+</ul>
 <h2 id="misc">Misc</h2>
 <ul>
-<li>To view HEAD history of your local repository:</li>
+<li><p><a href="2011-06-03-how-to-generate-patch-of-commit-in-git.html">To generate patch of commit</a></p></li>
+<li><p><a href="2012-12-04-how-to-list-configuration-settings-in-git.html">To list configuration settings</a></p></li>
+<li><p>To view HEAD history of your local repository:</p></li>
 </ul>
 <pre><code>$ git reflog</code></pre>
 <ul>
@@ -233,15 +249,6 @@ $ git rebase main_branch</code></pre>
 <li>Check if a commit hash exists in the Git log:</li>
 </ul>
 <pre><code>$ git show 123456</code></pre>
-<h2 id="tags">Tags</h2>
-<ul>
-<li><a href="2017-10-04-how-to-use-tags-in-git.html">To use tags in Git</a></li>
-</ul>
-<h2 id="misc-1">Misc</h2>
-<ul>
-<li><p><a href="2011-06-03-how-to-generate-patch-of-commit-in-git.html">To generate patch of commit</a></p></li>
-<li><p><a href="2012-12-04-how-to-list-configuration-settings-in-git.html">To list configuration settings</a></p></li>
-</ul>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
