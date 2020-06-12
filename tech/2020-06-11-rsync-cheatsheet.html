@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Rsync Cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td style="text-align: left;">
+            <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+        </td>
+        <td style="text-align: right;">
+            <div class="header2"><a class="header2" href="https://codeyarns.github.io/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.github.io/personal/">Personal Blog</a></div>
+            </br>
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Rsync Cheatsheet</h1>
+<p class="date">(First posted on: 2020-06-11T21:20:48.333981-07:00)</p>
+</header>
+<p><a href="https://en.wikipedia.org/wiki/Rsync"><strong>Rsync</strong></a> is a tool that makes it easy to copy or sync contents across local and remote computers.</p>
+<ul>
+<li>To one-way sync between local or remote directories:</li>
+</ul>
+<pre><code>$ rsync -av /home/joe/from-dir /media/backup/to-dir
+$ rsync -av /home/joe/from-dir chetan@some-remote:/media/backup/to-dir
+$ rsync -av chetan@some-remote:/home/chetan/from-dir /media/backup/to-dir
+$ rsync -av joe@some-remote-1:/home/joe/from-dir chetan@some-remote-2:/media/backup/to-dir</code></pre>
+<ul>
+<li>To one-way sync such that the destination is a strict <strong>mirror copy</strong>, thus deleting any extra files (<code>--delete</code>) it may have:</li>
+</ul>
+<pre><code>$ rsync -av --delete /home/joe/from-dir /media/backup/to-dir</code></pre>
+<ul>
+<li>To one-way sync using compression (<code>-z</code>) to save transfer time, especially if a remote computer is involved:</li>
+</ul>
+<pre><code>$ rsync -avz /home/joe/from-dir chetan@some-remote:/media/backup/to-dir</code></pre>
+<ul>
+<li><strong>No trailing slash on source directory</strong>: this copies the source directory itself as a subdirectory into the destination directory.</li>
+</ul>
+<p>For example:</p>
+<pre><code>$ rsync -a /some/path/foobar .
+$ ls
+foobar/</code></pre>
+<ul>
+<li><strong>Trailing slash on source directory</strong>: this copies the contents inside source directory into the destination directory.</li>
+</ul>
+<p>For example:</p>
+<pre><code>$ rsync -a /some/path/foobar/ .
+$ ls
+content.txt
+of.txt
+foobar.txt</code></pre>
+<ul>
+<li><strong>When source path has spaces</strong>: We need to double up with both double quotes and slashes. This is because the local shell acts on the path and strips its quotes or slashes before passing it to rsync.</li>
+</ul>
+<pre><code>$ rsync joe@foobar:&quot;path/to/some\ thing&quot; .</code></pre>
+<p><strong>Tried with:</strong> rsync 3.1.2 and Ubuntu 18.04</p>
+<hr />
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
+</body>
+</html>
