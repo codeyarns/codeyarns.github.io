@@ -45,6 +45,26 @@
 <p class="date">(First posted on: 2016-01-02 02:40:28+00:00)</p>
 </header>
 <p><strong>Git</strong> incantations that I need to lookup sometimes:</p>
+<h2 id="revision-information">Revision information</h2>
+<ul>
+<li>Show all the information associated with a revision:</li>
+</ul>
+<pre><code>$ git show 123456</code></pre>
+<p>This shows the revision's hash, author, commit message and a full diff of all the files in the revision.</p>
+<ul>
+<li>Show only the names of files changed in a revision:</li>
+</ul>
+<pre><code>$ git show --name-only 123456</code></pre>
+<ul>
+<li>Show only the name and status of files changed in a revision:</li>
+</ul>
+<pre><code>$ git show --name-status 123456</code></pre>
+<ul>
+<li>Check if a revision exists in the repo:</li>
+</ul>
+<pre><code>$ git show 123456
+fatal: ambiguous argument &#39;123456&#39;: unknown revision or path not in the working tree.</code></pre>
+<p>Above is an example of a revision that is not in the repo.</p>
 <h2 id="working-copy">Working copy</h2>
 <ul>
 <li><p><a href="2014-06-07-how-to-git-clone-only-the-latest-revision.html">To clone only the latest revision</a></p></li>
@@ -60,26 +80,26 @@
 </ul>
 <pre><code>$ git reset --hard</code></pre>
 <ul>
-<li>To revert a specific commit and add that reverted change as a commit:</li>
+<li>To revert a specific revision from the past and add that reverted change as a new revision:</li>
 </ul>
-<pre><code>$ git revert commit_123_sha_hash</code></pre>
+<pre><code>$ git revert sha_hash_of_revision_123</code></pre>
 <ul>
-<li>To revert a series of specific commits and add each of those reverted changes as new commits:</li>
+<li>To revert a series of specific revisions from the past and add each of those reverted changes as new revisions:</li>
 </ul>
-<pre><code>$ git revert sha_hash_of_commit_700
-$ git revert sha_hash_of_commit_99
-$ git revert sha_hash_of_commit_1</code></pre>
-<p>Though you can revert commits in any order, it is best if you revert in opposite order of history. That is, revert the latest commit first and so on.</p>
+<pre><code>$ git revert sha_hash_of_revision_700
+$ git revert sha_hash_of_revision_99
+$ git revert sha_hash_of_revision_1</code></pre>
+<p>Though you can revert revisions in any order, I like to revert in opposite order of history. That is, revert the latest revision first and so on.</p>
 <ul>
-<li>To revert a series of specific commits and create only a single commit out of them:</li>
+<li>To revert a series of specific revisions from the past and create a <em>single</em> new revision out of them:</li>
 </ul>
-<pre><code>$ git revert --no-commit sha_hash_of_commit_700
-$ git revert --no-commit sha_hash_of_commit_99
-$ git revert --no-commit sha_hash_of_commit_1
+<pre><code>$ git revert --no-commit sha_hash_of_revision_700
+$ git revert --no-commit sha_hash_of_revision_99
+$ git revert --no-commit sha_hash_of_revision_1
 $ git commit</code></pre>
 <p>The <code>--no-commit</code> stages the reverted changes, but does not commit them. So, we follow them up with a commit.</p>
 <ul>
-<li>To delete last commit and also completely lose all of its changes:</li>
+<li>To delete last revision and also completely lose all of its changes:</li>
 </ul>
 <pre><code>$ git reset --hard HEAD~1</code></pre>
 <ul>
@@ -245,10 +265,6 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 <li>Show who last modified lines of a file:</li>
 </ul>
 <pre><code>$ git blame -C -L 234,234 foobar.cpp</code></pre>
-<ul>
-<li>Check if a commit hash exists in the Git log:</li>
-</ul>
-<pre><code>$ git show 123456</code></pre>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
