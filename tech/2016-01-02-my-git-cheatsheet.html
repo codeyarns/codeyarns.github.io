@@ -145,6 +145,10 @@ $ git commit</code></pre>
 </ul>
 <pre><code>$ git diff branch1 branch2 -- path/to/file
 $ git difftool branch1 branch2 -- path/to/file</code></pre>
+<ul>
+<li>To find first commit of a branch:</li>
+</ul>
+<pre><code>$ git log --oneline master..branch1 | tail -1</code></pre>
 <h2 id="merge">Merge</h2>
 <ul>
 <li>To merge other branch to current branch:</li>
@@ -265,6 +269,10 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 <li>Show who last modified lines of a file:</li>
 </ul>
 <pre><code>$ git blame -C -L 234,234 foobar.cpp</code></pre>
+<ul>
+<li>List files that changed between two revisions:</li>
+</ul>
+<pre><code>$ git diff --name-only revision1 revision2</code></pre>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
