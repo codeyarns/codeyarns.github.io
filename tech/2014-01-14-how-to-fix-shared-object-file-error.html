@@ -57,19 +57,10 @@
 <h3 id="update-system-cache">Update system cache</h3>
 <ul>
 <li><p>Open the <code>/etc/ld.so.conf</code> as <code>sudo</code> and add a new line with the library directory. In this case, we add <code>/opt/foobar/lib</code>.</p></li>
-<li><p>Rerun ldconfig to rebuild the cache:</p></li>
+<li><p>Rerun ldconfig to rebuild the cache: <code>sudo ldconfig</code></p></li>
+<li><p>Check if the shared library cache now includes the shared libraries from the new directory: <code>ldconfig -p</code></p></li>
 </ul>
-<p>[code lang=bash] $ sudo ldconfig</p>
-<pre><code>
-
-
-  * Check if the shared library cache now includes the shared libraries from the new directory:
-
-
-
-[code lang=bash]
-$ ldconfig -p</code></pre>
-<p>Your program should now execute without any errors :-)</p>
+<p>Your program should now execute without any errors.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 <hr />
 <div class="footer">
