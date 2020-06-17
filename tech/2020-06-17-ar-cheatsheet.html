@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to mount remote directory using SSHFS</title>
+  <title>Code Yarns – ar Cheatsheet</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,37 +41,46 @@
 </table>
 <hr />
 <header>
-<h1 class="title">How to mount remote directory using SSHFS</h1>
-<p class="date">(First posted on: 2014-09-10 12:36:06+00:00)</p>
+<h1 class="title">ar Cheatsheet</h1>
+<p class="date">(First posted on: 2020-06-17T02:35:23.274757-07:00)</p>
 </header>
-<p>Samba (SMB) and NFS can be too complicated to mount directories between computers on a home network. If both the remote and local computers are running Linux then an easier method is to use SSHFS.</p>
+<p><strong>ar</strong> is the classic Unix/Linux tool used to work with <strong>archive</strong> files. An archive file is typically used for a static library, holding a collection of <code>.o</code> object files and typically has the file extension <code>.a</code>. The files inside an archive are called its <strong>members</strong>.</p>
+<p>On Linux, it ships as part of the <strong>GNU Binutils</strong>.</p>
 <ul>
-<li>Installing SSHFS is easy:</li>
+<li>To <strong>create</strong> an empty archive:</li>
 </ul>
-<pre><code>$ sudo apt install sshfs</code></pre>
+<pre><code>$ ar -cr foobar.a</code></pre>
+<p>Note that providing just <code>-c</code> does not work: it has to be used along with a member operation like <code>-r</code>.</p>
 <ul>
-<li>Create a local directory where you want to mount the remote directory:</li>
+<li>To <strong>add</strong> members to an archive, replacing members if they already exist in the archive:</li>
 </ul>
-<pre><code>$ mkdir my_local_dir</code></pre>
+<pre><code>$ ar -cr foobar.a member1.o member2.o member3.o</code></pre>
+<p>The comparison for replacement is done based on member filename only, not on the size or contents of the members. The archive will store the members in the order they are inserted.</p>
 <ul>
-<li>Make sure you can already SSH to your remote computer:</li>
+<li>To <strong>extract</strong> all the members inside an archive:</li>
 </ul>
-<pre><code>$ ssh my_remote_login@my_remote_computer</code></pre>
+<pre><code>$ ar -x foobar.a</code></pre>
 <ul>
-<li>To mount your remote directory using SSHFS to the local directory you created earlier:</li>
+<li>By default, extracting does not print the names of members extracted. To extract all the members inside an archive and also print their names:</li>
 </ul>
-<pre><code>$ sshfs my_remote_login@my_remote_computer:/some/remote/path my_local_dir</code></pre>
-<p>Now you can browse the directory both from shell or any GUI file explorer. All normal file operations works seamlessly, including deletion.</p>
+<pre><code>$ ar -xv foobar.a</code></pre>
 <ul>
-<li>If you are on a unstable connection and would like SSHFS to automatically <strong>reconnect</strong> to maintain the mount:</li>
+<li>To extract specific members from inside an archive:</li>
 </ul>
-<pre><code>$ sshfs -o reconnect my_remote_login@my_remote_computer:/some/remote/path my_local_dir</code></pre>
+<pre><code>$ ar -x foobar.a member1.o member2.o member3.o</code></pre>
 <ul>
-<li>To unmount the remote directory:</li>
+<li>To <strong>list</strong> the members of an archive:</li>
 </ul>
-<pre><code>$ fusermount -u my_local_dir</code></pre>
-<p>Note that your user needs to have sudo permissions to be able to unmount the directory.</p>
-<p><strong>Tried with:</strong> SSHFS 2.5 and Ubuntu 14.04</p>
+<pre><code>$ ar -t foobar.a</code></pre>
+<p>This option is confusingly named <code>-t</code> instead of <code>-l</code> (for list). An easy way to remember this option is to think about it as printing a <strong>table</strong> of members.</p>
+<ul>
+<li>To list the members of an archive, along with their permissions, size and date:</li>
+</ul>
+<pre><code>$ ar -tv foobar.a</code></pre>
+<ul>
+<li>Note that a <code>.deb</code> file is also actually an archive file. So all the actions above can be used on these files too.</li>
+</ul>
+<p><strong>Tried with:</strong> Binutils 2.30 and Ubuntu 18.04</p>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
