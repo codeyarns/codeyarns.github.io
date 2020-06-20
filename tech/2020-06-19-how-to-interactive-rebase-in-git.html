@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to interactive rebase in Git</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td style="text-align: left;">
+            <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+        </td>
+        <td style="text-align: right;">
+            <div class="header2"><a class="header2" href="https://codeyarns.github.io/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.github.io/personal/">Personal Blog</a></div>
+            </br>
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">How to interactive rebase in Git</h1>
+<p class="date">(First posted on: 2020-06-19T21:35:28.704612-07:00)</p>
+</header>
+<p>The <strong>interactive rebase</strong> in Git is one of its coolest features. It allows you to reorder, squash, delete and rename commits.</p>
+<p>Since this feature allows you to change history, make sure to use it to only modify sections of the local DAG that have not yet been pushed to a remote. Do not use it to change parts of the DAG that are already in the remote and possibly already fetched by other people.</p>
+<p>Interactive rebase requires a revision from you as input. Here are some examples:</p>
+<pre><code>$ git rebase -i HEAD~3
+$ git rebase -i foobar_branch
+$ git rebase -i foobar_tag
+$ git rebase -i c35d286</code></pre>
+<p>Git will open your editor and display all the commits newer than the revision that you provided. These are the commits that you wil be allowed to manipulate.</p>
+<p>Here is an example of what Git might show you:</p>
+<pre><code>pick 0083bd5 Some third commit
+pick a0303c4 This is fourth commit
+pick 19bfef8 I guess this is fifth commit</code></pre>
+<p>Remember that the commits are ordered from old to new as you go from top to bottom.</p>
+<p>Here are the operations you can do on this commit list and then save-quit the file:</p>
+<ul>
+<li><p><strong>Remove a commit</strong>: Delete the lines having the commits you want to drop. Or replace the <code>pick</code> of the commit line with <code>d</code> or <code>drop</code>. After you save the file, these commits are gone from the Git DAG.</p></li>
+<li><p><strong>Rename a commit</strong>: Replace <code>pick</code> of the commit line with <code>r</code> or <code>reword</code>. After you save the file, Git will pop up editors for each of the reword commits, giving you the opportunity to change those commit messages.</p></li>
+<li><p><strong>Reorder commits</strong>: Reorder the commit lines and save the file. Your Git DAG will now have the order you chose.</p></li>
+<li><p><strong>Squash commits - keeping oldest commit message</strong>: You want to combine two or more commits into a single commit, but want to retain the message of the oldest of those commits for the final combined commit. To achieve this, replace <code>pick</code> of all the newer commits, except the old commit, with <code>f</code> or <code>fixup</code>. After you save the file, you now have a single commit with the commit message of the oldest commit.</p></li>
+<li><p><strong>Squash commits - with a new commit message</strong>: Replace <code>pick</code> of all the newer commits with <code>s</code> or <code>squash</code>. After you save the file, Git will pop up an editor allowing you to provide the commit message of the new combined commit. The editor will have the commit messages of the constituents, giving you a chance to reuse those to make your new commit message. Whatever you leave uncommented will be the new commit message.</p></li>
+</ul>
+<p>You can repeat and mix and match any of the above operations any number of times to do plastic surgery on your DAG until it looks perfect like you want it to.</p>
+<p><strong>Tried with:</strong> Git 2.17.1 and Ubuntu 18.04</p>
+<hr />
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
+</body>
+</html>
