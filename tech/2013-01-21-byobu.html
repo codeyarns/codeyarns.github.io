@@ -54,19 +54,22 @@
 <h2 id="keyboard-shortcuts">Keyboard shortcuts</h2>
 <p>Byobu uses the function keys for almost all its operations.</p>
 <ul>
-<li><p><code>F2</code>: Open a new window or tab. This means that a new shell session is opened in that window. This window is numbered 1, as seen at the bottom.</p></li>
-<li><p><code>F3</code> or <code>F4</code>: Switch forward and backward between open windows.</p></li>
-<li><p><code>F6</code> or <code>Ctrl+A d</code>: Detach from Byobu. Puts you back at the shell. All the windows and the shells inside them are still running. You get back to them whenever you want.</p></li>
-<li><p><code>F7</code>: Toggle mode to scroll through history. Once in this mode, use cursor keys or Page Up or Page Down to scroll through history. To search back or forward in the history, use slash or question mark (just like in Vim). Press Enter to get out of this mode.</p></li>
-<li><p><code>F8</code>: Rename the current window. The name is shown at the bottom of each window. This is very useful to distinguish work you are doing in each window.</p></li>
-<li><p><code>Ctrl + F2</code>: Create a vertical split window</p></li>
-<li><p><code>Shift + F2</code>: Create a horizontal split window</p></li>
-<li><p><code>Shift + F3</code> or <code>Shift + F4</code>: Switch forward and backward between split windows</p></li>
-<li><p><code>F9</code>: Change the settings using its inbuilt Curses GUI dialog.</p></li>
+<li><p><code>F2</code>: Open a new window or tab. This means that a new shell session is opened in that window. This window is numbered 1, as seen at the bottom. Every invocation of <code>F2</code> creates a new window, numbered with the smallest unused integer.</p></li>
+<li><p><code>F3</code> or <code>F4</code>: Switch to the window that is left or right of the current one.</p></li>
+<li><p><code>F6</code>: Detach from Byobu. Puts you back at the shell. All the windows and the shells inside them are still running. You get back to them whenever you want by running <code>byobu</code> again.</p></li>
+<li><p><code>F7</code>: Toggle mode to scroll through history. Once in this mode, use cursor keys or Page Up or Page Down to scroll through history. To search back or forward in the history, use <code>/foobar</code> or <code>?foobar</code> just like in Vim. Hit <code>Enter</code> to get out of this mode.</p></li>
+<li><p><code>Alt + PgUp</code> or <code>Alt + PgDn</code>: Page up or down through history of current window.</p></li>
+<li><p><code>F8</code>: Rename the current window. The new name is shown at the bottom of each window.</p></li>
+<li><p><code>Ctrl + F2</code>: Create a vertical split window.</p></li>
+<li><p><code>Shift + F2</code>: Create a horizontal split window.</p></li>
+<li><p><code>Shift + F3</code> or <code>Shift + F4</code>: Cycle forward or backward between split windows.</p></li>
+<li><p><code>Shift + F11</code>: Toggle between maximizing (or full screen) the current split and restoring it back among the splits.</p></li>
+<li><p><code>F9</code>: Change Byobu settings using its inbuilt Curses GUI dialog.</p></li>
 <li><p><code>Alt + F12</code>: Toggle mouse support. More details in this <a href="2016-01-28-how-to-use-mouse-in-byobu.html">post</a>.</p></li>
-<li><p><code>Shift + F12</code>: Toggle function keys. This is useful when you want to use the function keys in a terminal application.</p></li>
+<li><p><code>Shift + F12</code>: Toggle function keys. This is useful when you want to use the function keys in a terminal application running inside Byobu.</p></li>
+<li><p><code>F1</code>: View help, including keyboard shortcuts like these.</p></li>
 </ul>
-<p>You can see these keyboard shortcuts defined in the <code>/usr/share/byobu/keybindings/f-keys.tmux</code> file.</p>
+<p>You can also see these keyboard shortcuts defined in the <code>/usr/share/byobu/keybindings/f-keys.tmux</code> file.</p>
 <p><strong>Tried with:</strong> Byobu 5.77 and Ubuntu 14.04</p>
 <hr />
 <div class="footer">
