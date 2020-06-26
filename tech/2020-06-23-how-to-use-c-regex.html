@@ -91,12 +91,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="dt">int</span> main()
 {
     <span class="at">const</span> <span class="bu">std::</span>string s = <span class="st">&quot;The_batsman_hit_10_runs_in_3_overs&quot;</span>;
-    <span class="at">const</span> <span class="bu">std::</span>regex r(<span class="st">&quot;.*_(</span><span class="sc">\\</span><span class="st">d+)_runs.*_(</span><span class="sc">\\</span><span class="st">d+)_overs.*&quot;</span>);
+    <span class="at">const</span> <span class="bu">std::</span>regex r(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">w*_(</span><span class="sc">\\</span><span class="st">d+)_runs_</span><span class="sc">\\</span><span class="st">w*_(</span><span class="sc">\\</span><span class="st">d+)_overs.*&quot;</span>);
     <span class="bu">std::</span>smatch m;
 
     <span class="co">// Returns true only if the regex matched the input string</span>
     <span class="co">// Matched strings are filled up in smatch.</span>
-    <span class="cf">if</span> (<span class="bu">std::</span>regex_search(s.begin(), s.end(), m, r))
+    <span class="cf">if</span> (<span class="bu">std::</span>regex_match(s.begin(), s.end(), m, r))
     {
         <span class="co">// m[0] holds entire input string. So skip that and start from 1.</span>
         <span class="cf">for</span> (<span class="kw">auto</span> i = <span class="dv">1</span>; i &lt; m.size(); ++i)
