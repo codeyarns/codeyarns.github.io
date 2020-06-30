@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Array subscript versus arithmetic in C++</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td style="text-align: left;">
+            <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+        </td>
+        <td style="text-align: right;">
+            <div class="header2"><a class="header2" href="https://codeyarns.github.io/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.github.io/personal/">Personal Blog</a></div>
+            </br>
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Array subscript versus arithmetic in C++</h1>
+<p class="date">(First posted on: 2020-06-30T06:34:31.001860-07:00)</p>
+</header>
+<p>In C++, given a pointer (or iterator) <code>a</code> and integer <code>i</code>, which of these two expressions should you prefer to use: <code>a + i</code> or <code>&amp;a[i]</code>?</p>
+<p>These two expressions are equivalent and legal, as long as <code>a + i</code> points to a valid element of the underlying array.</p>
+<p>The <code>a + i</code> expression has two advantages compared to <code>&amp;a[i]</code>:</p>
+<ul>
+<li><p>It is legal and valid for <code>a + i</code> to point to one element past the last element of the underlying array. In fact, this is how C++ iterators (or pointers) work with C++ iteration algorithms, their <code>end()</code> value is one past the last element. It is illegal and undefined behavior for <code>&amp;a[i]</code> to be pointing to one past the last element. Checking tools might actually flag this as a violation, if they can deduce this statically.</p></li>
+<li><p>When <code>a</code> is a null pointer and <code>i</code> is 0, <code>a + i</code> is legal. The C++ standard specifically allows this to simplify generic programming code, so that it can operate without failing on all iterators and offset values. However, <code>&amp;a[0]</code> is illegal and fails if <code>a</code> is a null pointer.</p></li>
+</ul>
+<p>Both of the above subtle differences are listed in the C++20 standard <em>§7.6.6 Additive operators</em>:</p>
+<blockquote>
+<p>When an expression J that has integral type is added to or subtracted from an expression P of pointer type, the result has the type of P. (4.1) — If P evaluates to a null pointer value and J evaluates to 0, the result is a null pointer value. (4.2) — Otherwise, if P points to an array element i of an array object x with n elements, the expressions P + J and J + P (where J has the value j) point to the (possibly-hypothetical) array element i + j of x if 0 ≤ i + j ≤ n and the expression P - J points to the (possibly-hypothetical) array element i − j of x if 0 ≤ i − j ≤ n.</p>
+</blockquote>
+<hr />
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
+</body>
+</html>
