@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – The strange case of missing Outlook rules</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td style="text-align: left;">
+            <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+        </td>
+        <td style="text-align: right;">
+            <div class="header2"><a class="header2" href="https://codeyarns.github.io/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.github.io/personal/">Personal Blog</a></div>
+            </br>
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">The strange case of missing Outlook rules</h1>
+<p class="date">(First posted on: 2020-06-29T23:00:48.752279-07:00)</p>
+</header>
+<h2 id="problem">Problem</h2>
+<p>I used <strong>Outlook Web Access (OWA)</strong>, the web version of Outlook, as my only email client at work for the past few years. I had created rules for filtering emails in it. When the COVID work from home began I switched to using the Windows application of Outlook. After a week or so I was informed by my colleagues that I had not been responding to certain important emails.</p>
+<p>I looked up the list of <strong>rules</strong> in Outlook-Win and noticed right away that some of my rules that existed on OWA were not listed. And with those rules missing, other delete-email rules I had at the bottom had been deleting my important emails.</p>
+<h2 id="solution">Solution</h2>
+<p>When I opened the rules list in OWA, the missing rules had been moved down to the bottom of the list and were disabled.</p>
+<p>It was then I remembered that I had opened the Rules list in Outlook-Win one day to add a rule and at that point it had warned me that some rules were created with another client and might not work. Only now did I realize that the other client it was referring to was OWA! The strangest behavior here is that the offending rules of OWA had been working in Outlook-Win until I opened the Rules list in Outlook-Win. At which point, Outlook-Win disabled them.</p>
+<p>I needed those rules, so I recreated them in Outlook-Win. I noticed that Outlook-Win added the suffix <strong>(client-only)</strong> to those rules. A bit more investigation revealed that there were certain rule actions that were client-only: that is they were applied not by the mail server, but by the email client (Outlook-Win or OWA). And one such rule action is to <strong>apply a category</strong> on an email. For whatever weird Microsoft reason, this action makes a rule client-only.</p>
+<p>That is, if you add a rule like this on OWA, Outlook will not open the rule and will silently disable it. If you add a rule like this in Outlook-Win, it will add a <em>client-only</em> suffix and when you open the rules in OWA, it will disable them.</p>
+<p>Since I did not want to deal with this craziness and I did want to keep the flexibility of checking my email both in Outlook-Win and OWA, I created rules without applying category. And my new rules appeared in both Outlook-Win and OWA and worked in both clients.</p>
+<hr />
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
+</body>
+</html>
