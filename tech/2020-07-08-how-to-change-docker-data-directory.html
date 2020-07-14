@@ -50,11 +50,11 @@
 <h2 id="solution">Solution</h2>
 <p>To change the data directory used by Docker:</p>
 <ul>
-<li>Remove all the images used by Docker:</li>
+<li>Clean up <code>/var/lib/docker</code> by removing all the images currently used by Docker:</li>
 </ul>
 <pre><code>$ docker system prune -a</code></pre>
 <ul>
-<li><p>Create a directory for Docker's data whereever you want. I created it in my home partition: <code>/home/joe/docker_data</code>.</p></li>
+<li><p>Create a directory for Docker's data whereever you want. I created one in my home partition: <code>/home/joe/docker_data</code>.</p></li>
 <li><p>Add the following lines to the <code>/etc/docker/daemon.json</code> file:</p></li>
 </ul>
 <pre><code>&quot;data-root&quot;: &quot;/home/joe/docker_data&quot;,

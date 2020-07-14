@@ -44,10 +44,14 @@
 <h1 class="title">How to find which NVIDIA graphics card is in your Ubuntu system</h1>
 <p class="date">(First posted on: 2013-01-25 14:32:45+00:00)</p>
 </header>
-<p>Finding out which <strong>NVIDIA graphics card</strong> is being used inside a <strong>Ubuntu</strong> computer is easy using the <strong>lspci</strong> command:</p>
+<h2 id="nvidia-smi">nvidia-smi</h2>
+<p>If you have installed a NVIDIA graphics driver, it ships with the <strong>nvidia-smi</strong> tool that can be used to list the GPUs on your system.</p>
+<h2 id="lspci">lspci</h2>
+<p>If you do not have a NVIDIA graphics driver or for some reason it is not showing the GPU name correctly (for example it is older than your GPU), then the <strong>lspci</strong> tool can be used instead:</p>
 <pre><code>$ lspci | grep -i nvidia</code></pre>
 <p>The <strong>lspci</strong> program lists all the <strong>PCI devices</strong> on the system. If there is a NVIDIA graphics card, it should be listed as a <strong>VGA compatible controller</strong> along with its model name.</p>
 <p>Instead of a model name, if you only see <strong>NVIDIA Corporation Device</strong>, then maybe you are using a card released recently. <a href="2013/01/25/how-to-update-pci-id-information-on-ubuntu/">Update the PCI ID information</a> on your computer and try the command again.</p>
+<p>You can also lookup the Device ID directly in the <a href="https://pci-ids.ucw.cz/read/PC/10de">NVIDIA device ID list</a>.</p>
 <p><strong>Tried with:</strong> lspci 3.1.8 and Ubuntu 12.04.1 LTS</p>
 <hr />
 <div class="footer">

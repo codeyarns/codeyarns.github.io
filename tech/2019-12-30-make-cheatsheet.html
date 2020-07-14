@@ -63,6 +63,10 @@
 </ul>
 <pre><code>$ make -w</code></pre>
 <p>This is useful, for example, to know which specific Makefile from a subdirectory is being used for running a specific command.</p>
+<ul>
+<li>To list all the Make targets in your current project:</li>
+</ul>
+<pre><code>$ make -qp | awk -F &#39;:&#39; &#39;/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}&#39; | sort -u</code></pre>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
