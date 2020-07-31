@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to be an Antiracist</title>
+  <title>Code Yarns – How to separate PDF pages using pdfseparate</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,9 +41,19 @@
 </table>
 <hr />
 <header>
-<h1 class="title">How to be an Antiracist</h1>
-<p class="date">(First posted on: 2020-07-18T20:42:58.777273-07:00)</p>
+<h1 class="title">How to separate PDF pages using pdfseparate</h1>
+<p class="date">(First posted on: 2020-07-30T21:50:45.396315-07:00)</p>
 </header>
+<p><strong>PDFSeparate</strong> is a tool that can be used to pull out the individual pages of a PDF file, each page into a separate PDF output file.</p>
+<ul>
+<li>To install this tool, install the <code>poppler-utils</code> package which it ships under:</li>
+</ul>
+<pre><code>$ sudo apt install poppler-utils</code></pre>
+<ul>
+<li>To separate every page in <code>in.pdf</code> into separate pages of the form <code>out-1.pdf</code>, <code>out-2.pdf</code> and so on:</li>
+</ul>
+<pre><code>$ pdfseparate in.pdf out-%d.pdf</code></pre>
+<p><strong>Tried with:</strong> Poppler 0.62.0 and Ubuntu 18.04</p>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>

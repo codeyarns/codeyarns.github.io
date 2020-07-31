@@ -46,74 +46,59 @@
 </header>
 <p><a href="https://developer.nvidia.com/nvidia-system-management-interface"><strong>nvidia-smi</strong></a> (NVIDIA System Management Interface) is a tool to query, monitor and configure NVIDIA GPUs. It ships with and is installed along with the NVIDIA driver and it is tied to that specific driver version. It is a tool written using the <a href="https://developer.nvidia.com/nvidia-management-library-nvml"><strong>NVIDIA Management Library (NVML)</strong></a>.</p>
 <ul>
-<li>To query the usage of all your GPUs:</li>
+<li>To query the status of all your GPUs:</li>
 </ul>
 <pre><code>$ nvidia-smi</code></pre>
-<p>I use this default invocation to check:</p>
-<blockquote>
-<blockquote>
-
-</blockquote>
-<blockquote>
+<p>This outputs a summary table, where I find the following information useful:</p>
 <ul>
 <li>Version of driver.</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
 <li>Names of the GPUs.</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
 <li>Index of the GPUs, based on PCI Bus Order. This is different from the CUDA order.</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
 <li>Amount of memory each of the GPUs has.</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
 <li>Whether persistence mode is enabled on each of the GPUs</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>Utilization of each of the GPUs (if I’m running something on them).</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>List of processes executing on the GPUs.</li>
-</ul>
-</blockquote>
-</blockquote>
-<ul>
-<li>To query the configuration parameters of all the GPUs:</li>
+<li>Utilization of each of the GPUs (if I'm running something on them).</li>
+<li><p>List of processes executing on the GPUs.</p></li>
+<li><p>To query the parameters of all the GPUs:</p></li>
 </ul>
 <pre><code>$ nvidia-smi -q</code></pre>
-<p>I use this to check:</p>
-<blockquote>
-<blockquote>
-
-</blockquote>
-<blockquote>
+<p>Some of the information I find useful in this is:</p>
 <ul>
-<li>Default clocks (listed under <strong>Default Application Clocks</strong>).</li>
+<li>Default clocks (listed under <strong>Default Application Clocks</strong>). These are a stable pair of graphics (or SM) and memory clock values I can lock this GPU to.</li>
+<li><p>Current clocks (listed under <strong>Application Clocks</strong>). These values might vary when you are running a workload on the GPU.</p></li>
+<li><p>To query the parameters of a particular GPU, use its index:</p></li>
 </ul>
-</blockquote>
-<blockquote>
+<pre><code>$ nvidia-smi -q -i 9</code></pre>
 <ul>
-<li>Current clocks (listed under <strong>Application Clocks</strong>).</li>
+<li>To reset the application clocks:</li>
 </ul>
-</blockquote>
-</blockquote>
+<pre><code>$ sudo nvidia-smi -rac
+$ sudo nvidia-smi -i 9 -rac</code></pre>
 <ul>
-<li>To query the configuration parameters of a particular GPU, use its index:</li>
+<li>To reset the graphics clocks:</li>
 </ul>
-<pre><code>$ nvidia-smi -q -i 0</code></pre>
+<pre><code>$ sudo nvidia-smi -rgc
+$ sudo nvidia-smi -i 9 -rgc</code></pre>
+<ul>
+<li>To enable or disable persistence mode of a GPU:</li>
+</ul>
+<pre><code>$ sudo nvidia-smi -pm 0
+$ sudo nvidia-smi -i 9 -pm 0
+$ sudo nvidia-smi -pm 1
+$ sudo nvidia-smi -i 9 -pm 1</code></pre>
+<p>It is recommended to enable persistence mode before locking clocks.</p>
+<ul>
+<li>To disable auto boost:</li>
+</ul>
+<pre><code>$ sudo nvidia-smi --auto-boost-default=DISABLED</code></pre>
+<p>It is recommended to do this before locking clocks.</p>
+<ul>
+<li>To set application clocks, provide them in <code>mem,sm</code> format:</li>
+</ul>
+<pre><code>$ sudo nvidia-smi -i 9 -ac 1215,900</code></pre>
+<ul>
+<li>To set graphics clock:</li>
+</ul>
+<pre><code>$ sudo nvidia-smi -i 9 -lgc 900</code></pre>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
