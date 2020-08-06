@@ -45,9 +45,7 @@
 <p class="date">(First posted on: 2019-04-26 13:24:35+00:00)</p>
 </header>
 <p><a href="https://developer.nvidia.com/nvidia-system-management-interface"><strong>nvidia-smi</strong></a> (NVIDIA System Management Interface) is a tool to query, monitor and configure NVIDIA GPUs. It ships with and is installed along with the NVIDIA driver and it is tied to that specific driver version. It is a tool written using the <a href="https://developer.nvidia.com/nvidia-management-library-nvml"><strong>NVIDIA Management Library (NVML)</strong></a>.</p>
-<ul>
-<li>To query the status of all your GPUs:</li>
-</ul>
+<h2 id="query-status-of-gpus">Query status of GPUs</h2>
 <pre><code>$ nvidia-smi</code></pre>
 <p>This outputs a summary table, where I find the following information useful:</p>
 <ul>
@@ -57,17 +55,18 @@
 <li>Amount of memory each of the GPUs has.</li>
 <li>Whether persistence mode is enabled on each of the GPUs</li>
 <li>Utilization of each of the GPUs (if I'm running something on them).</li>
-<li><p>List of processes executing on the GPUs.</p></li>
-<li><p>To query the parameters of all the GPUs:</p></li>
+<li>List of processes executing on the GPUs.</li>
 </ul>
+<h2 id="query-parameters-of-gpus">Query parameters of GPUs</h2>
 <pre><code>$ nvidia-smi -q</code></pre>
 <p>Some of the information I find useful in this is:</p>
 <ul>
 <li>Default clocks (listed under <strong>Default Application Clocks</strong>). These are a stable pair of graphics (or SM) and memory clock values I can lock this GPU to.</li>
-<li><p>Current clocks (listed under <strong>Application Clocks</strong>). These values might vary when you are running a workload on the GPU.</p></li>
-<li><p>To query the parameters of a particular GPU, use its index:</p></li>
+<li>Current clocks (listed under <strong>Application Clocks</strong>). These values might vary when you are running a workload on the GPU.</li>
 </ul>
+<p>To query the parameters of a particular GPU, use its index:</p>
 <pre><code>$ nvidia-smi -q -i 9</code></pre>
+<h2 id="set-gpu-clocks">Set GPU clocks</h2>
 <ul>
 <li>To reset the application clocks:</li>
 </ul>
