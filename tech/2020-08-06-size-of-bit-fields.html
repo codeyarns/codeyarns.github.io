@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Size of bit fields</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td style="text-align: left;">
+            <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+        </td>
+        <td style="text-align: right;">
+            <div class="header2"><a class="header2" href="https://codeyarns.github.io/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.github.io/personal/">Personal Blog</a></div>
+            </br>
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Size of bit fields</h1>
+<p class="date">(First posted on: 2020-08-06T07:06:32.238058-07:00)</p>
+</header>
+<p><strong>Bit fields</strong> can be used in structures and classes to have members whose size is limited to a certain number of bits. The size of the structure having bit fields can wildly vary between compilers. The worst case is the VC++ compiler, that can generate bit field structures that are huge compared to the GCC or clang ones.</p>
+<p>The behavior of VC++ is quite ironic, when you consider that a big reason for using bit fields is to save space, using precisely how much you need. Just how much bigger are the VC++ bit field structures? Here is an example:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">enum</span> <span class="kw">class</span> CarType : <span class="dt">uint8_t</span>
+{
+    Sedan,
+    SUV,
+};
+
+<span class="kw">class</span> CarParams
+{
+<span class="kw">public</span>:
+    CarType c : <span class="dv">8</span>;
+    <span class="dt">uint32_t</span> v : <span class="dv">24</span>;
+};
+
+<span class="co">// Size of CarParams on different compilers:</span>
+<span class="co">// x86-64 gcc 10.2: 4 bytes</span>
+<span class="co">// x64 msvc 19.24: 8 bytes</span></code></pre></div>
+<p>In this example, the developer probably wrote their code to exactly fit the information required for <code>CarParams</code> into 32 bits. They compile their code on GCC and it is indeed 4 bytes. When they compile their code for Windows, the size of their objects doubles to 8 bytes!</p>
+<p>Suppose we want our <code>CarParams</code> to be as compact as possible (4 bytes) and be that size on all platforms, how can we achieve that? One possible solution is to use the <strong>pack pragma</strong>. These pragma directives seem to be supported by both gcc and VC++. They request the compiler to pack the members of the structure to a byte-alignment boundary of the value specified in the pragma. The possible values that can be used are power-of-two like: 1, 2, 4 and 8.</p>
+<p>I found that using the pack pragma did help reduce the size of the structure on VC++ to 5 bytes. But I could not find a way to reduce to 4 bytes.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#pragma pack(1)</span>
+<span class="kw">class</span> CarParams
+{
+<span class="kw">public</span>:
+    CarType c : <span class="dv">8</span>;
+    <span class="dt">uint32_t</span> v : <span class="dv">24</span>;
+};
+
+<span class="co">// Size of CarParams on different compilers:</span>
+<span class="co">// x86-64 gcc 10.2: 4 bytes</span>
+<span class="co">// x64 msvc 19.24: 5 bytes</span></code></pre></div>
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="https://randomascii.wordpress.com/2010/06/06/bit-field-packing-with-visual-c/">Bit field packing with Visual C++</a> (RandomASCII)</li>
+<li>Visual C++ documentation on <a href="https://docs.microsoft.com/en-us/cpp/cpp/cpp-bit-fields">C++ Bit Fields</a></li>
+<li>Visual C++ documentation on <a href="https://docs.microsoft.com/en-us/cpp/preprocessor/pack?view=vs-2019">pack pragma</a></li>
+<li>GCC documentation on <a href="https://gcc.gnu.org/onlinedocs/gcc/Structure-Layout-Pragmas.html">Structure Layout Pragmas</a></li>
+</ul>
+<hr />
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
+</body>
+</html>
