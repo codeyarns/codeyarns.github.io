@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="author" content="ashwinn">
-  <title>Code Yarns – Chasing The Monsoon</title>
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Why FC weights are in transposed form</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,15 +41,19 @@
 </table>
 <hr />
 <header>
-<h1 class="title">Chasing The Monsoon</h1>
-<p class="date">(First posted on: 2009-06-13 15:52:24+00:00)</p>
+<h1 class="title">Why FC weights are in transposed form</h1>
+<p class="date">(First posted on: 2020-08-07T05:29:36.130580-07:00)</p>
 </header>
-<figure>
-<img src="http://fishmoth.files.wordpress.com/2009/06/2009_06_13_chasing_the_monsoon.jpg" alt="Chasing The Monsoon" /><figcaption>Chasing The Monsoon</figcaption>
-</figure>
-<p>In his travelogue <strong>Chasing The Monsoon</strong>, author <a href="http://en.wikipedia.org/wiki/Alexander_Frater"><strong>Alexander Frater</strong></a> follows the 1987 monsoon across India. Frater spent his youth in the New Hebrides (now called <a href="http://en.wikipedia.org/wiki/Vanuatu">Vanuatu</a>), a splattering of volcanic islands in the Pacific Ocean where his dad worked as a Mission doctor to the tribals. A strange set of personal events convinces Frater to undertake the monsoon journey across India. Starting from Kerala he follows it across the West coast to Mumbai, then Delhi and Kolkata. His final aim is to experience the monsoon in Cherrapunji, the place with the heaviest rainfall in the world back then. This is when Indian bureaucracy throws a spanner into his works, not allowing him entry into Meghalaya due to the sensitive conditions there. Crestfallen he returns back to London. But, due to his persistence and with the help of some enterprising friends he gets that elusive permit and finally gets wet in the Cherra downpour.</p>
-<p>Alexander Frater totally won me over with this book. The monsoon is a religion in India and it plays a major role in the lives of Indians. When it's delayed or less, it causes droughts. When it's early or heavy, it causes floods. Yes, it's old and dated, but Frater's travel tale is laced with such delightful and funny anecdotes and filled with such colorful characters that it's hard to <em>not</em> love it. Though monsoon is the main theme of the book, Frater also weaves in his own personal life journey into the threads. And even those parts are just as interesting. This is the best Indian travelogue I've read in years.</p>
-<p><strong>Rating</strong>: 4/4 (Hilarious, must read!)</p>
+<p>The torch <a href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html"><strong>nn.linear</strong></a> operator is used to implement what is traditionally called the <strong>fully connected</strong> (FC) layer in neural networks. Looking at the nn.linear documentation I noticed that though the weights matrix is used as <code>(in_features, out_features)</code> in the FC, it is stored as its transpose <code>(out_features, in_features)</code>. Why is that?</p>
+<p>The consensus seems to be that:</p>
+<ul>
+<li>During matrix multiplication, the weights matrix is read column-by-column, which is typically not as efficient as reading row-by-row. So, it is stored in the transposed form.</li>
+<li>Another reason seems to be that FC is typically mapped down to a BLAS GEMM routine. And in BLAS GEMM, transposes are cheap.</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://discuss.pytorch.org/t/why-does-the-linear-module-seems-to-do-unnecessary-transposing/6277" class="uri">https://discuss.pytorch.org/t/why-does-the-linear-module-seems-to-do-unnecessary-transposing/6277</a></li>
+</ul>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
