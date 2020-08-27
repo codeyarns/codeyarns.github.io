@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Git Interrupted System Call error</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-6045459060677327" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+<body>
+<table style="width: 100%;">
+    <tr>
+        <td style="text-align: left;">
+            <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+        </td>
+        <td style="text-align: right;">
+            <div class="header2"><a class="header2" href="https://codeyarns.github.io/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.github.io/personal/">Personal Blog</a></div>
+            </br>
+            <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="overflow:hidden;margin:0;padding:0;width:300px;height:40px;" frameborder="0"></iframe>
+        </td>
+    </tr>
+</table>
+<hr />
+<header>
+<h1 class="title">Git Interrupted System Call error</h1>
+<p class="date">(First posted on: 2020-08-26T22:23:03.697654-07:00)</p>
+</header>
+<h2 id="problem">Problem</h2>
+<p>I tried to clone a <strong>Git</strong> repository to a directory on a <strong>CIFS</strong> share and got this <code>Interrupted system call</code> error:</p>
+<pre><code>$ git clone ssh://git@github.com/foobar.git
+Cloning into &#39;foobar&#39;...
+remote: Enumerating objects: 5191, done.
+remote: Counting objects: 100% (5191/5191), done.
+remote: Compressing objects: 100% (638/638), done.
+remote: Total 53445 (delta 5032), reused 4549 (delta 4549), pack-reused 48254
+Receiving objects: 100% (53445/53445), 38.63 MiB | 32.13 MiB/s, done.
+Resolving deltas: 100% (34833/34833), done.
+fatal: cannot create directory at &#39;src/models/&#39;: Interrupted system call
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with &#39;git status&#39;
+and retry the checkout with &#39;git checkout -f HEAD&#39;</code></pre>
+<p>Git indicated that the cloning succeeded, but when checking out a copy of the files to the filesytem the checkout failed. You can see that it recommends I do an explicit checkout, but that command too fails with the same error.</p>
+<h2 id="solution">Solution</h2>
+<p>Diagnosing the problem, I observed that the same clone command works fine on a local filesystem, so CIFS played a role in the error. Also, the failing directory had a large binary file that was checked in using <strong>LFS</strong>.</p>
+<p>Googling I found that the case sensitivity of the CIFS share might have played a role in the error. Older Windows filesystems were case-insensitive, so I checked whether Git was automatically switching to <strong>ignore case</strong> for the clone:</p>
+<pre><code>$ git config --get core.ignorecase
+true</code></pre>
+<p>I decided to flip this config:</p>
+<pre><code>$ git config core.ignorecase false</code></pre>
+<p>I was comfortable doing this because I knew that my repository did not have directories or files at the same level which only differed in case.</p>
+<p>After doing the flip, I was able to successfully do the explicit checkout:</p>
+<pre><code>$ git checkout -f HEAD</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+<hr />
+<div class="footer">
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+</div>
+</body>
+</html>
