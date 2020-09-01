@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – C++: The const Mantra</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -44,31 +81,37 @@
 <h1 class="title">C++: The const Mantra</h1>
 <p class="date">(First posted on: 2010-07-24 05:30:49+00:00)</p>
 </header>
-<p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_24_const_mantra.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_24_const_mantra.png" alt=" " /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_24_const_mantra.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <p>The <strong>const mantra</strong> to keep in mind while writing C++ code is to <strong>make everything const</strong>, that is, as much as possible. Typing 5 extra letters everywhere might seem like extra work, especially to C gurus, but the paybacks of const can be quite significant over time. It is one extra nail hammered into the code to ensure that the code behaves exactly as envisioned in the head of the programmer. Once the vision of the programmer has been converted to code, const helps in ensuring the correctness of this code by pushing the burden of this checking onto the compiler. Thus bugs can be caught much earlier, at compile time. The const code will also behave much nicer with STL and other libraries that give special emphasis to const. They might have faster and/or more robust implementations for const.</p>
 <p>Here are some simple guidelines to const the code:</p>
 <ul>
-<li>Whenever possible, const all <strong>input parameters</strong> to a method that are <strong>passed by reference</strong>. That is, const all input reference and pointer variables that will not be modified inside the method. Making a pass-by-value input parameter (like int) as const is typically not useful. ```cpp void FooContainer::append( const FooContainer&amp; );</li>
+<li>Whenever possible, const all <strong>input parameters</strong> to a method that are <strong>passed by reference</strong>. That is, const all input reference and pointer variables that will not be modified inside the method. Making a pass-by-value input parameter (like int) as const is typically not useful.</li>
 </ul>
-<pre><code>
-    
-  * Whenever possible, const all methods that do not change the underlying object. ```cpp
-void FooContainer::display() const;</code></pre>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> FooContainer::append( <span class="at">const</span> FooContainer&amp; );</code></pre></div>
 <ul>
-<li>Whenever possible, do both of the above. ```cpp void FooContainer::displayWithIndex( const FooVector&amp; ) const;</li>
+<li>Whenever possible, const all methods that do not change the underlying object.</li>
 </ul>
-<pre><code>
-    
-  * Whenever possible, const all variables defined inside the method that will not be modified once initialized. This might sound obvious, but very few people do this since it seems like too much work. The benefits start to pay off once you start seeing the **immutable** (const) and **mutable** moving parts churning inside the engine of the method by just glancing over it. It is like wearing 3D glasses, yes, get the extra dimension to your vision! ;-) ```cpp
-void FooContainer::display() const
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> FooContainer::display() <span class="at">const</span>;</code></pre></div>
+<ul>
+<li>Whenever possible, do both of the above.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> FooContainer::displayWithIndex( <span class="at">const</span> FooVector&amp; ) <span class="at">const</span>;</code></pre></div>
+<ul>
+<li>Whenever possible, const all variables defined inside the method that will not be modified once initialized. This might sound obvious, but very few people do this since it seems like too much work. The benefits start to pay off once you start seeing the <strong>immutable</strong> (const) and <strong>mutable</strong> moving parts churning inside the engine of the method by just glancing over it. It is like wearing 3D glasses, yes, get the extra dimension to your vision! 😉</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> FooContainer::display() <span class="at">const</span>
 {
-    const int max = size();
-    // ***
-}</code></pre>
+    <span class="at">const</span> <span class="dt">int</span> max = size();
+    <span class="co">// ***</span>
+}</code></pre></div>
 <ul>
-<li>Whenever possible, use <strong>const_iterator</strong>, <strong>cbegin</strong> and <strong>cend</strong> when using STL. cbegin and cend are introduced in C++0X and you can use them if you are using Visual C++ 2010. <code>cpp for ( FooVector::const_iterator i = fooVec.cbegin(); i != fooVec.cend(); ++i ) { /***/ }</code></li>
+<li>Whenever possible, use <strong>const_iterator</strong>, <strong>cbegin</strong> and <strong>cend</strong> when using STL. cbegin and cend are introduced in C++0X and you can use them if you are using Visual C++ 2010.</li>
 </ul>
-<p>Note that injecting your code with the const vaccine will have some initial side-effects. The const introduced in one method starts to spread virally through your code, giving const related compile errors. This forces you to re-think the assumptions of your code, re-factor and re-write a lot of your code. Yes, this is good for you and your code. Go gain your const-vision! :-D</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">for</span> ( FooVector::const_iterator i = fooVec.cbegin(); i != fooVec.cend(); ++i )
+{ <span class="co">/***/</span> }</code></pre></div>
+<p>Note that injecting your code with the const vaccine will have some initial side-effects. The const introduced in one method starts to spread virally through your code, giving const related compile errors. This forces you to re-think the assumptions of your code, re-factor and re-write a lot of your code. Yes, this is good for you and your code. Go gain your const-vision! 😀</p>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
