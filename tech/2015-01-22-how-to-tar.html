@@ -69,7 +69,16 @@
 <li>To extract to a specific directory, create it first and then specify it:</li>
 </ul>
 <pre><code>$ mkdir foobar
-$ tar -xf haha.tar -C / --directory foobar</code></pre>
+$ tar -xf haha.tar --directory foobar
+$ tar -xf haha.tar -C foobar</code></pre>
+<ul>
+<li>To extact but chop off one or more base directories from the relative file paths being extracted, use the <code>--strip-components</code> option:</li>
+</ul>
+<pre><code>$ tar -xf haha.tar
+Writes out foo/bar/rocky/zoo.py
+
+$ tar -xf haha.tar --strip-components 2
+Writes out rocky/zoo.py</code></pre>
 <ul>
 <li>To view list of files during untar:</li>
 </ul>

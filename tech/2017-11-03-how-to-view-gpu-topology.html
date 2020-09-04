@@ -53,7 +53,42 @@
 <li>To view the connection matrix between the GPUs and the CPUs they are close to (CPU affinities):</li>
 </ul>
 <pre><code>$ nvidia-smi topo -m</code></pre>
-<p>Some examples of GPU topologies can be seen <a href="https://gist.github.com/ashwin/e139748bdba15f5af63f0146d01ee4c3">here</a>.</p>
+<p>The output of this command shows a matrix of the connections between your GPUs with interconnect info, CPU affinity and NUMA affinity.</p>
+<p>Some examples of GPU topologies:</p>
+<pre><code>$ nvidia-smi topo -m
+    GPU0    CPU Affinity
+GPU0     X  0-7
+
+$ nvidia-smi topo -m
+    GPU0    GPU1    GPU2    GPU3    CPU Affinity
+GPU0     X  PHB SOC SOC 0-9,20-29
+GPU1    PHB  X  SOC SOC 0-9,20-29
+GPU2    SOC SOC  X  PHB 10-19,30-39
+GPU3    SOC SOC PHB  X  10-19,30-39
+
+$ nvidia-smi topo -m
+        GPU0    GPU1    GPU2    GPU3    GPU4    GPU5    GPU6    GPU7    mlx5_0  mlx5_2  mlx5_1  mlx5_3  CPU Affinity
+GPU0     X      NV1     NV1     NV2     NV2     SOC     SOC     SOC     PIX     SOC     PHB     SOC     0-19,40-59
+GPU1    NV1      X      NV2     NV1     SOC     NV2     SOC     SOC     PIX     SOC     PHB     SOC     0-19,40-59
+GPU2    NV1     NV2      X      NV2     SOC     SOC     NV1     SOC     PHB     SOC     PIX     SOC     0-19,40-59
+GPU3    NV2     NV1     NV2      X      SOC     SOC     SOC     NV1     PHB     SOC     PIX     SOC     0-19,40-59
+GPU4    NV2     SOC     SOC     SOC      X      NV1     NV1     NV2     SOC     PIX     SOC     PHB     20-39,60-79
+GPU5    SOC     NV2     SOC     SOC     NV1      X      NV2     NV1     SOC     PIX     SOC     PHB     20-39,60-79
+GPU6    SOC     SOC     NV1     SOC     NV1     NV2      X      NV2     SOC     PHB     SOC     PIX     20-39,60-79
+GPU7    SOC     SOC     SOC     NV1     NV2     NV1     NV2      X      SOC     PHB     SOC     PIX     20-39,60-79
+mlx5_0  PIX     PIX     PHB     PHB     SOC     SOC     SOC     SOC      X      SOC     PHB     SOC
+mlx5_2  SOC     SOC     SOC     SOC     PIX     PIX     PHB     PHB     SOC      X      SOC     PHB
+mlx5_1  PHB     PHB     PIX     PIX     SOC     SOC     SOC     SOC     PHB     SOC      X      SOC
+mlx5_3  SOC     SOC     SOC     SOC     PHB     PHB     PIX     PIX     SOC     PHB     SOC      X </code></pre>
+<p>The command also prints this legend as reference:</p>
+<pre><code>Legend:
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+  PIX  = Connection traversing at most a single PCIe bridge
+  NV#  = Connection traversing a bonded set of # NVLinks</code></pre>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
