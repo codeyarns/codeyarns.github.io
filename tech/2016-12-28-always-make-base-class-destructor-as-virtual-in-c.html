@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Always make base class destructor as virtual in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -53,7 +90,72 @@
 <li><p><strong>If base class destructor is virtual:</strong> The derived class destructor is called first (thus freeing its allocated objects correctly) before the trail of destruction heads up the chain of hierarchy, ending in the base class destructor. This is the intended correct behavior.</p></li>
 </ul>
 <p>Here is a code example that illustrates this scenario:</p>
-<p>https://gist.github.com/ashwin/f0868a27e9a1f91ab713e3d977f871cd</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Example to show why base class destructor should be virtual.</span>
+<span class="co">//</span>
+<span class="co">// If ~A is not virtual below, you will notice that B&#39;s destructor</span>
+<span class="co">// is not called and B&#39;s Foo object is not freed. Memory leak!</span>
+<span class="co">//</span>
+<span class="co">// Change ~A to virtual and Foo is freed at end of scope correctly.</span>
+
+<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;memory&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">class</span> Foo
+{
+    <span class="kw">public</span>:
+    Foo()  { cout &lt;&lt; <span class="st">&quot;Foo ctor</span><span class="sc">\n</span><span class="st">&quot;</span>; }
+    ~Foo() { cout &lt;&lt; <span class="st">&quot;Foo dtor</span><span class="sc">\n</span><span class="st">&quot;</span>; }
+};
+
+<span class="co">// Base class</span>
+<span class="kw">class</span> A
+{
+    <span class="kw">public</span>:
+    A()  { cout &lt;&lt; <span class="st">&quot;A ctor</span><span class="sc">\n</span><span class="st">&quot;</span>; }
+    <span class="co">// Note: Make this virtual to prevent memory leak</span>
+    ~A() { cout &lt;&lt; <span class="st">&quot;A dtor</span><span class="sc">\n</span><span class="st">&quot;</span>; }
+};
+
+<span class="co">// Derived class</span>
+<span class="kw">class</span> B : <span class="kw">public</span> A
+{
+    <span class="kw">public</span>:
+    B()
+    {
+        cout &lt;&lt; <span class="st">&quot;B ctor</span><span class="sc">\n</span><span class="st">&quot;</span>;
+        fp = unique_ptr&lt;Foo&gt;(<span class="kw">new</span> Foo);
+    }
+    ~B() { cout &lt;&lt; <span class="st">&quot;B dtor</span><span class="sc">\n</span><span class="st">&quot;</span>; }
+    unique_ptr&lt;Foo&gt; fp;
+};
+
+<span class="dt">int</span> main()
+{
+    {
+        <span class="co">// Take a base class pointer to derived class object</span>
+        unique_ptr&lt;A&gt; a(<span class="kw">new</span> B);
+    }
+    cout &lt;&lt; <span class="st">&quot;Scope ended</span><span class="sc">\n</span><span class="st">&quot;</span>;
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+<span class="co">// If ~A is not virtual, output is:</span>
+<span class="co">// A ctor</span>
+<span class="co">// B ctor</span>
+<span class="co">// Foo ctor</span>
+<span class="co">// A dtor</span>
+<span class="co">// Scope ended</span>
+
+<span class="co">// If ~A is virtual, output is:</span>
+<span class="co">// A ctor</span>
+<span class="co">// B ctor</span>
+<span class="co">// Foo ctor</span>
+<span class="co">// B dtor   &lt;-- B destructor called</span>
+<span class="co">// Foo dtor &lt;-- Foo object destroyed</span>
+<span class="co">// A dtor</span>
+<span class="co">// Scope ended</span></code></pre></div>
 <hr />
 <div class="footer">
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
