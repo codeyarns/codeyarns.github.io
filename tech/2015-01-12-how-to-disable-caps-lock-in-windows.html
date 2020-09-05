@@ -44,13 +44,18 @@
 <h1 class="title">How to disable caps lock in Windows</h1>
 <p class="date">(First posted on: 2015-01-12 12:53:04+00:00)</p>
 </header>
-<p>[caption id=“attachment_5450” align=“aligncenter” width=“876”][<img src="https://codeyarns.files.wordpress.com/2015/01/20150112-capslock.png" alt="Registry entry to disable caps lock." />](https://codeyarns.files.wordpress.com/2015/01/20150112-capslock.png) Registry entry to disable caps lock.[/caption]</p>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2015/01/20150112-capslock.png" alt="Registry entry to disable caps lock." /><figcaption>Registry entry to disable caps lock.</figcaption>
+</figure>
 <p>I find that the <strong>caps lock</strong> key is useless for me and it only hinders typing when accidentally pressed. It can be disabled on Windows by adding a registry entry.</p>
 <ul>
 <li>Save the text below as a <code>disable_caps_lock.reg</code> file:</li>
 </ul>
-<p>https://gist.github.com/ashwin/84487a734df352878b11</p>
-<p>It creates a new registry entry <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout</code></p>
+<pre><code>Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+&quot;Scancode Map&quot;=hex:00,00,00,00,00,00,00,00,02,00,00,00,00,00,3a,00,00,00,00,00</code></pre>
+<p>This creates a new registry entry <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout</code></p>
 <ul>
 <li><p>Double-click the file to add this registry entry and its value. It will ask for Administrator permissions.</p></li>
 <li><p>Restart Windows. Your caps lock key should be disabled now.</p></li>
