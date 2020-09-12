@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,16 +42,20 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to fix NVIDIA driver failure on Ubuntu</h1>
-<p class="date">(First posted on: 2013-02-07 13:04:46+00:00)</p>
+<p class="date">📅 Published on: 2013-Feb-07</p>
 </header>
 <p><strong>The Problems</strong></p>
 <ol type="1">
 <li>You installed Ubuntu on a computer with NVIDIA graphics card, but Compiz is not turned on in Unity.</li>
 <li>You installed NVIDIA drivers and now you have no desktop or X windows.</li>
-<li>You installed the drivers from NVIDIA’s website and you have no desktop or X windows.</li>
+<li>You installed the drivers from NVIDIA's website and you have no desktop or X windows.</li>
 </ol>
 <p><strong>Solution</strong></p>
 <p>Almost everyone who has a NVIDIA graphics card is afraid when Ubuntu updates or the driver updates. Because, you never know if the install or update will screw up your setup leaving you with no Compiz or even worse, no X windows!</p>
@@ -67,15 +74,20 @@
 <p>Remove all the nvidia modules. For example, to remove the above:</p>
 <pre><code>$ sudo dkms remove nvidia-current-updates/304.64 -k 3.2.0-37-generic</code></pre>
 <p><strong>Step 2: Install NVIDIA drivers</strong></p>
-<p>Now install back the drivers. I highly recommend staying away from the drivers on NVIDIA’s website. For drivers that have been tested and packaged by Ubuntu volunteers, you have two options: current and current-updates.</p>
-<p><strong>current</strong> is what was well tested and shipped with the Ubuntu version you are using. It may be pretty old. <strong>current-updates</strong> is a package that is drawn from NVIDIA’s releases, but is tested and packaged by Ubuntu. This is pretty safe.</p>
+<p>Now install back the drivers. I highly recommend staying away from the drivers on NVIDIA's website. For drivers that have been tested and packaged by Ubuntu volunteers, you have two options: current and current-updates.</p>
+<p><strong>current</strong> is what was well tested and shipped with the Ubuntu version you are using. It may be pretty old. <strong>current-updates</strong> is a package that is drawn from NVIDIA's releases, but is tested and packaged by Ubuntu. This is pretty safe.</p>
 <p>Depending on what you pick, the install is familiar:</p>
 <pre><code>$ sudo apt-get install nvidia-current-updates nvidia-settings-updates</code></pre>
 <p>I hope your NVIDIA drivers are working with your Ubuntu now. If not, I hope the wide web holds a solution to your problem.</p>
 <p><strong>Tried with:</strong> NVIDIA GeForce 9600 GT and Ubuntu 12.04 LTS</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

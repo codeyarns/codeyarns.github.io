@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Error using TensorRT engine for inference</h1>
-<p class="date">(First posted on: 2017-08-22 15:09:50+00:00)</p>
+<p class="date">📅 Published on: 2017-Aug-22</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I used <strong>TensorRT</strong> to convert a <strong>Caffe</strong> model into an engine (plan) file on one computer. When I tried to load this engine (plan) file on another computer and use it for inference using TensorRT, I got this error:</p>
@@ -51,9 +58,14 @@
 <p>It turns out that the first computer had a NVIDIA 1080 Ti GPU and the engine had been created for it. The second computer had a NVIDIA K80 GPU. Though, TensorRT documentation is vague about this, it seems like an engine created on a specific GPU can only be used for inference on the same model of GPU!</p>
 <p>When I created a plan file on the K80 computer, inference worked fine.</p>
 <p><strong>Tried with:</strong> TensorRT 2.1, cuDNN 6.0 and CUDA 8.0</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

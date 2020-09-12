@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">NVCC argument redefinition error</h1>
-<p class="date">(First posted on: 2017-12-22 17:02:55+00:00)</p>
+<p class="date">📅 Published on: 2017-Dec-22</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I was trying to build a CUDA project that worked on one computer on a second computer. Though this project built without problems on the first computer, nvcc gave an argument redefinition error on the second computer:</p>
@@ -51,9 +58,14 @@
 <p>At first, I thought that the compilation error was arising from the source code. Actually, the error is being reported about a compilation argument to nvcc. It is saying that a std argument has been provided more than once.</p>
 <p>This project was using CMake, so the actual compilation commands invoked by make are hidden. I used the VERBOSE trick, described <a href="2013-10-07-how-to-view-commands-executed-by-make.html">here</a>, to view the actual commands issued to the C++ and CUDA compilers. Not surprisingly, I found that the <code>-std=c++11</code> argument was being passed twice. But why? I checked the CMakeLists.txt file and found that indeed the C++11 argument was being passed to the compiler twice by setting it in both <code>CMAKE_CXX_FLAGS</code> and <code>CUDA_NVCC_FLAGS</code>. How and why was this working fine on the first computer? Turns out that the older CMake used on the first computer would not pass the C++ flag to NVCC, so it had to be specifically redefined for CUDA compiler flags.</p>
 <p>The second computer was using a newer version of Ubuntu, with newer version of CMake. This was intelligent enough to pass a C++ flag to the CUDA NVCC compiler too. But since the NVCC flag of the same name also existed, it was causing the argument redefinition error. Removing the flag from the CUDA flags made the problem go away.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Stub library warning on libnvidia-ml.so</h1>
-<p class="date">(First posted on: 2017-11-13 15:14:31+00:00)</p>
+<p class="date">📅 Published on: 2017-Nov-13</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I tried to run a program compiled with CUDA 9.0 inside a Docker container and got this error:</p>
@@ -62,9 +69,14 @@ to have Display Driver installed).</code></pre>
 <p>Since the binary has an RPATH, described <a href="2017-11-01-how-shared-library-locations-are-found-at-runtime.html">here</a>, with the stubs path, the stub library was getting picked up with high preference over the actual libnvidia-ml.so, which was present. The solution I came up with for this problem was to add a command to the docker run invocation to delete the stubs directory:</p>
 <pre><code>$ rm -rf  /usr/local/cuda/lib64/stubs</code></pre>
 <p>That way, it was still available outside Docker for compilation. It would just appeared deleted inside the Docker container, thus forcing the loader to pick up the real libnvidia-ml.so during execution.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

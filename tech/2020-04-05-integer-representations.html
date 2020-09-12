@@ -8,67 +8,41 @@
   <title>Code Yarns – Integer representations</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -89,7 +63,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -102,53 +79,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Integer representations</h1>
-<p class="date">(First posted on: 2020-04-05T21:25:54.712722-07:00)</p>
+<p class="date">📅 Published on: 2020-Apr-05</p>
 </header>
 <figure>
 <img src="2020-04-05-integer-representations.png" alt="Full size image" /><figcaption><a href="2020-04-05-integer-representations.png">Full size image</a></figcaption>
 </figure>
 <p><strong>Unsigned integer</strong> data type is used to represent non-negative integers. <strong>Signed integer</strong> data type is used to represent all integers, both positive and negative.</p>
 <p>C/C++ has both signed and unsigned integer types. Other languages like Java have only signed integer types.</p>
-<p>Unsigned integer in almost all languages and computers have a single possible bit representation, as show in the above figure. Signed integers have had 3 implementations during the evolution of computers: two’s complement, ones’ complement and sign magnitude.</p>
-<p>Two’s complement is what is universally used in computers today. Ones’ complement used to be used in computers until the 1960s, like the <a href="https://en.wikipedia.org/wiki/CDC_160_series">CDC-160</a> for example. Sign magnitude was also used in computers until the 1960s, and is only used in the IEEE 954 floating point format now.</p>
+<p>Unsigned integer in almost all languages and computers have a single possible bit representation, as show in the above figure. Signed integers have had 3 implementations during the evolution of computers: two's complement, ones' complement and sign magnitude.</p>
+<p>Two's complement is what is universally used in computers today. Ones' complement used to be used in computers until the 1960s, like the <a href="https://en.wikipedia.org/wiki/CDC_160_series">CDC-160</a> for example. Sign magnitude was also used in computers until the 1960s, and is only used in the IEEE 954 floating point format now.</p>
 <p>My mental model of how bits are interpreted in these 3 implementations is depicted in the above figure using a 4-bit integer type as an example. Notice how the sign bit means different values and operations in the 3 representations.</p>
-<p><strong>Two’s complement</strong> is a bit unintuitive for humans. But it won the competition over the other 2 reprsentations because addition, subtraction and multiplication are the simplest to implement in it and are the same for both unsigned and signed integers. For example, addition of unsigned integers and signed integers (in two’s complement form) is the same bit-wise process: add the bits from LSB to MSB and ignore the final carry bit. So simple!</p>
-<p>Two’s complement, by its nature, has an uneven range. For example, 8-bit signed integer has range -128 to +127. Notice how negating -128 will not give you +128 because that value cannot be represented in a two’s complement 8-bit signed integer. Computers using two’s complement choose to return -128 as the negated value of -128.</p>
-<p><strong>Ones’ complement</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes: +0 (when all bits are zero) and -0 (when all bits are one).</p>
+<p><strong>Two's complement</strong> is a bit unintuitive for humans. But it won the competition over the other 2 reprsentations because addition, subtraction and multiplication are the simplest to implement in it and are the same for both unsigned and signed integers. For example, addition of unsigned integers and signed integers (in two's complement form) is the same bit-wise process: add the bits from LSB to MSB and ignore the final carry bit. So simple!</p>
+<p>Two's complement, by its nature, has an uneven range. For example, 8-bit signed integer has range -128 to +127. Notice how negating -128 will not give you +128 because that value cannot be represented in a two's complement 8-bit signed integer. Computers using two's complement choose to return -128 as the negated value of -128.</p>
+<p><strong>Ones' complement</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes: +0 (when all bits are zero) and -0 (when all bits are one).</p>
 <p><strong>Sign magnitude</strong>, by its nature, has an even range. For example, 8-bit signed integer has range -127 to +127. But it will have two zeroes. You can see this in the IEEE 754 floating point format, which has two zeroes.</p>
-<p>Both the C and C++ standards allow signed integers to be represented in any of these 3 formats. This is in an attempt to support old computers which might use either two’s complement or sign magnitude. Some of the famous computers which used these decrepit formats include the CDC computers (CDC-160) and the PDP-1. But these computers were out of use by the time the C language was taking shape in 1972. But apparently, there are companies that sell mainframes built on Intel CPUs that emulate these old computers, so there might still be some use to supporting these formats.</p>
-<p>In any case, the C/C++ standard support of these old formats is why the minimum ranges of signed integers in C/C++ standards have an even range. For example, the minimum range of 8-bit signed integers in C/C++ is -127 (<code>SCHAR_MIN</code>) to +127 (<code>SCHAR_MAX</code>). But implementations are allowed to have signed integer types whose range is larger, which is what all computers do today: their 8-bit signed integers have range -128 to +127 because they use two’s complement.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="co">// C99 standard defines these minimum ranges for signed integer types:</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#define SCHAR_MAX </span>+<span class="dv">127</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="pp">#define SCHAR_MIN </span>-<span class="dv">127</span><span class="pp">   </span><span class="co">// &lt;&lt;&lt;&lt;</span></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="pp">#define SHRT_MAX </span>+<span class="dv">32767</span></a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="pp">#define SHRT_MIN </span>-<span class="dv">32767</span></a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="pp">#define INT_MAX </span>+<span class="dv">32767</span></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="pp">#define INT_MIN </span>-<span class="dv">32767</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="pp">#define LONG_MAX </span>+<span class="dv">2147483647</span></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="pp">#define LONG_MIN </span>-<span class="dv">2147483647</span></a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="co">// Implementation-defined ranges found in limits.h on my Intel x64:</span></a>
-<a class="sourceLine" id="cb1-12" title="12"><span class="pp">#define SCHAR_MAX </span>+<span class="dv">127</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="pp">#define SCHAR_MIN </span>-<span class="dv">128</span><span class="pp">  </span><span class="co">// &lt;&lt;&lt;&lt;</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="pp">#define SHRT_MAX </span>+<span class="dv">32767</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="pp">#define SHRT_MIN </span>-<span class="dv">32768</span></a>
-<a class="sourceLine" id="cb1-16" title="16"><span class="pp">#define INT_MAX </span>+<span class="dv">2147483647</span></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="pp">#define INT_MIN </span>-<span class="dv">2147483648</span></a></code></pre></div>
+<p>Both the C and C++ standards allow signed integers to be represented in any of these 3 formats. This is in an attempt to support old computers which might use either two's complement or sign magnitude. Some of the famous computers which used these decrepit formats include the CDC computers (CDC-160) and the PDP-1. But these computers were out of use by the time the C language was taking shape in 1972. But apparently, there are companies that sell mainframes built on Intel CPUs that emulate these old computers, so there might still be some use to supporting these formats.</p>
+<p>In any case, the C/C++ standard support of these old formats is why the minimum ranges of signed integers in C/C++ standards have an even range. For example, the minimum range of 8-bit signed integers in C/C++ is -127 (<code>SCHAR_MIN</code>) to +127 (<code>SCHAR_MAX</code>). But implementations are allowed to have signed integer types whose range is larger, which is what all computers do today: their 8-bit signed integers have range -128 to +127 because they use two's complement.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// C99 standard defines these minimum ranges for signed integer types:</span>
+<span class="pp">#define SCHAR_MAX +127</span>
+<span class="pp">#define SCHAR_MIN -127   </span><span class="co">// &lt;&lt;&lt;&lt;</span>
+<span class="pp">#define SHRT_MAX +32767</span>
+<span class="pp">#define SHRT_MIN -32767</span>
+<span class="pp">#define INT_MAX +32767</span>
+<span class="pp">#define INT_MIN -32767</span>
+<span class="pp">#define LONG_MAX +2147483647</span>
+<span class="pp">#define LONG_MIN -2147483647</span>
+
+<span class="co">// Implementation-defined ranges found in limits.h on my Intel x64:</span>
+<span class="pp">#define SCHAR_MAX +127</span>
+<span class="pp">#define SCHAR_MIN -128  </span><span class="co">// &lt;&lt;&lt;&lt;</span>
+<span class="pp">#define SHRT_MAX +32767</span>
+<span class="pp">#define SHRT_MIN -32768</span>
+<span class="pp">#define INT_MAX +2147483647</span>
+<span class="pp">#define INT_MIN -2147483648</span></code></pre></div>
 <p><strong>References:</strong></p>
 <ul>
-<li>Computer Systems: A Programmer’s Perspective (3 Ed)</li>
-<li>Eric S. Raymond on <a href="http://esr.ibiblio.org/?p=7413">One’s complement arithmetic: It lives!</a></li>
+<li>Computer Systems: A Programmer's Perspective (3 Ed)</li>
+<li>Eric S. Raymond on <a href="http://esr.ibiblio.org/?p=7413">One's complement arithmetic: It lives!</a></li>
 <li>CDC 160-A Computer Programming Manual</li>
 <li>PDP-1 Handbook</li>
 <li>C99 standard</li>
 </ul>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

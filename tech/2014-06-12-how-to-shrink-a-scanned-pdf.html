@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,24 +42,33 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to shrink a scanned PDF</h1>
-<p class="date">(First posted on: 2014-06-12 03:31:04+00:00)</p>
+<p class="date">📅 Published on: 2014-Jun-12</p>
 </header>
 <p>Documents that are generated from a scanner typically are in the PDF format. Sometimes the scanned PDF given by others can be really huge, running into hundreds of MBs for just a few pages. Ghostscript is the most common program used to shrink the PDF file. There is a long invocation to Ghostscript with multiple input parameters that is required to do this correctly. Thankfully, we have easier-to-use programs that invoke Ghostscript correctly for us.</p>
 <p>Install Ghostscript and Imagemagick if you do not have it:</p>
 <pre><code>$ sudo apt install ghostscript imagemagick</code></pre>
-<p>Imagemagick’s convert utility can be used to compress the PDF. By default, it tries to use a huge DPI which makes Ghostscript occupy all the RAM and brings the computer to its knees. Instead instruct convert what DPI to use. Start from a small DPI and work your way up until you are satisfied with the output quality.</p>
+<p>Imagemagick's convert utility can be used to compress the PDF. By default, it tries to use a huge DPI which makes Ghostscript occupy all the RAM and brings the computer to its knees. Instead instruct convert what DPI to use. Start from a small DPI and work your way up until you are satisfied with the output quality.</p>
 <p>For example:</p>
 <pre><code>$ convert -density 20 original.pdf out.pdf</code></pre>
 <p>If you are curious about the Ghostscript invocation it is using to perform the conversion, ask it to be verbose:</p>
 <pre><code>$ convert -density 20 -verbose original.pdf out.pdf</code></pre>
 <p><strong>Note:</strong> Another way to shrink PDF is to convert to PS (pdf2ps) and then back to PDF (ps2pdf). Note that this does double the work and creates a ginormous intermediate PS file. I would not recommend this since it takes longer time, creates huge intermediate files and you get no control over the DPI or compression ratio.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

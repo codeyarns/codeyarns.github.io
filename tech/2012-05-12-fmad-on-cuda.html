@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,20 +42,29 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">FMAD on CUDA</h1>
-<p class="date">(First posted on: 2012-05-12 07:24:55+00:00)</p>
+<p class="date">📅 Published on: 2012-May-12</p>
 </header>
-<p>[caption id=“attachment_2543” align=“aligncenter” width=“812”][<img src="https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png" alt=" " />](https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png) PTX instructions produced with FMAD off (left) and FMAD on (right)[/caption]</p>
+<p>[caption id=&quot;attachment_2543&quot; align=&quot;aligncenter&quot; width=&quot;812&quot;][<img src="https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png" alt=" " />](https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png) PTX instructions produced with FMAD off (left) and FMAD on (right)[/caption]</p>
 <p>If you are using <strong>CUDA</strong> to perform any sort of non-graphics <strong>floating-point computation</strong>, be aware of the <strong>FMAD</strong> (floating-point multiply-add) instruction. Since CUDA hardware needs to straddle not only the world of computation, but also graphics and gaming, it has lots of FMAD units. So, by default the CUDA compiler will try to replace as much of your floating-point computation code with FMAD instructions.</p>
 <p>This is fine if you do not rely on the precision of your results. However, this can lead to hard-to-find bugs if you do rely on the precision. If you need the CUDA computation to mimic the floating-point computation on the CPU, then you are better off without the FMAD instructions.</p>
 <p>The CUDA compiler (<code>nvcc</code>) is configured to produce FMAD instructions by default. To request it to stop producing FMAD instructions and use the normal floating-point instructions use the compiler directive <code>--fmad=false</code></p>
 <p>Note that turning off FMAD can hurt performance quite a bit. I found that the time spent on my computations increased by about 20% with FMAD turned off.</p>
 <p><strong>Tried with:</strong> CUDA 4.1</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Integer types in C++</h1>
-<p class="date">(First posted on: 2015-10-12 12:39:00+00:00)</p>
+<p class="date">📅 Published on: 2015-Oct-12</p>
 </header>
 <p>Traditional programmers are familiar with <code>int</code>, <code>long</code> and such integer types. These are known to have different sizes on different systems.</p>
 <p>However, a lot of code requires integer types to be <strong>exactly</strong> a certain size or of <strong>at least</strong> a certain size. In such situations, it is a good idea to use the <strong>fixed width integer types</strong> provided by C++ through the header file <code>cstdlib</code>.</p>
@@ -84,9 +91,9 @@ uint_fast64_t</code></pre>
 <p>When we specify that we want an integer to have exactly 32 bits, say <code>int32_t</code>, that may not be supported on certain exotic systems. Assume a computer which supports only 34-bit and 68-bit integers. That system cannot provide a 32 bit integer. Code which uses <code>int32_t</code> will not compile. This is good because the programmer who used <code>int32_t</code> might have been assuming the type to have exactly 32 bits, for example, if he is looping over the 32 bits to compute something. Such code should fail, else it would be a bug.</p>
 <p>Now the use of a precise width type, like <code>int32_t</code>, provides the reason for the other two types of integers: smallest and fastest.</p>
 <p>The smallest integer type, say <code>int_least32_t</code>, should be used when our code requires to store values that need at least 32 bits, but our first priority is space and not speed of computation. For example, assume that the exotic system described above does 68-bit integer addition faster than 34-bit addition. In such a case, when we use <code>int_least32_t</code>, we are asking it use the 34-bit type, foregoing speed for space.</p>
-<p>The fastest integer type, say <code>int_fast32_t</code>, should be used when our code requires to store values that need at least 32 bits, but our first priority is speed and not space. For example, in the exotic system described above when we use <code>int_fast32_t</code>, that system’s compiler will use the 68-bit type, providing the fastest integer addition, but by increasing space occupied by our program.</p>
+<p>The fastest integer type, say <code>int_fast32_t</code>, should be used when our code requires to store values that need at least 32 bits, but our first priority is speed and not space. For example, in the exotic system described above when we use <code>int_fast32_t</code>, that system's compiler will use the 68-bit type, providing the fastest integer addition, but by increasing space occupied by our program.</p>
 <h2 id="on-x86_64-linux">On x86_64 Linux</h2>
-<p>I now come back from a world of exotic computers to the common 64-bit x86_64 Intel processor system I’m using. On GCC C++ compiler in Linux, I found that the smallest types (like <code>int_least32_t</code>) were of the same size as the precise type (like <code>int32_t</code>). No surprises there cause x86_64 has integers of size 8, 16, 32 and 64.</p>
+<p>I now come back from a world of exotic computers to the common 64-bit x86_64 Intel processor system I'm using. On GCC C++ compiler in Linux, I found that the smallest types (like <code>int_least32_t</code>) were of the same size as the precise type (like <code>int32_t</code>). No surprises there cause x86_64 has integers of size 8, 16, 32 and 64.</p>
 <p>You will get a surprise if you use the fast types though! Except for the 8-bit fast types, the rest are all mapped to 64-bit signed and unsigned integers for speed. So, a <code>int_fast16_t</code> is mapped to a 64-bit signed integer.</p>
 <p>You can print out the sizes of all the fixed width integer types, by compiling and running a simple program, I have shared <a href="https://gist.github.com/ashwin/b4dce8392558ce815fd1">here</a>.</p>
 <p>Another method is to look at the source code. On my x86_64 Linux with GCC 5, the <code>cstdint</code> trail leads to <code>/usr/include/stdint.h</code>, where I find these definitions for the fast signed types:</p>
@@ -105,9 +112,14 @@ __extension__
 typedef long long int       int_fast64_t;
 #endif</code></pre>
 <p><strong>Tried with:</strong> GCC 5.1, Ubuntu 14.04 and x86_64 Intel CPU</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

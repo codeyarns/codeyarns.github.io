@@ -8,67 +8,41 @@
   <title>Code Yarns – How to parse program options in C++ using getopt_long</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -89,7 +63,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -102,116 +79,125 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to parse program options in C++ using getopt_long</h1>
-<p class="date">(First posted on: 2015-01-30 12:50:39+00:00)</p>
+<p class="date">📅 Published on: 2015-Jan-30</p>
 </header>
 <p>Any C or C++ program worth its salt will take some options and arguments from the user at the shell. <strong>Option</strong> is typically of the form <code>-h</code> (short) or <code>--help</code> (long). Options can also have a following <strong>argument</strong>, for example <code>-o someFile.txt</code> or <code>--open someFile.txt</code>. All these types of options and arguments can be processed easily using the <a href="http://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Options.html"><code>getopt_long</code></a> function in the GNU C library.</p>
 <p>An example that illustrates its usage is given below:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="pp">#include </span><span class="im">&lt;getopt.h&gt;</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
-<a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="dt">int</span> num = -<span class="dv">1</span>;</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="dt">bool</span> is_beep = <span class="kw">false</span>;</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="dt">float</span> sigma = <span class="fl">2.034</span>;</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="bu">std::</span>string write_file = <span class="st">&quot;default_file.txt&quot;</span>;</a>
-<a class="sourceLine" id="cb1-8" title="8"></a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="dt">void</span> PrintHelp()</a>
-<a class="sourceLine" id="cb1-10" title="10">{</a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="bu">std::</span>cout &lt;&lt;</a>
-<a class="sourceLine" id="cb1-12" title="12">            <span class="st">&quot;--num &lt;n&gt;:           Set number of program</span><span class="sc">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-13" title="13">            <span class="st">&quot;--beep:              Beep the user</span><span class="sc">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-14" title="14">            <span class="st">&quot;--sigma &lt;val&gt;:       Set sigma of program</span><span class="sc">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-15" title="15">            <span class="st">&quot;--writeFile &lt;fname&gt;: File to write to</span><span class="sc">\n</span><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb1-16" title="16">            <span class="st">&quot;--help:              Show help</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
-<a class="sourceLine" id="cb1-17" title="17">    exit(<span class="dv">1</span>);</a>
-<a class="sourceLine" id="cb1-18" title="18">}</a>
-<a class="sourceLine" id="cb1-19" title="19"></a>
-<a class="sourceLine" id="cb1-20" title="20"><span class="dt">void</span> ProcessArgs(<span class="dt">int</span> argc, <span class="dt">char</span>** argv)</a>
-<a class="sourceLine" id="cb1-21" title="21">{</a>
-<a class="sourceLine" id="cb1-22" title="22">    <span class="at">const</span> <span class="dt">char</span>* <span class="at">const</span> short_opts = <span class="st">&quot;n:bs:w:h&quot;</span>;</a>
-<a class="sourceLine" id="cb1-23" title="23">    <span class="at">const</span> option long_opts[] = {</a>
-<a class="sourceLine" id="cb1-24" title="24">            {<span class="st">&quot;num&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;n&#39;</span>},</a>
-<a class="sourceLine" id="cb1-25" title="25">            {<span class="st">&quot;beep&quot;</span>, no_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;b&#39;</span>},</a>
-<a class="sourceLine" id="cb1-26" title="26">            {<span class="st">&quot;sigma&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;s&#39;</span>},</a>
-<a class="sourceLine" id="cb1-27" title="27">            {<span class="st">&quot;writeFile&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;w&#39;</span>},</a>
-<a class="sourceLine" id="cb1-28" title="28">            {<span class="st">&quot;help&quot;</span>, no_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;h&#39;</span>},</a>
-<a class="sourceLine" id="cb1-29" title="29">            {<span class="kw">nullptr</span>, no_argument, <span class="kw">nullptr</span>, <span class="dv">0</span>}</a>
-<a class="sourceLine" id="cb1-30" title="30">    };</a>
-<a class="sourceLine" id="cb1-31" title="31"></a>
-<a class="sourceLine" id="cb1-32" title="32">    <span class="cf">while</span> (<span class="kw">true</span>)</a>
-<a class="sourceLine" id="cb1-33" title="33">    {</a>
-<a class="sourceLine" id="cb1-34" title="34">        <span class="at">const</span> <span class="kw">auto</span> opt = getopt_long(argc, argv, short_opts, long_opts, <span class="kw">nullptr</span>);</a>
-<a class="sourceLine" id="cb1-35" title="35"></a>
-<a class="sourceLine" id="cb1-36" title="36">        <span class="cf">if</span> (-<span class="dv">1</span> == opt)</a>
-<a class="sourceLine" id="cb1-37" title="37">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb1-38" title="38"></a>
-<a class="sourceLine" id="cb1-39" title="39">        <span class="cf">switch</span> (opt)</a>
-<a class="sourceLine" id="cb1-40" title="40">        {</a>
-<a class="sourceLine" id="cb1-41" title="41">        <span class="cf">case</span> <span class="ch">&#39;n&#39;</span>:</a>
-<a class="sourceLine" id="cb1-42" title="42">            num = <span class="bu">std::</span>stoi(optarg);</a>
-<a class="sourceLine" id="cb1-43" title="43">            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Num set to: &quot;</span> &lt;&lt; num &lt;&lt; <span class="bu">std::</span>endl;</a>
-<a class="sourceLine" id="cb1-44" title="44">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb1-45" title="45"></a>
-<a class="sourceLine" id="cb1-46" title="46">        <span class="cf">case</span> <span class="ch">&#39;b&#39;</span>:</a>
-<a class="sourceLine" id="cb1-47" title="47">            is_beep = <span class="kw">true</span>;</a>
-<a class="sourceLine" id="cb1-48" title="48">            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Beep is set to true</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
-<a class="sourceLine" id="cb1-49" title="49">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb1-50" title="50"></a>
-<a class="sourceLine" id="cb1-51" title="51">        <span class="cf">case</span> <span class="ch">&#39;s&#39;</span>:</a>
-<a class="sourceLine" id="cb1-52" title="52">            sigma = <span class="bu">std::</span>stof(optarg);</a>
-<a class="sourceLine" id="cb1-53" title="53">            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Sigma set to: &quot;</span> &lt;&lt; sigma &lt;&lt; <span class="bu">std::</span>endl;</a>
-<a class="sourceLine" id="cb1-54" title="54">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb1-55" title="55"></a>
-<a class="sourceLine" id="cb1-56" title="56">        <span class="cf">case</span> <span class="ch">&#39;w&#39;</span>:</a>
-<a class="sourceLine" id="cb1-57" title="57">            write_file = <span class="bu">std::</span>string(optarg);</a>
-<a class="sourceLine" id="cb1-58" title="58">            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Write file set to: &quot;</span> &lt;&lt; write_file &lt;&lt; <span class="bu">std::</span>endl;</a>
-<a class="sourceLine" id="cb1-59" title="59">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb1-60" title="60"></a>
-<a class="sourceLine" id="cb1-61" title="61">        <span class="cf">case</span> <span class="ch">&#39;h&#39;</span>: <span class="co">// -h or --help</span></a>
-<a class="sourceLine" id="cb1-62" title="62">        <span class="cf">case</span> <span class="ch">&#39;?&#39;</span>: <span class="co">// Unrecognized option</span></a>
-<a class="sourceLine" id="cb1-63" title="63">        <span class="cf">default</span>:</a>
-<a class="sourceLine" id="cb1-64" title="64">            PrintHelp();</a>
-<a class="sourceLine" id="cb1-65" title="65">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb1-66" title="66">        }</a>
-<a class="sourceLine" id="cb1-67" title="67">    }</a>
-<a class="sourceLine" id="cb1-68" title="68">}</a>
-<a class="sourceLine" id="cb1-69" title="69"></a>
-<a class="sourceLine" id="cb1-70" title="70"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</a>
-<a class="sourceLine" id="cb1-71" title="71">{</a>
-<a class="sourceLine" id="cb1-72" title="72">    ProcessArgs(argc, argv);</a>
-<a class="sourceLine" id="cb1-73" title="73">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb1-74" title="74">}</a>
-<a class="sourceLine" id="cb1-75" title="75"></a>
-<a class="sourceLine" id="cb1-76" title="76"><span class="co">/*</span></a>
-<a class="sourceLine" id="cb1-77" title="77"><span class="co">$ g++ -std=c++11 opt.cpp </span></a>
-<a class="sourceLine" id="cb1-78" title="78"></a>
-<a class="sourceLine" id="cb1-79" title="79"><span class="co">$ ./a.out --help</span></a>
-<a class="sourceLine" id="cb1-80" title="80"><span class="co">--num &lt;n&gt;:           Set number of program</span></a>
-<a class="sourceLine" id="cb1-81" title="81"><span class="co">--beep:              Beep the user</span></a>
-<a class="sourceLine" id="cb1-82" title="82"><span class="co">--sigma &lt;val&gt;:       Set sigma of program</span></a>
-<a class="sourceLine" id="cb1-83" title="83"><span class="co">--writeFile &lt;fname&gt;: File to write to</span></a>
-<a class="sourceLine" id="cb1-84" title="84"><span class="co">--help:              Show help</span></a>
-<a class="sourceLine" id="cb1-85" title="85"></a>
-<a class="sourceLine" id="cb1-86" title="86"><span class="co">$ ./a.out --num 10</span></a>
-<a class="sourceLine" id="cb1-87" title="87"><span class="co">Num set to: 10</span></a>
-<a class="sourceLine" id="cb1-88" title="88"></a>
-<a class="sourceLine" id="cb1-89" title="89"><span class="co">$ ./a.out --num 10 --writeFile haha.txt --sigma 3.45 --beep</span></a>
-<a class="sourceLine" id="cb1-90" title="90"><span class="co">Num set to: 10</span></a>
-<a class="sourceLine" id="cb1-91" title="91"><span class="co">Write file set to: haha.txt</span></a>
-<a class="sourceLine" id="cb1-92" title="92"><span class="co">Sigma set to: 3.45</span></a>
-<a class="sourceLine" id="cb1-93" title="93"><span class="co">Beep is set to true</span></a>
-<a class="sourceLine" id="cb1-94" title="94"><span class="co">*/</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;getopt.h&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+
+<span class="dt">int</span> num = <span class="dv">-1</span>;
+<span class="dt">bool</span> is_beep = <span class="kw">false</span>;
+<span class="dt">float</span> sigma = <span class="fl">2.034</span>;
+<span class="bu">std::</span>string write_file = <span class="st">&quot;default_file.txt&quot;</span>;
+
+<span class="dt">void</span> PrintHelp()
+{
+    <span class="bu">std::</span>cout &lt;&lt;
+            <span class="st">&quot;--num &lt;n&gt;:           Set number of program</span><span class="sc">\n</span><span class="st">&quot;</span>
+            <span class="st">&quot;--beep:              Beep the user</span><span class="sc">\n</span><span class="st">&quot;</span>
+            <span class="st">&quot;--sigma &lt;val&gt;:       Set sigma of program</span><span class="sc">\n</span><span class="st">&quot;</span>
+            <span class="st">&quot;--writeFile &lt;fname&gt;: File to write to</span><span class="sc">\n</span><span class="st">&quot;</span>
+            <span class="st">&quot;--help:              Show help</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    exit(<span class="dv">1</span>);
+}
+
+<span class="dt">void</span> ProcessArgs(<span class="dt">int</span> argc, <span class="dt">char</span>** argv)
+{
+    <span class="at">const</span> <span class="dt">char</span>* <span class="at">const</span> short_opts = <span class="st">&quot;n:bs:w:h&quot;</span>;
+    <span class="at">const</span> option long_opts[] = {
+            {<span class="st">&quot;num&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="st">&#39;n&#39;</span>},
+            {<span class="st">&quot;beep&quot;</span>, no_argument, <span class="kw">nullptr</span>, <span class="st">&#39;b&#39;</span>},
+            {<span class="st">&quot;sigma&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="st">&#39;s&#39;</span>},
+            {<span class="st">&quot;writeFile&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="st">&#39;w&#39;</span>},
+            {<span class="st">&quot;help&quot;</span>, no_argument, <span class="kw">nullptr</span>, <span class="st">&#39;h&#39;</span>},
+            {<span class="kw">nullptr</span>, no_argument, <span class="kw">nullptr</span>, <span class="dv">0</span>}
+    };
+
+    <span class="cf">while</span> (<span class="kw">true</span>)
+    {
+        <span class="at">const</span> <span class="kw">auto</span> opt = getopt_long(argc, argv, short_opts, long_opts, <span class="kw">nullptr</span>);
+
+        <span class="cf">if</span> (<span class="dv">-1</span> == opt)
+            <span class="cf">break</span>;
+
+        <span class="cf">switch</span> (opt)
+        {
+        <span class="cf">case</span> <span class="st">&#39;n&#39;</span>:
+            num = <span class="bu">std::</span>stoi(optarg);
+            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Num set to: &quot;</span> &lt;&lt; num &lt;&lt; <span class="bu">std::</span>endl;
+            <span class="cf">break</span>;
+
+        <span class="cf">case</span> <span class="st">&#39;b&#39;</span>:
+            is_beep = <span class="kw">true</span>;
+            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Beep is set to true</span><span class="sc">\n</span><span class="st">&quot;</span>;
+            <span class="cf">break</span>;
+
+        <span class="cf">case</span> <span class="st">&#39;s&#39;</span>:
+            sigma = <span class="bu">std::</span>stof(optarg);
+            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Sigma set to: &quot;</span> &lt;&lt; sigma &lt;&lt; <span class="bu">std::</span>endl;
+            <span class="cf">break</span>;
+
+        <span class="cf">case</span> <span class="st">&#39;w&#39;</span>:
+            write_file = <span class="bu">std::</span>string(optarg);
+            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Write file set to: &quot;</span> &lt;&lt; write_file &lt;&lt; <span class="bu">std::</span>endl;
+            <span class="cf">break</span>;
+
+        <span class="cf">case</span> <span class="st">&#39;h&#39;</span>: <span class="co">// -h or --help</span>
+        <span class="cf">case</span> <span class="st">&#39;?&#39;</span>: <span class="co">// Unrecognized option</span>
+        <span class="cf">default</span>:
+            PrintHelp();
+            <span class="cf">break</span>;
+        }
+    }
+}
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)
+{
+    ProcessArgs(argc, argv);
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+<span class="co">/*</span>
+<span class="co">$ g++ -std=c++11 opt.cpp </span>
+
+<span class="co">$ ./a.out --help</span>
+<span class="co">--num &lt;n&gt;:           Set number of program</span>
+<span class="co">--beep:              Beep the user</span>
+<span class="co">--sigma &lt;val&gt;:       Set sigma of program</span>
+<span class="co">--writeFile &lt;fname&gt;: File to write to</span>
+<span class="co">--help:              Show help</span>
+
+<span class="co">$ ./a.out --num 10</span>
+<span class="co">Num set to: 10</span>
+
+<span class="co">$ ./a.out --num 10 --writeFile haha.txt --sigma 3.45 --beep</span>
+<span class="co">Num set to: 10</span>
+<span class="co">Write file set to: haha.txt</span>
+<span class="co">Sigma set to: 3.45</span>
+<span class="co">Beep is set to true</span>
+<span class="co">*/</span></code></pre></div>
 <p><strong>Reference:</strong></p>
 <ul>
 <li>Sec 2.1.3 of <strong>Advanced Linux Programming</strong> by CodeSourcery LLC and Mark Mitchell</li>
 <li><a href="http://man7.org/linux/man-pages/man3/getopt.3.html">getopt(3)</a> Linux man page</li>
 </ul>
 <p><strong>Tried with:</strong> GCC 4.9.2 and Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

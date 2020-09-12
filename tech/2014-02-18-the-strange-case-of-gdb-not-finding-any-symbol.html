@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">The strange case of gdb not finding any symbol</h1>
-<p class="date">(First posted on: 2014-02-18 15:37:34+00:00)</p>
+<p class="date">📅 Published on: 2014-Feb-18</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I compiled C++ code using the <code>g++</code> compiler. The <code>-g</code> option was specified so that the executable had debugging information. I could run the program using <code>gdb</code> and place breakpoints and look at the source code. However, when I tried to print the value of a variable in gdb, it threw this strange error:</p>
@@ -53,9 +60,14 @@ No symbol &quot;i&quot; in current context</code></pre>
 <p>The culprit turned out to be a mismatch between the compiler and debugger! I had recently switched to GCC 4.8, a newer version. However, I was still using the old version of GDB. In v4.8, GCC produces debugging information in the <strong>DWARF4</strong> format, as explained in its <a href="http://gcc.gnu.org/gcc-4.8/changes.html">release notes</a>. However, this older version of GDB could only understand DWARF3 or versions older than that. It was failing silently when local variables were requested.</p>
 <p>The solution was simple: request GCC to produce debugging information in the older format by specifying <code>-gdwarf-3</code>. Once I did this, GDB could print local variables and they appeared in Eclipse CDT too.</p>
 <p><strong>Tried with:</strong> GCC 4.8, GDB 7.4 and Ubuntu 12.04 LTS</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to find if disk is SSD or HDD</h1>
-<p class="date">(First posted on: 2016-09-28 14:18:06+00:00)</p>
+<p class="date">📅 Published on: 2016-Sep-28</p>
 </header>
 <p>Disk IO can be the bottleneck for certain programs. When I work with such programs on remote servers, I prefer to place their data or direct their output to <strong>SSD</strong> instead of <strong>HDD</strong>. I can view the available partitions and their filesystems using the <code>df</code> command. But, how to find out which of the mounted partitions is on a SSD and which on hard disk?</p>
 <p>You probably know that the disk of a partition listed as <code>/dev/sdb7</code> is <code>/dev/sdb</code>. That is, by removing the numerical suffix from the partition, you get the disk.</p>
@@ -50,9 +57,14 @@
 <pre><code>$ cat /sys/block/sdb/queue/rotational</code></pre>
 <p>If it is HDD, and thus a rotational disk, the value will be 1. For SSD, the value will be 0.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

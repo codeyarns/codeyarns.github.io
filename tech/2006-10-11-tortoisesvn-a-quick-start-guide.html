@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">TortoiseSVN: A Quick Start Guide</h1>
-<p class="date">(First posted on: 2006-10-11 11:13:57+00:00)</p>
+<p class="date">📅 Published on: 2006-Oct-11</p>
 </header>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_1.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_1.png" alt=" " /></a></p>
 <p>I have been an avid user of <strong><a href="http://www.tortoisecvs.org/">TortoiseCVS</a></strong> for many years now. It has been the single most important influence for me to like <strong>version control systems</strong>. Every version control tool I had used before it had made me cringe and swear. Last week, I switched to using <strong><a href="http://tortoisesvn.net/">TortoiseSVN</a></strong> for my source code files. Like TortoiseCVS is built upon CVS, TortoiseSVN has been built upon a much more advanced version control system called <strong><a href="http://subversion.tigris.org/">Subversion</a></strong>.</p>
@@ -57,23 +64,28 @@
 <p>I will assume you have a bunch of files or folders all nicely managed inside a single folder which you want to manage as a project.</p>
 <p>Lets lay the groundwork for your project. Open <strong>Repo-browser</strong> by right-click and choosing <em>TortoiseSVN → Repo-browser</em>. Provide the path to your repository in the URL section.</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_31.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_31.png" alt=" " /></a></p>
-<p>Create a new folder for your project. Give the name of your project to this folder. Now, here’s the bit where SVN differs from CVS. Create 3 folders inside the above folder named <strong>trunk</strong>, <strong>tags</strong> and <strong>branches</strong>. <em>trunk</em> will hold your data most of the time. <em>tags</em> will hold your tagged data and <em>branches</em> will hold your branched data.</p>
+<p>Create a new folder for your project. Give the name of your project to this folder. Now, here's the bit where SVN differs from CVS. Create 3 folders inside the above folder named <strong>trunk</strong>, <strong>tags</strong> and <strong>branches</strong>. <em>trunk</em> will hold your data most of the time. <em>tags</em> will hold your tagged data and <em>branches</em> will hold your branched data.</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_4.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_4.png" alt=" " /></a></p>
 <p><strong>Importing Your Project</strong></p>
 <p>Clean the folder you wish to import into the repository by removing all unnecessary files and folders inside. Right-click on the folder now and choose <em>TortoiseSVN → Import</em>. Choose the location of your repository. Choose your project name and choose <em>trunk</em>. We are importing our files into the main trunk of the repository tree. The tags we create and branches we create in the future will reside on the tags and branches respectively but will derive from the trunk.</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_5.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_5.png" alt=" " /></a></p>
 <p><strong>Working Copy</strong></p>
-<p>Now that all our project data has been imported into the repository, we can check out a <strong>working copy</strong> to any place we want and start working! Create a new folder with any desired name. Right-click on this folder and choose <em>TortoiseSVN → Checkout</em>. In the repository section choose your project’s <em>trunk folder</em> and checkout.</p>
+<p>Now that all our project data has been imported into the repository, we can check out a <strong>working copy</strong> to any place we want and start working! Create a new folder with any desired name. Right-click on this folder and choose <em>TortoiseSVN → Checkout</em>. In the repository section choose your project's <em>trunk folder</em> and checkout.</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_6.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_6.png" alt=" " /></a></p>
 <p>You can modify and commit the files inside this working copy folder just like you did in TortoiseCVS.</p>
 <p><strong>Tagging/Branching</strong></p>
-<p>Tagging is a bit different in SVN. Right-click and choose <em>TortoiseSVN → Branch/Tag</em>. In the To URL section, choose your project’s <em>tags folder</em> and append a tag to it there. Use the same kind of …/tags/… path when you wish to checkout this tagged data. This is how tagging is different in SVN.</p>
+<p>Tagging is a bit different in SVN. Right-click and choose <em>TortoiseSVN → Branch/Tag</em>. In the To URL section, choose your project's <em>tags folder</em> and append a tag to it there. Use the same kind of .../tags/... path when you wish to checkout this tagged data. This is how tagging is different in SVN.</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_7.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_tsvn_7.png" alt=" " /></a></p>
-<p>To merge back a branch to trunk, go to the trunk checkout and merge the branch “to” it.</p>
+<p>To merge back a branch to trunk, go to the trunk checkout and merge the branch &quot;to&quot; it.</p>
 <p>I hope that with the preliminary information given above, you can get started with TortoiseSVN.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">C: Shift Operator Mayhem</h1>
-<p class="date">(First posted on: 2004-12-20 03:57:58+00:00)</p>
+<p class="date">📅 Published on: 2004-Dec-20</p>
 </header>
 <p>Came across a puzzling piece of code today. The actual code is confusing, however it basically boils down to this:</p>
 <pre><code>#include &lt;stdint.h&gt;
@@ -60,19 +67,24 @@ int main()
 <p>On examining the code above, it is natural to think that 32 right shifts applied on <code>val</code> would boot out the puny 1 and the result would be 0. Though this is right almost always, it has some exceptions.</p>
 <p>From The C Programming Language [1]:</p>
 <blockquote>
-The result is undefined if the right operand is negative, or greater than or <strong>equal</strong> to the number of bits in the left expression’s type.
+The result is undefined if the right operand is negative, or greater than or <strong>equal</strong> to the number of bits in the left expression's type.
 </blockquote>
 <p>(Taking <code>val &gt;&gt; count</code> as example, left expression is <code>val</code> and right operand is <code>count</code>.)</p>
-<p>So, that explains why the result should not be relied on. But why <code>val</code> is 1? On digging deeper for that, I found that the compiler [2] generated the Intel instruction <code>sar</code> or <code>shr</code> (or it’s variants) for the C shift operation. And here lies another nasty info …</p>
+<p>So, that explains why the result should not be relied on. But why <code>val</code> is 1? On digging deeper for that, I found that the compiler [2] generated the Intel instruction <code>sar</code> or <code>shr</code> (or it's variants) for the C shift operation. And here lies another nasty info ...</p>
 <p>From the IA-32 Intel Architecture Software Developer’s Manual [3]:</p>
 <blockquote>
 The 8086 does not mask the shift count. However, all other IA-32 processors (starting with the Intel 286 processor) do mask the shift count to 5 bits, resulting in a maximum count of 31. This masking is done in all operating modes (including the virtual-8086 mode) to reduce the maximum execution time of the instructions.
 </blockquote>
 <p>So, not only is the behaviour in C undefined, on code generated for IA-32 processors, a 5 bit mask is applied on the shift count. This means that on IA-32 processors, the range of a shift count will be 0-31 only.</p>
 <p>[1] A7.8 Shift Operators, Appendix A. Reference Manual, The C Programming Language [2] Observed with both Visual C++ and GCC compilers [3] SAL/SAR/SHL/SHR - Shift, Chapter 4. Instruction Set Reference, IA-32 Intel Architecture Software Developer’s Manual</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

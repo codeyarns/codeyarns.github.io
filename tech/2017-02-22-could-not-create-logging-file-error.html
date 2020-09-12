@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Could not create logging file error</h1>
-<p class="date">(First posted on: 2017-02-22 15:18:07+00:00)</p>
+<p class="date">📅 Published on: 2017-Feb-22</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I tried to train a model using <strong>Caffe</strong> on a remote computer. The training proceeded without any problems, but this error would show up in the console output occasionally:</p>
@@ -51,9 +58,14 @@ COULD NOT CREATE A LOGGINGFILE 20170221-111719.33617!I0221 11:17:19.399444 33617
 <h2 id="solution">Solution</h2>
 <p>This error turned out to be from <strong>GLog</strong>, the Google logging module. Caffe uses GLog for its logging. On this particular remote computer, the <code>GLOG_log_dir</code> environment variable had been set, but to a non-existent path! This was the reason GLog was complaining. Once I removed this environment variable and restarted the training, I no longer saw the error.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,20 +42,24 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to reload group assignment without logout and login</h1>
-<p class="date">(First posted on: 2017-10-19 15:11:20+00:00)</p>
+<p class="date">📅 Published on: 2017-Oct-19</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I was working in a shell in KDE. I installed <strong>Docker</strong> as described <a href="2017-10-19-how-to-install-docker.html">here</a>. To be able to run Docker commands, my username should be in the <code>docker</code> group, so I added that using this command:</p>
 <pre><code>$ sudo adduser joe docker</code></pre>
-<p>Now I need to logout and login out of my desktop environment for my username’s new group assignments to be picked up. Otherwise, running any Docker command throws this error:</p>
+<p>Now I need to logout and login out of my desktop environment for my username's new group assignments to be picked up. Otherwise, running any Docker command throws this error:</p>
 <pre><code>$ docker images
 Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.32/images/json: dial unix /var/run/docker.sock: connect: permission denied</code></pre>
-<p>We can see that our user’s new group assignment is not reflected in the shell by running this command:</p>
+<p>We can see that our user's new group assignment is not reflected in the shell by running this command:</p>
 <pre><code>$ id</code></pre>
-<p>You will find that the <code>docker</code> group will not appear in the user’s group assignment, though the user has been already added to it. Creating a new shell or a child shell does not achieve what we want.</p>
+<p>You will find that the <code>docker</code> group will not appear in the user's group assignment, though the user has been already added to it. Creating a new shell or a child shell does not achieve what we want.</p>
 <p>The only way to get the new group assignment is to logout and login from the desktop environment. The problem I have so many other GUI applications open in my desktop environment. I cannot afford to logout and login from my desktop environment, especially for a shell command to work!</p>
 <h2 id="solution">Solution</h2>
 <p>So, what we want is a shell environment that is similar to what is presented when you login directly at a virtual terminal. Thankfully, we can do that by using the <code>-</code> option of the <strong>su</strong> command, like this:</p>
@@ -62,9 +69,14 @@ It works!</code></pre>
 <p>Another alternative is to run a command with a specific group or GID:</p>
 <pre><code>$ sg docker -c &quot;docker images&quot;</code></pre>
 <p><strong>Tried with:</strong> Docker 17.09 and Ubuntu 16.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

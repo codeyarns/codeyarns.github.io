@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,27 +42,34 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to profile C/C++ code using gprof</h1>
-<p class="date">(First posted on: 2013-06-24 12:12:26+00:00)</p>
+<p class="date">📅 Published on: 2013-Jun-24</p>
 </header>
 <p><strong>Profiling</strong> a program is an important step in analyzing program performance and identifying bottlenecks. A C or C++ program can be easily profiled in Linux using <strong>gprof</strong>:</p>
 <ol type="1">
 <li><p>Make sure your C or C++ code compiles without errors. Make sure your compiled program starts, executes and exits without any errors.</p></li>
 <li><p>Add the <code>-pg</code> option to <strong>both</strong> the object <strong>compilation</strong> and <strong>linking</strong> stages of the program compilation. Compile the program from scratch.</p></li>
-<li>Execute the program as you normally do. It might take a while longer to finish due to the profiling. After the program exits, it writes a <code>gmon.out</code> file with profiling information.</li>
+<li><p>Execute the program as you normally do. It might take a while longer to finish due to the profiling. After the program exits, it writes a <code>gmon.out</code> file with profiling information.</p>
+<pre><code>$ ./foo</code></pre></li>
+<li><p>Invoke gprof with your program executable as input. It prints out profiling information in the form of both a flat profile and a call graph. You can pipe this to a pager or redirect it to a text file for examination.</p>
+<pre><code>$ gprof foo</code></pre></li>
 </ol>
-<pre><code>$ ./foo</code></pre>
-<ol start="4" type="1">
-<li>Invoke gprof with your program executable as input. It prints out profiling information in the form of both a flat profile and a call graph. You can pipe this to a pager or redirect it to a text file for examination.</li>
-</ol>
-<pre><code>$ gprof foo</code></pre>
 <p>Examining the output of gprof gives you an idea of which functions in the program are taking the most execution time. This information can be used to optimize such functions.</p>
 <p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

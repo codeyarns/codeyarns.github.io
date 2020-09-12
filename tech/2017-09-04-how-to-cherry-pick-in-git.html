@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to cherry pick in Git</h1>
-<p class="date">(First posted on: 2017-09-04 15:09:00+00:00)</p>
+<p class="date">📅 Published on: 2017-Sep-04</p>
 </header>
 <p><strong>Cherry picking</strong> in Git allows you to pick a specific commit and replay the changes done in that single commit on your current commit. This is different from a merge, where Git tries to replay the changes of all the commits from the other branch. Even if you specified a commit for a merge, Git will try to fuse the branch of which that commit is head to your current branch. After a merge, the two branches are fused in the DAG.</p>
 <p>In contrast, a cherry pick replays changes on your current workspace. After you cherry pick a commit and replay it on your current commit, you will see that there is no branch being merged to your commit in the DAG. There will just be one or more new commits.</p>
@@ -65,9 +72,14 @@
 <p>We can then pipe this diff to be applied as a patch on our current workspace:</p>
 <pre><code>$ git show 123456 -- foo/bar.cpp | git apply -</code></pre>
 <p><strong>Tried with:</strong> Git 2.7.4 and Ubuntu 16.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

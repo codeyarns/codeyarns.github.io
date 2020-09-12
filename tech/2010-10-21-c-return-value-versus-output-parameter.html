@@ -8,67 +8,41 @@
   <title>Code Yarns – C++: Return Value versus Output Parameter</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -89,7 +63,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -102,10 +79,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">C++: Return Value versus Output Parameter</h1>
-<p class="date">(First posted on: 2010-10-21 14:15:24+00:00)</p>
+<p class="date">📅 Published on: 2010-Oct-21</p>
 </header>
 <p>The C++ programmer has to be constantly aware of the performance of the code he is writing. One conundrum that arises often is with the <strong>output</strong> of a function. If this output is an object of substantial size, is it better to return it as the <strong>return value</strong> or as an <strong>output parameter</strong>?</p>
 <p><strong>Question:</strong> Which of these functions is faster?</p>
@@ -117,37 +98,33 @@ void Function2( Foo&amp; );</code></pre>
 <li><p><strong>Function2</strong> does not look as elegant as Function1. One needs to be careful here to pass the output parameter as a reference (or pointer) parameter. However, this format can handle multiple output parameters easily.</p></li>
 <li><p>Returning built-in types (like integer) or tiny objects are easy for the C++ compiler to optimize. They should be equally fast with both Function1 and Function2.</p></li>
 <li><p>Function1 typically needs to <strong>construct</strong> the object it is returning. Depending on the class of the object, this might take substantial amount of time. After construction, it may need to modify or fill the object with data. <code>cpp Foo Function1() { Foo foo; // Construction cost foo.fillSomething(); return foo; }</code></p></li>
-<li>Function2 assumes that the parameter object is already created. It only modifies or fills the object with data.</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="dt">void</span> Function1( Foo&amp; foo)</a>
-<a class="sourceLine" id="cb2-2" title="2">{</a>
-<a class="sourceLine" id="cb2-3" title="3">    foo.fillSomething();</a>
-<a class="sourceLine" id="cb2-4" title="4">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb2-5" title="5">}</a></code></pre></div>
-<ul>
-<li>The performance also depends on what is happening in the caller. The caller might be assigning the return value to initialize a new object or to an already existing object.</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="dt">int</span> main()</a>
-<a class="sourceLine" id="cb3-2" title="2">{</a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="co">// New object</span></a>
-<a class="sourceLine" id="cb3-4" title="4">    Foo f1 = Function1();</a>
-<a class="sourceLine" id="cb3-5" title="5">    Foo f2;</a>
-<a class="sourceLine" id="cb3-6" title="6">    Function2( f2 );</a>
-<a class="sourceLine" id="cb3-7" title="7"></a>
-<a class="sourceLine" id="cb3-8" title="8">    <span class="co">// Existing object</span></a>
-<a class="sourceLine" id="cb3-9" title="9">    Foo f;</a>
-<a class="sourceLine" id="cb3-10" title="10">    <span class="cf">while</span> ( x )</a>
-<a class="sourceLine" id="cb3-11" title="11">    {</a>
-<a class="sourceLine" id="cb3-12" title="12">        <span class="co">// Do something</span></a>
-<a class="sourceLine" id="cb3-13" title="13">        f = Function1();</a>
-<a class="sourceLine" id="cb3-14" title="14">        <span class="co">// Do something</span></a>
-<a class="sourceLine" id="cb3-15" title="15">        f.clear();</a>
-<a class="sourceLine" id="cb3-16" title="16">        Function2( f );</a>
-<a class="sourceLine" id="cb3-17" title="17">    }</a>
-<a class="sourceLine" id="cb3-18" title="18"></a>
-<a class="sourceLine" id="cb3-19" title="19">    <span class="cf">return</span> <span class="dv">0</span>;</a>
-<a class="sourceLine" id="cb3-20" title="20">}</a></code></pre></div>
-<ul>
+<li><p>Function2 assumes that the parameter object is already created. It only modifies or fills the object with data.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">void</span> Function1( Foo&amp; foo)
+{
+foo.fillSomething();
+<span class="cf">return</span>;
+}</code></pre></div></li>
+<li><p>The performance also depends on what is happening in the caller. The caller might be assigning the return value to initialize a new object or to an already existing object.</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main()
+{
+<span class="co">// New object</span>
+Foo f1 = Function1();
+Foo f2;
+Function2( f2 );
+
+<span class="co">// Existing object</span>
+Foo f;
+<span class="cf">while</span> ( x )
+{
+    <span class="co">// Do something</span>
+    f = Function1();
+    <span class="co">// Do something</span>
+    f.clear();
+    Function2( f );
+}
+
+<span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div></li>
 <li><p>Function1 involves <strong>one object creation</strong> inside the function and <strong>one copy</strong> of this object to the destination object. That looks very expensive! However, all modern C++ compilers perform <a href="http://en.wikipedia.org/wiki/Return_value_optimization"><strong>Return Value Optimization (RVO)</strong></a> that eliminates the expensive copy operation.</p></li>
 <li><p>Note that RVO cannot always be applied by the compiler. When this happens, Function1 becomes all the more expensive.</p></li>
 </ul>
@@ -160,9 +137,14 @@ Existing object ...
 Function1: 1.671
 Function2: 1.035</code></pre>
 <p>The results clearly show that <strong>output parameter</strong> is always <strong>faster</strong>. When assigning to a new object, the speed difference is negligible. However, when reusing an existing object, the speed difference is substantial! :-)</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

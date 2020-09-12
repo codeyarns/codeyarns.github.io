@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to change RPATH or RUNPATH of executable</h1>
-<p class="date">(First posted on: 2017-11-01 17:42:23+00:00)</p>
+<p class="date">📅 Published on: 2017-Nov-01</p>
 </header>
 <p><strong>RPATH</strong> or <strong>RUNPATH</strong> is a colon-separated list of directories embedded in an executable. This list of directories play an important role when shared library file locations are determined at the time when the executable is loaded for running. This process is described in <a href="2017-11-02-how-shared-library-locations-are-found-at-runtime.html">this post</a>. Note that RPATH has highest priority in the shared library search, compared to RUNPATH. We can change RPATH or RUNPATH of a binary file by using the <strong>chrpath</strong> tool.</p>
 <ul>
@@ -68,9 +75,14 @@
 <pre><code>$ chrpath -r /home/joe:/home/foobar/lib64 ./some_binary</code></pre>
 <p>Note that the string of the new set of paths should be smaller or equal to the length of what was stored earlier in the binary.</p>
 <p><strong>Tried with:</strong> chrpath 0.14 and Ubuntu 16.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

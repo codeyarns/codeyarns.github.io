@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Ack and the grep –color Problem on Windows</title>
+  <title>Code Yarns – Ack and the grep --color Problem on Windows</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,13 +42,17 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
-<h1 class="title">Ack and the grep –color Problem on Windows</h1>
-<p class="date">(First posted on: 2010-11-19 12:18:56+00:00)</p>
+<h1 class="title">Ack and the grep --color Problem on Windows</h1>
+<p class="date">📅 Published on: 2010-Nov-19</p>
 </header>
 <p><a href="http://codeyarns.files.wordpress.com/2010/11/20101119_ack_color.png"><img src="http://codeyarns.files.wordpress.com/2010/11/20101119_ack_color.png" alt=" " /></a></p>
-<p><strong>grep –color Problem</strong></p>
+<p><strong>grep --color Problem</strong></p>
 <p><strong>grep</strong> is a very useful tool to have around on Windows. (See <a href="http://codeyarns.wordpress.com/2010/08/03/gnuwin32/">this post</a> for information on installing it for Windows.) However, the <code>grep --color</code> parameter does not work with the Windows command console. When looking for a search string in long lines, the need for <strong>color</strong> becomes crucial. Sadly, there is no grep clone for Windows that does color output.</p>
 <p><strong>Ack Installation</strong></p>
 <p>A good solution for these cases is to use <a href="http://betterthangrep.com/"><strong>Ack</strong></a>. It is a modern rival of Grep and claims to be better. (Its webpage is <a href="http://betterthangrep.com/">betterthangrep.com</a>! ;-) ) It is written in Perl.</p>
@@ -56,9 +63,14 @@
 <p>You will notice that Ack does not display the matched string in color. It does not need a <code>--color</code> parameter since it uses color by default. However, to gain access to the color output capability on Windows, it needs some help. Install the following from CPAN:</p>
 <pre><code>$ cpan Win32::Console::ANSI</code></pre>
 <p>Ack will highlight the matched strings in color after this! :-)</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

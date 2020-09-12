@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Asynchronous threads in C++</h1>
-<p class="date">(First posted on: 2015-04-24 12:38:00+00:00)</p>
+<p class="date">📅 Published on: 2015-Apr-24</p>
 </header>
 <p>It is extremely simple to do <strong>asynchronous threading</strong> in <strong>C++</strong> now. It is straightforward to spawn threads to perform some work and collect back the results from them later. This is an important step forward for C++ due to the increasing importance of multithreading and the hairy platform-specific threading mess C++ had in the past.</p>
 <p>Threading is easy:</p>
@@ -59,12 +66,17 @@
 <p>https://gist.github.com/ashwin/9b3c5efd1edc3736f47d</p>
 <p><strong>How many threads</strong> should you spawn off to maximize usage of the CPU and memory resources on your computer? In other words, how big should your <strong>thread pool</strong> be? The only way to answer this is by measuring the performance for different pool sizes on your particular application and decide. The right answer for your application will depend on how much compute or memory bound the computation you are doing inside the thread might be.</p>
 <p>For example, for a particular function that I was trying to parallelize, it was both doing a lot of compute and also accessing quite a few data locations in memory. I tried different thread pool sizes and compared them with how long the computation was taking on average <strong>per thread</strong>. Here are the results:</p>
-<p>[caption id=“attachment_6824” align=“alignnone” width=“660”][<img src="https://codeyarns.files.wordpress.com/2015/04/20150417_cpp_thread_performance.png?w=660" alt="Size of thread pool versus thread performance on GCC 4.9.2, Linux 3.13.0-45 and Intel i7-4790" />](https://codeyarns.files.wordpress.com/2015/04/20150417_cpp_thread_performance.png) Size of thread pool versus thread performance on GCC 4.9.2, Linux 3.13.0-45 and Intel i7-4790[/caption]</p>
+<p>[caption id=&quot;attachment_6824&quot; align=&quot;alignnone&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2015/04/20150417_cpp_thread_performance.png?w=660" alt="Size of thread pool versus thread performance on GCC 4.9.2, Linux 3.13.0-45 and Intel i7-4790" />](https://codeyarns.files.wordpress.com/2015/04/20150417_cpp_thread_performance.png) Size of thread pool versus thread performance on GCC 4.9.2, Linux 3.13.0-45 and Intel i7-4790[/caption]</p>
 <p>So, in my case it looks like a pool of 32 threads gives close to the optimum performance. Something seems to happen at 64 threads, from which point on the performance drops. I am guessing that this is the point where the Linux kernel finds the overhead of managing that number of threads starts to hit the thread computation performance.</p>
 <p><strong>Tried with:</strong> GCC 4.9.2, Linux 3.13.0-45, Ubuntu 14.04 and Intel i7-4790</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Cannot connect to non-local host error</h1>
-<p class="date">(First posted on: 2015-03-23 12:22:58+00:00)</p>
+<p class="date">📅 Published on: 2015-Mar-23</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I changed the <strong>hostname</strong> of my computer by editing <code>/etc/hostname</code> and <code>/etc/hosts</code>, as explained <a href="2015/03/20/how-to-change-hostname/">here</a>. After this, whenever I ran Vim and some other programs at the terminal, this message was printed:</p>
@@ -52,9 +59,14 @@ _IceTransSocketUNIXConnect: Cannot connect to non-local host old-hostname</code>
 <p>After a bit of Googling, I found that this error was originating from <strong>ICE</strong>, an IPC protocol used by X clients. This was due to the old hostname still being present in the <code>~/.ICEauthority</code> file.</p>
 <p>I deleted this file and restarted the computer. The new <code>~/.ICEauthority</code> that was automatically generated had the new hostname. Also, the error did not occur after this.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

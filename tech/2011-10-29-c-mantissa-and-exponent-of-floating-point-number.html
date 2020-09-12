@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">C++: Mantissa and Exponent of Floating Point Number</h1>
-<p class="date">(First posted on: 2011-10-29 06:01:06+00:00)</p>
+<p class="date">📅 Published on: 2011-Oct-29</p>
 </header>
 <p>The little-known <a href="http://msdn.microsoft.com/en-us/library/w1xfschh.aspx"><strong>frexp</strong></a> function from the C/C++ standard library can be used to extract the <strong>mantissa</strong> and <strong>exponent</strong> of a floating point number (float, double or long double):</p>
 <pre><code>#include &lt;cmath&gt;
@@ -60,9 +67,14 @@ const double mantissa = frexp( d, &amp;exponent );
 <li><p>For a positive floating point number, the mantissa returned by <code>frexp</code> always lies in the range <code>[0.5, 1.0)</code>. This range is enough since a mantissa in the range <code>(0.0, 0.5)</code> can be converted to a value in <code>[0.5, 1.0)</code> by multiplying it by a suitable <code>2 ^ exponent</code>. Note that the <code>exponent</code> can be negative or positive. The exception to this mantissa value is the floating point number <code>0.0</code>, which is displayed as it is.</p></li>
 <li><p>The mantissa and exponent returned by <code>frexp</code> are in no way related to the actual mantissa and exponent values stored in the floating point number format. For example, the IEEE-754 format uses a sign bit and modifies the exponent value using an exponent bias.</p></li>
 </ul>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

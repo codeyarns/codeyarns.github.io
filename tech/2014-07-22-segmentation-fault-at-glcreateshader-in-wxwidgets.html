@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,18 +42,27 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Segmentation fault at glCreateShader in wxWidgets</h1>
-<p class="date">(First posted on: 2014-07-22 04:12:58+00:00)</p>
+<p class="date">📅 Published on: 2014-Jul-22</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I had a simple graphics program written using OpenGL and using GLUT for windowing. To get more windowing functionality, I wanted to move it to wxWidgets. I picked an <a href="http://wiki.wxwidgets.org/WxGLCanvas">example program</a> that uses OpenGL in wxWidgets. It compiled and worked correctly. When I placed my OpenGL code into this example, I got a segmentation fault at the <code>glCreateShader</code> call in my code.</p>
 <h2 id="solution">Solution</h2>
 <p>I had a <code>glewInit</code> in my original code. I had put this in the application class constructor. Apparently, wxWidgets <a href="http://forums.wxwidgets.org/viewtopic.php?t=35011">requires that</a> the first OpenGL or GLEW call be placed inside the <code>OnPaint</code> event handler function. Look for <code>EVT_PAINT</code> to find this function. Once I did that, the error disappeared and OpenGL worked.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

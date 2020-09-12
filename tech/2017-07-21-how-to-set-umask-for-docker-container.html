@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,14 +42,18 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to set umask for Docker container</h1>
-<p class="date">(First posted on: 2017-07-21 14:02:06+00:00)</p>
+<p class="date">📅 Published on: 2017-Jul-21</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>Once you run a <strong>Docker</strong> container using <code>docker run</code> and get a shell inside it, you can set the file creation mode mask there with the <code>umask</code> command of the shell. This is usually <code>0022</code> and you can set it to whatever you want. All consecutive operations at the shell and child processes forked from the shell will have with umask.</p>
-<p>What if you don’t want to manually type this umask command, but want it set automatically in the container?</p>
+<p>What if you don't want to manually type this umask command, but want it set automatically in the container?</p>
 <h2 id="solution">Solution</h2>
 <ul>
 <li><p>Note that there is no way to do this directly in the Dockerfile. You can have a <code>RUN umask 0002</code> command in the Dockerfile, but that does not have any effect for when you run the container.</p></li>
@@ -70,9 +77,14 @@ ENTRYPOINT [&quot;./set_umask.sh&quot;]</code></pre>
 <ul>
 <li>A final solution is to set the umask in the application you plan to run inside Docker. This is a foolproof way to ensure that the umask is obeyed.</li>
 </ul>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

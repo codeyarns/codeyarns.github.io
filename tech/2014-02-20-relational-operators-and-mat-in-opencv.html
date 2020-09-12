@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Relational operators and Mat in OpenCV</h1>
-<p class="date">(First posted on: 2014-02-20 03:07:36+00:00)</p>
+<p class="date">📅 Published on: 2014-Feb-20</p>
 </header>
 <p><strong>Mat</strong> is a common structure used in <strong>OpenCV</strong> to store two and higher dimensional data. It is a derivation of the internal <strong>Array</strong> structure. A <strong>relational operator</strong> can applied between two Mat objects or a Mat object and a scalar, and the result is a 8-bit single-channel Mat.</p>
 <p>Any of these operations is nothing but a call to <a href="http://docs.opencv.org/modules/core/doc/operations_on_arrays.html">compare</a> function. This results in a per-element comparison of the Mat. The key information to remember is that for every element whose result is true, the value in the result Mat is set to <code>0xFF</code>, that is <code>255</code>. If result is false, it is set to <code>0</code>. This behavior is so that the resulting Mat can be used as a mask image if needed for other operations.</p>
@@ -53,9 +60,14 @@ cv::Mat m2(m0 == 0);
 m2 = m0 &gt; m1;
 m2 = m1 &lt;= m0;
 m2 = m1 != 1;</code></pre>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

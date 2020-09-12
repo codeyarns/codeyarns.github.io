@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,25 +42,34 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Ubuntu: Boot by default into Windows</h1>
-<p class="date">(First posted on: 2011-09-25 00:09:42+00:00)</p>
+<p class="date">📅 Published on: 2011-Sep-25</p>
 </header>
 <p><strong>Problem</strong></p>
 <p>When <strong>Ubuntu</strong> is installed to create a dual-boot system with Windows, it sets itself up with the <strong>Grub</strong> boot-loader as the default boot option. If you boot into Window more frequently than into Ubuntu, it would be a good idea to set Windows as the default boot option with Grub.</p>
 <p><strong>Solution</strong></p>
 <p>There used to be a time when changing the default boot option was as simple as editing a <code>grub/menu.lst</code> file and changing the default boot number from 0 to 4. That time is long gone! :-| Messing around with the newer versions of Grub is more complicated now.</p>
 <p>If you look for a utility to change the default boot setting, most of the Internet will shout back about something called <a href="https://launchpad.net/startup-manager/"><strong>StartupManager</strong></a>. However, development on this utility has been <a href="https://launchpad.net/startup-manager/+announcement/8300">stopped</a> and it does not appear in the recent Ubuntu repository.</p>
-<p>What works is the new utility <a href="https://launchpad.net/grub-customizer"><strong>Grub Customizer</strong></a>. There is a small problem, this utility is not yet in the Ubuntu repository! Install it from the creator’s repository using the following invocation:</p>
+<p>What works is the new utility <a href="https://launchpad.net/grub-customizer"><strong>Grub Customizer</strong></a>. There is a small problem, this utility is not yet in the Ubuntu repository! Install it from the creator's repository using the following invocation:</p>
 <pre><code>sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 sudo apt-get update
 sudo apt-get install grub-customizer</code></pre>
 <p>After installation run Grub Customizer, it displays a list of boot entries. Move the Windows boot entry to the top using the arrow buttons and <em>Save</em> the list. Your computer should now boot into Windows by default.</p>
 <p><strong>Tried with:</strong> Ubuntu 11.04 (Natty Narwhal) and Grub Customizer 2.2</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

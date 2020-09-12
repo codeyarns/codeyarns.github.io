@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Unrecognized relocation error</h1>
-<p class="date">(First posted on: 2017-12-22 17:10:35+00:00)</p>
+<p class="date">📅 Published on: 2017-Dec-22</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>Building a large project that involved linking with many libraries, I got this linking error:</p>
@@ -53,9 +60,14 @@
 <p>At first I suspected some problem with the symbol that you see the linker complaining about above. But using <strong>nm</strong> I found that the symbol was present and was defined in the archive library file.</p>
 <p>Only after eliminating all other possibilities did I discover that the problem was the compiler version. The archive library file had been compiled using GCC 4.8. The linking was being done on a different computer where the compiler was GCC 5.x. The C++ ABI had changed along with the major version difference between the two compilers and this was causing the problem.</p>
 <p>Once I rebuilt OpenCV with GCC 5.x and used its archive library file, the linking proceeded smoothly.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

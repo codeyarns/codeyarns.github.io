@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Undefined symbol FreeCudaMemoryCallbacksRegistry</h1>
-<p class="date">(First posted on: 2020-03-04T06:02:23.664173-08:00)</p>
+<p class="date">📅 Published on: 2020-Mar-04</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I installed <strong>PyTorch</strong> on my system and the very first import failed with this error:</p>
@@ -58,13 +65,18 @@ Traceback (most recent call last):
     module = self.loader.load_module(name)
 ImportError: /home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so: undefined symbol: _ZN3c1031FreeCudaMemoryCallbacksRegistryEv</code></pre>
 <h2 id="solution">Solution</h2>
-<p>It was obvious that the problem was CUDA or PyTorch’s interface to CUDA.</p>
+<p>It was obvious that the problem was CUDA or PyTorch's interface to CUDA.</p>
 <p>I checked that <code>/usr/local/cuda</code> symlink was pointing to my CUDA 10.1 installation. I also made sure that <code>/usr/local/cuda/lib64</code> was in my <code>LD_LIBRARY_PATH</code>. However, this did not fix the problem.</p>
 <p>I then started checking which libraries <code>/home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so</code> was dynamically loading at runtime using the <code>ldd</code> command. This investigation revealed that all the dependent libraries were in <code>/home/joe/.local/lib/python3.6/site-packages</code>, except for one: <code>/usr/local/lib/libc10_cuda.so</code>. Turns out that this is a library installed by PyTorch and I had no idea why there was an old copy of this file in <code>/usr/local/lib</code>. It was probably from an old Ubuntu installation of PyTorch that did not uninstall properly.</p>
 <p>I removed this file and PyTorch picked up its local <code>libc10_cuda.so</code> and everything was fine!</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

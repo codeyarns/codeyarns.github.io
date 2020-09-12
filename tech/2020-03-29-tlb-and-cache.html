@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,13 +42,17 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">TLB and cache</h1>
-<p class="date">(First posted on: 2020-03-29T14:55:30.233436-07:00)</p>
+<p class="date">📅 Published on: 2020-Mar-29</p>
 </header>
 <p>My mental model of how TLB and cache are organized and used in modern processors:</p>
-<p>Binary code in programs of modern computers only use <strong>virtual addresses</strong>. Addresses are necessary to load instructions (for example, at the address pointed to by the program counter (PC)) or load data (for example, at an offset from the base address of an array in the program). <strong>Address translation</strong> is the process of converting a virtual address in the process’s virtual memory to a physical address in main memory (RAM).</p>
+<p>Binary code in programs of modern computers only use <strong>virtual addresses</strong>. Addresses are necessary to load instructions (for example, at the address pointed to by the program counter (PC)) or load data (for example, at an offset from the base address of an array in the program). <strong>Address translation</strong> is the process of converting a virtual address in the process's virtual memory to a physical address in main memory (RAM).</p>
 <p><strong>Page tables</strong> hold the mappings from virtual page numbers to page frame numbers. Thus they can be used to map virtual addresses to physical addresses. Page tables can be large and are themselves organized as a tree with multiple levels, where each node is a page and the leaf nodes hold the mappings. Page tables are themselves stored in main memory or might need to be demand-paged into main memory from disk.</p>
 <p>Since accessing main memory for address translation is slow, the <strong>translation lookaside buffer (TLB)</strong> is used as a cache for address translation. Similarly, since accessing main memory to load instructions or data is slow, the <strong>cache</strong> (as it is generally called) is used. In modern processors, both TLBs and caches might have multiple levels and might be split for instruction and data.</p>
 <p>As an example, a modern processor might have a 3-level cache hierarchy. There might be separate <strong>L1 instruction cache</strong> (i-cache) and <strong>L1 data cache</strong> (d-cache) per core. And then larger L2 and L3 caches, which hold both instructions and data, shared across all the cores.</p>
@@ -63,12 +70,17 @@
 </ul>
 <p><strong>References</strong>:</p>
 <ul>
-<li>Appendix B: Review of memory hierarchy from the “Computer Architecture A Quantitative Approach (5 Ed)” book.</li>
+<li>Appendix B: Review of memory hierarchy from the &quot;Computer Architecture A Quantitative Approach (5 Ed)&quot; book.</li>
 <li>Cortex-A15 Technical Reference Manual</li>
 </ul>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

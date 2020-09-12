@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Mercurial: Waiting for Lock</h1>
-<p class="date">(First posted on: 2011-01-20 05:05:58+00:00)</p>
+<p class="date">📅 Published on: 2011-Jan-20</p>
 </header>
 <p><strong>Problem</strong></p>
 <p><strong>Mercurial</strong> repositories can sometimes be left in a locked state. A lock is created whenever a client is connected to a repository. But, this lock is not removed if the client got disconnected, say over the network. If any client now tries to change the repository (say <em>push</em> changes), Mercurial complains that it is waiting for the lock.</p>
@@ -53,9 +60,14 @@ waiting for lock on repository Q:\FoobarRep held by &#39;Computer42:9999&#39;</c
 <p>In this example, Mercurial is complaining that a lock is still being held by a client from the computer named <code>Computer42</code> over port <code>9999</code>.</p>
 <p><strong>Solution</strong></p>
 <p>Delete the <code>lock</code> file in the <code>.hg\store</code> directory of the repository. In the example above, delete the file <code>Q:\FoobarRep\.hg\store\lock</code></p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

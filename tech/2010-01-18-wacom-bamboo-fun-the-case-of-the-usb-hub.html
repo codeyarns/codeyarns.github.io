@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Wacom Bamboo Fun: The Case of the USB Hub on Windows 7</h1>
-<p class="date">(First posted on: 2010-01-18 03:33:27+00:00)</p>
+<p class="date">📅 Published on: 2010-Jan-18</p>
 </header>
 <p>My <strong>Wacom Bamboo Fun</strong> which was working fine for more than a year with Windows XP continues to have problems with Windows 7. I have ensured that I have the latest <a href="http://www.wacom.com/downloads/drivers.php">Wacom drivers</a> installed (v5.2.1-6) meant for Windows 7.</p>
 <p>The problem is that sometimes the Wacom mouse cursor just <em><strong>freezes</strong></em> up. Nothing I do seems to unfreeze it. I unplug the tablet and plug it back, no change. I reboot the computer, sometimes this works, but sometimes even this does not unfreeze it! This problem was puzzling me for a while, until I ran across <a href="http://forum.wacom.eu/viewtopic.php?f=4&amp;t=2650&amp;p=10979">this post</a> in the Wacom forums:</p>
@@ -53,7 +60,7 @@ Make sure to connect the tablet to a USB port in the back of the machine and not
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_18_device_manager_0.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_18_device_manager_0.png" alt=" " /></a></p>
 <p><a href="http://forum.wacom.eu/viewtopic.php?f=4&amp;t=2735&amp;p=11489">Another post</a> on the Wacom forums explained why the tablet will not work properly if connected through a USB hub:</p>
 <blockquote>
-Cause might either be that the tablet does not get sufficient power or that Windows can not find it’s HID drivers which a mandatory for the Wacom driver to connect to the tablet and operate properly. In order to make sure that the tablet is supplied with sufficient power, please connect it directly to a free port of your computer, not via a USB hub.
+Cause might either be that the tablet does not get sufficient power or that Windows can not find it's HID drivers which a mandatory for the Wacom driver to connect to the tablet and operate properly. In order to make sure that the tablet is supplied with sufficient power, please connect it directly to a free port of your computer, not via a USB hub.
 </blockquote>
 <p>So, it is a power issue! Connecting the Wacom tablet through a <strong>USB hub</strong> is reducing the power available to the tablet. I connected the Wacom tablet directly to my PC case with a USB cable and the USB connection hierarchy reduced by a level. Notice how the <strong>Generic USB hub</strong> (which belongs to the Dell 1907FP display) is gone:</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_18_device_manager_1.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_18_device_manager_1.png" alt=" " /></a></p>
@@ -61,9 +68,14 @@ Cause might either be that the tablet does not get sufficient power or that Wind
 <p>In any case, changing the setup of my desk so that the Wacom tablet is connected directly to the PC case would be hard. Instead, there is a trick that seems to work for me. Whenever the mouse cursor freezes (which is about once a week), bring up the <strong>Tablet Preference File Utility</strong> and choose <em>All User Preferences</em> → <em>Remove</em>.</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/01/2010_01_18_tablet_preference_file_utility.png"><img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_18_tablet_preference_file_utility.png" alt=" " /></a></p>
 <p>I cannot fathom why, but removing the tablet preferences of all the users unfreezes the mouse cursor and the tablet works again! :-)</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

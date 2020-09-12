@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to remove duplicate entry in Devices list in Nautilus</h1>
-<p class="date">(First posted on: 2013-03-17 10:18:29+00:00)</p>
+<p class="date">📅 Published on: 2013-Mar-17</p>
 </header>
 <p><strong>Problem</strong></p>
 <p>The <strong>Devices</strong> list shown at the top of the Sidebar in <strong>Nautilus</strong> lists the other partitions found in the hard disk or any other storage devices plugged into the computer. Since I dual-boot between Windows and Ubuntu, the Devices list shows the NTFS partitions on the hard disk. I added a line to <code>/etc/fstab</code> to mount one of my NTFS partitions automatically at boot. After I did this, the Devices list in Nautilus started to show a <strong>duplicate</strong> entry for this partition, with one of it mounted and the other unmounted.</p>
@@ -50,9 +57,14 @@
 <p>There seems to be a <a href="http://askubuntu.com/questions/99097/">simple solution</a> to this bizarre problem. The fstab entry I am using to mount the NTFS partition uses the <code>UUID</code> of the partition. Replacing this with the old style <code>/dev/sda</code> partition name fixed this problem.</p>
 <p>For example, my fstab entry read <code>UUID=A5190634180941Z5</code>. I changed that to <code>/dev/sda5</code> You can list the dev and UUID entries for all your partitions by using the command <code>sudo blkid</code></p>
 <p><strong>Tried with:</strong> Ubuntu 12.04.2 LTS</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

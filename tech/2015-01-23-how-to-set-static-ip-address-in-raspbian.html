@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,17 +42,21 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to set static IP address in Raspbian</h1>
-<p class="date">(First posted on: 2015-01-23 16:01:10+00:00)</p>
+<p class="date">📅 Published on: 2015-Jan-23</p>
 </header>
 <p>I assume that <strong>Raspbian</strong> has been assigned an IP address automatically by your home wireless router using DHCP. To set a static IP address for it:</p>
 <ul>
 <li><p>Run <code>ifconfig</code>. Note the interface (say <code>eth0</code>) and the values of the <code>inet addr</code>, <code>Bcast</code> and <code>Mask</code> entries.</p></li>
 <li><p>Run <code>netstat -nr</code>. Note down the values of the <code>Gateway</code> and <code>Destination</code> entries.</p></li>
 <li><p>Open the <code>/etc/dhcpcd.conf</code> file in an editor.</p></li>
-<li><p>Find the commented lines starting with “Example static IP configuration”. Uncomment the lines concerned with interface, ip_address and router and fill in your details there. For example:</p></li>
+<li><p>Find the commented lines starting with &quot;Example static IP configuration&quot;. Uncomment the lines concerned with interface, ip_address and router and fill in your details there. For example:</p></li>
 </ul>
 <pre><code>interface eth0
 static ip_address=192.168.0.99/24
@@ -59,9 +66,14 @@ static routers=192.168.0.1</code></pre>
 <li><p>Reboot the system and it should have the static IP address you assigned.</p></li>
 </ul>
 <p><strong>Tried with:</strong> Raspbian 9</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

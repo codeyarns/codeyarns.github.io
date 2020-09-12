@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">ViM: Persistent Undo</h1>
-<p class="date">(First posted on: 2010-11-27 04:16:35+00:00)</p>
+<p class="date">📅 Published on: 2010-Nov-27</p>
 </header>
 <p><strong>ViM 7.3</strong> has the awesome new feature of <strong>persistent undo</strong>. This means that ViM can remember the editing actions done on a file, even after ViM is closed and the file is reopened in ViM later! ViM does this by maintaining an <strong>undo file</strong> for each file that is edited. Persistent undo is turned off by default.</p>
 <p>To turn on persistent undo, add this line to your vimrc file:</p>
@@ -51,11 +58,16 @@
 <p><strong>Undo Files Directory</strong></p>
 <p>When persistent undo is turned on, it creates files named <code>.file.un~</code> in the directory of the file itself. I find this quite dirty and would like all the undo files to be created and managed in a far-off temporary directory. The undo files directory is set to <strong>.</strong> (current directory) by default. It can be set to a different place by adding this line to your vimrc file:</p>
 <pre><code>set undodir=$TEMP</code></pre>
-<p>Here I have set it to the user’s Temp directory on Windows. When undodir is set to something other than ., ViM creates undo files in that directory with a different filename convention. The filename is the full path of the edited file, with the <code>:</code> and <code>\</code> characters replaced by % characters. For example, the undo file for <code>C:\Code\Main.cpp</code> is stored in <code>$TEMP</code> with the filename <code>C%%Code%Main.cpp</code></p>
+<p>Here I have set it to the user's Temp directory on Windows. When undodir is set to something other than ., ViM creates undo files in that directory with a different filename convention. The filename is the full path of the edited file, with the <code>:</code> and <code>\</code> characters replaced by % characters. For example, the undo file for <code>C:\Code\Main.cpp</code> is stored in <code>$TEMP</code> with the filename <code>C%%Code%Main.cpp</code></p>
 <p>I find persistent undo to be an awesome feature that <em>just</em> works as your mind expects it to. Turn it on and enjoy the ViM goodness! :-)</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

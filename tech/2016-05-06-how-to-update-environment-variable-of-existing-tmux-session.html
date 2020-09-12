@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to update environment variable of existing Tmux session</h1>
-<p class="date">(First posted on: 2016-05-06 12:58:09+00:00)</p>
+<p class="date">📅 Published on: 2016-May-06</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I use <strong>Byobu</strong> (which is a wrapper on <strong>Tmux</strong>) to maintain shell sessions on the many servers I login to. I connect, disconnect and reconnect to the same Tmux sessions on these servers. When I reconnect back to an existing Tmux session, a new value is assigned to the <code>DISPLAY</code> environment variable. If I create a new Tmux session, by opening a new split or tab, then Tmux sets the new <code>DISPLAY</code> value correctly for that session. However, existing Tmux sessions have their old <code>DISPLAY</code> value which gives the familiar <code>cannot open display</code> error. I can find out the new <code>DISPLAY</code> value and set it manually in the existing session, but that is cumbersome.</p>
@@ -56,9 +63,14 @@
 end</code></pre>
 <p>When I need to update <code>DISPLAY</code>, I just call <code>set_display</code> at the shell! :-)</p>
 <p><strong>Tried with:</strong> Byobu 5.74, Tmux 1.8 and Fish 2.2.0</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

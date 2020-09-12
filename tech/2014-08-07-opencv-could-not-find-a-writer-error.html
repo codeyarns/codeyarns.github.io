@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">OpenCV: Could not find a writer error</h1>
-<p class="date">(First posted on: 2014-08-07 04:15:24+00:00)</p>
+<p class="date">📅 Published on: 2014-Aug-07</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I had this line of code in a program that uses OpenCV to write an image buffer to a PNG file:</p>
@@ -54,9 +61,14 @@
 <p>The most logical reason is that OpenCV was compiled with the PNG write feature (or any other format) left out. In this case, you may have to get the OpenCV source code and compile it, making sure you choose to enable <code>WITH_PNG</code> or similar option enabled in CMake.</p>
 <p>Surprisingly, I found that this error can also occur when the OpenCV library you are using has PNG compiled in. However, you may be linking a OpenCV release library (or DLL) with a compilation being done in Debug mode (or vice versa). Ensure that you are using Debug version of the library files in Debug mode and Release files in Release mode. I found that this resolved the error when I got it on Windows! :-)</p>
 <p><strong>Tried with:</strong> OpenCV 2.4.9, Visual Studio 2013 and Windows 7 x64</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

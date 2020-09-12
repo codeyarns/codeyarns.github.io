@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,22 +42,31 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">CUDA: Configuration File Error</h1>
-<p class="date">(First posted on: 2010-08-04 06:02:04+00:00)</p>
+<p class="date">📅 Published on: 2010-Aug-04</p>
 </header>
 <p>I got this error from the <strong>CUDA C compiler</strong> (<code>nvcc.exe</code>) when compiling a <strong>.cu</strong> file:</p>
 <blockquote>
-Visual Studio configuration file ‘(null)’ could not be found for installation at ‘C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/../..’
+Visual Studio configuration file '(null)' could not be found for installation at 'C:/Program Files (x86)/Microsoft Visual Studio 9.0/VC/bin/../..'
 </blockquote>
 <p>The error gives very little clue on how to fix it. I checked the <strong>Cuda.rules</strong> file and the CUDA toolkit files and found no problems.</p>
 <p>It turns out that this is one more icky problem when transitioning to 64-bit computers. I was on a 64-bit machine and using a 32-bit Visual C++ compiler. I had installed the 64-bit versions of the <strong><a href="http://www.nvidia.com/object/cuda_get.html">CUDA Toolkit</a></strong> and <strong>GPU Computing SDK</strong>. The above error was caused by this mismatch.</p>
 <p>It went away after I installed the 32-bit versions of the CUDA Toolkit and GPU Computing SDK. Do remember to manually change the <code>CUDA_BIN_PATH</code> and <code>CUDA_LIB_PATH</code> to the <code>bin</code> and <code>lib</code> directories of the CUDA Toolkit installation. The 64-bit toolkit installer sets this to the <code>bin64</code> and <code>lib64</code> directories, but the uninstaller does not remove them. And when the 32-bit toolkit is installed, the installer does not update the variables if they already exist (with their wrong paths).</p>
 <p>You may also need to add the <code>bin</code> directory to the <code>PATH</code> environment variable, replacing the <code>bin64</code> path that might be there. Executables compiled with CUDA need this to load the CUDA DLLs they need.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to set LMDB permissions in Caffe</h1>
-<p class="date">(First posted on: 2017-07-21 14:13:51+00:00)</p>
+<p class="date">📅 Published on: 2017-Jul-21</p>
 </header>
 <p><strong>Caffe</strong> can create, read and write images from an <strong>LMDB</strong> database. This is much faster than using the files from filesystem during training. However, I noticed that by default Caffe would not set <strong>write</strong> permissions for my <strong>group</strong> for the lmdb directory.</p>
 <p>A quick investigation into <code>src/caffe/util/db_lmdb.cpp</code> showed that this was because new lmdb directory was being created with <code>0744</code> permissions. I changed this to <code>0774</code> in the code and recompiled Caffe.</p>
@@ -58,9 +65,14 @@
 umask(0002);
 // ....</code></pre>
 <p>This solved the problem perfectly! :)</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

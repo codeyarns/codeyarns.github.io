@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">C++: abs() and its quirk with INT_MIN</h1>
-<p class="date">(First posted on: 2012-02-14 14:52:10+00:00)</p>
+<p class="date">📅 Published on: 2012-Feb-14</p>
 </header>
 <p>If you use the <code>abs()</code> function from <code>cmath</code>, then you need to be aware of one little quirk. The <code>abs()</code> function returns the absolute value of the signed integer passed as input. It is declared as:</p>
 <pre><code>int abs( int );</code></pre>
@@ -52,9 +59,14 @@
 <p>Coming back to <code>abs()</code>, since its return type is the same as the input type it simply cannot represent the positive value (<code>-INT_MIN</code>) in an <code>int</code>. Thus, it returns back <code>INT_MIN</code>.</p>
 <p>The binary representation of <code>0</code> is <code>00000000000000000000000000000000</code> and the binary representation of <code>INT_MIN</code> is <code>10000000000000000000000000000000</code>. That is, <code>INT_MIN</code> is same as 0, with MSB set to 1. Quirks of integers, such as with abs(), could have been avoided if the int format had been defined with two zero values: a positive zero (<code>00000000000000000000000000000000</code>) and a negative zero (<code>10000000000000000000000000000000</code>).</p>
 <p>Anyway, the reason you need to be careful about <code>abs()</code> is because you might be using its return value to index into an array. Indexing an array using a negative value can be disastrous or result in a hard-to-replicate bug.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

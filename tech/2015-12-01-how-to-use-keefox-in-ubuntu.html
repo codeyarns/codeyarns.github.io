@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,16 +42,20 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to use KeeFox in Ubuntu</h1>
-<p class="date">(First posted on: 2015-12-01 12:44:25+00:00)</p>
+<p class="date">📅 Published on: 2015-Dec-01</p>
 </header>
 <p><a href="http://keefox.org/"><strong>KeeFox</strong></a> is an open-source extension for <strong>Firefox</strong> to use your <strong>KeePass</strong> program to fill login-password forms on websites. You could do this manually by opening KeePass and using it to find the login-password or to generate a new password or update the credentials. KeeFox makes it easy to do these operations directly from the browser.</p>
 <ul>
 <li>Install <a href="2015-10-13-keepass.html">KeePass</a>:</li>
 </ul>
-<p>[code lang=“text”] $ sudo apt install keepass2</p>
+<p>[code lang=&quot;text&quot;] $ sudo apt install keepass2</p>
 <pre><code>
 
 
@@ -70,7 +77,7 @@ $ sudo apt install mono-complete</code></pre>
 <li><p>Install the KeeFox extension in your Firefox from here.</p></li>
 <li><p>We now need to create a <code>plugins</code> directory in our KeePass installation and copy the plugin file provided by KeeFox to that location:</p></li>
 </ul>
-<p>[code lang=“text”] $ cd /usr/lib/keepass2/ $ sudo mkdir plugins $ sudo cp $HOME/.mozilla/firefox/*.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx plugins ```</p>
+<p>[code lang=&quot;text&quot;] $ cd /usr/lib/keepass2/ $ sudo mkdir plugins $ sudo cp $HOME/.mozilla/firefox/*.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx plugins ```</p>
 <ul>
 <li><p>Open KeePass. If you had it open, close it and open it again. It should acknowledge that the new plugin that you installed in the above step. Keep it open for the steps below.</p></li>
 <li><p>Open Firefox. Click on KeeFox and go to Options. In the KeePass tab, enter <code>/usr/lib/keepass2</code> as KeePass location. The Mono location should already be filled in correctly.</p></li>
@@ -78,9 +85,14 @@ $ sudo apt install mono-complete</code></pre>
 </ul>
 <p><strong>Note:</strong> After going through these steps I realized that it is far easier to manually use KeePass instead of KeeFox. This is because login-passwords need only be entered once and can be saved for all future logins in Firefox using its built-in password manager anyway.</p>
 <p><strong>Tried with:</strong> KeeFox 1.5.3, Firefox 42, KeePass 2.25 and Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

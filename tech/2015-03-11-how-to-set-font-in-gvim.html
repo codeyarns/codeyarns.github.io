@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,17 +42,21 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to set font in GVim</h1>
-<p class="date">(First posted on: 2015-03-11 12:37:23+00:00)</p>
+<p class="date">📅 Published on: 2015-Mar-11</p>
 </header>
 <figure>
 <img src="https://codeyarns.files.wordpress.com/2015/03/20150311_guifont.png" alt=" " /><figcaption> </figcaption>
 </figure>
 <p>The <strong>font</strong> used by <strong>GVim</strong> can be set by choosing Edit -&gt; Select Font, which displays a dialog to pick the font. You can get the same dialog by using the command <code>:set guifont=*</code></p>
 <p>The chosen font is used only for the current session and GVim reverts back to its default font after that.</p>
-<p>To set the default font used by GVim, add a command of the form <code>set guifont=</code> to your <code>gvimrc</code>. If you want to add it to <code>vimrc</code> file, then enclose this command in a <code>if has("gui_running")</code> block.</p>
+<p>To set the default font used by GVim, add a command of the form <code>set guifont=</code> to your <code>gvimrc</code>. If you want to add it to <code>vimrc</code> file, then enclose this command in a <code>if has(&quot;gui_running&quot;)</code> block.</p>
 <p>The only tricky part here is, what is the format in which the font and font size should be specified? An easy trick is to set the font and font size in the font dialog and then query it back using <code>:set guifont?</code>. Use the exact value that it displays. Note that the format of the font string varies according to the platform. A <strong>Ubuntu Mono</strong> font in size 10 is given as <code>Ubuntu Mono:h10</code> on Windows and as <code>Ubuntu Mono 10</code> on Linux.</p>
 <p>Also on Linux, note that you should not enclose the font string in single or double quotes. If the font string has <strong>spaces</strong>, then escape them using backslashes. Enclosing in quotes works fine on Windows.</p>
 <pre><code>&quot; This works on Windows, but is ineffective on Linux
@@ -58,9 +65,14 @@ set guifont=&quot;Ubuntu Mono 10&quot;
 &quot; This works on Linux
 set guifont=Ubuntu\ Mono\ 10</code></pre>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

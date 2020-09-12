@@ -8,67 +8,41 @@
   <title>Code Yarns – A simple example to understand CRTP</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -89,7 +63,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -102,10 +79,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">A simple example to understand CRTP</h1>
-<p class="date">(First posted on: 2015-07-09 12:28:00+00:00)</p>
+<p class="date">📅 Published on: 2015-Jul-09</p>
 </header>
 <p><strong>Dynamic polymorphism</strong> (or <strong>runtime polymorphism</strong>) using <strong>virtual functions</strong> in C++ is a great savior. However, a tiny fraction of applications might be affected by its disadvantages: an extra function call overhead and space occupied by a vtable pointer in every object.</p>
 <p>For most of these applications, there might be no better choice than virtual functions, they will need to grin and bear it. But among these applications, there might be a further tiny fraction whose problem just might be elegantly solved using a <strong>static polymorphism</strong> technique called <strong>Curiously Recurring Template Pattern (CRTP)</strong>. It is also called the <strong>Barton-Nackman trick</strong>, since this duo introduced it for the first time in their 1997 book <strong>Scientific and Engineering C++</strong> (Section 12.6: Restricted Template Expansion).</p>
@@ -115,17 +96,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Say, we have a class hierarchy with <code>Creature</code> base class and thousands of species classes derived from it. As an example, <code>Bird</code> and <code>Fish</code> are both derived from it.</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">struct</span> Creature {};</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">struct</span> Bird: Creature {};</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">struct</span> Fish: Creature {};</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">struct</span> Creature {};
+<span class="kw">struct</span> Bird: Creature {};
+<span class="kw">struct</span> Fish: Creature {};</code></pre></div>
 <ul>
 <li>Species like <code>Bird</code> and <code>Fish</code> have some common features (say <code>eye_num</code>) and some specialized features (say <code>wing_num</code> for <code>Bird</code> and <code>fin_num</code> for <code>Fish</code>). If this were not the case, there would be no need to arrange them in a hierarchy.</li>
 <li>Suppose we want to write <strong>equality</strong> (<code>==</code>) and <strong>inequality</strong> (<code>!=</code>) comparison methods to compare any two objects of <strong>same species</strong>. That is to compare two <code>Bird</code> objects or two <code>Fish</code> objects. Also assume that inequality in this case is nothing but the negation of equality, but we want this inequality method anyway to write elegant code. We want to have the most maintainable and least amount of code that can achieve this:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1">Bird b1, b2, b3;</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co">// ...</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="cf">if</span> (b1 == b2) <span class="co">// Do something</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="cf">if</span> (b2 != b3) <span class="co">// Do something</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">Bird b1, b2, b3;
+<span class="co">// ...</span>
+<span class="cf">if</span> (b1 == b2) <span class="co">// Do something</span>
+<span class="cf">if</span> (b2 != b3) <span class="co">// Do something</span></code></pre></div>
 <h2 id="solutions">Solutions</h2>
 <p>Let us see different ways this can be solved elegantly:</p>
 <ul>
@@ -134,71 +115,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Solution 3:</strong> Create non-virtual <code>==</code> operator methods in both <code>Bird</code> and <code>Fish</code>. Problem is that you will now need to create the non-virtual <code>!=</code> method also in <strong>all</strong> the derived classes. This means writing <code>N</code> equality and <code>N</code> inequality methods. Too much work!</li>
 <li><strong>Solution 4:</strong> Use CRTP as shown in the code below. Both equality and inequality tests are fully type dependent. However, note that the inequality test is only written once in the base class. So, we end up writing <code>N + 1</code> equality and <code>1</code> inequality methods. This is optimal. The peculiar feature you can use to identify a CRTP is a type passing itself as template type to the base type it is deriving from, as seen in <code>Bird</code> and <code>Fish</code> below.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">using</span> <span class="kw">namespace</span> std;</a>
-<a class="sourceLine" id="cb3-3" title="3"></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw">template</span> &lt;<span class="kw">typename</span> Derived&gt;</a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="kw">struct</span> Creature</a>
-<a class="sourceLine" id="cb3-6" title="6">{</a>
-<a class="sourceLine" id="cb3-7" title="7">    <span class="dt">int</span> eye_num;</a>
-<a class="sourceLine" id="cb3-8" title="8"></a>
-<a class="sourceLine" id="cb3-9" title="9">    <span class="kw">friend</span> <span class="dt">bool</span> <span class="kw">operator</span> == (<span class="at">const</span> Derived&amp; lhs, <span class="at">const</span> Derived&amp; rhs)</a>
-<a class="sourceLine" id="cb3-10" title="10">    {</a>
-<a class="sourceLine" id="cb3-11" title="11">        <span class="cf">return</span> lhs.IsEqual(rhs);</a>
-<a class="sourceLine" id="cb3-12" title="12">    }</a>
-<a class="sourceLine" id="cb3-13" title="13"></a>
-<a class="sourceLine" id="cb3-14" title="14">    <span class="kw">friend</span> <span class="dt">bool</span> <span class="kw">operator</span> != (<span class="at">const</span> Derived&amp; lhs, <span class="at">const</span> Derived&amp; rhs)</a>
-<a class="sourceLine" id="cb3-15" title="15">    {</a>
-<a class="sourceLine" id="cb3-16" title="16">        <span class="cf">return</span> !(lhs.IsEqual(rhs));</a>
-<a class="sourceLine" id="cb3-17" title="17">    }</a>
-<a class="sourceLine" id="cb3-18" title="18">};</a>
-<a class="sourceLine" id="cb3-19" title="19"></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="kw">struct</span> Bird: Creature&lt;Bird&gt;</a>
-<a class="sourceLine" id="cb3-21" title="21">{</a>
-<a class="sourceLine" id="cb3-22" title="22">    <span class="dt">int</span> wing_num;</a>
-<a class="sourceLine" id="cb3-23" title="23"></a>
-<a class="sourceLine" id="cb3-24" title="24">    <span class="dt">bool</span> IsEqual(<span class="at">const</span> Bird&amp; b) <span class="at">const</span></a>
-<a class="sourceLine" id="cb3-25" title="25">    {</a>
-<a class="sourceLine" id="cb3-26" title="26">        <span class="cf">return</span> eye_num == b.eye_num &amp;&amp; wing_num == b.wing_num;</a>
-<a class="sourceLine" id="cb3-27" title="27">    }</a>
-<a class="sourceLine" id="cb3-28" title="28">};</a>
-<a class="sourceLine" id="cb3-29" title="29"></a>
-<a class="sourceLine" id="cb3-30" title="30"><span class="kw">struct</span> Fish: Creature&lt;Fish&gt;</a>
-<a class="sourceLine" id="cb3-31" title="31">{</a>
-<a class="sourceLine" id="cb3-32" title="32">    <span class="dt">int</span> fin_num;</a>
-<a class="sourceLine" id="cb3-33" title="33"></a>
-<a class="sourceLine" id="cb3-34" title="34">    <span class="dt">bool</span> IsEqual(<span class="at">const</span> Fish&amp; f) <span class="at">const</span></a>
-<a class="sourceLine" id="cb3-35" title="35">    {</a>
-<a class="sourceLine" id="cb3-36" title="36">        <span class="cf">return</span> eye_num == f.eye_num &amp;&amp; fin_num == f.fin_num;</a>
-<a class="sourceLine" id="cb3-37" title="37">    }</a>
-<a class="sourceLine" id="cb3-38" title="38">};</a>
-<a class="sourceLine" id="cb3-39" title="39"></a>
-<a class="sourceLine" id="cb3-40" title="40"><span class="dt">int</span> main()</a>
-<a class="sourceLine" id="cb3-41" title="41">{</a>
-<a class="sourceLine" id="cb3-42" title="42">    Bird b1, b2, b3;</a>
-<a class="sourceLine" id="cb3-43" title="43"></a>
-<a class="sourceLine" id="cb3-44" title="44">    b1.eye_num  = <span class="dv">2</span>;</a>
-<a class="sourceLine" id="cb3-45" title="45">    b2.eye_num  = <span class="dv">2</span>;</a>
-<a class="sourceLine" id="cb3-46" title="46">    b3.eye_num  = <span class="dv">2</span>;</a>
-<a class="sourceLine" id="cb3-47" title="47"></a>
-<a class="sourceLine" id="cb3-48" title="48">    b1.wing_num = <span class="dv">2</span>;</a>
-<a class="sourceLine" id="cb3-49" title="49">    b2.wing_num = <span class="dv">2</span>;</a>
-<a class="sourceLine" id="cb3-50" title="50">    b3.wing_num = <span class="dv">3</span>;</a>
-<a class="sourceLine" id="cb3-51" title="51"></a>
-<a class="sourceLine" id="cb3-52" title="52">    <span class="cf">if</span> (b1 != b2) cout &lt;&lt; <span class="st">&quot;Bird equal</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
-<a class="sourceLine" id="cb3-53" title="53">    <span class="cf">else</span>          cout &lt;&lt; <span class="st">&quot;Bird not equal</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
-<a class="sourceLine" id="cb3-54" title="54">    <span class="cf">if</span> (b1 == b3) cout &lt;&lt; <span class="st">&quot;Bird equal</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
-<a class="sourceLine" id="cb3-55" title="55">    <span class="cf">else</span>          cout &lt;&lt; <span class="st">&quot;Bird not equal</span><span class="sc">\n</span><span class="st">&quot;</span>;</a>
-<a class="sourceLine" id="cb3-56" title="56"></a>
-<a class="sourceLine" id="cb3-57" title="57">    <span class="co">// You can do the same with Fish:</span></a>
-<a class="sourceLine" id="cb3-58" title="58">    <span class="co">// Fish f1, f2, f3;</span></a>
-<a class="sourceLine" id="cb3-59" title="59">    <span class="co">// f1.fin_num = 5;</span></a>
-<a class="sourceLine" id="cb3-60" title="60">    <span class="co">// and so on ...</span></a>
-<a class="sourceLine" id="cb3-61" title="61">}</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">template</span> &lt;<span class="kw">typename</span> Derived&gt;
+<span class="kw">struct</span> Creature
+{
+    <span class="dt">int</span> eye_num;
+
+    <span class="kw">friend</span> <span class="dt">bool</span> <span class="kw">operator</span> == (<span class="at">const</span> Derived&amp; lhs, <span class="at">const</span> Derived&amp; rhs)
+    {
+        <span class="cf">return</span> lhs.IsEqual(rhs);
+    }
+
+    <span class="kw">friend</span> <span class="dt">bool</span> <span class="kw">operator</span> != (<span class="at">const</span> Derived&amp; lhs, <span class="at">const</span> Derived&amp; rhs)
+    {
+        <span class="cf">return</span> !(lhs.IsEqual(rhs));
+    }
+};
+
+<span class="kw">struct</span> Bird: Creature&lt;Bird&gt;
+{
+    <span class="dt">int</span> wing_num;
+
+    <span class="dt">bool</span> IsEqual(<span class="at">const</span> Bird&amp; b) <span class="at">const</span>
+    {
+        <span class="cf">return</span> eye_num == b.eye_num &amp;&amp; wing_num == b.wing_num;
+    }
+};
+
+<span class="kw">struct</span> Fish: Creature&lt;Fish&gt;
+{
+    <span class="dt">int</span> fin_num;
+
+    <span class="dt">bool</span> IsEqual(<span class="at">const</span> Fish&amp; f) <span class="at">const</span>
+    {
+        <span class="cf">return</span> eye_num == f.eye_num &amp;&amp; fin_num == f.fin_num;
+    }
+};
+
+<span class="dt">int</span> main()
+{
+    Bird b1, b2, b3;
+
+    b1.eye_num  = <span class="dv">2</span>;
+    b2.eye_num  = <span class="dv">2</span>;
+    b3.eye_num  = <span class="dv">2</span>;
+
+    b1.wing_num = <span class="dv">2</span>;
+    b2.wing_num = <span class="dv">2</span>;
+    b3.wing_num = <span class="dv">3</span>;
+
+    <span class="cf">if</span> (b1 != b2) cout &lt;&lt; <span class="st">&quot;Bird equal</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    <span class="cf">else</span>          cout &lt;&lt; <span class="st">&quot;Bird not equal</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    <span class="cf">if</span> (b1 == b3) cout &lt;&lt; <span class="st">&quot;Bird equal</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    <span class="cf">else</span>          cout &lt;&lt; <span class="st">&quot;Bird not equal</span><span class="sc">\n</span><span class="st">&quot;</span>;
+
+    <span class="co">// You can do the same with Fish:</span>
+    <span class="co">// Fish f1, f2, f3;</span>
+    <span class="co">// f1.fin_num = 5;</span>
+    <span class="co">// and so on ...</span>
+}</code></pre></div>
 <p>I hope this example helped you understand this trick.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

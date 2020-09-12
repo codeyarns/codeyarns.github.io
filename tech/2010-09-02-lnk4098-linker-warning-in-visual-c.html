@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">LNK4098 Linker Warning in Visual C++</h1>
-<p class="date">(First posted on: 2010-09-02 08:38:23+00:00)</p>
+<p class="date">📅 Published on: 2010-Sep-02</p>
 </header>
 <p>Problem</p>
 <p>C++ code when compiled can produce the linker warning <strong><a href="http://msdn.microsoft.com/en-us/library/aa267384.aspx">LNK4098</a></strong> at the final linking stage. This warning is of the form:</p>
@@ -54,9 +61,14 @@
 <p>One source of conflict is different <strong>source files</strong> being compiled with different options. Examine the <strong>Runtime Library</strong> properties of the each of the source files in the solution. Open <em>Project &gt; Properties</em> and this option can be found at <em>C/C++ &gt; Code Generation &gt; Runtime Library</em>. There might be some files which differ in the Runtime Library they are using. For example, Foo.cpp might be compiled with Multi-threaded DLL (/MD) and Joe.cpp might be compiled with Multi-threaded (/MT). To fix this warning, change the Runtime Library settings so that they are uniform across all the files of the solution. <strong>Example:</strong> I typically notice these warnings when there are external <strong>Build Rules</strong> being used in the solution. For example, CUDA files (.cu) are typically compiled with a different Build Rule that invokes the CUDA compiler (nvcc.exe). The Runtime Library option within this Build Rule might not be matching the Runtime Library option of the solution, thus resulting in this warning.</p>
 <p>Another possibility is the <strong>external libraries</strong> being linked with the project. Examine the library files being explicitly linked with the project and ensure they are compiled with the <em>same</em> run-time library options as that of the project.</p>
 <p>If the above options fail or are not feasible, use the <code>/NODEFAULTLIB</code> option set to ignore the specific library that is causing this warning. That is, <code>LIBCMTD</code> in this case. To do this, go to Project &gt; Properties &gt; Linker &gt; Input &gt; Ignore Specific Default Libraries and add the filename of the offending library. For example, add <code>LIBCMTD.lib</code> in this case. This generates a compile option <code>/NODEFAULTLIB:LIBCMTD.lib</code> during compile time that excludes this library during linking.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

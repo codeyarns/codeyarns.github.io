@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,32 +42,37 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Subversion: Remove a Project</h1>
-<p class="date">(First posted on: 2009-10-24 08:23:14+00:00)</p>
+<p class="date">📅 Published on: 2009-Oct-24</p>
 </header>
 <p>There is <a href="http://stackoverflow.com/questions/1436320">no straightforward way</a> to remove all the information of a project from the SVN repository and retrieve that diskspace. The only way to achieve this:</p>
 <ol type="1">
-<li>Dump the repository to a <em>dumpfile</em>.</li>
+<li><p>Dump the repository to a <em>dumpfile</em>.</p>
+<p>$ svnadmin dump C:_Rep &gt; C:_rep_dump</p></li>
+<li><p><em>Filter</em> out the project you want to remove from the dumpfile.</p>
+<p>$ svndumpfilter exclude Project_to_del &lt; C:_rep_dump &gt; C:_rep_dump_updated</p></li>
 </ol>
-<pre><code>$ svnadmin dump C:\Foo_Rep &gt; C:\foo_rep_dump</code></pre>
-<ol start="2" type="1">
-<li><em>Filter</em> out the project you want to remove from the dumpfile.</li>
-</ol>
-<pre><code>$ svndumpfilter exclude Project_to_del &lt; C:\foo_rep_dump &gt; C:\foo_rep_dump_updated</code></pre>
 <p>If you have many projects that you want to remove, repeat this step for each of them.</p>
 <ol start="3" type="1">
-<li>Create a new repository.</li>
+<li><p>Create a new repository.</p>
+<p>$ svnadmin create C:_rep_new</p></li>
+<li><p>Load the updated dumpfile to new repository.</p>
+<p>$ svnadmin load C:_rep_new &lt; C:_rep_dump_updated</p></li>
 </ol>
-<pre><code>$ svnadmin create C:\Foo_rep_new</code></pre>
-<ol start="4" type="1">
-<li>Load the updated dumpfile to new repository.</li>
-</ol>
-<pre><code>$ svnadmin load C:\Foo_rep_new &lt; C:\foo_rep_dump_updated</code></pre>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

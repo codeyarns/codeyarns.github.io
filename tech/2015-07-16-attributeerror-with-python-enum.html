@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">AttributeError with Python Enum</h1>
-<p class="date">(First posted on: 2015-07-16 12:35:00+00:00)</p>
+<p class="date">📅 Published on: 2015-Jul-16</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I had code that had worked correctly with Python 2.7 and that used the old <a href="https://pypi.python.org/pypi/enum/"><strong>enum</strong></a> module. Recently it started throwing this error:</p>
@@ -59,9 +66,14 @@ AttributeError: Line</code></pre>
 <p>This error is caused when the <a href="https://pypi.python.org/pypi/enum34/"><strong>enum34</strong></a> module has been installed alongside the old enum module. enum34 is the backport for Python 2.x of the standard enum in Python 3.4. Many packages have started to use it and so it will be installed implicitly while installing another package. enum34 overrides the old enum files and causes this error.</p>
 <p>You could remove enum34 and get rid of this error. But since Python 3.x has already adapted a new enum type, it might be wiser to uninstall the old enum and rewrite your code to use enum34. Its syntax is shown in <a href="2013/05/01/how-to-use-enum-in-python/">this example</a>.</p>
 <p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

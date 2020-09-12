@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">GDB error on cannot find source file</h1>
-<p class="date">(First posted on: 2014-07-16 01:18:52+00:00)</p>
+<p class="date">📅 Published on: 2014-Jul-16</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I was debugging C++ code using the Eclipse debugger. This uses the GDB debugger underneath. I had put a breakpoint inside a class method and was trying to step through that code. I was able to step over a few statements in the method, but on a particular statement that called <code>fgets</code>, a standard C function, Eclipse threw up this error:</p>
@@ -53,9 +60,14 @@
 <p>In my haste, I had forgotten that the class method was defined in a header file. Many C++ projects these days include both the declaration and definition of a class in the header file itself. This was one such class.</p>
 <p>Since I had to step through and debug this class, I manually pulled out the class method definitions into a C++ source file and separated it from the header file. After compiling these files, I was able to step through the code of the same class method without any mysterious errors.</p>
 <p><strong>Tried with:</strong> GDB 7.7, Eclipse 3.8.1 and Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

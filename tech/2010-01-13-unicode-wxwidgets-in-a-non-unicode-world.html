@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,23 +42,32 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Unicode wxWidgets in a Non-Unicode World</h1>
-<p class="date">(First posted on: 2010-01-13 13:31:40+00:00)</p>
+<p class="date">📅 Published on: 2010-Jan-13</p>
 </header>
 <p><em><a href="http://www.wxwidgets.org/">wxWidgets</a></em> can be compiled to pure Unicode mode by setting <code>wxUSE_UNICODE</code> to <code>1</code> in the header file <code>$(WX_WIDGETS_ROOT)\include\wx\msw\setup.h</code></p>
 <p>But what if the rest of your code that interfaces with Unicode wxWidgets is still not Unicode, but uses <code>char</code> and <code>STL std::string</code>? The changes needed at the interface are:</p>
 <ul>
-<li><p>Wrap all characters and string literals passed to wxWidgets in <a href="http://docs.wxwidgets.org/stable/wx_stringfunctions.html#wxt"><code>wxT()</code></a>. It converts them to Unicode. Ex: <code>wxT("Hell World!")</code></p></li>
+<li><p>Wrap all characters and string literals passed to wxWidgets in <a href="http://docs.wxwidgets.org/stable/wx_stringfunctions.html#wxt"><code>wxT()</code></a>. It converts them to Unicode. Ex: <code>wxT(&quot;Hell World!&quot;)</code></p></li>
 <li><p>wxWidget functions do not deal with <code>STL std::string</code> but with <a href="http://docs.wxwidgets.org/stable/wx_wxstring.html"><code>wxString</code></a>. Do the conversion using <code>wxConvUTF8</code>, which is an instance of the <a href="http://docs.wxwidgets.org/stable/wx_wxmbconv.html"><code>wxMBConv</code></a> class. <code>MBConv</code> stands for Multi-Byte Conversion, it helps to convert between Multi-Byte formats and Unicode. <code>wxConvUTF8</code> as you can guess converts multi-byte to the UTF-8 Unicode encoding. Ex:</p>
-<p>std::string stdStr(“Hell World!”); wxString wxStr(stdStr.c_str(), wxConvUTF8);</p></li>
+<p>std::string stdStr(&quot;Hell World!&quot;); wxString wxStr(stdStr.c_str(), wxConvUTF8);</p></li>
 <li><p>When wxWidgets functions throw out a <code>wxString</code>, convert them back to <code>char</code> string using <a href="http://docs.wxwidgets.org/stable/wx_wxstring.html#wxstringmbstr"><code>wxString::mb_str()</code></a>. This returns the multi-byte representation of the internal Unicode text in <code>wxString</code>.</p></li>
 </ul>
 <p>If you are curious about this fishy Multi-Byte business, check out <em><a href="http://codeyarns.wordpress.com/2010/01/13/windows-multi-byte/">Windows: Multi-Byte</a></em>.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

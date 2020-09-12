@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,18 +42,27 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to make CUDA and nvidia-smi use same GPU ID</h1>
-<p class="date">(First posted on: 2016-07-05 14:04:58+00:00)</p>
+<p class="date">📅 Published on: 2016-Jul-05</p>
 </header>
 <p>One of the irritating problems I encounter while working with <strong>CUDA</strong> programs is the GPU ID. This is the identifier used to associate an integer with a GPU on the system. This is just 0 if you have one GPU in the computer. But when dealing with a system having multiple GPUs, the GPU ID that is used by CUDA and GPU ID used by non-CUDA programs like <strong>nvidia-smi</strong> are different! CUDA tries to associate the fastest GPU with the lowest ID. Non-CUDA tools use the PCI Bus ID of the GPUs to give them a GPU ID.</p>
 <p>One solution that I was using was to use <a href="https://github.com/al42and/cuda-smi"><strong>cuda-smi</strong></a> that shows GPU information using CUDA GPU IDs.</p>
 <p>There is a better solution: requesting CUDA to use the same PCI Bus ID enumeration order as used by non-CUDA programs. To do this set the <code>CUDA_​DEVICE_​ORDER</code> environment variable to <code>PCI_BUS_ID</code> in your shell. The default value of this variable is <code>FASTEST_FIRST</code>. More info on this can be found <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars">here</a>. Note that this is available only in CUDA 7 and later.</p>
 <p><strong>Reference</strong>: <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars">CUDA Environment Variables</a></p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

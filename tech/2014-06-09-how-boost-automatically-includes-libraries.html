@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How Boost automatically includes libraries</h1>
-<p class="date">(First posted on: 2014-06-09 03:56:14+00:00)</p>
+<p class="date">📅 Published on: 2014-Jun-09</p>
 </header>
 <p>Boost is mostly a template based library, but using certain functionality requires linking with its libraries. On Windows, when you include a Boost header file in your code, it automatically generates a linking dependency on its corresponding library file. This library path is used by the linker to complete its linking operation.</p>
 <p>For example, if I use the threading features of Boost, it generates a dependency on the library file: <code>libboost_thread-vc110-mt-gd-1_53.lib</code>.</p>
@@ -50,9 +57,14 @@
 <p>If you find that your code is looking for a Boost library filename that looks wrong in any way, then you might have to look into the above header file and configure some of the definitions.</p>
 <p>For example, I built Boost 1.53 on Visual Studio 2013, even though it is not officially supported. When I used this Boost with my code, the linker complained that it was looking for <code>libboost_thread-vc110-mt-gd-1_53.lib</code>. This is strange, since I have built both Boost and my code using Visual Studio 2013 (<code>vc120</code>), but it is looking for Visual Studio 2012 (<code>vc110</code>). I found that the variable <code>BOOST_LIB_TOOLSET</code> was set to <code>vc110</code> in <code>auto_link.hpp</code>. Changing this fixed the error.</p>
 <p><strong>Tried with:</strong> Boost 1.53, Visual Studio 2013 and Windows 7 x64</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

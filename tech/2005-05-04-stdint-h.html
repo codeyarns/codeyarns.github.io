@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">stdint.h</h1>
-<p class="date">(First posted on: 2005-05-04 03:45:24+00:00)</p>
+<p class="date">📅 Published on: 2005-May-04</p>
 </header>
 <p>A colleague informed me today that my name had appeared in the April 2005 issue of the <a href="http://www.embedded.com/">Embedded Systems Programming</a> magazine. Back in December 2004, I had commented to Dan Saks about his article <a href="http://www.embedded.com/showArticle.jhtml?articleID=55301821">More ways to map memory</a> on the usage of the available C fixed width integer types. We had an email discussion on it and I forgot all about it. I had blogged earlier about these types.</p>
 <p>In his latest article <a href="https://www.embedded.com/sizing-and-aligning-device-registers/">Sizing and aligning device registers</a> he mentions that email conversation. I know this is not anything significant, but this is the first time my name has appeared in a deadwood tech magazine! :-)</p>
@@ -50,7 +57,7 @@
 <p>Ashwin N (ashwin.n@gmail.com) suggested yet another way to define the special_register type:</p>
 <blockquote>
 <blockquote>
-<p>If you want to use an unsigned four-byte word, shouldn’t you be doing:</p>
+<p>If you want to use an unsigned four-byte word, shouldn't you be doing:</p>
 </blockquote>
 <blockquote>
 <blockquote>
@@ -60,14 +67,19 @@ typedef uint32_t volatile special_register;</code></pre>
 This should work with all modern standard C compilers/libraries.
 </blockquote>
 </blockquote>
-<p>The typedef <code>uint32_t</code> is an alias for some unsigned integer type that occupies exactly 32 bits. It’s one of many possible exact-width unsigned integer types with names of the form <code>uintN_t</code>, where <code>N</code> is a decimal integer representing the number of bits the type occupies. Other common exact-width unsigned types are <code>uint8_t</code> and <code>uint16_t</code>. For each type <code>uintN_t</code>, there’s a corresponding type <code>intN_t</code> for a signed integer that occupies exactly <code>N</code> bits and has two’s complement representation.</p>
+<p>The typedef <code>uint32_t</code> is an alias for some unsigned integer type that occupies exactly 32 bits. It's one of many possible exact-width unsigned integer types with names of the form <code>uintN_t</code>, where <code>N</code> is a decimal integer representing the number of bits the type occupies. Other common exact-width unsigned types are <code>uint8_t</code> and <code>uint16_t</code>. For each type <code>uintN_t</code>, there's a corresponding type <code>intN_t</code> for a signed integer that occupies exactly <code>N</code> bits and has two's complement representation.</p>
 </blockquote>
-<p>I have been reluctant to use <code>&lt;stdint.h&gt;</code>. It’s available in C99, but not in earlier C dialects nor in Standard C++. However, it’s becoming increasingly available in C++ compilers, and likely to make it into the C++ Standard someday. Moreover, as Michael Barr observed, if the header isn’t available with your compiler, you can implement it yourself without much fuss. I plan to start using these types more in my work.</p>
-Again, using a typedef such as <code>special_register</code> makes the exact choice of the integer type much less important. However, I’m starting to think that <code>uint32_t</code> is the best type to use in defining the special_register type.
+<p>I have been reluctant to use <code>&lt;stdint.h&gt;</code>. It's available in C99, but not in earlier C dialects nor in Standard C++. However, it's becoming increasingly available in C++ compilers, and likely to make it into the C++ Standard someday. Moreover, as Michael Barr observed, if the header isn't available with your compiler, you can implement it yourself without much fuss. I plan to start using these types more in my work.</p>
+Again, using a typedef such as <code>special_register</code> makes the exact choice of the integer type much less important. However, I'm starting to think that <code>uint32_t</code> is the best type to use in defining the special_register type.
 </blockquote>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

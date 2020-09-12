@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to pass Thrust device vector to CUDA kernel</h1>
-<p class="date">(First posted on: 2011-04-09 03:56:57+00:00)</p>
+<p class="date">📅 Published on: 2011-Apr-09</p>
 </header>
 <p><a href="https://github.com/thrust/thrust"><strong>Thrust</strong></a> makes it convenient to handle data with its <code>device_vector</code>. But, things get messy when the <code>device_vector</code> needs to be passed to your own <strong>kernel</strong>. Thrust data types are not understood by a CUDA kernel and need to be converted back to its underlying pointer. This is done using <code>thrust::raw_pointer_cast</code>:</p>
 <pre><code>#include &lt;thrust/device_vector.h&gt;
@@ -83,7 +90,7 @@ __global__ fooKernel(KernelArray&lt;int&gt; inArray)
     // ...
     return;
 }</code></pre>
-<p>You can take it a notch higher and make the conversion from <code>device_vector</code> to <code>KernelArray</code> to be implicit. This can be done by adding a constructor to <code>KernelArray</code> that takes one input parameter of type <code>device_vector</code>. (See Stephen’s comment below the post.)</p>
+<p>You can take it a notch higher and make the conversion from <code>device_vector</code> to <code>KernelArray</code> to be implicit. This can be done by adding a constructor to <code>KernelArray</code> that takes one input parameter of type <code>device_vector</code>. (See Stephen's comment below the post.)</p>
 <p>With such a constructor, you can now pass a <code>device_vector</code> seamlessly to the kernel:</p>
 <pre><code>thrust::device_vector&lt;int&gt; iVec;
 
@@ -94,9 +101,14 @@ __global__ fooKernel(KernelArray&lt;int&gt; inArray)
     // ...
 }</code></pre>
 <p><strong>Tried with:</strong> Thrust 1.3 and CUDA 3.2</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

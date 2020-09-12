@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,18 +42,27 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">How to execute function in multiple threads in Python</h1>
-<p class="date">(First posted on: 2014-12-31 01:59:33+00:00)</p>
+<p class="date">📅 Published on: 2014-Dec-31</p>
 </header>
 <p>One of the most common sources of performance optimization is to find sections of code where a function executes on multiple data items independently. This type of parallelization can be easily achieved by using multithreading in Python. Alex Martelli provides a <code>MultiThread</code> class in his book <strong>Python Cookbook</strong> (2 Ed) that does this:</p>
 <p>https://gist.github.com/ashwin/bb71fbc59beddd416dbc</p>
 <p>I was disappointed after using this on my data. Not only was there no speedup, even with 8 threads, you might sometimes even see a regression from the single-threaded speed! The reason for this is that the Python interpreter cannot actually perform multithreading. It uses an internal Global Interpreter Lock (GIL) to prevent corruption of all data structures. So, the only times you might want to use multithreading is when it makes programming easier: for GUI programs or for networking programs.</p>
 <p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

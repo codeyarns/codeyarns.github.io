@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Mercurial: Collaborating on a Windows Network Using Shares</h1>
-<p class="date">(First posted on: 2010-08-06 04:47:33+00:00)</p>
+<p class="date">📅 Published on: 2010-Aug-06</p>
 </header>
 <p>You might feel the need to publish <strong>Mercurial</strong> repositories in a central location and collaborate using that. This is really useful when:</p>
 <ul>
@@ -61,14 +68,19 @@
 <li><p>Designate one computer as the central repository server. Let us call it A. It can be the workstation of the one of the team members, it does not really matter. Other computers, B and C, should be in the same Windows network as A.</p></li>
 <li><p>Create a directory on A, say <code>D:\HgReps</code> and move all your current repositories to it. New repositories in the future should also be created here.</p></li>
 <li><p>Share the directory on A, so it becomes <code>\\A\HgReps</code>. Give only the team members who use A, B and C access to <strong>read and write</strong> to this share. You could also give <strong>read access</strong> to other users who you wish only pull from A. These access permissions should be very easy to configure if you are in a well set up Windows domain.</p></li>
-<li>Point all the current working directories on A, B and C to push and pull from <code>\\A\HgReps</code>. To do this, open the <code>.hg/hgrc</code> file in each working directory and edit it so it points to A. For a project named Foobar, the <code>.hg/hgrc</code> file looks like:</li>
-</ol>
+<li><p>Point all the current working directories on A, B and C to push and pull from <code>\\A\HgReps</code>. To do this, open the <code>.hg/hgrc</code> file in each working directory and edit it so it points to A. For a project named Foobar, the <code>.hg/hgrc</code> file looks like:</p>
 <pre><code>[paths]
-default = \\A\HgReps\Foobar</code></pre>
-<p>All this setup is ridiculously easy to do for a small team and everything just works without much configuration. Another nice side-effect is that you can backup the <code>D:\HgReps</code> on computer A easily and grab all the team’s commits.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
+default = \\A\HgReps\Foobar</code></pre></li>
+</ol>
+<p>All this setup is ridiculously easy to do for a small team and everything just works without much configuration. Another nice side-effect is that you can backup the <code>D:\HgReps</code> on computer A easily and grab all the team's commits.</p>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

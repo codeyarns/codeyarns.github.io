@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,19 +42,28 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">PowerShell: Out-File versus Set-Content</h1>
-<p class="date">(First posted on: 2012-03-02 04:27:25+00:00)</p>
+<p class="date">📅 Published on: 2012-Mar-02</p>
 </header>
 <p>If you want to pipe some content to a file, which of these two cmdlets would you use: Out-File or Set-Content?</p>
 <p><strong>Out-File</strong> is just the <a href="http://codeyarns.wordpress.com/2012/03/02/powershell-output-redirection-operators/">same as</a> the <strong>output redirection operator</strong> (&gt;) you use in any other shell. It <em>formats the output</em> as if it were writing to the console and instead of writing to the console, it writes to the file you specify.</p>
 <p>This behaviour of Out-File can be sometimes problematic. If the content you are piping through Out-File has lines of text that are longer than the console width, Out-File will break them at the console width into a newline. So, you might end up with files where the long input lines have been broken down into multiple smaller lines of length equal to the console width.</p>
 <p>If you do not want such meddling in your content, stick to using <strong>Set-Content</strong> to pipe output to files. Set-Content does not mess with the content and writes the textual content pristinely to file.</p>
 <p><strong>Tried with:</strong> PowerShell 2.0</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Visual C++: Iterator Checks and Slow STL Code</h1>
-<p class="date">(First posted on: 2010-09-10 03:25:58+00:00)</p>
+<p class="date">📅 Published on: 2010-Sep-10</p>
 </header>
 <p>Visual C++ turns on a lot of <strong>checking</strong> on <strong>STL iterators</strong> when compiled in <strong>Debug</strong> mode. This is very helpful since any mistake with an iterator leads immediately to an exception with a helpful exception message. This can catch latent bugs much much earlier while programming.</p>
 <p>However, this huge amount of security is sometimes not tolerable by everyone. For certain applications the debug mode with all the iterator checking turned on can be extremely slow, to the point of being useless. I faced a similar problem and so had to investigate to find the reason for the slow behaviour. I discovered that there are 2 mutually exclusive checking mechanisms in the STL of Visual C++: checked iterators and iterator debugging.</p>
@@ -60,9 +67,14 @@ Iterator Debugging ON: 51.83 sec Iterator Debugging OFF: 0.27 sec
 <ul>
 <li><strong><a href="http://channel9.msdn.com/shows/Going+Deep/STL-Iterator-Debugging-and-Secure-SCL/">STL Iterator Debugging and Secure SCL</a></strong> video on Channel 9 by Stephan T. Lavavej. A must watch video for anyone using STL on Visual C++. Stephan explains both Secure SCL and Iterator Debugging and how they are implemented internally in the library. Also explained is when and which of these options to turn ON or OFF.</li>
 </ul>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

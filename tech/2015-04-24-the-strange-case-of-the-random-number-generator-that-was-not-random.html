@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">The strange case of the random number generator that was not random</h1>
-<p class="date">(First posted on: 2015-04-24 12:57:00+00:00)</p>
+<p class="date">📅 Published on: 2015-Apr-24</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I was using the simple <code>rand</code> API provided by C for generating random numbers. I needed to generate <code>m</code> sequences of <code>n</code> numbers each. To my surprise, I found that two of these sequences were exactly the same!</p>
@@ -67,9 +74,14 @@ if (seed == 0)
 <p>You have got to love open source! So, seed of <code>0</code> is internally reset to <code>1</code> in the glibc implementation of <code>srand</code>!</p>
 <p>So, beware of the seed you pass to <code>srand</code>. It might be wise to make sure that neither <code>0</code> or <code>1</code> is used as seed on Linux.</p>
 <p><strong>Tried with:</strong> GLibc 2.19.1 and Ubuntu 14.04</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

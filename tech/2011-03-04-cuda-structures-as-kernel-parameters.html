@@ -8,67 +8,41 @@
   <title>Code Yarns – CUDA: Structures as Kernel Parameters</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -89,7 +63,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -102,26 +79,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">CUDA: Structures as Kernel Parameters</h1>
-<p class="date">(First posted on: 2011-03-04 08:28:19+00:00)</p>
+<p class="date">📅 Published on: 2011-Mar-04</p>
 </header>
 <p>A common problem for beginners in CUDA programming is that the number of parameters passed to a kernel explodes very quickly. For example, a kernel that takes 2 arrays as input and writes the result to another array:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="co">// Kernel</span></a>
-<a class="sourceLine" id="cb1-2" title="2">__global__ <span class="dt">void</span> fooKernel</a>
-<a class="sourceLine" id="cb1-3" title="3">(</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="at">const</span> <span class="dt">int</span>* inArr0,</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="at">const</span> <span class="dt">int</span>* inArr1,</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="at">const</span> <span class="dt">int</span>* outArr,</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="dt">int</span> inArr0Len,</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="dt">int</span> inArr1Len,</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="dt">int</span> outArrLen</a>
-<a class="sourceLine" id="cb1-10" title="10">)</a>
-<a class="sourceLine" id="cb1-11" title="11">{ <span class="co">/* ... */</span> }</a>
-<a class="sourceLine" id="cb1-12" title="12"></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">// Kernel call</span></a>
-<a class="sourceLine" id="cb1-14" title="14">fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( inArr0, inArr1, outArr, inArr0Len, inArr1Len, outArrLen );</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Kernel</span>
+__global__ <span class="dt">void</span> fooKernel
+(
+<span class="at">const</span> <span class="dt">int</span>* inArr0,
+<span class="at">const</span> <span class="dt">int</span>* inArr1,
+<span class="at">const</span> <span class="dt">int</span>* outArr,
+<span class="dt">int</span> inArr0Len,
+<span class="dt">int</span> inArr1Len,
+<span class="dt">int</span> outArrLen
+)
+{ <span class="co">/* ... */</span> }
+
+<span class="co">// Kernel call</span>
+fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( inArr0, inArr1, outArr, inArr0Len, inArr1Len, outArrLen );</code></pre></div>
 <p>To handle this situation gracefully, related parameters can be grouped together into a <strong>structure</strong>.</p>
 <p>Typically, there are 2 kinds of parameters passed to the kernel:</p>
 <ol type="1">
@@ -129,33 +110,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Pointers to device memory.</p></li>
 </ol>
 <p>Most of the time, the information in the above parameters are related. For example, an array in device memory and its length:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="at">const</span> <span class="dt">int</span> arrLen = <span class="dv">256</span>;</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="dt">int</span>* dArray      = NULL;</a>
-<a class="sourceLine" id="cb2-3" title="3">cudaMalloc( &amp;dArray, arrLen * <span class="kw">sizeof</span>( *dArray ) );</a>
-<a class="sourceLine" id="cb2-4" title="4"></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">// 2 related parameters to kernel</span></a>
-<a class="sourceLine" id="cb2-6" title="6">fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( dArray, arrLen );</a>
-<a class="sourceLine" id="cb2-7" title="7"></a>
-<a class="sourceLine" id="cb2-8" title="8">cudaFree( dArray );</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="at">const</span> <span class="dt">int</span> arrLen = <span class="dv">256</span>;
+<span class="dt">int</span>* dArray      = NULL;
+cudaMalloc( &amp;dArray, arrLen * <span class="kw">sizeof</span>( *dArray ) );
+
+<span class="co">// 2 related parameters to kernel</span>
+fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( dArray, arrLen );
+
+cudaFree( dArray );</code></pre></div>
 <p>In such cases, related parameters can be elegantly combined into a struct:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">struct</span> FooInfo</a>
-<a class="sourceLine" id="cb3-2" title="2">{</a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="dt">int</span>* arr;</a>
-<a class="sourceLine" id="cb3-4" title="4">    <span class="dt">int</span>  len;</a>
-<a class="sourceLine" id="cb3-5" title="5">};</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">struct</span> FooInfo
+{
+    <span class="dt">int</span>* arr;
+    <span class="dt">int</span>  len;
+};</code></pre></div>
 <p>Pointers to device memory inside the structure still need to be allocated and freed individually. Yet, using structures reduces the number of kernel parameters and eases the work of the programmer:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1">FooInfo fooInfo;</a>
-<a class="sourceLine" id="cb4-2" title="2">fooInfo.len = <span class="dv">256</span>;</a>
-<a class="sourceLine" id="cb4-3" title="3">cudaMalloc( &amp;( fooInfo.arr ), fooInfo.len * <span class="kw">sizeof</span>( *dArray ) );</a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">// 2 related parameters to kernel</span></a>
-<a class="sourceLine" id="cb4-6" title="6">fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( fooInfo );</a>
-<a class="sourceLine" id="cb4-7" title="7"></a>
-<a class="sourceLine" id="cb4-8" title="8">cudaFree( fooInfo.arr );</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">FooInfo fooInfo;
+fooInfo.len = <span class="dv">256</span>;
+cudaMalloc( &amp;( fooInfo.arr ), fooInfo.len * <span class="kw">sizeof</span>( *dArray ) );
+
+<span class="co">// 2 related parameters to kernel</span>
+fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( fooInfo );
+
+cudaFree( fooInfo.arr );</code></pre></div>
 <p><strong>Tried with</strong>: CUDA 3.2</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

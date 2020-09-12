@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,17 +42,21 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Dependency Walker</h1>
-<p class="date">(First posted on: 2010-07-01 15:05:53+00:00)</p>
+<p class="date">📅 Published on: 2010-Jul-01</p>
 </header>
 <p>The <strong><a href="http://www.dependencywalker.com/">Dependency Walker</a></strong> is a great utility to figure out <strong>DLL problems</strong>. Here is a simple illustration of its use.</p>
 <p>I was recently working on code shared by a friend. The C++ code compiled fine under Visual Studio 2010, but when executed would pop up this error message:</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_0.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_0.png" alt=" " /></a></p>
 <p>The error message:</p>
 <blockquote>
-The program can’t start because MSVCR80.dll is missing from your computer. Try reinstalling the program to fix this problem.
+The program can't start because MSVCR80.dll is missing from your computer. Try reinstalling the program to fix this problem.
 </blockquote>
 <p>I dissected <code>MSVCR80.dll</code> as MS (Microsoft) VCR (Visual C Runtime) 80 (Visual Studio 2005) library.</p>
 <p>The age old Windows trick of getting <code>MSVCR80.dll</code> from some other computer and putting it in the directory of the .exe did not work. This is because Windows now ships with a SxS system to maintain DLLs of various versions. This requires manifest files and other complicated machinery to work.</p>
@@ -60,9 +67,14 @@ The program can’t start because MSVCR80.dll is missing from your computer. Try
 <p>To figure out the origin of the use of these DLLs, right-click on any of the problematic DLL in the middle pane and choose <strong>Highlight matching module in tree</strong>. This shows the origin of the problem in the dependency tree displayed in the top pane:</p>
 <p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_2.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_depends_2.png" alt=" " /></a></p>
 <p>Bingo! So, a third party DLL named <code>ILMIMF.dll</code> that was linked with the C++ code was the cause of the error. Rebuilding this DLL separately from its source code and relinking the rest of the project fixed the error.</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Unload of CUDA runtime error with Thrust</h1>
-<p class="date">(First posted on: 2013-09-29 14:06:34+00:00)</p>
+<p class="date">📅 Published on: 2013-Sep-29</p>
 </header>
 <p><strong>Problem</strong></p>
 <p>Your <strong>CUDA</strong> program that uses the <strong>Thrust</strong> library executes correctly, but at the end throws up this error:</p>
@@ -52,9 +59,14 @@ what():  unload of CUDA runtime failed</code></pre>
 <p>This cryptic error typically occurs if you are using Thrust <code>device_vector</code> in your program. I found that this error occurs when I have a <code>device_vector</code> which is destroyed after the CUDA runtime has been unloaded.</p>
 <p>For example, this can happen if you have declared a vector as a global variable. At the end of the program, the CUDA runtime is unloaded. If the destructor of the vector is called after this, it cannot destroy fully since it needs the CUDA runtime. Moving these global vectors inside functions or classes might fix the error.</p>
 <p><strong>Tried with:</strong> CUDA 5 and Ubuntu 12.04 LTS</p>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>

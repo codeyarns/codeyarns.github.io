@@ -26,7 +26,10 @@
   <!-- Twitter button -->
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
+
 <body>
+
+<div class="contentbox">
 <table style="width: 100%;">
     <tr>
         <td style="text-align: left;">
@@ -39,10 +42,14 @@
         </td>
     </tr>
 </table>
-<hr />
+</div>
+
+<br />
+
+<div class="contentbox">
 <header>
 <h1 class="title">Python JSON dump misses last newline</h1>
-<p class="date">(First posted on: 2017-02-22 15:55:20+00:00)</p>
+<p class="date">📅 Published on: 2017-Feb-22</p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>The <code>dump</code> method from the <strong>Python</strong> <a href="https://docs.python.org/3/library/json.html"><strong>json</strong></a> package can be used to write a suitable Python object, usually a dictionary or list, to a JSON file. However, I discovered that Unix shell programs have problems working with such a JSON file. This turned out to be because this dump method does not end the last line with a newline character! According to the <strong>POSIX</strong> definition of a <strong>line</strong> in a text file, it needs to end with a newline character. (See <a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_206">here</a>).</p>
@@ -53,9 +60,14 @@
 <pre><code>with open(&quot;foobar.json&quot;, &quot;w&quot;) as json_file:
     json.dump(json_data, json_file, indent=4)
     json_file.write(&quot;\n&quot;)  # Add newline cause Py JSON does not</code></pre>
-<hr />
-<div class="footer">
-<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow <span class="citation" data-cites="codeyarns">@codeyarns</span></a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a>
 </div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
 </body>
 </html>
