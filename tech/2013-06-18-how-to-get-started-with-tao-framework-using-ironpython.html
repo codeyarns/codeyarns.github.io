@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to get started with Tao Framework using IronPython</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -48,7 +85,61 @@
 <h1 class="title">How to get started with Tao Framework using IronPython</h1>
 <p class="date">📅 2013-Jun-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>https://gist.github.com/ashwin/5803417</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># IronPython example program to demonstrate Tao Framework</span>
+<span class="co">#</span>
+<span class="co"># Steps:</span>
+<span class="co"># 1. Install Tao Framework.</span>
+<span class="co"># 2. Create an empty IronPython project in Visual Studio</span>
+<span class="co"># 3. Place Tao.OpenGl.dll and Tao.FreeGlut.dll in directory of Python source file.</span>
+<span class="co">#    These DLL files are found in C:\Program Files (x86)\TaoFramework\bin</span>
+<span class="co"># 4. Place freeglut.dll in directory of Python source file.</span>
+<span class="co">#    This DLL file is found in C:\Program Files (x86)\TaoFramework\lib</span>
+<span class="co"># 5. Paste this source code into the Python source file</span>
+<span class="co"># 6. Run. You should see a grey teapot.</span>
+<span class="co">#</span>
+<span class="co"># Copyright (c) 2013 Ashwin Nanjappa</span>
+<span class="co"># Released under the MIT License</span>
+
+<span class="im">import</span> clr
+clr.AddReferenceToFile(<span class="st">&quot;Tao.OpenGl.dll&quot;</span>)
+clr.AddReferenceToFile(<span class="st">&quot;Tao.FreeGlut.dll&quot;</span>)
+
+<span class="im">import</span> Tao.OpenGl.Gl <span class="im">as</span> Gl
+<span class="im">import</span> Tao.OpenGl.Glu <span class="im">as</span> Glu
+<span class="im">import</span> Tao.FreeGlut.Glut <span class="im">as</span> Glut
+
+<span class="kw">def</span> init_graphics():
+    Gl.glEnable(Gl.GL_LIGHTING)
+    Gl.glEnable(Gl.GL_LIGHT0)
+    Gl.glLightfv(Gl.GL_LIGHT0, Gl.GL_POSITION, (<span class="dv">1</span>, <span class="fl">.5</span>, <span class="dv">1</span>))
+    Gl.glEnable(Gl.GL_DEPTH_TEST)
+    Gl.glClearColor(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)
+
+<span class="kw">def</span> on_display():
+    Gl.glClear(Gl.GL_COLOR_BUFFER_BIT <span class="op">|</span> Gl.GL_DEPTH_BUFFER_BIT)
+    Gl.glLoadIdentity()
+    Glu.gluLookAt(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)
+    Glut.glutSolidTeapot(<span class="dv">1</span>)
+    Glut.glutSwapBuffers()
+
+<span class="kw">def</span> on_reshape(w, h):
+    Gl.glMatrixMode(Gl.GL_PROJECTION)
+    Gl.glLoadIdentity()
+    Gl.glViewport(<span class="dv">0</span>, <span class="dv">0</span>, w, h)
+    Glu.gluPerspective(<span class="dv">40</span>, <span class="bu">float</span>(w) <span class="op">/</span> h, <span class="dv">1</span>, <span class="dv">100</span>)
+    Gl.glMatrixMode(Gl.GL_MODELVIEW)
+
+<span class="kw">def</span> main():
+    Glut.glutInit()
+    Glut.glutInitWindowSize(<span class="dv">500</span>, <span class="dv">500</span>)
+    Glut.glutCreateWindow(<span class="st">&quot;Tao Example&quot;</span>)
+    init_graphics()
+    Glut.glutDisplayFunc(on_display)
+    Glut.glutReshapeFunc(on_reshape)
+    Glut.glutMainLoop()
+
+<span class="cf">if</span> <span class="st">&quot;__main__&quot;</span> <span class="op">==</span> <span class="va">__name__</span>:
+    main()</code></pre></div>
 </div>
 
 <br />

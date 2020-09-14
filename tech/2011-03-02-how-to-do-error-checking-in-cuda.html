@@ -98,7 +98,50 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="cf">if</span> ( cudaSuccess != cudaGetLastError() )
     printf( <span class="st">&quot;Error!</span><span class="sc">\n</span><span class="st">&quot;</span> );</code></pre></div>
 <p>These two types of checks can be elegantly wrapped up in two simple error-checking functions like this:</p>
-<p>https://gist.github.com/2652488</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Define this to turn on error checking</span>
+<span class="pp">#define CUDA_ERROR_CHECK</span>
+
+<span class="pp">#define CudaSafeCall( err ) __cudaSafeCall( err, </span><span class="ot">__FILE__</span><span class="pp">, </span><span class="ot">__LINE__</span><span class="pp"> )</span>
+<span class="pp">#define CudaCheckError()    __cudaCheckError( </span><span class="ot">__FILE__</span><span class="pp">, </span><span class="ot">__LINE__</span><span class="pp"> )</span>
+
+<span class="kw">inline</span> <span class="dt">void</span> __cudaSafeCall( cudaError err, <span class="at">const</span> <span class="dt">char</span> *file, <span class="at">const</span> <span class="dt">int</span> line )
+{
+<span class="pp">#ifdef CUDA_ERROR_CHECK</span>
+    <span class="cf">if</span> ( cudaSuccess != err )
+    {
+        fprintf( stderr, <span class="st">&quot;cudaSafeCall() failed at </span><span class="sc">%s</span><span class="st">:</span><span class="sc">%i</span><span class="st"> : </span><span class="sc">%s\n</span><span class="st">&quot;</span>,
+                 file, line, cudaGetErrorString( err ) );
+        exit( <span class="dv">-1</span> );
+    }
+<span class="pp">#endif</span>
+
+    <span class="cf">return</span>;
+}
+
+<span class="kw">inline</span> <span class="dt">void</span> __cudaCheckError( <span class="at">const</span> <span class="dt">char</span> *file, <span class="at">const</span> <span class="dt">int</span> line )
+{
+<span class="pp">#ifdef CUDA_ERROR_CHECK</span>
+    cudaError err = cudaGetLastError();
+    <span class="cf">if</span> ( cudaSuccess != err )
+    {
+        fprintf( stderr, <span class="st">&quot;cudaCheckError() failed at </span><span class="sc">%s</span><span class="st">:</span><span class="sc">%i</span><span class="st"> : </span><span class="sc">%s\n</span><span class="st">&quot;</span>,
+                 file, line, cudaGetErrorString( err ) );
+        exit( <span class="dv">-1</span> );
+    }
+
+    <span class="co">// More careful checking. However, this will affect performance.</span>
+    <span class="co">// Comment away if needed.</span>
+    err = cudaDeviceSynchronize();
+    <span class="cf">if</span>( cudaSuccess != err )
+    {
+        fprintf( stderr, <span class="st">&quot;cudaCheckError() with sync failed at </span><span class="sc">%s</span><span class="st">:</span><span class="sc">%i</span><span class="st"> : </span><span class="sc">%s\n</span><span class="st">&quot;</span>,
+                 file, line, cudaGetErrorString( err ) );
+        exit( <span class="dv">-1</span> );
+    }
+<span class="pp">#endif</span>
+
+    <span class="cf">return</span>;
+}</code></pre></div>
 <p>Using these error checking functions is easy:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">CudaSafeCall( cudaMalloc( &amp;fooPtr, fooSize ) );
 

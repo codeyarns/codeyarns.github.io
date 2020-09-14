@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to compile Qt program using CMake</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -50,7 +87,55 @@
 </header>
 <p>Qt is a fantastic library, but it comes with a lot of dependencies. You typically need to use its IDE and compilation tools. If you are already working with standard tools for editing code and compiling, then this generates a huge disadvantage. If you are using CMake, it has support for compiling Qt programs. And hopefully this makes it a bit more easier to use Qt for you. :-)</p>
 <p>Information on how to write a CMakeLists.txt to compile Qt can be found <a href="https://qt-project.org/quarterly/view/using_cmake_to_build_qt_projects">here</a>. I have created a sample CMakeLists.txt that compiles a Qt program here:</p>
-<p>https://gist.github.com/ashwin/4ef99734df12e48e4fa4</p>
+<div class="sourceCode"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span class="co"># Check if Qt4 is present</span>
+<span class="kw">find_package</span>(Qt4 <span class="ot">REQUIRED</span>)
+
+<span class="co"># Add Qt headers for compiling</span>
+<span class="kw">include</span>(
+    <span class="va">${QT_USE_FILE}</span>
+    )
+
+<span class="co"># Add Qt definitions for compilation</span>
+<span class="kw">add_definitions</span>(
+    <span class="va">${QT_DEFINITIONS}</span>
+    )
+
+<span class="co"># Your *.h files that need to be processed by MOC</span>
+<span class="fu">qt4_wrap_cpp</span>(
+    FOOBAR_HEADERS_MOC
+    FooForm.h
+    BarForm.h
+    )
+
+<span class="co"># Your *.ui files</span>
+<span class="fu">qt4_wrap_ui</span>(
+    FOOBAR_HEADERS_UI
+    FooForm.ui
+    BarForm.ui
+    )
+
+<span class="co"># Your *.qrc files</span>
+<span class="fu">qt4_add_resources</span>(
+    FOOBAR_HEADERS_QRC
+    Foo.qrc
+    Bar.qrc
+    )
+
+<span class="co"># Add MOC, UI and QRC generated headers for compilation</span>
+<span class="kw">add_executable</span>(
+    foobar
+    main.cpp
+    star.cpp
+    <span class="va">${FOOBAR_HEADERS_MOC}</span>
+    <span class="va">${FOOBAR_HEADERS_UI}</span>
+    <span class="va">${FOOBAR_HEADERS_QRC}</span>
+    )
+
+<span class="co"># Add Qt libraries for linking</span>
+<span class="kw">target_link_libraries</span>(
+    foobar
+    <span class="va">${QT_LIBRARIES}</span>
+    )</code></pre></div>
 <p><strong>Tried with:</strong> Qt 4, CMake 2.8.12.2 and Ubuntu 14.04</p>
 </div>
 

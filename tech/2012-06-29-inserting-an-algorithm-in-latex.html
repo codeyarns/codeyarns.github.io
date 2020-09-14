@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Inserting an algorithm in LaTeX</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -50,7 +87,24 @@
 </header>
 <p>[caption id=&quot;attachment_2652&quot; align=&quot;aligncenter&quot; width=&quot;401&quot;][<img src="http://codeyarns.files.wordpress.com/2012/06/20120629-latex-algorithm.png" alt=" " />](http://codeyarns.files.wordpress.com/2012/06/20120629-latex-algorithm.png) A simple algorithm in LaTeX[/caption]</p>
 <p>One of the simple and beautiful ways to insert <strong>algorithms</strong> or procedures into a <strong>LaTeX</strong> document is using the <strong>algorithmicx</strong> package. The simple example given below generated the above figure. For more control structures and configurations check out the package documentation.</p>
-<p>https://gist.github.com/3016347</p>
+<div class="sourceCode"><pre class="sourceCode tex"><code class="sourceCode latex"><span class="co">% Add the packages</span>
+<span class="bu">\usepackage</span>{<span class="ex">algorithm</span>}
+<span class="bu">\usepackage</span>{<span class="ex">algpseudocode</span>}
+
+<span class="co">% Insert the algorithm</span>
+<span class="kw">\begin</span>{<span class="ex">algorithm</span>}
+<span class="fu">\caption</span>{Compute sum of integers in array}
+<span class="kw">\label</span>{<span class="ex">array-sum</span>}
+<span class="kw">\begin</span>{<span class="ex">algorithmic</span>}[1]
+<span class="fu">\Procedure</span>{ArraySum}{<span class="ss">$A$</span>}
+    <span class="fu">\State</span> <span class="ss">$sum = 0$</span>
+    <span class="fu">\For</span> {each integer <span class="ss">$i$</span> in <span class="ss">$A$</span>}
+        <span class="fu">\State</span> <span class="ss">$sum = sum + i$</span>
+    <span class="fu">\EndFor</span>
+    <span class="fu">\State</span> Return <span class="ss">$sum$</span>
+<span class="fu">\EndProcedure</span>
+<span class="kw">\end</span>{<span class="ex">algorithmic</span>}
+<span class="kw">\end</span>{<span class="ex">algorithm</span>}</code></pre></div>
 <p><strong>Tried with:</strong> MikTeX 2.9 on Windows 7 64-bit</p>
 </div>
 

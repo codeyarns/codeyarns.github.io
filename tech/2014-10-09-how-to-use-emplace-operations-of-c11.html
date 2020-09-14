@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to use emplace operations of C++11</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -51,7 +88,39 @@
 <p>C++11 introduced emplace operations on many of the STL containers. For example, vector now has <code>emplace_back</code> operation along with the old <code>push_back</code> operation.</p>
 <p>Emplace operation is provided for convenience, to make writing code in C++ a bit more easier. It should be used when you want to add an object by constructing at the point of calling the emplace operation. For example, you may want to construct the object using its default constructor and then push it into the container. Or you may want to construct it using some parameters on the spot. The older alternative for this involved the construction of a temporary object and then copying it into the container.</p>
 <p>The code below shows a simple example of these scenarios:</p>
-<p>https://gist.github.com/ashwin/adffb1bd939ba8a74003</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Sample code to demonstrate emplace_back operation of vector</span>
+
+<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;vector&gt;</span>
+
+<span class="kw">struct</span> Creature
+{
+    Creature() : <span class="va">is_mammal_</span>(<span class="kw">false</span>), <span class="va">age_</span>(<span class="dv">0</span>), <span class="va">population_</span>(<span class="dv">0</span>)
+    {
+        <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Default constructor called</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    }
+
+    Creature(<span class="dt">bool</span> is_mammal, <span class="dt">int</span> age, <span class="dt">int</span> population)
+        : <span class="va">is_mammal_</span>(is_mammal), <span class="va">age_</span>(age), <span class="va">population_</span>(population)
+    {
+        <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;3-arg constructor called</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    }
+
+    <span class="dt">bool</span> <span class="va">is_mammal_</span>;
+    <span class="dt">int</span> <span class="va">age_</span>;
+    <span class="dt">int</span> <span class="va">population_</span>;
+};
+
+<span class="kw">typedef</span> <span class="bu">std::</span>vector&lt;Creature&gt; CreatureVec;
+
+<span class="dt">int</span> main()
+{
+    CreatureVec cv;
+    cv.emplace_back(<span class="kw">true</span>, <span class="dv">10</span>, <span class="dv">9999</span>);
+    cv.emplace_back();
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
 </div>
 
 <br />

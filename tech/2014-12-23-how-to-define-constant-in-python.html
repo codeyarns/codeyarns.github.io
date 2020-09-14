@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to define constant in Python</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -49,7 +86,27 @@
 <p class="date">📅 2014-Dec-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>Due to the design and dynamic typing of Python, there is no inherent type qualifier that is equivalent to the <code>const</code> of C or C++. I like the solution provided in Section 6.2 (Defining Constants) of the book Python Cookbook (2 Ed) by Alex Martelli et al.</p>
-<p>https://gist.github.com/ashwin/e3844158e3d7afd16adb</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co"># Helps define a constant in Python</span>
+<span class="co"># From Section 6.3: Defining Constants</span>
+<span class="co"># Python Cookbook (2 Ed) by Alex Martelli et al.</span>
+<span class="co">#</span>
+<span class="co"># Usage:</span>
+<span class="co"># import const</span>
+<span class="co"># const.magic = 23 # First binding is fine</span>
+<span class="co"># const.magic = 88 # Second binding raises const.ConstError</span>
+
+<span class="kw">class</span> _const:
+
+    <span class="kw">class</span> ConstError(<span class="pp">TypeError</span>):
+        <span class="cf">pass</span>
+
+    <span class="kw">def</span> <span class="fu">__setattr__</span>(<span class="va">self</span>,name,value):
+        <span class="cf">if</span> <span class="va">self</span>.__dict__.has_key(name):
+            <span class="cf">raise</span> <span class="va">self</span>.ConstError, <span class="st">&quot;Can&#39;t rebind const(</span><span class="sc">%s</span><span class="st">)&quot;</span> <span class="op">%</span> name
+        <span class="va">self</span>.__dict__[name] <span class="op">=</span> value
+
+<span class="im">import</span> sys
+sys.modules[<span class="va">__name__</span>] <span class="op">=</span> _const()</code></pre></div>
 <p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
 </div>
 

@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to print structure of C++ unordered container</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -51,7 +88,44 @@
 <p>The <strong>unordered containers</strong> in C++ are implemented as <strong>hash tables</strong> with <strong>separate chaining</strong>. The standard does not specify this implementation explicitly. But, by examining the requirements of the container, this is and will be the implementation in any C++ standard library.</p>
 <p>Given this implementation, it would be an instructive exercise to be able to print out the actual structure of the hash table, with its buckets and linked list of keys. Thankfully, this is possible since the standard provides a <code>bucket_count</code> method and a <code>begin</code> method that takes a bucket index as input.</p>
 <p>Here is simple code that prints buckets of <code>unordered_set</code> and its output on my computer:</p>
-<p>https://gist.github.com/ashwin/33d5176e5f0699af2194</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;unordered_set&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+
+<span class="kw">using</span> IntHashTable = <span class="bu">std::</span>unordered_set&lt;<span class="dt">int</span>&gt;;
+
+<span class="dt">void</span> PrintBuckets(<span class="at">const</span> IntHashTable&amp; htab)
+{
+    <span class="cf">for</span> (<span class="kw">auto</span> bi = <span class="dv">0</span>; bi &lt; htab.bucket_count(); ++bi)
+    {
+        <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;B[&quot;</span> &lt;&lt; bi &lt;&lt; <span class="st">&quot;]:&quot;</span>;
+
+        <span class="cf">for</span> (<span class="kw">auto</span> it = htab.begin(bi); it != htab.end(bi); ++it)
+            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot; -&gt; &quot;</span> &lt;&lt; *it;
+
+        <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>;
+    }
+}
+
+
+<span class="dt">int</span> main()
+{
+    IntHashTable htab = {<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">-2</span>, <span class="dv">9</span>, <span class="dv">199</span>, <span class="dv">42</span>};
+
+    PrintBuckets(htab);
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}
+
+<span class="co">// Output on my computer:</span>
+<span class="co">//</span>
+<span class="co">// $ ./a.out </span>
+<span class="co">// B[0]: -&gt; 42 -&gt; -2</span>
+<span class="co">// B[1]:</span>
+<span class="co">// B[2]: -&gt; 9</span>
+<span class="co">// B[3]: -&gt; 199 -&gt; 3</span>
+<span class="co">// B[4]:</span>
+<span class="co">// B[5]:</span>
+<span class="co">// B[6]: -&gt; 6</span></code></pre></div>
 <p><strong>Tried with:</strong> GCC 5.1 and Ubuntu 14.04</p>
 </div>
 

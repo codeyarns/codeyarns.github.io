@@ -125,7 +125,101 @@ Foo f;
 <li><p>Function1 involves <strong>one object creation</strong> inside the function and <strong>one copy</strong> of this object to the destination object. That looks very expensive! However, all modern C++ compilers perform <a href="http://en.wikipedia.org/wiki/Return_value_optimization"><strong>Return Value Optimization (RVO)</strong></a> that eliminates the expensive copy operation.</p></li>
 <li><p>Note that RVO cannot always be applied by the compiler. When this happens, Function1 becomes all the more expensive.</p></li>
 </ul>
-<p>I conducted a simple test using the STL <strong>vector</strong> as the return object. The code used for this can be seen <a href="https://gist.github.com/4432707">here</a>. The code was compiled using the <strong>Visual C++ 2010</strong> compiler (16.00.30319.01) in Release mode.</p>
+<p>I conducted a simple test using the STL <strong>vector</strong> as the return object. The code used for this is below:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;ctime&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;vector&gt;</span>
+<span class="kw">using</span> <span class="kw">namespace</span> std;
+
+<span class="kw">typedef</span> vector&lt;<span class="dt">int</span>&gt; IntVec;
+
+<span class="at">const</span> <span class="dt">int</span> MAX = <span class="dv">10000</span>;
+
+IntVec Function1( <span class="at">const</span> <span class="dt">int</span> size )
+{
+    IntVec ivec;
+    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; size; ++i )
+        ivec.push_back( i );
+    <span class="cf">return</span> ivec;
+}
+
+<span class="dt">void</span> Function2( <span class="at">const</span> <span class="dt">int</span> size, IntVec&amp; ivec )
+{
+    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; size; ++i )
+        ivec.push_back( i );
+    <span class="cf">return</span>;
+}
+
+<span class="dt">int</span> main()
+{
+    <span class="co">// *** New Object</span>
+
+    <span class="dt">double</span> time1 = <span class="fl">0.0</span>;
+    <span class="dt">double</span> time2 = <span class="fl">0.0</span>;
+
+    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; MAX; ++i )
+    {
+        <span class="at">const</span> <span class="dt">int</span> randVal = rand();
+
+        <span class="co">// *** Function1</span>
+
+        <span class="dt">clock_t</span> begin1  = clock();
+        IntVec ivec1    = Function1( randVal );
+        <span class="dt">clock_t</span> end1    = clock();
+        <span class="dt">double</span> timeSec1 = (end1 - begin1) / <span class="kw">static_cast</span>&lt;<span class="dt">double</span>&gt;( CLOCKS_PER_SEC );
+        time1           += timeSec1;
+
+        <span class="co">// *** Function2</span>
+
+        <span class="dt">clock_t</span> begin2  = clock();
+        IntVec ivec2;
+        Function2( randVal, ivec2 );
+        <span class="dt">clock_t</span> end2    = clock();
+        <span class="dt">double</span> timeSec2 = (end2 - begin2) / <span class="kw">static_cast</span>&lt;<span class="dt">double</span>&gt;( CLOCKS_PER_SEC );
+        time2           += timeSec2;
+    }
+
+    cout &lt;&lt; <span class="st">&quot;New object ...&quot;</span> &lt;&lt; endl;
+    cout &lt;&lt; <span class="st">&quot;Function1: &quot;</span> &lt;&lt; time1 &lt;&lt; endl;
+    cout &lt;&lt; <span class="st">&quot;Function2: &quot;</span> &lt;&lt; time2 &lt;&lt; endl;
+
+    <span class="co">// *** Existing Object</span>
+
+    time1 = <span class="fl">0.0</span>;
+    time2 = <span class="fl">0.0</span>;
+
+    IntVec ivec3;
+
+    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; MAX; ++i )
+    {
+        <span class="at">const</span> <span class="dt">int</span> randVal = rand();
+
+        <span class="co">// *** Function1</span>
+
+        ivec3.clear();
+        <span class="dt">clock_t</span> begin1  = clock();
+        ivec3           = Function1( randVal );
+        <span class="dt">clock_t</span> end1    = clock();
+        <span class="dt">double</span> timeSec1 = (end1 - begin1) / <span class="kw">static_cast</span>&lt;<span class="dt">double</span>&gt;( CLOCKS_PER_SEC );
+        time1           += timeSec1;
+
+        <span class="co">// *** Function2</span>
+
+        ivec3.clear();
+        <span class="dt">clock_t</span> begin2  = clock();
+        Function2( randVal, ivec3 );
+        <span class="dt">clock_t</span> end2    = clock();
+        <span class="dt">double</span> timeSec2 = (end2 - begin2) / <span class="kw">static_cast</span>&lt;<span class="dt">double</span>&gt;( CLOCKS_PER_SEC );
+        time2           += timeSec2;
+    }
+
+    cout &lt;&lt; <span class="st">&quot;Existing object ...&quot;</span> &lt;&lt; endl;
+    cout &lt;&lt; <span class="st">&quot;Function1: &quot;</span> &lt;&lt; time1 &lt;&lt; endl;
+    cout &lt;&lt; <span class="st">&quot;Function2: &quot;</span> &lt;&lt; time2 &lt;&lt; endl;
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>The code was compiled using the <strong>Visual C++ 2010</strong> compiler (16.00.30319.01) in Release mode.</p>
 <pre><code>New object ...
 Function1: 1.753
 Function2: 1.615

@@ -48,7 +48,13 @@
 <h1 class="title">PowerShell: Search Text in Files</h1>
 <p class="date">📅 2011-Oct-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>https://gist.github.com/2792489</p>
+<pre class="powershell"><code>### Search &quot;foo_bar&quot; recursively in all files in current directory
+
+# Verbose
+Get-ChildItem -Recurse | Select-String &quot;foo_bar&quot;
+
+# Short
+ls -r | Select-String &quot;foo_bar&quot;</code></pre>
 <p><strong>Tried with:</strong> PowerShell 2.0</p>
 </div>
 

@@ -50,7 +50,11 @@
 </header>
 <p>I find it very useful to have the <a href="http://vimdoc.sourceforge.net/htmldoc/options.html#&#39;cursorline&#39;"><strong>cursorline</strong></a> enabled in <strong>Vim</strong>. However, if you are using split windows, the cursorlines of multiple windows can get distracting. Also, this makes it difficult to know which is the <strong>active window</strong>.</p>
 <p>One solution to these problems is to display the cursorline only in the active window. To do that add this to your <a href="2010/04/21/vim-vimrc/"><strong>vimrc</strong></a>:</p>
-<p>https://gist.github.com/ashwin/4730799</p>
+<pre class="vim"><code>augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END</code></pre>
 <p><strong>Tried with:</strong> Vim 7.3 and Ubuntu 12.04 LTS</p>
 </div>
 

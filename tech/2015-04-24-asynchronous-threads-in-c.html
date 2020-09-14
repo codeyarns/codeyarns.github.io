@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Asynchronous threads in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -60,7 +97,50 @@
 <li><p>Whether the threads will immediately run or later, the order they will run in and other such concerns cannot be relied on.</p></li>
 </ul>
 <p>For example, to spawn off 10 threads to do some work and gather back their results:</p>
-<p>https://gist.github.com/ashwin/9b3c5efd1edc3736f47d</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;future&gt;</span>
+
+<span class="dt">float</span> DoWork(<span class="dt">int</span> idx)
+{
+    <span class="co">// Do some hard computation using idx</span>
+    <span class="co">// and internal read-only data structures</span>
+    <span class="co">// Return the float result</span>
+}
+
+<span class="dt">void</span> DoAsync()
+{
+    <span class="co">// To control async threads and their results</span>
+    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>future&lt;<span class="dt">float</span>&gt;&gt; fut_vec;
+
+    <span class="co">// Create 10 async threads</span>
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; ++i)
+        fut_vec.push_back(
+                          <span class="bu">std::</span>async(DoWork, i));
+
+    <span class="co">// Collect results from 10 async threads</span>
+    <span class="dt">float</span> result = <span class="dv">0</span>;
+    <span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; <span class="dv">10</span>; ++i)
+        result += fut_vec[i].get();
+    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Result: &quot;</span> &lt;&lt; result &lt;&lt; <span class="bu">std::</span>endl;
+}
+
+<span class="co">// Note 1: On Linux use std::launch::async launch policy</span>
+<span class="co">// Else threads will execute sequentially</span>
+<span class="co">// fut_vec.push_back(</span>
+<span class="co">//                   std::async(std::launch::async, DoWork, i));</span>
+<span class="co">//</span>
+<span class="co">// Note 2: To call method of a class, pass pointer to object as</span>
+<span class="co">// first parameter:</span>
+<span class="co">//</span>
+<span class="co">//struct DoWorkClass</span>
+<span class="co">//{</span>
+<span class="co">//    float DoWork(int idx) {}</span>
+<span class="co">//</span>
+<span class="co">//    void DoAsync()</span>
+<span class="co">//    {</span>
+<span class="co">//        // ...</span>
+<span class="co">//        fut_vec.push_back(</span>
+<span class="co">//                          std::async(std::launch::async, &amp;DoWorkClass::DoWork, this, i);</span>
+<span class="co">//};</span></code></pre></div>
 <p><strong>How many threads</strong> should you spawn off to maximize usage of the CPU and memory resources on your computer? In other words, how big should your <strong>thread pool</strong> be? The only way to answer this is by measuring the performance for different pool sizes on your particular application and decide. The right answer for your application will depend on how much compute or memory bound the computation you are doing inside the thread might be.</p>
 <p>For example, for a particular function that I was trying to parallelize, it was both doing a lot of compute and also accessing quite a few data locations in memory. I tried different thread pool sizes and compared them with how long the computation was taking on average <strong>per thread</strong>. Here are the results:</p>
 <p>[caption id=&quot;attachment_6824&quot; align=&quot;alignnone&quot; width=&quot;660&quot;][<img src="https://codeyarns.files.wordpress.com/2015/04/20150417_cpp_thread_performance.png?w=660" alt="Size of thread pool versus thread performance on GCC 4.9.2, Linux 3.13.0-45 and Intel i7-4790" />](https://codeyarns.files.wordpress.com/2015/04/20150417_cpp_thread_performance.png) Size of thread pool versus thread performance on GCC 4.9.2, Linux 3.13.0-45 and Intel i7-4790[/caption]</p>

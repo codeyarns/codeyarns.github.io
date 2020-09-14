@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – ROT13 in Python 3</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -49,9 +86,17 @@
 <p class="date">📅 2012-May-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>Obtaining the <a href="https://en.wikipedia.org/wiki/ROT13"><strong>ROT13</strong></a> encoding of a string used to be easy in <strong>Python 2.x</strong>:</p>
-<p>https://gist.github.com/2693510</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">s  <span class="op">=</span> <span class="st">&quot;Hello&quot;</span>
+os <span class="op">=</span> s.encode( <span class="st">&quot;rot13&quot;</span> )
+<span class="bu">print</span>( os ) <span class="co"># &quot;Uryyb&quot;</span></code></pre></div>
 <p>This no longer works in <strong>Python 3.x</strong>. The solution that works in Python 3.x is to access low-level functions in the <strong>codecs</strong> module:</p>
-<p>https://gist.github.com/2693515</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> codecs
+
+s   <span class="op">=</span> <span class="st">&quot;Hello&quot;</span>
+enc <span class="op">=</span> codecs.getencoder( <span class="st">&quot;rot-13&quot;</span> )
+os  <span class="op">=</span> enc( s )[<span class="dv">0</span>]
+
+<span class="bu">print</span>( os ) <span class="co"># &quot;Uryyb&quot;</span></code></pre></div>
 <p><strong>Tried with:</strong> Python 3.2.3</p>
 </div>
 

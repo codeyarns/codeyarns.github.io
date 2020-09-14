@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to create shoulder joint in PhysX</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -51,7 +88,120 @@
 <p>The <strong>shoulder joint</strong> of the human body can be simulated in <strong>PhysX</strong> by using its <strong>spherical joint</strong>. The spherical joint is used to represent a ball-and-socket joint.</p>
 <p>In the case of the shoulder joint, we assume that the ball-and-socket is placed at the shoulder location and it is connected by the upper arm to elbow. So, we use two PhysX bodies: one located at the shoulder itself and another at the elbow. Alternatively you could put the first body at the neck and connect it by the shoulder bone to the ball-and-socket position.</p>
 <p>The code below creates the shoulder joint:</p>
-<p>https://gist.github.com/ashwin/7598571</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;PxPhysicsAPI.h&gt;</span>
+
+<span class="kw">struct</span> Point<span class="dv">3</span>
+{
+    <span class="co">// Fill in details please</span>
+};
+
+<span class="co">/**</span>
+<span class="co"> * Get the rotation quaternion that can be used to rotate the orientation of</span>
+<span class="co"> * fromPos to points its X axis to &quot;look at&quot; toPos</span>
+<span class="co"> *</span>
+<span class="co"> * Assumption 1: fromPos is in upright orientation to begin with. For upright</span>
+<span class="co"> *               orientation see the book by Dunn and Parberry</span>
+<span class="co"> * Assumption 2: Right handed coordinate system (PhysX is)</span>
+<span class="co"> * </span>
+<span class="co"> */</span>
+physx::PxQuat getLookAtQuat(<span class="at">const</span> Point3&amp; fromPos, <span class="at">const</span> Point3&amp; toPos)
+{
+    <span class="co">// Position of toPos relative to fromPos</span>
+    <span class="at">const</span> Point3 relToPos = Point3::sub(toPos, fromPos);
+
+    <span class="co">/**</span>
+<span class="co">     * First we rotate fromPos around Y axis to look at toPos</span>
+<span class="co">     * This gives us Euler angle around Y axis</span>
+<span class="co">     */</span>
+
+    <span class="co">// Compute the angle</span>
+    <span class="co">// theta = atan(z/x)</span>
+    <span class="at">const</span> <span class="dt">float</span> yAng0 = atan(fabs(relToPos.z()) / fabs(relToPos.x()));
+
+    <span class="co">// Fix the angle based on XZ quadrant point lies in</span>
+    <span class="dt">float</span> yAng;
+    <span class="cf">if</span> (relToPos.x() &gt;= <span class="dv">0</span>)
+    {
+        <span class="cf">if</span> (relToPos.z() &gt;= <span class="dv">0</span>)
+            yAng = <span class="dv">2</span> * Pi - yAng0; <span class="co">// 360 - theta</span>
+        <span class="cf">else</span>
+            yAng = yAng0;
+    }
+    <span class="cf">else</span>
+    {
+        <span class="cf">if</span> (relToPos.z() &gt;= <span class="dv">0</span>)
+            yAng = Pi + yAng0; <span class="co">// 180 + theta</span>
+        <span class="cf">else</span>
+            yAng = Pi - yAng0; <span class="co">// 180 - theta</span>
+    }
+
+    <span class="co">/**</span>
+<span class="co">     * Next fromPos will look &quot;up&quot; to see toPos</span>
+<span class="co">     * This gives us Euler angle around Z axis</span>
+<span class="co">     */</span>
+
+    <span class="co">// Compute the angle</span>
+    <span class="co">// theta = atan( y / sqrt(x^2 + z^2))</span>
+    <span class="at">const</span> <span class="dt">float</span> zAng0 = atan(fabs(relToPos.y()) /
+        sqrt(relToPos.x() * relToPos.x() + relToPos.z() * relToPos.z()));
+
+    <span class="co">// Fix angle based on whether toPos is above or below XZ plane</span>
+    <span class="at">const</span> <span class="dt">float</span> zAng = (relToPos.y() &gt;= <span class="dv">0</span>) ? zAng0 : -zAng0;
+
+    <span class="co">/**</span>
+<span class="co">     * Convert Euler angles to quaternion that rotates</span>
+<span class="co">     * X axis of upright orientation to point at toPos</span>
+<span class="co">     * Reference: PhysX Math Primer</span>
+<span class="co">     */</span>
+
+    <span class="co">// Convert to quaternions</span>
+    physx::PxQuat qy(yAng, physx::PxVec3(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>));
+    physx::PxQuat qz(zAng, physx::PxVec3(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>));
+
+    <span class="co">// Rotate local axes</span>
+    physx::PxQuat q = qy * qz;
+
+    <span class="cf">return</span> q;
+}
+
+<span class="co">/**</span>
+<span class="co"> * Create shoulder joint using the spherical joint of PhysX</span>
+<span class="co"> * </span>
+<span class="co"> * Idea is that the ball-socket will lie at the shoulder itself</span>
+<span class="co"> * So, the first body and the location of ball-socket both</span>
+<span class="co"> * lie at shoulder position.</span>
+<span class="co"> * This also means that the cone of rotation lies at shoulder too.</span>
+<span class="co"> * Elbow is second body and this allows upper arm to rotate.</span>
+<span class="co"> * </span>
+<span class="co"> * We call should position as fromPos and elbow position as toPos</span>
+<span class="co"> */</span>
+<span class="dt">void</span> createShoulderJoint()
+{
+    <span class="co">// Orientation for ball-and-socket at shoulder</span>
+    <span class="at">const</span> physx::PxQuat fromToQuat = getLookAtQuat(fromPos, toPos);
+    
+    <span class="co">// Transform for shoulder</span>
+    <span class="at">const</span> physx::PxTransform fromTrans(physx::PxVec3(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), fromToQuat);
+    
+    <span class="co">// Transform for elbow</span>
+    <span class="at">const</span> physx::PxTransform toTrans(Point3ToPx(fromToPos), fromToQuat);
+
+    Joint* sjoint = physx::PxSphericalJointCreate(
+        phyWorld, <span class="co">// PhysX world you would&#39;ve created</span>
+        fromBody,
+        fromTrans,
+        toBody,
+        toTrans);
+
+    <span class="co">// Cone of rotation</span>
+    sjoint-&gt;setLimitCone(
+        physx::PxJointLimitCone(.<span class="er">2f</span>, <span class="fl">.2f</span>, <span class="fl">.1f</span>));
+
+    <span class="co">// Limit rotation to this cone</span>
+    sjoint-&gt;setSphericalJointFlag(
+        physx::PxSphericalJointFlag::eLIMIT_ENABLED,
+        <span class="kw">true</span>);
+}</code></pre></div>
 <p>To create the joint we need to provide the position of the two bodies involved, the relative location of the joint to those bodies. In addition, we also need to provide the local orientation of the joint to those bodies.</p>
 <p>The joint begins life with an upright orientation, that is, its axes are same as the global axes. We need to point the X-axis of the orientation to look at the second body. The above code does that by computing the Euler angles of rotation around the Y-axis and Z-axis of the joint that point the X-axis to look at the second body. The X-axis of the joint will also be the axis around which the cone of rotation is created to bound the rotational freedom of the joint.</p>
 <p>Once we have the Euler angles, we convert that to a quaternion. We also compute the position of the joint relative to the first and second bodies. Each pair of position and orientation rotation forms a transform. Two pairs of these are used to define the joint.</p>

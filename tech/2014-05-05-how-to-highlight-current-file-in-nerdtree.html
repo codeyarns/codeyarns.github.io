@@ -50,7 +50,22 @@
 </header>
 <p>I typically navigate in source files using Ctags information in Vim. It would be useful if I could see where in the directory hierarchy the file I jumped into is. I can see this in the NERDTree window using <code>:NERDTreeFind</code>.</p>
 <p>However, it would be neat if this happened automatically when I jumped into a file. Here is code from <a href="http://superuser.com/questions/195022">Lambart</a> that makes it happen. Just add it to your vimrc file to take effect:</p>
-<p>https://gist.github.com/ashwin/3c6a40b2d1245f1c5b96</p>
+<pre class="vim"><code>&quot; Check if NERDTree is open or active
+function! rc:isNERDTreeOpen()        
+  return exists(&quot;t:NERDTreeBufName&quot;) &amp;&amp; (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+&quot; Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+&quot; file, and we&#39;re not in vimdiff
+function! rc:syncTree()
+  if &amp;modifiable &amp;&amp; rc:isNERDTreeOpen() &amp;&amp; strlen(expand(&#39;%&#39;)) &gt; 0 &amp;&amp; !&amp;diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+&quot; Highlight currently open buffer in NERDTree
+autocmd BufEnter * call rc:syncTree()</code></pre>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
 </div>
 

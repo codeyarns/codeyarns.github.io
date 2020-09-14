@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Uniform initialization in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -58,7 +95,110 @@
 <p><strong>C++11</strong> introduced an <strong>uniform initialization syntax</strong> using <code>{}</code> that makes writing and reading C++ a joy! In my opinion, this is a feature that will make everyone's code easier to write and read. Though it does have a few rough edges (since C++ has to support all previous syntaxes), it almost always works in a way that is most intuitive to the viewer.</p>
 <p>It is called uniform initialization because it is applicable in every place where you initialize anything. That includes: variables, constants, objects, in the <strong>initializer list</strong> of a constructor and even in the <strong>member declaration</strong> of a struct or class. Everywhere!</p>
 <p>I am sharing a code sample below that enumerates the various ways to apply this syntax:</p>
-<p>https://gist.github.com/ashwin/ad0122b40ae8ee7bcae0</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;stack&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;unordered_set&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;vector&gt;</span>
+
+<span class="kw">class</span> Point
+{
+    <span class="kw">public</span>:
+    <span class="dt">int</span> x;
+    <span class="dt">int</span> y;
+    <span class="dt">int</span> z {<span class="dv">45</span>}; <span class="co">// Look ma! Default init of member!</span>
+};
+
+<span class="kw">class</span> Line
+{
+    <span class="kw">public</span>:
+
+    <span class="co">// In initializer list</span>
+    Line() : p {}, q {<span class="dv">10</span>}
+    {}
+
+    Line(<span class="dt">int</span> x, <span class="dt">int</span> y) : p {x}, q{y}
+    {}
+
+    <span class="dt">int</span> p;
+    <span class="dt">int</span> q;
+    <span class="dt">int</span> r {<span class="dv">99</span>}; <span class="co">// Look ma! Default init outside ctor!</span>
+};
+
+<span class="dt">int</span> main()
+{
+    <span class="co">// Init with default values of builtin types</span>
+    {
+        <span class="dt">char</span>        c {}; <span class="co">// c = 0</span>
+        <span class="dt">int</span>         i {}; <span class="co">// i = 0</span>
+        <span class="dt">float</span>       f {}; <span class="co">// f = 0.0f</span>
+        <span class="dt">double</span>      d {}; <span class="co">// d = 0.0</span>
+        <span class="dt">bool</span>        b {}; <span class="co">// b = false</span>
+        <span class="bu">std::</span>string s {}; <span class="co">// s = &quot;&quot;</span>
+        <span class="dt">int</span>*        p {}; <span class="co">// p = nullptr</span>
+    }
+
+    <span class="co">// Init with specific values</span>
+    {
+        <span class="dt">char</span>        c {<span class="st">&#39;x&#39;</span>};   <span class="co">// c = &#39;x&#39;</span>
+        <span class="dt">int</span>         i {<span class="dv">99</span>};    <span class="co">// i = 99</span>
+        <span class="dt">float</span>       f {<span class="fl">3.14f</span>}; <span class="co">// f = 3.14f</span>
+        <span class="dt">double</span>      d {<span class="fl">1.23</span>};  <span class="co">// d = 1.23</span>
+        <span class="dt">bool</span>        b {<span class="kw">true</span>};  <span class="co">// b = true</span>
+        <span class="bu">std::</span>string s {<span class="st">&quot;cat&quot;</span>}; <span class="co">// s = &quot;cat&quot;</span>
+        <span class="dt">int</span>*        p {&amp;i};    <span class="co">// p = &amp;i</span>
+    }
+
+    <span class="co">// Narrowing convertions not allowed</span>
+    <span class="co">// This can be based on type (float-to-int) or actual value (int-to-char)</span>
+    {
+        <span class="dt">int</span> i {<span class="dv">3</span>};    <span class="co">// OK</span>
+        <span class="dt">int</span> j {<span class="fl">3.0</span>};  <span class="co">// Error!</span>
+        <span class="dt">int</span> k {<span class="fl">3.14</span>}; <span class="co">// Error!</span>
+    }
+
+    <span class="co">// Init array values</span>
+    <span class="dt">int</span> i_arr[<span class="dv">5</span>] {};                <span class="co">// [0,   0, 0, 0, 0]</span>
+    <span class="dt">int</span> j_arr[] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>};        <span class="co">// [99, 10, 3]</span>
+    <span class="dt">int</span> k_arr[<span class="dv">5</span>] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>};       <span class="co">// [99, 10, 3, 0, 0]</span>
+    <span class="dt">int</span> <span class="va">m_arr</span>[<span class="dv">5</span>] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>}; <span class="co">// [99, 10, 3, 5, 7]</span>
+
+    <span class="co">// Init struct/class members (with no ctor)</span>
+    <span class="co">// See above for definition of Point class</span>
+    Point p0 {};           <span class="co">// .x =  0, .y =  0, .z = 45</span>
+    Point p1 {<span class="dv">99</span>};         <span class="co">// .x = 99, .y =  0, .z = 45</span>
+    Point p2 {<span class="dv">99</span>, <span class="dv">15</span>, <span class="dv">24</span>}; <span class="co">// .x = 99, .y = 15, .z = 24</span>
+
+    <span class="co">// Init struct/class (with ctor)</span>
+    Line s0 {};           <span class="co">// .p = 0,  .q = 10, .r = 99</span>
+    Line s2 {<span class="dv">10</span>, <span class="dv">11</span>};     <span class="co">// .p = 10, .q = 11, .r = 99</span>
+    Line s1 {<span class="dv">10</span>};         <span class="co">// Error! No matching ctor found!</span>
+    Line s3 {<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">13</span>}; <span class="co">// Error! No matching ctor found!</span>
+
+    <span class="co">/**</span>
+<span class="co">     * Init STL vectors</span>
+<span class="co">     */</span>
+
+    <span class="co">// Init vectors</span>
+    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_0 {<span class="dv">5</span>};          <span class="co">// [5]</span>
+    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_1 {<span class="dv">5</span>, <span class="dv">2</span>};       <span class="co">// [5, 2]</span>
+    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_2 {<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}; <span class="co">// [2, 3, 4, 5]</span>
+    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_3 (<span class="dv">5</span>);          <span class="co">// [0, 0, 0, 0, 0]</span>
+
+    <span class="co">// A matching constructor is chosen over aggregation</span>
+    <span class="co">// Note what happens on passing int</span>
+    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_0</span> {};                    <span class="co">// []</span>
+    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_1</span> {<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;mat&quot;</span>}; <span class="co">// [&quot;cat&quot;, &quot;rat&quot;, &quot;mat&quot;]</span>
+    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_2</span> {<span class="dv">4</span>};                   <span class="co">// [&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]</span>
+    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_3</span> {<span class="dv">4</span>, <span class="st">&quot;ba&quot;</span>};             <span class="co">// [&quot;ba&quot;, &quot;ba&quot;, &quot;ba&quot;, &quot;ba&quot;]</span>
+
+    <span class="co">/**</span>
+<span class="co">     * Other STL containers</span>
+<span class="co">     */</span>
+
+    <span class="bu">std::</span>unordered_set&lt;<span class="dt">int</span>&gt; i_set {<span class="dv">99</span>, <span class="dv">32</span>, <span class="dv">45</span>, <span class="dv">32</span>}; <span class="co">// [99, 32, 45]</span>
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
 <p><strong>Tried with:</strong> GCC 5.1 and Ubuntu 14.04</p>
 </div>
 

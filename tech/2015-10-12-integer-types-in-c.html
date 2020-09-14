@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Integer types in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -92,22 +129,62 @@ uint_fast64_t</code></pre>
 <h2 id="on-x86_64-linux">On x86_64 Linux</h2>
 <p>I now come back from a world of exotic computers to the common 64-bit x86_64 Intel processor system I'm using. On GCC C++ compiler in Linux, I found that the smallest types (like <code>int_least32_t</code>) were of the same size as the precise type (like <code>int32_t</code>). No surprises there cause x86_64 has integers of size 8, 16, 32 and 64.</p>
 <p>You will get a surprise if you use the fast types though! Except for the 8-bit fast types, the rest are all mapped to 64-bit signed and unsigned integers for speed. So, a <code>int_fast16_t</code> is mapped to a 64-bit signed integer.</p>
-<p>You can print out the sizes of all the fixed width integer types, by compiling and running a simple program, I have shared <a href="https://gist.github.com/ashwin/b4dce8392558ce815fd1">here</a>.</p>
-<p>Another method is to look at the source code. On my x86_64 Linux with GCC 5, the <code>cstdint</code> trail leads to <code>/usr/include/stdint.h</code>, where I find these definitions for the fast signed types:</p>
-<pre><code>/* Fast types.  */
+<p>You can print out the sizes of all the fixed width integer types, by compiling and running a simple program, I have shared here:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;cstdint&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
 
-/* Signed.  */
-typedef signed char     int_fast8_t;
-#if __WORDSIZE == 64
-typedef long int        int_fast16_t;
-typedef long int        int_fast32_t;
-typedef long int        int_fast64_t;
-#else
-typedef int         int_fast16_t;
-typedef int         int_fast32_t;
-__extension__
-typedef long long int       int_fast64_t;
-#endif</code></pre>
+<span class="dt">int</span> main()
+{
+    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Precise&quot;</span> &lt;&lt; <span class="bu">std::</span>endl;
+
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int8_t</span>  ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int16_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int32_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int64_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint8_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint16_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint32_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint64_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+
+    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Least&quot;</span> &lt;&lt; <span class="bu">std::</span>endl;
+
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int_least8_t</span>  ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int_least16_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int_least32_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int_least64_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint_least8_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint_least16_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint_least32_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint_least64_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+
+    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Fast&quot;</span> &lt;&lt; <span class="bu">std::</span>endl;
+    
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int_fast8_t</span>  ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int_fast16_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int_fast32_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">int_fast64_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint_fast8_t</span> ) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint_fast16_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint_fast32_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+    <span class="bu">std::</span>cout &lt;&lt; <span class="kw">sizeof</span>(<span class="dt">uint_fast64_t</span>) &lt;&lt; <span class="bu">std::</span>endl;
+
+    <span class="cf">return</span> <span class="dv">0</span>;
+}</code></pre></div>
+<p>Another method is to look at the source code. On my x86_64 Linux with GCC 5, the <code>cstdint</code> trail leads to <code>/usr/include/stdint.h</code>, where I find these definitions for the fast signed types:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">/* Fast types.  */</span>
+
+<span class="co">/* Signed.  */</span>
+<span class="kw">typedef</span> <span class="dt">signed</span> <span class="dt">char</span>     <span class="dt">int_fast8_t</span>;
+<span class="pp">#if __WORDSIZE == 64</span>
+<span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">int</span>        <span class="dt">int_fast16_t</span>;
+<span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">int</span>        <span class="dt">int_fast32_t</span>;
+<span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">int</span>        <span class="dt">int_fast64_t</span>;
+<span class="pp">#else</span>
+<span class="kw">typedef</span> <span class="dt">int</span>         <span class="dt">int_fast16_t</span>;
+<span class="kw">typedef</span> <span class="dt">int</span>         <span class="dt">int_fast32_t</span>;
+<span class="ex">__extension__</span>
+<span class="kw">typedef</span> <span class="dt">long</span> <span class="dt">long</span> <span class="dt">int</span>       <span class="dt">int_fast64_t</span>;
+<span class="pp">#endif</span></code></pre></div>
 <p><strong>Tried with:</strong> GCC 5.1, Ubuntu 14.04 and x86_64 Intel CPU</p>
 </div>
 

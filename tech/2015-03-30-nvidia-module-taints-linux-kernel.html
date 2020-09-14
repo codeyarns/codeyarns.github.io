@@ -51,7 +51,50 @@
 <h2 id="problem">Problem</h2>
 <p>I installed CUDA 7.0 on Ubuntu running on an Aftershock notebook with NVIDIA graphics card. The NVIDIA graphics drivers were upgraded to version 346. To my pleasant surprise, the graphics card was now directly visible to the Linux kernel. There was no longer any need to use Bumblebee.</p>
 <p>However, I started noticing that this Ubuntu would not always boot into Unity. On many cold starts, I saw that Ubuntu would show this error:</p>
-<p>https://gist.github.com/ashwin/dce9fbbc0ae11380ff9b</p>
+<pre><code>BUG: unable to handle kernel NULL pointer dereference at           (null)
+IP: [&lt;ffffffff8172762b&gt;] __down_common+0x4c/0x144
+PGD 608b48067 PUD 60ba27067 PMD 0 
+Oops: 0002 [#1] SMP 
+Modules linked in: ath3k btusb bluetooth mxm_wmi x86_pkg_temp_thermal intel_powerclamp coretemp kvm_intel arc4 kvm crct10dif_pclmul crc32_pclmul ghash_clmulni_intel aesni_intel aes_x86_64 lrw gf128mul ath9k glue_helper ablk_helper cryptd ath9k_common ath9k_hw joydev ath mac80211 serio_raw snd_hda_intel(+) rtsx_pci_ms lpc_ich(+) snd_seq_midi memstick cfg80211 snd_seq_midi_event snd_hda_codec snd_hwdep snd_rawmidi snd_pcm parport_pc snd_page_alloc snd_seq mei_me(+) mei ppdev snd_seq_device snd_timer snd nvidia(POX+) lp i915(+) parport video drm_kms_helper soundcore wmi drm mac_hid shpchp i2c_algo_bit hid_generic usbhid hid rtsx_pci_sdmmc ahci r8169 psmouse libahci mii rtsx_pci
+CPU: 0 PID: 527 Comm: nvidia-persiste Tainted: P           OX 3.13.0-44-generic #73-Ubuntu
+Hardware name: Notebook                         W35xSTQ_370ST             /W35xSTQ_370ST             , BIOS 4.6.5 11/13/2013
+task: ffff8806090e9800 ti: ffff88060b4f8000 task.ti: ffff88060b4f8000
+RIP: 0010:[&lt;ffffffff8172762b&gt;]  [&lt;ffffffff8172762b&gt;] __down_common+0x4c/0x144
+RSP: 0018:ffff88060b4f9b48  EFLAGS: 00010096
+RAX: 0000000000000000 RBX: ffffffffa089e3f0 RCX: 0000000000000000
+RDX: ffffffffa089e3f8 RSI: ffff88060b4f9b50 RDI: ffffffffa089e3f0
+RBP: ffff88060b4f9b98 R08: 0000000000000296 R09: ffffffffa060434b
+R10: 0000000000000008 R11: ffffffffffffffb8 R12: 7fffffffffffffff
+R13: ffff8806090e9800 R14: 0000000000000002 R15: 0000000000000000
+FS:  00007f9503346740(0000) GS:ffff88062fa00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 000000060cdb0000 CR4: 00000000001407f0
+Stack:
+ ffff88060b4f9b68 ffffffffa089e3f8 0000000000000000 ffff88060c026d00
+ 0000000000000000 ffffffffa089e3f0 ffff88060ba18000 ffff880608904598
+ 0000000000000003 00000000000000ff ffff88060b4f9ba8 ffffffff81727740
+Call Trace:
+ [&lt;ffffffff81727740&gt;] __down+0x1d/0x1f
+ [&lt;ffffffff810b0c91&gt;] down+0x41/0x50
+ [&lt;ffffffffa060462f&gt;] nvidia_open+0x36f/0x850 [nvidia]
+ [&lt;ffffffffa0611d09&gt;] nvidia_frontend_open+0x49/0xa0 [nvidia]
+ [&lt;ffffffff811c25cf&gt;] chrdev_open+0x9f/0x1d0
+ [&lt;ffffffff811bb103&gt;] do_dentry_open+0x233/0x2e0
+ [&lt;ffffffff811c2530&gt;] ? cdev_put+0x30/0x30
+ [&lt;ffffffff811bb439&gt;] vfs_open+0x49/0x50
+ [&lt;ffffffff811cc754&gt;] do_last+0x564/0x1230
+ [&lt;ffffffff811ca7f1&gt;] ? link_path_walk+0x71/0x870
+ [&lt;ffffffff81314d6b&gt;] ? apparmor_file_alloc_security+0x5b/0x180
+ [&lt;ffffffff811cd4db&gt;] path_openat+0xbb/0x650
+ [&lt;ffffffff811ce8da&gt;] do_filp_open+0x3a/0x90
+ [&lt;ffffffff811db767&gt;] ? __alloc_fd+0xa7/0x130
+ [&lt;ffffffff811bcf59&gt;] do_sys_open+0x129/0x280
+ [&lt;ffffffff811bd0ce&gt;] SyS_open+0x1e/0x20
+ [&lt;ffffffff8173186d&gt;] system_call_fastpath+0x1a/0x1f
+Code: 54 49 89 d4 48 8d 57 08 53 48 89 fb 48 83 e4 f0 48 83 ec 28 48 8b 47 10 48 8d 74 24 08 48 89 54 24 08 48 89 44 24 10 48 89 77 10 &lt;48&gt; 89 30 4c 89 f0 4c 89 6c 24 18 83 e0 01 c6 44 24 20 00 48 89 
+RIP  [&lt;ffffffff8172762b&gt;] __down_common+0x4c/0x144
+ RSP &lt;ffff88060b4f9b48&gt;
+CR2: 0000000000000000</code></pre>
 <p>After displaying this it would get stuck at the Ubuntu bootup screen.</p>
 <p>I also noticed that I could boot up if I first booted into another Ubuntu instance I had on this notebook and later restarted and booted into the current Ubuntu instance.</p>
 <h2 id="solution">Solution</h2>

@@ -51,7 +51,12 @@
 <p>The <strong>background</strong> setting in <strong>Vim</strong> is used to determine what colors to use for rendering the various elements of the editor. The setting takes one of only two values: <strong>dark</strong> or <strong>light</strong>.</p>
 <p>By default, light background is used for GVim. For terminal Vim, the default background value is set based on the terminal. So, sometimes you may be using a dark terminal, but Vim might still use the light background. This results in weird colors that make Vim hard to use.</p>
 <p>To control the background yourself, set it in your vimrc. For example, I like to set light background for GVim and dark background for all terminals:</p>
-<p>https://gist.github.com/ashwin/4971336</p>
+<pre class="vim"><code>&quot; Dark background for Vim and light for GVim
+if has( &quot;gui_running&quot; )
+    set background=light
+else
+    set background=dark
+endif</code></pre>
 <p><strong>Tried with:</strong> Vim 7.3 and Ubuntu 12.04 LTS</p>
 </div>
 

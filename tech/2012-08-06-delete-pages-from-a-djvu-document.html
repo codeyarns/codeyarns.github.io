@@ -50,7 +50,11 @@
 </header>
 <p><strong>Deleting</strong> one or more <strong>pages</strong> from a <strong>DjVu</strong> document can be done using the DjVu <strong>multipage document manipulation utility</strong>. This is the executable <strong>djvm.exe</strong> that ships with the <a href="http://djvu.sourceforge.net/"><strong>DjVuLibre</strong></a> package.</p>
 <p>The <strong>-d</strong> option can be used to delete a <strong>single page</strong> from the document. However, djvm does not accept multiple pages or a range of pages to delete. To achieve this, invoke djvm multiple times using the looping features of your shell. The example below is for PowerShell.</p>
-<p>https://gist.github.com/3269777</p>
+<pre><code># Delete page 170 from foo.djvu
+djvm -d foo.djvu 170
+
+# Delete pages 170-174 from foo.djvu
+for ( $i = 0; $i -lt 5; $i++ ) { djvm -d foo.djvu 170 }</code></pre>
 <p><strong>Tried with:</strong> DjVuLibre 3.5.25.3</p>
 </div>
 

@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to write a letter using LaTeX</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -53,7 +90,53 @@
 <figure>
 <img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_23_latex_letter.png" alt=" " /><figcaption> </figcaption>
 </figure>
-<p>The above letter was produced from <strong><a href="https://gist.github.com/4432684">latex-letter.tex</a></strong>. Grab it and edit its contents to create your own letters.</p>
+<p>The above letter was produced from <code>latex-letter.tex</code>:</p>
+<div class="sourceCode"><pre class="sourceCode tex"><code class="sourceCode latex"><span class="co">%-----------------------------------------------------------------------------%</span>
+
+<span class="co">% Letter class</span>
+<span class="bu">\documentclass</span>[a4paper, 10pt]{<span class="ex">letter</span>}
+
+<span class="co">% Name of sender</span>
+<span class="fu">\name</span>{Joe Fox}
+
+<span class="co">% Signature of sender</span>
+<span class="fu">\signature</span>{Joe Fox}
+
+<span class="co">% Address of sender</span>
+<span class="fu">\address</span>
+{
+    Fox Books,<span class="fu">\\</span>
+    Times Square, NYC.
+}
+
+<span class="co">%-----------------------------------------------------------------------------%</span>
+
+<span class="kw">\begin</span>{<span class="ex">document</span>}
+
+<span class="co">% Name and address of receiver</span>
+<span class="kw">\begin</span>{<span class="ex">letter</span>}
+{
+    Kathleen Kelly,<span class="fu">\\</span>
+    The Shop Around The Corner,<span class="fu">\\</span>
+    Small Corner, NYC.
+}
+
+<span class="co">% Opening statement</span>
+<span class="fu">\opening</span>{Dear Kathleen,}
+
+<span class="co">% Letter body</span>
+
+I am aware that you are pretty miffed at me for being the cause of the demise of your bookstore. You have to believe in me, that was not my intention at all.
+
+I hope we can talk about this over coffee. How about we meet this Friday evening at the corner cafe? Let me know.
+
+<span class="co">% Closing statement</span>
+<span class="fu">\closing</span>{Yours truly,}
+
+<span class="kw">\end</span>{<span class="ex">letter</span>}
+<span class="kw">\end</span>{<span class="ex">document</span>}
+<span class="co">%-----------------------------------------------------------------------------%</span></code></pre></div>
+<p>Grab it and edit its contents to create your own letters.</p>
 <p>Here is a dissection of the LaTeX commands to create a letter:</p>
 <ol type="1">
 <li>Use the <em>letter</em> <code>documentclass</code>. It provides commands and formatting that are meant for letter writing.</li>

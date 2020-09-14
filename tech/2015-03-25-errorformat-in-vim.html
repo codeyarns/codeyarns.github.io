@@ -50,7 +50,28 @@
 </header>
 <p><strong>Vim</strong> can parse compilation <strong>errors</strong> when it is passed as an error file using the argument <code>-q</code>. It can also parse the errors produced by running <code>:make</code>. In both these cases, the file path, line and column number of errors can be parsed and traversed using <code>:cnext</code> or displayed in the <a href="2015/03/21/how-to-use-quickfix-feature-of-vim/"><strong>QuickFix</strong></a> window.</p>
 <p>The <code>errorformat</code> is the list of error formats that Vim uses to parse and recognize errors from input text. The default error format in Vim can be seen by trying the command <code>:set errorformat?</code>. The items in the list of error formats are separated by a comma. When separated, these are the components of the list:</p>
-<p>https://gist.github.com/ashwin/1a1c49609d4f48ca372e</p>
+<pre><code>%*[^&quot;]&quot;%f&quot;%*\D%l: %m
+&quot;%f&quot;%*\D%l: %m
+%-G%f:%l: (Each undeclared identifier is reported only once
+%-G%f:%l: for each function it appears in.)
+%-GIn file included from %f:%l:%c:
+%-GIn file included from %f:%l:%c\,
+%-GIn file included from %f:%l:%c
+%-GIn file included from %f:%l
+%-G%*[ ]from %f:%l:%c
+%-G%*[ ]from %f:%l:
+%-G%*[ ]from %f:%l\,
+%-G%*[ ]from %f:%l
+%f:%l:%c:%m
+%f(%l):%m
+%f:%l:%m
+&quot;%f&quot;\, line %l%*\D%c%*[^ ] %m
+%D%*\a[%*\d]: Entering directory `%f&#39;
+%X%*\a[%*\d]: Leaving directory `%f&#39;
+%D%*\a: Entering directory `%f&#39;
+%X%*\a: Leaving directory `%f&#39;
+%DMaking %*\a in %f
+%f|%l| %m</code></pre>
 <p>This default error format is set in Vim as <code>DFLT_EFM</code> based on the platform as seen in the source code <a href="https://github.com/b4winckler/vim/blob/master/src/option.h">here</a>. Other error formats can be set at runtime based on the <code>compiler</code> flag. The different options for compiler and their corresponding error formats can be seen listed in the files in the directory <code>/usr/share/vim/vim74/compiler</code>. In fact, the default error format string set on Linux is the same as that in <code>/usr/share/vim/vim74/compiler/gcc.vim</code></p>
 <p>For more on error format see <code>:help errorformat</code> in Vim.</p>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>

@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to get started with Tao Framework using C#</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -59,7 +96,70 @@
 <li><p>Run the program. You should see a grey teapot!</p></li>
 <li><p>Whether you are porting an existing C or C++ OpenGL application or writing your own, it should be easy to build upon this program.</p></li>
 </ol>
-<p>https://gist.github.com/ashwin/5803190</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// C# program that uses Tao framework to call</span>
+<span class="co">// OpenGL, GLU and FreeGLUT functions.</span>
+<span class="co">//</span>
+<span class="co">// Steps:</span>
+<span class="co">// 1. Install Tao framework. Its .Net assemblies will be added to GAC.</span>
+<span class="co">// 2. Create an empty C# console application project in Visual Studio</span>
+<span class="co">// 3. Add references to Tao.OpenGL.dll and Tao.FreeGLUT.dll to the project.</span>
+<span class="co">//    These files are in C:\Program Files (x86)\TaoFramework\bin</span>
+<span class="co">// 4. Paste this source code into the C# source file</span>
+<span class="co">// 5. Copy FreeGLUT.dll from C:\Program Files (x86)\TaoFramework\lib to</span>
+<span class="co">//    directory of the generated EXE file</span>
+<span class="co">// 6. Run. You should see a grey teapot.</span>
+<span class="co">//</span>
+<span class="co">// Copyright (c) 2013 Ashwin Nanjappa</span>
+<span class="co">// Released under the MIT License</span>
+
+<span class="kw">using</span> System;
+<span class="kw">using</span> Tao.<span class="fu">OpenGl</span>;
+<span class="kw">using</span> Tao.<span class="fu">FreeGlut</span>;
+
+<span class="kw">namespace</span> TaoExample
+{
+    <span class="kw">class</span> Program
+    {
+        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">init_graphics</span>()
+        {
+            Gl.<span class="fu">glEnable</span>(Gl.<span class="fu">GL_LIGHTING</span>);
+            Gl.<span class="fu">glEnable</span>(Gl.<span class="fu">GL_LIGHT0</span>);
+            <span class="dt">float</span>[] light_pos = <span class="kw">new</span> <span class="dt">float</span>[<span class="dv">3</span>] {<span class="dv">1</span>, <span class="fl">0.5F</span>, <span class="dv">1</span>};
+            Gl.<span class="fu">glLightfv</span>(Gl.<span class="fu">GL_LIGHT0</span>, Gl.<span class="fu">GL_POSITION</span>, light_pos);
+            Gl.<span class="fu">glEnable</span>(Gl.<span class="fu">GL_DEPTH_TEST</span>);
+            Gl.<span class="fu">glClearColor</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>);
+        }
+
+        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">on_display</span>()
+        {
+            Gl.<span class="fu">glClear</span>(Gl.<span class="fu">GL_COLOR_BUFFER_BIT</span> | Gl.<span class="fu">GL_DEPTH_BUFFER_BIT</span>);
+            Gl.<span class="fu">glLoadIdentity</span>();
+            Glu.<span class="fu">gluLookAt</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>);
+            Glut.<span class="fu">glutSolidTeapot</span>(<span class="dv">1</span>);
+            Glut.<span class="fu">glutSwapBuffers</span>();
+        }
+
+        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">on_reshape</span>(<span class="dt">int</span> w, <span class="dt">int</span> h)
+        {
+            Gl.<span class="fu">glMatrixMode</span>(Gl.<span class="fu">GL_PROJECTION</span>);
+            Gl.<span class="fu">glLoadIdentity</span>();
+            Gl.<span class="fu">glViewport</span>(<span class="dv">0</span>, <span class="dv">0</span>, w, h);
+            Glu.<span class="fu">gluPerspective</span>(<span class="dv">40</span>, w / h, <span class="dv">1</span>, <span class="dv">100</span>);
+            Gl.<span class="fu">glMatrixMode</span>(Gl.<span class="fu">GL_MODELVIEW</span>);
+        }
+
+        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>()
+        {
+            Glut.<span class="fu">glutInit</span>();
+            Glut.<span class="fu">glutInitWindowSize</span>(<span class="dv">500</span>, <span class="dv">500</span>);
+            Glut.<span class="fu">glutCreateWindow</span>(<span class="st">&quot;Tao Example&quot;</span>);
+            <span class="fu">init_graphics</span>();
+            Glut.<span class="fu">glutDisplayFunc</span>(on_display);
+            Glut.<span class="fu">glutReshapeFunc</span>(on_reshape);
+            Glut.<span class="fu">glutMainLoop</span>();
+        }
+    }
+}</code></pre></div>
 <p><strong>Tried with:</strong> Tao Framework 2.1.0, Visual Studio 2012 and Windows 7 x64</p>
 </div>
 

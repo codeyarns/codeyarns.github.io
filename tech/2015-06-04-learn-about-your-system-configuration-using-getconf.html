@@ -60,7 +60,61 @@
 <ul>
 <li>Some of the getconf variables that I find interesting:</li>
 </ul>
-<p>https://gist.github.com/ashwin/8e74c70d6bbc767fe813</p>
+<pre><code># Note: These are on my system. Values will vary on your system.
+
+# Bits occupied by primitive types
+CHAR_BIT                           8
+LONG_BIT                           64
+
+# Limits of signed types
+CHAR_MAX                           127
+CHAR_MIN                           -128
+INT_MAX                            2147483647
+INT_MIN                            -2147483648
+SCHAR_MAX                          127
+SCHAR_MIN                          -128
+SHRT_MAX                           32767
+SHRT_MIN                           -32768
+
+# Biggest values of unsigned types
+UCHAR_MAX                          255
+UINT_MAX                           4294967295
+ULONG_MAX                          18446744073709551615
+USHRT_MAX                          65535
+
+# Size of page in RAM &amp; virtual memory
+PAGE_SIZE                          4096
+
+# Max length of host name (so short!)
+HOST_NAME_MAX                      64
+
+# Max length of login name
+LOGIN_NAME_MAX                     256
+
+# Bits used to store file sizes
+FILESIZEBITS                       64
+
+# Libc and pthread implementation details
+GNU_LIBC_VERSION                   glibc 2.19
+GNU_LIBPTHREAD_VERSION             NPTL 2.19
+
+# The most interesting values!
+# Cache details of your processor!
+LEVEL1_ICACHE_SIZE                 32768
+LEVEL1_ICACHE_ASSOC                8
+LEVEL1_ICACHE_LINESIZE             64
+LEVEL1_DCACHE_SIZE                 32768
+LEVEL1_DCACHE_ASSOC                8
+LEVEL1_DCACHE_LINESIZE             64
+LEVEL2_CACHE_SIZE                  262144
+LEVEL2_CACHE_ASSOC                 8
+LEVEL2_CACHE_LINESIZE              64
+LEVEL3_CACHE_SIZE                  8388608
+LEVEL3_CACHE_ASSOC                 16
+LEVEL3_CACHE_LINESIZE              64
+LEVEL4_CACHE_SIZE                  0
+LEVEL4_CACHE_ASSOC                 0
+LEVEL4_CACHE_LINESIZE              0</code></pre>
 <ul>
 <li><p>In case you are curious, <code>getconf</code> just calls the <code>sysconf</code> function provided by the GNU C Library. This can be seen in the <code>posix/getconf.c</code> source file in glibc.</p></li>
 <li><p>To get the cache details of an Intel 64-bit x86 CPU, <code>sysconf</code> uses the <code>cpuid</code> assembly instruction. This can be seen in the <code>sysdeps/x86_64/cacheinfo.c</code> source file in glibc.</p></li>

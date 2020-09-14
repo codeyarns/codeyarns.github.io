@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Math errors in C++ and how to prevent or catch them</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -56,7 +93,20 @@
 <h2 id="catching-math-error">Catching math error</h2>
 <p>When a math function is executed with wrong input, the <code>errno</code> variable from the <code>cerrno</code> header file is set to non-zero value. The list of error values can be seen <a href="http://en.cppreference.com/w/cpp/error/errno_macros">here</a>. Specifically, for math errors, it might be set to either <code>ERANGE</code> or <code>EDOM</code>. This refers to a range or domain error respectively. To get the error string explaining the error, use the <code>std::strerror</code> function.</p>
 <p>For example:</p>
-<p>https://gist.github.com/ashwin/a29abf880ef66a0ca45f</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">// Checking for math error in C++</span>
+
+<span class="pp">#include </span><span class="im">&lt;cerrno&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;cmath&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;cstring&gt;</span>
+<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
+
+<span class="bu">std::</span>cout &lt;&lt; log(<span class="dv">0</span>) &lt;&lt; <span class="bu">std::</span>endl;
+<span class="cf">if</span> (errno)
+    <span class="bu">std::</span>cout &lt;&lt; <span class="bu">std::</span>strerror(errno) &lt;&lt; <span class="bu">std::</span>endl;
+<span class="cf">if</span> (errno == EDOM)
+    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Domain error</span><span class="sc">\n</span><span class="st">&quot;</span>;
+<span class="cf">if</span> (errno == ERANGE)
+    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Range error</span><span class="sc">\n</span><span class="st">&quot;</span>;</code></pre></div>
 <p><strong>Reference:</strong> Section 40.3, The C++ Programming Language (4 Ed) by Stroustrup</p>
 <p><strong>Tried with:</strong> GCC 4.9.2 and Ubuntu 14.04</p>
 </div>

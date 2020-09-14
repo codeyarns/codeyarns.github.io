@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to discover type hierarchy in Python</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -55,8 +92,74 @@
 <li><p>The <code>__base__</code> attribute of any type has a string value with the name of the parent type.</p></li>
 <li><p>The <code>__subclasses__</code> method of any type lists the child types.</p></li>
 <li><p>To determine which are the standard types (or builtin types or builtins as they are called in Python), check the <code>__module__</code> attribute of the type. If it is <code>builtins</code> in Python 3 or <code>__builtin__</code> in Python 2, then that is a standard type.</p></li>
-<li><p>If you start from <code>object</code>, you can actually list the entire type hierarchy tree. A script that does just that can be found <a href="https://gist.github.com/ashwin/baf6edd2a2af5fb6070cc55b4339f84c">here</a>.</p></li>
-<li><p>In Python 3.5.2, I found that there are 143 builtin types (most of them are just types of Exception) in the tree:</p></li>
+<li><p>If you start from <code>object</code>, you can actually list the entire type hierarchy tree. A script that does just that can be found here:</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="co">#!/usr/bin/env python3</span>
+
+<span class="co">&quot;&quot;&quot;Print hierarchy of types present in Python.&quot;&quot;&quot;</span>
+
+<span class="im">import</span> argparse
+<span class="im">import</span> sys
+
+<span class="kw">def</span> is_builtin(t):
+    <span class="co">&quot;&quot;&quot;Check if type is builtin.&quot;&quot;&quot;</span>
+    builtin_s <span class="op">=</span> <span class="st">&quot;__builtin__&quot;</span> <span class="cf">if</span> sys.version_info.major <span class="op">&lt;=</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">&quot;builtins&quot;</span>
+    <span class="cf">return</span> t.__module__ <span class="op">==</span> builtin_s
+
+<span class="kw">def</span> process_a_type(t, level, options):
+
+    <span class="co"># Not a builtin type</span>
+    <span class="cf">if</span> options.only_builtins <span class="kw">and</span> <span class="kw">not</span> is_builtin(t):
+        <span class="cf">return</span>
+
+    <span class="co"># Print type</span>
+    s <span class="op">=</span> <span class="st">&quot;&quot;</span>
+    <span class="cf">if</span> level <span class="op">&gt;</span> <span class="dv">0</span>:
+        s <span class="op">+=</span> <span class="st">&quot;    &quot;</span> <span class="op">*</span> (level <span class="op">-</span> <span class="dv">1</span>)
+        s <span class="op">+=</span> <span class="st">&quot;+-- &quot;</span>
+    s <span class="op">+=</span> t.<span class="va">__name__</span>
+    <span class="cf">if</span> options.show_module:
+        s <span class="op">+=</span> <span class="st">&quot; (</span><span class="sc">{}</span><span class="st">)&quot;</span>.<span class="bu">format</span>(t.__module__)
+    <span class="bu">print</span>(s)
+
+    <span class="co"># -type- has no subclasses</span>
+    <span class="cf">if</span> t.<span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;type&quot;</span>:
+        <span class="cf">return</span>
+
+    <span class="co"># Recurse through child types</span>
+    <span class="cf">for</span> st <span class="kw">in</span> t.__subclasses__():
+        process_a_type(
+            st,
+            level <span class="op">+</span> <span class="dv">1</span>,
+            options,
+        )
+
+<span class="kw">def</span> get_args():
+    ap <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span>__doc__, formatter_class<span class="op">=</span>argparse.ArgumentDefaultsHelpFormatter)
+    ap.add_argument(<span class="st">&quot;--only_builtins&quot;</span>, default<span class="op">=</span><span class="va">False</span>, action<span class="op">=</span><span class="st">&quot;store_true&quot;</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Only show builtin types&quot;</span>)
+    ap.add_argument(<span class="st">&quot;--show_module&quot;</span>, default<span class="op">=</span><span class="va">False</span>, action<span class="op">=</span><span class="st">&quot;store_true&quot;</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Show module name beside type&quot;</span>)
+    ap.add_argument(<span class="st">&quot;--import_module&quot;</span>, default<span class="op">=</span><span class="st">&quot;&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Import this module to get its types&quot;</span>)
+    args <span class="op">=</span> ap.parse_args()
+    <span class="cf">return</span> args
+
+<span class="kw">def</span> main():
+    args <span class="op">=</span> get_args()
+
+    <span class="co"># Import module wanted by user</span>
+    <span class="cf">if</span> args.import_module:
+        <span class="bu">__import__</span>(args.import_module)
+
+    <span class="co"># -object- type is root</span>
+    process_a_type(
+        <span class="bu">object</span>,
+        <span class="dv">0</span>,
+        args,
+    )
+
+<span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:
+    main()</code></pre></div>
+<ul>
+<li>In Python 3.5.2, I found that there are 143 builtin types (most of them are just types of Exception) in the tree:</li>
 </ul>
 <pre><code>object
 +-- type

@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – Math constants for C++</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -54,7 +91,40 @@
 <p>I found that GCC still provides these constants, while Visual Studio 2012 provides this only if <code>_USE_MATH_DEFINES</code> is defined. The latest Visual Studio 2015 has completely removed these constants from their header files.</p>
 <p>If you are faced with a situation where these constants are not available, it is easy to redefine them in your own code.</p>
 <p>Suggested values of these math constants can be found <a href="http://msdn.microsoft.com/en-us/library/4hwaceh6.aspx">here</a>. Here is the same obtained from <code>math.h</code> of Visual Studio 2012:</p>
-<p>https://gist.github.com/ashwin/3e2b6e1881d3e0ddb5dc</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="co">/* Define _USE_MATH_DEFINES before including math.h to expose these macro</span>
+<span class="co"> * definitions for common math constants.  These are placed under an #ifdef</span>
+<span class="co"> * since these commonly-defined names are not part of the C/C++ standards.</span>
+<span class="co"> */</span>
+
+<span class="co">/* Definitions of useful mathematical constants</span>
+<span class="co"> * M_E        - e</span>
+<span class="co"> * M_LOG2E    - log2(e)</span>
+<span class="co"> * M_LOG10E   - log10(e)</span>
+<span class="co"> * M_LN2      - ln(2)</span>
+<span class="co"> * M_LN10     - ln(10)</span>
+<span class="co"> * M_PI       - pi</span>
+<span class="co"> * M_PI_2     - pi/2</span>
+<span class="co"> * M_PI_4     - pi/4</span>
+<span class="co"> * M_1_PI     - 1/pi</span>
+<span class="co"> * M_2_PI     - 2/pi</span>
+<span class="co"> * M_2_SQRTPI - 2/sqrt(pi)</span>
+<span class="co"> * M_SQRT2    - sqrt(2)</span>
+<span class="co"> * M_SQRT1_2  - 1/sqrt(2)</span>
+<span class="co"> */</span>
+
+<span class="pp">#define M_E        2.71828182845904523536</span>
+<span class="pp">#define M_LOG2E    1.44269504088896340736</span>
+<span class="pp">#define M_LOG10E   0.434294481903251827651</span>
+<span class="pp">#define M_LN2      0.693147180559945309417</span>
+<span class="pp">#define M_LN10     2.30258509299404568402</span>
+<span class="pp">#define M_PI       3.14159265358979323846</span>
+<span class="pp">#define M_PI_2     1.57079632679489661923</span>
+<span class="pp">#define M_PI_4     0.785398163397448309616</span>
+<span class="pp">#define M_1_PI     0.318309886183790671538</span>
+<span class="pp">#define M_2_PI     0.636619772367581343076</span>
+<span class="pp">#define M_2_SQRTPI 1.12837916709551257390</span>
+<span class="pp">#define M_SQRT2    1.41421356237309504880</span>
+<span class="pp">#define M_SQRT1_2  0.707106781186547524401</span></code></pre></div>
 </div>
 
 <br />

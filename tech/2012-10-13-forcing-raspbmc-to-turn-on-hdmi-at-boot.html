@@ -53,7 +53,10 @@
 <p><strong>Solution</strong></p>
 <p>During boot, if Raspbmc sees through HDMI that the TV is off then it switches its video-audio signals to the analog outputs. To force Raspbmc to always use HDMI even if no HDMI display is detected, add the line <code>hdmi_force_hotplug=1</code> to <code>/boot/config.txt</code> and reboot Raspbmc.</p>
 <p>Now, if you boot Raspbmc first and power on the TV later, you will find that video works. However, there is no audio! This is because when forced to use HDMI and no HDMI display is detected, Raspbmc only outputs video and no audio. To force Raspbmc to pick the full HDMI mode where both video and audio are sent, add <code>hdmi_drive=2</code> to <code>/boot/config.txt</code> and reboot Raspbmc.</p>
-<p>https://gist.github.com/ashwin/5047791</p>
+<pre><code># For more info see: http://choorucode.com/2012/10/13/forcing-raspbmc-to-turn-on-hdmi-at-boot/
+# Add to /boot/config.txt
+hdmi_force_hotplug=1
+hdmi_drive=2</code></pre>
 <p>By adding both of these lines, the problem should be solved. More information on these modes can be found <a href="http://elinux.org/RPi_config.txt">here</a>. Thanks to the fine folks who answered <a href="http://raspberrypi.stackexchange.com/questions/2169">my query</a> for this solution :-)</p>
 <p><strong>Tried with:</strong> Raspbmc RC4</p>
 </div>

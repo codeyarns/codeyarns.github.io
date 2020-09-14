@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to disassemble Python code</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -50,7 +87,28 @@
 </header>
 <p><strong>Python</strong> code is compiled into Python <strong>bytecode</strong>, which is then executed on the Python <strong>virtual machine</strong>. Sometimes it is interesting to see what bytecode is produced from your Python code. Thankfully, Python ships with batteries included. So, it has a <strong>disassembler</strong> module built in that is called <a href="http://docs.python.org/2/library/dis.html"><strong>dis</strong></a>.</p>
 <p>The dis method of the dis module can be easily used to disassemble a method in your Python code to its bytecode:</p>
-<p>https://gist.github.com/ashwin/5493670</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">$ cat foo.py
+<span class="kw">def</span> bar():
+    a <span class="op">=</span> <span class="dv">10</span>
+    b <span class="op">=</span> <span class="dv">2</span>
+    c <span class="op">=</span> a <span class="op">+</span> b
+
+$ python
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> dis
+<span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> foo
+<span class="op">&gt;&gt;&gt;</span> dis.dis(foo.bar)
+  <span class="dv">2</span>           <span class="dv">0</span> LOAD_CONST               <span class="dv">1</span> (<span class="dv">10</span>)
+              <span class="dv">3</span> STORE_FAST               <span class="dv">0</span> (a)
+
+  <span class="dv">3</span>           <span class="dv">6</span> LOAD_CONST               <span class="dv">2</span> (<span class="dv">2</span>)
+              <span class="dv">9</span> STORE_FAST               <span class="dv">1</span> (b)
+
+  <span class="dv">4</span>          <span class="dv">12</span> LOAD_FAST                <span class="dv">0</span> (a)
+             <span class="dv">15</span> LOAD_FAST                <span class="dv">1</span> (b)
+             <span class="dv">18</span> BINARY_ADD          
+             <span class="dv">19</span> STORE_FAST               <span class="dv">2</span> (c)
+             <span class="dv">22</span> LOAD_CONST               <span class="dv">0</span> (<span class="va">None</span>)
+             <span class="dv">25</span> RETURN_VALUE</code></pre></div>
 <p>To see other methods of the dis module and information about the bytecode instructions, see <a href="http://docs.python.org/2/library/dis.html">dis</a> in the Python documentation.</p>
 <p><strong>Tried with:</strong> Python 2.7.3 and Ubuntu 12.04 LTS</p>
 </div>

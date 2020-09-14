@@ -63,7 +63,34 @@
 <li><p>XTerm is a great program. Simple and fast. The only disadvantage for me is that its stdout speed is among the slowest in terminal apps. Only Terminator is slower than XTerm in my experience. This is a real deal killer if you frequently run commands that can throw thousands of lines to the terminal.</p></li>
 <li><p>Being a classic X program, XTerm reads its config from a <a href="2017-07-27-xresources.html"><strong>Xresources</strong></a> file. Here are some settings I use in my file to change foreground/background colors, set font size, enable font size increment/decrement and such settings:</p></li>
 </ul>
-<p>https://gist.github.com/ashwin/adfb351686f0934ec25c4ed1c9a7d5d6</p>
+<pre><code>! =============================================================================
+! XTerm settings
+! =============================================================================
+
+! Use white-on-black colors
+XTerm.vt100.reverseVideo: true
+UXTerm.vt100.reverseVideo: true
+
+! XTerm already has 256 colors support
+! We ask it to set the correct $TERM
+XTerm.termName: xterm-256color
+UXTerm.termName: xterm-256color
+
+! Start with maximized window
+xterm*maximized: true
+
+! Make Alt key behave like in other terminals
+XTerm.vt100.metaSendsEscape: true
+UXTerm.vt100.metaSendsEscape: true
+
+! Number of lines to save for scrolling
+XTerm.vt100.saveLines: 100000
+UXTerm.vt100.saveLines: 100000
+
+! Increase-decrease font size using Ctrl-/+
+xterm*VT100.Translations: #override \
+    Ctrl &lt;Key&gt; minus: smaller-vt-font() \n\
+    Ctrl &lt;Key&gt; plus: larger-vt-font()</code></pre>
 <p>Note that the settings are applied to the app only at the start of the X server. If you want to apply them right now, use the xrdb app as described <a href="2017-07-27-xresources.html">here</a>. <strong>References:</strong></p>
 <ul>
 <li><p><a href="http://lukas.zapletalovi.com/2013/07/hidden-gems-of-xterm.html">Hidden gems of xterm</a></p></li>

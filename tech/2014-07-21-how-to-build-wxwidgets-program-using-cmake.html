@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to build wxWidgets program using CMake</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -49,7 +86,24 @@
 <p class="date">📅 2014-Jul-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>Configuring a project that uses wxWidgets to build on Windows is quite simple. However, on Linux the same task is a bit more involved and <a href="http://wiki.wxwidgets.org/Compiling_and_getting_started">requires using</a> the <code>wx-config</code> program.</p>
-<p>CMake has <a href="http://wiki.wxwidgets.org/CMake">support for wxWidgets</a>, but requires knowing the right incantations to build. A minimal CMakeLists.txt for building a wxWidgets program is given below: https://gist.github.com/ashwin/8be851d1f3616e7b1fc7</p>
+<p>CMake has <a href="http://wiki.wxwidgets.org/CMake">support for wxWidgets</a>, but requires knowing the right incantations to build. A minimal CMakeLists.txt for building a wxWidgets program is given below:</p>
+<div class="sourceCode"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span class="kw">project</span>(helloapp)
+
+<span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> 2.8)
+
+<span class="kw">find_package</span>(wxWidgets <span class="ot">COMPONENTS</span> core base <span class="ot">REQUIRED</span>)
+
+<span class="kw">include</span>( <span class="st">&quot;</span><span class="va">${wxWidgets_USE_FILE}</span><span class="st">&quot;</span> )
+
+<span class="kw">add_executable</span>(
+    <span class="va">${PROJECT_NAME}</span>
+    helloapp.cpp
+    )
+
+<span class="kw">target_link_libraries</span>(
+    <span class="va">${PROJECT_NAME}</span>
+    <span class="va">${wxWidgets_LIBRARIES}</span>
+    )</code></pre></div>
 <p>This includes the <code>core</code> and <code>base</code> wxWidgets libraries. If you use any other wxWidgets modules, like <code>wxGLCanvas</code> for example, then include the relevant modules, like <code>gl</code> in the <code>find_package</code> command.</p>
 <p><strong>Tried with:</strong> wxWidgets 3.0, CMake 2.8.12.2 and Ubuntu 14.04</p>
 </div>

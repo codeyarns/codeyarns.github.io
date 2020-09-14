@@ -7,6 +7,43 @@
   <meta name="author" content="Ashwin Nanjappa">
   <title>Code Yarns – How to get started with OpenTK using C# and Visual Studio</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
@@ -57,7 +94,95 @@
 <li><p>Paste the source code given below into the C# source file.</p></li>
 <li><p>Run. You should see a colored triangle. Press ESC to quit.</p></li>
 </ol>
-<p>https://gist.github.com/ashwin/5727049</p>
+<div class="sourceCode"><pre class="sourceCode cs"><code class="sourceCode cs"><span class="co">// C# example program to demonstrate OpenTK</span>
+<span class="co">//</span>
+<span class="co">// Steps:</span>
+<span class="co">// 1. Create an empty C# console application project in Visual Studio</span>
+<span class="co">// 2. Place OpenTK.dll in the directory of the C# source file</span>
+<span class="co">// 3. Add System.Drawing and OpenTK as References to the project</span>
+<span class="co">// 4. Paste this source code into the C# source file</span>
+<span class="co">// 5. Run. You should see a colored triangle. Press ESC to quit.</span>
+<span class="co">//</span>
+<span class="co">// Copyright (c) 2013 Ashwin Nanjappa</span>
+<span class="co">// Released under the MIT License</span>
+
+<span class="kw">using</span> System;
+<span class="kw">using</span> OpenTK;
+<span class="kw">using</span> OpenTK.<span class="fu">Graphics</span>;
+<span class="kw">using</span> OpenTK.<span class="fu">Graphics</span>.<span class="fu">OpenGL</span>;
+<span class="kw">using</span> OpenTK.<span class="fu">Input</span>;
+
+<span class="kw">namespace</span> StarterKit
+{
+    <span class="kw">class</span> Game : GameWindow
+    {
+        <span class="kw">public</span> <span class="fu">Game</span>()
+            : <span class="kw">base</span>(<span class="dv">800</span>, <span class="dv">600</span>, GraphicsMode.<span class="fu">Default</span>, <span class="st">&quot;OpenTK Quick Start Sample&quot;</span>)
+        {
+            VSync = VSyncMode.<span class="fu">On</span>;
+        }
+
+        <span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnLoad</span>(EventArgs e)
+        {
+            <span class="kw">base</span>.<span class="fu">OnLoad</span>(e);
+
+            GL.<span class="fu">ClearColor</span>(<span class="fl">0.1f</span>, <span class="fl">0.2f</span>, <span class="fl">0.5f</span>, <span class="fl">0.0f</span>);
+            GL.<span class="fu">Enable</span>(EnableCap.<span class="fu">DepthTest</span>);
+        }
+
+        <span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnResize</span>(EventArgs e)
+        {
+            <span class="kw">base</span>.<span class="fu">OnResize</span>(e);
+
+            GL.<span class="fu">Viewport</span>(ClientRectangle.<span class="fu">X</span>, ClientRectangle.<span class="fu">Y</span>, ClientRectangle.<span class="fu">Width</span>, ClientRectangle.<span class="fu">Height</span>);
+
+            Matrix4 projection = Matrix4.<span class="fu">CreatePerspectiveFieldOfView</span>((<span class="dt">float</span>)Math.<span class="fu">PI</span> / <span class="dv">4</span>, Width / (<span class="dt">float</span>)Height, <span class="fl">1.0f</span>, <span class="fl">64.0f</span>);
+            GL.<span class="fu">MatrixMode</span>(MatrixMode.<span class="fu">Projection</span>);
+            GL.<span class="fu">LoadMatrix</span>(<span class="kw">ref</span> projection);
+        }
+
+        <span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnUpdateFrame</span>(FrameEventArgs e)
+        {
+            <span class="kw">base</span>.<span class="fu">OnUpdateFrame</span>(e);
+
+            <span class="kw">if</span> (Keyboard[Key.<span class="fu">Escape</span>])
+                <span class="fu">Exit</span>();
+        }
+
+        <span class="kw">protected</span> <span class="kw">override</span> <span class="dt">void</span> <span class="fu">OnRenderFrame</span>(FrameEventArgs e)
+        {
+            <span class="kw">base</span>.<span class="fu">OnRenderFrame</span>(e);
+
+            GL.<span class="fu">Clear</span>(ClearBufferMask.<span class="fu">ColorBufferBit</span> | ClearBufferMask.<span class="fu">DepthBufferBit</span>);
+
+            Matrix4 modelview = Matrix4.<span class="fu">LookAt</span>(Vector3.<span class="fu">Zero</span>, Vector3.<span class="fu">UnitZ</span>, Vector3.<span class="fu">UnitY</span>);
+            GL.<span class="fu">MatrixMode</span>(MatrixMode.<span class="fu">Modelview</span>);
+            GL.<span class="fu">LoadMatrix</span>(<span class="kw">ref</span> modelview);
+
+            GL.<span class="fu">Begin</span>(BeginMode.<span class="fu">Triangles</span>);
+
+            GL.<span class="fu">Color3</span>(<span class="fl">1.0f</span>, <span class="fl">1.0f</span>, <span class="fl">0.0f</span>); GL.<span class="fu">Vertex3</span>(-<span class="fl">1.0f</span>, <span class="fl">-1.0f</span>, <span class="fl">4.0f</span>);
+            GL.<span class="fu">Color3</span>(<span class="fl">1.0f</span>, <span class="fl">0.0f</span>, <span class="fl">0.0f</span>); GL.<span class="fu">Vertex3</span>(<span class="fl">1.0f</span>, <span class="fl">-1.0f</span>, <span class="fl">4.0f</span>);
+            GL.<span class="fu">Color3</span>(<span class="fl">0.2f</span>, <span class="fl">0.9f</span>, <span class="fl">1.0f</span>); GL.<span class="fu">Vertex3</span>(<span class="fl">0.0f</span>, <span class="fl">1.0f</span>, <span class="fl">4.0f</span>);
+
+            GL.<span class="fu">End</span>();
+
+            <span class="fu">SwapBuffers</span>();
+        }
+
+        [STAThread]
+        <span class="kw">static</span> <span class="dt">void</span> <span class="fu">Main</span>()
+        {
+            <span class="co">// The &#39;using&#39; idiom guarantees proper resource cleanup.</span>
+            <span class="co">// We request 30 UpdateFrame events per second, and unlimited</span>
+            <span class="co">// RenderFrame events (as fast as the computer can handle).</span>
+            <span class="kw">using</span> (Game game = <span class="kw">new</span> <span class="fu">Game</span>())
+            {
+                game.<span class="fu">Run</span>(<span class="fl">30.0</span>);
+            }
+        }
+    }
+}</code></pre></div>
 <p><strong>Tried with:</strong> OpenTK 1.0, Visual Studio Express 2012 and Windows 7 x64</p>
 </div>
 

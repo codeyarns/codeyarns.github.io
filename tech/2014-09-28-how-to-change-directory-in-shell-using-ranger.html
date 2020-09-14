@@ -51,7 +51,15 @@
 <p>One of the uses of Ranger can be to conveniently change to a directory in the shell that launched Ranger. To do this, we use the <code>--choosedir</code> option of Ranger. Pass this the name of a file and when Ranger is closed it will write the directory it was in to that file. You can then read the contents of this file in your shell to change to that location.</p>
 <p>For Bash, a function that can do this is provided in <a href="https://github.com/hut/ranger/blob/master/doc/examples/bash_automatic_cd.sh">bash_automatic_cd.sh</a> in the Ranger source code.</p>
 <p>For Fish, I have written a similar function that you can add to your <code>~/.config/fish/config.fish</code>:</p>
-<p>https://gist.github.com/ashwin/8d64074bbe2296818929</p>
+<pre><code># Add this to your ~/.config/fish/config.fish
+function ranger-cd
+    set tmpfile &quot;/tmp/pwd-from-ranger&quot;
+    ranger --choosedir=$tmpfile $argv
+    set rangerpwd (cat $tmpfile)
+    if test &quot;$PWD&quot; != $rangerpwd
+        cd $rangerpwd
+    end
+end</code></pre>
 <p>To use Ranger like this, invoke it at the shell as <code>ranger-cd</code>. When you quit Ranger, fish will change its current directory to that in Ranger.</p>
 <p><strong>Tried with:</strong> Ranger 1.6.1, Fish 2.0.0 and Ubuntu 14.04</p>
 </div>
