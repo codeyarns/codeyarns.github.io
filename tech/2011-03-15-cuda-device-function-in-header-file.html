@@ -83,7 +83,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="contentbox">
 <header>
 <h1 class="title">CUDA: Device Function in Header File</h1>
-<p class="date">📅 2011-Mar-15 ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2011-Mar-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Template kernels</strong> are very useful to write generic kernels that can handle multiple data types. (For more on template kernels go <a href="http://codeyarns.wordpress.com/2011/03/14/cuda-template-kernels/">here</a>.) However, they come with one drawback: any device function that is called by a template kernel needs to be defined in a header file. It cannot be hidden away in a different CUDA compilation unit. This is because the CUDA compiler needs to have the flexibility to inline the device function (if necessary) and to do that the device function definition needs to be accessible in the same compilation unit as the template kernel that calls it.</p>
 <p>Here is an example. The template kernel below calls a device function and the definition of the device function needs to be in the header file for successful compilation:</p>

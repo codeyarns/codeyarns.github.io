@@ -46,7 +46,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">USBMount not mounting problem</h1>
-<p class="date">📅 2019-May-18 ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2019-May-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I had a portable harddisk connected using USB to my <strong>Raspberry Pi B+ Rev3</strong> running <strong>Raspbian 9</strong>. The harddisk had two partitions: NTFS and ext4. I had <strong>usbmount</strong> installed and configured as described <a href="2015-07-03-how-to-configure-usbmount.html">here</a>. When Raspbian is booted up with the harddisk already plugged in, I could see using <code>sudo fdisk -l</code> that the ext4 partition was visible. So, usbmount should have automatically mounted this ext4 partition to <code>/media/usb0</code>, but it was not doing that. I had verbose logging enabled for <strong>usbmount</strong> as described <a href="2015-07-03-how-to-configure-usbmount.html">here</a>. When I searched the system log I could see that usbmount was actually mounting the ext4 partition, but surprisingly it was not visible at <code>/media/usb0</code>:</p>

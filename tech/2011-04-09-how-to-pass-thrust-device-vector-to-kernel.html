@@ -46,7 +46,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to pass Thrust device vector to CUDA kernel</h1>
-<p class="date">📅 2011-Apr-09 ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2011-Apr-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><a href="https://github.com/thrust/thrust"><strong>Thrust</strong></a> makes it convenient to handle data with its <code>device_vector</code>. But, things get messy when the <code>device_vector</code> needs to be passed to your own <strong>kernel</strong>. Thrust data types are not understood by a CUDA kernel and need to be converted back to its underlying pointer. This is done using <code>thrust::raw_pointer_cast</code>:</p>
 <pre><code>#include &lt;thrust/device_vector.h&gt;
