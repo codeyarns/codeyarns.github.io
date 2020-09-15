@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Jira search cheatsheet</title>
+  <title>Code Yarns – Webex tricks</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -45,38 +45,15 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Jira search cheatsheet</h1>
-<p class="date">📅 2019-Oct-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Webex tricks</h1>
+<p class="date">📅 2020-Sep-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Jira</strong> provides an advanced search option where users can create a search query using the <strong>Jira Query Language (JQL)</strong>. JQL has some similarities to SQL in its syntax. Once you have a search query that you like, you can save it up as a <strong>filter</strong>.</p>
-<p>Here are some Jira search queries I found to be useful:</p>
+<p><strong>Webex</strong> is one of the popular tools used for videoconferencing in enterprises. Here are some tricks that I find useful in Webex:</p>
 <ul>
-<li>Issues created by me:</li>
+<li><code>Double click</code> anywhere on the video portion to full screen it. Do it again to come back to windowed mode.</li>
+<li><code>Ctrl +</code> and <code>Ctrl -</code> to zoom in and zoom out on the window being shared by a presenter. I find this useful when the font is too small. Note that the resolution does not increase though.</li>
+<li><code>Ctrl M</code> to toggle between mute and unmute.</li>
 </ul>
-<pre><code>reporter = currentUser() ORDER BY created DESC</code></pre>
-<ul>
-<li>Issues viewed recently:</li>
-</ul>
-<pre><code>issuekey in issueHistory() ORDER BY lastViewed DESC</code></pre>
-<ul>
-<li>Issues updated recently:</li>
-</ul>
-<pre><code>issuekey in issueHistory() ORDER BY updated DESC</code></pre>
-<ul>
-<li>Issues of an epic:</li>
-</ul>
-<pre><code>&quot;epic link&quot; = FOOBAR-1422</code></pre>
-<ul>
-<li>Multiple criteria can be ANDed or ORed:</li>
-</ul>
-<pre><code>&quot;epic link&quot; = FOOBAR-1422 OR &quot;epic link&quot; = FOOBAR-2344</code></pre>
-<ul>
-<li>Order the filtered issues by one or more keys:</li>
-</ul>
-<pre><code>reporter = currentUser() ORDER BY status ASC, priority DESC, created DESC</code></pre>
-<p>The above query for example sorts by ascending order of status, descending order of priority and descending order of creation date.</p>
-<h2 id="reference">Reference</h2>
-<p>The <strong>Advanced Searching</strong> page of JIRA documentation describes how to search and at the bottom has links to reference pages on fields, operators, keywords and functions. These references are what I check to create my queries.</p>
 </div>
 
 <br />
