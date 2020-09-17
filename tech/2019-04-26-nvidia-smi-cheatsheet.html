@@ -107,6 +107,42 @@ $ sudo nvidia-smi -i 9 -pm 1</code></pre>
 <li>To set graphics clock:</li>
 </ul>
 <pre><code>$ sudo nvidia-smi -i 9 -lgc 900</code></pre>
+<h2 id="mig">MIG</h2>
+<p><strong>Multi-Instance GPU</strong> (MIG) is a feature on the A100 GPU to slice it into GPU instances and GPU instances into compute instances.</p>
+<ul>
+<li>To enable or disable MIG mode:</li>
+</ul>
+<pre><code>$ nvidia-smi -mig=1
+$ nvidia-smi -mig=0</code></pre>
+<ul>
+<li>To list GPU instances:</li>
+</ul>
+<pre><code>$ nvidia mig -lgi</code></pre>
+<ul>
+<li>To list compute instances:</li>
+</ul>
+<pre><code>$ nvidia mig -lci
+
++-------------------------------------------------------+
+| Compute instances:                                    |
+| GPU     GPU       Name             Profile   Instance |
+|       Instance                       ID        ID     |
+|         ID                                            |
+|=======================================================|
+|   0      7       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0      8       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0      9       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0     11       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0     12       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0     13       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0     14       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+</code></pre>
 </div>
 
 <br />

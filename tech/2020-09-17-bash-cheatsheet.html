@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Make Cheatsheet</title>
+  <title>Code Yarns – bash cheatsheet</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -45,38 +45,15 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Make Cheatsheet</h1>
-<p class="date">📅 2019-Dec-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">bash cheatsheet</h1>
+<p class="date">📅 2020-Sep-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
+<p>Here is some information I find useful when using bash as a shell or when writing bash scripts:</p>
 <ul>
-<li><p>To view the actual and full commands executed by make while building its targets, use the commands from this <a href="2013-10-07-how-to-view-commands-executed-by-make.html">post</a>.</p></li>
-<li><p>To a dry run:</p></li>
+<li>To set a value to a variable <em>only</em> if it does not already have one:</li>
 </ul>
-<pre><code>$ make -n</code></pre>
-<p>This prints all the commands that would be executed, without actually executing them.</p>
-<ul>
-<li>To print all the rules and variable values that result from reading Makefiles:</li>
-</ul>
-<pre><code>$ make -p</code></pre>
-<ul>
-<li>To print all the rules and variable values without building anything:</li>
-</ul>
-<pre><code>$ make -p -f/dev/null</code></pre>
-<ul>
-<li>To get messages of which directories make is entering and leaving:</li>
-</ul>
-<pre><code>$ make -w</code></pre>
-<p>This is useful, for example, to know which specific Makefile from a subdirectory is being used for running a specific command.</p>
-<ul>
-<li>To list all the Make targets in your current project:</li>
-</ul>
-<pre><code>$ make -qp | awk -F &#39;:&#39; &#39;/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}&#39; | sort -u</code></pre>
-<h2 id="references">References</h2>
-<ul>
-<li><p><a href="https://www.gnu.org/software/make/manual/html_node/Quick-Reference.html">Quick Reference</a> in the GNU Make Manual: My first stop to check Make's directives, built-in functions, automatic variables and special variables.</p></li>
-<li><p><a href="https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html">Automatic Variables</a> in the GNU Make Manual: About the variables that begin with <code>$</code>.</p></li>
-<li><p><a href="https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html">Implicit Variables</a> in the GNU Make Manual: About the variables for program names (like <code>CC</code>) and arguments to programs (like <code>CCFLAGS</code>).</p></li>
-</ul>
+<pre><code>FOOVAR=${FOOVAR:-/some/default/foovar/value}</code></pre>
+<p>Notice how we use the <code>:-</code> to set a value for <code>FOOVAR</code>. More information can be found under <a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">Shell Parameter Expansion</a> of the Bash Reference Manual.</p>
 </div>
 
 <br />
