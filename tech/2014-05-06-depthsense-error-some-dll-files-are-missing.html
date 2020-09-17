@@ -82,7 +82,7 @@ $ ldd /opt/softkinetic/DepthSenseSDK/lib/libDepthSensePlugins.so.1</code></pre>
 linux-vdso.so.1 =&gt;  (0x00007ffffa76e000)
 libDepthSensePlugins.so.1 =&gt; /opt/softkinetic/DepthSenseSDK/lib/libDepthSensePlugins.so.1 (0x00007f5c594be000)
 libudev.so.0 =&gt; not found</code></pre>
-<p>So, <code>libudev.so.0</code> was the missing DLL! :-)</p>
+<p>So, <code>libudev.so.0</code> was the missing DLL! 😊</p>
 <p>We checked if there was any <code>libudev.so</code> file available on the system:</p>
 <pre><code>$ locate libudev.so
 /lib/x86_64-linux-gnu/libudev.so.1
@@ -90,7 +90,7 @@ libudev.so.0 =&gt; not found</code></pre>
 <p>We just created a symbolic link for the required library file to the existing library file:</p>
 <pre><code>$ sudo ln -s /lib/x86_64-linux-gnu/libudev.so.1.3.5 /lib/x86_64-linux-gnu/libudev.so.0</code></pre>
 <p>On Ubuntu 15.04, the file is <code>libudev.so.1.6.2</code>, the rest of the command remains the same.</p>
-<p>Once this was done, the DepthSense Viewer program worked fine! Also, all our programs that had linked with DepthSense libraries also worked. :-)</p>
+<p>Once this was done, the DepthSense Viewer program worked fine! Also, all our programs that had linked with DepthSense libraries also worked. 😊</p>
 </div>
 
 <br />

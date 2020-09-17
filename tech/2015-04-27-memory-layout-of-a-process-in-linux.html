@@ -97,7 +97,7 @@ Text Data Heap ---&gt; DLLs &lt;--- Stack Kernel</code></pre>
 <li><p>Data + BSS segment has read and write permissions. Global variables of program should be read and written too.</p></li>
 <li><p>Text, constant and Data+BSS segments taken together is the binary image of program that has been mapped into virtual memory by loader.</p></li>
 <li><p>Heap does not have execute permission. Program can only read and write to the memory it gets from <code>malloc</code>.</p></li>
-<li><p>All the loaded DLLs also have similar Text, constant and Data segments in each. They also have a mysterious <code>---p</code> segment! :-)</p></li>
+<li><p>All the loaded DLLs also have similar Text, constant and Data segments in each. They also have a mysterious <code>---p</code> segment! 😊</p></li>
 <li><p>Stack is where local variables are stored. Note that it too has only read and write permissions. If this program was multi-threaded, there would be one stack for each thread here.</p></li>
 <li><p><code>vdso</code> and <code>vsyscall</code> is where the user space last sees a system call disappear. From there it enters the rabbit hole to kernel space.</p></li>
 </ul>

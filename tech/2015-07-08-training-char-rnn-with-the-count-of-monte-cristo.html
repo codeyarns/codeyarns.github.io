@@ -48,7 +48,7 @@
 <h1 class="title">Training Char-RNN with The Count of Monte Cristo</h1>
 <p class="date">📅 2015-Jul-08 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Andrej Karpathy</strong> recently shared an interesting article about the capabilities of <strong>Recurrent Neural Networks</strong> <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">here</a>. He also shared an open-source <strong>character-level RNN</strong> named <a href="https://github.com/karpathy/char-rnn"><strong>char-rnn</strong></a> that is easy to train with some text. Lots of people have had fun training it and seeing what it can produce! :-)</p>
+<p><strong>Andrej Karpathy</strong> recently shared an interesting article about the capabilities of <strong>Recurrent Neural Networks</strong> <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">here</a>. He also shared an open-source <strong>character-level RNN</strong> named <a href="https://github.com/karpathy/char-rnn"><strong>char-rnn</strong></a> that is easy to train with some text. Lots of people have had fun training it and seeing what it can produce! 😊</p>
 <p>Installation of Torch and char-rnn is straightforward. Just follow the instructions and it should be done.</p>
 <p>char-rnn needs a large amount of text to train and I used the massive 1500-page tome <strong>The Count of Monte Cristo</strong> which I read recently. The English translation of this book is available at <strong>Project Gutenberg</strong> <a href="http://www.gutenberg.org/ebooks/1184">here</a> as a text file. I cropped off the Gutenberg-related text at the beginning and end of this file and trained the char-rnn with it.</p>
 <p>With a low <code>temperature</code>, char-rnn returned text which was almost correct in grammar and spelling. However, since I have read the book, I noticed that it played safe, seeming like a nonsense regurgitation of the book:</p>
@@ -84,7 +84,7 @@ countenance of the count with a smile of the procureur. &quot;I am already said 
 present of the countess, and the count was the same time the two men who had been
 considered the count&#39;s servant, and the other had been so long and the second
 part of the passage and the present of the staircase before the cou</code></pre>
-<p>High <code>temperature</code> was more fun! There was more interesting and new conversations, more newly created phrases, but also more spelling mistakes. You can read it below and enjoy: :-)</p>
+<p>High <code>temperature</code> was more fun! There was more interesting and new conversations, more newly created phrases, but also more spelling mistakes. You can read it below and enjoy: 😊</p>
 <pre><code>$ th sample.lua cv/lm_lstm_epoch50.00_1.1763.t7 -length 2000 -temperature 0.85
 using CUDA on GPU 0...  
 creating an LSTM... 

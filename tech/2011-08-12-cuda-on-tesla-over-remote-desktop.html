@@ -50,7 +50,7 @@
 </header>
 <p><a href="http://codeyarns.files.wordpress.com/2011/08/20110812-cuda-tesla-rdp1.png"><img src="http://codeyarns.files.wordpress.com/2011/08/20110812-cuda-tesla-rdp1.png" alt=" " /></a></p>
 <p><strong>Problem</strong></p>
-<p>Typically, <strong>CUDA</strong> programs cannot be executed over a <strong>Remote Desktop</strong> session. (For more on this problem, see <a href="http://codeyarns.wordpress.com/2011/02/03/cuda-and-remote-desktop/">here</a>.) However, if the CUDA device is a <strong>Tesla</strong> and if it does not need to be the primary graphics device, then you are in luck! A typical setup for Tesla is to have another Quadro device handle the desktop graphics, while the Tesla device handles the computation. In such setups, CUDA programs can be executed on the Tesla device over Remote Desktop! :-)</p>
+<p>Typically, <strong>CUDA</strong> programs cannot be executed over a <strong>Remote Desktop</strong> session. (For more on this problem, see <a href="http://codeyarns.wordpress.com/2011/02/03/cuda-and-remote-desktop/">here</a>.) However, if the CUDA device is a <strong>Tesla</strong> and if it does not need to be the primary graphics device, then you are in luck! A typical setup for Tesla is to have another Quadro device handle the desktop graphics, while the Tesla device handles the computation. In such setups, CUDA programs can be executed on the Tesla device over Remote Desktop! 😊</p>
 <p><strong>Solution</strong></p>
 <p>To be able to successfully execute CUDA programs on a Tesla device, you need to use a <strong>Tesla Compute Cluster (TCC) driver</strong> and set the Tesla device to <strong>TCC mode</strong>.</p>
 <p><strong>1. Install TCC Driver</strong></p>
@@ -67,7 +67,7 @@
 <p>Finally, to flip the driver model of a device from WDDM to TCC mode:</p>
 <pre><code>nvidia-smi -dm 1 -i 0</code></pre>
 <p>The <code>-dm</code> parameter takes two values: <code>0</code> for WDDM and <code>1</code> for TCC.</p>
-<p>Changing the driver model mode of the Tesla requires a restart of the system. After the restart, you should be able to execute CUDA programs remotely on the Tesla computer! :-)</p>
+<p>Changing the driver model mode of the Tesla requires a restart of the system. After the restart, you should be able to execute CUDA programs remotely on the Tesla computer! 😊</p>
 <p><strong>Tried with:</strong> Tesla C2050 and Quadro 4000</p>
 </div>
 

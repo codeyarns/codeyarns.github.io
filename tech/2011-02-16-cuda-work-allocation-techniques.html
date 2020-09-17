@@ -118,7 +118,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Note that the work allocation calculation is:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="at">const</span> <span class="dt">int</span> dataPerThread  = ( dataNum + ( totalThreadNum - <span class="dv">1</span> ) ) / totalThreadNum;</code></pre></div>
 <p>It is not a mere division of available work (data) by available labour (threads). Due to integer division, such a simple calculation would lead to trouble if <code>dataNum</code> is not a multiple of <code>totalThreadNum</code>.</p>
-<p>So, if <code>dataNum</code> is not a multiple of <code>totalThreadNum</code> there will always be a few threads with no work. This is an unavoidable fact of life for this technique! :-)</p>
+<p>So, if <code>dataNum</code> is not a multiple of <code>totalThreadNum</code> there will always be a few threads with no work. This is an unavoidable fact of life for this technique! 😊</p>
 <p>This is also why we need to ensure we are always accessing something inside of the input data:</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">if</span> ( idx &gt;= dataNum )
     <span class="cf">continue</span>;</code></pre></div>
@@ -148,7 +148,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     idx &lt; dataNum;          <span class="co">// Thread never goes outside the data</span>
     idx += totalThreadNum   <span class="co">// Jump a long way</span>
     )</code></pre></div>
-<p>You can easily see that these techniques lie at the ends of a spectrum of possible work allocation techniques. For example, a hybrid technique would handle chunks of size <code>n</code> and then increment by <code>n * totalThreadNum</code>. Look at your application closely and use what works best for you! :-)</p>
+<p>You can easily see that these techniques lie at the ends of a spectrum of possible work allocation techniques. For example, a hybrid technique would handle chunks of size <code>n</code> and then increment by <code>n * totalThreadNum</code>. Look at your application closely and use what works best for you! 😊</p>
 </div>
 
 <br />

@@ -51,12 +51,12 @@
 <p><strong>ViM 7.3</strong> has the awesome new feature of <strong>persistent undo</strong>. This means that ViM can remember the editing actions done on a file, even after ViM is closed and the file is reopened in ViM later! ViM does this by maintaining an <strong>undo file</strong> for each file that is edited. Persistent undo is turned off by default.</p>
 <p>To turn on persistent undo, add this line to your vimrc file:</p>
 <pre><code>set undofile</code></pre>
-<p>The command to undo an action is <strong>u</strong>. This command can now undo actions that were done in earlier ViM sessions on the currently open file. That is some elephant memory now! :-)</p>
+<p>The command to undo an action is <strong>u</strong>. This command can now undo actions that were done in earlier ViM sessions on the currently open file. That is some elephant memory now! 😊</p>
 <p><strong>Undo Files Directory</strong></p>
 <p>When persistent undo is turned on, it creates files named <code>.file.un~</code> in the directory of the file itself. I find this quite dirty and would like all the undo files to be created and managed in a far-off temporary directory. The undo files directory is set to <strong>.</strong> (current directory) by default. It can be set to a different place by adding this line to your vimrc file:</p>
 <pre><code>set undodir=$TEMP</code></pre>
 <p>Here I have set it to the user's Temp directory on Windows. When undodir is set to something other than ., ViM creates undo files in that directory with a different filename convention. The filename is the full path of the edited file, with the <code>:</code> and <code>\</code> characters replaced by % characters. For example, the undo file for <code>C:\Code\Main.cpp</code> is stored in <code>$TEMP</code> with the filename <code>C%%Code%Main.cpp</code></p>
-<p>I find persistent undo to be an awesome feature that <em>just</em> works as your mind expects it to. Turn it on and enjoy the ViM goodness! :-)</p>
+<p>I find persistent undo to be an awesome feature that <em>just</em> works as your mind expects it to. Turn it on and enjoy the ViM goodness! 😊</p>
 </div>
 
 <br />

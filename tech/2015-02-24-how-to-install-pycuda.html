@@ -50,14 +50,14 @@
 </header>
 <p><a href="http://mathema.tician.de/software/pycuda/"><strong>PyCUDA</strong></a> enables a <strong>Python</strong> program to pass data to and call <strong>CUDA</strong> kernels from a Python program. Getting it to install and work correctly on Ubuntu took a bit of work.</p>
 <ul>
-<li><p>I tried installing the <code>nvidia-343</code> drivers for Ubuntu. But, it turns out that only 340.x or earlier drivers support the GTS 250 I use for display (not for compute). So, I reverted back and installed <code>nvidia-331</code> drivers. Note that the <code>nvidia-331-updates</code> driver will not work with CUDA either. Do not ask me why! :-)</p></li>
+<li><p>I tried installing the <code>nvidia-343</code> drivers for Ubuntu. But, it turns out that only 340.x or earlier drivers support the GTS 250 I use for display (not for compute). So, I reverted back and installed <code>nvidia-331</code> drivers. Note that the <code>nvidia-331-updates</code> driver will not work with CUDA either. Do not ask me why! 😊</p></li>
 <li><p>Installing the CUDA toolkit was easier, just install <code>nvidia-cuda-toolkit</code> package.</p></li>
 <li><p>PyCUDA is available in Ubuntu as a <code>python-pycuda</code> package. But, that is the very old 2013.1.1 version. Instead I installed it from the Python Package Index (PyPI):</p></li>
 </ul>
 <pre><code>$ sudo pip install pycuda</code></pre>
 <p>The install script kept complaining about the absence of a <code>configure.py</code> script, but it seemed to end with success.</p>
 <ul>
-<li>Running a simple PyCUDA program showed that I had more errors to fix with <a href="2015/02/24/pycuda-error-cuinit-failed/">module not being loaded into kernel</a>, <a href="2015/02/24/pycuda-error-cannot-import-name-intern/">Python packages not being up to date</a> and <a href="2015/02/24/cuda-error-gcc-4-9-and-up-are-not-supported/">header files not being up to date with latest GCC</a>. Once those were fixed, the PyCUDA program ran correctly! :-)</li>
+<li>Running a simple PyCUDA program showed that I had more errors to fix with <a href="2015/02/24/pycuda-error-cuinit-failed/">module not being loaded into kernel</a>, <a href="2015/02/24/pycuda-error-cannot-import-name-intern/">Python packages not being up to date</a> and <a href="2015/02/24/cuda-error-gcc-4-9-and-up-are-not-supported/">header files not being up to date with latest GCC</a>. Once those were fixed, the PyCUDA program ran correctly! 😊</li>
 </ul>
 <p><strong>Tried with:</strong> PyCUDA 2014.1, CUDA 5.5, NVIDIA 331 driver and Ubuntu 14.04</p>
 </div>

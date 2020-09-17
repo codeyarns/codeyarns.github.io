@@ -52,7 +52,7 @@
 <p>** <strong>I got an error while building </strong>CUDPP 1.1.1** with <strong>CUDA 3.2</strong>. The linker error occurs on building <code>cudpp_vc90.sln</code>:</p>
 <pre><code>LINK : fatal error LNK1181: cannot open input file &#39;cudart.lib&#39;</code></pre>
 <p><strong>Reason</strong></p>
-<p>NVIDIA is notorious for frequently changing their environment variables and their paths. I have commented on this before <a href="http://codeyarns.wordpress.com/2009/12/01/cuda-environment-variables/">here</a> and <a href="http://codeyarns.wordpress.com/2010/04/13/cuda-3-0/">here</a>. They have done it again with CUDA 3.2! :-| <code>cudpp_vc90.vcproj</code> looks for <code>cudart.lib</code> in the directory <code>$(CUDA_LIB_PATH)/../lib</code>. CUDA 3.2 has moved these files to <code>$(CUDA_LIB_PATH)</code>.</p>
+<p>NVIDIA is notorious for frequently changing their environment variables and their paths. I have commented on this before <a href="http://codeyarns.wordpress.com/2009/12/01/cuda-environment-variables/">here</a> and <a href="http://codeyarns.wordpress.com/2010/04/13/cuda-3-0/">here</a>. They have done it again with CUDA 3.2! 😐 <code>cudpp_vc90.vcproj</code> looks for <code>cudart.lib</code> in the directory <code>$(CUDA_LIB_PATH)/../lib</code>. CUDA 3.2 has moved these files to <code>$(CUDA_LIB_PATH)</code>.</p>
 <p><strong>Solution</strong></p>
 <p>In the CUDPP solution, Change the <strong>Additional library dependencies</strong> in the Visual Studio solution from <code>$(CUDA_LIB_PATH)/../lib</code> to <code>$(CUDA_LIB_PATH)</code>.</p>
 <p><strong>Note</strong></p>
