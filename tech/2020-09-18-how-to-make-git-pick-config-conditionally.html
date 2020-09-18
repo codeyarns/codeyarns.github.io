@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – GDocs: Multi-select &amp; Progress Bars with Flashblock</title>
+  <title>Code Yarns – How to make Git pick config conditionally</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -45,11 +45,26 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">GDocs: Multi-select &amp; Progress Bars with Flashblock</h1>
-<p class="date">📅 2010-Jan-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">How to make Git pick config conditionally</h1>
+<p class="date">📅 2020-Sep-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><em>Google Docs</em> now allows you to <a href="http://googledocs.blogspot.com/2010/01/upload-and-store-your-files-in-cloud.html">upload any kind of file</a> into their online storage. I guess they noticed that people were emailing themselves lots of files to keep them stored online.</p>
-<p>The GDocs file upload process has the same multi-select and progress bar capability as in Gmail. And similar to Gmail, it will not work properly if Flash is being blocked by the <em>Flashblock</em> addon. So, the fix for this problem is the <a href="2010-01-13-gmail-multi-select-progress-bars-with-flashblock.html">same as for Gmail</a>: Add <code>docs.google.com</code> to the Flashblock whitelist.</p>
+<p><strong>Git</strong> has a feature called <a href="https://git-scm.com/docs/git-config#_conditional_includes">Conditional Include</a> using which I can make it use a different config file depending on the condition such as the repo directory name or branch name.</p>
+<p>For example, depending on the repo directory name I could make Git automatically use a different email config for checking in commits. Here is how to do that:</p>
+<ul>
+<li>In my main <code>~/.gitconfig</code> file, I introduce a conditional include using <code>includeIf</code> for repos that lie inside my <code>~/funrepos</code> directory:</li>
+</ul>
+<pre><code>[user]
+    name = Joe Guy
+    email = joe.guy@foobar.com
+
+[includeIf &quot;gitdir:~/funrepos/&quot;]
+    path = ~/.gitconfig.funrepos</code></pre>
+<ul>
+<li>I create the new Git config file <code>~/.gitconfig.funrepos</code> with a different email to use for fun hack repos:</li>
+</ul>
+<pre><code>[user]
+    email = fun.repos@foobar.com</code></pre>
+<p><strong>Tried with:</strong> Git 2.17.1 and Ubuntu 18.04</p>
 </div>
 
 <br />
