@@ -48,21 +48,31 @@
 <h1 class="title">Process JSON at the shell using jq</h1>
 <p class="date">📅 2017-Feb-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://stedolan.github.io/jq/"><strong>jq</strong></a> is an awesome tool to play with <strong>JSON</strong> data at the commandline.</p>
+<p><a href="https://stedolan.github.io/jq/"><strong>jq</strong></a> is an awesome tool to play with <strong>JSON</strong> data at the commandline. It is akin to the Unix text manipulation tools, but for JSON.</p>
 <ul>
 <li>Installing it is easy:</li>
 </ul>
 <pre><code>$ sudo apt install jq</code></pre>
 <ul>
-<li>To format a JSON file so that it looks pretty:</li>
+<li><strong>Pretty formatting</strong>: To format a JSON file so that it looks pretty:</li>
 </ul>
 <pre><code>$ cat ugly.json | jq &#39;.&#39;</code></pre>
-<p>I have found this extremely useful to format huge JSON files. jq is much faster at this job compared to the <strong>json.tool</strong> in Python.</p>
+<p>What this command is doing is piping the JSON file to jq and then asking it to filter everything, but jq formats everything it touches, so we get pretty JSON formatting out from it.</p>
+<p>I have found this useful to format huge JSON files. jq is much faster at this job compared to the <strong>json.tool</strong> in Python.</p>
 <ul>
-<li>You can access and print a specific section of the JSON just like in Python. For example:</li>
+<li>You can access and print specific sections of the JSON just like in Python. For example:</li>
 </ul>
 <pre><code>$ cat foobar.json | jq &#39;.[&quot;records&quot;][6][&quot;name&quot;]&#39;</code></pre>
 <p>Note the use of single quotes to encapsulate the expression and use of double quotes inside to specify keys in dictionaries.</p>
+<ul>
+<li><strong>Convert to CSV</strong>: If you pull out values in a tabular manner, it can be converted to CSV by piping those values to jq's CSV exporter:</li>
+</ul>
+<pre><code>$ cat foobar.json | jq &#39;.[] | [.name, .time, .percent] | @csv&#39; &gt; foobar.csv</code></pre>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://programminghistorian.org/en/lessons/json-and-jq">Reshaping JSON with jq</a></li>
+<li><a href="https://dev.to/dannylee8/using-jq-to-convert-json-to-csv-top-level-values-f14">Using JQ to Convert JSON to CSV</a></li>
+</ul>
 <p><strong>Tried with:</strong> jq 1.5 and Ubuntu 16.04</p>
 </div>
 
