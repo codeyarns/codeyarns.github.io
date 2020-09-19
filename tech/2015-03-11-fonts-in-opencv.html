@@ -89,20 +89,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="https://codeyarns.files.wordpress.com/2015/03/20150311_opencv_fonts.png" alt=" " /><figcaption> </figcaption>
 </figure>
 <p><strong>OpenCV</strong> can be used to render text on an image buffer using the <code>putText</code> function. Several simple <strong>fonts</strong> are available in OpenCV which can be used to write text.</p>
-<p>The available fonts can be seen defined in <a href="https://github.com/Itseez/opencv/blob/master/modules/core/include/opencv2/core/core.hpp"><code>modules/core/include/opencv2/core/core.hpp</code></a> header file:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">enum</span>
-{
-    FONT_HERSHEY_SIMPLEX = <span class="dv">0</span>,
-    FONT_HERSHEY_PLAIN = <span class="dv">1</span>,
-    FONT_HERSHEY_DUPLEX = <span class="dv">2</span>,
-    FONT_HERSHEY_COMPLEX = <span class="dv">3</span>,
-    FONT_HERSHEY_TRIPLEX = <span class="dv">4</span>,
-    FONT_HERSHEY_COMPLEX_SMALL = <span class="dv">5</span>,
-    FONT_HERSHEY_SCRIPT_SIMPLEX = <span class="dv">6</span>,
-    FONT_HERSHEY_SCRIPT_COMPLEX = <span class="dv">7</span>,
-    FONT_ITALIC = <span class="dv">16</span>
+<p>The available fonts can be seen defined in <a href="https://github.com/opencv/opencv/blob/95fd61c9b4c2cbe099f84740c35587e53d55b6bb/modules/imgproc/include/opencv2/imgproc.hpp#L817"><code>modules/imgproc/include/opencv2/imgproc.hpp</code></a> header file:</p>
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="kw">enum</span> HersheyFonts {
+    FONT_HERSHEY_SIMPLEX        = <span class="dv">0</span>, <span class="co">//!&lt; normal size sans-serif font</span>
+    FONT_HERSHEY_PLAIN          = <span class="dv">1</span>, <span class="co">//!&lt; small size sans-serif font</span>
+    FONT_HERSHEY_DUPLEX         = <span class="dv">2</span>, <span class="co">//!&lt; normal size sans-serif font (more complex than FONT_HERSHEY_SIMPLEX)</span>
+    FONT_HERSHEY_COMPLEX        = <span class="dv">3</span>, <span class="co">//!&lt; normal size serif font</span>
+    FONT_HERSHEY_TRIPLEX        = <span class="dv">4</span>, <span class="co">//!&lt; normal size serif font (more complex than FONT_HERSHEY_COMPLEX)</span>
+    FONT_HERSHEY_COMPLEX_SMALL  = <span class="dv">5</span>, <span class="co">//!&lt; smaller version of FONT_HERSHEY_COMPLEX</span>
+    FONT_HERSHEY_SCRIPT_SIMPLEX = <span class="dv">6</span>, <span class="co">//!&lt; hand-writing style font</span>
+    FONT_HERSHEY_SCRIPT_COMPLEX = <span class="dv">7</span>, <span class="co">//!&lt; more complex variant of FONT_HERSHEY_SCRIPT_SIMPLEX</span>
+    FONT_ITALIC                 = <span class="dv">16</span> <span class="co">//!&lt; flag for italic font</span>
 };</code></pre></div>
-<p><code>FONT_ITALIC</code> is not a font, but can be combined with the other fonts to get italic text.</p>
+<p><code>FONT_ITALIC</code> is not a font, but is a flag that can be combined with the other fonts to get italic text.</p>
 <p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
 </div>
 
