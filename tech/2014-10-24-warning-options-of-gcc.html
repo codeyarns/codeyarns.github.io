@@ -50,79 +50,91 @@
 </header>
 <p>The GCC and G++ compilers have many warning options that can be useful to improve the quality of your code. All the warning options are listed and described <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">here</a>.</p>
 <p>Since the list of warnings is very long, GCC provides a few warning options that are a shortcut for enabling a larger bunch of warnings. These warning options are <code>-Wall</code>, <code>-Wextra</code> and <code>-Wpedantic</code>.</p>
-<p>The warnings enabled by <code>-Wall</code> and <code>-Wextra</code> is listed along with their description. However, this is not provided for <code>-Wpedantic</code>. I went through the individual warning descriptions and found the warning options enabled by <code>-Wpedantic</code>:</p>
+<h2 id="wall-and--wextra">-Wall and -Wextra</h2>
+<p>The warnings enabled by <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wall">-Wall</a> and <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wextra">-Wextra</a> is listed along with their description.</p>
+<h2 id="wpedantic">-Wpedantic</h2>
+<p>A list of warnings enabled by <code>-Wpedantic</code> is not provided in the documentation. I went through the individual warning descriptions and found the warning options enabled by <code>-Wpedantic</code>:</p>
 <pre><code>Warning options enabled by -Wpedantic:
 
--Wpointer-arith
+-Wexpansion-to-defined
 -Wlong-long
+-Wmain
+-Woverlength-strings
+-Wpointer-arith
+-Wpointer-sign
 -Wvariadic-macros
--Wvla
--Woverlength-strings</code></pre>
+-Wvla</code></pre>
+<h2 id="warnings-not-in--wall--wextra-or--wpedantic">Warnings not in -Wall, -Wextra or -Wpedantic</h2>
 <p>It can very useful to know which of the warning options are not enabled by <code>-Wall</code>, <code>-Wextra</code> and <code>-Wpedantic</code>. These are the options that might be useful for debugging or improving particular problems with your code. Again, I went through the individual warning descriptions and here they are:</p>
 <pre><code>Warning options not included by -Wall, -Wextra and -Wpedantic:
 
--Wdouble-promotion
--Wmissing-include-dirs
--Wswitch-default
--Wswitch-enum
--Wswitch-bool
--Wsync-nand
--Wsuggest-attribute=[pure|const|noreturn|format]
--Wsuggest-final-types
--Wsuggest-final-methods
--Wsystem-headers
--Wtrampolines
--Wfloat-equal
--Wtraditional
--Wtraditional-conversion
--Wdeclaration-after-statement
--Wundef
--Wshadow
--Wlarger-than=len
--Wframe-larger-than=len
--Wstack-usage=len
--Wunsafe-loop-optimizations
+-Waggregate-return
 -Wbad-function-cast
+-Wc++-compat
 -Wc90-c99-compat
 -Wc99-c11-compat
--Wc++-compat
--Wcast-qual
 -Wcast-align
--Wwrite-strings
+-Wcast-qual
 -Wconditionally-supported
 -Wconversion
--Wzero-as-null-pointer-constant
 -Wdate-time
+-Wdeclaration-after-statement
 -Wdelete-incomplete
--Wuseless-cast
--Wjump-misses-init
--Wsign-conversion
+-Wdisabled-optimization
+-Wdouble-promotion
 -Wfloat-conversion
+-Wfloat-equal
+-Wframe-larger-than=len
+-Winline
+-Winvalid-pch
+-Wjump-misses-init
+-Wlarger-than=len
 -Wlogical-op
--Waggregate-return
--Wstrict-prototypes
--Wold-style-definition
--Wmissing-prototypes
 -Wmissing-declarations
+-Wmissing-include-dirs
+-Wmissing-prototypes
+-Wnested-externs
 -Wnormalized[=&lt;none|id|nfc|nfkc&gt;]
+-Wold-style-definition
 -Wpacked
 -Wpadded
 -Wredundant-decls
--Wnested-externs
--Winline
--Winvalid-pch
--Wvector-operation-performance
--Wdisabled-optimization
+-Wshadow
+-Wsign-conversion
 -Wstack-protector
--Wunsuffixed-float-constants</code></pre>
+-Wstack-usage=len
+-Wstrict-prototypes
+-Wsuggest-attribute=[pure|const|noreturn|format]
+-Wsuggest-final-methods
+-Wsuggest-final-types
+-Wswitch-bool
+-Wswitch-default
+-Wswitch-enum
+-Wsync-nand
+-Wsystem-headers
+-Wtraditional
+-Wtraditional-conversion
+-Wtrampolines
+-Wundef
+-Wunsafe-loop-optimizations
+-Wunsuffixed-float-constants
+-Wuseless-cast
+-Wvector-operation-performance
+-Wwrite-strings
+-Wzero-as-null-pointer-constant</code></pre>
 <p>Note that I have not included the warning options that disable certain types of warning messages.</p>
+<h2 id="warnings-i-use">Warnings I use</h2>
 <p>Finally, here is the list of warnings that I like to compile with:</p>
 <pre><code>-Wall
 -Wextra
 -Wpedantic
 -Wconversion
 -Wmissing-include-dirs</code></pre>
-<p><strong>Tried with:</strong> GCC 5.0.0 online documentation</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">GCC warnings documentation</a></li>
+<li>For comparison, also see <a href="https://clang.llvm.org/docs/DiagnosticsReference.html">Clang warnings documentation</a></li>
+</ul>
 </div>
 
 <br />
