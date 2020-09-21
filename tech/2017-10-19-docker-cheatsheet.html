@@ -50,18 +50,19 @@
 </header>
 <ul>
 <li><p>To list all the images and tags from a Docker Hub repository: there does not seem to be a command to do this.</p></li>
-<li><p>To pull an image <code>imagename</code> with tag <code>latest</code>:</p></li>
+<li><p>To pull an image <code>imagename</code>:</p></li>
 </ul>
 <pre><code>$ docker pull imagename
 
 $ docker pull ubuntu
 $ docker pull nvidia/cuda</code></pre>
+<p>When no tag is specified, like above, docker automatically pulls the image with the tag <code>latest</code>.</p>
 <p>Notice that we are not specifying the domain name or URL of any Docker registry. In such cases, Docker will look for and pull <code>imagename</code> from the default Docker registry: <code>https://hub.docker.com/</code> The image name can be a single word (<code>ubuntu</code>) or a relative path (<code>nvidia/cuda</code>). For a single word image name, its tags can be seen listed at the <code>https://hub.docker.com/_/ubuntu</code>. The image name with a path has its repositories listed at <code>https://hub.docker.com/u/nvidia</code> and the tags of a particular image at <code>https://hub.docker.com/r/nvidia/cuda</code>.</p>
 <ul>
-<li>To pull the image <code>imagename</code> with the <code>tag123</code> tag:</li>
+<li>To pull an image with a specific tag, for example pulling ubuntu with <code>20.04</code> tag:</li>
 </ul>
-<pre><code>$ docker pull imagename:tag123</code></pre>
-<p>Note how the <code>:</code> character is used to separate the repository name and the tag.</p>
+<pre><code>$ docker pull ubuntu:20.04</code></pre>
+<p>Note how the <code>:</code> character is used to separate the image name and the tag. In the case of Ubuntu, the list of available tags can be viewed <a href="https://hub.docker.com/_/ubuntu/?tab=tags">here</a>. Not all registries may support viewing tags like this.</p>
 <ul>
 <li>To pull an image from a specific registry:</li>
 </ul>

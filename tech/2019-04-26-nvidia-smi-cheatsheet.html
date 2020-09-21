@@ -70,11 +70,20 @@
 </ul>
 <p>To query the parameters of a particular GPU, use its index:</p>
 <pre><code>$ nvidia-smi -q -i 9</code></pre>
+<h2 id="query-supported-clock-values">Query supported clock values</h2>
+<p>To list the supported pairs of memory and graphics clock values:</p>
+<pre><code>$ nvidia-smi -q -d SUPPORTED_CLOCKS
+$ nvidia-smi -q -d SUPPORTED_CLOCKS -i 3</code></pre>
+<p>Typically, there are only a few supported memory clock values, while the number of supported graphics clock values is high with a fine granularity.</p>
 <h2 id="query-current-values-of-gpus">Query current values of GPUs</h2>
 <p>To view how much power is being consumed by GPUs in watts:</p>
-<pre><code>$ nvidia-smi --query-gpu=power.draw --format=csv</code></pre>
+<pre><code>$ nvidia-smi --query-gpu=gpu_name,power.draw --format=csv</code></pre>
+<p>To view the VBIOS version of your GPUs:</p>
+<pre><code>$ nvidia-smi --query-gpu=gpu_name,vbios_version --format=csv</code></pre>
 <p>To get a continuous update of power consumed, GPU and memory temperatures, and current GPU and memory clock values:</p>
 <pre><code>$ nvidia-smi dmon -s pc</code></pre>
+<p>To view all the properties, like <code>gpu_name</code>, <code>power.draw</code> or <code>vbios_version</code>, that can be queried for your GPUs:</p>
+<pre><code>$ nvidia-smi --help-query-gpu</code></pre>
 <h2 id="set-gpu-clocks">Set GPU clocks</h2>
 <ul>
 <li>To reset the application clocks:</li>

@@ -69,6 +69,12 @@
 <pre><code>$ grep Xanadu *.txt</code></pre>
 <p>Note that the <code>*.txt</code> is expanded by the shell and those filenames are passed to grep. Grep does not lookup the filenames.</p>
 <ul>
+<li>To grep for special characters, like <code>tab</code> for example:</li>
+</ul>
+<pre><code>$ grep $&#39;\t&#39; *.txt</code></pre>
+<p>More information about the search for special characters can be found in the <a href="https://www.gnu.org/software/bash/manual/bash.html#ANSI_002dC-Quoting">ANSI-C Quoting</a> section of the Bash manual.</p>
+<p>I find the above tab search useful to check if there are any stray tab characters in the code base which is supposed to be using only spaces for indentation.</p>
+<ul>
 <li>To <strong>ignore case</strong> of the search text (make it case insensitive), use the <code>-i</code> option:</li>
 </ul>
 <pre><code>$ grep -i Xanadu *.txt</code></pre>
