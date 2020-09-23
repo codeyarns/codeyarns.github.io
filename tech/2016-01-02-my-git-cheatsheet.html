@@ -153,6 +153,12 @@ $ git commit</code></pre>
 </ul>
 <pre><code>$ git diff branch1 branch2 -- path/to/file
 $ git difftool branch1 branch2 -- path/to/file</code></pre>
+<p>Here the assumption is that <code>branch2</code> has the updated changes, so is placed after <code>branch1</code>.</p>
+<ul>
+<li>To get the new changes from one branch <code>from_branch</code> to another branch <code>to_branch</code> as a commit:</li>
+</ul>
+<pre><code>$ git diff to_branch from_branch | git apply --index -
+$ git commit</code></pre>
 <ul>
 <li>To find first commit of a branch:</li>
 </ul>
