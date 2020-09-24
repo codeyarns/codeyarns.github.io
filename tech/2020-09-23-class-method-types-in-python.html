@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Class method types in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.github.io/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.github.io/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.github.io/personal/">Personal Blog</a>
+  </div>
+  <div class="header" style="padding-top: 10px;">
+    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.github.io&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Class method types in Python</h1>
+<p class="date">📅 2020-Sep-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>There are 3 types of methods that can be created in a class in <strong>Python</strong>: instance methods, class methods and static methods.</p>
+<h2 id="static-method">Static method</h2>
+<ul>
+<li>This is created with the decorator <code>@staticmethod</code>.</li>
+<li>This is essentially a free function, except it is placed inside the scope or namespace of the class. So to call it you would need to invoke the class or an object of that class.</li>
+</ul>
+<h2 id="class-method">Class method</h2>
+<ul>
+<li>This is created with the decorator <code>@classmethod</code>.</li>
+<li>This method needs at least one input and that first input (typically called <code>cls</code>) is the class.</li>
+<li>This method not only gets the namespace of the class (like the static method), but additionally also has access to everything about the class. For example, it can access all the attributes of the class.</li>
+</ul>
+<h2 id="instance-method">Instance method</h2>
+<ul>
+<li>This does not have any decorator. This is the canonical method on an object or instance of the class.</li>
+<li>This method needs at least one input and that first input (typically named <code>self</code>) is an object or instance of the class.</li>
+<li>This method not only gets the namespace of the class and access to the attributes of the class, but additionally also has access to other instance members and methods of the class.</li>
+</ul>
+<p>Here is sample code that uses all three types of methods:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> A:
+    X <span class="op">=</span> <span class="dv">23</span>
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):
+        <span class="va">self</span>.y <span class="op">=</span> <span class="dv">46</span>
+
+    <span class="kw">def</span> instance_foo(<span class="va">self</span>):
+        <span class="co">&quot;&quot;&quot;Instance method.&quot;&quot;&quot;</span>
+
+        <span class="bu">print</span>(<span class="bu">dir</span>(<span class="va">self</span>))
+
+        <span class="co"># Member access</span>
+        <span class="bu">print</span>(<span class="va">self</span>.X)
+        <span class="bu">print</span>(A.X)
+        <span class="bu">print</span>(<span class="va">self</span>.y)
+
+        <span class="co"># Method access</span>
+        <span class="va">self</span>.instance_foo2()
+        <span class="va">self</span>.class_foo()
+        A.class_foo()
+        <span class="va">self</span>.static_foo()
+        A.static_foo()
+
+    <span class="kw">def</span> instance_foo2(<span class="va">self</span>):
+        <span class="cf">return</span>
+
+    <span class="at">@classmethod</span>
+    <span class="kw">def</span> class_foo(cls):
+        <span class="co">&quot;&quot;&quot;Class method.&quot;&quot;&quot;</span>
+
+        <span class="bu">print</span>(<span class="bu">dir</span>(cls))
+
+        <span class="co"># Member access</span>
+        <span class="bu">print</span>(cls.X)
+        <span class="bu">print</span>(A.X)
+
+        <span class="co"># Method access</span>
+        A.class_foo2()
+        A.static_foo()
+
+    <span class="at">@classmethod</span>
+    <span class="kw">def</span> class_foo2(cls):
+        <span class="cf">return</span>
+
+    <span class="at">@staticmethod</span>
+    <span class="kw">def</span> static_foo():
+        <span class="co">&quot;&quot;&quot;Static method.&quot;&quot;&quot;</span>
+
+        <span class="co"># Member access</span>
+        <span class="bu">print</span>(A.X)
+
+        <span class="co"># Method access</span>
+        A.static_foo2()
+        A.class_foo2()
+
+    <span class="at">@staticmethod</span>
+    <span class="kw">def</span> static_foo2():
+        <span class="cf">return</span>
+
+<span class="co"># Calling instance method</span>
+a <span class="op">=</span> A()
+a.instance_foo()
+
+<span class="co"># Calling class method</span>
+A.class_foo()
+a.class_foo()
+
+<span class="co"># Calling static method</span>
+A.static_foo()
+a.static_foo()</code></pre></div>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
+</body>
+</html>

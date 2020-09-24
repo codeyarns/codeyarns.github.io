@@ -76,9 +76,15 @@ fatal: ambiguous argument &#39;123456&#39;: unknown revision or path not in the 
 <pre><code>$ git clone git@github.com:joe/foobar --branch branch123</code></pre>
 <ul>
 <li><p><a href="2014-06-07-how-to-git-clone-only-the-latest-revision.html">To clone only the latest revision</a></p></li>
-<li><p>To unstage a staged file:</p></li>
+<li><p>To unstages all the files in the index:</p></li>
+</ul>
+<pre><code>$ git reset</code></pre>
+<p>This moves all the files in the index back into the working directory.</p>
+<ul>
+<li>To unstage a staged file:</li>
 </ul>
 <pre><code>$ git reset HEAD file123</code></pre>
+<p>This moves the file out from the index back to the working directory.</p>
 <ul>
 <li>To revert a staged or modified file back to its last commit:</li>
 </ul>
@@ -107,11 +113,11 @@ $ git revert --no-commit sha_hash_of_revision_1
 $ git commit</code></pre>
 <p>The <code>--no-commit</code> stages the reverted changes, but does not commit them. So, we follow them up with a commit.</p>
 <ul>
-<li>To delete last revision and also completely lose all of its changes:</li>
+<li>To undo or delete the last commit and also completely lose all of its changes:</li>
 </ul>
 <pre><code>$ git reset --hard HEAD~1</code></pre>
 <ul>
-<li>To delete last commit, but apply its changes to working directory:</li>
+<li>To undo or delete the last commit, and keep its changes as unstaged changes in the working directory:</li>
 </ul>
 <pre><code>$ git reset --soft HEAD~1</code></pre>
 <ul>
