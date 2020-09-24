@@ -49,16 +49,110 @@
 <p class="date">📅 2020-Sep-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>Here is some information I find useful when using bash as a shell or when writing bash scripts.</p>
-<h2 id="shell">Shell</h2>
+<h2 id="use-interactively">Use interactively</h2>
 <ul>
 <li><strong>History</strong>: Press <code>Ctrl + R</code> to invoke searching through history. Start typing the text you want to search. Bash will show the best match to your string. Repeatedly press <code>Ctrl + R</code> to cycle through the matches or continue typing more text to hone your search. When you have found the command you want to pick, press <code>Enter</code>.</li>
 </ul>
-<h2 id="script">Script</h2>
+<h2 id="use-in-script">Use in script</h2>
 <ul>
-<li>To set a value to a variable <em>only</em> if it does not already have one:</li>
+<li><strong>Write to variable</strong>: Use the <code>=</code> operator to assign to a variable:</li>
+</ul>
+<pre><code>FOOBAR=1
+FOOBAR=$(ls -l)</code></pre>
+<p>Remember to not use any spaces before and after the <code>=</code>. Otherwise Bash will interpret the statement <a href="https://unix.stackexchange.com/questions/258727/">as a command</a>.</p>
+<ul>
+<li><strong>Write to variable only if it has no value</strong>: To set a value to a variable <em>only</em> if it does not already have one we use one of the forms of <a href="https://www.gnu.org/software/bash/manual/bash.html#index-parameter-expansion">parameter expansion</a>:</li>
 </ul>
 <pre><code>FOOVAR=${FOOVAR:-/some/default/foovar/value}</code></pre>
-<p>Notice how we use the <code>:-</code> to set a value for <code>FOOVAR</code>. More information can be found under <a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">Shell Parameter Expansion</a> of the Bash Reference Manual.</p>
+<p>Notice how we use the <code>:-</code> to set a value for <code>FOOVAR</code>.</p>
+<ul>
+<li><strong>Read from variable</strong>: To read the value of a variable, prefix the variable name with <code>$</code> and enclose in double quotes:</li>
+</ul>
+<pre><code>echo &quot;$FOOBAR&quot;</code></pre>
+<p>The double quoting is needed to handle the case of the variable value having whitespace. But to have reliable scripts, it is better to always double quote all reads of variables.</p>
+<ul>
+<li><strong>Exit script with value</strong>: The <code>exit</code> function is invoked with a return value to quit the script:</li>
+</ul>
+<pre><code>exit 1
+exit $RETURN_VALUE</code></pre>
+<p>Use return value <code>0</code> on success and any non-zero value (typically <code>1</code>) to indicate failure.</p>
+<ul>
+<li><strong>Execute a program</strong>: To execute a program, like you were running at the shell, just type the program and the arguments you wish to pass to it:</li>
+</ul>
+<pre><code>cmp --quiet foobar.txt joe.txt</code></pre>
+<ul>
+<li><strong>Execute a program and gather its text output</strong>: To gather the output of a program, it is enclosed in <code>$()</code>. And typically it is easy to handle it if the output is gathered into a variable:</li>
+</ul>
+<pre><code>LS_FILES=$(ls -l)</code></pre>
+<ul>
+<li><strong>Concatenate strings</strong>: To join together strings or variable values or append or prepend strings, just place them next to each other:</li>
+</ul>
+<pre><code>echo &quot;Something&quot;&quot;Some other thing&quot;
+echo &quot;$FOOBAR&quot;.tmp
+echo .tmp&quot;$FOOBAR&quot;
+echo &quot;$FOOBAR1&quot;&quot;$FOOBAR2&quot;
+FOOBAR=&quot;$FOOBAR&quot;.tmp</code></pre>
+<ul>
+<li><strong>Execute a program and look at its exit value</strong>: Both scripts and programs at the shell return <code>0</code> on success and non-zero value on failure. The exit value of a program invoked in the script can be accessed using the <code>$?</code> variable.</li>
+</ul>
+<pre><code>cmp --quiet foobar.txt joe.txt
+CMP_EXIT_VALUE=$?</code></pre>
+<ul>
+<li><strong>Compare values</strong>: Values are compared using the <code>test</code> command. This prints out 1 because 100 is not equal to 9:</li>
+</ul>
+<pre><code>FOOBAR=100
+test $FOOBAR -eq 9
+echo $?</code></pre>
+<p>While this command can be used by itself, it is also important for writing if-else expressions. The test command has another equivalent form <code>[...]</code> that is more commonly used in if-else.</p>
+<p>These are equivalent:</p>
+<pre><code>test $FOOBAR -eq 9
+[ $FOOBAR -eq 9 ]</code></pre>
+<p>Note that it is important to put spaces after <code>[</code> and before <code>]</code> to avoid some Bash problems.</p>
+<p>There is another <code>[[</code> operator that is more complicated and is generally preferred to <code>[</code>. More info on that can be found <a href="https://www.gnu.org/software/bash/manual/bash.html#index-_005b_005b">here</a>.</p>
+<ul>
+<li><strong>For loop</strong>: A for loop reads values off a variable or output of a command, set each value in a variable and executes the statements inside the loop. A simple loop:</li>
+</ul>
+<pre><code>for FNAME in $(ls -1)
+do
+    echo &quot;File:&quot;&quot;$FNAME&quot;
+done</code></pre>
+<p>It is common practice to roll up the <code>do</code> to the previous line by using <code>;</code>:</p>
+<pre><code>for FNAME in $(ls -1); do
+    echo &quot;File:&quot;&quot;$FNAME&quot;
+done</code></pre>
+<ul>
+<li><strong>If-else</strong>: Conditional constructs can be created with <code>if</code>, <code>else</code> and <code>elif</code>. The conditions are written using the test <code>[</code> command or the <code>[[</code> commands (see above).</li>
+</ul>
+<p>A simple example:</p>
+<pre><code>FOOBAR=99
+if [ $FOOBAR -eq 100 ]
+then
+    echo &quot;FOOBAR is 100&quot;
+elif [ $FOOBAR -eq 99 ]
+then
+    echo &quot;FOOBAR is 99&quot;
+else
+    echo &quot;FOOBAR is neither 100 nor 99&quot;
+fi</code></pre>
+<p>It is common practice to roll up the <code>then</code> to the previous line by using <code>;</code>:</p>
+<pre><code>if [ $FOOBAR -eq 100 ]; then
+    echo &quot;FOOBAR is 100&quot;
+fi</code></pre>
+<ul>
+<li><strong>Check if program exists</strong>: The <a href="https://www.gnu.org/software/bash/manual/bash.html#index-command">command</a> builtin command can be used to check if a program <code>foobar</code> exists:</li>
+</ul>
+<pre><code>if ! command -v foobar --blah --blah &amp;&gt; /dev/null
+then
+    echo &quot;Program foobar does not exist&quot;
+fi</code></pre>
+<ul>
+<li><strong>Extract substring</strong>: Extracting a substring using offsets (like in Python) can be done using <a href="https://www.gnu.org/software/bash/manual/bash.html#index-parameter-expansion">parameter expansion</a>.</li>
+</ul>
+<p>This can be used for example to compare file extension:</p>
+<pre><code>if [ ${FPATH: -3} != &quot;.py&quot; ]
+then
+    echo &quot;It is a Py file&quot;
+fi</code></pre>
 </div>
 
 <br />
