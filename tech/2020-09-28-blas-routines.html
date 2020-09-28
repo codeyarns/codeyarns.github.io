@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to install Intel MKL</title>
+  <title>Code Yarns – BLAS Routines</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -45,18 +45,23 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to install Intel MKL</h1>
-<p class="date">📅 2019-May-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">BLAS Routines</h1>
+<p class="date">📅 2020-Sep-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://software.intel.com/en-us/mkl"><strong>Intel Math Kernel Library (MKL)</strong></a> provides implementations for common math routines like BLAS that are optimized for Intel CPUs. It is available free for personal and community use.</p>
+<p><a href="https://www.netlib.org/blas/"><strong>Basic Linear Algebra Subprograms (BLAS)</strong></a> define the API for level 1 (vector), level 2 (matrix-vector) and level 3 (matrix-matrix) operations. There are implementations of this API available that are optimized for particular processors, like <a href="2019-05-15-how-to-install-intel-mkl.html">MKL</a> for Intel CPUs and cuBLAS for NVIDIA GPUs.</p>
+<p>BLAS routine names are a bit cryptic and hard to decipher. The first letter denotes the precision, like S: single precision float. But for the rest of the name I usually refer to the 3 papers that defined the 3 API respectively:</p>
 <ul>
-<li>Register and download MKL from <a href="https://software.seek.intel.com/performance-libraries">here</a>. I prefer to choose the <strong>full package</strong>.</li>
-<li>For Linux, the downloaded file is a zipped tar file. For example: <code>l_mkl_2019.3.199.tgz</code>. Unzip its contents.</li>
-<li>Run its installer script:</li>
+<li>Level 1: <em>Basic Linear Algebra Subprograms for Fortran Usage</em> (1979)</li>
+<li>Level 2: <em>An extended set of FORTRAN basic linear algebra subprograms</em> (1988)</li>
+<li>Level 3: <em>A set of level 3 basic linear algebra subprograms</em> (1990)</li>
 </ul>
-<pre><code>$ sudo ./install.sh</code></pre>
-<p>The installer takes you through a console install wizard. By default, it will install to <code>/opt/intel</code>. By default, it will install MKL libraries for C/C++ and Fortran. I typically request not to install the Fortran libraries which reduces the install size by half.</p>
-<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+<p>Some of the routine names:</p>
+<ul>
+<li><strong>SDOT</strong>: Split as S-DOT. Expands to single precision float (S), dot product (DOT)</li>
+<li><strong>SAXPY</strong>: Split as S-AXPY. Expands to single precision float (S), constant times a vector plus a vector, literally <em>AX Plus Y</em> (AXPY).</li>
+<li><strong>SGEMV</strong>: Split as S-GE-MV. Expands to single precision float (S), general rectangular matrix (GE), matrix-vector product (MV).</li>
+<li><strong>SGEMM</strong>: Split as S-GE-MM. Expands to single precision float (S), general rectangular matrix (GE), matrix-matrix product (MM).</li>
+</ul>
 </div>
 
 <br />
