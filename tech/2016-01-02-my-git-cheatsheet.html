@@ -128,6 +128,12 @@ $ git commit</code></pre>
 <li>To revert non-staged non-committed changes:</li>
 </ul>
 <pre><code>$ git checkout file123</code></pre>
+<ul>
+<li>To checkin an empty directory - well that is not possible since Git will not do that. A common method folks have been using is to put an empty <code>.gitkeep</code> file in the empty directory and check that file in.</li>
+</ul>
+<pre><code>$ mkdir empty_dir
+$ touch empty_dir/.gitkeep
+$ git add empty_dir/.gitkeep</code></pre>
 <h2 id="branches">Branches</h2>
 <ul>
 <li>Create a new branch from current revision of current branch:</li>

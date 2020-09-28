@@ -53,6 +53,9 @@
 </ul>
 <pre><code>ifneq (&quot;$(wildcard $(SOME_PATH_VAR))&quot;,&quot;&quot;)</code></pre>
 <p>Here we are applying the <a href="https://www.gnu.org/software/make/manual/html_node/Wildcard-Function.html"><code>wildcard</code></a> function on the variable holding a path or a wildcard to expand it to a list of files or directories. We then check if this list is not empty by comparing it to an empty string with the <code>ifneq</code> if-not-equal check.</p>
+<ul>
+<li>When assigning to variables, do you use <code>:=</code> or <code>=</code>? According to <a href="https://www.gnu.org/software/make/manual/html_node/Flavors.html">Two Flavors of Variables</a>, using <code>:=</code> creates a <strong>simply expanded variable</strong>. The RHS of the assignment is expanded once and the resulting value is reused whenever it is used. Using <code>=</code> creates a <strong>recursively expanded variable</strong>, which is expanded everytime it is <em>used</em>. What this means is that this type of variable could hold different values during different times if its RHS expands to different values.</li>
+</ul>
 </div>
 
 <br />
