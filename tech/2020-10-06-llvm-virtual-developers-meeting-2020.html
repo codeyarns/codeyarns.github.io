@@ -122,6 +122,20 @@
 <li>Static-PIE ELF loader is in the works.</li>
 <li>It will be a few years before this has all the libc functions and can fully replace GNU libc on just Linux. Other platforms are more years away.</li>
 </ul>
+<h3 id="accelerate-matrix-multiplication-using-the-new-power-outer-product-instructions">Accelerate Matrix Multiplication Using the New POWER Outer Product Instructions</h3>
+<ul>
+<li>Talk by Baptiste Saleil and João Carvalho.</li>
+<li>MMA instructions have been added to PowerISA 3.1. So they will be available in POWER10 and later CPUs.</li>
+<li>The motivation is to speedup kernels of matrix multiplication and convolutions used in deep learning.</li>
+<li>8 new accumulators which are 512-bit registers. Each accumulator is associated with 4 existing 128-bit VSR registers.</li>
+<li>3 types of instructions have been added:</li>
+<li>Move data to and from MMA accumulators: To move data to accumulator or set to zero use primed instructions (VSR-&gt;acc). To move data from accumulator use unprimed instruction (acc-&gt;VSR).</li>
+<li>Integer MMA instructions: Multiply two 4x2 inputs to produce 4x4 output. Inputs are typically lower precision (Ex: INT16) than outputs (Ex: INT32). Available for all INT types like INT16, INT32, INT8, INT4.</li>
+<li>Floating point MMA instructions: Multiply two 4x2 inputs to produce 4x4 output. Same as INT above. Available for all supported float types: FP64, FP32, FP16 and Bfloat16.</li>
+<li>New API has been added based on LLVM compiler intrinsics.</li>
+<li>New optimization pass has been added to LLVM to identify GEMM variants in IR to map to MMA instructions.</li>
+<li>LLVM recently added <code>llvm.matrix.*</code> instructions that can be used for this mapping. <code>llvm.matrix.column.major.load()</code> to load matrix for MMA and <code>llvm.matrix.multiply()</code> to do MMA.</li>
+</ul>
 </div>
 
 <br />
