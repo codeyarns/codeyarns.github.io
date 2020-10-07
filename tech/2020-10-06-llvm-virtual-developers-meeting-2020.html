@@ -48,11 +48,11 @@
 <h1 class="title">LLVM Virtual Developers' Meeting 2020</h1>
 <p class="date">📅 2020-Oct-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I had been meaning to attend the <a href="https://llvm.org/devmtg/"><strong>LLVM Developers' Meeting</strong></a> for a couple of years now, mostly because it happens right next door in San Jose. <a href="https://llvm.org/devmtg/2020-09/">This year</a> the conference went virtual and actually made it easy for me to finally attend. Below are my notes from the talks I attended from their multiple-track agenda. This being the first time I am attending a compiler conference, let alone a LLVM one, I focused on gaining basic knowledge of the software architecture of compilers, usage of common tools and techniques in the field.</p>
-<h2 id="day-1-2020-oct-06">Day 1 (2020-Oct-06)</h2>
+<p>I had been meaning to attend the <a href="https://llvm.org/devmtg/"><strong>LLVM Developers' Meeting</strong></a> for a couple of years now, mostly because it happens right next door in San Jose. <a href="https://llvm.org/devmtg/2020-09/">This year</a> the conference went virtual and actually made it easy for me to finally attend all 3 days <strong>(Oct 6-8)</strong>. Below are my notes from the talks I attended from their multiple-track agenda. This being the first time I am attending a compiler conference, let alone a LLVM one, I focused on gaining basic knowledge of the software architecture of compilers, usage of common tools and techniques in the field.</p>
+<h2 id="day-1">Day 1</h2>
 <h3 id="everything-i-know-about-debugging-llvm">Everything I know about debugging LLVM</h3>
 <ul>
-<li>Talk by Nick Desaulniers, who works on compiling the Linux kernel with LLVM at Google. <a href="https://whova.com/portal/webapp/llvm_202010/Agenda/1162347">Talk</a>, <a href="https://clangbuiltlinux.github.io/llvm-dev-conf-2020/nick/debugging_llvm.html#/">Slides</a></li>
+<li>Talk by Nick Desaulniers, who works on compiling the Linux kernel with LLVM at Google. (<a href="https://clangbuiltlinux.github.io/llvm-dev-conf-2020/nick/debugging_llvm.html#/">Slides</a>)</li>
 <li>Begins with a brief introduction to stages of C++ code compilation with clang and the LLVM source code paths of those modules.</li>
 <li>The clang driver converts C++ code to LLVM IR. Stages in it are preprocessor, lexer, parser (generates AST), SEMA (Semantic Analysis and Template Instantiation) and LLVM IR emission (CodeGen).</li>
 <li>Abstractions of input code in LLVM are llvm::module (translation unit), llvm::function, llvm::basicBlock and llvm::Instruction.</li>
@@ -70,13 +70,13 @@
 </ul>
 <h3 id="llvm-in-a-bare-metal-environment">LLVM in a Bare Metal Environment</h3>
 <ul>
-<li>Talk by Hafiz Abid Qadeer. <a href="https://whova.com/portal/webapp/llvm_202010/Agenda/1162348">Talk</a></li>
+<li>Talk by Hafiz Abid Qadeer.</li>
 <li>A typical compiled binary or library runs atop of the OS and with the support of dynamically linked libraries. This talk was about how to compile a binary that can run baremetal on hardware with no OS in between using the LLVM toolchain.</li>
 <li>I dropped out halfway from this talk because this was a topic which was not relevant to me.</li>
 </ul>
 <h3 id="branch-coverage-squeezing-more-out-of-llvm-source-based-code-coverage">Branch Coverage: Squeezing more out of LLVM Source-based Code Coverage</h3>
 <ul>
-<li>Talk by Alan Phipps. <a href="https://whova.com/portal/webapp/llvm_202010/Agenda/1162325">Talk</a></li>
+<li>Talk by Alan Phipps.</li>
 <li>LLVM's coverage tool has support for function, line and region coverage. But it does not have branch coverage, which the speaker added.</li>
 <li>Counters are used at function, statement and condition and incremented when they are executed.</li>
 <li>Using simple if conditions, the speaker explained how he added counters to add branch coverage.</li>
@@ -85,10 +85,42 @@
 </ul>
 <h3 id="checked-c-adding-memory-safety-support-to-llvm">Checked C: Adding memory safety support to LLVM</h3>
 <ul>
-<li>Talk by Mandeep Singh Grang and Katherine Kjeer. <a href="https://whova.com/portal/webapp/llvm_202010/Agenda/1162346/">Talk</a></li>
+<li>Talk by Mandeep Singh Grang and Katherine Kjeer.</li>
 <li>Checked C adds 3 new pointer types to C to handle buffer overflow and null pointer dereference.</li>
 <li>New pointer types are <code>_Ptr&lt;T&gt;</code>, <code>_Array_ptr&lt;T&gt;</code> and <code>_Nt_array_ptr&lt;T&gt;</code>.</li>
 <li>There exists a Checked C tool that can convert C code to Checked C code.</li>
+</ul>
+<h2 id="day-2">Day 2</h2>
+<h3 id="using-clang-tidy-for-customized-checkers-and-large-scale-source-tree-refactoring">Using clang-tidy for customized checkers and large scale source tree refactoring</h3>
+<ul>
+<li>Talk by Vince Bridgers.</li>
+<li>Most bugs are introduced early in the development process, but discovered and fixed late. Thus the cost of having a bug in the code is pretty high. Weeding out bugs as early as possible reduces software cost.</li>
+<li>Types of program analysis tools:</li>
+<li>Compiler diagnostics: Warnings from GCC and Clang. Part of compilation.</li>
+<li>Linters and style checkers: Use text/AST matching. An extra step after compilation.</li>
+<li>Static analysis: cppcheck, GCC 10+, clang. These use symbolic execution. An extra step after compilation.</li>
+<li>Dynamic analysis: valgrind, gcc, clang. Injection of runtime checks or library. Long runtimes due to running extra code. An extra step after compilation.</li>
+<li>LLVM compiler flow is: Frontend -&gt; Optimizer -&gt; CodeGen</li>
+<li>clang-tidy: Uses AST matchers to find and replace patterns. It has full access to AST and preprocessor. There are 200+ existing checks. It is extensible to add custom checks.</li>
+<li><code>clang-tidy --list-checks</code>: To list all currently active checks. This is <em>not</em> the full list of available checks.</li>
+<li><code>clang-tidy --list-checks -checks=*</code>: Lists all available checks.</li>
+<li><code>clang-tidy ... -checks=-*,&lt;your specific check&gt;</code>: To pick out a specific check to apply.</li>
+<li><code>clang-tidy ... --fix</code>: Not just check, but also fix the errors found.</li>
+<li><a href="https://clang.llvm.org/extra/clang-tidy/checks/list.html">Full list</a> of available checks. Checks with fixes are indicated in the second column.</li>
+<li><code>clang-query</code> is an interactive tool to play around with clang C++ API to query AST and figure out the calls to match a pattern.</li>
+<li>Write the new custom check (and fix) in C++ code and add to clang-tidy using <code>add_new_check.py &lt;category&gt; &lt;check name&gt;</code></li>
+<li>There are clang-tidy tools to apply checks across an entire codebase in parallel without the fixes overwriting on each other.</li>
+</ul>
+<h3 id="llvm-libc-current-status-challenges-and-future-plans">LLVM Libc: Current Status, Challenges and Future Plans</h3>
+<ul>
+<li>Talk by Siva Chandra Reddy.</li>
+<li>Motivations to create a new cleanroom implementation of libc: sanitizer friendly, use standard C/C++ and no assembly and to make it modular so that users can mix libc pieces from different libc implementations (like GNU libc and MUSL).</li>
+<li>LLVM libc uses C++ templates internally to reduce code for different variants of math functions.</li>
+<li>threads.h (mutex and thread functions) and signal.h will be platform specific code.</li>
+<li>mmap, munmap: Used for creation and destruction of thread stacks for threads.</li>
+<li>Loader: It starts the user application calling main at the end and also cleans up after the application has ended.</li>
+<li>Static-PIE ELF loader is in the works.</li>
+<li>It will be a few years before this has all the libc functions and can fully replace GNU libc on just Linux. Other platforms are more years away.</li>
 </ul>
 </div>
 
