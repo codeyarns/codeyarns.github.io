@@ -49,8 +49,18 @@
 <p class="date">📅 2020-Oct-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>I had been meaning to attend the <a href="https://llvm.org/devmtg/"><strong>LLVM Developers' Meeting</strong></a> for a couple of years now, mostly because it happens right next door in San Jose. <a href="https://llvm.org/devmtg/2020-09/">This year</a> the conference went virtual and actually made it easy for me to finally attend all 3 days <strong>(Oct 6-8)</strong>. Below are my notes from the talks I attended from their multiple-track agenda. This being the first time I am attending a compiler conference, let alone a LLVM one, I focused on gaining basic knowledge of the software architecture of compilers, usage of common tools and techniques in the field.</p>
+<h2 id="overall-review-of-the-conference">Overall review of the conference</h2>
+<p>This was my first virtual conference and I was highly skeptical if it would work out. I was pleasantly surprised how well the conference was!</p>
+<ul>
+<li>There is a good mix of talks about introductory topics, useful tools, and usage tutorials. I had never been to a compiler conference and I learnt so much practical information about LLVM and GCC compilers and associated tools. I will be sure to attend this conference every year.</li>
+<li>The organizers used a service called Whova to organize and host the entire conference. Whova made it easy to look at the agenda, choose talks, attend talks, switch between talks and it has a good Android app too.</li>
+<li>The talks are pre-recorded, so they all finished on time, with a good pace and had 5-10 minutes of Q&amp;A. You have no idea how fantastic the pre-recorded on-time talks mean to me. This is because my biggest gripe in conferences is that many speakers spend their entire time on 2 starting slides, and then ram through 30 slides in the last 5 minutes and then go and eat up the Q&amp;A time too. That sucks. For this conference, I saw that for a few speakers, who might have taken longer time, the organizers had edited their talks down to the designated time.</li>
+<li>The Whova interface allowed attendees to ask questions and vote on them. After each pre-recorded talk was played out, there was a live <strong>Q&amp;A</strong> session with the speaker and a chair. The chair would ask the speaker the questions we had typed in during the talk. There was a <strong>chat</strong> section in each talk for the attendees to chat amongst us too.</li>
+<li>After the talk is over, it is uploaded to and available on Youtube. Sadly, only the pre-recorded part of the talk is uploaded, not the live Q&amp;A at the end.</li>
+<li>There were <strong>coffee breaks</strong> in a virtual room where you could gather around virtual tables and talk with the other attendee avatars. I did not try this since the schedule was too packed that I need the break time for myself.</li>
+</ul>
 <h2 id="day-1">Day 1</h2>
-<h3 id="everything-i-know-about-debugging-llvm">Everything I know about debugging LLVM</h3>
+<h3 id="everything-i-know-about-debugging-llvm"><a href="https://www.youtube.com/watch?v=5vmJuLfIpY4">Everything I know about debugging LLVM</a></h3>
 <ul>
 <li>Talk by Nick Desaulniers, who works on compiling the Linux kernel with LLVM at Google. (<a href="https://clangbuiltlinux.github.io/llvm-dev-conf-2020/nick/debugging_llvm.html#/">Slides</a>)</li>
 <li>Begins with a brief introduction to stages of C++ code compilation with clang and the LLVM source code paths of those modules.</li>
@@ -68,13 +78,13 @@
 <li>LLVM weekly and blog are good resources.</li>
 <li>&quot;The master has failed more times than the disciple has even tried.&quot;</li>
 </ul>
-<h3 id="llvm-in-a-bare-metal-environment">LLVM in a Bare Metal Environment</h3>
+<h3 id="llvm-in-a-bare-metal-environment"><a href="https://www.youtube.com/watch?v=o5GA8ZGZyrk">LLVM in a Bare Metal Environment</a></h3>
 <ul>
 <li>Talk by Hafiz Abid Qadeer.</li>
 <li>A typical compiled binary or library runs atop of the OS and with the support of dynamically linked libraries. This talk was about how to compile a binary that can run baremetal on hardware with no OS in between using the LLVM toolchain.</li>
 <li>I dropped out halfway from this talk because this was a topic which was not relevant to me.</li>
 </ul>
-<h3 id="branch-coverage-squeezing-more-out-of-llvm-source-based-code-coverage">Branch Coverage: Squeezing more out of LLVM Source-based Code Coverage</h3>
+<h3 id="branch-coverage-squeezing-more-out-of-llvm-source-based-code-coverage"><a href="https://www.youtube.com/watch?v=NbcZeodxvgc">Branch Coverage: Squeezing more out of LLVM Source-based Code Coverage</a></h3>
 <ul>
 <li>Talk by Alan Phipps.</li>
 <li>LLVM's coverage tool has support for function, line and region coverage. But it does not have branch coverage, which the speaker added.</li>
@@ -83,7 +93,7 @@
 <li>MC/DC is a future work once branch coverage is checked into LLVM.</li>
 <li>GCC gcov (console output) and lcov (HTML output) are the competitors which already have branch coverage, with some caveats.</li>
 </ul>
-<h3 id="checked-c-adding-memory-safety-support-to-llvm">Checked C: Adding memory safety support to LLVM</h3>
+<h3 id="checked-c-adding-memory-safety-support-to-llvm"><a href="https://www.youtube.com/watch?v=AIlBWIiV68U">Checked C: Adding memory safety support to LLVM</a></h3>
 <ul>
 <li>Talk by Mandeep Singh Grang and Katherine Kjeer.</li>
 <li>Checked C adds 3 new pointer types to C to handle buffer overflow and null pointer dereference.</li>
@@ -91,7 +101,7 @@
 <li>There exists a Checked C tool that can convert C code to Checked C code.</li>
 </ul>
 <h2 id="day-2">Day 2</h2>
-<h3 id="using-clang-tidy-for-customized-checkers-and-large-scale-source-tree-refactoring">Using clang-tidy for customized checkers and large scale source tree refactoring</h3>
+<h3 id="using-clang-tidy-for-customized-checkers-and-large-scale-source-tree-refactoring"><a href="https://www.youtube.com/watch?v=GCJxnApRJM4">Using clang-tidy for customized checkers and large scale source tree refactoring</a></h3>
 <ul>
 <li>Talk by Vince Bridgers.</li>
 <li>Most bugs are introduced early in the development process, but discovered and fixed late. Thus the cost of having a bug in the code is pretty high. Weeding out bugs as early as possible reduces software cost.</li>
@@ -113,7 +123,7 @@
 <li>Write the new custom check (and fix) in C++ code and add to clang-tidy using <code>add_new_check.py &lt;category&gt; &lt;check name&gt;</code></li>
 <li>There are clang-tidy tools to apply checks across an entire codebase in parallel without the fixes overwriting on each other.</li>
 </ul>
-<h3 id="llvm-libc-current-status-challenges-and-future-plans">LLVM Libc: Current Status, Challenges and Future Plans</h3>
+<h3 id="llvm-libc-current-status-challenges-and-future-plans"><a href="https://www.youtube.com/watch?v=Ae8WdR_1z_4">LLVM Libc: Current Status, Challenges and Future Plans</a></h3>
 <ul>
 <li>Talk by Siva Chandra Reddy.</li>
 <li>Motivations to create a new cleanroom implementation of libc: sanitizer friendly, use standard C/C++ and no assembly and to make it modular so that users can mix libc pieces from different libc implementations (like GNU libc and MUSL).</li>
@@ -124,7 +134,7 @@
 <li>Static-PIE ELF loader is in the works.</li>
 <li>It will be a few years before this has all the libc functions and can fully replace GNU libc on just Linux. Other platforms are more years away.</li>
 </ul>
-<h3 id="accelerate-matrix-multiplication-using-the-new-power-outer-product-instructions">Accelerate Matrix Multiplication Using the New POWER Outer Product Instructions</h3>
+<h3 id="accelerate-matrix-multiplication-using-the-new-power-outer-product-instructions"><a href="https://www.youtube.com/watch?v=qG9NbJnEXaQ">Accelerate Matrix Multiplication Using the New POWER Outer Product Instructions</a></h3>
 <ul>
 <li>Talk by Baptiste Saleil and João Carvalho.</li>
 <li>MMA instructions have been added to PowerISA 3.1. So they will be available in POWER10 and later CPUs.</li>
@@ -139,6 +149,33 @@
 <li>New API has been added based on LLVM compiler intrinsics.</li>
 <li>New optimization pass has been added to LLVM to identify GEMM variants in IR to map to MMA instructions.</li>
 <li>LLVM recently added <code>llvm.matrix.*</code> instructions that can be used for this mapping. <code>llvm.matrix.column.major.load()</code> to load matrix for MMA and <code>llvm.matrix.multiply()</code> to do MMA.</li>
+</ul>
+<h3 id="matrix-support-in-clang-and-llvm"><a href="https://www.youtube.com/watch?v=cPFZFSROxLk">Matrix Support in Clang and LLVM</a></h3>
+<ul>
+<li>Talk by Florian Hahn.</li>
+<li>Support for multiplication of <em>small</em> matrices is now added. This is for matrices of sizes ranging from 2x2 to 16x16. These matrices are small enough to fit in the vector registers of common CPUs.</li>
+<li>The matrices are column major by default.</li>
+<li>Supporting matrix types in LLVM/Clang guarantees vector code generation for this code and also removes unnecessary memory access.</li>
+<li>For C/C++ code Clang supports:
+<ul>
+<li>New matrix type with number of columns and rows specified at compile time.</li>
+<li>Operation <code>*</code> defined for multiplication of matrices and <code>+</code> and <code>-</code> defined for elementwise addition and subtraction of matrices.</li>
+<li><code>[][]</code> defined as element subscript operator for matrices.</li>
+<li>New builtins for transpose, store to memory (with user strides) and load from memory (with user strides).</li>
+<li>More details at <a href="https://clang.llvm.org/docs/MatrixTypes.html">Matrix types</a>.</li>
+</ul></li>
+<li>In LLVM IR:
+<ul>
+<li>New instructions of the form <code>@llvm.matrix.*</code>.</li>
+<li>The matrix is embedded in flat vectors.</li>
+</ul></li>
+</ul>
+<h3 id="lightning-talks"><a href="https://www.youtube.com/watch?v=TSMputNvHlk">Lightning Talks</a></h3>
+<p>I noted the following from the talks which were 5-minutes each:</p>
+<ul>
+<li>NVIDIA has contributed <strong>Flang</strong>, Fortran compiler frontend to LLVM.</li>
+<li>There was a person who had written a CUDA backend for SyCL</li>
+<li>LLDB debugger supports scripting using Python (<code>import lldb</code>) and other languages like Lua using SWIG.</li>
 </ul>
 </div>
 
