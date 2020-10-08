@@ -95,11 +95,13 @@
 <ul>
 <li>Talk by Vince Bridgers.</li>
 <li>Most bugs are introduced early in the development process, but discovered and fixed late. Thus the cost of having a bug in the code is pretty high. Weeding out bugs as early as possible reduces software cost.</li>
-<li>Types of program analysis tools:</li>
+<li>Types of program analysis tools:
+<ul>
 <li>Compiler diagnostics: Warnings from GCC and Clang. Part of compilation.</li>
 <li>Linters and style checkers: Use text/AST matching. An extra step after compilation.</li>
 <li>Static analysis: cppcheck, GCC 10+, clang. These use symbolic execution. An extra step after compilation.</li>
 <li>Dynamic analysis: valgrind, gcc, clang. Injection of runtime checks or library. Long runtimes due to running extra code. An extra step after compilation.</li>
+</ul></li>
 <li>LLVM compiler flow is: Frontend -&gt; Optimizer -&gt; CodeGen</li>
 <li>clang-tidy: Uses AST matchers to find and replace patterns. It has full access to AST and preprocessor. There are 200+ existing checks. It is extensible to add custom checks.</li>
 <li><code>clang-tidy --list-checks</code>: To list all currently active checks. This is <em>not</em> the full list of available checks.</li>
@@ -128,10 +130,12 @@
 <li>MMA instructions have been added to PowerISA 3.1. So they will be available in POWER10 and later CPUs.</li>
 <li>The motivation is to speedup kernels of matrix multiplication and convolutions used in deep learning.</li>
 <li>8 new accumulators which are 512-bit registers. Each accumulator is associated with 4 existing 128-bit VSR registers.</li>
-<li>3 types of instructions have been added:</li>
+<li>3 types of instructions have been added:
+<ul>
 <li>Move data to and from MMA accumulators: To move data to accumulator or set to zero use primed instructions (VSR-&gt;acc). To move data from accumulator use unprimed instruction (acc-&gt;VSR).</li>
 <li>Integer MMA instructions: Multiply two 4x2 inputs to produce 4x4 output. Inputs are typically lower precision (Ex: INT16) than outputs (Ex: INT32). Available for all INT types like INT16, INT32, INT8, INT4.</li>
 <li>Floating point MMA instructions: Multiply two 4x2 inputs to produce 4x4 output. Same as INT above. Available for all supported float types: FP64, FP32, FP16 and Bfloat16.</li>
+</ul></li>
 <li>New API has been added based on LLVM compiler intrinsics.</li>
 <li>New optimization pass has been added to LLVM to identify GEMM variants in IR to map to MMA instructions.</li>
 <li>LLVM recently added <code>llvm.matrix.*</code> instructions that can be used for this mapping. <code>llvm.matrix.column.major.load()</code> to load matrix for MMA and <code>llvm.matrix.multiply()</code> to do MMA.</li>
