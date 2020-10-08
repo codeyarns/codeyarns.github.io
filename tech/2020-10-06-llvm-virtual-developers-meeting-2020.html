@@ -177,6 +177,35 @@
 <li>There was a person who had written a CUDA backend for SyCL</li>
 <li>LLDB debugger supports scripting using Python (<code>import lldb</code>) and other languages like Lua using SWIG.</li>
 </ul>
+<h2 id="day-3">Day 3</h2>
+<h3 id="mlir-tutorial"><a href="https://www.youtube.com/watch?v=uhXT4RXjzLI">MLIR Tutorial</a></h3>
+<ul>
+<li>By Mehdi Amini and River Riddle.</li>
+<li>MLIR is a framework to build a compiler IR. We can define type systems, operations in it.</li>
+<li>Uses could be for various code generation strategies and to support accelerators.</li>
+<li>MLIR is being used to process graphs in TensorFlow/XLA/ONNX and for Flang IR.</li>
+<li>The rest of the tutorial shows how to use MLIR for a Toy language. The content of this tutorial is <a href="https://mlir.llvm.org/docs/Tutorials/Toy/">online</a>.</li>
+<li>Operations are the most basic component of MLIR. Everything is an operation in MLIR. MLIR operation is different from LLVM instruction.</li>
+<li>All operations share the same structure. Operations can have regions, blocks and other operations.</li>
+<li>Dialect defines the rules and semantics of an IR. It has namespace, operations, types and passes.</li>
+</ul>
+<h3 id="cil-common-mlir-dialect-for-cc-and-fortran"><a href="https://www.youtube.com/watch?v=mNA5bwsKepQ">CIL : Common MLIR Dialect for C/C++ and Fortran</a></h3>
+<ul>
+<li>By Prashantha NR, Vinay Madhusudan and Ranjith Kumar.</li>
+<li>Motivation for CIL:
+<ul>
+<li>C/C++ does not have a middle level IR. LLVM IR is too low level for some optimizations. C/C++ STL constructs need a high level IR for high level optimizations.</li>
+<li>Fortran defined its own IR, it could have reused C++ IR instead.</li>
+</ul></li>
+<li>Uses:
+<ul>
+<li>LLVM does not remove empty foreach loops in C++.</li>
+<li>To handle multi-dimensional arrays.</li>
+<li>To handle heterogenous computing.</li>
+</ul></li>
+<li>CIL is implemented as a MLIR dialect to handle C/C++ and Fortran. After CIL-level of optimizations, it can then be lowered to LLVM IR for low level optimizations.</li>
+<li>CIL-LTO: Combines multiple MLIR modules into a single MLIR module. Useful to do LTO like function inlining, etc.</li>
+</ul>
 </div>
 
 <br />
