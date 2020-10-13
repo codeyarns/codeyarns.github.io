@@ -51,8 +51,15 @@
 <p>Here is some information I find useful when using bash as a shell or when writing bash scripts.</p>
 <h2 id="use-interactively">Use interactively</h2>
 <ul>
-<li><strong>History</strong>: Press <code>Ctrl + R</code> to invoke searching through history. Start typing the text you want to search. Bash will show the best match to your string. Repeatedly press <code>Ctrl + R</code> to cycle through the matches or continue typing more text to hone your search. When you have found the command you want to pick, press <code>Enter</code>.</li>
+<li><p><strong>History</strong>: Press <code>Ctrl + R</code> to invoke searching through history. Start typing the text you want to search. Bash will show the best match to your string. Repeatedly press <code>Ctrl + R</code> to cycle through the matches or continue typing more text to hone your search. When you have found the command you want to pick, press <code>Enter</code>.</p></li>
+<li><p><strong>Get help at the shell</strong>:</p></li>
 </ul>
+<pre><code>$ man bash
+$ help set</code></pre>
+<ul>
+<li><strong>Current set of options</strong>: List the <code>set</code> options that are currently enabled:</li>
+</ul>
+<pre><code>$ echo $-</code></pre>
 <h2 id="use-in-script">Use in script</h2>
 <ul>
 <li><strong>Write to variable</strong>: Use the <code>=</code> operator to assign to a variable:</li>
@@ -153,6 +160,19 @@ fi</code></pre>
 then
     echo &quot;It is a Py file&quot;
 fi</code></pre>
+<ul>
+<li><strong>Exit script on error</strong>: Exit the script when any command returns non-zero result or when any command in a pipe sequence fails.</li>
+</ul>
+<pre><code>set -e
+set -o pipefail</code></pre>
+<ul>
+<li><strong>Exit script on unset variable</strong>: Exit the script if any unset variable is used.</li>
+</ul>
+<pre><code>set -u</code></pre>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://wizardzines.com/comics/bash-errors/" class="uri">https://wizardzines.com/comics/bash-errors/</a></li>
+</ul>
 </div>
 
 <br />
