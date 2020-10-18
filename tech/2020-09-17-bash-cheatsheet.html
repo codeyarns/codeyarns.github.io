@@ -65,13 +65,38 @@ $ help set</code></pre>
 <li><strong>Write to variable</strong>: Use the <code>=</code> operator to assign to a variable:</li>
 </ul>
 <pre><code>FOOBAR=1
-FOOBAR=$(ls -l)</code></pre>
+FOOBAR=$(ls -l)
+FOOBAR=${ANOTHER_VAR}</code></pre>
 <p>Remember to not use any spaces before and after the <code>=</code>. Otherwise Bash will interpret the statement <a href="https://unix.stackexchange.com/questions/258727/">as a command</a>.</p>
 <ul>
-<li><strong>Write to variable only if it has no value</strong>: To set a value to a variable <em>only</em> if it does not already have one we use one of the forms of <a href="https://www.gnu.org/software/bash/manual/bash.html#index-parameter-expansion">parameter expansion</a>:</li>
+<li><strong>Parameter expansion</strong>: Bash provides many methods to expand the value of a parameter or variable:</li>
 </ul>
-<pre><code>FOOVAR=${FOOVAR:-/some/default/foovar/value}</code></pre>
-<p>Notice how we use the <code>:-</code> to set a value for <code>FOOVAR</code>.</p>
+<pre class="shell"><code># Same as $foobar
+${foobar}
+
+# If variable is not set or null, use a different value
+${foobar:-&quot;some other value&quot;}
+
+# If variable is not set or null, print your error message and exit
+${foobar:?&quot;Error: foobar is not set&quot;}
+
+# Get length of value of variable
+${#foobar}
+
+# Remove prefix pattern from value in variable
+${foobar#&quot;tmp_&quot;}
+
+# Remove suffix pattern from value in variable
+${foobar%&quot;.tmp&quot;}
+
+# Search and replace first instance of string with another string in variable
+${foobar/&quot;find this&quot;/&quot;replace with this&quot;}
+
+# Search and replace all instances of string with another string in variable
+${foobar//&quot;find this&quot;/&quot;replace with this&quot;}
+
+# Get a substring of value in variable
+${foobar:offset:len}</code></pre>
 <ul>
 <li><strong>Read from variable</strong>: To read the value of a variable, prefix the variable name with <code>$</code> and enclose in double quotes:</li>
 </ul>
@@ -171,7 +196,9 @@ set -o pipefail</code></pre>
 <pre><code>set -u</code></pre>
 <h2 id="references">References</h2>
 <ul>
+<li><a href="https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html">Shell parameter expansion</a> in Bash manual</li>
 <li><a href="https://wizardzines.com/comics/bash-errors/" class="uri">https://wizardzines.com/comics/bash-errors/</a></li>
+<li><a href="https://wizardzines.com/comics/parameter-expansion/" class="uri">https://wizardzines.com/comics/parameter-expansion/</a></li>
 </ul>
 </div>
 
