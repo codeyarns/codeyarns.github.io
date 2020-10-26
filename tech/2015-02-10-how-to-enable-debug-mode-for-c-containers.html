@@ -46,7 +46,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to enable debug mode for C++ containers</h1>
-<p class="date">📅 2015-Feb-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2015-Feb-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#container'>container</a>, <a href='index.html#cpp'>cpp</a>, <a href='index.html#debug-mode'>debug mode</a>, <a href='index.html#vector'>vector</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>The <strong>containers</strong> of the C++ standard library are incredibly useful to write compact code without having to reinvent basic data structures. Since the focus of C++ is always on performance, error checking is not performed in the use of these containers. For example, in a <code>std::vector</code> with <code>35</code> elements, you can access <code>v[39]</code> without C++ blinking an eye. You will of course get back invalid data that might silently poison the runtime execution of the program. <code>std::vector</code> offers a safer <code>at(39)</code> method that does the bounds checking, but it is slower and so not all code will use it. When a strange runtime error does occur in code using C++ containers, how to debug it?</p>
 <p>If you are using GCC, thankfully it provides an alternate <strong>debug mode</strong> version of the C++ standard library where all the calls perform error checking. Finding your error becomes easier by using these <a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/debug_mode.html">debug mode C++ standard library containers</a>.</p>

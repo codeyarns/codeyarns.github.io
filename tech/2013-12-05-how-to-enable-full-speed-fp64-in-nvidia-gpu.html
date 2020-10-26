@@ -46,7 +46,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to enable full speed FP64 in NVIDIA GPU</h1>
-<p class="date">📅 2013-Dec-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Dec-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#double'>double</a>, <a href='index.html#float'>float</a>, <a href='index.html#gpu'>gpu</a>, <a href='index.html#nvidia'>nvidia</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>In many recent NVIDIA GPUs shipping in graphics cards, the FP64 cores are executed at <strong>reduced speed</strong>. For example, the <strong>GTX Titan</strong> is capable of achieving a <code>double</code> performance that is 1/3 of <code>float</code> performance. However, by default the card does FP64 at a reduced speed of 1/24 of FP32. This is done because the primary audience of these consumer cards are gamers. And games use mostly FP32 computations. Enabling full speed FP64 reduces the FP32 performance by a bit since the maximum clock speed needs to be reduced and also increases power consumption since all the power hungry FP64 cores are running.</p>
 <p>To enable <strong>full speed</strong> FP64 on Linux, make sure you have the latest NVIDIA drivers installed. Open the <code>NVIDIA X Server Settings</code> application. Go to the section with the name of your graphics card &gt; PowerMizer and enable the <code>CUDA - Double precision</code> option. That is it, your CUDA application should now run with full speed FP64 on the GPU.</p>

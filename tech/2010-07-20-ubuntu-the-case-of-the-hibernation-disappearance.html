@@ -46,7 +46,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">Ubuntu: The Case of the Hibernation Disappearance</h1>
-<p class="date">📅 2010-Jul-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2010-Jul-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#errors'>errors</a>, <a href='index.html#hibernation'>hibernation</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>I recently noticed that <strong>hibernation</strong> had stopped working in <strong>Ubuntu</strong>. I had set up Ubuntu to hibernate whenever I closed the laptop lid. On opening the lid later, I found that there was a hibernation error message and it had failed. On closer scrutiny, I found that the hibernate option had disappeared from the Ubuntu Ctrl-Alt-Del dialog. It had also disappeared from the Shutdown menu and from Power Options. Running <strong><a href="http://wiki.archlinux.org/index.php/Pm-utils">pm-hibernate</a></strong> at the Terminal would silently fail too.</p>
 <p>After the initial surprise, I found the reason: the swap partition had disappeared! Hibernation requires a swap partition that is mounted correctly to function. The culprit was the Disk Manager that ships in Windows 7. It had silently removed the swap partition when I had edited some other partitions! I was able to get hibernate working again after I discovered this.</p>

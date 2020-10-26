@@ -46,7 +46,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to update environment variable of existing Tmux session</h1>
-<p class="date">📅 2016-May-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2016-May-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#display'>display</a>, <a href='index.html#fish'>fish</a>, <a href='index.html#tmux'>tmux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>I use <strong>Byobu</strong> (which is a wrapper on <strong>Tmux</strong>) to maintain shell sessions on the many servers I login to. I connect, disconnect and reconnect to the same Tmux sessions on these servers. When I reconnect back to an existing Tmux session, a new value is assigned to the <code>DISPLAY</code> environment variable. If I create a new Tmux session, by opening a new split or tab, then Tmux sets the new <code>DISPLAY</code> value correctly for that session. However, existing Tmux sessions have their old <code>DISPLAY</code> value which gives the familiar <code>cannot open display</code> error. I can find out the new <code>DISPLAY</code> value and set it manually in the existing session, but that is cumbersome.</p>
