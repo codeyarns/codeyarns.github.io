@@ -1,0 +1,20 @@
+#!/bin/bash
+git rm personal/2010-03-21-mercurial-the-definitive-guide.html
+git rm personal/2010-04-25-learning-java.html
+git rm personal/2010-05-25-effective-stl.html
+git rm personal/2010-07-14-microsoft-file.html
+git rm personal/2010-10-30-net-book-zero.html
+git rm personal/2010-10-31-the-c-standard-library.html
+git rm personal/2010-12-04-learning-the-vi-and-vim-editors.html
+git rm personal/2010-12-14-the-c-programming-language.html
+git rm personal/2011-02-06-cuda-by-example.html
+git rm personal/2011-04-20-eloquent-javascript.html
+git rm personal/2011-06-18-windows-7-the-missing-manual.html
+git rm personal/2011-07-02-excel-2007-for-dummies.html
+git rm personal/2011-09-24-windows-sysinternals-administrators-reference.html
+git rm personal/2011-10-10-version-control-by-example.html
+git rm personal/2011-12-11-inside-the-machine.html
+git rm personal/2012-03-17-algorithms-4th-edition.html
+git rm personal/2012-04-15-the-udacity-cs101-course.html
+git rm personal/2012-12-06-pragmatic-version-control-using-git.html
+git rm personal/2013-01-13-ubuntu-made-easy.html
