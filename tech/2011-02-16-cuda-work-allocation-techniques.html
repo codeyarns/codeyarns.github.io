@@ -85,7 +85,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">CUDA: Work Allocation Techniques</h1>
 <p class="date">📅 2011-Feb-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://codeyarns.files.wordpress.com/2011/02/20110216_work_allocation.png"><img src="http://codeyarns.files.wordpress.com/2011/02/20110216_work_allocation.png" alt=" " /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2011/02/20110216_work_allocation.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <p><strong>Threads</strong> in CUDA are the workers who work on data. In the CUDA architecture, threads are grouped into <strong>blocks</strong> and blocks are grouped into a <strong>grid</strong>. Given such an architecture, there are 2 common techniques to allocate the data among the threads. Or put another way, there are 2 ways for each thread to pick the data it should work on.</p>
 <p><strong>Technique 1: Chunks of Data Per Thread</strong></p>
 <p>In this technique, data is broken into many contiguous <strong>chunks</strong> and each thread works on one (or none) such chunk. Here is sample code for illustration:</p>

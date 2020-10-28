@@ -89,7 +89,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">convert</span> scans-*.jpeg fooBar.pdf
 <span class="ex">Segmentation</span> fault</code></pre></div>
 <p>There is a <a href="http://homepage.uibk.ac.at/~c705283/archives/2010/03/19/ubuntu_karmic_imagemagick_convert_jpg_to_pdf_segmentation_fault/index.html">workaround</a> for this error by using a <strong>compression method</strong> that is different (JPEG) from the default method (Zip). But, the real longterm solution seems to be a switch to <a href="http://www.graphicsmagick.org/"><strong>GraphicsMagick</strong></a>.</p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/04/2010_04_12_graphicsmagick_logo.png"><img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_12_graphicsmagick_logo.png" alt=" " /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_12_graphicsmagick_logo.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <p>What is this GraphicsMagick you say? It is a fork of the ImageMagick code aimed at efficiency, performance and stability. It pains me to see projects in the opensource world forking like this even today. GraphicsMagick is available on Ubuntu repositories and can be installed using the Synaptic Package Manager by looking for the <strong>graphicsmagick</strong> package. Using GraphicsMagick for the JPEG-PDF conversion worked fine without any errors. GraphicsMagick commands and parameters are the same as ImageMagick, except with a prefix of <strong>gm</strong>:</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">gm</span> convert scans-*.jpeg fooBar.pdf</code></pre></div>
 </div>

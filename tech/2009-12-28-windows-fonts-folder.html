@@ -49,18 +49,26 @@
 <p class="date">📅 2009-Dec-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#explorer'>explorer</a>, <a href='index.html#fonts'>fonts</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>Windows Explorer displays the contents of the <em>Fonts</em> folder (<code>C:\Windows\Fonts</code>) in a special way. You may need to be aware of this if you need the complete path of a particular font. For example, as input to a command-line program (say adding text to an image using <em><a href="http://www.imagemagick.org/">Imagemagick</a></em>) or in your application code.</p>
-<p><a href="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fonts_explorer.png"><img src="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fonts_explorer.png" alt=" " /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fonts_explorer.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <ul>
 <li><p>Explorer does not display the filenames of the fonts. You cannot see the filename no matter what kind of <em>View</em> you switch Explorer to.</p></li>
 <li><p>Also, Explorer displays the fonts grouped by <em>Font Family</em>. (Note that the <em>Fonts</em> directory is actually completely flat, there are no subdirectories in it. The Font Family grouping is GUI sugar by Explorer.) Only obscure fonts which are alone are displayed as individual fonts. The Font Family is like a folder in Explorer, open it to see the individual fonts.</p></li>
 </ul>
-<p><a href="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fontextdll.png"><img src="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fontextdll.png" alt=" " /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fontextdll.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <p><em>fontext.dll</em> seems to be the special DLL that Explorer uses for displaying the Fonts folder. (<code>C:\Windows\System32\fontext.dll</code>) It can be observed that Windows creates a temporary <em>fontext.dll.mui</em> whenever the Fonts folder is opened in Explorer, this indicates that this DLL is being used. (<em>.mui</em> or <em>MUI</em> is <a href="http://en.wikipedia.org/wiki/Multilingual_User_Interface"><em>Multilingual User Interface</em></a>, a Windows technology to enable user interfaces in multiple languages on the same computer.) There seems to be very little information available about this DLL.</p>
 <p>Anyway, to see the font filename, right-click the individual font and open its <em>Properties</em>. (For example, <em>Consolas Bold</em> turns out to be <em>consolab.ttf</em>)</p>
 <p>Or you could open up a command window and look at the contents of the <code>C:\Windows\Fonts</code> directory. You will also notice that <em>all</em> the fonts actually have only a <strong>8.3</strong> filename! Even the newer Vista and Windows 7 fonts!</p>
-<p><a href="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fonts_cmd.png"><img src="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fonts_cmd.png" alt=" " /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2009/12/2009_12_28_fonts_cmd.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <p>PS: I also noted with a tinge of sadness that the old <em><a href="http://blogs.msdn.com/oldnewthing/archive/2008/07/14/8730046.aspx">Add Fonts</a></em> dialog box had finally been laid to rest in Windows 7. It cannot be found or invoked from anywhere. This decrepit looking dialog box had been in Windows since the days of Windows 3.1 for almost 20 years (upto Vista).</p>
-<p><a href="http://codeyarns.files.wordpress.com/2009/12/2010_01_23_add_fonts.png"><img src="http://codeyarns.files.wordpress.com/2009/12/2010_01_23_add_fonts.png" alt=" " /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2009/12/2010_01_23_add_fonts.png" alt=" " /><figcaption> </figcaption>
+</figure>
 </div>
 
 <br />

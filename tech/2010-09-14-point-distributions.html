@@ -87,13 +87,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </header>
 <p>A variety of <strong>point distributions</strong> are used in computer graphics and computational geometry to test out algorithms. Below are a few common point distributions and code to generate points in 3D. Assume that <code>random()</code> is a random function that returns a floating point value in the range (0.0-1.0).</p>
 <p><strong>Uniform Distribution</strong></p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_uniform.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_uniform.png" alt=" " /></a></p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/09/20100914_uniform.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <p>Uniform distribution is the most common distribution used in practice. Generate point using random values of x, y and z.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">x = random();
 y = random();
 z = random();</code></pre></div>
 <p><strong>Sphere Distribution</strong></p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_sphere.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_sphere.png" alt=" " /></a>A sphere has only surface and no volume. So, we restrict points to the surface of a sphere.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/09/20100914_sphere.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">do</span> {
     x = random() - <span class="fl">0.5</span>;
     y = random() - <span class="fl">0.5</span>;
@@ -103,7 +107,9 @@ z = random();</code></pre></div>
 
 } <span class="cf">while</span> ( ( d &lt; ( <span class="fl">0.45</span> * <span class="fl">0.45</span> ) || ( d &gt; ( <span class="fl">0.5</span> * <span class="fl">0.5</span>) ) ) );</code></pre></div>
 <p><strong>Half Sphere Distribution</strong></p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_half_sphere.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_half_sphere.png" alt=" " /></a>Calling it a half-sphere and not a hemisphere, since it does not have the planar surface in the middle. It is just a sphere sliced off about the middle.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/09/20100914_half_sphere.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">do</span> {
     x = random() - <span class="fl">0.5</span>;
     y = random() - <span class="fl">0.5</span>;
@@ -113,7 +119,9 @@ z = random();</code></pre></div>
 
 } <span class="cf">while</span> ( ( z &gt;= <span class="fl">0.2</span> ) || ( d &lt; ( <span class="fl">0.45</span> * <span class="fl">0.45</span> ) ) || ( d &gt; ( <span class="fl">0.5</span> * <span class="fl">0.5</span>) ) );</code></pre></div>
 <p><strong>Ball Distribution</strong></p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_ball.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_ball.png" alt=" " /></a>A ball is a filled sphere, it is full of points inside.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/09/20100914_ball.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">do</span> {
     x = random() - <span class="fl">0.5</span>;
     y = random() - <span class="fl">0.5</span>;
@@ -123,7 +131,9 @@ z = random();</code></pre></div>
 
 } <span class="cf">while</span> ( d &gt; ( <span class="fl">0.49</span> * <span class="fl">0.49</span> ) );</code></pre></div>
 <p><strong>Empty Ball Distribution</strong></p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_empty_ball.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_empty_ball.png" alt=" " /></a>Empty ball is the subtraction of a ball from a cube. Everything outside the ball is filled and the inside core is empty.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/09/20100914_empty_ball.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="cf">do</span> {
     x = random() - <span class="fl">0.5</span>;
     y = random() - <span class="fl">0.5</span>;
@@ -133,7 +143,7 @@ z = random();</code></pre></div>
 
 } <span class="cf">while</span> ( d &lt; ( <span class="fl">0.45</span> * <span class="fl">0.45</span> ) );</code></pre></div>
 <p><strong>Ellipsoid Distribution</strong></p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_ellipsoid.png"></a><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_ellipsoid1.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_ellipsoid1.png" alt=" " /></a> Ellipsoid has a surface but no volume inside.</p>
+<p><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_ellipsoid1.png" alt=" " /> Ellipsoid has a surface but no volume inside.</p>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">a = <span class="fl">0.5</span>;
 b = <span class="fl">0.5</span>;
 c = <span class="fl">0.2</span>;
@@ -147,7 +157,9 @@ c = <span class="fl">0.2</span>;
 
 } <span class="cf">while</span> ( ( d &lt;= <span class="fl">1.4</span> ) || ( d &gt;= <span class="fl">1.5</span> ) );</code></pre></div>
 <p><strong>Pancake Distribution</strong></p>
-<p><a href="http://codeyarns.files.wordpress.com/2010/09/20100914_pancake.png"><img src="http://codeyarns.files.wordpress.com/2010/09/20100914_pancake.png" alt=" " /></a>Pancake is a filled ellipsoid.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/09/20100914_pancake.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">a = <span class="fl">0.5</span>;
 b = <span class="fl">0.5</span>;
 c = <span class="fl">0.2</span>;

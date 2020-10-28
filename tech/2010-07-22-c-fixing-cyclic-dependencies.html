@@ -85,7 +85,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1 class="title">C++: Fixing Cyclic Dependencies</h1>
 <p class="date">📅 2010-Jul-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#dependencies'>dependencies</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://codeyarns.files.wordpress.com/2010/07/2010_07_22_cpp_dependencies1.png"><img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_22_cpp_dependencies1.png" alt=" " /></a>C++ gives enough rope (or freedom) to hang oneself. As the source code grows over time, it can easily get so hairy that it results in <strong>cyclic dependencies</strong>. This typically rears its ugly head when one tries to add a new member to a class and find that the resulting mess cannot be compiled due to cyclic dependencies. Other times, the dependencies can be hidden and manifest themselves only when certain source files are compiled in a certain order. Either way, header and source files with such problems not only depict a sad state of the code, but also have a bad hierarchy of header file inclusion which results in very long compile times.</p>
+<figure>
+<img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_22_cpp_dependencies1.png" alt=" " /><figcaption> </figcaption>
+</figure>
 <p>Here are some guidelines from experience that I have found useful to handle or fix cyclic dependencies in C++ code. These can be used on new code or to polish ugly old code back to a shiny state.</p>
 <ul>
 <li><p>Remove all <strong>global</strong> variables, functions, constants and enums. Convert them to <strong>static</strong> methods, variables and constants in already existing classes or create new utility classes for them. Enums should be moved into classes too. Now you have only classes to deal with, there are no other <em>kinds</em> of entities at the source file level.</p></li>
