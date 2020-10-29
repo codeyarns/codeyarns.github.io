@@ -46,11 +46,19 @@
 <div class="contentbox">
 <header>
 <h1 class="title">Sumatra PDF as Ebook Reader</h1>
-<p class="date">📅 2012-Jun-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#calibre'>calibre</a>, <a href='index.html#ebook'>ebook</a>, <a href='index.html#epub'>epub</a>, <a href='index.html#mobi'>mobi</a>, <a href='index.html#sumatra-pdf'>sumatra pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2012-Jun-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ebook'>ebook</a>, <a href='index.html#sumatra-pdf'>sumatra pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The simple and versatile <a href="http://codeyarns.wordpress.com/2011/05/18/sumatra-pdf/"><strong>Sumatra PDF</strong></a> has been gaining useful features with every new version. It can now be used as an <strong>ebook reader</strong> too. It can handle the <strong>EPUB</strong> and <strong>Mobi</strong> formats.</p>
+<p>The simple and versatile <a href="2011-05-18-sumatra-pdf.html"><strong>Sumatra PDF</strong></a> has been gaining useful features with every new version. It can now be used as an <strong>ebook reader</strong> too, capable of handling the <strong>EPUB</strong> and <strong>Mobi</strong> formats.</p>
 <p>After comparing it with the <a href="http://codeyarns.wordpress.com/2012/02/26/view-ebooks-with-calibre/">Calibre ebook reader</a>, I actually prefer Sumatra PDF for reading ebooks. The Calibre sets of tools are many and heavy. Its ebook reader has a crappy interface and the display is not that great either. In contrast, Sumatra PDF gives a dead-simple interface that put the content upfront and all one needs to do is flip to the next or previous page.</p>
-<p><strong>Tried with</strong>: Sumatra PDF 2.1.1</p>
+<h2 id="how-to-find-in-ebook">How to Find in ebook</h2>
+<p>You will that the <strong>Find</strong> option is not available when viewing a ebook in Sumatra PDF. This is because it switches to a different UI for ebooks where this option is not available.</p>
+<p>To get back the Find option, we need to request Sumatra PDF to use the normal UI for ebooks too. To do this:</p>
+<ul>
+<li>Go to Settings -&gt; Advanced Options. This opens the config file <code>%USERPROFILE%\AppData\Local\SumatraPDF\SumatraPDF-settings.txt</code> in your favorite editor.</li>
+<li>Find the <code>EbookUI</code> section and change the <code>UseFixedPageUI = false</code> option there to <code>UseFixedPageUI = true</code>.</li>
+<li>Close Sumatra PDF and reopen it. You should see the Find option at the top in the toolbar now.</li>
+</ul>
+<p><strong>Tried with</strong>: Sumatra PDF 3.2</p>
 </div>
 
 <br />
