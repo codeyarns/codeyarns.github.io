@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – What I loved reading in 2019</title>
+  <title>Code Yarns – Matplotlib GDK display failed error</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -45,22 +45,22 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">What I loved reading in 2019</h1>
-<p class="date">📅 2020-Jan-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#book'>book</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Matplotlib GDK display failed error</h1>
+<p class="date">📅 2020-Oct-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#matplotlib'>matplotlib</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I had set a pretty low bar of 12 books, one per month, going into 2019. Even though the year was busy, it turned out to be not so hard to find time to read 2 or more books every month. I ended up finishing <strong>30 books</strong> and about the same number were abandoned in the middle. Keeping aside some time during Friday and Saturday nights for reading and a pair of isolation headphones helped.</p>
-<p>A list of all books I read can be seen in my <a href="https://www.goodreads.com/user/year_in_books/2019/1145513">GoodReads year in books</a>.</p>
-<p>A short list of the ones I loved are linked to my reviews below:</p>
-<ul>
-<li><a href="2019-12-01-twenty-thousand-leagues-under-the-sea.html">Twenty Thousand Leagues Under the Sea</a></li>
-<li><a href="2019-03-17-the-devotion-of-suspect-x.html">The Devotion of Suspect X</a></li>
-<li><a href="2019-03-11-colorless-tsukuru-tazaki-and-his-years-of-pilgrimage.html">Colorless Tsukuru Tazaki and His Years of Pilgrimage</a></li>
-<li><a href="2019-02-10-the-name-of-the-game-is-a-kidnapping.html">The Name of the Game is a Kidnapping</a></li>
-<li>20th Century Boys (Vols 1-3): First two volumes were fantastic, lost interest in volume 3.</li>
-<li><a href="2019-02-03-annihilation.html">Annihilation</a></li>
-<li><a href="2019-02-17-racing-the-beam.html">Racing the Beam</a></li>
-<li><a href="2019-05-12-ready-player-one.html">Ready Player One</a></li>
-</ul>
+<h2 id="problem">Problem</h2>
+<p>I had a Python script to generate a plot and write it to an image file using <strong>Matplotlib</strong>. But the matplotlib import line in the script started failing on a certain computer with this error:</p>
+<pre><code>&gt;&gt;&gt; import matplotlib.pyplot as pyplot
+
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+
+(my_plotter.py:13763): Gdk-CRITICAL **: 13:58:24.057: gdk_cursor_new_for_display: assertion &#39;GDK_IS_DISPLAY (display)&#39; failed</code></pre>
+<h2 id="solution">Solution</h2>
+<p>It seemed like GDK was being used to render the plot and it was requiring a correct X display configuration for some reason.</p>
+<p>On a hunch, I checked the <code>DISPLAY</code> of my shell and it was not set. So I set it to the default value and this fixed the above error:</p>
+<pre><code>export DISPLAY=:0.0</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
 </div>
 
 <br />
