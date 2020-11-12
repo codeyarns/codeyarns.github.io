@@ -84,15 +84,35 @@
 $ nvidia-smi -q -d SUPPORTED_CLOCKS -i 3</code></pre>
 <p>Typically, there are only a few supported memory clock values, while the number of supported graphics clock values is high with a fine granularity.</p>
 <h2 id="query-current-values-of-gpus">Query current values of GPUs</h2>
-<p>To view how much power is being consumed by GPUs in watts:</p>
+<ul>
+<li>To view how much power is being consumed by GPUs in watts:</li>
+</ul>
 <pre><code>$ nvidia-smi --query-gpu=gpu_name,power.draw --format=csv</code></pre>
-<p>To view the VBIOS version of your GPUs:</p>
+<ul>
+<li>To view the VBIOS version of your GPUs:</li>
+</ul>
 <pre><code>$ nvidia-smi --query-gpu=gpu_name,vbios_version --format=csv</code></pre>
-<p>To get a continuous update of power consumed, GPU and memory temperatures, and current GPU and memory clock values:</p>
+<ul>
+<li>To view the PCI device-vendor ID of your GPUs:</li>
+</ul>
+<pre><code>$ nvidia-smi --query-gpu=pci.device_id --format=csv
+pci.device_id
+0x1D8110DE</code></pre>
+<p>In the above output, <code>0x1D81</code> is the device ID and <code>0x10DE</code> is the NVIDIA vendor ID.</p>
+<ul>
+<li>To get a continuous update of power consumed, GPU and memory temperatures, and current GPU and memory clock values:</li>
+</ul>
 <pre><code>$ nvidia-smi dmon -s pc</code></pre>
-<p>To view all the properties, like <code>gpu_name</code>, <code>power.draw</code> or <code>vbios_version</code>, that can be queried for your GPUs:</p>
+<ul>
+<li>To view all the properties, like <code>gpu_name</code>, <code>power.draw</code> or <code>vbios_version</code>, that can be queried for your GPUs:</li>
+</ul>
 <pre><code>$ nvidia-smi --help-query-gpu</code></pre>
+<p>You must be able to find pretty much every detail of your GPU by using the above command.</p>
 <h2 id="set-gpu-clocks">Set GPU clocks</h2>
+<ul>
+<li>Typically, sudo permissions are required to set clocks. To allow unrestricted access to set clocks:</li>
+</ul>
+<pre><code>$ nvidia-smi -acp UNRESTRICTED</code></pre>
 <ul>
 <li>To reset the application clocks:</li>
 </ul>
