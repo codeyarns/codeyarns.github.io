@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to create a Ubuntu installer USB flash drive on Windows</title>
+  <title>Code Yarns – How to install WSL</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,17 +53,31 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to create a Ubuntu installer USB flash drive on Windows</h1>
-<p class="date">📅 2013-Mar-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">How to install WSL</h1>
+<p class="date">📅 2020-Nov-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#wsl'>wsl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
+<p><strong>Windows Subsystem for Linux (WSL)</strong> enables users on Windows to install Linux distributions and use Linux from inside a terminal. There are two versions of WSL: WSL1 and WSL2. The latter requires your Windows version to be 1903 or later, with build to be 18362 or later. My personal Windows computer qualified for WSL2, so I installed that and then Ubuntu 20.04 using the following steps:</p>
 <ul>
-<li><p><strong>Download</strong> the <strong>ISO</strong> file of the Ubuntu you want to install. I prefer to <a href="2013-03-17-how-to-download-ubuntu-desktop-using-bittorrent.html">download using BitTorrent</a> for speed and robustness.</p></li>
-<li><p>Download and install the <a href="http://www.linuxliveusb.com/"><strong>Linux Live USB Creator</strong></a>, also called <strong>LiLi</strong>. It is installed with the name <strong>LiLi USB Creator</strong> in the Windows Start menu or Start screen.</p></li>
-<li><p>Plug in a USB flash drive of capacity 1GB or more. It should be mounted by Windows as a drive.</p></li>
-<li><p>Run LiLi. Yes, it has a weird and funky GUI. Choose the USB drive and downloaded Ubuntu ISO file for installation. If the settings you chose are correct, you should be able to click the <strong>Lightning</strong> button at the bottom. LiLi should make a bootable Ubuntu installer on your USB flash drive.</p></li>
+<li>Enable WSL - open Powershell as Administrator and enter:</li>
 </ul>
-<p>Restart Windows and boot from the USB flash drive to install your Ubuntu.</p>
-<p><strong>Tried with:</strong> Windows 8 x64 and Ubuntu 12.04.2 LTS</p>
+<pre><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</code></pre>
+<p>Restart your computer.</p>
+<ul>
+<li>Enable Virtual Machine Platform - open Powershell as Administrator and enter:</li>
+</ul>
+<pre><code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code></pre>
+<p>Restart your computer.</p>
+<ul>
+<li><p>Download the Linux kernel update package from <a href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">here</a> and install it.</p></li>
+<li><p>Choose WSL2 - open Powershell as Administrator and enter:</p></li>
+</ul>
+<pre><code>wsl --set-default-version 2</code></pre>
+<ul>
+<li><p>Open the <strong>Windows Store</strong> app, search for your Linux distribution and install it. I chose Ubuntu.</p></li>
+<li><p>Type <strong>Ubuntu</strong> in the Start menu to launch it. The first time it starts, it will ask you to create a username and password. After this, whenever you type Ubuntu, it will launch you as the default user into a shell.</p></li>
+</ul>
+<p><strong>Reference:</strong> <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Windows Subsystem for Linux Installation Guide for Windows 10</a></p>
+<p><strong>Tried with:</strong> Windows 10 Version 1909 (Build 18363.1198)</p>
 </div>
 
 <br />
