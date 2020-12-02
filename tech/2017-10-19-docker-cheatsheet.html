@@ -56,6 +56,22 @@
 <h1 class="title">Docker cheatsheet</h1>
 <p class="date">📅 2017-Oct-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#docker'>docker</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
+<h2 id="build">Build</h2>
+<p>You need to create a <strong>Dockerfile</strong> that describes the plan to build an image. Here is a simple Dockerfile named <code>Dockerfile</code> that creates an image based off <code>busybox</code> Linux image into which we are copying a local file:</p>
+<pre><code>FROM busybox
+COPY haha.cpp /somedir/haha.cpp</code></pre>
+<ul>
+<li>To build this Docker image:</li>
+</ul>
+<pre><code>$ docker build .
+$ docker build -f Dockerfile .</code></pre>
+<p>This looks for a <code>Dockerfile</code> in the current directory and also uses all the content of the current directory as the <strong>build context</strong>. Having a big build context with lots of files and directories in it can slow down a Docker build.</p>
+<p>The build ends printing the hash of the image it has created. This image can be run using <code>docker run</code> commands (see below) by using this hash.</p>
+<ul>
+<li>To build a Docker image that picks the build context from a different directory:</li>
+</ul>
+<pre><code>$ docker build -f /path/to/Dockerfile path/of/build/context</code></pre>
+<h2 id="remote-registry">Remote registry</h2>
 <ul>
 <li><p>To list all the images and tags from a Docker Hub repository: there does not seem to be a command to do this.</p></li>
 <li><p>To pull an image <code>imagename</code>:</p></li>
@@ -78,6 +94,7 @@ $ docker pull nvidia/cuda</code></pre>
 <p>You might need to first authenticate to the registry domain before the pull will work:</p>
 <pre><code>$ docker login &lt;registry.domain&gt;</code></pre>
 <p>After a successful login, Docker will store a key provided by the registry server in your <code>~/.docker/config.json</code>. It will reuse this key for subsequent pull or push to this registry.</p>
+<h2 id="local-images">Local images</h2>
 <ul>
 <li>To view Docker images available on your local computer:</li>
 </ul>
@@ -101,6 +118,34 @@ $ docker pull nvidia/cuda</code></pre>
 <li>To remove an image with the <code>tag123</code> tag:</li>
 </ul>
 <pre><code>$ docker rmi repo1/foobar2:tag123</code></pre>
+<ul>
+<li>To remove dangling images:</li>
+</ul>
+<pre><code>$ docker image prune</code></pre>
+<ul>
+<li>To remove all unused images:</li>
+</ul>
+<pre><code>$ docker image prune -a</code></pre>
+<ul>
+<li><strong>Filtering</strong> can be used with all the prune commands. For example, to remove all unused images older than a week:</li>
+</ul>
+<pre><code>$ docker image prune -a --filter &quot;until=168h&quot;</code></pre>
+<ul>
+<li>To remove unused containers, images and data:</li>
+</ul>
+<pre><code>$ docker system prune</code></pre>
+<p>This is useful when your filesystem runs out of space due to docker images.</p>
+<ul>
+<li>To remove <em>all</em> unused containers, images and data:</li>
+</ul>
+<pre><code>$ docker system prune -a</code></pre>
+<p>This pretty much removes all Docker data on your system. This is useful when you really want to clean out everything.</p>
+<ul>
+<li>To look at Docker's disk usage:</li>
+</ul>
+<pre><code>$ docker system df</code></pre>
+<p>In this output, the <em>size</em> of the <em>Images</em> is the disk space occupied by your Docker images.</p>
+<h2 id="containers">Containers</h2>
 <ul>
 <li>To run a Docker image as a container:</li>
 </ul>
@@ -131,16 +176,6 @@ $ docker pull nvidia/cuda</code></pre>
 <li>To remove a container, provide its hash:</li>
 </ul>
 <pre><code>$ docker rm 45235345</code></pre>
-<ul>
-<li>To remove all images not associated with a container:</li>
-</ul>
-<pre><code>$ docker system prune</code></pre>
-<p>This is useful when your filesystem runs out of space due to docker images.</p>
-<ul>
-<li>To remove all unused images:</li>
-</ul>
-<pre><code>$ docker system prune -a</code></pre>
-<p>This pretty much removes all the Docker images on your system.</p>
 <p><strong>Tried with:</strong> Docker 18.09.6 and Ubuntu 18.04</p>
 </div>
 
