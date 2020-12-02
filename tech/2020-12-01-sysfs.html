@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to find size of webpage</title>
+  <title>Code Yarns – sysfs</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,20 +53,30 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to find size of webpage</h1>
-<p class="date">📅 2020-Apr-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#firefox-developer-tools'>firefox developer tools</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">sysfs</h1>
+<p class="date">📅 2020-Dec-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#motherboard'>motherboard</a>, <a href='index.html#motherboard'>motherboard</a>, <a href='index.html#sysfs'>sysfs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<figure>
-<img src="2020-04-30-how-to-find-size-of-webpage.png" alt=" " /><figcaption> </figcaption>
-</figure>
-<p>Most contemporary webpages we visit are quite heavy, downloading and using lots of big files. It can be instructive to understand the actual size of a webpage. This can be done easily using the <strong>Developer Tools</strong> built into <strong>Firefox</strong>.</p>
+<p><a href="https://man7.org/linux/man-pages/man5/sysfs.5.html"><strong>sysfs</strong></a> is a pseudo-filesystem that is used by the Linux kernel to share information and data structures from the kernel that might be useful to tools and users. This is typically found mounted at <code>/sys</code> and I typically use it to get information about the devices connected to my computer.</p>
 <ul>
-<li>Visit the webpage you want to measure. Press F12 to open Developer Tools. This window typically opens at the bottom of Firefox.</li>
-<li>Open the <strong>Network</strong> tab. Here you have two options: <strong>Reload</strong> the page so that Firefox can log the network requests. The other option is to do <strong>Performance Analysis</strong>.</li>
-<li>Click Reload and watch the network requests while Firefox reloads the webpage. Once the webpage is loaded, you can see the <strong>size of the webpage</strong> listed at the bottom-left of the window. This is listed as two numbers: <code>X / Y transferred</code>. <code>Y</code> is the total size of the files downloaded. Since some of these downloaded files could be compressed, <code>X</code> is the total uncompressed size.</li>
-<li>You could also click the Stopclock icon (Performance Analysis) at the bottom-left. This runs two rounds of analysis: with an empty cache and with a primed cache. It displays both of these stats using pie charts that split the content into HTML, JS, Images, XHR and CSS. For the size of a webpage, what we want is the <strong>Empty cache</strong> details. Here you can again find the <strong>Size</strong> and <strong>Transferred Size</strong> items which indicate the size of the webpage.</li>
+<li>Information about the sysfs directory hierarchy can be found in its manpage:</li>
 </ul>
-<p><strong>Tried with:</strong> Firefox 75.0</p>
+<pre><code>$ man 5 sysfs</code></pre>
+<ul>
+<li>To get information about my <strong>motherboard</strong> (or baseboard):</li>
+</ul>
+<pre><code>$ ls -1 /sys/devices/virtual/dmi/id/board_*
+/sys/devices/virtual/dmi/id/board_asset_tag
+/sys/devices/virtual/dmi/id/board_name
+/sys/devices/virtual/dmi/id/board_serial
+/sys/devices/virtual/dmi/id/board_vendor
+/sys/devices/virtual/dmi/id/board_version
+
+$ cat /sys/devices/virtual/dmi/id/board_vendor
+ASRock
+
+$ cat /sys/devices/virtual/dmi/id/board_name
+X99 Extreme4</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
 </div>
 
 <br />

@@ -54,20 +54,27 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to get hardware info using dmidecode</h1>
-<p class="date">📅 2015-Jan-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dmidecode'>dmidecode</a>, <a href='index.html#ram'>ram</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2015-Jan-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dmidecode'>dmidecode</a>, <a href='index.html#motherboard'>motherboard</a>, <a href='index.html#ram'>ram</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
 <img src="https://codeyarns.files.wordpress.com/2015/01/20150107-dmidecode1.png" alt="Information about RAM from dmidecode" /><figcaption>Information about RAM from dmidecode</figcaption>
 </figure>
-<p><code>dmidecode</code> is an useful application on Linux to obtain hardware information from DMI or SMBIOS of your system.</p>
-<p>This application is typically installed on Ubuntu. If not, it is easy to get it:</p>
+<p><code>dmidecode</code> is an useful application on Linux to obtain intimate details about all the hardware components in your computer. This is the information from the DMI or System Management BIOS (SMBIOS).</p>
+<ul>
+<li>Installing this tool is easy:</li>
+</ul>
 <pre><code>$ sudo apt install dmidecode</code></pre>
-<p>Running it without any parameters, dumps all the info it knows:</p>
+<ul>
+<li>By default, it lists the entire hardware info of your system:</li>
+</ul>
 <pre><code>$ sudo dmidecode</code></pre>
-<p>Instead, what you typically need is info about a specific part of your computer. This can be dumped using the <code>--type</code> parameter. Please see <code>man dmidecode</code> to find out all the values of integers that can be passed to this parameter.</p>
-<p>For example, to get information about the RAM (memory) slots on your computer:</p>
-<pre><code>$ sudo dmidecode --type 17</code></pre>
-<p><strong>Tried with:</strong> DMIDecode 2.12 and Ubuntu 14.04</p>
+<ul>
+<li>To query information about a particular <strong>type</strong> of hardware component, use the <code>--type</code> parameter:</li>
+</ul>
+<pre><code>$ sudo dmidecode --type memory
+$ sudo dmidecode --type baseboard</code></pre>
+<p>The <code>memory</code> type tells me the actual DIMMs that are filled and with how much RAM. The <code>baseboard</code> type provides me the motherboard brand, model and version.</p>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
 </div>
 
 <br />

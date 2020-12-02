@@ -54,11 +54,22 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to find the amount of RAM in Ubuntu</h1>
-<p class="date">📅 2013-Mar-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ram'>ram</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Mar-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ram'>ram</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>To find the amount of <strong>RAM</strong> installed on a <strong>Ubuntu</strong> system from the commandline:</p>
-<pre><code>$ grep MemTotal /proc/meminfo</code></pre>
-<p><strong>Tried with:</strong> Ubuntu 12.04.2 LTS</p>
+<p>In typical Linux fashion, there are many ways to discover how much RAM is in your system.</p>
+<ul>
+<li>Using the <strong>proc</strong> pseudo-filesystem:</li>
+</ul>
+<pre><code>$ cat /proc/meminfo | grep MemTotal</code></pre>
+<ul>
+<li>Using the <strong>free</strong> command:</li>
+</ul>
+<pre><code>$ free -h</code></pre>
+<ul>
+<li>Using the <a href="2015-01-07-how-to-get-hardware-info-using-dmidecode.html"><strong>dmidecode</strong></a> tool:</li>
+</ul>
+<pre><code>$ sudo dmidecode --type memory</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 18.04</p>
 </div>
 
 <br />
