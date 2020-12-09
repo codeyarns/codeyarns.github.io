@@ -62,13 +62,18 @@
 </ul>
 <pre><code>$ sudo apt install clang-format</code></pre>
 <ul>
-<li>To invoke it on a C++ file:</li>
+<li>To format a C++ file:</li>
 </ul>
 <pre><code>$ clang-format foobar.cpp</code></pre>
+<p>This formats the lines in the input file and spits out the formatted lines to stdout.</p>
 <ul>
-<li>To make it use the styles specified in a <code>.clang-format</code> file in one of the parent dirs of source file:</li>
+<li>To format a C++ file <strong>inplace</strong>:</li>
 </ul>
-<pre><code>$ clang-format -style=file</code></pre>
+<pre><code>$ clang-format -i foobar.cpp</code></pre>
+<ul>
+<li>To format a file using the styles specified in a <code>.clang-format</code> config file in one of the parent dirs of source file:</li>
+</ul>
+<pre><code>$ clang-format -style=file foobar.cpp</code></pre>
 </div>
 
 <br />
