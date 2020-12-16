@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – How to use MIG</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "3wadqgw95m");
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header" style="padding-top: 10px;">
+    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">How to use MIG</h1>
+<p class="date">📅 2020-Dec-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#docker'>docker</a>, <a href='index.html#mig'>mig</a>, <a href='index.html#nvidia-smi'>nvidia-smi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><strong>Multi-Instance GPU</strong> (MIG) is a feature on the A100 GPU to slice it into GPU instances and GPU instances into compute instances. Note that many of the commands listed below might need to be run as <code>sudo</code>.</p>
+<h2 id="nvidia-smi">nvidia-smi</h2>
+<ul>
+<li>To enable or disable MIG mode:</li>
+</ul>
+<pre><code>$ nvidia-smi -mig=1
+$ nvidia-smi -mig=0</code></pre>
+<ul>
+<li>To list all possible GPU instance placements:</li>
+</ul>
+<pre><code>$ nvidia-smi mig -lgip
++--------------------------------------------------------------------------+
+| GPU instance profiles:                                                   |
+| GPU   Name          ID    Instances   Memory     P2P    SM    DEC   ENC  |
+|                           Free/Total   GiB              CE    JPEG  OFA  |
+|==========================================================================|
+|   0  MIG 1g.5gb     19     7/7        4.75       No     14     0     0   |
+|                                                          1     0     0   |
++--------------------------------------------------------------------------+
+|   0  MIG 2g.10gb    14     3/3        9.75       No     28     1     0   |
+|                                                          2     0     0   |
++--------------------------------------------------------------------------+
+|   0  MIG 3g.20gb     9     2/2        19.62      No     42     2     0   |
+|                                                          3     0     0   |
++--------------------------------------------------------------------------+
+|   0  MIG 4g.20gb     5     1/1        19.62      No     56     2     0   |
+|                                                          4     0     0   |
++--------------------------------------------------------------------------+
+|   0  MIG 7g.40gb     0     1/1        39.50      No     98     5     0   |
+|                                                          7     1     1   |
++--------------------------------------------------------------------------+
+
+$ nvidia-smi mig -lgipp
+GPU  0 Profile ID 19 Placements: {0,1,2,3,4,5,6}:1
+GPU  0 Profile ID 14 Placements: {0,2,4}:2
+GPU  0 Profile ID  9 Placements: {0,4}:4
+GPU  0 Profile ID  5 Placement : {0}:4
+GPU  0 Profile ID  0 Placement : {0}:8</code></pre>
+<ul>
+<li>To create GPU instances:</li>
+</ul>
+<pre><code>$ nvidia-smi mig -cgi 19,19,19,19,19,19,19 -i 0
+Successfully created GPU instance ID 13 on GPU  0 using profile MIG 1g.5gb (ID 19)
+Successfully created GPU instance ID 11 on GPU  0 using profile MIG 1g.5gb (ID 19)
+Successfully created GPU instance ID 12 on GPU  0 using profile MIG 1g.5gb (ID 19)
+Successfully created GPU instance ID  7 on GPU  0 using profile MIG 1g.5gb (ID 19)
+Successfully created GPU instance ID  8 on GPU  0 using profile MIG 1g.5gb (ID 19)
+Successfully created GPU instance ID  9 on GPU  0 using profile MIG 1g.5gb (ID 19)
+Successfully created GPU instance ID 10 on GPU  0 using profile MIG 1g.5gb (ID 19)</code></pre>
+<ul>
+<li>To create compute instances:</li>
+</ul>
+<pre><code>$ nvidia-smi mig -cci -i 0
+Successfully created compute instance ID  0 on GPU  0 GPU instance ID  7 using profile MIG 1g.5gb (ID  0)
+Successfully created compute instance ID  0 on GPU  0 GPU instance ID  8 using profile MIG 1g.5gb (ID  0)
+Successfully created compute instance ID  0 on GPU  0 GPU instance ID  9 using profile MIG 1g.5gb (ID  0)
+Successfully created compute instance ID  0 on GPU  0 GPU instance ID 10 using profile MIG 1g.5gb (ID  0)
+Successfully created compute instance ID  0 on GPU  0 GPU instance ID 11 using profile MIG 1g.5gb (ID  0)
+Successfully created compute instance ID  0 on GPU  0 GPU instance ID 12 using profile MIG 1g.5gb (ID  0)
+Successfully created compute instance ID  0 on GPU  0 GPU instance ID 13 using profile MIG 1g.5gb (ID  0)</code></pre>
+<ul>
+<li>To view the created MIG instances:</li>
+</ul>
+<pre><code>$ nvidia-smi
+
++-----------------------------------------------------------------------------+
+| MIG devices:                                                                |
++------------------+----------------------+-----------+-----------------------+
+| GPU  GI  CI  MIG |         Memory-Usage |        Vol|         Shared        |
+|      ID  ID  Dev |           BAR1-Usage | SM     Unc| CE  ENC  DEC  OFA  JPG|
+|                  |                      |        ECC|                       |
+|==================+======================+===========+=======================|
+|  0    7   0   0  |      1MiB /  4864MiB | 14      0 |  1   0    0    0    0 |
+|                  |      0MiB /  8191MiB |           |                       |
++------------------+----------------------+-----------+-----------------------+
+|  0    8   0   1  |      1MiB /  4864MiB | 14      0 |  1   0    0    0    0 |
+|                  |      0MiB /  8191MiB |           |                       |
++------------------+----------------------+-----------+-----------------------+
+|  0    9   0   2  |      1MiB /  4864MiB | 14      0 |  1   0    0    0    0 |
+|                  |      0MiB /  8191MiB |           |                       |
++------------------+----------------------+-----------+-----------------------+
+|  0   10   0   3  |      1MiB /  4864MiB | 14      0 |  1   0    0    0    0 |
+|                  |      0MiB /  8191MiB |           |                       |
++------------------+----------------------+-----------+-----------------------+
+|  0   11   0   4  |      1MiB /  4864MiB | 14      0 |  1   0    0    0    0 |
+|                  |      0MiB /  8191MiB |           |                       |
++------------------+----------------------+-----------+-----------------------+
+|  0   12   0   5  |      1MiB /  4864MiB | 14      0 |  1   0    0    0    0 |
+|                  |      0MiB /  8191MiB |           |                       |
++------------------+----------------------+-----------+-----------------------+
+|  0   13   0   6  |      1MiB /  4864MiB | 14      0 |  1   0    0    0    0 |
+|                  |      0MiB /  8191MiB |           |                       |
++------------------+----------------------+-----------+-----------------------+
+
+$ nvidia-smi -L
+GPU 0: A100-PCIE-40GB (UUID: GPU-0069414c-9f30-41f9-d5d8-87890423f0c4)
+  MIG 1g.5gb Device 0: (UUID: MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/7/0)
+  MIG 1g.5gb Device 1: (UUID: MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/8/0)
+  MIG 1g.5gb Device 2: (UUID: MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/9/0)
+  MIG 1g.5gb Device 3: (UUID: MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/10/0)
+  MIG 1g.5gb Device 4: (UUID: MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/11/0)
+  MIG 1g.5gb Device 5: (UUID: MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/12/0)
+  MIG 1g.5gb Device 6: (UUID: MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/13/0)</code></pre>
+<ul>
+<li>To list GPU instances:</li>
+</ul>
+<pre><code>$ nvidia mig -lgi</code></pre>
+<ul>
+<li>To list compute instances:</li>
+</ul>
+<pre><code>$ nvidia mig -lci
+
++-------------------------------------------------------+
+| Compute instances:                                    |
+| GPU     GPU       Name             Profile   Instance |
+|       Instance                       ID        ID     |
+|         ID                                            |
+|=======================================================|
+|   0      7       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0      8       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0      9       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0     11       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0     12       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0     13       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+
+|   0     14       MIG 1g.5gb           0         0     |
++-------------------------------------------------------+</code></pre>
+<ul>
+<li>To destroy compute instances:</li>
+</ul>
+<pre><code>$ nvidia-smi mig -dci -i 0
+Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID  7
+Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID  8
+Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID  9
+Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID 10
+Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID 11
+Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID 12
+Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID 13</code></pre>
+<ul>
+<li>To destroy GPU instances:</li>
+</ul>
+<pre><code>$ nvidia-smi mig -dgi -i 0
+Successfully destroyed GPU instance ID  7 from GPU  0
+Successfully destroyed GPU instance ID  8 from GPU  0
+Successfully destroyed GPU instance ID  9 from GPU  0
+Successfully destroyed GPU instance ID 10 from GPU  0
+Successfully destroyed GPU instance ID 11 from GPU  0
+Successfully destroyed GPU instance ID 12 from GPU  0
+Successfully destroyed GPU instance ID 13 from GPU  0</code></pre>
+<ul>
+<li>To get help about MIG commands:</li>
+</ul>
+<pre><code>$ nvidia-smi mig -h
+
+    mig -- Multi Instance GPU management.
+
+    Usage: nvidia-smi mig [options]
+
+    Options include:
+    [-h | --help]: Display help information.
+    [-i | --id]: Enumeration index, PCI bus ID or UUID.
+                 Provide comma separated values for more than one device.
+    [-gi | --gpu-instance-id]: GPU instance ID.
+                               Provide comma separated values for more than one GPU instance.
+    [-ci | --compute-instance-id]: Compute instance ID.
+                                   Provide comma separated values for more than one compute
+                                   instance.
+    [-lgip | --list-gpu-instance-profiles]: List supported GPU instance profiles.
+                                            Option -i can be used to restrict the command to
+                                            run on a specific GPU.
+    [-lgipp | --list-gpu-instance-possible-placements]: List possible GPU instance placements
+                                                        in the following format, {Start}:Size.
+                                                        Option -i can be used to restrict the
+                                                        command to run on a specific GPU.
+    [-C | --default-compute-instance]: Create compute instance with the default profile when used
+                                       with the option to create a GPU instance (-cgi).
+    [-cgi | --create-gpu-instance]: Create GPU instance for the given profile names or IDs.
+                                    Provide comma separated values for more than one profile.
+                                    Option -i can be used to restrict the command to run on
+                                    a specific GPU.
+    [-dgi | --destroy-gpu-instance]: Destroy GPU instances.
+                                     Options -i and -gi can be used individually or combined
+                                     to restrict the command to run on a specific GPU or GPU
+                                     instance.
+    [-lgi | --list-gpu-instances]: List GPU instances.
+                                   Option -i can be used to restrict the command to run on a
+                                   specific GPU.
+    [-lcip | --list-compute-instance-profiles]: List supported compute instance profiles.
+                                                Options -i and -gi can be used individually or
+                                                combined to restrict the command to run on a
+                                                specific GPU or GPU instance.
+    [-cci | --create-compute-instance]: Create compute instance for the given profile name or IDs.
+                                        Provide comma separated values for more than one profile.
+                                        If no profile name or ID is given, then the default*
+                                        compute instance profile ID will be used. Options -i and
+                                        -gi can be used individually or combined to restrict the
+                                        command to run on a specific GPU or GPU instance.
+    [-dci | --destroy-compute-instance]: Destroy compute instances.
+                                         Options -i, -gi and -ci can be used individually or
+                                         combined to restrict the command to run on a specific
+                                         GPU or GPU instance or compute instance.
+    [-lci | --list-compute-instances]: List compute instances.
+                                       Options -i and -gi can be used individually or combined
+                                       to restrict the command to run on a specific GPU or GPU
+                                       instance.</code></pre>
+<h2 id="docker-container">Docker container</h2>
+<p>To expose a MIG instance to a Docker container, add <code>--gpus='&quot;device=MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/7/0&quot;'</code> to your <code>docker --runtime=nvidia ...</code> command.</p>
+<p>Multiple MIG instances can be specified by separating with commas, like <code>--gpus='&quot;device=0:0,0:1&quot;'</code> for example.</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
+</body>
+</html>
