@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -66,7 +66,7 @@
 <li>Index of the GPUs, based on PCI Bus Order. This is different from the CUDA order.</li>
 <li>Amount of memory each of the GPUs has.</li>
 <li>Whether persistence mode is enabled on each of the GPUs</li>
-<li>Utilization of each of the GPUs (if I'm running something on them).</li>
+<li>Utilization of each of the GPUs (if I’m running something on them).</li>
 <li>List of processes executing on the GPUs.</li>
 </ul>
 <h2 id="query-parameters-of-gpus">Query parameters of GPUs</h2>
@@ -100,14 +100,78 @@ pci.device_id
 0x1D8110DE</code></pre>
 <p>In the above output, <code>0x1D81</code> is the device ID and <code>0x10DE</code> is the NVIDIA vendor ID.</p>
 <ul>
-<li>To get a continuous update of power consumed, GPU and memory temperatures, and current GPU and memory clock values:</li>
+<li>To query the range of power (limits in watts) that can be set for a GPU:</li>
 </ul>
-<pre><code>$ nvidia-smi dmon -s pc</code></pre>
+<pre><code>$ nvidia-smi --query-gpu=gpu_name,power.min_limit,power.max_limit --format=csv
+
+name, power.min_limit [W], power.max_limit [W]
+TITAN V, 100.00 W, 300.00 W
+Quadro RTX 8000, 100.00 W, 260.00 W</code></pre>
+<p>To actually set the power limit for a GPU:</p>
+<pre><code>$ nvidia-smi -i 0 -pl 250</code></pre>
+<p>If you try to set an invalid power limit, the command will complain and not do it. This command also seems to disable persistence mode, so you will need to enable it again.</p>
 <ul>
 <li>To view all the properties, like <code>gpu_name</code>, <code>power.draw</code> or <code>vbios_version</code>, that can be queried for your GPUs:</li>
 </ul>
 <pre><code>$ nvidia-smi --help-query-gpu</code></pre>
 <p>You must be able to find pretty much every detail of your GPU by using the above command.</p>
+<h2 id="display-gpu-statistics-in-scrolling-format">Display GPU statistics in scrolling format</h2>
+<ul>
+<li>To get a scrolling display of GPU statistics displayed continuously:</li>
+</ul>
+<pre><code>$ nvidia-smi dmon
+
+# gpu   pwr gtemp mtemp    sm   mem   enc   dec  mclk  pclk
+# Idx     W     C     C     %     %     %     %   MHz   MHz
+    0    27    47    44     0     0     0     0   850   135
+    1    25    33     -     0     1     0     0   405   300
+    0    27    47    44     0     0     0     0   850   135
+    1    25    33     -     0     1     0     0   405   300</code></pre>
+<ul>
+<li>To get a scrolling display of power consumed, GPU and memory temperatures, and current GPU and memory clock values:</li>
+</ul>
+<pre><code>$ nvidia-smi dmon -s pc
+
+# gpu   pwr gtemp mtemp  mclk  pclk
+# Idx     W     C     C   MHz   MHz
+    0    27    46    44   850   135
+    1    25    33     -   405   300
+    0    27    47    44   850   135
+    1    30    33     -   405   300</code></pre>
+<ul>
+<li>To see all the different statistics that can be displayed in scrolling format and other configuration options:</li>
+</ul>
+<pre><code>$ nvidia-smi dmon -h
+
+    GPU statistics are displayed in scrolling format with one line
+    per sampling interval. Metrics to be monitored can be adjusted
+    based on the width of terminal window. Monitoring is limited to
+    a maximum of 4 devices. If no devices are specified, then up to
+    first 4 supported devices under natural enumeration (starting
+    with GPU index 0) are used for monitoring purpose.
+    It is supported on Tesla, GRID, Quadro and limited GeForce products
+    for Kepler or newer GPUs under x64 and ppc64 bare metal Linux.
+
+    Usage: nvidia-smi dmon [options]
+
+    Options include:
+    [-i | --id]:          Comma separated Enumeration index, PCI bus ID or UUID
+    [-d | --delay]:       Collection delay/interval in seconds [default=1sec]
+    [-c | --count]:       Collect specified number of samples and exit
+    [-s | --select]:      One or more metrics [default=puc]
+                          Can be any of the following:
+                              p - Power Usage and Temperature
+                              u - Utilization
+                              c - Proc and Mem Clocks
+                              v - Power and Thermal Violations
+                              m - FB and Bar1 Memory
+                              e - ECC Errors and PCIe Replay errors
+                              t - PCIe Rx and Tx Throughput
+    [-o | --options]:     One or more from the following:
+                              D - Include Date (YYYYMMDD) in scrolling output
+                              T - Include Time (HH:MM:SS) in scrolling output
+    [-f | --filename]:    Log to a specified file, rather than to stdout
+    [-h | --help]:        Display help information</code></pre>
 <h2 id="set-gpu-clocks">Set GPU clocks</h2>
 <ul>
 <li>Typically, sudo permissions are required to set clocks. To allow unrestricted access to set clocks:</li>

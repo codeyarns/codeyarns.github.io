@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -63,6 +63,11 @@
 <p>This is a common error when installing the graphics driver on Linux. You just need to exit X before you install the driver.</p>
 <p>This can be done on Ubuntu with this command:</p>
 <pre><code>$ sudo service lightdm stop</code></pre>
+<p>Another way to safely update the driver is to do:</p>
+<pre><code>$ sudo init 3
+$ Uninstall old driver
+$ Install new driver
+$ sudo init 5</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
