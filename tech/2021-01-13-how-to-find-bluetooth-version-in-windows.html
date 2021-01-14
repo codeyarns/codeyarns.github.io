@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Not Another PDF Scanner 2</title>
+  <title>Code Yarns – How to find Bluetooth version in Windows</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,19 +53,16 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Not Another PDF Scanner 2</h1>
-<p class="date">📅 2020-Mar-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#scanner'>scanner</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">How to find Bluetooth version in Windows</h1>
+<p class="date">📅 2021-Jan-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#bluetooth'>bluetooth</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://www.naps2.com/"><strong>Not Another PDF Scanner 2</strong></a> (NAPS2) is an open source scanning application that works on Windows. Its source code can be found on Github <a href="https://github.com/cyanfish/naps2">here</a>.</p>
-<p>Features it seems to support include:</p>
+<p>If your Windows computer supports <strong>Bluetooth</strong>, then it must have a Bluetooth chip that provides this capability, typically called as a <strong>Bluetooth radio</strong>. The <strong>Bluetooth version</strong> or more specifically the <em>version of the Bluetooth Core Specification</em> supported by this radio determines what features of Bluetooth are available on your computer and for the BT devices you connect to it. But surprise, Windows does not display this Bluetooth version anywhere!</p>
+<p>To find out the Bluetooth version:</p>
 <ul>
-<li>Color, grayscale and black and white scan.</li>
-<li>Scanning to image file formats like JPEG and document file formats like PDF.</li>
-<li>Scanning multiple page documents.</li>
-<li>Rotation and flip of individual scanned pages.</li>
-<li>OCR of scanned pages.</li>
+<li><strong>Find your Bluetooth radio</strong>: Open <strong>Device Manager</strong> by typing <code>device manager</code> and go to Bluetooth -&gt; “Name of your Bluetooth radio”. On my computer, the Bluetooth support is provided by Intel and the radio was named <em>Intel Wireless Bluetooth</em>.</li>
+<li><strong>Find its LMP version</strong>: Right-click on it, choose Properties and open the <strong>Advanced</strong> tab. Note down the <strong>LMP</strong> (Link Manager Protocol) version listed under <em>Firmware version</em> information. Mine said <code>HCI 10.256 / LMP 10.256</code>.</li>
+<li><strong>Convert LMP to Bluetooth version</strong>: Convert the LMP version to the Bluetooth Core Specification version using the table provided <a href="https://www.bluetooth.com/specifications/assigned-numbers/link-manager/">here</a> or <a href="https://support.microsoft.com/en-us/windows/what-bluetooth-version-is-on-my-pc-f5d4cff7-c00d-337b-a642-d2d23b082793">here</a>. Mine turned out to be Bluetooth version 5.1.</li>
 </ul>
-<p><strong>Tried with:</strong> NAPS2 6.1.2 and Windows 10</p>
 </div>
 
 <br />

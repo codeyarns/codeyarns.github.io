@@ -78,6 +78,8 @@
 </ul>
 <p>To query the parameters of a particular GPU, use its index:</p>
 <pre><code>$ nvidia-smi -q -i 9</code></pre>
+<h2 id="query-utilization-and-clocks">Query utilization and clocks</h2>
+<pre><code>$ nvidia-smi -q -d UTILIZATION,CLOCK</code></pre>
 <h2 id="query-supported-clock-values">Query supported clock values</h2>
 <p>To list the supported pairs of memory and graphics clock values:</p>
 <pre><code>$ nvidia-smi -q -d SUPPORTED_CLOCKS
@@ -172,11 +174,13 @@ Quadro RTX 8000, 100.00 W, 260.00 W</code></pre>
                               T - Include Time (HH:MM:SS) in scrolling output
     [-f | --filename]:    Log to a specified file, rather than to stdout
     [-h | --help]:        Display help information</code></pre>
+<h2 id="toggle-ecc-mode">Toggle ECC mode</h2>
+<p>To enable ECC:</p>
+<pre><code>$ nvidia-smi -e 1</code></pre>
+<p>To disable ECC:</p>
+<pre><code>$ nvidia-smi -e 0</code></pre>
 <h2 id="set-gpu-clocks">Set GPU clocks</h2>
-<ul>
-<li>Typically, sudo permissions are required to set clocks. To allow unrestricted access to set clocks:</li>
-</ul>
-<pre><code>$ nvidia-smi -acp UNRESTRICTED</code></pre>
+<p>Note that no matter what clock you lock the GPU on (even maximum), GPU Boost might lower the clocks to stay within the power cap and thermal limits of the GPU.</p>
 <ul>
 <li>To reset the application clocks:</li>
 </ul>
@@ -208,6 +212,14 @@ $ sudo nvidia-smi -i 9 -pm 1</code></pre>
 <li>To set graphics clock:</li>
 </ul>
 <pre><code>$ sudo nvidia-smi -i 9 -lgc 900</code></pre>
+<ul>
+<li>To reset the GPU clocks:</li>
+</ul>
+<pre><code>$ nvidia-smi -r</code></pre>
+<ul>
+<li>Typically, sudo permissions are required to set clocks. To allow unrestricted access to set clocks:</li>
+</ul>
+<pre><code>$ nvidia-smi -acp UNRESTRICTED</code></pre>
 <h2 id="mig">MIG</h2>
 <p>nvidia-smi commands to deal with MIG can be found in my post <a href="2020-12-15-how-to-use-mig.html">How to use MIG</a>.</p>
 </div>
