@@ -85,15 +85,20 @@
 <pre><code>$ nvidia-smi -q -d SUPPORTED_CLOCKS
 $ nvidia-smi -q -d SUPPORTED_CLOCKS -i 3</code></pre>
 <p>Typically, there are only a few supported memory clock values, while the number of supported graphics clock values is high with a fine granularity.</p>
-<h2 id="query-current-values-of-gpus">Query current values of GPUs</h2>
+<h2 id="query-current-properties-of-gpus">Query current properties of GPUs</h2>
 <ul>
-<li>To view how much power is being consumed by GPUs in watts:</li>
+<li>To query the value of any GPU property at a given time, the general format of the command is to provide a CSV of properties:</li>
 </ul>
-<pre><code>$ nvidia-smi --query-gpu=gpu_name,power.draw --format=csv</code></pre>
+<pre><code>$ nvidia-smi --query-gpu=property1,property2,property3 --format=csv</code></pre>
 <ul>
-<li>To view the VBIOS version of your GPUs:</li>
+<li>To get help on this option and a list of <em>all</em> the properties that you can query:</li>
 </ul>
-<pre><code>$ nvidia-smi --query-gpu=gpu_name,vbios_version --format=csv</code></pre>
+<pre><code>$ nvidia-smi --help-query-gpu</code></pre>
+<p>You must be able to find pretty much every detail of your GPU categorized under one of the properties.</p>
+<ul>
+<li>To loop while printing the current value of properties, provide the wait time in milliseconds:</li>
+</ul>
+<pre><code>$ nvidia-smi --query-gpu=property1,property2 --format=csv --loop-ms=100</code></pre>
 <ul>
 <li>To view the PCI device-vendor ID of your GPUs:</li>
 </ul>
@@ -102,21 +107,36 @@ pci.device_id
 0x1D8110DE</code></pre>
 <p>In the above output, <code>0x1D81</code> is the device ID and <code>0x10DE</code> is the NVIDIA vendor ID.</p>
 <ul>
-<li>To query the range of power (limits in watts) that can be set for a GPU:</li>
+<li>To actually set the power limit for a GPU:</li>
 </ul>
-<pre><code>$ nvidia-smi --query-gpu=gpu_name,power.min_limit,power.max_limit --format=csv
-
-name, power.min_limit [W], power.max_limit [W]
-TITAN V, 100.00 W, 300.00 W
-Quadro RTX 8000, 100.00 W, 260.00 W</code></pre>
-<p>To actually set the power limit for a GPU:</p>
 <pre><code>$ nvidia-smi -i 0 -pl 250</code></pre>
 <p>If you try to set an invalid power limit, the command will complain and not do it. This command also seems to disable persistence mode, so you will need to enable it again.</p>
 <ul>
-<li>To view all the properties, like <code>gpu_name</code>, <code>power.draw</code> or <code>vbios_version</code>, that can be queried for your GPUs:</li>
+<li>Some other useful properties:</li>
 </ul>
-<pre><code>$ nvidia-smi --help-query-gpu</code></pre>
-<p>You must be able to find pretty much every detail of your GPU by using the above command.</p>
+<pre><code>gpu_name: Name of GPU
+vbios_version: Version of VBIOS
+
+# Power
+power.min_limit: Minimum power limit that can be set for GPU (watts)
+power.max_limit: Maximum power limit that can be set for GPU (watts)
+power.draw: Power being consumed by GPU at this moment (watts)
+
+# Temperature
+temperature.gpu: GPU temperature (C)
+temperature.memory: HBM memory temperature (C)
+
+# Current clock values
+clocks.current.sm
+clocks.current.memory
+clocks.current.graphics
+clocks.current.video
+
+utilization.gpu: Percent of sampling interval time that GPU was being used.
+utilization.memory: Percent of sampling interval time that device memory was being used.
+
+clocks_throttle_reasons.sw_power_cap: Clock is below requested clock because GPU is using too much power.
+clocks_throttle_reasons.sw_thermal_slowdown: Clock is below requested clock because GPU temperature is too high. (Indicates better cooling needed.)</code></pre>
 <h2 id="display-gpu-statistics-in-scrolling-format">Display GPU statistics in scrolling format</h2>
 <ul>
 <li>To get a scrolling display of GPU statistics displayed continuously:</li>

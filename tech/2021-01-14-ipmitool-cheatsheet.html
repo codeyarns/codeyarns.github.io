@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Undefined symbol FreeCudaMemoryCallbacksRegistry</title>
+  <title>Code Yarns – ipmitool Cheatsheet</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,27 +53,26 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Undefined symbol FreeCudaMemoryCallbacksRegistry</h1>
-<p class="date">📅 2020-Mar-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">ipmitool Cheatsheet</h1>
+<p class="date">📅 2021-Jan-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ipmitool'>ipmitool</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<h2 id="problem">Problem</h2>
-<p>I installed <strong>PyTorch</strong> on my system and the very first import failed with this error:</p>
-<pre><code>&gt;&gt;&gt; import torch
-Traceback (most recent call last):
-  File &quot;&lt;input&gt;&quot;, line 1, in &lt;module&gt;
-    import torch
-  File &quot;/usr/lib/python3/dist-packages/bpython/curtsiesfrontend/repl.py&quot;, line 251, in load_module
-    module = self.loader.load_module(name)
-  File &quot;/home/joe/.local/lib/python3.6/site-packages/torch/__init__.py&quot;, line 81, in &lt;module&gt;
-    from torch._C import *
-  File &quot;/usr/lib/python3/dist-packages/bpython/curtsiesfrontend/repl.py&quot;, line 251, in load_module
-    module = self.loader.load_module(name)
-ImportError: /home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so: undefined symbol: _ZN3c1031FreeCudaMemoryCallbacksRegistryEv</code></pre>
-<h2 id="solution">Solution</h2>
-<p>It was obvious that the problem was CUDA or PyTorch’s interface to CUDA.</p>
-<p>I checked that <code>/usr/local/cuda</code> symlink was pointing to my CUDA 10.1 installation. I also made sure that <code>/usr/local/cuda/lib64</code> was in my <code>LD_LIBRARY_PATH</code>. However, this did not fix the problem.</p>
-<p>I then started checking which libraries <code>/home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so</code> was dynamically loading at runtime using the <code>ldd</code> command. This investigation revealed that all the dependent libraries were in <code>/home/joe/.local/lib/python3.6/site-packages</code>, except for one: <code>/usr/local/lib/libc10_cuda.so</code>. Turns out that this is a library installed by PyTorch and I had no idea why there was an old copy of this file in <code>/usr/local/lib</code>. It was probably from an old Ubuntu installation of PyTorch that did not uninstall properly.</p>
-<p>I removed this file and PyTorch picked up its local <code>libc10_cuda.so</code> and everything was fine!</p>
+<p>The <strong>ipmitool</strong> tool can be used to control, monitor and query about <a href="https://en.wikipedia.org/wiki/Intelligent_Platform_Management_Interface"><strong>Intelligent Platform Management Interface (IPMI)</strong></a> devices on your system. I have used this tool to get information about the IPMI devices on server systems.</p>
+<ul>
+<li>Installing is easy:</li>
+</ul>
+<pre><code>$ sudo apt install ipmitool</code></pre>
+<ul>
+<li>To get information about <strong>sensors</strong> for example, query the <strong>Sensor Data Repository (SDR)</strong>. This can be used for example to get information about the fans in a system:</li>
+</ul>
+<pre><code>$ sudo ipmitool sdr list
+
+$ sudo ipmitool sdr list  | grep -i fan
+
+BPB_FAN1         | 21600 RPM         | ok
+BPB_FAN2         | 21750 RPM         | ok
+CPU0_FAN         | 4200 RPM          | ok
+CPU1_FAN         | 4200 RPM          | ok</code></pre>
+<p><strong>Tried with:</strong> ipmitool 1.8.18 and Ubuntu 18.04</p>
 </div>
 
 <br />
