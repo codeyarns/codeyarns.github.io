@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -54,19 +54,26 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to tar</h1>
-<p class="date">📅 2015-Jan-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#tar'>tar</a>, <a href='index.html#untar'>untar</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2015-Jan-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#tar'>tar</a>, <a href='index.html#untar'>untar</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Tape ARchive (TAR)</strong> is an classic file format that is used to archive files. Note that it does not compress the files to save space. Rather it is only for convenience of handling a single archive file instead of dealing with thousands of files. I typically use it to quickly move directories containing large number of small files.</p>
+<p>Note that tar is an incredibly old Unix tool and confusingly accepts arguments in 3 <strong>styles</strong>: traditional (without dashes), UNIX short-option (single dash) and GNU long-option (double dash). I abhor using the traditional style (which is quite popular online) since it is un-UNIX and instead use the short-option style for interactive use (and below) and use the long-option style in scripts.</p>
 <ul>
 <li>To archive some files into a tape archive file specify the archive name first and follow with the files to archive:</li>
 </ul>
 <pre><code>$ tar -cf foobar.tar foobar1.txt foobar2.txt</code></pre>
 <ul>
-<li>To archive a directory:</li>
+<li>To archive a directory named <code>foobar</code>:</li>
 </ul>
 <pre><code>$ tar -cf foobar.tar foobar</code></pre>
 <ul>
-<li>To view the list of files being archived specify the verbose option:</li>
+<li>To archive and output the tar contents to the terminal use <code>-</code> as the output filename. This is typically used to redirect the tar output or to process the tar output with other tools:</li>
+</ul>
+<pre><code>$ tar -cf - foobar1.txt foobar2.txt &gt; foobar.tar
+
+$ tar -cf - foobar1.txt foobar2.txt | wc</code></pre>
+<ul>
+<li>To view the list of files being archived specify the verbose option <code>-v</code>:</li>
 </ul>
 <pre><code>$ tar -cvf foobar.tar foobar</code></pre>
 <ul>
@@ -84,7 +91,7 @@
 $ tar -xf haha.tar --directory foobar
 $ tar -xf haha.tar -C foobar</code></pre>
 <ul>
-<li>To extact but chop off one or more base directories from the relative file paths being extracted, use the <code>--strip-components</code> option:</li>
+<li>To extract but chop off one or more base directories from the relative file paths being extracted, use the <code>--strip-components</code> option:</li>
 </ul>
 <pre><code>$ tar -xf haha.tar
 Writes out foo/bar/rocky/zoo.py
@@ -96,9 +103,24 @@ Writes out rocky/zoo.py</code></pre>
 </ul>
 <pre><code>$ tar -xvf foobar.tar</code></pre>
 <ul>
-<li>To list the contents of an archive file:</li>
+<li>To <strong>list</strong> the contents of an archive file:</li>
 </ul>
-<pre><code>$ tar -tvf foo.tar</code></pre>
+<pre><code>$ tar -tvf foobar.tar</code></pre>
+<ul>
+<li>To archive and <strong>encrypt</strong> a tar file, we archive the contents and redirect the contents to openssl for encryption:</li>
+</ul>
+<pre><code>$ tar -cf - foobar1.txt foobar2.txt | openssl enc -e -aes256 -out foobar.tar</code></pre>
+<p>You will be asked to enter the password to use to encrypt the contents.</p>
+<ul>
+<li>To <strong>decrypt</strong> and untar the contents of an encrypted tar file to the current directory:</li>
+</ul>
+<pre><code>$ openssl enc -d -aes256 -in foobar.tar | tar -x</code></pre>
+<p>You will be asked to enter the password to decrypt the contents.</p>
+<p><strong>References</strong>:</p>
+<ul>
+<li><a href="https://man7.org/linux/man-pages/man1/tar.1.html">tar manpage</a></li>
+<li>openssl <a href="https://linux.die.net/man/1/enc">enc manpage</a></li>
+</ul>
 <p><strong>Tried with:</strong> Tar 1.27.1 and Ubuntu 14.04</p>
 </div>
 
