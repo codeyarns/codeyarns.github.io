@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -57,7 +57,8 @@
 <p class="date">📅 2019-May-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#mount'>mount</a>, <a href='index.html#systemd'>systemd</a>, <a href='index.html#usbmount'>usbmount</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I had a portable harddisk connected using USB to my <strong>Raspberry Pi B+ Rev3</strong> running <strong>Raspbian 9</strong>. The harddisk had two partitions: NTFS and ext4. I had <strong>usbmount</strong> installed and configured as described <a href="2015-07-03-how-to-configure-usbmount.html">here</a>. When Raspbian is booted up with the harddisk already plugged in, I could see using <code>sudo fdisk -l</code> that the ext4 partition was visible. So, usbmount should have automatically mounted this ext4 partition to <code>/media/usb0</code>, but it was not doing that. I had verbose logging enabled for <strong>usbmount</strong> as described <a href="2015-07-03-how-to-configure-usbmount.html">here</a>. When I searched the system log I could see that usbmount was actually mounting the ext4 partition, but surprisingly it was not visible at <code>/media/usb0</code>:</p>
+<p>I had a portable harddisk connected using USB to my <strong>Raspberry Pi B+ Rev3</strong> running <strong>Raspbian 9</strong>. The harddisk had two partitions: NTFS and ext4. I had <strong>usbmount</strong> installed and configured as described <a href="2015-07-03-how-to-configure-usbmount.html">here</a>. When Raspbian is booted up with the harddisk already plugged in, I could see using <code>sudo fdisk -l</code> that the ext4 partition was visible. So, usbmount should have automatically mounted this ext4 partition to <code>/media/usb0</code>, but it was not doing that.</p>
+<p>I had verbose logging enabled for <strong>usbmount</strong> as described <a href="2015-07-03-how-to-configure-usbmount.html">here</a>. When I searched the system log I could see that usbmount was actually mounting the ext4 partition, but surprisingly it was not visible at <code>/media/usb0</code>:</p>
 <pre><code>$ cat /var/log/syslog | grep usbmount
 980:May 18 11:42:28 my-pi usbmount[373]: /dev/sda2 contains filesystem type ext4
 989:May 18 11:42:28 my-pi usbmount[373]: mountpoint /media/usb0 is available for /dev/sda2
@@ -78,8 +79,8 @@ $ sudo service systemd-udevd --full-restart</code></pre>
 <p>After the restart, I found that usbmount had automatically mounted my ext4 partition.</p>
 <p><strong>References:</strong></p>
 <ul>
-<li><p>https://bugs.launchpad.net/ubuntu/+source/usbmount/+bug/1768010</p></li>
-<li><p>https://unix.stackexchange.com/questions/330094/udev-rule-to-mount-disk-does-not-work/441588#441588</p></li>
+<li>https://bugs.launchpad.net/ubuntu/+source/usbmount/+bug/1768010</li>
+<li>https://unix.stackexchange.com/questions/330094/udev-rule-to-mount-disk-does-not-work/441588#441588</li>
 </ul>
 </div>
 

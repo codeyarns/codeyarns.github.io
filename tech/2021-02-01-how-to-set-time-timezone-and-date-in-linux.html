@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to use sudo</title>
+  <title>Code Yarns – How to set time, timezone and date in Linux</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,39 +53,21 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to use sudo</h1>
-<p class="date">📅 2014-May-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#sudo'>sudo</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">How to set time, timezone and date in Linux</h1>
+<p class="date">📅 2021-Feb-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#date'>date</a>, <a href='index.html#time'>time</a>, <a href='index.html#timezone'>timezone</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
+<p>Time and date are usually set correctly on my Linux systems, but the timezone is set to UTC.</p>
+<h2 id="set-timezone">Set timezone</h2>
+<p>We can use the <code>timedatectl</code> tool that ships with <code>systemd</code> to set the timezone.</p>
 <ul>
-<li>To give sudo permissions to an existing user, say joe, add the user to the <strong>sudo</strong> group:</li>
+<li>To list all the timezone names:</li>
 </ul>
-<pre><code>$ sudo adduser joe sudo</code></pre>
+<pre><code>$ timedatectl list-timezones</code></pre>
 <ul>
-<li>To run a command as superuser:</li>
+<li>To set a timezone from the list:</li>
 </ul>
-<pre><code>$ sudo some_command</code></pre>
-<p>The superuser privileges last at this shell session for about 15 minutes. Any other superuser commands you execute within this time at this shell session will not require you to enter the password.</p>
-<ul>
-<li>To run a command as another user, say joe:</li>
-</ul>
-<pre><code>$ sudo -u joe some_command</code></pre>
-<ul>
-<li>If you want to execute many commands or need a shell with superuser:</li>
-</ul>
-<pre><code>$ sudo -s</code></pre>
-<ul>
-<li>To have all your environment variables when you execute sudo:</li>
-</ul>
-<pre><code>$ sudo -E some_command</code></pre>
-<ul>
-<li>To list of commands allowed for you:</li>
-</ul>
-<pre><code>$ sudo -l</code></pre>
-<ul>
-<li>To list the commands allowed for another user, say joe:</li>
-</ul>
-<pre><code>$ sudo -l -U joe</code></pre>
-<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+<pre><code>$ sudo timedatectl set-timezone &quot;America/Los_Angeles&quot;</code></pre>
+<p><strong>Tried with:</strong> systemd 245 and Ubuntu 20.04</p>
 </div>
 
 <br />
