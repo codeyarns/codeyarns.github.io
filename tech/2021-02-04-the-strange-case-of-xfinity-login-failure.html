@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Decrypt an encrypted PDF file using QPDF</title>
+  <title>Code Yarns – The strange case of Xfinity login failure</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,15 +53,32 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Decrypt an encrypted PDF file using QPDF</h1>
-<p class="date">📅 2012-Nov-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#decryption'>decryption</a>, <a href='index.html#encryption'>encryption</a>, <a href='index.html#password'>password</a>, <a href='index.html#pdf'>pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">The strange case of Xfinity login failure</h1>
+<p class="date">📅 2021-Feb-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#xfinity'>xfinity</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>PDF files from certain sources might be secured or DRM protected or encrypted. This might prevent you from adding annotations, editing, printing or even viewing the file. Essentially the file is read-only for you, locking you out of making changes to it.</p>
-<p>A PDF file which is encrypted can be <strong>decrypted</strong> using <a href="http://qpdf.sourceforge.net/"><strong>QPDF</strong></a>:</p>
-<pre><code>$ qpdf --decrypt in.pdf out.pdf</code></pre>
-<p>To remove the password protection of a PDF:</p>
-<pre><code>$ qpdf --decrypt --password=soopersecret in.pdf out.pdf</code></pre>
-<p><strong>Tried with:</strong> QPDF 8.0.2</p>
+<p>I recently moved and thus had to enable a new <strong>Xfinity</strong> broadband internet connection at my new place. The connection was enabled and I could access all websites on the web, except for Xfinity’s own <a href="https://login.xfinity.com/login">customer portal</a>!</p>
+<p>Shockingly, this seems to be a <a href="https://forums.xfinity.com/t5/Xfinity-Stream-Website/Not-able-to-login-to-xfinity-stream-while-on-home-network/td-p/3265740">common problem</a> with Xfinity customers. I tried everything I could think of and was suggested online: restarting the broadband modem, restarting the wireless router and changing the DNS servers. No dice.</p>
+<p>By using rudimentary Linux network tools, it was obvious that when connected from inside Xfinity’s network, the DNS/IP/routing they were doing for customers was screwed up:</p>
+<pre><code>$ host oauth.xfinity.com
+oauth.xfinity.com is an alias for oauth.g.xfinity.com.
+oauth.g.xfinity.com has address 162.150.57.167
+oauth.g.xfinity.com has IPv6 address 2001:558:fe16:109:96:114:156:145
+
+$ nslookup oauth.xfinity.com
+Non-authoritative answer:
+oauth.xfinity.com       canonical name = oauth.g.xfinity.com.
+Name:   oauth.g.xfinity.com
+Address: 96.114.156.145
+Name:   oauth.g.xfinity.com
+Address: 2001:558:fe16:109:96:114:156:145
+
+$ ping oauth.xfinity.com
+PING oauth.g.xfinity.com (68.87.29.197) 56(84) bytes of data.
+^C
+--- oauth.g.xfinity.com ping statistics ---
+13 packets transmitted, 0 received, 100% packet loss, time 12036ms</code></pre>
+<p>Notice how <code>host</code> and <code>nslookup</code> returned different IP addresses. And <code>ping</code> used a third different IP address. And none of those IP addresses were pingable.</p>
+<p>In the end, I had to use my cellphone’s <strong>mobile data connection</strong> to access the customer portal of my home broadband internet provider! The portal opened up fine. Going by the complaints online, Xfinity just does not seem to care about this problem. I have been getting by accessing the portal through my cellphone or through a portable hotspot on my computer.</p>
 </div>
 
 <br />
