@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Out of memory error on Raspbian</title>
+  <title>Code Yarns – Ubuntu RPi freeze during C++ compilation</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,20 +53,26 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Out of memory error on Raspbian</h1>
-<p class="date">📅 2019-May-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#raspberry-pi'>raspberry pi</a>, <a href='index.html#raspbian'>raspbian</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Ubuntu RPi freeze during C++ compilation</h1>
+<p class="date">📅 2021-Feb-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#raspberry-pi'>raspberry pi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<h2 id="problem">Problem</h2>
-<p>I was compiling some templated C++ on a Raspberry Pi when the compilation failed with this error:</p>
-<pre><code>cc1plus: out of memory allocating 66574076 bytes after a total of 98316160 bytes</code></pre>
+<p>I was <a href="2021-02-07-how-to-build-veracrypt-from-source.html">compiling</a> the Veracrypt C++ source code when the system froze up completely. This was on my <strong>Raspberry Pi 3 Model B+</strong> board which was running Ubuntu 20.04. The system was unfrozen only after about 30 minutes and I saw this error at the shell:</p>
+<pre><code>$ make
+...
+g++: fatal error: Killed signal terminated program cc1plus
+compilation terminated.
+make[1]: *** [/home/ashwin/VeraCrypt-VeraCrypt_1.24-Update7/src/Build/Include/Makefile.inc:28: CommandLineInterface.o] Error 1
+make[1]: *** Waiting for unfinished jobs....
+g++: fatal error: Killed signal terminated program cc1plus
+compilation terminated.
+make[1]: *** [/home/ashwin/VeraCrypt-VeraCrypt_1.24-Update7/src/Build/Include/Makefile.inc:28: FavoriteVolume.o] Error 1
+make: *** [Makefile:424: all] Error 2</code></pre>
+<p>Looking up <code>/var/log/syslog</code> I noticed that the kernel had detected that the system was hung. It would wait for 120 seconds, the time specified in <code>/proc/sys/kernel/hung_task_timeout_secs</code>, and then try again. It did this for about 20 minutes and about 10 minutes after that the C++ compiler invoked the <strong>OOM killer</strong>: <code>cc1plus invoked oom-killer</code>. The killer killed the C++ compiler and the system was unfrozen.</p>
 <h2 id="solution">Solution</h2>
-<p>The Raspberry Pi had 1GB of RAM. From the error it looked like the compiler needed more memory than that.</p>
-<p>It turns out that Raspbian does not use a <strong>swap</strong> partition. Instead it uses a <code>/var/swap</code> file on the SD card. This is called <strong>dphys-swapfile</strong>. The default size of this swapfile is 100MB. As can be seen from the error above, this swap space was not enough.</p>
-<p>Since I had more than 1GB of free space still available on my SD card, I decided to increase this swapfile. To do that, open the file <code>/etc/dphys-swapfile</code> and increase the number of MB set in the line <code>CONF_SWAPSIZE=100</code>.</p>
-<p>Restart the swapfile using the command:</p>
-<pre><code>$ /etc/init.d/dphys-swapfile restart</code></pre>
-<p>Or alternately you could restart Raspbian.</p>
-<p><strong>Tried with:</strong> Raspbian 9 and Raspberry Pi B+ Rev3</p>
+<p>It looked like the C++ compiler was running out of RAM. I had seen <a href="2019-05-12-out-of-memory-error-on-raspbian.html">this problem earlier</a> on Raspbian, where the solution had been to increase the size of its <strong>swap file</strong>.</p>
+<p>But Ubuntu seemed to neither use a swap file nor a swap partition on the Raspberry Pi. So I looked for other solutions.</p>
+<p>On my computers, I set <code>MAKEFLAGS</code> to use all the available CPU cores for faster builds. Since the <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2837b0/README.md">BCM2837B0</a> chip used in my RPi has a quad-core ARM CPU, I had set the flag to <code>--jobs=4</code>. This meant that 4 instances of the C++ compiler were running in parallel when the system ran out of memory.</p>
+<p>I reduced the 4 to 1 and I was able to compile without any further hiccups.</p>
 </div>
 
 <br />
