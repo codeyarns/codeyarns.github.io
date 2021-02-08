@@ -67,6 +67,8 @@
 <li>To set a timezone from the list:</li>
 </ul>
 <pre><code>$ sudo timedatectl set-timezone &quot;America/Los_Angeles&quot;</code></pre>
+<p>Note that the service that generates <code>/var/log/syslog</code> will continue to use your earlier timezone, until you restart it or restart the computer. Restart its service to make it start using your new timezone for its newer log entries:</p>
+<pre><code>$ sudo service rsyslog restart</code></pre>
 <p><strong>Tried with:</strong> systemd 245 and Ubuntu 20.04</p>
 </div>
 
