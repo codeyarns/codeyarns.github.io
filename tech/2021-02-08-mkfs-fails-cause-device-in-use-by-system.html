@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to configure USBMount</title>
+  <title>Code Yarns – mkfs fails cause device in use by system</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,22 +53,27 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to configure USBMount</h1>
-<p class="date">📅 2015-Jul-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#filesystem'>filesystem</a>, <a href='index.html#mount'>mount</a>, <a href='index.html#raspbian'>raspbian</a>, <a href='index.html#usbmount'>usbmount</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">mkfs fails cause device in use by system</h1>
+<p class="date">📅 2021-Feb-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#mkfs'>mkfs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>USBMount</strong> is a useful program and daemon that can be used to automount disk drives and flash drives plugged into USB ports. I use it with <strong>Raspbian</strong> for this purpose.</p>
-<p>All the settings of USBMount can be changed from its configuration file <code>/etc/usbmount/usbmount.conf</code></p>
-<p>The parameters that can be modified from this file:</p>
-<ul>
-<li><code>ENABLED</code>: 1 to enable, 0 to disable USBMount.</li>
-<li><code>MOUNTPOINTS</code>: String of space-delimited mount points that should be used.</li>
-<li><code>FILESYSTEMS</code>: String of space-delimited filesystems that should be mounted. If you are going to use USB storage with NTFS partitions, then add <code>ntfs ntfs-3g fuseblk</code> to the list. Also make sure you have the <code>ntfs-3g</code> package installed.</li>
-<li><code>MOUNTOPTIONS</code>: String of comma-delimited mount options that will be used with the <code>mount</code> program to mount all the filesystems.</li>
-<li><code>FS_MOUNTOPTIONS</code>: Mount options that are specific to particular filesystem.</li>
-<li><code>VERBOSE</code>: <code>no</code> is brief logging to <code>/var/syslog</code>, <code>yes</code> is verbose logging. I like to change to <code>yes</code> so that it is easy to diagnose usbmount problems by looking at the syslog.</li>
-</ul>
-<p>Note that some of the drives I mounted would initially only have write permissions for <code>root</code> and not for other users. The solution was to change the ownership to my user, for example: <code>sudo chown joe:joe /media/usb2</code>.</p>
-<p><strong>Tried with:</strong> USBMount 0.0.22 and Raspbian 7</p>
+<h2 id="problem">Problem</h2>
+<p>A USB hard disk <code>/dev/sda</code> was plugged into my Linux system which had a NTFS partition on <code>/dev/sda1</code>. The partition was not mounted.</p>
+<p>The command to reformat the NTFS partition to an ext4 partition failed with this error:</p>
+<pre><code>$ sudo mkfs -t ext4 /dev/sda1
+mke2fs 1.45.5 (07-Jan-2020)
+/dev/sda1 contains a ntfs file system labelled &#39;joe_win_hard_disk&#39;
+Proceed anyway? (y,N) y
+/dev/sda1 is apparently in use by the system; will not make a filesystem here!</code></pre>
+<h2 id="solution">Solution</h2>
+<p>Most online replies to this problem say that the partition might be mounted and needs to be unmounted. In my case, the partition was already unmounted. I even verified it with a:</p>
+<pre><code>$ sudo umount /dev/sda1</code></pre>
+<p>I checked if any files were open on the partition, but they were not:</p>
+<pre><code>$ lsof | grep sda1</code></pre>
+<p>After some thought, I decided that something else might have its fingers into the drive. I did have <a href="2015-07-03-how-to-configure-usbmount.html">usbmount</a> running on this system to automount drives that are plugged in. So I uninstalled it temporarily and rebooted the system:</p>
+<pre><code>$ sudo apt remove usbmount
+$ sudo reboot</code></pre>
+<p>I was able to reformat the partition on the newly rebooted system.</p>
+<p><strong>Tried with:</strong> Ubuntu 20.04, Raspberry Pi 3 Model B+</p>
 </div>
 
 <br />
