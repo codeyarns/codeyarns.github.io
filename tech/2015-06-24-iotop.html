@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – IOTop</title>
+  <title>Code Yarns – iotop</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -53,23 +53,30 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">IOTop</h1>
-<p class="date">📅 2015-Jun-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#disk'>disk</a>, <a href='index.html#iotop'>iotop</a>, <a href='index.html#top'>top</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">iotop</h1>
+<p class="date">📅 2015-Jun-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#iotop'>iotop</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://codeyarns.files.wordpress.com/2015/06/20150624_iotop.png"><img src="https://codeyarns.files.wordpress.com/2015/06/20150624_iotop.png" alt="20150624_iotop" /></a></p>
-<p>As its name indicates, <a href="http://guichaz.free.fr/iotop/"><strong>IOTop</strong></a> is a Top-like utility but for disk IO. It shows a constantly updating list of processes, sorted by the amount of disk IO (read or write) they are performing. I find it extremely useful to find out quickly which process is causing the disk to grind noisily 😊</p>
+<figure>
+<img src="https://codeyarns.files.wordpress.com/2015/06/20150624_iotop.png" alt="iotop" /><figcaption aria-hidden="true">iotop</figcaption>
+</figure>
+<p>As its name indicates, <a href="http://guichaz.free.fr/iotop/"><strong>iotop</strong></a> is a top-like utility but for disk I/O. It shows a constantly updating list of processes, sorted by the amount of disk IO (read or write) they are performing. I find it useful to find out quickly which process is causing the disk to grind noisily. 😊</p>
 <ul>
-<li>Installing is easy:</li>
+<li>Installing it is easy:</li>
 </ul>
 <pre><code>$ sudo apt install iotop</code></pre>
 <ul>
 <li>To view <strong>all</strong> the processes, sorted by disk IO:</li>
 </ul>
 <pre><code>$ sudo iotop</code></pre>
+<p>Note how the tool requires root privileges to run.</p>
 <ul>
-<li>To view <strong>only</strong> the processes that are actually doing any disk reads or writes:</li>
+<li>Since the tool displays all processes by default (whether they are doing I/O or not), I find it convenient to view <em>only</em> the processes that are actually doing any disk reads or writes:</li>
 </ul>
 <pre><code>$ sudo iotop -o</code></pre>
+<ul>
+<li>By default, the tool updates once every second. To update the tool at a different delay interval, say every 2 seconds:</li>
+</ul>
+<pre><code>$ sudo iotop -d 2</code></pre>
 <p><strong>Tried with:</strong> IOTop 0.6 and Ubuntu 14.04</p>
 </div>
 

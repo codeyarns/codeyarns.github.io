@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -54,7 +54,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">No manual entry error</h1>
-<p class="date">📅 2019-Oct-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️  ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2019-Oct-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#man'>man</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>After installing some applications, I found that <code>man</code> no longer worked on my computer:</p>
@@ -62,7 +62,7 @@
 No manual entry for gcc
 See &#39;man 7 undocumented&#39; for help when manual pages are not available.</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Turns out that one of the applications needed to add its manpage. It did this by adding its path to <code>MANPATH</code> like this in Fish's <code>config.fish</code>:</p>
+<p>Turns out that one of the applications needed to add its manpage. It did this by adding its path to <code>MANPATH</code> like this in Fish’s <code>config.fish</code>:</p>
 <pre><code>set --export MANPATH $MANPATH /path/to/app</code></pre>
 <p>Changing it to the below fixed the error:</p>
 <pre><code>set --export MANPATH &quot;:/path/to/app&quot;</code></pre>

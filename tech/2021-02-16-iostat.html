@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – dstat</title>
+  <title>Code Yarns – iostat</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,46 +53,57 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">dstat</h1>
-<p class="date">📅 2021-Feb-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dstat'>dstat</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">iostat</h1>
+<p class="date">📅 2021-Feb-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#iostat'>iostat</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>dstat</strong> is a good utility to get a runtime view of statistics of system resources like CPU, disk and network.</p>
+<p><strong>iostat</strong> is one of the many useful <strong>sysstat</strong> tools available on Linux that print out reports and statistics about the system. This tool in particular gives detailed stats about storage devices and partitions. It also provides some brief stats about the CPU.</p>
 <ul>
-<li>To install this tool:</li>
+<li>Installing the tool is easy:</li>
 </ul>
-<pre><code>$ sudo apt install dstat</code></pre>
+<pre><code>$ sudo apt install sysstat</code></pre>
 <ul>
-<li>The default command print out many system statistics at a 1 second interval until you exit with <code>Ctrl+C</code>:</li>
+<li>When run without any arguments, it summarizes the cumulative utilization of CPU and storage devices since the system was last booted:</li>
 </ul>
-<pre><code>$ dstat
+<pre><code>$ iostat
+Linux 5.4.0-1028-raspi (joe-rpi)      02/15/21        _aarch64_       (4 CPU)
 
-You did not select any stats, using -cdngy by default.
---total-cpu-usage-- -dsk/total- -net/total- ---paging-- ---system--
-usr sys idl wai stl| read  writ| recv  send|  in   out | int   csw
-  3   4  81  12   0|  16k 1135k|   0     0 |   0     0 |9497  1088
-  1   1   0  98   0|   0   364k| 218B 1428B|   0     0 |  10k 2520
-  3  10   0  87   0|   0   880k| 367B  338B|   0     0 |  10k 2805</code></pre>
-<p>We can see that by default, it prints out CPU (<code>-c</code>), disk (<code>-d</code>), network (<code>-n</code>), page (<code>-g</code>) and system (<code>-y</code>) stats. Individual stats of each of these can obtained by using those commandline options. For example, <code>dstat -d</code> to view disk statistics only.</p>
-<p>Also, note that the first report (i.e., the first line) is the total or average of that stat from the time the system was booted.</p>
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           2.29    0.01    3.65    9.72    0.00   84.32
+
+Device             tps    kB_read/s    kB_wrtn/s    kB_dscd/s    kB_read    kB_wrtn    kB_dscd
+dm-0              0.07         0.01        25.60         0.00       3317   14197808          0
+loop0             0.00         0.00         0.00         0.00        970          0          0
+loop1             0.00         0.00         0.00         0.00        954          0          0
+mmcblk0           0.45         7.44         4.72       436.97    4128807    2619145  242335269
+sda              28.69         0.02       855.15         0.00      11137  474249512          0</code></pre>
 <ul>
-<li>To view statistics with a different delay (instead of the default 1-second interval):</li>
+<li>To get just the CPU utilization:</li>
 </ul>
-<pre><code>$ dstat 9</code></pre>
-<p>The delay argument can be used to the right of other commandline options, like <code>dstat -d 9</code> for example.</p>
+<pre><code>$ iostat -c</code></pre>
 <ul>
-<li>To set the number of reports (say <code>20</code>), provide the count to the right of the delay argument:</li>
+<li>To get just the storage device utilization:</li>
 </ul>
-<pre><code>$ dstat 9 20</code></pre>
+<pre><code>$ iostat -d</code></pre>
 <ul>
-<li>To output the stats to a CSV file:</li>
+<li>If your storage devices have more than one partition, it is useful to get a breakdown of the storage device utilization across device partitions:</li>
 </ul>
-<pre><code>$ dstat --output joe.csv 1 3</code></pre>
-<p>Note that the <code>--output</code> and other options have to be placed before the delay and count arguments.</p>
-<p><strong>References</strong>:</p>
+<pre><code>$ iostat -p
+$ iostat -dp</code></pre>
 <ul>
-<li><a href="https://www.networkworld.com/article/3291616/examining-linux-system-performance-with-dstat.html">Article on dstat at NetworkWorld</a></li>
-<li><a href="https://linux.die.net/man/1/dstat">dstat man page</a></li>
+<li>To get a running report with a 2-second interval (delay):</li>
 </ul>
+<pre><code>$ iostat 2</code></pre>
+<p>You need to use <code>Ctrl+C</code> to exit.</p>
+<ul>
+<li>To get a running report with a 2-second interval and stop after 5 reports:</li>
+</ul>
+<pre><code>$ iostat 2 5</code></pre>
+<ul>
+<li>To get a running report with a 2-second interval, but skip the stats-since-boot first report:</li>
+</ul>
+<pre><code>$ iostat -y 2</code></pre>
+<p>Note that <code>iostat -y</code> will not give you the <em>current</em> stats report. It will just behave like <code>iostat</code> and print the cumulative stats-since-boot.</p>
+<p><strong>Tried with:</strong> sysstat 12.2.0 and Ubuntu 20.04</p>
 </div>
 
 <br />
