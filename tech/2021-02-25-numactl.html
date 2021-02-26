@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – numactl</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "3wadqgw95m");
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header" style="padding-top: 10px;">
+    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">numactl</h1>
+<p class="date">📅 2021-Feb-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#numa'>numa</a>, <a href='index.html#numactl'>numactl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><strong>numactl</strong> is a popular tool that is used to view and set the <a href="2021-02-26-numa.html"><strong>NUMA</strong></a> settings on a computer with multiple processors. It ships along with a complementary tool named <strong>numastat</strong>.</p>
+<ul>
+<li>Installing the tool is easy:</li>
+</ul>
+<pre><code>$ sudo apt install numactl</code></pre>
+<ul>
+<li>The <code>--hardware</code> option can be used to check the NUMA status of your processors.</li>
+</ul>
+<p>With a CPU that has no NUMA support:</p>
+<pre><code>$ numactl --hardware
+No NUMA available on this system</code></pre>
+<p>With a single CPU that has NUMA support:</p>
+<pre><code>$ numactl --hardware
+available: 1 nodes (0)
+node 0 cpus: 0 1 2 3
+node 0 size: 7983 MB
+node 0 free: 2066 MB
+node distances:
+node   0
+  0:  10</code></pre>
+<p>In the above output, the CPU has 4 cores, but NUMA sees them as 4 CPUs. This is because the NUMA concept is older than the concept of multi-core CPUs.</p>
+<p>With a 4-CPU system with NUMA support:</p>
+<pre><code>$ numactl --hardware
+available: 4 nodes (0-3)
+node 0 cpus: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79
+node 0 size: 128801 MB
+node 0 free: 125628 MB
+node 1 cpus: 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95
+node 1 size: 129016 MB
+node 1 free: 128157 MB
+node 2 cpus: 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111
+node 2 size: 129016 MB
+node 2 free: 127929 MB
+node 3 cpus: 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
+node 3 size: 129002 MB
+node 3 free: 127553 MB
+node distances:
+node   0   1   2   3
+  0:  10  12  12  12
+  1:  12  10  12  12
+  2:  12  12  10  12
+  3:  12  12  12  10</code></pre>
+<p>Each CPU in the above system has 32 cores, which NUMA sees as 32 different CPUs. We see 4 NUMA nodes in the above output, meaning that each CPU is in it’s own NUMA node. Each CPU (or NUMA node) is associated with 25% of the total system memory.</p>
+<p>The node distance matrix shows that accessing memory from any other node is slower than accessing one’s own memory.</p>
+<ul>
+<li>The <code>--show</code> prints the NUMA policy of the current process.</li>
+</ul>
+<p>This is what I got on a 4-CPU system:</p>
+<pre><code>$ numactl --show
+policy: default
+preferred node: current
+physcpubind: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66
+67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127
+cpubind: 0 1 2 3
+nodebind: 0 1 2 3
+membind: 0 1 2 3</code></pre>
+<p>Not quite sure what the output means when executed at the shell.</p>
+<p><strong>Tried with:</strong> numactl 2.0.11 and Ubuntu 20.04</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
+</body>
+</html>

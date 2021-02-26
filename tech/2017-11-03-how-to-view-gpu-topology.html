@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -54,7 +54,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to view GPU topology</h1>
-<p class="date">📅 2017-Nov-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#nvidia-smi'>nvidia-smi</a>, <a href='index.html#topology'>topology</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2017-Nov-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#numa'>numa</a>, <a href='index.html#nvidia-smi'>nvidia-smi</a>, <a href='index.html#topology'>topology</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>The <strong>NVIDIA System Management Interface</strong> tool is the easiest way to explore the GPU topology on your system. This tool is available as <strong>nvidia-smi</strong> and is installed as part of the NVIDIA display driver. GPU topology describes how one or more GPUs in the system are connected to each other and to the CPU and other devices in the system. The topology is important to know how data is copied between GPUs or between a GPU and CPU or other device.</p>
 <ul>
@@ -66,32 +66,17 @@
 </ul>
 <pre><code>$ nvidia-smi topo -m</code></pre>
 <p>The output of this command shows a matrix of the connections between your GPUs with interconnect info, CPU affinity and NUMA affinity.</p>
-<p>Some examples of GPU topologies:</p>
+<p>On a system with a single GPU:</p>
 <pre><code>$ nvidia-smi topo -m
-    GPU0    CPU Affinity
-GPU0     X  0-7
-
-$ nvidia-smi topo -m
-    GPU0    GPU1    GPU2    GPU3    CPU Affinity
-GPU0     X  PHB SOC SOC 0-9,20-29
-GPU1    PHB  X  SOC SOC 0-9,20-29
-GPU2    SOC SOC  X  PHB 10-19,30-39
-GPU3    SOC SOC PHB  X  10-19,30-39
-
-$ nvidia-smi topo -m
-        GPU0    GPU1    GPU2    GPU3    GPU4    GPU5    GPU6    GPU7    mlx5_0  mlx5_2  mlx5_1  mlx5_3  CPU Affinity
-GPU0     X      NV1     NV1     NV2     NV2     SOC     SOC     SOC     PIX     SOC     PHB     SOC     0-19,40-59
-GPU1    NV1      X      NV2     NV1     SOC     NV2     SOC     SOC     PIX     SOC     PHB     SOC     0-19,40-59
-GPU2    NV1     NV2      X      NV2     SOC     SOC     NV1     SOC     PHB     SOC     PIX     SOC     0-19,40-59
-GPU3    NV2     NV1     NV2      X      SOC     SOC     SOC     NV1     PHB     SOC     PIX     SOC     0-19,40-59
-GPU4    NV2     SOC     SOC     SOC      X      NV1     NV1     NV2     SOC     PIX     SOC     PHB     20-39,60-79
-GPU5    SOC     NV2     SOC     SOC     NV1      X      NV2     NV1     SOC     PIX     SOC     PHB     20-39,60-79
-GPU6    SOC     SOC     NV1     SOC     NV1     NV2      X      NV2     SOC     PHB     SOC     PIX     20-39,60-79
-GPU7    SOC     SOC     SOC     NV1     NV2     NV1     NV2      X      SOC     PHB     SOC     PIX     20-39,60-79
-mlx5_0  PIX     PIX     PHB     PHB     SOC     SOC     SOC     SOC      X      SOC     PHB     SOC
-mlx5_2  SOC     SOC     SOC     SOC     PIX     PIX     PHB     PHB     SOC      X      SOC     PHB
-mlx5_1  PHB     PHB     PIX     PIX     SOC     SOC     SOC     SOC     PHB     SOC      X      SOC
-mlx5_3  SOC     SOC     SOC     SOC     PHB     PHB     PIX     PIX     SOC     PHB     SOC      X </code></pre>
+      GPU0  CPU Affinity
+GPU0    X   0-7</code></pre>
+<p>On a system with 4 GPUs and 4 CPUs with NUMA enabled as 4 nodes:</p>
+<pre><code>$ nvidia-smi topo -m
+        GPU0    GPU1    GPU2    GPU3    CPU Affinity    NUMA Affinity
+GPU0     X      NV4     NV4     NV4     48-63,112-127   3
+GPU1    NV4      X      NV4     NV4     32-47,96-111    2
+GPU2    NV4     NV4      X      NV4     16-31,80-95     1
+GPU3    NV4     NV4     NV4      X      0-15,64-79      0</code></pre>
 <p>The command also prints this legend as reference:</p>
 <pre><code>Legend:
   X    = Self

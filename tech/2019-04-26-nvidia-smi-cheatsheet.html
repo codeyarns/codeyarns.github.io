@@ -107,6 +107,15 @@ pci.device_id
 0x1D8110DE</code></pre>
 <p>In the above output, <code>0x1D81</code> is the device ID and <code>0x10DE</code> is the NVIDIA vendor ID.</p>
 <ul>
+<li>To view the PCI bus ID of your GPUs:</li>
+</ul>
+<pre><code>$ nvidia-smi --query-gpu=pci.bus_id --format=csv
+pci.bus_id
+00000000:01:00.0
+00000000:47:00.0
+00000000:81:00.0
+00000000:C2:00.0</code></pre>
+<ul>
 <li>To actually set the power limit for a GPU:</li>
 </ul>
 <pre><code>$ nvidia-smi -i 0 -pl 250</code></pre>
