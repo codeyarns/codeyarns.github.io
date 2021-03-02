@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -86,6 +86,7 @@ FOOBAR=${ANOTHER_VAR}</code></pre>
 </ul>
 <pre><code>local x  # x will be local variable
 x=$(FOOBAR)</code></pre>
+<p>If this declaration is done inside a function, the variable is local to that function.</p>
 <ul>
 <li><strong>Parameter expansion</strong>: Bash provides many methods to expand the value of a parameter or variable:</li>
 </ul>
@@ -164,6 +165,12 @@ done</code></pre>
 <p>It is common practice to roll up the <code>do</code> to the previous line by using <code>;</code>:</p>
 <pre><code>for FNAME in $(ls -1); do
     echo &quot;File:&quot;&quot;$FNAME&quot;
+done</code></pre>
+<ul>
+<li><strong>While loop</strong>:</li>
+</ul>
+<pre><code>while [ 1 -eq 1]; do
+    echo &quot;Hello&quot;
 done</code></pre>
 <ul>
 <li><strong>If-else</strong>: Conditional constructs can be created with <code>if</code>, <code>else</code> and <code>elif</code>. The conditions are written using the test <code>[</code> command or the <code>[[</code> commands (see above).</li>

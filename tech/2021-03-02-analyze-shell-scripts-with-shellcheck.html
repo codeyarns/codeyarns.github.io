@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – LibreOffice Calc does not apply default template to CSV</title>
+  <title>Code Yarns – Analyze shell scripts with ShellCheck</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,14 +53,23 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">LibreOffice Calc does not apply default template to CSV</h1>
-<p class="date">📅 2019-Sep-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#csv'>csv</a>, <a href='index.html#libreoffice'>libreoffice</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Analyze shell scripts with ShellCheck</h1>
+<p class="date">📅 2021-Mar-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#bash'>bash</a>, <a href='index.html#shellcheck'>shellcheck</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<h2 id="problem">Problem</h2>
-<p>I customized my <strong>LibreOffice Calc</strong> default template as described <a href="2015-05-28-how-to-set-default-font-in-libreoffice-calc.html">here</a> so that all new spreadsheets created in the application have this formatting. However, I noticed that <strong>CSV</strong> files opened in LibreOffice Calc from shell using <code>xdg-open</code> did not use my default template.</p>
-<h2 id="solution">Solution</h2>
-<p>This turns out to be an <a href="https://bugs.documentfoundation.org/show_bug.cgi?id=86336">old bug</a> in LibreOffice Calc known for many years. There does not seem to be any estimate of when this bug will be fixed.</p>
-<p><strong>Tried with:</strong> LibreOffice 6.0.7.3 and Ubuntu 18.04</p>
+<p><strong>ShellCheck</strong> is a godsend for people like me who are not Bash/sh experts, but still need to write and maintains scripts of good quality. It analyzes your script against a series of built-in checks and offers suggestions for improving the script.</p>
+<p>Here is the best part of using this tool in your daily workflow: I find it to be the most practical way to learn good quality shell programming practices. This is way better than reading the ginormous Bash manual anyday.</p>
+<p>Hook this tool to your CI/CD or to your git pre-commit hooks to get scripts in your codebase automatically checked for quality.</p>
+<ul>
+<li><p>Scripts can be checked online by pasting their contents at <a href="https://www.shellcheck.net/">shellcheck.net</a>.</p></li>
+<li><p>Installing and using it at the shell is easy:</p></li>
+</ul>
+<pre><code>$ sudo apt install shellcheck
+
+$ shellcheck myscript.sh</code></pre>
+<ul>
+<li>The list of checks that the tool uses can be found <a href="https://gist.github.com/nicerobot/53cee11ee0abbdc997661e65b348f375">here</a>. Each check page comes with detailed information of what is wrong in your script, how to fix and why the check exists.</li>
+</ul>
+<p><strong>Tried with:</strong> ShellCheck 0.4.6 and Ubuntu 18.04</p>
 </div>
 
 <br />

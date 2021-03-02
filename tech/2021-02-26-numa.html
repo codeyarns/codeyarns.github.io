@@ -56,10 +56,12 @@
 <h1 class="title">NUMA</h1>
 <p class="date">📅 2021-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#numa'>numa</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>NUMA</strong> (Non Uniform Memory Access) is a multiprocessor system where it does <em>not</em> take the same amount of time to access any given memory location. The system memory (RAM) is split across the CPUs such that accessing memory associated with a different CPU might take longer than accessing one’s own CPU’s memory. There is typically an interconnect between the CPUs. You still use the load and store machine instructions and the non-uniform access happens behinds the scenes.</p>
+<p><strong>NUMA</strong> (Non Uniform Memory Access) is a multiprocessor system where it does <em>not</em> take the same amount of time to access any given memory location. The system memory (RAM) is split contiguously between the CPUs (first half to CPU0 and second half to CPU1 on a 2-CPU NUMA) such that accessing memory associated with a different CPU might take longer than accessing memory of one’s own CPU. It takes longer because the data needs to travel through the interconnect between the CPUs. Most of the NUMA magic is supported by the CPUs itself, so that normal load-store machine instructions do all this behind the scenes.</p>
 <ul>
+<li><p>A NUMA-capable system where NUMA is not enabled runs in <strong>UMA</strong> (Uniform Memory Access) mode. By definition, UMA is supposed to provide constant-time access to memory locations, but realistically on Intel systems the memory access times seems to vary - faster for memory close by and slower for memory attached to a different CPU.</p></li>
 <li><p>You might need to check your BIOS or use tools provided by the CPU or system vendor to enable or disable NUMA and to choose from among the NUMA configs supported by the CPU or system vendor.</p></li>
 <li><p><a href="2021-02-25-numactl.html"><strong>numactl</strong></a> is a common tool that can be used to view and set NUMA configs.</p></li>
+<li><p>APIs provided in the libnuma library (set_mempolicy) can be used to isolate all succeeding memory allocations use the memory associated with specified CPU when they need to use RAM. This is easiest to do with the set-and-fork multi-process model. This can be used with multi-threading model too, but the benefits might vary.</p></li>
 <li><p><strong>numastat</strong> tool (that ships with numactl) can be used to print per-NUMA-node memory statistics:</p></li>
 </ul>
 <pre><code>$ numastat
