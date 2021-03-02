@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -81,6 +81,115 @@ System peripheral: Class of device. Other values I have seen are host bridge, PC
                    controller, performance counters.
 Intel Corporation Xeon E7 v4: Vendor and device name looked up from PCI ID database.</code></pre>
 <ul>
+<li>To list verbose information about the devices, use one of three levels of verbosity:</li>
+</ul>
+<pre><code>$ lspci -v
+$ lspci -vv
+$ lspci -vvv</code></pre>
+<p>Here is an example of the difference in verbose output between <code>-v</code> and <code>-vv</code>:</p>
+<pre><code>$ lspci -d 10de: -v
+01:00.0 VGA compatible controller: NVIDIA Corporation GV100 [TITAN V] (rev a1) (prog-if 00 [VGA controller])
+        Subsystem: NVIDIA Corporation GV100 [TITAN V]
+        Physical Slot: 4
+        Flags: bus master, fast devsel, latency 0, IRQ 37, NUMA node 0
+        Memory at fa000000 (32-bit, non-prefetchable) [size=16M]
+        Memory at e0000000 (64-bit, prefetchable) [size=256M]
+        Memory at f0000000 (64-bit, prefetchable) [size=32M]
+        I/O ports at e000 [size=128]
+        [virtual] Expansion ROM at fb000000 [disabled] [size=512K]
+        Capabilities: &lt;access denied&gt;
+        Kernel driver in use: nvidia
+        Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia
+
+$ lspci -d 10de: -vv
+01:00.0 VGA compatible controller: NVIDIA Corporation GV100 [TITAN V] (rev a1) (prog-if 00 [VGA controller])
+        Subsystem: NVIDIA Corporation GV100 [TITAN V]
+        Physical Slot: 4
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR+ FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort- &lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+        Latency: 0
+        Interrupt: pin A routed to IRQ 37
+        NUMA node: 0
+        Region 0: Memory at fa000000 (32-bit, non-prefetchable) [size=16M]
+        Region 1: Memory at e0000000 (64-bit, prefetchable) [size=256M]
+        Region 3: Memory at f0000000 (64-bit, prefetchable) [size=32M]
+        Region 5: I/O ports at e000 [size=128]
+        [virtual] Expansion ROM at fb000000 [disabled] [size=512K]
+        Capabilities: &lt;access denied&gt;
+        Kernel driver in use: nvidia
+        Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia</code></pre>
+<ul>
+<li>Note that many of the capabilities of the devices may not be displayed in verbose output for non-root users. To get all the information use <code>sudo</code>:</li>
+</ul>
+<pre><code>$ sudo lspci -d 10de: -vv</code></pre>
+<p>Here is the super detailed output with <code>sudo</code> for the same card as above:</p>
+<pre><code>$ sudo lspci -d 10de: -vv
+01:00.0 VGA compatible controller: NVIDIA Corporation GV100 [TITAN V] (rev a1) (prog-if 00 [VGA controller])
+        Subsystem: NVIDIA Corporation GV100 [TITAN V]
+        Physical Slot: 4
+        Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR+ FastB2B- DisINTx+
+        Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort- &lt;MAbort- &gt;SERR- &lt;PERR- INTx-
+        Latency: 0
+        Interrupt: pin A routed to IRQ 37
+        NUMA node: 0
+        Region 0: Memory at fa000000 (32-bit, non-prefetchable) [size=16M]
+        Region 1: Memory at e0000000 (64-bit, prefetchable) [size=256M]
+        Region 3: Memory at f0000000 (64-bit, prefetchable) [size=32M]
+        Region 5: I/O ports at e000 [size=128]
+        [virtual] Expansion ROM at fb000000 [disabled] [size=512K]
+        Capabilities: [60] Power Management version 3
+                Flags: PMEClk- DSI- D1- D2- AuxCurrent=0mA PME(D0-,D1-,D2-,D3hot-,D3cold-)
+                Status: D0 NoSoftRst+ PME-Enable- DSel=0 DScale=0 PME-
+        Capabilities: [68] MSI: Enable+ Count=1/1 Maskable- 64bit+
+                Address: 00000000fee00438  Data: 0000
+        Capabilities: [78] Express (v2) Legacy Endpoint, MSI 00
+                DevCap: MaxPayload 256 bytes, PhantFunc 0, Latency L0s unlimited, L1 &lt;64us
+                        ExtTag+ AttnBtn- AttnInd- PwrInd- RBE+ FLReset-
+                DevCtl: Report errors: Correctable- Non-Fatal- Fatal- Unsupported-
+                        RlxdOrd+ ExtTag+ PhantFunc- AuxPwr- NoSnoop-
+                        MaxPayload 256 bytes, MaxReadReq 512 bytes
+                DevSta: CorrErr- UncorrErr- FatalErr- UnsuppReq- AuxPwr- TransPend-
+                LnkCap: Port #0, Speed 8GT/s, Width x16, ASPM L0s L1, Exit Latency L0s &lt;512ns, L1 &lt;4us
+                        ClockPM+ Surprise- LLActRep- BwNot- ASPMOptComp+
+                LnkCtl: ASPM Disabled; RCB 64 bytes Disabled- CommClk+
+                        ExtSynch- ClockPM+ AutWidDis- BWInt- AutBWInt-
+                LnkSta: Speed 2.5GT/s, Width x16, TrErr- Train- SlotClk+ DLActive- BWMgmt- ABWMgmt-
+                DevCap2: Completion Timeout: Range AB, TimeoutDis+, LTR-, OBFF Via message
+                DevCtl2: Completion Timeout: 50us to 50ms, TimeoutDis-, LTR-, OBFF Disabled
+                LnkCtl2: Target Link Speed: 8GT/s, EnterCompliance- SpeedDis-
+                         Transmit Margin: Normal Operating Range, EnterModifiedCompliance- ComplianceSOS-
+                         Compliance De-emphasis: -6dB
+                LnkSta2: Current De-emphasis Level: -6dB, EqualizationComplete+, EqualizationPhase1+
+                         EqualizationPhase2+, EqualizationPhase3+, LinkEqualizationRequest-
+        Capabilities: [100 v1] Virtual Channel
+                Caps:   LPEVC=0 RefClk=100ns PATEntryBits=1
+                Arb:    Fixed- WRR32- WRR64- WRR128-
+                Ctrl:   ArbSelect=Fixed
+                Status: InProgress-
+                VC0:    Caps:   PATOffset=00 MaxTimeSlots=1 RejSnoopTrans-
+                        Arb:    Fixed- WRR32- WRR64- WRR128- TWRR128- WRR256-
+                        Ctrl:   Enable+ ID=0 ArbSelect=Fixed TC/VC=01
+                        Status: NegoPending- InProgress-
+        Capabilities: [258 v1] L1 PM Substates
+                L1SubCap: PCI-PM_L1.2+ PCI-PM_L1.1+ ASPM_L1.2+ ASPM_L1.1+ L1_PM_Substates+
+                          PortCommonModeRestoreTime=255us PortTPowerOnTime=10us
+                L1SubCtl1: PCI-PM_L1.2- PCI-PM_L1.1- ASPM_L1.2- ASPM_L1.1-
+                           T_CommonMode=0us LTR1.2_Threshold=0ns
+                L1SubCtl2: T_PwrOn=10us
+        Capabilities: [128 v1] Power Budgeting &lt;?&gt;
+        Capabilities: [420 v2] Advanced Error Reporting
+                UESta:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP- ECRC- UnsupReq- ACSViol-
+                UEMsk:  DLP- SDES- TLP- FCP- CmpltTO- CmpltAbrt- UnxCmplt- RxOF- MalfTLP- ECRC- UnsupReq- ACSViol-
+                UESvrt: DLP+ SDES+ TLP- FCP+ CmpltTO- CmpltAbrt- UnxCmplt- RxOF+ MalfTLP+ ECRC- UnsupReq- ACSViol-
+                CESta:  RxErr- BadTLP- BadDLLP- Rollover- Timeout- NonFatalErr-
+                CEMsk:  RxErr- BadTLP- BadDLLP- Rollover- Timeout- NonFatalErr+
+                AERCap: First Error Pointer: 00, GenCap- CGenEn- ChkCap- ChkEn-
+        Capabilities: [600 v1] Vendor Specific Information: ID=0001 Rev=1 Len=024 &lt;?&gt;
+        Capabilities: [900 v1] #19
+        Capabilities: [ac0 v1] #23
+        Kernel driver in use: nvidia
+        Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia</code></pre>
+<ul>
 <li>To list PCI information in a machine readable format, that is easy for parsing through scripts:</li>
 </ul>
 <pre><code>$ lspci -m</code></pre>
@@ -100,8 +209,11 @@ ff:0b.0 &quot;System peripheral&quot; &quot;Intel Corporation&quot; &quot;Xeon E
 <ul>
 <li>To filter by vendor ID or device ID:</li>
 </ul>
-<pre><code>$ lspci -d 8086:
+<pre><code>$ lspci -d 8086:  # List Intel devices
+$ lspci -d 10de:  # List NVIDIA devices
+
 $ lspci -d :6f81</code></pre>
+<p>Filtering by vendor ID is useful to look at devices by popular vendors, like Intel or NVIDIA for example.</p>
 <ul>
 <li>To list the kernel driver and kernel modules used by the devices:</li>
 </ul>
@@ -124,13 +236,6 @@ $ lspci -d :6f81</code></pre>
 0b.0: Device 0x0B and function 0x0.
 
 This device will list in the default output as ff:0b.0.</code></pre>
-<ul>
-<li>To list verbose information about the devices, use one of three levels of verbosity:</li>
-</ul>
-<pre><code>$ lspci -v
-$ lspci -vv
-$ lspci -vvv</code></pre>
-<p>Note that some of the capabilities of the devices may not be displayed for non-root users. To get all the information use <code>sudo</code>.</p>
 <p><strong>References:</strong></p>
 <ul>
 <li><a href="https://www.man7.org/linux/man-pages/man8/lspci.8.html">lspci manpage</a></li>
