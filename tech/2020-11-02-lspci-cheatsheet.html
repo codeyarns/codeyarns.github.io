@@ -58,11 +58,12 @@
 </header>
 <p><strong>lspci</strong> is the primary tool on Linux to get information about the PCI buses, bridges and devices on your system. I have primarily used lspci to find information about wired/wireless network adapters and graphics cards.</p>
 <ul>
-<li>Installing the tool is easy:</li>
+<li>This and other PCI tools ship in the pciutils package. Installing it is easy:</li>
 </ul>
 <pre><code>$ sudo apt install pciutils</code></pre>
 <ul>
-<li>To get a listing of all the buses, bridges and devices on your system:</li>
+<li><p>The source code of pciutils can be accessed <a href="https://github.com/pciutils/pciutils">here</a>. I find it useful to sometimes go to the source to understand some of the lspci output.</p></li>
+<li><p>To get a listing of all the buses, bridges and devices on your system:</p></li>
 </ul>
 <pre><code>$ lspci</code></pre>
 <p>I typically grep this output to find the specific type of devices I am looking for. For example, to find graphics cards I typically use:</p>
@@ -189,8 +190,10 @@ $ lspci -d 10de: -vv
         Capabilities: [ac0 v1] #23
         Kernel driver in use: nvidia
         Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia</code></pre>
+<p>Some of the information I find useful in the sudo verbose output are:</p>
 <ul>
-<li>To list PCI information in a machine readable format, that is easy for parsing through scripts:</li>
+<li><p><code>LnkSta</code> line: From this <em>Link Status</em> line above (<a href="https://github.com/pciutils/pciutils/blob/5bdf63b6b1bc35b59c4b3f47f7ca83ca1868155b/ls-caps.c#L840">source</a>) I can see that this has a speed of <code>2.5GT/s</code>. This means it is PCIe v1 (<a href="https://github.com/pciutils/pciutils/blob/5bdf63b6b1bc35b59c4b3f47f7ca83ca1868155b/ls-caps.c#L740">source</a>). And I can see the width is <code>x16</code> so it has 16 lanes. What this translates to is <code>2.5 / 8 * 16 = 5GB/s</code>.</p></li>
+<li><p>To list PCI information in a machine readable format, that is easy for parsing through scripts:</p></li>
 </ul>
 <pre><code>$ lspci -m</code></pre>
 <p>Here is an example output line showing the difference between the default and machine readable options:</p>
