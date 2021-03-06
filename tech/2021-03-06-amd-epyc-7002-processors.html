@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – AMD EPYC 7002 Processors</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "3wadqgw95m");
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header" style="padding-top: 10px;">
+    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">AMD EPYC 7002 Processors</h1>
+<p class="date">📅 2021-Mar-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#amd'>amd</a>, <a href='index.html#processor'>processor</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>This is a summary of my understanding of the <strong>AMD EPYC 7002</strong> processors, and more specifically the <strong>AMD EPYC 7742</strong> processor:</p>
+<h2 id="name">Name</h2>
+<p>Chip names always puzzle me, so let us decipher this AMD naming first:</p>
+<ul>
+<li><p><em>EPYC</em> is the current name for AMD’s server processor line - essentially processors that go into local or cloud rack servers. <em>Ryzen</em> is the current name for their desktop and mobile processors.</p></li>
+<li><p><em>7002</em> or <em>7XX2</em>: 7 is the series number, 2 is the generation (because these use Zen2 microarchitecture). The generation 2 chips are also called the <em>Rome</em> generation. The 2 XX digits in the middle represent performance, higher the better. They can range 25-74, so <em>7742</em> is the most performant processor.</p></li>
+<li><p>All these processors are designed for dual-socket use - that is, 2 of these processors in a server which is the common rack server scenario. The processors designed for single-socket use will have a P suffix: 7742P for example.</p></li>
+</ul>
+<h2 id="chiplets">Chiplets</h2>
+<ul>
+<li>The CPU is actually 9 different chips (called <em>chiplets</em>) on a board.</li>
+<li>8 of the chiplets are each called <strong>CCD</strong> (Core Complex Die) and the chiplet in the center is called the <strong>IOD</strong> (I/O Die).</li>
+<li>CCD are made from a 7nm process and IOD is made from a 14nm process.</li>
+<li>Each CCD is composed of 2 <strong>CCX</strong> (Core CompleX).</li>
+</ul>
+<h2 id="ccx">CCX</h2>
+<ul>
+<li>Each CCX has 4 Zen2 cores and 16MB of L3 cache shared between the 4 cores.</li>
+<li>Each Zen2 core has 32KB 8-way L1 I-cache, 32KB 8-way L1 D-cache and 512KB 8-way L2 cache.</li>
+<li>All inter-CCX communication, inside a CCD or in between CCD, all have to go through the IOD.</li>
+</ul>
+<h2 id="iod">IOD</h2>
+<ul>
+<li>IOD handles all the communication with memory, other devices and with the other CPU (in dual-socket configuration).</li>
+<li>CCDs talk to the IOD through the <strong>IF</strong> (Infinity Fabric) interconnect.</li>
+<li>The IOD also has DDR memory channels to talk to RAM and PCIe connections to talk to GPUs, CPUs and other devices.</li>
+<li>Up to 4TB of memory is supported per socket.</li>
+</ul>
+<h2 id="memory-channels">Memory channels</h2>
+<ul>
+<li>The IOD of each CPU supports 8 memory channels. The 8 memory channels are named ABCDEFGH.</li>
+<li>Each memory channel supports up to 2 DIMMs. The 2 DIMMs are connected serially on the channel like this: <code>Channel G -- DIMM 1 -- DIMM 2</code>. A CPU supports 16 DIMMs and so a dual-socket server supports up to 32 DIMMs.</li>
+<li>For optimum performance, AMD recommends that all channels should be populated and with equal capacity. So, on a dual-socket server it is recommended to have all 32 DIMMs filled up or 16 DIMMs filled up (with one DIMM per channel).</li>
+<li>When there is 1 DIMM per channel, the system is said to be in <strong>1 DPC</strong> mode. When there are 2 DIMMs per channel, the system is said to be in <strong>2 DPC</strong> mode.</li>
+</ul>
+<h2 id="pcie">PCIe</h2>
+<ul>
+<li>These CPUs support PCIe 4.0. x16 (16 lanes) provide 32 GB/s of bandwidth in bidirectional use and 16 GB/s in one direction.</li>
+<li>The IOD of each CPU supports 8 of these x16 PCIe channels. That is 128 lanes in total, for a total of 256 GB/s of bidirectional and 128 GB/s of unidirectional bandwidth.</li>
+<li>4 of the x16 channels are used to talk to the other socket in a dual-socket configuration.</li>
+</ul>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
+</body>
+</html>

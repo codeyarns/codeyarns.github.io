@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -141,7 +141,7 @@ $ docker pull nvidia/cuda</code></pre>
 <pre><code>$ docker system prune -a</code></pre>
 <p>This pretty much removes all Docker data on your system. This is useful when you really want to clean out everything.</p>
 <ul>
-<li>To look at Docker's disk usage:</li>
+<li>To look at Docker’s disk usage:</li>
 </ul>
 <pre><code>$ docker system df</code></pre>
 <p>In this output, the <em>size</em> of the <em>Images</em> is the disk space occupied by your Docker images.</p>
@@ -176,6 +176,18 @@ $ docker pull nvidia/cuda</code></pre>
 <li>To remove a container, provide its hash:</li>
 </ul>
 <pre><code>$ docker rm 45235345</code></pre>
+<h2 id="copy">Copy</h2>
+<ul>
+<li>To copy contents of a running container to the host filesystem:</li>
+</ul>
+<pre><code>$ docker cp ecstatic_moore:/etc/lsb-release my_lsb_release
+$ docker cp 763338cb8aa1:/etc/lsb-release my_lsb_release</code></pre>
+<p>As shown above, either the container <em>name</em> or the container <em>ID</em> can be used as the source.</p>
+<ul>
+<li>To copy contents of the host filesystem into a running container:</li>
+</ul>
+<pre><code>$ docker cp my_details ecstatic_moore:/etc/my_details
+$ docker cp my_details 763338cb8aa1:/etc/lsb-release</code></pre>
 <p><strong>Tried with:</strong> Docker 18.09.6 and Ubuntu 18.04</p>
 </div>
 

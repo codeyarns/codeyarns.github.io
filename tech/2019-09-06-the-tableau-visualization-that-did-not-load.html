@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -54,7 +54,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">The Tableau visualization that did not load</h1>
-<p class="date">📅 2019-Sep-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️  ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2019-Sep-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#tableau'>tableau</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>A friend shared a webpage which was supposed to render a <a href="https://www.tableau.com/"><strong>Tableau</strong></a> visualization. However, when I opened that URL in my Firefox browser, I got an empty page.</p>
@@ -63,7 +63,7 @@
 <p>I decided to check out the HTML source of the webpage by right-clicking on the page and choosing <strong>View Page Source</strong>. I saw that the HTML was pretty simple. The main suspect seemed to be a <code>script</code> tag that was pulling in a Javascript file from <code>http://tableaureporting.foobar.com/javascripts/api/viz_v1.js</code>.</p>
 <p>So I suspected that Firefox was not loading this Javascript file for some reason. Why might that be?</p>
 <p>Time to break out the <strong>Developer Tools</strong> in Firefox by pressing <code>F12</code>. The <strong>Console</strong> tab showed an error: it had blocked the script due to something called <strong>mixed content</strong> use. Thankfully, the error message was linked to a <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content">Mixed Content</a> page that explained why: I was looking at a HTTPS webpage that was trying to load a Javascript file (<em>active content</em>) from a HTTP URL. To protect me, it was blocking this active content.</p>
-<p>So Firefox is protecting me. That's good, but I knew the URL from my friend is safe and I wanted to <em>really</em> see that visualization.</p>
+<p>So Firefox is protecting me. That’s good, but I knew the URL from my friend is safe and I wanted to <em>really</em> see that visualization.</p>
 <p>Might there be a security setting that I could disable? Turns out there is. Head over to <code>about:config</code> in Firefox and toggle the <code>security.mixed_content.block_active_content</code> setting from <code>default</code> to <code>false</code>.</p>
 <p>Voila, I could see my Tableau visualization after this!</p>
 <p><strong>Tried with:</strong> Firefox 68 and Ubuntu 18.04</p>
