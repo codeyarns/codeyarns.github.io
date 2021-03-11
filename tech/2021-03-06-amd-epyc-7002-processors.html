@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -66,7 +66,7 @@
 </ul>
 <h2 id="chiplets">Chiplets</h2>
 <ul>
-<li>The CPU is actually 9 different chips (called <em>chiplets</em>) on a board.</li>
+<li>The CPU is actually a <strong>MCM</strong> (Multi-Chip Module) of 9 different chips (called <em>chiplets</em>) on a board.</li>
 <li>8 of the chiplets are each called <strong>CCD</strong> (Core Complex Die) and the chiplet in the center is called the <strong>IOD</strong> (I/O Die).</li>
 <li>CCD are made from a 7nm process and IOD is made from a 14nm process.</li>
 <li>Each CCD is composed of 2 <strong>CCX</strong> (Core CompleX).</li>
@@ -75,6 +75,7 @@
 <ul>
 <li>Each CCX has 4 Zen2 cores and 16MB of L3 cache shared between the 4 cores.</li>
 <li>Each Zen2 core has 32KB 8-way L1 I-cache, 32KB 8-way L1 D-cache and 512KB 8-way L2 cache.</li>
+<li>Each Zen2 core does hyper-threading, supporting <strong>SMT</strong> (Simultaneous Multi-Threading) as 2 cores.</li>
 <li>All inter-CCX communication, inside a CCD or in between CCD, all have to go through the IOD.</li>
 </ul>
 <h2 id="iod">IOD</h2>
@@ -83,19 +84,38 @@
 <li>CCDs talk to the IOD through the <strong>IF</strong> (Infinity Fabric) interconnect.</li>
 <li>The IOD also has DDR memory channels to talk to RAM and PCIe connections to talk to GPUs, CPUs and other devices.</li>
 <li>Up to 4TB of memory is supported per socket.</li>
+<li>Set Maximum Bus Frequency to 2667 MT/s for optimum memory access latency.</li>
 </ul>
 <h2 id="memory-channels">Memory channels</h2>
 <ul>
 <li>The IOD of each CPU supports 8 memory channels. The 8 memory channels are named ABCDEFGH.</li>
 <li>Each memory channel supports up to 2 DIMMs. The 2 DIMMs are connected serially on the channel like this: <code>Channel G -- DIMM 1 -- DIMM 2</code>. A CPU supports 16 DIMMs and so a dual-socket server supports up to 32 DIMMs.</li>
 <li>For optimum performance, AMD recommends that all channels should be populated and with equal capacity. So, on a dual-socket server it is recommended to have all 32 DIMMs filled up or 16 DIMMs filled up (with one DIMM per channel).</li>
-<li>When there is 1 DIMM per channel, the system is said to be in <strong>1 DPC</strong> mode. When there are 2 DIMMs per channel, the system is said to be in <strong>2 DPC</strong> mode.</li>
+<li>When there is 1 DIMM per channel, the system is said to be in <strong>1 DPC</strong> mode. This is the most performant configuration.</li>
+<li>When there are 2 DIMMs per channel, the system is said to be in <strong>2 DPC</strong> mode. This configuration runs at lesser memory speed than 1 DPC.</li>
+<li>All other configurations (12 DIMMs for example) are suboptimal compared to 1 DPC or 2 DPC.</li>
 </ul>
 <h2 id="pcie">PCIe</h2>
 <ul>
 <li>These CPUs support PCIe 4.0. x16 (16 lanes) provide 32 GB/s of bandwidth in bidirectional use and 16 GB/s in one direction.</li>
 <li>The IOD of each CPU supports 8 of these x16 PCIe channels. That is 128 lanes in total, for a total of 256 GB/s of bidirectional and 128 GB/s of unidirectional bandwidth.</li>
 <li>4 of the x16 channels are used to talk to the other socket in a dual-socket configuration.</li>
+<li>For optimum performance, pin workloads to the socket that is directly connected to the GPU or NIC the workload uses.</li>
+</ul>
+<h2 id="numa">NUMA</h2>
+<ul>
+<li>NUMA is configured by setting the <strong>NPS</strong> (NUMA Nodes Per Socket) value in BIOS. Possible values are 0-4.</li>
+<li><code>NPS=0</code>: Entire 2-socket system is 1 NUMA node. 16-channel interleaving is used for memory.</li>
+<li><code>NPS=1</code>: Each socket is 1 NUMA node. 8-channel interleaving for memory.</li>
+<li><code>NPS=2</code>: Each socket is 2 NUMA nodes. 4-channel interleaving for memory.</li>
+<li><code>NPS=4</code>: Each socket is 4 NUMA nodes. 2-channel interleaving for memory.</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.anandtech.com/show/14694/amd-rome-epyc-2nd-gen">Anandtech review of AMD EPYC 7002 processors</a></li>
+<li>Tuning Guide for AMD EPYC 7002 Series Processors</li>
+<li>Memory Population Guidelines for AMD EPYC 7002 Series Processors</li>
+<li>Socket SP3 Platform NUMA Topology for AMD Family 17h Models 30h-3Fh</li>
 </ul>
 </div>
 

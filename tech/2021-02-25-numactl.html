@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -99,7 +99,7 @@ node   0   1   2   3
   2:  12  12  10  12
   3:  12  12  12  10</code></pre>
 <p>Each CPU in the above system has 32 cores, which NUMA sees as 32 different CPUs. We see 4 NUMA nodes in the above output, meaning that each CPU is in it’s own NUMA node. Each CPU (or NUMA node) is associated with 25% of the total system memory.</p>
-<p>The node distance matrix shows that accessing memory from any other node is slower than accessing one’s own memory.</p>
+<p>The node distance matrix shows that accessing memory from any other node is slower than accessing one’s own memory. In Linux, the typical distance values are 10, 12 and 32. The distance of node to itself is 10, the <strong>Near-Hop Distance</strong> (different NUMA node, but same socket) is 12 and <strong>Far-Hop Distance</strong> (different NUMA node, different socket) is 32.</p>
 <ul>
 <li>The <code>--show</code> prints the NUMA policy of the current process.</li>
 </ul>
