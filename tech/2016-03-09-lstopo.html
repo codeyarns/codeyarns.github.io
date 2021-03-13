@@ -91,7 +91,7 @@
 <li>Group / NUMANode: This appears only if you have enabled NUMA and represents a NUMA node. On a multi-NUMA-node system, there will be multiple of these groups or NUMA nodes. Example: <code>NUMANode L#0 P#0 (32GB)</code></li>
 <li>Caches: Depending on what caches the CPU has the components might be L3, L2, L1d and L1i, each with corresponding cache size listed. In the graphical output, note the span of the cache rectangle - it spans over the CPU cores that it belongs to. Example: <code>L1i (32KB)</code></li>
 <li>Core and PU: Physical CPU cores are shown as <code>Core</code> and if they have multiple hyper-threaded cores inside them they are shown as <code>PU</code>. If hyper-threading has been disabled on a system, then a single PU is shown inside each core. Example: <code>Core P#4, PU P#4, PU P#10</code></li>
-<li>PCI: The PCI tree associated with a CPU or a NUMA node is displayed inside the box of the CPU or NUMA node. The tree shows the PCI device IDs or PCI bus IDs.</li>
+<li>PCIe: The PCIe tree associated with a CPU or a NUMA node is displayed inside the box of the CPU or NUMA node. The tree shows the PCIe device IDs or PCI bus IDs. If there is a number on the PCIe bus, that is its bandwidth. The PCIe generation can be guessed from the bandwidth - <code>32</code> means 32 GB/s which is only possible with PCIe Gen 4.</li>
 <li>GPUs and devices: Hanging off the PCI bus tree are the GPUs and other I/O devices. The CPU affinity for a GPU or device can be seen by noting the CPU cores or NUMA node inside which the GPU or device is listed.</li>
 </ul>
 <p><strong>Tried with:</strong> lstopo 2.1.0 and Ubuntu 20.04</p>
