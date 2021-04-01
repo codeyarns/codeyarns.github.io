@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -129,9 +129,15 @@ $ git commit</code></pre>
 </ul>
 <pre><code>$ git reset --soft HEAD~1</code></pre>
 <ul>
-<li>To remove all untracked files:</li>
+<li>To remove all untracked files from the local repo directory:</li>
 </ul>
 <pre><code>$ git clean -fd</code></pre>
+<p>This does not touch files ignored by git (<code>.gitignore</code>).</p>
+<ul>
+<li>To remove all untracked files (including git ignored files) from the local repo directory:</li>
+</ul>
+<pre><code>$ git clean -fdx</code></pre>
+<p>This pretty much restores the repo directory to a pristine state with no extraneous files.</p>
 <ul>
 <li>To revert non-staged non-committed changes:</li>
 </ul>
@@ -306,7 +312,11 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 <ul>
 <li>List files that changed between two revisions:</li>
 </ul>
-<pre><code>$ git diff --name-only revision1 revision2</code></pre>
+<pre><code>$ git diff --name-only old_rev new_rev</code></pre>
+<ul>
+<li>List files that changed and also their status (added/modified/deleted) between two revisions:</li>
+</ul>
+<pre><code>$ git diff --name-status old_rev new_rev</code></pre>
 <ul>
 <li>Create an archive or zip file of the contents at any given commit:</li>
 </ul>
