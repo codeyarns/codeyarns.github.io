@@ -54,7 +54,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">Byobu</h1>
-<p class="date">📅 2013-Jan-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#gnu-screen'>gnu screen</a>, <a href='index.html#keyboard-shortcut'>keyboard shortcut</a>, <a href='index.html#terminal-multiplexer'>terminal multiplexer</a>, <a href='index.html#tmux'>tmux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Jan-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#keyboard-shortcuts'>keyboard shortcuts</a>, <a href='index.html#tmux'>tmux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><a href="https://launchpad.net/byobu"><strong>Byobu</strong></a> is a program that makes using terminal multiplexers really easy. A <strong>terminal multiplexer</strong> is like a windowing system for console programs. Byobu uses <strong>tmux</strong> by default, but can be configured to use <strong>GNU screen</strong> too.</p>
 <p>Byobu allows you have many console windows or programs running at the same time. You can detach from Byobu and later restore the session, with all your terminals and programs running intact. This is similar to hibernating and restarting an OS back.</p>
@@ -69,7 +69,7 @@
 <li><p><code>F2</code>: Open a new window or tab. This means that a new shell session is opened in that window. This window is numbered 1, as seen at the bottom. Every invocation of <code>F2</code> creates a new window, numbered with the smallest unused integer.</p></li>
 <li><p><code>F3</code> or <code>F4</code>: Switch to the window that is left or right of the current one.</p></li>
 <li><p><code>F6</code>: Detach from Byobu. Puts you back at the shell. All the windows and the shells inside them are still running. You get back to them whenever you want by running <code>byobu</code> again.</p></li>
-<li><p><code>F7</code>: Toggle mode to scroll through history. Once in this mode, use cursor keys or Page Up or Page Down to scroll through history. To search back or forward in the history, use <code>/foobar</code> or <code>?foobar</code> just like in Vim. Hit <code>Enter</code> to get out of this mode.</p></li>
+<li><p><code>F7</code>: Toggle mode to scroll through history. Hit <code>Enter</code> to get out of this mode. This mode is useful for search and copy-paste, see below.</p></li>
 <li><p><code>Alt + PgUp</code> or <code>Alt + PgDn</code>: Page up or down through history of current window.</p></li>
 <li><p><code>F8</code>: Rename the current window. The new name is shown at the bottom of each window.</p></li>
 <li><p><code>Ctrl + F2</code>: Create a vertical split window.</p></li>
@@ -82,7 +82,12 @@
 <li><p><code>F1</code>: View help, including keyboard shortcuts like these.</p></li>
 </ul>
 <p>You can also see these keyboard shortcuts defined in the <code>/usr/share/byobu/keybindings/f-keys.tmux</code> file.</p>
-<p><strong>Tried with:</strong> Byobu 5.77 and Ubuntu 14.04</p>
+<h2 id="useful-operations">Useful operations</h2>
+<ul>
+<li><p><strong>Search text</strong>: Go to <code>F7</code> mode. Type <code>/foobar</code> or <code>?foobar</code> just like in Vim to search forward and backward through the shell output. Press <code>Enter</code> to exit the mode.</p></li>
+<li><p><strong>Copy-paste text</strong>: Go to <code>F7</code> mode, move the cursor to the start of the text to be copied. Press <code>Space</code> followed by arrow keys to visually mark the text to copy. Press <code>Enter</code> to end the copy operation and exit the mode. To paste, for example at the shell, press <code>Alt + Ins</code>.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Byobu 5.133 and Ubuntu 20.04</p>
 </div>
 
 <br />
