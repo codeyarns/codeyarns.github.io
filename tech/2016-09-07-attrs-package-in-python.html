@@ -54,7 +54,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">attrs package in Python</h1>
-<p class="date">📅 2016-Sep-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#attrs'>attrs</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2016-Sep-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#attrs'>attrs</a>, <a href='index.html#dataclasses'>dataclasses</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>It is very rare that you learn something that completely changes how you program. Reading <a href="https://glyph.twistedmatrix.com/2016/08/attrs.html">this post</a> about the <strong>attrs</strong> package in <strong>Python</strong> was a revelation to me.</p>
 <p>Coming from C++, I am not too big a fan on returning everything as lists and tuples. In many cases, you want to have structure and attributes and the class in Python is a good fit for this. However, creating a proper class with attributes that has all the necessary basic methods is a pain.</p>
@@ -63,7 +63,7 @@
 <li><p>First, let us get the biggest confusion about this package out of the way! It is called <strong>attrs</strong> when you install it cause there is already another existing package called <strong>attr</strong> (the singular). But when you import and use it, then it is called <strong>attr</strong>. I know it is irritating, but this is the way it is.</p></li>
 <li><p>To install it:</p></li>
 </ul>
-<pre><code>$ sudo pip3 install attrs</code></pre>
+<pre><code>$ python3 -m pip install attrs</code></pre>
 <ul>
 <li>To decorate the class use <code>attr.s</code>. I read it is as the plural attrs. And to declare the class attributes, use <code>attr.ib</code> method. I read it as attribute.</li>
 </ul>
@@ -147,6 +147,7 @@ print(inspect.getsource(Creature.__gt__))</code></pre>
 
 (Attribute(name=&#39;eyes&#39;, default=NOTHING, validator=&lt;instance_of validator for type &lt;class &#39;int&#39;&gt;&gt;, repr=True, cmp=True, hash=True, init=True, convert=None), Attribute(name=&#39;legs&#39;, default=NOTHING, validator=None, repr=True, cmp=True, hash=True, init=True, convert=None))</code></pre>
 <p>There is a lot more stuff in this awesome must-use package that can be read <a href="https://attrs.readthedocs.io/en/stable/">here</a></p>
+<p><strong>Update</strong>: <a href="https://docs.python.org/3.7/library/dataclasses.html"><strong>dataclasses</strong></a> were introduced in Python 3.7 and they seem to have a lot of features of attrs.</p>
 <p><strong>Tried with:</strong> attrs 16.1.0, Python 3.5.2 and Ubuntu 16.04</p>
 </div>
 

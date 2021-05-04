@@ -77,6 +77,12 @@
 <pre><code>$ git show 123456
 fatal: ambiguous argument &#39;123456&#39;: unknown revision or path not in the working tree.</code></pre>
 <p>Above is an example of a revision that is not in the repo.</p>
+<ul>
+<li>To refer to a revision by a substring from its commit message:</li>
+</ul>
+<pre><code>$ git show &quot;:/foobar&quot;</code></pre>
+<p>This chooses the most recent revision which has <code>foobar</code> in its commit message.</p>
+<p>All other ways to refer to a revision are listed <a href="https://git-scm.com/docs/revisions">here</a> in the documentation.</p>
 <h2 id="working-copy">Working copy</h2>
 <ul>
 <li>When you clone a repo, Git automatically checks out the master branch. To clone and check out a different branch:</li>
