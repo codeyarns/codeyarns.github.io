@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Jira search cheatsheet</title>
+  <title>Code Yarns – FreeFileSync</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,47 +53,16 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Jira search cheatsheet</h1>
-<p class="date">📅 2019-Oct-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#jira'>jira</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">FreeFileSync</h1>
+<p class="date">📅 2021-Aug-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#sync'>sync</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Jira</strong> provides an advanced search option where users can create a search query using the <strong>Jira Query Language (JQL)</strong>. JQL has some similarities to SQL in its syntax. Once you have a search query that you like, you can save it up as a <strong>filter</strong>.</p>
-<p>Here are some Jira search queries I found to be useful:</p>
+<p><a href="https://freefilesync.org/"><strong>FreeFileSync</strong></a> is a good option if you have been looking for a GUI-based Windows program to compare directories or sync directories (kind of like rsync).</p>
 <ul>
-<li>Issues created by me:</li>
+<li><p>In the GUI, pick two directories and the tool allows you to compare or sync between them.</p></li>
+<li><p>Compare can be done using <em>file time and size</em> (fast) or <em>file contents</em> (slow).</p></li>
+<li><p>Sync can be one of one-way mirror, two-way sync or update. This is way faster than copying over directory to another using File Explorer, since only the files that are different would be synced.</p></li>
 </ul>
-<pre><code>reporter = currentUser() ORDER BY created DESC</code></pre>
-<ul>
-<li>Issues viewed recently:</li>
-</ul>
-<pre><code>issuekey in issueHistory() ORDER BY lastViewed DESC</code></pre>
-<ul>
-<li>Issues updated recently:</li>
-</ul>
-<pre><code>issuekey in issueHistory() ORDER BY updated DESC</code></pre>
-<ul>
-<li>Issues of an epic:</li>
-</ul>
-<pre><code>&quot;epic link&quot; = FOOBAR-1422</code></pre>
-<ul>
-<li>Issues that are children of another issue:</li>
-</ul>
-<pre><code>issuekey in childIssuesOf(&quot;XYZ-2005&quot;)</code></pre>
-<ul>
-<li>Check if issue is or is not of a certain type:</li>
-</ul>
-<pre><code>issuetype == Task
-issuetype != Task</code></pre>
-<ul>
-<li>Multiple criteria can be ANDed or ORed:</li>
-</ul>
-<pre><code>&quot;epic link&quot; = FOOBAR-1422 OR &quot;epic link&quot; = FOOBAR-2344</code></pre>
-<ul>
-<li>Order the filtered issues by one or more keys:</li>
-</ul>
-<pre><code>reporter = currentUser() ORDER BY status ASC, priority DESC, created DESC</code></pre>
-<p>The above query for example sorts by ascending order of status, descending order of priority and descending order of creation date.</p>
-<h2 id="reference">Reference</h2>
-<p>The <strong>Advanced Searching</strong> page of JIRA documentation describes how to search and at the bottom has links to reference pages on fields, operators, keywords and functions. These references are what I check to create my queries.</p>
+<p><strong>Tried with:</strong> FreeFileSync 11.13 and Windows 10 x64</p>
 </div>
 
 <br />
