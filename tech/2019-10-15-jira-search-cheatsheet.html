@@ -57,7 +57,15 @@
 <p class="date">📅 2019-Oct-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#jira'>jira</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Jira</strong> provides an advanced search option where users can create a search query using the <strong>Jira Query Language (JQL)</strong>. JQL has some similarities to SQL in its syntax. Once you have a search query that you like, you can save it up as a <strong>filter</strong>.</p>
-<p>Here are some Jira search queries I found to be useful:</p>
+<p>Here are some common ways to search for JIRA issues:</p>
+<ul>
+<li>Issues with certain text in their title or description:</li>
+</ul>
+<pre><code>text ~ &quot;foobar&quot;</code></pre>
+<ul>
+<li>Issues belonging to a certain project:</li>
+</ul>
+<pre><code>project = FOOBAR</code></pre>
 <ul>
 <li>Issues created by me:</li>
 </ul>
@@ -79,10 +87,18 @@
 </ul>
 <pre><code>issuekey in childIssuesOf(&quot;XYZ-2005&quot;)</code></pre>
 <ul>
+<li>Issues that are linked to a given issue:</li>
+</ul>
+<pre><code>issuekey in linkedIssues(&quot;XYZ-2005&quot;)</code></pre>
+<ul>
 <li>Check if issue is or is not of a certain type:</li>
 </ul>
 <pre><code>issuetype == Task
 issuetype != Task</code></pre>
+<ul>
+<li>Issues with a certain fixVersion:</li>
+</ul>
+<pre><code>fixVersion = 10.0</code></pre>
 <ul>
 <li>Multiple criteria can be ANDed or ORed:</li>
 </ul>
