@@ -56,7 +56,7 @@
 <h1 class="title">PyOpenGL GLUT ctypes error</h1>
 <p class="date">📅 2012-Apr-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ctypes'>ctypes</a>, <a href='index.html#error'>error</a>, <a href='index.html#pyopengl'>pyopengl</a>, <a href='index.html#python'>python</a>, <a href='index.html#unicode'>unicode</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Installing <strong>PyOpenGL</strong> can be <a href="http://codeyarns.wordpress.com/2012/04/27/pyopengl-installation-notes/">quite painful</a> on 64-bit Python 3.x with Windows 7. But, once you that is done, you might face this error in your program:</p>
+<p>Installing <strong>PyOpenGL</strong> can be <a href="https://codeyarns.com/tech/2012/04/27/pyopengl-installation-notes/">quite painful</a> on 64-bit Python 3.x with Windows 7. But, once you that is done, you might face this error in your program:</p>
 <pre><code>glutCreateWindow( &quot;cube&quot; )
 # ctypes.ArgumentError: argument 1: &lt;class &#39;TypeError&#39;&gt;: wrong type</code></pre>
 <p><strong>ctypes</strong> provides the data types to communicate with C libraries. I got the above error when I was passing a string to a GLUT function. The error is caused because underneath the PyOpenGL call is an old-school C function expecting ASCII text, whereas Python 3.x gives it Unicode text by default.</p>

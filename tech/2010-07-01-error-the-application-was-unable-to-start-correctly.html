@@ -67,7 +67,7 @@ The application was unable to start correctly (0xc0000013). Click OK to close th
 </blockquote>
 <p>Showing no clues to solve it and throwing a random error number (or is it an address) like <code>0xc0000013</code> this one is a real mystery!</p>
 <h2 id="solution">Solution</h2>
-<p>I have found that this error message typically occurs when something is wrong with the DLL files being loaded by the executable at runtime. I use the awesome <strong><a href="http://codeyarns.wordpress.com/2010/07/01/dependency-walker/">Dependency Walker</a></strong> to load the program and find the underlying cause.</p>
+<p>I have found that this error message typically occurs when something is wrong with the DLL files being loaded by the executable at runtime. I use the awesome <strong><a href="https://codeyarns.com/tech/2010/07/01/dependency-walker/">Dependency Walker</a></strong> to load the program and find the underlying cause.</p>
 <p>For example, I found that I had placed x64 DLL files in the directory of a x86 executable. On running this executable, I was getting this error. On replacing those files with x86 DLL files, the executable loaded fine.</p>
 </div>
 

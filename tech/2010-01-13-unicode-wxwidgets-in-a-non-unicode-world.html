@@ -59,12 +59,12 @@
 <p><em><a href="http://www.wxwidgets.org/">wxWidgets</a></em> can be compiled to pure Unicode mode by setting <code>wxUSE_UNICODE</code> to <code>1</code> in the header file <code>$(WX_WIDGETS_ROOT)\include\wx\msw\setup.h</code></p>
 <p>But what if the rest of your code that interfaces with Unicode wxWidgets is still not Unicode, but uses <code>char</code> and <code>STL std::string</code>? The changes needed at the interface are:</p>
 <ul>
-<li><p>Wrap all characters and string literals passed to wxWidgets in <a href="http://docs.wxwidgets.org/stable/wx_stringfunctions.html#wxt"><code>wxT()</code></a>. It converts them to Unicode. Ex: <code>wxT(&quot;Hell World!&quot;)</code></p></li>
+<li><p>Wrap all characters and string literals passed to wxWidgets in <a href="http://docs.wxwidgets.org/stable/wx_stringfunctions.html#wxt"><code>wxT()</code></a>. It converts them to Unicode. Ex: <code>wxT("Hell World!")</code></p></li>
 <li><p>wxWidget functions do not deal with <code>STL std::string</code> but with <a href="http://docs.wxwidgets.org/stable/wx_wxstring.html"><code>wxString</code></a>. Do the conversion using <code>wxConvUTF8</code>, which is an instance of the <a href="http://docs.wxwidgets.org/stable/wx_wxmbconv.html"><code>wxMBConv</code></a> class. <code>MBConv</code> stands for Multi-Byte Conversion, it helps to convert between Multi-Byte formats and Unicode. <code>wxConvUTF8</code> as you can guess converts multi-byte to the UTF-8 Unicode encoding. Ex:</p>
-<p>std::string stdStr(&quot;Hell World!&quot;); wxString wxStr(stdStr.c_str(), wxConvUTF8);</p></li>
+<p>std::string stdStr(“Hell World!”); wxString wxStr(stdStr.c_str(), wxConvUTF8);</p></li>
 <li><p>When wxWidgets functions throw out a <code>wxString</code>, convert them back to <code>char</code> string using <a href="http://docs.wxwidgets.org/stable/wx_wxstring.html#wxstringmbstr"><code>wxString::mb_str()</code></a>. This returns the multi-byte representation of the internal Unicode text in <code>wxString</code>.</p></li>
 </ul>
-<p>If you are curious about this fishy Multi-Byte business, check out <em><a href="http://codeyarns.wordpress.com/2010/01/13/windows-multi-byte/">Windows: Multi-Byte</a></em>.</p>
+<p>If you are curious about this fishy Multi-Byte business, check out <em><a href="https://codeyarns.com/tech/2010/01/13/windows-multi-byte/">Windows: Multi-Byte</a></em>.</p>
 </div>
 
 <br />
