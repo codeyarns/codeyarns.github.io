@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Chrome Cheatsheet</title>
+  <title>Code Yarns – Github.dev not working with uMatrix</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,19 +53,22 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Chrome Cheatsheet</h1>
-<p class="date">📅 2021-May-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#google-chrome'>google chrome</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Github.dev not working with uMatrix</h1>
+<p class="date">📅 2021-Oct-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#github'>github</a>, <a href='index.html#umatrix'>umatrix</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Though my primary browser is <strong>Firefox</strong>, I do keep <strong>Google Chrome</strong> around as a backup for webpages that do not work correctly with the former. Here are some tips and tricks that I find useful with Chrome.</p>
-<ul>
-<li><p><strong>Disable notifications</strong>: Open this <a href="chrome://settings/content/notifications">link</a> to toggle notifications and control it at a per-domain basis. Note that the link only works with Chrome.</p></li>
-<li><p><strong>Search bookmarks</strong>: I like to search bookmarks using <code>*</code>, just like in Firefox. To do this, go to Settings -&gt; Search engine and add a new search engine. Use <code>*</code> as the keyword and provide the search URL of the form <code>chrome://bookmarks/?q=%s</code></p></li>
-<li><p><strong>Search history</strong>: I like to search history using <code>^</code>, just like in Firefox. To do this, go to Settings -&gt; Search engine and add a new search engine. Use <code>*</code> as the keyword and provide the search URL of the form <code>chrome://history/?q=%s</code></p></li>
-</ul>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://support.google.com/chrome/answer/157179">Chrome keyboard shortcuts</a></li>
-</ul>
+<h2 id="problem">Problem</h2>
+<p><a href="https://github.dev/"><strong>Github.dev</strong></a> allows me to open any <strong>Github</strong> repo of mine in a <strong>VSCode</strong> IDE in my browser itself. For browsing I use the Firefox browser with the <a href="2017-01-30-umatrix-extension-for-firefox.html"><strong>uMatrix</strong></a> extension. When I opened my Github repo using github.dev, I noticed that several features, like the file <em>Explorer</em> on the left, were not working.</p>
+<h2 id="solution">Solution</h2>
+<p>As my first step in the investigation, I disabled the uMatrix extension - the github.dev website was fully functional! So it was definitely uMatrix that was interfering with the operation of this website.</p>
+<p>I decided to disable the matrix for the entire github.dev website, since I do not really mind doing that for this URL:</p>
+<pre><code>matrix-off: github.dev true</code></pre>
+<p>The file Explorer still did not load after this.</p>
+<p>I decided to check the browser Console, by pressing <code>F12</code>. Here I saw that several external URLs that this website was trying to pull were being blocked and were highlighted in red. I noted down the base domain names of these URLs and disabled the matrix for all of them:</p>
+<pre><code>matrix-off: azureedge.net true
+matrix-off: vscode-unpkg.net true
+matrix-off: vscode-webview.net true</code></pre>
+<p>After doing this and refreshing the webpage, github.dev was fully functional!</p>
+<p><strong>Tried with:</strong> uMatrix 1.4.4 and Firefox 92.0.1</p>
 </div>
 
 <br />

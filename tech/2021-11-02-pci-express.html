@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Chrome Cheatsheet</title>
+  <title>Code Yarns – PCI Express</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,19 +53,24 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Chrome Cheatsheet</h1>
-<p class="date">📅 2021-May-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#google-chrome'>google chrome</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">PCI Express</h1>
+<p class="date">📅 2021-Nov-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pci'>pci</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Though my primary browser is <strong>Firefox</strong>, I do keep <strong>Google Chrome</strong> around as a backup for webpages that do not work correctly with the former. Here are some tips and tricks that I find useful with Chrome.</p>
+<p><a href="https://en.wikipedia.org/wiki/PCI_Express"><strong>PCI Express (PCI-E)</strong></a> is the popular high-speed serial bus used to connect GPUs and NICs to the CPU.</p>
+<p>The max bus speed per lane has been doubling every generation in PCI-E:</p>
 <ul>
-<li><p><strong>Disable notifications</strong>: Open this <a href="chrome://settings/content/notifications">link</a> to toggle notifications and control it at a per-domain basis. Note that the link only works with Chrome.</p></li>
-<li><p><strong>Search bookmarks</strong>: I like to search bookmarks using <code>*</code>, just like in Firefox. To do this, go to Settings -&gt; Search engine and add a new search engine. Use <code>*</code> as the keyword and provide the search URL of the form <code>chrome://bookmarks/?q=%s</code></p></li>
-<li><p><strong>Search history</strong>: I like to search history using <code>^</code>, just like in Firefox. To do this, go to Settings -&gt; Search engine and add a new search engine. Use <code>*</code> as the keyword and provide the search URL of the form <code>chrome://history/?q=%s</code></p></li>
+<li>Gen 1: 2 Gb/s</li>
+<li>Gen 2: 4 Gb/s</li>
+<li>Gen 3: 8 Gb/s, so that is 1 GB/s</li>
+<li>Gen 4: 16 Gb/s, so that is 2 GB/s</li>
+<li>Gen 5: 32 Gb/s, so that is 4 GB/s</li>
 </ul>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://support.google.com/chrome/answer/157179">Chrome keyboard shortcuts</a></li>
-</ul>
+<p>If you see a 2-socket system with 2x PCI-E Gen2x16 links, to get the total bandwidth:</p>
+<pre><code>2 sockets, each with 2x of Gen3x16 lanes
+= 2 x 2 x 16 x (Gen3 per-lane bandwidth)
+= 64 x (Gen3 per-lane bandwidth)
+= 64 x 1 GB/s
+= 64 GB/s</code></pre>
 </div>
 
 <br />
