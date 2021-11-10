@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – PCI Express</title>
+  <title>Code Yarns – Online Source Code Repositories</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,24 +53,19 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">PCI Express</h1>
-<p class="date">📅 2021-Nov-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pci'>pci</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Online Source Code Repositories</h1>
+<p class="date">📅 2021-Nov-08 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#github'>github</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://en.wikipedia.org/wiki/PCI_Express"><strong>PCI Express (PCI-E)</strong></a> is the popular high-speed serial bus used to connect GPUs and NICs to the CPU.</p>
-<p>The max bus speed per lane has been doubling every generation in PCI-E:</p>
+<p>Sometimes, I like looking up the definition of classes or functions from libraries or tools I use to understand how they are actually implemented. Back in the day, this meant figuring out how to get the source package of that library, downloading it and then searching inside its source files. But now that almost all libraries share their code on Github (or similar services), it has become quite convenient to look up source code repositories. The recent addition of the ability to open a Github repository using VS Code running in the browser is the icing on the cake!</p>
+<p>Here are the source code repositories that I most frequently consult:</p>
 <ul>
-<li>Gen 1: 2 Gb/s</li>
-<li>Gen 2: 4 Gb/s</li>
-<li>Gen 3: 8 Gb/s, so that is 1 GB/s</li>
-<li>Gen 4: 16 Gb/s, so that is 2 GB/s</li>
-<li>Gen 5: 32 Gb/s, so that is 4 GB/s</li>
+<li><a href="https://github.com/gcc-mirror/gcc">GCC</a>: Mirror of GCC. I use this to consult the C headers and C++ STL that ships with Linux.</li>
+<li><a href="https://github.com/bminor/glibc">GLibC</a>: Mirror of the GNU C Library source code.</li>
+<li><a href="https://github.com/microsoft/STL">Microsoft STL</a>: Microsoft’s implementation of the C++ STL.</li>
+<li><a href="https://github.com/torvalds/linux">Linux kernel</a>: Linus Torvalds’ fork of the Linux kernel source code.</li>
+<li><a href="https://github.com/python/cpython">CPython</a>: The implementation of the standard distribution of Python is implemented in C.</li>
+<li><a href="https://github.com/vim/vim">Vim</a>: Source code of Vim.</li>
 </ul>
-<p>If you see a 2-socket system with 2x PCI-E Gen3x16 links for each socket, to get the total bandwidth of the system:</p>
-<pre><code>2 sockets, each with 2x of Gen3x16 lanes
-= 2 x 2 x 16 x (Gen3 per-lane bandwidth)
-= 64 x (Gen3 per-lane bandwidth)
-= 64 x 1 GB/s
-= 64 GB/s</code></pre>
 </div>
 
 <br />
