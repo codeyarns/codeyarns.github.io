@@ -54,13 +54,22 @@
 <div class="contentbox">
 <header>
 <h1 class="title">WSL paths in Windows</h1>
-<p class="date">📅 2019-Jun-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#path'>path</a>, <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#wsl'>wsl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2019-Jun-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#path'>path</a>, <a href='index.html#wsl'>wsl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Windows Subsystem for Linux (WSL)</strong> allows you to install Linux distributions such as Ubuntu under Windows. The root filesystem you see under WSL is located at a directory inside <code>%LOCALAPPDATA%</code> in Windows.</p>
+<p><strong>Windows Subsystem for Linux (WSL)</strong> allows you to install Linux distributions such as Ubuntu under Windows and use them just like using a native Linux system using a Linux shell. Sometimes, I find it useful to access the files and directories that are in the WSL-Linux from Windows Explorer outside. The root filesystems of the Linux installations inside WSL can be viewed and accessed through Windows Explorer. You can even <em>pin</em> this root filesystem (or any subdirectory) inside Windows Explorer if you like to access it frequently.</p>
+<p>Do note that the paths where this root filesystem appears in Windows has changed between WSL1 and WSL2 (see below). Other caveats include simultaneous read-write of files between Windows and WSL can be flaky, so can writing a WSL file from Windows.</p>
+<h2 id="wsl2">WSL2</h2>
+<p>The root filesystems of your Linux installations in WSL2 appear under <code>\\wsl$</code> in Windows Explorer.</p>
 <p>For example:</p>
 <ul>
-<li>Root directory of Ubuntu 18.04 can be located in Windows here: <code>%LOCALAPPDATA%\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs</code></li>
-<li>Root directory of Ubuntu 20.04 can be located in Windows here: <code>%LOCALAPPDATA%\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState\rootfs</code></li>
+<li>Root directory of Ubuntu 20.04 is located at: <code>\\wsl$\Ubuntu-20.04</code></li>
+</ul>
+<h2 id="wsl1">WSL1</h2>
+<p>The root filesystem you see under WSL is located at a directory inside <code>%LOCALAPPDATA%</code> in Windows.</p>
+<p>For example:</p>
+<ul>
+<li>Root directory of Ubuntu 20.04 is located at: <code>%LOCALAPPDATA%\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState\rootfs</code></li>
+<li>Root directory of Ubuntu 18.04 is located at: <code>%LOCALAPPDATA%\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs</code></li>
 </ul>
 </div>
 
