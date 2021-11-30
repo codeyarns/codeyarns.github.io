@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to mount and unmount on WSL</title>
+  <title>Code Yarns – rclone</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,24 +53,39 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to mount and unmount on WSL</h1>
-<p class="date">📅 2020-Jun-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#mount'>mount</a>, <a href='index.html#wsl'>wsl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">rclone</h1>
+<p class="date">📅 2021-Nov-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#rclone'>rclone</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Any drive of any filesystem that is already mounted under Windows can be then mounted under <strong>WSL</strong>. What makes this possible is a filesystem plugin in WSL named <strong>DrvFS</strong>.</p>
+<p><a href="https://rclone.org/"><strong>rclone</strong></a> is a great tool to manage cloud storage from the commandline. It supports almost all of the popular cloud storage providers, so you can sync up and sync down from any of them using the same commands.</p>
 <ul>
-<li><p>The <code>C:</code> drive is mounted by default under WSL at <code>/mnt/c</code>.</p></li>
-<li><p>To mount a different drive under WSL, create a directory under <code>/mnt</code> and mount using the DrvFS plugin using this syntax:</p></li>
+<li>Installing is easy on Ubuntu:</li>
 </ul>
-<pre><code>$ sudo mkdir /mnt/k
-$ sudo mount -t drvfs K: /mnt/k</code></pre>
+<pre><code>$ sudo apt install rclone</code></pre>
 <ul>
-<li>You can see the list of mounted drives and their mount options using:</li>
+<li>rclone reads access and config information about the cloud storage provider (CSP) you want to use from the file <code>~/.config/rclone/rclone.conf</code>. To create this file use this interactive command:</li>
 </ul>
-<pre><code>$ cat /etc/mtab</code></pre>
+<pre><code>$ rclone config</code></pre>
+<p>Minimally, you will be asked for information like the CSP you want to use, your account, your access key and a name for this CSP account.</p>
+<p>Contents of an example <code>rclone.conf</code> for a Backblaze B2 account:</p>
+<pre><code>[backblaze_foobar]
+type = b2
+account = abracadabra
+key = 0010fae0bf57e8779
+endpoint =</code></pre>
+<p>Information about all the CSPs supported by rclone and their configs can be found <a href="https://rclone.org/#providers">here</a>.</p>
 <ul>
-<li>To unmount a mounted drive:</li>
+<li>To sync files from a local directory to a cloud storage bucket:</li>
 </ul>
-<pre><code>$ sudo umount /mnt/k</code></pre>
+<pre><code>$ rclone sync /local/path/foobar backblaze_foobar:foobar_bucket</code></pre>
+<ul>
+<li>To sync files from a cloud storage bucket to a local directory:</li>
+</ul>
+<pre><code>$ rclone sync backblaze_foobar:foobar_bucket /local/path/foobar</code></pre>
+<ul>
+<li><p>To get verbose output, add the <code>--verbose</code> option.</p></li>
+<li><p>To do a dry run without modifying any files, add the <code>--dry-run</code> option.</p></li>
+</ul>
+<p><strong>Tried with:</strong> rclone 1.50.2 and Ubuntu 20.04</p>
 </div>
 
 <br />

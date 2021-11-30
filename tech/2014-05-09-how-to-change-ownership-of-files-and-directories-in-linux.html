@@ -56,17 +56,25 @@
 <h1 class="title">How to change ownership of files and directories in Linux</h1>
 <p class="date">📅 2014-May-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#chown'>chown</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You typically get access permission errors when you try to access files and directories created by a different user. The <code>chown</code> command can be used to change the ownership of files and directories in Linux. If you are changing the ownership from user1 to user2, you need to have permissions that are higher than these users. So, typically these commands are performed using <code>sudo</code>.</p>
-<p>To set owner of a file or directory:</p>
+<p>You typically get access permission errors in Linux when you try to access files and directories created by a different user. The <code>chown</code> command can be used to change the ownership of files and directories. If you are changing the ownership from user1 to user2, you need to have permissions that are higher than these users. So, typically these commands are performed using <code>sudo</code>.</p>
+<ul>
+<li>To set the owner of a file or directory:</li>
+</ul>
 <pre><code>$ chown foouser blah.txt
 $ chown foouser blahdir</code></pre>
-<p>To set group of a file or directory:</p>
+<ul>
+<li>To set the group of a file or directory:</li>
+</ul>
 <pre><code>$ chown :somegroup blah.txt
 $ chown :somegroup blahdir</code></pre>
-<p>To set both user and group:</p>
+<ul>
+<li>To set both user and group:</li>
+</ul>
 <pre><code>$ chown foouser:somegroup blah.txt
 $ chown foouser:somegroup blahdir</code></pre>
-<p>To set ownership recursively on all files and subdirectories in a directory:</p>
+<ul>
+<li>To set ownership recursively on all files and subdirectories in a directory:</li>
+</ul>
 <pre><code>$ chown -R foouser blahdir
 $ chown -R :somegroup blahdir
 $ chown -R foouser:somegroup blahdir</code></pre>
