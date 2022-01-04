@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Woes of moving a Xfinity connection - a tragedy in 3 acts</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "3wadqgw95m");
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header" style="padding-top: 10px;">
+    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Woes of moving a Xfinity connection - a tragedy in 3 acts</h1>
+<p class="date">📅 2022-Jan-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#xfinity'>xfinity</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>Despite living in the Silicon Valley, most homes here realistically have a single internet provider - <strong>Xfinity</strong>. I had to move recently, and being stupid I thought that instead of using the <strong>moving</strong> option on the Xfinity portal, I would create two separate transactions with Xfinity: create a new connection at new address on date X, and disconnect old connection at old address on date X+3. I had a chat with a human agent and confirmed these two transactions - and they said it was scheduled.</p>
+<h2 id="act-1-internet-seems-to-work-out-of-the-box">Act 1: Internet seems to work out of the box!</h2>
+<p>So, I moved on date X, hooked up my old cable modem at the new address and it had internet! Now this was suspicious, since Xfinity usually needs you to get the new connection activated at a new address. And lo behold, the Xfinity customer portal was still showing a single address - my old address. So, their system was recognizing this connection (though at a new address) as my old one - probably using the MAC address of the modem to do that. This connection would cease in X+3 days, so I had to get the new connection activated soon.</p>
+<h2 id="act-2-deactivating-the-old-connection">Act 2: Deactivating the old connection</h2>
+<p>I thought that migrating over my connection would be simple - so started a chat with a human agent. The agents started transferring me between multiple departments since apparently they had no idea how to handle my case. After an incredible 1+ hour phone call, multiple online chats with transfers between multiple departments with agents sounding like they were in different countries (US, Filipino, Indian accents), they figured out these:</p>
+<ul>
+<li>That my connection had to be deactivated first in their system.</li>
+<li>But, since I had put in an activation with overlapping dates, the UI used by customer service agents could not do this.</li>
+<li>I was transferred around departments until the <em>real</em> folks with hooks into the database were able to deactivate my connection.</li>
+</ul>
+<p>I was informed that my deactivation worked (and indeed my cable modem lights were red now) and all I had to do now was to get my modem activated - a simple operation.</p>
+<h2 id="act-3---the-climax-activating-the-new-connection">Act 3 - the climax: Activating the new connection</h2>
+<p>I started a chat with a human agent again to activate a new connection at my new address with my existing cable modem. This is where they ask you for the cable modem model and MAC address and enable internet access for that device. And this is where things got weirder.</p>
+<p>The person said that my <strong>Netgear CM500</strong> (a popular cable modem) was not appearing for me in their system, the closest match was a <strong>CM500V</strong>. Furthermore, the system was asking for both a CM MAC and a MTA MAC address for this device. The latter MTA MAC address is only available on a cable modem with voice support - to hook up a landline. Since I could not provide a MTA MAC address, the system was not letting them proceed with activation!</p>
+<p>At this point, the agent had no idea what to do - they suggested taking my modem and driving to the nearest Xfinity store to get it activated. I knew that there would no difference between the software systems used by the agent or the store, but still I ended up doing this in the night just before the store closed. The same thing happened with their software system and the store guy gave up.</p>
+<p>But then he finally consulted with a more geeky looking store guy (glasses and an air of experience) and he told me that the activation with an existing non-Xfinity modem would work if I waited a day and he had seen this happen before. I thought about it on the drive home and it made sense - the rats nest of legacy systems hooked up together at Xfinity was not showing my modem model (only for me) because some shared databases must not have been synced up yet and sometimes legacy databases are synced once a day.</p>
+<p>I waited 24 hours and lo behold on my next chat with a human agent, the CM500 modem was now magically appearing in their dropdown and they were able to add just my MAC address (none of the MTA MAC nonsense). Internet was working in a few minutes!</p>
+<h2 id="lessons-learnt">Lessons learnt</h2>
+<p>Lessons learnt with Xfinity:</p>
+<ul>
+<li>Use the moving option from Xfinity portal for your move, do not setup something manually. They will say they can handle it, but their creaky internal software cannot.</li>
+<li>If you do not use Xfinity’s own modems, moving an existing modem or a modem bought from someone will be painful. There will be remnants of the modem’s MAC address left in their systems that need to be cleansed and then the new connection added in.</li>
+</ul>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
+</body>
+</html>
