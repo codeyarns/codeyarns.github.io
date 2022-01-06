@@ -324,11 +324,15 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 </ul>
 <pre><code>$ git diff --name-status old_rev new_rev</code></pre>
 <ul>
-<li>Create an archive or zip file of the contents at any given commit:</li>
+<li>Create an archive or zip file of the contents of the entire repo at a given commit:</li>
 </ul>
 <pre><code>$ git archive -o out.tar HEAD
 $ git archive -o out2.zip SOME_TAG
 $ git archive -o out3.zip SOME_COMMIT_HASH</code></pre>
+<ul>
+<li>Create a zip file of just the files that were changed by a given commit:</li>
+</ul>
+<pre><code>$ git archive -o foobar.zip SOME_REV $(git diff --name-only SOME_REV PREV_REV)</code></pre>
 </div>
 
 <br />
