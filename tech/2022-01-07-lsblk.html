@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to get hardware info using dmidecode</title>
+  <title>Code Yarns – lsblk</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,28 +53,19 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to get hardware info using dmidecode</h1>
-<p class="date">📅 2015-Jan-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dmidecode'>dmidecode</a>, <a href='index.html#motherboard'>motherboard</a>, <a href='index.html#ram'>ram</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">lsblk</h1>
+<p class="date">📅 2022-Jan-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#lsblk'>lsblk</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<figure>
-<img src="https://codeyarns.files.wordpress.com/2015/01/20150107-dmidecode1.png" alt="Information about RAM from dmidecode" /><figcaption>Information about RAM from dmidecode</figcaption>
-</figure>
-<p><strong>dmidecode</strong> is an useful application on Linux to obtain intimate details about all the hardware components in your computer. This is the information from the DMI or System Management BIOS (SMBIOS).</p>
+<p><strong>lsblk</strong> is a tool that provides information about all the block devices on your computer. <strong>Block devices</strong> are the I/O devices on the computer that are addressed using blocks, typically disks and non-tape storage.</p>
 <ul>
-<li>Installing this tool is easy:</li>
+<li>To list all real and virtual block devices:</li>
 </ul>
-<pre><code>$ sudo apt install dmidecode</code></pre>
+<pre><code>$ lsblk</code></pre>
+<p>This output shows the name, size, read-only or not, type and the mount point.</p>
 <ul>
-<li>By default, it lists the entire hardware info of your system:</li>
+<li>To see the filesystems:</li>
 </ul>
-<pre><code>$ sudo dmidecode</code></pre>
-<ul>
-<li>To query information about a particular <strong>type</strong> of hardware component, use the <code>--type</code> parameter:</li>
-</ul>
-<pre><code>$ sudo dmidecode --type memory
-$ sudo dmidecode --type baseboard</code></pre>
-<p>The <code>memory</code> type tells me the actual DIMMs that are filled and with how much RAM. The <code>baseboard</code> type provides me the motherboard brand, model and version.</p>
-<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+<pre><code>$ lsblk -f</code></pre>
 </div>
 
 <br />

@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -72,6 +72,11 @@
 <pre><code>$ tar -cf - foobar1.txt foobar2.txt &gt; foobar.tar
 
 $ tar -cf - foobar1.txt foobar2.txt | wc</code></pre>
+<ul>
+<li>To <strong>sort</strong> the files before tarring:</li>
+</ul>
+<pre><code>$ tar --sort=&quot;name&quot; -cf foobar.tar foobar</code></pre>
+<p>Apparently, this can sometimes result in <a href="https://superuser.com/questions/1633073">better compression</a>.</p>
 <ul>
 <li>To view the list of files being archived specify the verbose option <code>-v</code>:</li>
 </ul>
