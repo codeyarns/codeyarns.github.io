@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – EXIFTool Cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "3wadqgw95m");
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header" style="padding-top: 10px;">
+    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">EXIFTool Cheatsheet</h1>
+<p class="date">📅 2022-Jan-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#exif'>exif</a>, <a href='index.html#exiftool'>exiftool</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a href="https://exiftool.org/"><strong>EXIFTool</strong></a> is a commandline tool written by <strong>Phil Harvey</strong> that can be used to view and modify <strong>EXIF</strong> information in JPEG files.</p>
+<ul>
+<li>To install the tool under Ubuntu:</li>
+</ul>
+<pre><code>$ sudo apt install libimage-exiftool-perl</code></pre>
+<ul>
+<li>To list the EXIF tags and their values in a JPEG file:</li>
+</ul>
+<pre><code>$ exif foo.jpg</code></pre>
+<p>Some of the information is specific to each camera manufacturer and this is stored in the <strong>Maker Note</strong>.</p>
+<ul>
+<li>To view the information in the maker note of a JPEG file:</li>
+</ul>
+<pre><code>$ exif --show-mnote foo.jpg</code></pre>
+<ul>
+<li>To view the original, create and modify date-time of files:</li>
+</ul>
+<pre><code>$ exiftool -AllDates *.jpg
+
+======== DSC_6081.jpg
+Date/Time Original              : 2022:01:23 17:00:00
+Create Date                     : 2022:01:23 17:00:00
+Modify Date                     : 2022:01:23 17:00:00
+
+$ exiftool -AllDates some_dir</code></pre>
+<ul>
+<li>To set the original, create and modify date-time of files:</li>
+</ul>
+<pre><code>$ exiftool -AllDates=&quot;2022:01:23 17:00:00&quot; *.jpg</code></pre>
+<ul>
+<li>To set your <strong>name</strong> and <strong>copyright</strong> to the EXIF metadata in your photos:</li>
+</ul>
+<pre><code>$ exiftool -artist=&quot;Another Joe&quot; -copyright=&quot;(c) 2015 Another Joe&quot; foo.jpg</code></pre>
+<p><strong>Tried with:</strong> EXIFTool 11.88 and Ubuntu 20.04</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
+</body>
+</html>
