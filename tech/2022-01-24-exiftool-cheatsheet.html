@@ -57,6 +57,7 @@
 <p class="date">📅 2022-Jan-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#exif'>exif</a>, <a href='index.html#exiftool'>exiftool</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><a href="https://exiftool.org/"><strong>EXIFTool</strong></a> is a commandline tool written by <strong>Phil Harvey</strong> that can be used to view and modify <strong>EXIF</strong> information in JPEG files.</p>
+<p>Note that for all operations that modify the file, the tool will save a copy of the original file with suffix <code>_original</code>.</p>
 <ul>
 <li>To install the tool under Ubuntu:</li>
 </ul>
@@ -89,6 +90,10 @@ $ exiftool -AllDates some_dir</code></pre>
 <li>To set your <strong>name</strong> and <strong>copyright</strong> to the EXIF metadata in your photos:</li>
 </ul>
 <pre><code>$ exiftool -artist=&quot;Another Joe&quot; -copyright=&quot;(c) 2015 Another Joe&quot; foo.jpg</code></pre>
+<ul>
+<li>To remove all EXIF tags from a file:</li>
+</ul>
+<pre><code>$ exiftool -all= foo.jpg</code></pre>
 <p><strong>Tried with:</strong> EXIFTool 11.88 and Ubuntu 20.04</p>
 </div>
 
