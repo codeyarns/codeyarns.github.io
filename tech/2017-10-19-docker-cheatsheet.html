@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -76,10 +76,11 @@ $ docker build -f Dockerfile .</code></pre>
 <li><p>To list all the images and tags from a Docker Hub repository: there does not seem to be a command to do this.</p></li>
 <li><p>To pull an image <code>imagename</code>:</p></li>
 </ul>
-<pre><code>$ docker pull imagename
+<pre><code>$ docker pull &lt;imagename&gt;
 
 $ docker pull ubuntu
 $ docker pull nvidia/cuda</code></pre>
+<p>For a list of Docker image names that I find useful, go <a href="2022-02-05-useful-docker-images.html">here</a>.</p>
 <p>When no tag is specified, like above, docker automatically pulls the image with the tag <code>latest</code>.</p>
 <p>Notice that we are not specifying the domain name or URL of any Docker registry. In such cases, Docker will look for and pull <code>imagename</code> from the default Docker registry: <code>https://hub.docker.com/</code> The image name can be a single word (<code>ubuntu</code>) or a relative path (<code>nvidia/cuda</code>). For a single word image name, its tags can be seen listed at the <code>https://hub.docker.com/_/ubuntu</code>. The image name with a path has its repositories listed at <code>https://hub.docker.com/u/nvidia</code> and the tags of a particular image at <code>https://hub.docker.com/r/nvidia/cuda</code>.</p>
 <ul>

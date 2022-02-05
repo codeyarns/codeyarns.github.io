@@ -54,19 +54,22 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to use MIG</h1>
-<p class="date">📅 2020-Dec-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#docker'>docker</a>, <a href='index.html#mig'>mig</a>, <a href='index.html#nvidia-smi'>nvidia-smi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2020-Dec-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#docker'>docker</a>, <a href='index.html#mig'>mig</a>, <a href='index.html#nvidia-smi'>nvidia-smi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Multi-Instance GPU</strong> (MIG) is a feature on the A100 GPU to slice it into GPU instances and GPU instances into compute instances. Note that many of the commands listed below might need to be run as <code>sudo</code>.</p>
 <h2 id="nvidia-smi">nvidia-smi</h2>
 <ul>
-<li>To enable or disable MIG mode:</li>
+<li>To enable or disable MIG mode on all GPUs or a certain GPU:</li>
 </ul>
-<pre><code>$ nvidia-smi -mig=1
-$ nvidia-smi -mig=0</code></pre>
+<pre><code>$ sudo nvidia-smi -mig 1
+$ sudo nvidia-smi -mig 0
+
+$ sudo nvidia-smi -i 3 -mig 1
+$ sudo nvidia-smi -i 3 -mig 0</code></pre>
 <ul>
 <li>To list all possible GPU instance placements:</li>
 </ul>
-<pre><code>$ nvidia-smi mig -lgip
+<pre><code>$ sudo nvidia-smi mig -lgip
 +--------------------------------------------------------------------------+
 | GPU instance profiles:                                                   |
 | GPU   Name          ID    Instances   Memory     P2P    SM    DEC   ENC  |
@@ -88,16 +91,16 @@ $ nvidia-smi -mig=0</code></pre>
 |                                                          7     1     1   |
 +--------------------------------------------------------------------------+
 
-$ nvidia-smi mig -lgipp
+$ sudo nvidia-smi mig -lgipp
 GPU  0 Profile ID 19 Placements: {0,1,2,3,4,5,6}:1
 GPU  0 Profile ID 14 Placements: {0,2,4}:2
 GPU  0 Profile ID  9 Placements: {0,4}:4
 GPU  0 Profile ID  5 Placement : {0}:4
 GPU  0 Profile ID  0 Placement : {0}:8</code></pre>
 <ul>
-<li>To create GPU instances:</li>
+<li>To create GPU instances on a MIG-enabled GPU:</li>
 </ul>
-<pre><code>$ nvidia-smi mig -cgi 19,19,19,19,19,19,19 -i 0
+<pre><code>$ sudo nvidia-smi mig -cgi 19,19,19,19,19,19,19 -i 3
 Successfully created GPU instance ID 13 on GPU  0 using profile MIG 1g.5gb (ID 19)
 Successfully created GPU instance ID 11 on GPU  0 using profile MIG 1g.5gb (ID 19)
 Successfully created GPU instance ID 12 on GPU  0 using profile MIG 1g.5gb (ID 19)
@@ -106,9 +109,9 @@ Successfully created GPU instance ID  8 on GPU  0 using profile MIG 1g.5gb (ID 1
 Successfully created GPU instance ID  9 on GPU  0 using profile MIG 1g.5gb (ID 19)
 Successfully created GPU instance ID 10 on GPU  0 using profile MIG 1g.5gb (ID 19)</code></pre>
 <ul>
-<li>To create compute instances:</li>
+<li>To create compute instances on a MIG-enabled GPU:</li>
 </ul>
-<pre><code>$ nvidia-smi mig -cci -i 0
+<pre><code>$ sudo nvidia-smi mig -cci -i 3
 Successfully created compute instance ID  0 on GPU  0 GPU instance ID  7 using profile MIG 1g.5gb (ID  0)
 Successfully created compute instance ID  0 on GPU  0 GPU instance ID  8 using profile MIG 1g.5gb (ID  0)
 Successfully created compute instance ID  0 on GPU  0 GPU instance ID  9 using profile MIG 1g.5gb (ID  0)
@@ -162,11 +165,11 @@ GPU 0: A100-PCIE-40GB (UUID: GPU-0069414c-9f30-41f9-d5d8-87890423f0c4)
 <ul>
 <li>To list GPU instances:</li>
 </ul>
-<pre><code>$ nvidia mig -lgi</code></pre>
+<pre><code>$ sudo nvidia mig -lgi</code></pre>
 <ul>
 <li>To list compute instances:</li>
 </ul>
-<pre><code>$ nvidia mig -lci
+<pre><code>$ sudo nvidia mig -lci
 
 +-------------------------------------------------------+
 | Compute instances:                                    |
@@ -191,7 +194,7 @@ GPU 0: A100-PCIE-40GB (UUID: GPU-0069414c-9f30-41f9-d5d8-87890423f0c4)
 <ul>
 <li>To destroy compute instances:</li>
 </ul>
-<pre><code>$ nvidia-smi mig -dci -i 0
+<pre><code>$ sudo nvidia-smi mig -dci -i 3
 Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID  7
 Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID  8
 Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID  9
@@ -202,7 +205,7 @@ Successfully destroyed compute instance ID  0 from GPU  0 GPU instance ID 13</co
 <ul>
 <li>To destroy GPU instances:</li>
 </ul>
-<pre><code>$ nvidia-smi mig -dgi -i 0
+<pre><code>$ sudo nvidia-smi mig -dgi -i 3
 Successfully destroyed GPU instance ID  7 from GPU  0
 Successfully destroyed GPU instance ID  8 from GPU  0
 Successfully destroyed GPU instance ID  9 from GPU  0
@@ -267,8 +270,8 @@ Successfully destroyed GPU instance ID 13 from GPU  0</code></pre>
                                        to restrict the command to run on a specific GPU or GPU
                                        instance.</code></pre>
 <h2 id="docker-container">Docker container</h2>
-<p>To expose a MIG instance to a Docker container, add <code>--gpus='&quot;device=MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/7/0&quot;'</code> to your <code>docker --runtime=nvidia ...</code> command.</p>
-<p>Multiple MIG instances can be specified by separating with commas, like <code>--gpus='&quot;device=0:0,0:1&quot;'</code> for example.</p>
+<p>To expose a MIG instance to a Docker container, add <code>--gpus='"device=MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/7/0"'</code> to your <code>docker --runtime=nvidia ...</code> command.</p>
+<p>Multiple MIG instances can be specified by separating with commas, like <code>--gpus='"device=0:0,0:1"'</code> for example.</p>
 </div>
 
 <br />
