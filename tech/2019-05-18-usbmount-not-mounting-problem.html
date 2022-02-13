@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -66,16 +66,21 @@
 1010:May 18 11:42:28 my-pi usbmount[373]: executing command: run-parts /etc/usbmount/mount.d
 1013:May 18 11:42:28 my-pi usbmount[373]: usbmount execution finished</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Turned out that <strong>systemd</strong> was the culprit. It was having a <code>MountFlags=slave</code> in its <code>systemd-udevd.service</code> file. So, the mount operation of usbmount was mounting into the namespace of systemd and not to the user.</p>
+<p>Turned out that <strong>systemd</strong> was the culprit. Open your <code>/usr/lib/systemd/system/systemd-udevd.service</code> and see if you have either a <code>PrivateMounts=yes</code> line (in Ubuntu 20.04 or later) or a <code>MountFlags=slave</code> line (in Ubuntu 18.04 or older). So, the mount operation of usbmount was mounting into the namespace of systemd and not to the user.</p>
 <p>To change this mount option, run this command:</p>
 <pre><code>$ sudo systemctl edit systemd-udevd</code></pre>
-<p>Add these lines to the file that is opened:</p>
+<p>Add these lines to the empty file that is opened and save that file:</p>
+<p>(for Ubuntu 20.04 or later)</p>
+<pre><code>[Service]
+PrivateMounts=no</code></pre>
+<p>(for Ubuntu 18.04 or older)</p>
 <pre><code>[Service]
 MountFlags=shared</code></pre>
 <p>I found that this created the file <code>/etc/systemd/system/systemd-udevd.service.d/override.conf</code> with the above lines.</p>
-<p>Restart systemd or your Pi:</p>
+<p>Restart systemd:</p>
 <pre><code>$ sudo systemctl daemon-reload
 $ sudo service systemd-udevd --full-restart</code></pre>
+<p>Now, reinsert the storage device or restart the Pi.</p>
 <p>After the restart, I found that usbmount had automatically mounted my ext4 partition.</p>
 <p><strong>References:</strong></p>
 <ul>
