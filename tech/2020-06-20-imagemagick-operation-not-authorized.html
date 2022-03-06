@@ -57,15 +57,18 @@
 <p class="date">📅 2020-Jun-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#imagemagick'>imagemagick</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I tried to convert a few PNG files to a PDF file using ImageMagick's covert tool as described <a href="2009-12-29-imagemagick-convert-images-to-pdf-document.html">here</a>. That threw up this error:</p>
+<p>I tried to convert a few PNG files to a PDF file using the <strong>convert</strong> tool that ships with <strong>ImageMagick</strong> as described <a href="2009-12-29-imagemagick-convert-images-to-pdf-document.html">here</a>.</p>
+<p>With ImageMagick 6.9.7, I got this error message:</p>
 <pre><code>$ convert *.png out.pdf
 convert-im6.q16: not authorized `out.pdf&#39; @ error/constitute.c/WriteImage/1037.</code></pre>
+<p>With ImageMagick 6.9.10, I got this error message:</p>
+<pre><code>$ convert *.png out.pdf
+convert-im6.q16: attempt to perform an operation not allowed by the security policy `PDF&#39; @ error/constitute.c/IsCoderAuthorized/408.</code></pre>
 <h2 id="solution">Solution</h2>
 <p>Since ImageMagick is sometimes used on web servers to operate on images for users, it has security checks on certain operations. The above error was caused since my operation failed one of its policies.</p>
 <p>Since I am doing these operations locally, I do not really want ImageMagick imposing security policies. So I moved its policy file so that it is not used:</p>
 <pre><code>$ sudo mv /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xml.orig</code></pre>
 <p>My conversion worked after this change.</p>
-<p><strong>Tried with:</strong> ImageMagick 6.9.7 and Ubuntu 18.04</p>
 </div>
 
 <br />
