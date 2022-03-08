@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to shrink a scanned PDF</title>
+  <title>Code Yarns – How to compress a scanned PDF</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,19 +53,26 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to shrink a scanned PDF</h1>
-<p class="date">📅 2014-Jun-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#compress'>compress</a>, <a href='index.html#ghostscript'>ghostscript</a>, <a href='index.html#imagemagick'>imagemagick</a>, <a href='index.html#pdf'>pdf</a>, <a href='index.html#pdf2ps'>pdf2ps</a>, <a href='index.html#ps2pdf'>ps2pdf</a>, <a href='index.html#shrink'>shrink</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">How to compress a scanned PDF</h1>
+<p class="date">📅 2014-Jun-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#compress'>compress</a>, <a href='index.html#imagemagick'>imagemagick</a>, <a href='index.html#pdf'>pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Documents that are generated from a scanner typically are in the PDF format. Sometimes the scanned PDF given by others can be really huge, running into hundreds of MBs for just a few pages. Ghostscript is the most common program used to shrink the PDF file. There is a long invocation to Ghostscript with multiple input parameters that is required to do this correctly. Thankfully, we have easier-to-use programs that invoke Ghostscript correctly for us.</p>
-<p>Install Ghostscript and Imagemagick if you do not have it:</p>
+<p>Scanned documents are typically stored in the <strong>PDF</strong> format. Depending on the scanning options used, these scanned documents can be large and you might need to shrink their size to fit certain size requirements.</p>
+<p>Such compression can be achieved using <strong>ImageMagick</strong> tools by playing with the pixel density of the images, the image format used (JPEG) and the JPEG quality options. ImageMagick uses Ghostscript to actually do this conversion, invoking it with a long list of options to achieve what we requested.</p>
+<ul>
+<li>Install Ghostscript and Imagemagick if you do not have it:</li>
+</ul>
 <pre><code>$ sudo apt install ghostscript imagemagick</code></pre>
-<p>Imagemagick's convert utility can be used to compress the PDF. By default, it tries to use a huge DPI which makes Ghostscript occupy all the RAM and brings the computer to its knees. Instead instruct convert what DPI to use. Start from a small DPI and work your way up until you are satisfied with the output quality.</p>
-<p>For example:</p>
-<pre><code>$ convert -density 20 original.pdf out.pdf</code></pre>
-<p>If you are curious about the Ghostscript invocation it is using to perform the conversion, ask it to be verbose:</p>
-<pre><code>$ convert -density 20 -verbose original.pdf out.pdf</code></pre>
+<ul>
+<li>Use the ImageMagick <strong>convert</strong> tool to compress the PDF:</li>
+</ul>
+<pre><code>$ convert -density 200x200 -quality 80 -compress jpeg original.pdf out.pdf</code></pre>
+<p>I typically play with the <code>-density</code> values until the PDF fits the size I need. I only play with the <code>-quality</code> value if it really affects the scan quality, increasing it to <code>90</code> if necessary.</p>
+<ul>
+<li>To see the Ghostscript invocation used underneath for the conversion, apply the verbose option:</li>
+</ul>
+<pre><code>$ convert -density 200x200 -quality 80 -compress jpeg -verbose original.pdf out.pdf</code></pre>
 <p><strong>Note:</strong> Another way to shrink PDF is to convert to PS (pdf2ps) and then back to PDF (ps2pdf). Note that this does double the work and creates a ginormous intermediate PS file. I would not recommend this since it takes longer time, creates huge intermediate files and you get no control over the DPI or compression ratio.</p>
-<p><strong>Tried with:</strong> Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Ubuntu 20.04</p>
 </div>
 
 <br />
