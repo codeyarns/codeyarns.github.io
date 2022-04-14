@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to install and use tmpreaper</title>
+  <title>Code Yarns – Github Cheatsheet</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,28 +53,20 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to install and use tmpreaper</h1>
-<p class="date">📅 2017-Nov-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#tmp'>tmp</a>, <a href='index.html#tmpreaper'>tmpreaper</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Github Cheatsheet</h1>
+<p class="date">📅 2022-Apr-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#github'>github</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The files and directories in the <strong>tmp</strong> directory are cleaned only during a reboot. This can be problematic if you have applications that write a lot to the tmp directory and you do not want to reboot your Linux system. A good solution for periodic cleanup of the tmp directory is the <strong>tmpreaper</strong> tool.</p>
 <ul>
-<li>Installing it is easy:</li>
+<li>URL for search queries in a repository:</li>
 </ul>
-<pre><code>$ sudo apt install tmpreaper</code></pre>
-<ul>
-<li><p>On installation, tmpreader adds a cron job that runs once a day. This can be seen in <code>/etc/cron.daily/tmpreaper</code>. It calls the tmpreaper program with the options you set in <code>/etc/tmpreaper.conf</code></p></li>
-<li><p>The tmpreaper tool will work on any directory passed to it, including the root directory. Since deleting the root directory is catastrophic, tmpreaper shows a warning all the time. You can disable this warning by setting <code>SHOWWARNING=false</code> in <code>/etc/tmpreaper.conf</code></p></li>
-<li><p>When tmpreaper is run once a day by cron, it uses the <code>TMPTIME</code> value set for the tmp directory init scripts as described <a href="2017-11-06-how-tmp-directory-is-cleaned.html">here</a> to decide which files and directories to delete. For example, if <code>TMPTIME=1</code>, then tmpreaper will delete everything in tmp directory that is older than a day.</p></li>
-<li><p>If you want to apply tmpreaper on directories other than <code>/tmp</code>, then add them to the <code>TMPREAPER_DIRS</code> value in <code>/etc/tmpreaper.conf</code>.</p></li>
-<li><p>You can call the tmpreaper program directly at the shell to reap your own directories. For example, to reap all files and directories older than 2 days from the tmp directory:</p></li>
-</ul>
-<pre><code>$ tmpreaper 2d /tmp</code></pre>
-<p>Note that you might need to run that command as <strong>sudo</strong> to be able to delete files created by other users.</p>
-<ul>
-<li>To be sure that you are not deleting important file, make sure you use the <code>--test</code> option to do a dry run:</li>
-</ul>
-<pre><code>$ tmpreaper --test 2d /tmp</code></pre>
-<p><strong>Tried with:</strong> tmpreaper 1.6.13 and Ubuntu 16.04</p>
+<pre><code>For single word &quot;foobar&quot;:
+https://github.com/SOME_USER/SOME_REPO/search?q=foobar
+
+For multiple words &quot;foobar&quot; &quot;nature&quot;:
+https://github.com/SOME_USER/SOME_REPO/search?q=foobar+nature
+
+For word with spaces &quot;foobar wins&quot;:
+https://github.com/SOME_USER/SOME_REPO/search?q=%22foobar+wins%22</code></pre>
 </div>
 
 <br />

@@ -54,7 +54,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How tmp directory is cleaned</h1>
-<p class="date">📅 2017-Nov-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#tmp'>tmp</a>, <a href='index.html#tmpfs'>tmpfs</a>, <a href='index.html#tmpreaper'>tmpreaper</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2017-Nov-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#tmp'>tmp</a>, <a href='index.html#tmpreaper'>tmpreaper</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>The <code>/tmp</code> directory in Linux is where temporary files and directories are created by applications. If you did not do anything special during installation, it will be a directory under the root directory partition and hence has the same filesystem as that of the root filesystem. If you specifically created a partition for <code>/tmp</code>, then it might be of the <strong>tmpfs</strong> filesystem type.</p>
 <p>If the root partition is running out of space, you might want to check how big tmp directory is:</p>
@@ -63,11 +63,12 @@ $ du --summarize .</code></pre>
 <p>On my Ubuntu, I find that tmp directory is cleaned up only at the time of system startup or reboot. The init scripts in <code>/etc/rcS.d</code> check the <code>TMPTIME</code> value set in <code>/etc/default/rcS</code>. This value indicates which files and directories in the tmp directory are up for deletion.</p>
 <p>You can change this TMPTIME value to your preference:</p>
 <ul>
-<li><p>If <code>TMPTIME=0</code>, then everything inside the tmp directory is deleted at reboot.</p></li>
-<li><p>If <code>TMPTIME=1</code>, then only files and directories older than a day are deleted and so on.</p></li>
-<li><p>If <code>TMPTIME=-1</code>, then nothing is deleted.</p></li>
+<li>If <code>TMPTIME=0</code>, then everything inside the tmp directory is deleted at reboot.</li>
+<li>If <code>TMPTIME=1</code>, then only files and directories older than a day are deleted and so on.</li>
+<li>If <code>TMPTIME=-1</code>, then nothing is deleted.</li>
 </ul>
-<p>You will notice that the tmp directory is cleaned up only when you reboot the system. If you want a periodic cleanup of the tmp directory, then use the <strong>tmpreaper</strong> tool as described <a href="2017-11-06-how-to-install-and-use-tmpreaper.html">here</a>. <strong>Tried with:</strong> Ubuntu 14.04</p>
+<p>You will notice that the tmp directory is cleaned up only when you reboot the system. If you want a periodic cleanup of the tmp directory, then use the <strong>tmpreaper</strong> tool as described <a href="2017-11-06-how-to-install-and-use-tmpreaper.html">here</a>.</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
 <br />
