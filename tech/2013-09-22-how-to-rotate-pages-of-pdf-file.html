@@ -54,16 +54,20 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to rotate pages of PDF file</h1>
-<p class="date">📅 2013-Sep-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pdf'>pdf</a>, <a href='index.html#pdf90'>pdf90</a>, <a href='index.html#rotate'>rotate</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Sep-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pdf'>pdf</a>, <a href='index.html#pdf90'>pdf90</a>, <a href='index.html#pdftk'>pdftk</a>, <a href='index.html#rotate'>rotate</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>Sometimes, the pages in a PDF file might be rotated wrongly. For example, this can happen as the result of automatic scanning of documents.</p>
+<h2 id="ubuntu-2004">Ubuntu 20.04</h2>
+<p>The <a href="index.html#pdftk"><strong>pdftk</strong></a> tool can be used to rotate pages of a PDF clockwise or counterclockwise:</p>
+<pre><code>$ pdftk in.pdf cat 1-endeast output out.pdf
+$ pdftk in.pdf cat 1-endwest output out.pdf</code></pre>
+<h2 id="ubuntu-1404">Ubuntu 14.04</h2>
 <p>To rotate the pages of a PDF file, the <code>pdf90</code> tool can be used.</p>
 <p>First, install the <code>texlive-extra-utils</code> package:</p>
 <pre><code>$ sudo apt-get install texlive-extra-utils</code></pre>
 <p>Then call <code>pdf90</code> to rotate the pages of a PDF file by 90 degrees in counterclockwise direction:</p>
 <pre><code>$ pdf90 foobar.pdf</code></pre>
 <p>The output is written to a file with suffix of <code>-rotated90</code>. For example, <code>foobar.pdf</code> becomes <code>foobar-rotated90.pdf</code>.</p>
-<p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
 <br />
