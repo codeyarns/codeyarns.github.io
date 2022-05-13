@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -54,9 +54,9 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to view Python documentation using pydoc</h1>
-<p class="date">📅 2019-Dec-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2019-Dec-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Python</strong> ships with a documentation generating and viewing tool called <strong>pydoc</strong>. This tool can be used to lookup and peruse documentation for everything in the Python standard library and also for your own modules and scripts. The tool can render documentation like a manpage or dump it to a simple HTML file or serve it from a local HTTP server.</p>
+<p><strong>Python</strong> ships with a tool to generate and view documentation. This tool can be used to lookup documentation from the Python standard library and also from your own modules and scripts. The tool can render documentation like a manpage or dump it to a simple HTML file or serve it from a local HTTP server.</p>
 <ul>
 <li><p>Every version of Python interpreter you have installed on your system ships with its own pydoc. For example, my Python 2.7 seems to have a <code>pydoc2.7</code> and my Python 3.6 seems to have a corresponding <code>pydoc3.6</code>.</p></li>
 <li><p>There also seems to be a major version <code>pydoc3</code> that is symbolically linked to one of the Python 3 versions:</p></li>
@@ -79,7 +79,12 @@ $ pydoc os.path.join</code></pre>
 <li>To view Python documentation for your own <code>foobar.py</code> at the shell:</li>
 </ul>
 <pre><code>$ pydoc foobar</code></pre>
-<p>Note how the tool requires the module name, so we drop the <code>.py</code> file extension.</p>
+<p>Note how the tool requires just the module name, so we drop the <code>.py</code> file extension.</p>
+<ul>
+<li>To search for something in the synopsis lines of all modules:</li>
+</ul>
+<pre><code>$ pydoc -k foobar</code></pre>
+<p>This <em>search</em> is of limited utility since it just does a string search in the one-line synopsis of every module. So essentially it helps you find modules, but not methods or classes or constants inside the modules. I have resorted to using <strong>pydocsearch</strong> for searching for those.</p>
 <ul>
 <li>To view the Python documentation in your local browser:</li>
 </ul>
