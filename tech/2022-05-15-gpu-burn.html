@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – PyDocSearch</title>
+  <title>Code Yarns – GPU Burn</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,20 +53,20 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">PyDocSearch</h1>
-<p class="date">📅 2022-May-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pydoc'>pydoc</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">GPU Burn</h1>
+<p class="date">📅 2022-May-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#gpuburn'>gpuburn</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I find <a href="2019-12-28-how-to-use-pydoc.html"><strong>PyDoc</strong></a> useful for looking up Python documentation at the shell, but it has one handicap. I can only lookup information if I know the full module and member name. It is not possible to just do a string search on all possible module and member names in the Python standard documentation.</p>
-<p>That is what this tool <a href="https://github.com/JulienPalard/pydocsearch"><strong>PyDocSearch</strong></a> does. It does a string search on the online Python documentation and shows the resulting URL for clicking and viewing.</p>
+<p><a href="https://github.com/wilicc/gpu-burn"><strong>GPU Burn</strong></a> is a tool written by <a href="http://wili.cc/"><strong>Ville Timonen</strong></a> to check if the GPU is stable in its thermals and computation under load. Such issues get hidden with the complexity of running modern workloads.</p>
 <ul>
-<li>To install the tool:</li>
+<li>To download and build the tool:</li>
 </ul>
-<pre><code>$ python3 -m pip install pydocsearch</code></pre>
+<pre><code>$ git clone https://github.com/wilicc/gpu-burn.git
+$ cd gpu-burn
+$ make COMPUTE=80</code></pre>
 <ul>
-<li>To use the tool:</li>
+<li>To test using tensor cores for 10 minutes:</li>
 </ul>
-<pre><code>$ pydocsearch foobar</code></pre>
-<p><strong>Tried with:</strong> PyDocSearch 1.0.3 and Python 3.8.10</p>
+<pre><code>$ ./gpu-burn -tc 600</code></pre>
 </div>
 
 <br />
