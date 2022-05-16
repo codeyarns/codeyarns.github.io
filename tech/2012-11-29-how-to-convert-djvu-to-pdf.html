@@ -54,9 +54,10 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to convert DJVU to PDF</h1>
-<p class="date">📅 2012-Nov-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#conversion'>conversion</a>, <a href='index.html#ddjvu'>ddjvu</a>, <a href='index.html#djview'>djview</a>, <a href='index.html#djvu'>djvu</a>, <a href='index.html#djvups'>djvups</a>, <a href='index.html#pdf'>pdf</a>, <a href='index.html#ps2pdf'>ps2pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2012-Nov-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#djvu'>djvu</a>, <a href='index.html#pdf'>pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>DjVuLibre</strong> provides open source libraries, commandline tools and GUI tools for dealing with DJVU files. So all solutions for converting a DJVU file to a PDF file will use DjVuLibre is some form. Note that it looks like all conversion options seem to produce PDF by converting every DJVU page into an image. So, the resulting PDF files will be big and much larger than the original DJVU files. There seems to be no way to produce smaller PDF files.</p>
+<p><strong>DjVuLibre</strong> provides open source libraries, commandline tools and GUI tools for dealing with DJVU files. So all solutions for converting a DJVU file to a PDF file will use DjVuLibre in some form.</p>
+<p>Note that it looks like all conversion options seem to produce PDF by converting every DJVU page into an image. So, the resulting PDF files will be big and much larger than the original DJVU files. There seems to be no way to produce smaller PDF files.</p>
 <h2 id="using-ddjvu">Using ddjvu</h2>
 <ul>
 <li>Install DjVuLibre tools on Ubuntu:</li>
@@ -66,6 +67,14 @@
 <li>Convert using the <strong>ddjvu</strong> tool:</li>
 </ul>
 <pre><code>$ ddjvu -format=pdf in.djvu out.pdf</code></pre>
+<ul>
+<li>To view information about each page in DJVU while it converts:</li>
+</ul>
+<pre><code>$ ddjvu -format=pdf -verbose in.djvu out.pdf</code></pre>
+<ul>
+<li>To specify the DPI to use for each page:</li>
+</ul>
+<pre><code>$ ddjvu -format=pdf -mag=300 in.djvu out.pdf</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 18.04</p>
 <h2 id="using-djvups">Using djvups</h2>
 <ul>
