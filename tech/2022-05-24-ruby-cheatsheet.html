@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Ruby Cheatsheet</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "3wadqgw95m");
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header" style="padding-top: 10px;">
+    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Ruby Cheatsheet</h1>
+<p class="date">📅 2022-May-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#ruby'>ruby</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>Below are some random notes I took while learning <strong>Ruby</strong> written from the point of view of a <strong>Python</strong> programmer.</p>
+<ul>
+<li>To play with the interactive Ruby shell:</li>
+</ul>
+<pre><code>$ irb
+irb(main):001:0&gt; x = 10
+irb(main):002:0&gt; x
+=&gt; 10</code></pre>
+<ul>
+<li>To run a Ruby file:</li>
+</ul>
+<pre><code>$ ruby foobar.rb</code></pre>
+<ul>
+<li>To lookup language and API documentation:</li>
+</ul>
+<pre><code>$ sudo apt install ruby2.7-doc
+
+$ ri &lt;whatever you want&gt;
+$ ri print</code></pre>
+<ul>
+<li>To print to standard output:</li>
+</ul>
+<pre><code>print(&quot;Hello!\n&quot;)
+print(&quot;Value of x is: &quot;, x)</code></pre>
+<p>Note that unlike Python, print does not add spaces or newlines automatically. Spaces and newlines have to be explicitly specified. WYSIWG strictly.</p>
+<ul>
+<li>To import a module, provide its path, but drop the file extension:</li>
+</ul>
+<pre><code>require &quot;foo/bar&quot;
+require_relative &quot;where/is/it&quot;</code></pre>
+<ul>
+<li>A <strong>module</strong> is a <code>.rb</code> Ruby file with its own named <code>module</code> block inside it, inside whose namespace we can have variables, methods or classes.</li>
+</ul>
+<pre><code># foobar.rb
+module FooBar
+   # Vars, methods, classes go here
+   def foobar(x, y)
+   end
+end
+
+# Accessed from another file as ...
+require_relative &quot;foobar&quot;
+FooBar.foobar(10, 20)</code></pre>
+<ul>
+<li>Classes are defined similar to Python and <code>initialize</code> is the ctor. Instance variables have the <code>@</code> prefix and cannot be accessed outside the class.</li>
+</ul>
+<pre><code>class Foobar
+  def initialize(x, y)
+    @x = x
+    @y = y
+  end
+
+  def another_func()
+  end
+end</code></pre>
+<ul>
+<li>Create getter for class instance variables using <code>attr_reader</code> definitions in the class:</li>
+</ul>
+<pre><code>class Foobar
+  attr_reader :x
+  attr_reader :y
+  def initialize(x, y)
+    @x = x
+    @y = y
+  end
+end
+
+f = Foobar(10, 20)
+f.x # Works!</code></pre>
+<ul>
+<li>Use <code>self</code> to refer one’s own methods in the class:</li>
+</ul>
+<pre><code>class Foobar
+  def func1()
+  end
+  def func2()
+    self.func1()
+  end
+end</code></pre>
+<ul>
+<li>List is called <strong>Array</strong>, but rest of usage is similar to Python:</li>
+</ul>
+<pre><code>x = []
+y = [&quot;foo&quot;, 1, nil]
+x[0] = y[0]
+x.append(y[2])</code></pre>
+<ul>
+<li>To iterate items of list:</li>
+</ul>
+<pre><code>alist = [1, 2, 3]
+for x in alist
+  print(x, &quot;\n&quot;)
+end</code></pre>
+<ul>
+<li>Dict is called <strong>hash</strong> in Ruby.</li>
+</ul>
+<pre><code>empty_hash = {}
+ahash = {&quot;x&quot;: 1, &quot;y&quot;: 2}</code></pre>
+<ul>
+<li>To iterate key-value pairs of hash:</li>
+</ul>
+<pre><code>ahash.each do |k, v|
+  print(k, v)
+end</code></pre>
+<ul>
+<li>To check key in hash:</li>
+</ul>
+<pre><code>if ahash.key?(&quot;foobar&quot;)
+  print(&quot;Foobar present in hash&quot;)
+end</code></pre>
+<ul>
+<li>To convert anything (string or int) to float:</li>
+</ul>
+<pre><code>&quot;123&quot;.to_f
+123.to_f</code></pre>
+<ul>
+<li>To truncate float to int:</li>
+</ul>
+<pre><code>&gt; x = 3.14
+&gt; x.to_i
+=&gt; 3</code></pre>
+<ul>
+<li>To round float to nearest int:</li>
+</ul>
+<pre><code>&gt; x = 3.99
+&gt; x.round
+=&gt; 4</code></pre>
+<ul>
+<li>Difference between comparing by value and checking if they are the same object:</li>
+</ul>
+<pre><code>&quot;x&quot; == &quot;x&quot;       # Always true
+&quot;x&quot;.equal?(&quot;x&quot;)  # false</code></pre>
+<ul>
+<li>Use the <code>:</code> colon operator to create a <strong>symbol</strong>, a trick to have a single copy of literal strings:</li>
+</ul>
+<pre><code>:foo.equal?(:foo)  # true</code></pre>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://docs.ruby-lang.org/en/master/">Ruby API Documentation</a>
+<ul>
+<li><a href="https://docs.ruby-lang.org/en/master/keywords_rdoc.html">Keywords</a></li>
+<li><a href="https://docs.ruby-lang.org/en/master/Kernel.html">Kernel module</a>: Its methods are included by <code>Object</code>, so available in every Ruby object.</li>
+</ul></li>
+<li><a href="http://www.ruby-doc.org/core">Ruby Core Reference</a></li>
+</ul>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+</div>
+
+</body>
+</html>
