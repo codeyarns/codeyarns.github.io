@@ -54,7 +54,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to setup SSH keys for multiple Github accounts</h1>
-<p class="date">📅 2019-Aug-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#github'>github</a>, <a href='index.html#ssh'>ssh</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2019-Aug-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#github'>github</a>, <a href='index.html#ssh'>ssh</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>A local <strong>Git</strong> repository can push and pull from a remote <strong>Github</strong> account using SSH authentication. This is typically configured by adding your SSH key to your Github account. If you have two or more Github accounts and try to use the same SSH public key for them, Github rejects the key with the error <em>Key is already in use</em>.</p>
@@ -80,8 +80,11 @@ Host github.com-second
     IdentityFile ~/.ssh/second_id_rsa</code></pre>
 <ul>
 <li><p>Git clone, push or pull in repositories from the main Github host should operate normally as before now.</p></li>
-<li><p>To clone, push or pull in repositories from the second Github account, use <code>github.com-second</code> instead of <code>github.com</code> in the SSH remote URL. For example: <code>git@github.com-second:joe/some_repo.git</code>. You can also modify the <code>url</code> field in the <code>.git/config</code> file of these repositories.</p></li>
+<li><p>To clone the second repo, use <code>github.com-second</code> instead of <code>github.com</code> in the SSH remote URL:</p></li>
 </ul>
+<pre><code>$ git clone git@github.com-second:joe/some_repo.git</code></pre>
+<p>This stores the <code>git@github.com-second:joe/some_repo.git</code> URL as the origin in <code>.git/config</code> in the newly created local clone. So all subsequent fetch and push commands will work seamlessly.</p>
+<p>For an existing local clone, you can also modify the SSH URL in its <code>.git/config</code> in the same way to obtain the same result.</p>
 <p><strong>Tried with:</strong> Git 2.17.1 and Ubuntu 18.04</p>
 </div>
 
