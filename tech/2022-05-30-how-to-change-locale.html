@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to create a Ubuntu installer USB flash drive on Windows</title>
+  <title>Code Yarns – How to change locale</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,21 +53,33 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to create a Ubuntu installer USB flash drive on Windows</h1>
-<p class="date">📅 2013-Mar-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#usb-flash-drive'>usb flash drive</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">How to change locale</h1>
+<p class="date">📅 2022-May-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#locale'>locale</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>There are many tools that can be used to create a USB installer flash drive from an Ubuntu ISO file. Here is my experience with such tools:</p>
+<p><strong>Locale</strong> determines which language and encoding is used by your Linux system. If the wrong locale is chosen, you might see that the system messages or UI are in a foreign language or the character encoding has issues.</p>
 <ul>
-<li>First, <strong>download</strong> the <strong>ISO</strong> file of the Ubuntu you want to install.</li>
-<li>Make sure the downloaded file is accurate by verifying its checksum.</li>
-<li>Insert a USB flash drive of at least 8GB and use one of the bootable USB drive creator tools below to create the installer flash drive.
-<ul>
-<li><a href="https://rufus.ie/"><strong>Rufus</strong></a>: This has a simple Windows dialog and was the fastest tool I used to create an installer. I used this for Ubuntu 20.04 and it worked fine.</li>
-<li><a href="https://www.balena.io/etcher/"><strong>Balena Etcher</strong></a>: Flashy tool, but after the validation step, it said <em>Flash Failed!</em>. The created USB drive booted, but hung in one of the Ubuntu installer dialogs.</li>
-<li><a href="http://www.linuxliveusb.com/"><strong>Linux Live USB Creator</strong></a>: Also called <strong>LiLi</strong>, this also has a simple Windows dialog UI. However, this tool is no longer maintained.</li>
-</ul></li>
-<li>After the installation is complete, insert the USB flash drive on the destination computer, reboot it, choose to boot from this flash drive and install Ubuntu.</li>
+<li>To see the current locale:</li>
 </ul>
+<pre><code>$ locale
+LANG=en_US.UTF-8
+LANGUAGE=
+LC_CTYPE=&quot;en_US.UTF-8&quot;
+LC_NUMERIC=&quot;en_US.UTF-8&quot;
+LC_TIME=&quot;en_US.UTF-8&quot;
+LC_COLLATE=&quot;en_US.UTF-8&quot;
+LC_MONETARY=&quot;en_US.UTF-8&quot;
+LC_MESSAGES=&quot;en_US.UTF-8&quot;
+LC_PAPER=&quot;en_US.UTF-8&quot;
+LC_NAME=&quot;en_US.UTF-8&quot;
+LC_ADDRESS=&quot;en_US.UTF-8&quot;
+LC_TELEPHONE=&quot;en_US.UTF-8&quot;
+LC_MEASUREMENT=&quot;en_US.UTF-8&quot;
+LC_IDENTIFICATION=&quot;en_US.UTF-8&quot;
+LC_ALL=</code></pre>
+<ul>
+<li>To change the locale, run <code>sudo dpkg-reconfigure locales</code>. In the first dialog, make sure the locale you want is chosen. In the second dialog, choose the default locale. When you press OK, the system will generate locales if needed and set the default locale. You might need to logout and login to see the current locale change.</li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 22.04</p>
 </div>
 
 <br />
