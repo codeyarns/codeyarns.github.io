@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Excel Cheatsheet</title>
+  <title>Code Yarns – Memray</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -53,14 +53,28 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Excel Cheatsheet</h1>
-<p class="date">📅 2022-May-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#excel'>excel</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Memray</h1>
+<p class="date">📅 2022-Jun-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#profiler'>profiler</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
+<p><strong>Memray</strong> is an open source memory profiler for Python. It can show various types of reports on memory allocations in your Python program.</p>
 <ul>
-<li><p><strong>To move a row or column</strong>: Select the entire row or column by clicking on row name on the left or the column name at the top. While holding down <code>Shift</code> on the keyboard, move mouse cursor to the top/bottom (of row) or left/right (of column) border of selected row or column cells (not the left or top bar). If you did this correctly, the mouse cursor will turn into ✥. Still holding down <code>Shift</code>, left-click the mouse and drag the row or column to where you want it to be and let go.</p></li>
-<li><p><strong>To paste as plain text</strong>: Press <code>Ctrl Alt v</code></p></li>
-<li><p><strong>To insert row below</strong>: Press <code>Ctrl Shift +</code>. In the dialog that pops up, choose <em>Entire row</em>.</p></li>
+<li>Installing it is easy:</li>
 </ul>
+<pre><code>$ python3 -m pip install memray</code></pre>
+<ul>
+<li>To run the profiler on your code:</li>
+</ul>
+<pre><code>$ python3 -m memray run -o out.bin hello.py</code></pre>
+<ul>
+<li>Profiled data can be viewed in various ways:</li>
+</ul>
+<pre><code>$ python3 -m memray table out.bin
+
+$ python3 -m memray tree out.bin
+
+$ python3 -m memray summary out.bin
+
+$ python3 -m memray stats out.bin</code></pre>
 </div>
 
 <br />
