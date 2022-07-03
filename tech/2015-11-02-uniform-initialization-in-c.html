@@ -8,41 +8,68 @@
   <title>Code Yarns – Uniform initialization in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -62,7 +89,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -81,8 +108,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
   </div>
-  <div class="header" style="padding-top: 10px;">
-    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -100,113 +128,113 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p>You could not initialize variable of a builtin type to its <strong>default value</strong> (like in Java). C or C++ only default-initialize in global scope, not in non-global scope.</p></li>
 <li><p>No way to initialize a container (like <code>std::vector</code> or your own) with a series of non-default values.</p></li>
 </ul>
-<p><strong>C++11</strong> introduced an <strong>uniform initialization syntax</strong> using <code>{}</code> that makes writing and reading C++ a joy! In my opinion, this is a feature that will make everyone's code easier to write and read. Though it does have a few rough edges (since C++ has to support all previous syntaxes), it almost always works in a way that is most intuitive to the viewer.</p>
+<p><strong>C++11</strong> introduced an <strong>uniform initialization syntax</strong> using <code>{}</code> that makes writing and reading C++ a joy! In my opinion, this is a feature that will make everyone’s code easier to write and read. Though it does have a few rough edges (since C++ has to support all previous syntaxes), it almost always works in a way that is most intuitive to the viewer.</p>
 <p>It is called uniform initialization because it is applicable in every place where you initialize anything. That includes: variables, constants, objects, in the <strong>initializer list</strong> of a constructor and even in the <strong>member declaration</strong> of a struct or class. Everywhere!</p>
 <p>I am sharing a code sample below that enumerates the various ways to apply this syntax:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;stack&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;unordered_set&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;vector&gt;</span>
-
-<span class="kw">class</span> Point
-{
-    <span class="kw">public</span>:
-    <span class="dt">int</span> x;
-    <span class="dt">int</span> y;
-    <span class="dt">int</span> z {<span class="dv">45</span>}; <span class="co">// Look ma! Default init of member!</span>
-};
-
-<span class="kw">class</span> Line
-{
-    <span class="kw">public</span>:
-
-    <span class="co">// In initializer list</span>
-    Line() : p {}, q {<span class="dv">10</span>}
-    {}
-
-    Line(<span class="dt">int</span> x, <span class="dt">int</span> y) : p {x}, q{y}
-    {}
-
-    <span class="dt">int</span> p;
-    <span class="dt">int</span> q;
-    <span class="dt">int</span> r {<span class="dv">99</span>}; <span class="co">// Look ma! Default init outside ctor!</span>
-};
-
-<span class="dt">int</span> main()
-{
-    <span class="co">// Init with default values of builtin types</span>
-    {
-        <span class="dt">char</span>        c {}; <span class="co">// c = 0</span>
-        <span class="dt">int</span>         i {}; <span class="co">// i = 0</span>
-        <span class="dt">float</span>       f {}; <span class="co">// f = 0.0f</span>
-        <span class="dt">double</span>      d {}; <span class="co">// d = 0.0</span>
-        <span class="dt">bool</span>        b {}; <span class="co">// b = false</span>
-        <span class="bu">std::</span>string s {}; <span class="co">// s = &quot;&quot;</span>
-        <span class="dt">int</span>*        p {}; <span class="co">// p = nullptr</span>
-    }
-
-    <span class="co">// Init with specific values</span>
-    {
-        <span class="dt">char</span>        c {<span class="st">&#39;x&#39;</span>};   <span class="co">// c = &#39;x&#39;</span>
-        <span class="dt">int</span>         i {<span class="dv">99</span>};    <span class="co">// i = 99</span>
-        <span class="dt">float</span>       f {<span class="fl">3.14f</span>}; <span class="co">// f = 3.14f</span>
-        <span class="dt">double</span>      d {<span class="fl">1.23</span>};  <span class="co">// d = 1.23</span>
-        <span class="dt">bool</span>        b {<span class="kw">true</span>};  <span class="co">// b = true</span>
-        <span class="bu">std::</span>string s {<span class="st">&quot;cat&quot;</span>}; <span class="co">// s = &quot;cat&quot;</span>
-        <span class="dt">int</span>*        p {&amp;i};    <span class="co">// p = &amp;i</span>
-    }
-
-    <span class="co">// Narrowing convertions not allowed</span>
-    <span class="co">// This can be based on type (float-to-int) or actual value (int-to-char)</span>
-    {
-        <span class="dt">int</span> i {<span class="dv">3</span>};    <span class="co">// OK</span>
-        <span class="dt">int</span> j {<span class="fl">3.0</span>};  <span class="co">// Error!</span>
-        <span class="dt">int</span> k {<span class="fl">3.14</span>}; <span class="co">// Error!</span>
-    }
-
-    <span class="co">// Init array values</span>
-    <span class="dt">int</span> i_arr[<span class="dv">5</span>] {};                <span class="co">// [0,   0, 0, 0, 0]</span>
-    <span class="dt">int</span> j_arr[] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>};        <span class="co">// [99, 10, 3]</span>
-    <span class="dt">int</span> k_arr[<span class="dv">5</span>] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>};       <span class="co">// [99, 10, 3, 0, 0]</span>
-    <span class="dt">int</span> <span class="va">m_arr</span>[<span class="dv">5</span>] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>}; <span class="co">// [99, 10, 3, 5, 7]</span>
-
-    <span class="co">// Init struct/class members (with no ctor)</span>
-    <span class="co">// See above for definition of Point class</span>
-    Point p0 {};           <span class="co">// .x =  0, .y =  0, .z = 45</span>
-    Point p1 {<span class="dv">99</span>};         <span class="co">// .x = 99, .y =  0, .z = 45</span>
-    Point p2 {<span class="dv">99</span>, <span class="dv">15</span>, <span class="dv">24</span>}; <span class="co">// .x = 99, .y = 15, .z = 24</span>
-
-    <span class="co">// Init struct/class (with ctor)</span>
-    Line s0 {};           <span class="co">// .p = 0,  .q = 10, .r = 99</span>
-    Line s2 {<span class="dv">10</span>, <span class="dv">11</span>};     <span class="co">// .p = 10, .q = 11, .r = 99</span>
-    Line s1 {<span class="dv">10</span>};         <span class="co">// Error! No matching ctor found!</span>
-    Line s3 {<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">13</span>}; <span class="co">// Error! No matching ctor found!</span>
-
-    <span class="co">/**</span>
-<span class="co">     * Init STL vectors</span>
-<span class="co">     */</span>
-
-    <span class="co">// Init vectors</span>
-    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_0 {<span class="dv">5</span>};          <span class="co">// [5]</span>
-    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_1 {<span class="dv">5</span>, <span class="dv">2</span>};       <span class="co">// [5, 2]</span>
-    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_2 {<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}; <span class="co">// [2, 3, 4, 5]</span>
-    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_3 (<span class="dv">5</span>);          <span class="co">// [0, 0, 0, 0, 0]</span>
-
-    <span class="co">// A matching constructor is chosen over aggregation</span>
-    <span class="co">// Note what happens on passing int</span>
-    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_0</span> {};                    <span class="co">// []</span>
-    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_1</span> {<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;mat&quot;</span>}; <span class="co">// [&quot;cat&quot;, &quot;rat&quot;, &quot;mat&quot;]</span>
-    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_2</span> {<span class="dv">4</span>};                   <span class="co">// [&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]</span>
-    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_3</span> {<span class="dv">4</span>, <span class="st">&quot;ba&quot;</span>};             <span class="co">// [&quot;ba&quot;, &quot;ba&quot;, &quot;ba&quot;, &quot;ba&quot;]</span>
-
-    <span class="co">/**</span>
-<span class="co">     * Other STL containers</span>
-<span class="co">     */</span>
-
-    <span class="bu">std::</span>unordered_set&lt;<span class="dt">int</span>&gt; i_set {<span class="dv">99</span>, <span class="dv">32</span>, <span class="dv">45</span>, <span class="dv">32</span>}; <span class="co">// [99, 32, 45]</span>
-
-    <span class="cf">return</span> <span class="dv">0</span>;
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;stack&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;unordered_set&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">class</span> Point</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>{</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    <span class="kw">public</span>:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="dt">int</span> x;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="dt">int</span> y;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="dt">int</span> z {<span class="dv">45</span>}; <span class="co">// Look ma! Default init of member!</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>};</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="kw">class</span> Line</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>{</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    <span class="kw">public</span>:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    <span class="co">// In initializer list</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    Line() : p {}, q {<span class="dv">10</span>}</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    {}</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    Line(<span class="dt">int</span> x, <span class="dt">int</span> y) : p {x}, q{y}</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    {}</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>    <span class="dt">int</span> p;</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    <span class="dt">int</span> q;</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    <span class="dt">int</span> r {<span class="dv">99</span>}; <span class="co">// Look ma! Default init outside ctor!</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>};</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a><span class="dt">int</span> main()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>{</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    <span class="co">// Init with default values of builtin types</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    {</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>        <span class="dt">char</span>        c {}; <span class="co">// c = 0</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>        <span class="dt">int</span>         i {}; <span class="co">// i = 0</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>        <span class="dt">float</span>       f {}; <span class="co">// f = 0.0f</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>        <span class="dt">double</span>      d {}; <span class="co">// d = 0.0</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a>        <span class="dt">bool</span>        b {}; <span class="co">// b = false</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>        <span class="bu">std::</span>string s {}; <span class="co">// s = &quot;&quot;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>        <span class="dt">int</span>*        p {}; <span class="co">// p = nullptr</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>    }</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>    <span class="co">// Init with specific values</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a>    {</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a>        <span class="dt">char</span>        c {<span class="ch">&#39;x&#39;</span>};   <span class="co">// c = &#39;x&#39;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>        <span class="dt">int</span>         i {<span class="dv">99</span>};    <span class="co">// i = 99</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a>        <span class="dt">float</span>       f {<span class="fl">3.14</span><span class="bu">f</span>}; <span class="co">// f = 3.14f</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a>        <span class="dt">double</span>      d {<span class="fl">1.23</span>};  <span class="co">// d = 1.23</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a>        <span class="dt">bool</span>        b {<span class="kw">true</span>};  <span class="co">// b = true</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>        <span class="bu">std::</span>string s {<span class="st">&quot;cat&quot;</span>}; <span class="co">// s = &quot;cat&quot;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>        <span class="dt">int</span>*        p {&amp;i};    <span class="co">// p = &amp;i</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>    }</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>    <span class="co">// Narrowing convertions not allowed</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a>    <span class="co">// This can be based on type (float-to-int) or actual value (int-to-char)</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a>    {</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a>        <span class="dt">int</span> i {<span class="dv">3</span>};    <span class="co">// OK</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a>        <span class="dt">int</span> j {<span class="fl">3.0</span>};  <span class="co">// Error!</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a>        <span class="dt">int</span> k {<span class="fl">3.14</span>}; <span class="co">// Error!</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a>    }</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true"></a>    <span class="co">// Init array values</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true"></a>    <span class="dt">int</span> i_arr[<span class="dv">5</span>] {};                <span class="co">// [0,   0, 0, 0, 0]</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true"></a>    <span class="dt">int</span> j_arr[] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>};        <span class="co">// [99, 10, 3]</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true"></a>    <span class="dt">int</span> k_arr[<span class="dv">5</span>] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>};       <span class="co">// [99, 10, 3, 0, 0]</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true"></a>    <span class="dt">int</span> <span class="va">m_arr</span>[<span class="dv">5</span>] {<span class="dv">99</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>}; <span class="co">// [99, 10, 3, 5, 7]</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true"></a>    <span class="co">// Init struct/class members (with no ctor)</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true"></a>    <span class="co">// See above for definition of Point class</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true"></a>    Point p0 {};           <span class="co">// .x =  0, .y =  0, .z = 45</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true"></a>    Point p1 {<span class="dv">99</span>};         <span class="co">// .x = 99, .y =  0, .z = 45</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true"></a>    Point p2 {<span class="dv">99</span>, <span class="dv">15</span>, <span class="dv">24</span>}; <span class="co">// .x = 99, .y = 15, .z = 24</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true"></a>    <span class="co">// Init struct/class (with ctor)</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true"></a>    Line s0 {};           <span class="co">// .p = 0,  .q = 10, .r = 99</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true"></a>    Line s2 {<span class="dv">10</span>, <span class="dv">11</span>};     <span class="co">// .p = 10, .q = 11, .r = 99</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true"></a>    Line s1 {<span class="dv">10</span>};         <span class="co">// Error! No matching ctor found!</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true"></a>    Line s3 {<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">13</span>}; <span class="co">// Error! No matching ctor found!</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true"></a>    <span class="co">/**</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true"></a><span class="co">     * Init STL vectors</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true"></a><span class="co">     */</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true"></a>    <span class="co">// Init vectors</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true"></a>    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_0 {<span class="dv">5</span>};          <span class="co">// [5]</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true"></a>    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_1 {<span class="dv">5</span>, <span class="dv">2</span>};       <span class="co">// [5, 2]</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true"></a>    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_2 {<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}; <span class="co">// [2, 3, 4, 5]</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true"></a>    <span class="bu">std::</span>vector&lt;<span class="dt">int</span>&gt; i_vec_3 (<span class="dv">5</span>);          <span class="co">// [0, 0, 0, 0, 0]</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true"></a>    <span class="co">// A matching constructor is chosen over aggregation</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true"></a>    <span class="co">// Note what happens on passing int</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true"></a>    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_0</span> {};                    <span class="co">// []</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true"></a>    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_1</span> {<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;mat&quot;</span>}; <span class="co">// [&quot;cat&quot;, &quot;rat&quot;, &quot;mat&quot;]</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true"></a>    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_2</span> {<span class="dv">4</span>};                   <span class="co">// [&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true"></a>    <span class="bu">std::</span>vector&lt;<span class="bu">std::</span>string&gt; <span class="va">s_vec_3</span> {<span class="dv">4</span>, <span class="st">&quot;ba&quot;</span>};             <span class="co">// [&quot;ba&quot;, &quot;ba&quot;, &quot;ba&quot;, &quot;ba&quot;]</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true"></a>    <span class="co">/**</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true"></a><span class="co">     * Other STL containers</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true"></a><span class="co">     */</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true"></a>    <span class="bu">std::</span>unordered_set&lt;<span class="dt">int</span>&gt; i_set {<span class="dv">99</span>, <span class="dv">32</span>, <span class="dv">45</span>, <span class="dv">32</span>}; <span class="co">// [99, 32, 45]</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true"></a>}</span></code></pre></div>
 <p><strong>Tried with:</strong> GCC 5.1 and Ubuntu 14.04</p>
 </div>
 
@@ -214,7 +242,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <div class="contentbox">
 
-<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<br />
+<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
 </div>
 
 </body>

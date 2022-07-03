@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -44,8 +44,9 @@
   <div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
   </div>
-  <div class="header" style="padding-top: 10px;">
-    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -57,11 +58,11 @@
 <p class="date">📅 2012-Mar-31 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#book'>book</a>, <a href='index.html#cuda'>cuda</a>, <a href='index.html#opencl'>opencl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://timefarer.files.wordpress.com/2012/03/20120325-programming-massively.jpg" alt=" " /><figcaption> </figcaption>
+<img src="https://timefarer.files.wordpress.com/2012/03/20120325-programming-massively.jpg" alt="" /><figcaption> </figcaption>
 </figure>
 <p>The next step for a CUDA newbie after <a href="2011-02-06-cuda-by-example.html"><strong>CUDA by Example</strong></a> would naturally be the book <strong>Programming Massively Parallel Processors</strong> by <strong>David Kirk</strong> and <strong>Wen-mei Hwu</strong>. The authors taught the first <a href="http://courses.engr.illinois.edu/ece498/al/">course on CUDA</a> at UIUC for a few semesters and this book is based on its lecture notes. I had used their lecture notes and videos when I first learnt CUDA.</p>
 <p>To write any CUDA application that moulds the problem optimally to the CUDA architecture requires the programmer to think very differently from programming on a CPU. Using a matrix multiplication example, the authors walk the student through many levels of improvement. The authors introduce the different facets of the architecture and end up improving the performance of the solution by as much as two orders of magnitude in the end.</p>
-<p>All the concepts of the CUDA architecture are covered: the thread-block-grid hierarchy, the global-shared-local memories and barrier synchronization. Details of the warps and the warp scheduler are explained. Since most CUDA applications are scientific, there is an entire chapter on the <strong>floating point</strong> format. This chapter gives a practitioner's perspective that I found to be more useful than the popular but obscure <strong>What every computer scientist should know about floating-point arithmetic</strong>. There are two chapters on application case studies, which are mostly useless since one cannot understand the application intimately enough to draw any lessons from it.</p>
+<p>All the concepts of the CUDA architecture are covered: the thread-block-grid hierarchy, the global-shared-local memories and barrier synchronization. Details of the warps and the warp scheduler are explained. Since most CUDA applications are scientific, there is an entire chapter on the <strong>floating point</strong> format. This chapter gives a practitioner’s perspective that I found to be more useful than the popular but obscure <strong>What every computer scientist should know about floating-point arithmetic</strong>. There are two chapters on application case studies, which are mostly useless since one cannot understand the application intimately enough to draw any lessons from it.</p>
 <p>CUDA runs only on NVIDIA devices. <a href="https://en.wikipedia.org/wiki/OpenCL"><strong>OpenCL</strong></a> is its twin that is designed to be used on all kinds of CPU and GPU processors. The authors have thrown in a chapter on OpenCL for folks who need to transition to it. OpenCL is exactly like CUDA, except that it does not have an equivalent of the CUDA Runtime API. So, the programmer ends up spending some time building the scaffolding required to run her kernels.</p>
 <p>Programming Massively Parallel Processors is a easy book to study from. It should be accessible to any intermediate-to-expert programmer. Newbies can check out <a href="2011-02-06-cuda-by-example.html"><strong>CUDA by Example</strong></a> before studying this book. I do wish this book covered some information on cache configuration, launch bounds, profiling, compiler options and other intimate details which one ends up using to squeeze out the last bit of performance. Currently, I do need to fall back onto the <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html"><strong>CUDA Programming Guide</strong></a> for such information. The book is also a wee bit outdated since the <strong>Fermi</strong> architecture is not well covered and the new <strong>Kepler</strong> architecture has already been released.</p>
 <p><strong>Rating:</strong> 4/4</p>
@@ -71,7 +72,9 @@
 
 <div class="contentbox">
 
-<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<br />
+<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
 </div>
 
 </body>

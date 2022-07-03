@@ -8,26 +8,27 @@
   <title>Code Yarns – C++ STL: Output Container to Stream</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -36,9 +37,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -88,7 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -107,8 +108,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
   </div>
-  <div class="header" style="padding-top: 10px;">
-    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -120,15 +122,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="date">📅 2010-Apr-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#containers'>containers</a>, <a href='index.html#cpp'>cpp</a>, <a href='index.html#stl'>stl</a>, <a href='index.html#streams'>streams</a>, <a href='index.html#vectors'>vectors</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>We can output the elements of any container to any <strong>ostream</strong> using <strong>std::copy</strong> like <a href="https://codeyarns.com/tech/2010/04/30/c-stl-output-container-elements-to-stream/">this</a>. But, it would be really nice if we could output any <strong>vector</strong> like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="bu">std::</span>vector&lt;MyClass&gt; myVec;</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="bu">std::</span>cout &lt;&lt; myVec;</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">std::</span>vector&lt;MyClass&gt; myVec;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">std::</span>cout &lt;&lt; myVec;</span></code></pre></div>
 <p>To achieve that, we just need one more wrapper around <code>std::copy</code>, a function template that accepts vectors of any type:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="bu">std::</span>ostream&amp; <span class="kw">operator</span> &lt;&lt; (<span class="bu">std::</span>ostream&amp; os, <span class="at">const</span> <span class="bu">std::</span>vector&lt;T&gt;&amp; vec)</a>
-<a class="sourceLine" id="cb2-3" title="3">{</a>
-<a class="sourceLine" id="cb2-4" title="4">    <span class="bu">std::</span>copy( vec.begin(), vec.end(), <span class="bu">std::</span>ostream_iterator&lt;T&gt;( os ) );</a>
-<a class="sourceLine" id="cb2-5" title="5">    <span class="cf">return</span> os;</a>
-<a class="sourceLine" id="cb2-6" title="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="bu">std::</span>ostream&amp; <span class="kw">operator</span> &lt;&lt; (<span class="bu">std::</span>ostream&amp; os, <span class="at">const</span> <span class="bu">std::</span>vector&lt;T&gt;&amp; vec)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>{</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="bu">std::</span>copy( vec.begin(), vec.end(), <span class="bu">std::</span>ostream_iterator&lt;T&gt;( os ) );</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="cf">return</span> os;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Similar functions can be written for other STL containers.</p>
 </div>
 
@@ -136,7 +138,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="contentbox">
 
-<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<br />
+<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
 </div>
 
 </body>

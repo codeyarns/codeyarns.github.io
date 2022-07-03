@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – LLVM Virtual Developers' Meeting 2020</title>
+  <title>Code Yarns – LLVM Virtual Developers’ Meeting 2020</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -44,8 +44,9 @@
   <div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
   </div>
-  <div class="header" style="padding-top: 10px;">
-    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -53,10 +54,10 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">LLVM Virtual Developers' Meeting 2020</h1>
+<h1 class="title">LLVM Virtual Developers’ Meeting 2020</h1>
 <p class="date">📅 2020-Oct-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#conference'>conference</a>, <a href='index.html#llvm'>llvm</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I had been meaning to attend the <a href="https://llvm.org/devmtg/"><strong>LLVM Developers' Meeting</strong></a> for a couple of years now, mostly because it happens right next door in San Jose. <a href="https://llvm.org/devmtg/2020-09/">This year</a> the conference went virtual and actually made it easy for me to finally attend all 3 days <strong>(Oct 6-8)</strong>. Below are my notes from the talks I attended from their multiple-track agenda. This being the first time I am attending a compiler conference, let alone a LLVM one, I focused on gaining basic knowledge of the software architecture of compilers, usage of common tools and techniques in the field.</p>
+<p>I had been meaning to attend the <a href="https://llvm.org/devmtg/"><strong>LLVM Developers’ Meeting</strong></a> for a couple of years now, mostly because it happens right next door in San Jose. <a href="https://llvm.org/devmtg/2020-09/">This year</a> the conference went virtual and actually made it easy for me to finally attend all 3 days <strong>(Oct 6-8)</strong>. Below are my notes from the talks I attended from their multiple-track agenda. This being the first time I am attending a compiler conference, let alone a LLVM one, I focused on gaining basic knowledge of the software architecture of compilers, usage of common tools and techniques in the field.</p>
 <h2 id="overall-review-of-the-conference">Overall review of the conference</h2>
 <p>This was my first virtual conference and I was highly skeptical if it would work out. But I was pleasantly surprised how well the conference was!</p>
 <ul>
@@ -84,7 +85,7 @@
 <li>opt tool can be used to run different optimizations on IR files.</li>
 <li>creduce and cvise can be used to do test case reduction.</li>
 <li>LLVM weekly and blog are good resources.</li>
-<li>&quot;The master has failed more times than the disciple has even tried.&quot;</li>
+<li>“The master has failed more times than the disciple has even tried.”</li>
 </ul>
 <h3 id="llvm-in-a-bare-metal-environment"><a href="https://www.youtube.com/watch?v=o5GA8ZGZyrk">LLVM in a Bare Metal Environment</a></h3>
 <ul>
@@ -95,7 +96,7 @@
 <h3 id="branch-coverage-squeezing-more-out-of-llvm-source-based-code-coverage"><a href="https://www.youtube.com/watch?v=NbcZeodxvgc">Branch Coverage: Squeezing more out of LLVM Source-based Code Coverage</a></h3>
 <ul>
 <li>Talk by Alan Phipps.</li>
-<li>LLVM's coverage tool has support for function, line and region coverage. But it does not have branch coverage, which the speaker added.</li>
+<li>LLVM’s coverage tool has support for function, line and region coverage. But it does not have branch coverage, which the speaker added.</li>
 <li>Counters are used at function, statement and condition and incremented when they are executed.</li>
 <li>Using simple if conditions, the speaker explained how he added counters to add branch coverage.</li>
 <li>MC/DC is a future work once branch coverage is checked into LLVM.</li>
@@ -209,7 +210,7 @@
 <li>All operations share the same structure. Operations can have regions, blocks and other operations.</li>
 <li>Dialect defines the rules and semantics of an IR. It has namespace, operations, types and passes.</li>
 </ul>
-<h3 id="cil-common-mlir-dialect-for-cc-and-fortran"><a href="https://www.youtube.com/watch?v=mNA5bwsKepQ">CIL : Common MLIR Dialect for C/C++ and Fortran</a></h3>
+<h3 id="cil--common-mlir-dialect-for-cc-and-fortran"><a href="https://www.youtube.com/watch?v=mNA5bwsKepQ">CIL : Common MLIR Dialect for C/C++ and Fortran</a></h3>
 <ul>
 <li>By Prashantha NR, Vinay Madhusudan and Ranjith Kumar.</li>
 <li>Motivation for CIL:
@@ -239,7 +240,7 @@
 <li>By Simeon Ehrig.</li>
 <li>Cling is a JIT compiler for C++ code. Can be used at the terminal like a REPL interpreter or in Jupyter notebook.</li>
 <li>For each new statement, Cling creates a new transaction object. Execution statement-by-statement creates a DAG of transaction nodes. This is how Cling allows undoing a previous statement and replacing with a modified statement instead.</li>
-<li>Speaker added CUDA kernel compilation and calling support to Cling. Used Google's GPUCC compiler for some of the work.</li>
+<li>Speaker added CUDA kernel compilation and calling support to Cling. Used Google’s GPUCC compiler for some of the work.</li>
 </ul>
 <h3 id="extending-clang-for-checking-compliance-with-automotive-coding-standards"><a href="https://www.youtube.com/watch?v=pXEzGh66lOU">Extending Clang for checking compliance with automotive coding standards</a></h3>
 <ul>
@@ -260,9 +261,9 @@
 <li>By Vince Bridgers.</li>
 <li>Static analysis: Execute code symbolically through simulation. Errors it finds are memory leaks, buffer overruns and logic errors.</li>
 <li>Dynamic analysis: Instrument code and run the code on real target. Examples: UBSAN, TSAN, ASAN.</li>
-<li>Program analysis can exhaustively explore all execution paths in program's state space.</li>
+<li>Program analysis can exhaustively explore all execution paths in program’s state space.</li>
 <li><code>clang --analyze foobar.cpp</code>. Can also dump to a HTML report with other options.</li>
-<li>Incorporated into Ericsson's <a href="https://github.com/Ericsson/codechecker">CodeChecker tool</a>.</li>
+<li>Incorporated into Ericsson’s <a href="https://github.com/Ericsson/codechecker">CodeChecker tool</a>.</li>
 </ul>
 </div>
 
@@ -270,7 +271,9 @@
 
 <div class="contentbox">
 
-<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<br />
+<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
 </div>
 
 </body>

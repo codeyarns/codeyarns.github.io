@@ -8,26 +8,27 @@
   <title>Code Yarns – Notes from Effective STL</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -36,9 +37,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -88,7 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -107,8 +108,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
   </div>
-  <div class="header" style="padding-top: 10px;">
-    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -129,29 +131,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Item 2: Beware of the illusion of container-independent code. This item mentions the most important trick to cut the verbosity of STL: Typedef everything possible. For example:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">class</span> Foo;</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw">typedef</span> <span class="bu">std::</span>vector&lt;Foo&gt; FooVec;</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">typedef</span> FooVec::iterator FooVecIter;</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">class</span> Foo;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">typedef</span> <span class="bu">std::</span>vector&lt;Foo&gt; FooVec;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">typedef</span> FooVec::iterator FooVecIter;</span></code></pre></div>
 <ul>
 <li><p>Item 4: Call <code>empty()</code> instead of checking <code>size()</code> against zero. <code>empty()</code> is a constant time operation on all containers. <code>size()</code> can sometimes be a linear time operation on certain containers, like <code>std::list</code>.</p></li>
-<li>Item 5: Prefer range member functions to their single element counterparts. Instead of doing:</li>
+<li><p>Item 5: Prefer range member functions to their single element counterparts. Instead of doing:</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; MAX; ++i)</a>
-<a class="sourceLine" id="cb2-2" title="2">    vec.push_back(arr[i]);</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; MAX; ++i)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    vec.push_back(arr[i]);</span></code></pre></div>
 <p>Try this:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="bu">std::</span>copy( arr, arr, <span class="bu">std::</span>back_inserter(vec) );</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="bu">std::</span>copy( arr, arr, <span class="bu">std::</span>back_inserter(vec) );</span></code></pre></div>
 <p>For an example usage of <code>std::back_inserter</code> see <a href="2010-05-25-c-stl-find-common-elements-of-2-sorted-vectors.html">this post</a>.</p>
 <ul>
 <li>Item 9: Choose carefully among erasing options. To me, this is STL’s biggest gotcha! <code>std::remove()</code> does not remove elements from the container.</li>
 </ul>
 <p>Use the <em>erase-remove idiom</em> to achieve actual removal:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1">fooVec.erase( <span class="bu">std::</span>remove(), fooVec.end() );</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>fooVec.erase( <span class="bu">std::</span>remove(), fooVec.end() );</span></code></pre></div>
 <ul>
 <li><p>Item 14: Use reserve to avoid unnecessary reallocations.</p></li>
 <li><p>Item 16: Know how to pass vector and string data to legacy APIs.</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" title="1"><span class="cf">if</span> ( !fooVec.empty() )  <span class="co">// This is important!</span></a>
-<a class="sourceLine" id="cb5-2" title="2">    someCFunctionCall( &amp;v[<span class="dv">0</span>], v.size() );</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="cf">if</span> ( !fooVec.empty() )  <span class="co">// This is important!</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>    someCFunctionCall( &amp;v[<span class="dv">0</span>], v.size() );</span></code></pre></div>
 <ul>
 <li>Item 18: Avoid using <code>vector&lt;bool&gt;</code>.</li>
 </ul>
@@ -161,10 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Item 23: Consider replacing associative containers with sorted vectors. If the container is used in a phased manner, first phase only for insertions and the second phase only for lookups, then a sequence container might offer better performance than an associative container.</p></li>
 <li><p>Item 27: Use distance and advance to convert a container’s const_iterator to iterator.</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" title="1">STLContainer v;</a>
-<a class="sourceLine" id="cb6-2" title="2">STLContainer::const_iterator ci = SomeFunction();</a>
-<a class="sourceLine" id="cb6-3" title="3">STLContainer::iterator i( v.begin() );</a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="bu">std::</span>advance( i, <span class="bu">std::</span>distance&lt;STLContainer::const_iterator&gt;( i, ci ));</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>STLContainer v;</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>STLContainer::const_iterator ci = SomeFunction();</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>STLContainer::iterator i( v.begin() );</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="bu">std::</span>advance( i, <span class="bu">std::</span>distance&lt;STLContainer::const_iterator&gt;( i, ci ));</span></code></pre></div>
 <ul>
 <li>Item 28: Understand how to use a <code>reverse_iterator</code>’s base iterator.</li>
 </ul>
@@ -173,9 +175,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Item 29: Consider <code>istreambuf_iterator</code> for character-by-character input.</li>
 </ul>
 <p>Useful for unformatted input from files:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb7-1" title="1"><span class="co">// Read file to string</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="bu">std::</span>ifstream iFile(<span class="st">&quot;haha.txt&quot;</span>);</a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="bu">std::</span>string fileData( <span class="bu">std::</span>istreambuf_iterator&lt;<span class="dt">char</span>&gt;( iFile ) ), <span class="bu">std::</span>istreambuf_iterator&lt;<span class="dt">char</span>&gt;() );</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">// Read file to string</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="bu">std::</span>ifstream iFile(<span class="st">&quot;haha.txt&quot;</span>);</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="bu">std::</span>string fileData( <span class="bu">std::</span>istreambuf_iterator&lt;<span class="dt">char</span>&gt;( iFile ) ), <span class="bu">std::</span>istreambuf_iterator&lt;<span class="dt">char</span>&gt;() );</span></code></pre></div>
 <ul>
 <li>Item 30: Make sure destination ranges are big enough.</li>
 </ul>
@@ -229,7 +231,9 @@ includes</code></pre>
 
 <div class="contentbox">
 
-<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<br />
+<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
 </div>
 
 </body>

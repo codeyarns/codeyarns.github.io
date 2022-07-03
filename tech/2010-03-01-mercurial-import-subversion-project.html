@@ -8,26 +8,27 @@
   <title>Code Yarns – Mercurial: Import Subversion Project</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -36,9 +37,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -88,7 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -107,8 +108,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
   </div>
-  <div class="header" style="padding-top: 10px;">
-    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -122,17 +124,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Mercurial</strong> is a distributed VCS (DVCS). If you are planning to migrate from <strong>Subversion</strong> to Mercurial, it might be better to do this on a per-project basis. Due to the nature of a DVCS, it is better to spin off each of your Subversion projects in the repository as separate Mercurial repositories. Here is how:</p>
 <ol type="1">
 <li><p>If you have not already done so, make a copy of the Mercurial <strong>configuration file</strong> (<code>Mercurial.ini</code>) and add your username. See <a href="https://codeyarns.com/tech/2010/03/01/mercurial-no-username-supplied/">this post</a> on how to do this.</p></li>
-<li>The command to convert repositories is <code>hg convert</code>. It will not work unless the <strong>convert</strong> extension is enabled. To do this, open your <code>Mercurial.ini</code> and in the <code>[extensions]</code> section uncomment the <code>convert =</code> line. It should read:</li>
+<li><p>The command to convert repositories is <code>hg convert</code>. It will not work unless the <strong>convert</strong> extension is enabled. To do this, open your <code>Mercurial.ini</code> and in the <code>[extensions]</code> section uncomment the <code>convert =</code> line. It should read:</p></li>
 </ol>
 <pre><code>[extensions]
 convert =</code></pre>
 <ol start="3" type="1">
 <li>The default Windows binaries of Mercurial cannot import from Subversion. If you attempt a <code>hg convert</code> using this binary, you will see an error:</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">$ <span class="ex">hg</span> convert file:///C:/SVNRep/FoobarProject</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="ex">Subversion</span> python bindings could not be loaded</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>$ <span class="ex">hg</span> convert file:///C:/SVNRep/FoobarProject</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="ex">Subversion</span> python bindings could not be loaded</span></code></pre></div>
 <p>You will need the Python bindings of Subversion and Mercurial installed on top of a standalone Python to be able to do this. That is too messy! But, there is an easier alternative to this. Install <a href="http://tortoisehg.bitbucket.org/"><strong>TortoiseHg</strong></a>, the Explorer extension to Hg. Its <code>hg.exe</code> has been built with all the necessary bindings. Issue the convert command using its <code>hg.exe</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1">$ <span class="st">&quot;C:\Program Files\TortoiseHg\hg.exe&quot;</span> <span class="ex">convert</span> file:///C:/SVNRep/FoobarProject</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>$ <span class="st">&quot;C:\Program Files\TortoiseHg\hg.exe&quot;</span> <span class="ex">convert</span> file:///C:/SVNRep/FoobarProject</span></code></pre></div>
 <p>This should work. If your Subversion project has been cleanly maintained with the canonical <code>trunks</code>, <code>branches</code> and <code>tags</code> structure <code>hg convert</code> can import all of that correctly into the Mercurial structure of tags.</p>
 </div>
 
@@ -140,7 +142,9 @@ convert =</code></pre>
 
 <div class="contentbox">
 
-<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<br />
+<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
 </div>
 
 </body>

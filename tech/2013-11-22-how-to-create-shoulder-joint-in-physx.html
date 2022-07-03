@@ -8,41 +8,68 @@
   <title>Code Yarns – How to create shoulder joint in PhysX</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -62,7 +89,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -81,8 +108,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
   </div>
-  <div class="header" style="padding-top: 10px;">
-    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -96,120 +124,120 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The <strong>shoulder joint</strong> of the human body can be simulated in <strong>PhysX</strong> by using its <strong>spherical joint</strong>. The spherical joint is used to represent a ball-and-socket joint.</p>
 <p>In the case of the shoulder joint, we assume that the ball-and-socket is placed at the shoulder location and it is connected by the upper arm to elbow. So, we use two PhysX bodies: one located at the shoulder itself and another at the elbow. Alternatively you could put the first body at the neck and connect it by the shoulder bone to the ball-and-socket position.</p>
 <p>The code below creates the shoulder joint:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;PxPhysicsAPI.h&gt;</span>
-
-<span class="kw">struct</span> Point<span class="dv">3</span>
-{
-    <span class="co">// Fill in details please</span>
-};
-
-<span class="co">/**</span>
-<span class="co"> * Get the rotation quaternion that can be used to rotate the orientation of</span>
-<span class="co"> * fromPos to points its X axis to &quot;look at&quot; toPos</span>
-<span class="co"> *</span>
-<span class="co"> * Assumption 1: fromPos is in upright orientation to begin with. For upright</span>
-<span class="co"> *               orientation see the book by Dunn and Parberry</span>
-<span class="co"> * Assumption 2: Right handed coordinate system (PhysX is)</span>
-<span class="co"> * </span>
-<span class="co"> */</span>
-physx::PxQuat getLookAtQuat(<span class="at">const</span> Point3&amp; fromPos, <span class="at">const</span> Point3&amp; toPos)
-{
-    <span class="co">// Position of toPos relative to fromPos</span>
-    <span class="at">const</span> Point3 relToPos = Point3::sub(toPos, fromPos);
-
-    <span class="co">/**</span>
-<span class="co">     * First we rotate fromPos around Y axis to look at toPos</span>
-<span class="co">     * This gives us Euler angle around Y axis</span>
-<span class="co">     */</span>
-
-    <span class="co">// Compute the angle</span>
-    <span class="co">// theta = atan(z/x)</span>
-    <span class="at">const</span> <span class="dt">float</span> yAng0 = atan(fabs(relToPos.z()) / fabs(relToPos.x()));
-
-    <span class="co">// Fix the angle based on XZ quadrant point lies in</span>
-    <span class="dt">float</span> yAng;
-    <span class="cf">if</span> (relToPos.x() &gt;= <span class="dv">0</span>)
-    {
-        <span class="cf">if</span> (relToPos.z() &gt;= <span class="dv">0</span>)
-            yAng = <span class="dv">2</span> * Pi - yAng0; <span class="co">// 360 - theta</span>
-        <span class="cf">else</span>
-            yAng = yAng0;
-    }
-    <span class="cf">else</span>
-    {
-        <span class="cf">if</span> (relToPos.z() &gt;= <span class="dv">0</span>)
-            yAng = Pi + yAng0; <span class="co">// 180 + theta</span>
-        <span class="cf">else</span>
-            yAng = Pi - yAng0; <span class="co">// 180 - theta</span>
-    }
-
-    <span class="co">/**</span>
-<span class="co">     * Next fromPos will look &quot;up&quot; to see toPos</span>
-<span class="co">     * This gives us Euler angle around Z axis</span>
-<span class="co">     */</span>
-
-    <span class="co">// Compute the angle</span>
-    <span class="co">// theta = atan( y / sqrt(x^2 + z^2))</span>
-    <span class="at">const</span> <span class="dt">float</span> zAng0 = atan(fabs(relToPos.y()) /
-        sqrt(relToPos.x() * relToPos.x() + relToPos.z() * relToPos.z()));
-
-    <span class="co">// Fix angle based on whether toPos is above or below XZ plane</span>
-    <span class="at">const</span> <span class="dt">float</span> zAng = (relToPos.y() &gt;= <span class="dv">0</span>) ? zAng0 : -zAng0;
-
-    <span class="co">/**</span>
-<span class="co">     * Convert Euler angles to quaternion that rotates</span>
-<span class="co">     * X axis of upright orientation to point at toPos</span>
-<span class="co">     * Reference: PhysX Math Primer</span>
-<span class="co">     */</span>
-
-    <span class="co">// Convert to quaternions</span>
-    physx::PxQuat qy(yAng, physx::PxVec3(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>));
-    physx::PxQuat qz(zAng, physx::PxVec3(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>));
-
-    <span class="co">// Rotate local axes</span>
-    physx::PxQuat q = qy * qz;
-
-    <span class="cf">return</span> q;
-}
-
-<span class="co">/**</span>
-<span class="co"> * Create shoulder joint using the spherical joint of PhysX</span>
-<span class="co"> * </span>
-<span class="co"> * Idea is that the ball-socket will lie at the shoulder itself</span>
-<span class="co"> * So, the first body and the location of ball-socket both</span>
-<span class="co"> * lie at shoulder position.</span>
-<span class="co"> * This also means that the cone of rotation lies at shoulder too.</span>
-<span class="co"> * Elbow is second body and this allows upper arm to rotate.</span>
-<span class="co"> * </span>
-<span class="co"> * We call should position as fromPos and elbow position as toPos</span>
-<span class="co"> */</span>
-<span class="dt">void</span> createShoulderJoint()
-{
-    <span class="co">// Orientation for ball-and-socket at shoulder</span>
-    <span class="at">const</span> physx::PxQuat fromToQuat = getLookAtQuat(fromPos, toPos);
-    
-    <span class="co">// Transform for shoulder</span>
-    <span class="at">const</span> physx::PxTransform fromTrans(physx::PxVec3(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), fromToQuat);
-    
-    <span class="co">// Transform for elbow</span>
-    <span class="at">const</span> physx::PxTransform toTrans(Point3ToPx(fromToPos), fromToQuat);
-
-    Joint* sjoint = physx::PxSphericalJointCreate(
-        phyWorld, <span class="co">// PhysX world you would&#39;ve created</span>
-        fromBody,
-        fromTrans,
-        toBody,
-        toTrans);
-
-    <span class="co">// Cone of rotation</span>
-    sjoint-&gt;setLimitCone(
-        physx::PxJointLimitCone(.<span class="er">2f</span>, <span class="fl">.2f</span>, <span class="fl">.1f</span>));
-
-    <span class="co">// Limit rotation to this cone</span>
-    sjoint-&gt;setSphericalJointFlag(
-        physx::PxSphericalJointFlag::eLIMIT_ENABLED,
-        <span class="kw">true</span>);
-}</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;PxPhysicsAPI.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">struct</span> Point3</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>{</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="co">// Fill in details please</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>};</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">/**</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co"> * Get the rotation quaternion that can be used to rotate the orientation of</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co"> * fromPos to points its X axis to &quot;look at&quot; toPos</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co"> *</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co"> * Assumption 1: fromPos is in upright orientation to begin with. For upright</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co"> *               orientation see the book by Dunn and Parberry</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co"> * Assumption 2: Right handed coordinate system (PhysX is)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="co"> * </span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>physx::PxQuat getLookAtQuat(<span class="at">const</span> Point3&amp; fromPos, <span class="at">const</span> Point3&amp; toPos)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>{</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    <span class="co">// Position of toPos relative to fromPos</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    <span class="at">const</span> Point3 relToPos = Point3::sub(toPos, fromPos);</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    <span class="co">/**</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a><span class="co">     * First we rotate fromPos around Y axis to look at toPos</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="co">     * This gives us Euler angle around Y axis</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="co">     */</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    <span class="co">// Compute the angle</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>    <span class="co">// theta = atan(z/x)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">float</span> yAng0 = atan(fabs(relToPos.z()) / fabs(relToPos.x()));</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>    <span class="co">// Fix the angle based on XZ quadrant point lies in</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    <span class="dt">float</span> yAng;</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    <span class="cf">if</span> (relToPos.x() &gt;= <span class="dv">0</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>    {</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>        <span class="cf">if</span> (relToPos.z() &gt;= <span class="dv">0</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>            yAng = <span class="dv">2</span> * Pi - yAng0; <span class="co">// 360 - theta</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>        <span class="cf">else</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a>            yAng = yAng0;</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>    }</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>    <span class="cf">else</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>    {</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>        <span class="cf">if</span> (relToPos.z() &gt;= <span class="dv">0</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>            yAng = Pi + yAng0; <span class="co">// 180 + theta</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a>        <span class="cf">else</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a>            yAng = Pi - yAng0; <span class="co">// 180 - theta</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>    }</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a>    <span class="co">/**</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a><span class="co">     * Next fromPos will look &quot;up&quot; to see toPos</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a><span class="co">     * This gives us Euler angle around Z axis</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a><span class="co">     */</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a>    <span class="co">// Compute the angle</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>    <span class="co">// theta = atan( y / sqrt(x^2 + z^2))</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">float</span> zAng0 = atan(fabs(relToPos.y()) /</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a>        sqrt(relToPos.x() * relToPos.x() + relToPos.z() * relToPos.z()));</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a>    <span class="co">// Fix angle based on whether toPos is above or below XZ plane</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">float</span> zAng = (relToPos.y() &gt;= <span class="dv">0</span>) ? zAng0 : -zAng0;</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a>    <span class="co">/**</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true"></a><span class="co">     * Convert Euler angles to quaternion that rotates</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true"></a><span class="co">     * X axis of upright orientation to point at toPos</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true"></a><span class="co">     * Reference: PhysX Math Primer</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true"></a><span class="co">     */</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true"></a>    <span class="co">// Convert to quaternions</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true"></a>    physx::PxQuat qy(yAng, physx::PxVec3(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>));</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true"></a>    physx::PxQuat qz(zAng, physx::PxVec3(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>));</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true"></a>    <span class="co">// Rotate local axes</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true"></a>    physx::PxQuat q = qy * qz;</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true"></a>    <span class="cf">return</span> q;</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true"></a>}</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true"></a><span class="co">/**</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true"></a><span class="co"> * Create shoulder joint using the spherical joint of PhysX</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true"></a><span class="co"> * </span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true"></a><span class="co"> * Idea is that the ball-socket will lie at the shoulder itself</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true"></a><span class="co"> * So, the first body and the location of ball-socket both</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true"></a><span class="co"> * lie at shoulder position.</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true"></a><span class="co"> * This also means that the cone of rotation lies at shoulder too.</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true"></a><span class="co"> * Elbow is second body and this allows upper arm to rotate.</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true"></a><span class="co"> * </span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true"></a><span class="co"> * We call should position as fromPos and elbow position as toPos</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true"></a><span class="co"> */</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true"></a><span class="dt">void</span> createShoulderJoint()</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true"></a>{</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true"></a>    <span class="co">// Orientation for ball-and-socket at shoulder</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true"></a>    <span class="at">const</span> physx::PxQuat fromToQuat = getLookAtQuat(fromPos, toPos);</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true"></a>    </span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true"></a>    <span class="co">// Transform for shoulder</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true"></a>    <span class="at">const</span> physx::PxTransform fromTrans(physx::PxVec3(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), fromToQuat);</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true"></a>    </span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true"></a>    <span class="co">// Transform for elbow</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true"></a>    <span class="at">const</span> physx::PxTransform toTrans(Point3ToPx(fromToPos), fromToQuat);</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true"></a>    Joint* sjoint = physx::PxSphericalJointCreate(</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true"></a>        phyWorld, <span class="co">// PhysX world you would&#39;ve created</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true"></a>        fromBody,</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true"></a>        fromTrans,</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true"></a>        toBody,</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true"></a>        toTrans);</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true"></a></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true"></a>    <span class="co">// Cone of rotation</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true"></a>    sjoint-&gt;setLimitCone(</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true"></a>        physx::PxJointLimitCone(<span class="fl">.2</span><span class="bu">f</span>, <span class="fl">.2</span><span class="bu">f</span>, <span class="fl">.1</span><span class="bu">f</span>));</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true"></a></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true"></a>    <span class="co">// Limit rotation to this cone</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true"></a>    sjoint-&gt;setSphericalJointFlag(</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true"></a>        physx::PxSphericalJointFlag::eLIMIT_ENABLED,</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true"></a>        <span class="kw">true</span>);</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true"></a>}</span></code></pre></div>
 <p>To create the joint we need to provide the position of the two bodies involved, the relative location of the joint to those bodies. In addition, we also need to provide the local orientation of the joint to those bodies.</p>
 <p>The joint begins life with an upright orientation, that is, its axes are same as the global axes. We need to point the X-axis of the orientation to look at the second body. The above code does that by computing the Euler angles of rotation around the Y-axis and Z-axis of the joint that point the X-axis to look at the second body. The X-axis of the joint will also be the axis around which the cone of rotation is created to bound the rotational freedom of the joint.</p>
 <p>Once we have the Euler angles, we convert that to a quaternion. We also compute the position of the joint relative to the first and second bodies. Each pair of position and orientation rotation forms a transform. Two pairs of these are used to define the joint.</p>
@@ -220,7 +248,9 @@ physx::PxQuat getLookAtQuat(<span class="at">const</span> Point3&amp; fromPos, <
 
 <div class="contentbox">
 
-<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<br />
+<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
 </div>
 
 </body>

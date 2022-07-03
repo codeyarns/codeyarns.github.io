@@ -8,41 +8,68 @@
   <title>Code Yarns – How to parse program options in C++ using getopt_long</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -62,7 +89,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -81,8 +108,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
   </div>
-  <div class="header" style="padding-top: 10px;">
-    <iframe src="https://duckduckgo.com/search.html?site=codeyarns.com&kp=-2&kc=1&prefill=Search this website" style="width:300px;height:40px;" frameborder="0"></iframe>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -95,100 +123,100 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </header>
 <p>Any C or C++ program worth its salt will take some options and arguments from the user at the shell. <strong>Option</strong> is typically of the form <code>-h</code> (short) or <code>--help</code> (long). Options can also have a following <strong>argument</strong>, for example <code>-o someFile.txt</code> or <code>--open someFile.txt</code>. All these types of options and arguments can be processed easily using the <a href="http://www.gnu.org/software/libc/manual/html_node/Getopt-Long-Options.html"><code>getopt_long</code></a> function in the GNU C library.</p>
 <p>An example that illustrates its usage is given below:</p>
-<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="pp">#include </span><span class="im">&lt;getopt.h&gt;</span>
-<span class="pp">#include </span><span class="im">&lt;iostream&gt;</span>
-
-<span class="dt">int</span> num = <span class="dv">-1</span>;
-<span class="dt">bool</span> is_beep = <span class="kw">false</span>;
-<span class="dt">float</span> sigma = <span class="fl">2.034</span>;
-<span class="bu">std::</span>string write_file = <span class="st">&quot;default_file.txt&quot;</span>;
-
-<span class="dt">void</span> PrintHelp()
-{
-    <span class="bu">std::</span>cout &lt;&lt;
-            <span class="st">&quot;--num &lt;n&gt;:           Set number of program</span><span class="sc">\n</span><span class="st">&quot;</span>
-            <span class="st">&quot;--beep:              Beep the user</span><span class="sc">\n</span><span class="st">&quot;</span>
-            <span class="st">&quot;--sigma &lt;val&gt;:       Set sigma of program</span><span class="sc">\n</span><span class="st">&quot;</span>
-            <span class="st">&quot;--writeFile &lt;fname&gt;: File to write to</span><span class="sc">\n</span><span class="st">&quot;</span>
-            <span class="st">&quot;--help:              Show help</span><span class="sc">\n</span><span class="st">&quot;</span>;
-    exit(<span class="dv">1</span>);
-}
-
-<span class="dt">void</span> ProcessArgs(<span class="dt">int</span> argc, <span class="dt">char</span>** argv)
-{
-    <span class="at">const</span> <span class="dt">char</span>* <span class="at">const</span> short_opts = <span class="st">&quot;n:bs:w:h&quot;</span>;
-    <span class="at">const</span> option long_opts[] = {
-            {<span class="st">&quot;num&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="st">&#39;n&#39;</span>},
-            {<span class="st">&quot;beep&quot;</span>, no_argument, <span class="kw">nullptr</span>, <span class="st">&#39;b&#39;</span>},
-            {<span class="st">&quot;sigma&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="st">&#39;s&#39;</span>},
-            {<span class="st">&quot;writeFile&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="st">&#39;w&#39;</span>},
-            {<span class="st">&quot;help&quot;</span>, no_argument, <span class="kw">nullptr</span>, <span class="st">&#39;h&#39;</span>},
-            {<span class="kw">nullptr</span>, no_argument, <span class="kw">nullptr</span>, <span class="dv">0</span>}
-    };
-
-    <span class="cf">while</span> (<span class="kw">true</span>)
-    {
-        <span class="at">const</span> <span class="kw">auto</span> opt = getopt_long(argc, argv, short_opts, long_opts, <span class="kw">nullptr</span>);
-
-        <span class="cf">if</span> (<span class="dv">-1</span> == opt)
-            <span class="cf">break</span>;
-
-        <span class="cf">switch</span> (opt)
-        {
-        <span class="cf">case</span> <span class="st">&#39;n&#39;</span>:
-            num = <span class="bu">std::</span>stoi(optarg);
-            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Num set to: &quot;</span> &lt;&lt; num &lt;&lt; <span class="bu">std::</span>endl;
-            <span class="cf">break</span>;
-
-        <span class="cf">case</span> <span class="st">&#39;b&#39;</span>:
-            is_beep = <span class="kw">true</span>;
-            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Beep is set to true</span><span class="sc">\n</span><span class="st">&quot;</span>;
-            <span class="cf">break</span>;
-
-        <span class="cf">case</span> <span class="st">&#39;s&#39;</span>:
-            sigma = <span class="bu">std::</span>stof(optarg);
-            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Sigma set to: &quot;</span> &lt;&lt; sigma &lt;&lt; <span class="bu">std::</span>endl;
-            <span class="cf">break</span>;
-
-        <span class="cf">case</span> <span class="st">&#39;w&#39;</span>:
-            write_file = <span class="bu">std::</span>string(optarg);
-            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Write file set to: &quot;</span> &lt;&lt; write_file &lt;&lt; <span class="bu">std::</span>endl;
-            <span class="cf">break</span>;
-
-        <span class="cf">case</span> <span class="st">&#39;h&#39;</span>: <span class="co">// -h or --help</span>
-        <span class="cf">case</span> <span class="st">&#39;?&#39;</span>: <span class="co">// Unrecognized option</span>
-        <span class="cf">default</span>:
-            PrintHelp();
-            <span class="cf">break</span>;
-        }
-    }
-}
-
-<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)
-{
-    ProcessArgs(argc, argv);
-    <span class="cf">return</span> <span class="dv">0</span>;
-}
-
-<span class="co">/*</span>
-<span class="co">$ g++ -std=c++11 opt.cpp </span>
-
-<span class="co">$ ./a.out --help</span>
-<span class="co">--num &lt;n&gt;:           Set number of program</span>
-<span class="co">--beep:              Beep the user</span>
-<span class="co">--sigma &lt;val&gt;:       Set sigma of program</span>
-<span class="co">--writeFile &lt;fname&gt;: File to write to</span>
-<span class="co">--help:              Show help</span>
-
-<span class="co">$ ./a.out --num 10</span>
-<span class="co">Num set to: 10</span>
-
-<span class="co">$ ./a.out --num 10 --writeFile haha.txt --sigma 3.45 --beep</span>
-<span class="co">Num set to: 10</span>
-<span class="co">Write file set to: haha.txt</span>
-<span class="co">Sigma set to: 3.45</span>
-<span class="co">Beep is set to true</span>
-<span class="co">*/</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;getopt.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="dt">int</span> num = -<span class="dv">1</span>;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="dt">bool</span> is_beep = <span class="kw">false</span>;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="dt">float</span> sigma = <span class="fl">2.034</span>;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="bu">std::</span>string write_file = <span class="st">&quot;default_file.txt&quot;</span>;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="dt">void</span> PrintHelp()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>{</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>            <span class="st">&quot;--num &lt;n&gt;:           Set number of program</span><span class="sc">\n</span><span class="st">&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>            <span class="st">&quot;--beep:              Beep the user</span><span class="sc">\n</span><span class="st">&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>            <span class="st">&quot;--sigma &lt;val&gt;:       Set sigma of program</span><span class="sc">\n</span><span class="st">&quot;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>            <span class="st">&quot;--writeFile &lt;fname&gt;: File to write to</span><span class="sc">\n</span><span class="st">&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>            <span class="st">&quot;--help:              Show help</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    exit(<span class="dv">1</span>);</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="dt">void</span> ProcessArgs(<span class="dt">int</span> argc, <span class="dt">char</span>** argv)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>{</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">char</span>* <span class="at">const</span> short_opts = <span class="st">&quot;n:bs:w:h&quot;</span>;</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    <span class="at">const</span> option long_opts[] = {</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>            {<span class="st">&quot;num&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;n&#39;</span>},</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>            {<span class="st">&quot;beep&quot;</span>, no_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;b&#39;</span>},</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>            {<span class="st">&quot;sigma&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;s&#39;</span>},</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>            {<span class="st">&quot;writeFile&quot;</span>, required_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;w&#39;</span>},</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>            {<span class="st">&quot;help&quot;</span>, no_argument, <span class="kw">nullptr</span>, <span class="ch">&#39;h&#39;</span>},</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>            {<span class="kw">nullptr</span>, no_argument, <span class="kw">nullptr</span>, <span class="dv">0</span>}</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>    };</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    <span class="cf">while</span> (<span class="kw">true</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    {</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>        <span class="at">const</span> <span class="kw">auto</span> opt = getopt_long(argc, argv, short_opts, long_opts, <span class="kw">nullptr</span>);</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>        <span class="cf">if</span> (-<span class="dv">1</span> == opt)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>            <span class="cf">break</span>;</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>        <span class="cf">switch</span> (opt)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>        {</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>        <span class="cf">case</span> <span class="ch">&#39;n&#39;</span>:</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>            num = <span class="bu">std::</span>stoi(optarg);</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Num set to: &quot;</span> &lt;&lt; num &lt;&lt; <span class="bu">std::</span>endl;</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a>            <span class="cf">break</span>;</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>        <span class="cf">case</span> <span class="ch">&#39;b&#39;</span>:</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a>            is_beep = <span class="kw">true</span>;</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a>            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Beep is set to true</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a>            <span class="cf">break</span>;</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>        <span class="cf">case</span> <span class="ch">&#39;s&#39;</span>:</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>            sigma = <span class="bu">std::</span>stof(optarg);</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a>            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Sigma set to: &quot;</span> &lt;&lt; sigma &lt;&lt; <span class="bu">std::</span>endl;</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>            <span class="cf">break</span>;</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a>        <span class="cf">case</span> <span class="ch">&#39;w&#39;</span>:</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a>            write_file = <span class="bu">std::</span>string(optarg);</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a>            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Write file set to: &quot;</span> &lt;&lt; write_file &lt;&lt; <span class="bu">std::</span>endl;</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a>            <span class="cf">break</span>;</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a>        <span class="cf">case</span> <span class="ch">&#39;h&#39;</span>: <span class="co">// -h or --help</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true"></a>        <span class="cf">case</span> <span class="ch">&#39;?&#39;</span>: <span class="co">// Unrecognized option</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true"></a>        <span class="cf">default</span>:</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true"></a>            PrintHelp();</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true"></a>            <span class="cf">break</span>;</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true"></a>        }</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true"></a>    }</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true"></a>}</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true"></a><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true"></a>{</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true"></a>    ProcessArgs(argc, argv);</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true"></a>}</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true"></a><span class="co">/*</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true"></a><span class="co">$ g++ -std=c++11 opt.cpp </span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true"></a><span class="co">$ ./a.out --help</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true"></a><span class="co">--num &lt;n&gt;:           Set number of program</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true"></a><span class="co">--beep:              Beep the user</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true"></a><span class="co">--sigma &lt;val&gt;:       Set sigma of program</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true"></a><span class="co">--writeFile &lt;fname&gt;: File to write to</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true"></a><span class="co">--help:              Show help</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true"></a><span class="co">$ ./a.out --num 10</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true"></a><span class="co">Num set to: 10</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true"></a><span class="co">$ ./a.out --num 10 --writeFile haha.txt --sigma 3.45 --beep</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true"></a><span class="co">Num set to: 10</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true"></a><span class="co">Write file set to: haha.txt</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true"></a><span class="co">Sigma set to: 3.45</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true"></a><span class="co">Beep is set to true</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true"></a><span class="co">*/</span></span></code></pre></div>
 <p><strong>Reference:</strong></p>
 <ul>
 <li>Sec 2.1.3 of <strong>Advanced Linux Programming</strong> by CodeSourcery LLC and Mark Mitchell</li>
@@ -201,7 +229,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <div class="contentbox">
 
-<div class="footer"><a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
+<br />
+<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
 </div>
 
 </body>
