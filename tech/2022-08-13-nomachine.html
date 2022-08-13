@@ -65,6 +65,11 @@
 <li><p><strong>Display</strong>: The remote display can be set to the size of the connecting window. The display quality also can be set to highest.</p></li>
 <li><p><strong>Audio</strong>: NoMachine’s protocol can stream audio from the remote to the connecting computer. Neither VNC or RDP can do this (between Windows and Linux) and this is the reason I went looking for an alternative and found NoMachine.</p></li>
 <li><p><strong>File transfer</strong>: Files can be transferred between client and server when the connection is open. On the server, choose <em>Transfer a file</em> and choose 1 of 2 options: <em>Upload file from the client</em> (to send to server) or <em>Download file from the server</em> (to get file from server).</p></li>
+<li><p><strong>Restart remote server</strong>: To restart the NoMachine service on the server:</p></li>
+</ul>
+<pre><code>$ sudo /etc/NX/nxserver --restart</code></pre>
+<ul>
+<li><strong>Lock remote desktop on disconnect</strong>: I find this feature to be useful for security, but it is not enabled by default. On the server NoMachine go to <em>Show server status</em> -&gt; <em>Security</em> and enable the <em>Lock the physical screen on disconnect</em> option. You will need to restart the server for this to take effect.</li>
 </ul>
 <p><strong>Tried with:</strong> NoMachine 7.10.2 on Windows and NoMachine 7.10.1 on Ubuntu</p>
 </div>
