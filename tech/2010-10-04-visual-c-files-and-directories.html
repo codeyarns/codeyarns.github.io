@@ -8,27 +8,26 @@
   <title>Code Yarns – Visual C++: Files and Directories</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -37,9 +36,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -89,7 +88,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -119,7 +118,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <header>
 <h1 class="title">Visual C++: Files and Directories</h1>
-<p class="date">📅 2010-Oct-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#visual-c++'>visual c++</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2010-Oct-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Visual C++</strong> does not respect (or use) the underlying directory structure of your existing source code files. Some may find this to be a failing, but I personally think this is a feature. It allows you to organize your files in the way you want into one (or more) projects inside Solution Explorer.</p>
 <p><strong>Visual C++ Files</strong></p>
@@ -160,19 +159,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>No matter what is the directory structure, the source files can be imported into the Foobar Visual C++ solution and arranged in any fashion the user wants. The root directory of the Foobar project is <strong>Foobar/Foobar</strong>.</p>
 <p><strong>Including Directories </strong></p>
 <p>Header files at the root directory of the project can be directly included:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">// Main.cpp</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="co">// Main.cpp</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></a></code></pre></div>
 <p>For the header files lying inside directories of the project root directory, there are 2 ways to include them:</p>
 <ol type="1">
 <li><p>Include the header file providing the <strong>relative path</strong> from the source file to the header: <code>cpp // Main.cpp #include "Main.h" #include "Foo/Foo.h"</code></p></li>
-<li><p>Open <em>Project → Properties</em>. Choose <em>C/C++ → Additional Include Directories</em> and add <strong>Foo</strong>. To add more include directories to the project, separate them with semicolons. The header files in the Foo directory can now be included without specifying <strong>any</strong> path in <strong>any</strong> .cpp or .h file in the project:</p></li>
+<li>Open <em>Project → Properties</em>. Choose <em>C/C++ → Additional Include Directories</em> and add <strong>Foo</strong>. To add more include directories to the project, separate them with semicolons. The header files in the Foo directory can now be included without specifying <strong>any</strong> path in <strong>any</strong> .cpp or .h file in the project:</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">// Main.cpp</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;Foo.h&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" title="1"><span class="co">// Main.cpp</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="pp">#include </span><span class="im">&quot;Foo.h&quot;</span></a></code></pre></div>
 <p>As you might deduce, strategy 1 gets messy pretty quickly since each file that includes another header needs to know the path that leads to it. For example, to include Main.h in Foo.cpp:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">// Foo.cpp</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;../Main.h&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" title="1"><span class="co">// Foo.cpp</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="pp">#include </span><span class="im">&quot;../Main.h&quot;</span></a></code></pre></div>
 <p>Compared to this, using strategy 2 one can include any header file in any source file without worrying about the directory where it lies. This is much easier to apply across the directory structure of a project.</p>
 </div>
 

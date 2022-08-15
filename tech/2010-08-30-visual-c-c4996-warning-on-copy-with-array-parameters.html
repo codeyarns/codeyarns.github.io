@@ -8,27 +8,26 @@
   <title>Code Yarns – Visual C++: C4996 Warning on Copy with Array Parameters</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -37,9 +36,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -89,7 +88,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -119,10 +118,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <header>
 <h1 class="title">Visual C++: C4996 Warning on Copy with Array Parameters</h1>
-<p class="date">📅 2010-Aug-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#checked'>checked</a>, <a href='index.html#iterators'>iterators</a>, <a href='index.html#visual-c++'>visual c++</a>, <a href='index.html#warnings'>warnings</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2010-Aug-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#checked'>checked</a>, <a href='index.html#iterators'>iterators</a>, <a href='index.html#visual-cpp'>visual cpp</a>, <a href='index.html#warnings'>warnings</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Visual C++</strong> throws a <strong><a href="http://msdn.microsoft.com/en-us/library/ttcz0bys.aspx">C4996</a></strong> warning if <strong>std::copy</strong> is called with array parameters (instead of the conventional iterator parameters). For example, if you have code of the form:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">std::</span>copy( arr0, arr0 + <span class="dv">5</span>, arr1 );</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="bu">std::</span>copy( arr0, arr0 + <span class="dv">5</span>, arr1 );</a></code></pre></div>
 <p>where <code>arr0</code> and <code>arr1</code> are pointers to arrays or valid memory locations.</p>
 <p>The C4996 warning is of the form:</p>
 <blockquote>
@@ -132,12 +131,12 @@ warning C4996: ’std::_Copy_impl’: Function call with parameters that may be 
 <ul>
 <li><strong>checked_array_iterator</strong>: A <strong><a href="http://msdn.microsoft.com/en-us/library/aa985928.aspx">checked_array_iterator</a></strong> can be used to wrap the unsafe array pointer. It is a Microsoft extension to the C++ Standard and is defined in the <strong><a href="http://msdn.microsoft.com/en-us/library/ek139e86.aspx">stdext</a></strong> namespace. It results in an assertion check at runtime, which throws an exception if it fails. Applying a <code>checked_array_iterator</code> on the above code:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iterator&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="bu">std::</span>copy( arr0, arr0 + <span class="dv">5</span>, stdext::checked_array_iterator&lt;<span class="dt">int</span>*&gt;( arr1, <span class="dv">5</span> ) );</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="pp">#include </span><span class="im">&lt;iterator&gt;</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="bu">std::</span>copy( arr0, arr0 + <span class="dv">5</span>, stdext::checked_array_iterator&lt;<span class="dt">int</span>*&gt;( arr1, <span class="dv">5</span> ) );</a></code></pre></div>
 <ul>
 <li><strong>unchecked_copy</strong>: The copy call can be replaced with an <strong><a href="http://msdn.microsoft.com/en-us/library/aa985849.aspx">unchecked_copy</a></strong> if you want to forgo the checking. This is defined in the <strong>stdext</strong> namespace. Note that this is usable in Visual C++ 2008 and not later. It was <a href="http://msdn.microsoft.com/en-us/library/bb531344.aspx">removed</a> in Visual C++ 2010. Using unchecked_copy instead of copy:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>stdext::unchecked_copy( arr0, arr0 + <span class="dv">5</span>, arr1 );</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1">stdext::unchecked_copy( arr0, arr0 + <span class="dv">5</span>, arr1 );</a></code></pre></div>
 <ul>
 <li><p><strong>vector</strong>: Another solution is to wrap the destination array in a vector and use the vector as the destination of copy. Not a great solution, but it might work for you.</p></li>
 <li><p><strong>pragma warning</strong>: Turn off the C4996 warning for the call to copy using <strong><a href="https://codeyarns.com/tech/2010/07/27/visual-c-pragma-warning/">pragma warning</a></strong>. This can be applied at the source file level to mask all C4996 warnings. Note that this is a really bad move since it masks all deprecation warnings!</p></li>

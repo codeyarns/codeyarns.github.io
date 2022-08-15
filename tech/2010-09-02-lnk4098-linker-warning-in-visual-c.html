@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -55,7 +55,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">LNK4098 Linker Warning in Visual C++</h1>
-<p class="date">📅 2010-Sep-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#linker'>linker</a>, <a href='index.html#visual-c++'>visual c++</a>, <a href='index.html#warning'>warning</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2010-Sep-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#linker'>linker</a>, <a href='index.html#visual-cpp'>visual cpp</a>, <a href='index.html#warning'>warning</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>Problem</p>
 <p>C++ code when compiled can produce the linker warning <strong><a href="http://msdn.microsoft.com/en-us/library/aa267384.aspx">LNK4098</a></strong> at the final linking stage. This warning is of the form:</p>
@@ -64,7 +64,7 @@
 <p>It means that  more than one kind of <strong>C run-time library</strong> has been used in the project! This is the cause of the conflict. The different types of C run-time libraries can be seen <a href="https://codeyarns.com/tech/2010/11/04/visual-c-c-run-time-libraries/">here</a>.</p>
 <p><strong>How to fix it?</strong></p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/09/20100902_linker_warning.png" alt="" /><figcaption> </figcaption>
+<img src="http://codeyarns.files.wordpress.com/2010/09/20100902_linker_warning.png" alt=" " /><figcaption> </figcaption>
 </figure>
 <p>One source of conflict is different <strong>source files</strong> being compiled with different options. Examine the <strong>Runtime Library</strong> properties of the each of the source files in the solution. Open <em>Project &gt; Properties</em> and this option can be found at <em>C/C++ &gt; Code Generation &gt; Runtime Library</em>. There might be some files which differ in the Runtime Library they are using. For example, Foo.cpp might be compiled with Multi-threaded DLL (/MD) and Joe.cpp might be compiled with Multi-threaded (/MT). To fix this warning, change the Runtime Library settings so that they are uniform across all the files of the solution. <strong>Example:</strong> I typically notice these warnings when there are external <strong>Build Rules</strong> being used in the solution. For example, CUDA files (.cu) are typically compiled with a different Build Rule that invokes the CUDA compiler (nvcc.exe). The Runtime Library option within this Build Rule might not be matching the Runtime Library option of the solution, thus resulting in this warning.</p>
 <p>Another possibility is the <strong>external libraries</strong> being linked with the project. Examine the library files being explicitly linked with the project and ensure they are compiled with the <em>same</em> run-time library options as that of the project.</p>

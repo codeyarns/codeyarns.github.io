@@ -25,7 +25,7 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -55,7 +55,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">CGAL: GMP and MPFR Linker Errors</h1>
-<p class="date">📅 2011-May-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cgal'>cgal</a>, <a href='index.html#errors'>errors</a>, <a href='index.html#gmp'>gmp</a>, <a href='index.html#mpfr'>mpfr</a>, <a href='index.html#visual-c++'>visual c++</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2011-May-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cgal'>cgal</a>, <a href='index.html#errors'>errors</a>, <a href='index.html#gmp'>gmp</a>, <a href='index.html#mpfr'>mpfr</a>, <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
 <p>Compiling any <strong>Visual C++</strong> solution that uses <strong>CGAL</strong> produces either or both of these errors:</p>
@@ -64,7 +64,7 @@
 <p><strong>Solution</strong></p>
 <p>CGAL seems to look for <strong>GMP</strong> and <strong>MPFR</strong> libraries, whose names are suffixed with the Visual C++ version (<code>vc90</code>) and the build type (<code>mt</code>). However, CGAL stopped shipping pre-built GMP and MPFR libraries in such a format a while ago. Instead it ships a single library file for each. For example, in CGAL 3.8, these files are <code>libgmp-10.lib</code> and <code>libmpfr-4.lib</code>.</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/05/20110520_cgal_linker_errors.png" alt="" /><figcaption> </figcaption>
+<img src="http://codeyarns.files.wordpress.com/2011/05/20110520_cgal_linker_errors.png" alt=" " /><figcaption> </figcaption>
 </figure>
 <p>With this knowledge, this error can be fixed and the solution can be compiled like this:</p>
 <ol type="1">

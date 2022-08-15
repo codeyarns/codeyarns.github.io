@@ -8,27 +8,26 @@
   <title>Code Yarns – How to get function name in C++</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -37,9 +36,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -89,7 +88,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
+  
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -119,18 +118,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <header>
 <h1 class="title">How to get function name in C++</h1>
-<p class="date">📅 2018-Aug-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#function-name'>function name</a>, <a href='index.html#gcc'>gcc</a>, <a href='index.html#visual-c++'>visual c++</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2018-Aug-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#function-name'>function name</a>, <a href='index.html#gcc'>gcc</a>, <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>Being able to access and print the <strong>function name</strong> from any location inside a C++ function can be useful for investigating programs.</p>
 <p>There are many ways to obtain the function name in C++:</p>
 <ul>
 <li><code>__func__</code> is a constant that holds the name of the function:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="dt">int</span> A::foobar(<span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt;&amp; fvec, <span class="dt">bool</span> isDragon)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>{</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="co">// Output: foobar</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">int</span> A::foobar(<span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt;&amp; fvec, <span class="dt">bool</span> isDragon)</a>
+<a class="sourceLine" id="cb1-2" title="2">{</a>
+<a class="sourceLine" id="cb1-3" title="3">    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb1-4" title="4">    <span class="co">// Output: foobar</span></a>
+<a class="sourceLine" id="cb1-5" title="5">}</a></code></pre></div>
 <p>This is the only constant related to the function name that is defined in the C and C++ standards. The <strong>C++11 standard</strong> §8.4 describes this constant:</p>
 <blockquote>
 <p>The function-local predefined variable <code>__func__</code> is defined as if a definition of the form <code>static const char __func__[] = "function-name ";</code> had been provided, where <code>function-name</code> is an implementation-defined string.</p>
@@ -140,72 +139,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>__FUNCTION__</code> is a GCC and Visual CPP constant whose output is exactly the same as <code>__func__</code>.</p></li>
 <li><p><code>__PRETTY_FUNCTION__</code> is a GCC constant that is useful for C++, because it holds the entire function signature:</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dt">int</span> A::foobar(<span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt;&amp; fvec, <span class="dt">bool</span> isDragon)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>{</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="co">// Output: int A::foobar(const std::vector&lt;float&gt;&amp;, bool)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="dt">int</span> A::foobar(<span class="at">const</span> <span class="bu">std::</span>vector&lt;<span class="dt">float</span>&gt;&amp; fvec, <span class="dt">bool</span> isDragon)</a>
+<a class="sourceLine" id="cb2-2" title="2">{</a>
+<a class="sourceLine" id="cb2-3" title="3">    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb2-4" title="4">    <span class="co">// Output: int A::foobar(const std::vector&lt;float&gt;&amp;, bool)</span></a>
+<a class="sourceLine" id="cb2-5" title="5">}</a></code></pre></div>
 <ul>
 <li><p><code>__FUNCDNAME__</code> is a Visual CPP constant holding the mangled function name.</p></li>
 <li><p><code>__FUNCSIG__</code> is a Visual CPP constant holding the function signature with information about input, output and template types.</p></li>
 <li><p>Example program and its output with GCC compiler:</p></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="dt">void</span> foo(T i)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>{</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__PRETTY_FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>}</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="dt">int</span> main()</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>{</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>    foo&lt;<span class="dt">int</span>&gt;(<span class="dv">10</span>);</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    foo&lt;<span class="dt">float</span>&gt;(<span class="fl">3.14</span>);</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>}</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="co">// Output:</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="co">// foo</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co">// foo</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="co">// void foo(T) [with T = int]</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a><span class="co">// </span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co">// foo</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">// foo</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="co">// void foo(T) [with T = float]</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
+<a class="sourceLine" id="cb3-2" title="2"></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;</a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="dt">void</span> foo(T i)</a>
+<a class="sourceLine" id="cb3-5" title="5">{</a>
+<a class="sourceLine" id="cb3-6" title="6">    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb3-7" title="7">    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb3-8" title="8">    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__PRETTY_FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb3-9" title="9">}</a>
+<a class="sourceLine" id="cb3-10" title="10"></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb3-12" title="12">{</a>
+<a class="sourceLine" id="cb3-13" title="13">    foo&lt;<span class="dt">int</span>&gt;(<span class="dv">10</span>);</a>
+<a class="sourceLine" id="cb3-14" title="14">    foo&lt;<span class="dt">float</span>&gt;(<span class="fl">3.14</span>);</a>
+<a class="sourceLine" id="cb3-15" title="15">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-16" title="16">}</a>
+<a class="sourceLine" id="cb3-17" title="17"></a>
+<a class="sourceLine" id="cb3-18" title="18"><span class="co">// Output:</span></a>
+<a class="sourceLine" id="cb3-19" title="19"><span class="co">// foo</span></a>
+<a class="sourceLine" id="cb3-20" title="20"><span class="co">// foo</span></a>
+<a class="sourceLine" id="cb3-21" title="21"><span class="co">// void foo(T) [with T = int]</span></a>
+<a class="sourceLine" id="cb3-22" title="22"><span class="co">// </span></a>
+<a class="sourceLine" id="cb3-23" title="23"><span class="co">// foo</span></a>
+<a class="sourceLine" id="cb3-24" title="24"><span class="co">// foo</span></a>
+<a class="sourceLine" id="cb3-25" title="25"><span class="co">// void foo(T) [with T = float]</span></a></code></pre></div>
 <ul>
 <li>Example program and its output with Visual CPP compiler:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="dt">void</span> foo(T i)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>{</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; __FUNCDNAME__ &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; __FUNCSIG__ &lt;&lt; <span class="bu">std::</span>endl &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>}</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="dt">int</span> main()</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>{</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    foo&lt;<span class="dt">int</span>&gt;(<span class="dv">10</span>);</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    foo&lt;<span class="dt">float</span>&gt;(<span class="fl">3.14</span>);</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>}</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="co">// Output:</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="co">// foo</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="co">// foo</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="co">// ??$foo@H@@YAXH@Z</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="co">// void __cdecl foo&lt;int&gt;(int)</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="co">// </span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="co">// foo</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="co">// foo</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="co">// ??$foo@M@@YAXM@Z</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a><span class="co">// void __cdecl foo&lt;float&gt;(float)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="kw">template</span> &lt;<span class="kw">typename</span> T&gt;</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="dt">void</span> foo(T i)</a>
+<a class="sourceLine" id="cb4-5" title="5">{</a>
+<a class="sourceLine" id="cb4-6" title="6">    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__func__</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb4-7" title="7">    <span class="bu">std::</span>cout &lt;&lt; <span class="ot">__FUNCTION__</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb4-8" title="8">    <span class="bu">std::</span>cout &lt;&lt; __FUNCDNAME__ &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb4-9" title="9">    <span class="bu">std::</span>cout &lt;&lt; __FUNCSIG__ &lt;&lt; <span class="bu">std::</span>endl &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb4-10" title="10">}</a>
+<a class="sourceLine" id="cb4-11" title="11"></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="dt">int</span> main()</a>
+<a class="sourceLine" id="cb4-13" title="13">{</a>
+<a class="sourceLine" id="cb4-14" title="14">    foo&lt;<span class="dt">int</span>&gt;(<span class="dv">10</span>);</a>
+<a class="sourceLine" id="cb4-15" title="15">    foo&lt;<span class="dt">float</span>&gt;(<span class="fl">3.14</span>);</a>
+<a class="sourceLine" id="cb4-16" title="16">    <span class="cf">return</span> <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb4-17" title="17">}</a>
+<a class="sourceLine" id="cb4-18" title="18"></a>
+<a class="sourceLine" id="cb4-19" title="19"><span class="co">// Output:</span></a>
+<a class="sourceLine" id="cb4-20" title="20"><span class="co">// foo</span></a>
+<a class="sourceLine" id="cb4-21" title="21"><span class="co">// foo</span></a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="co">// ??$foo@H@@YAXH@Z</span></a>
+<a class="sourceLine" id="cb4-23" title="23"><span class="co">// void __cdecl foo&lt;int&gt;(int)</span></a>
+<a class="sourceLine" id="cb4-24" title="24"><span class="co">// </span></a>
+<a class="sourceLine" id="cb4-25" title="25"><span class="co">// foo</span></a>
+<a class="sourceLine" id="cb4-26" title="26"><span class="co">// foo</span></a>
+<a class="sourceLine" id="cb4-27" title="27"><span class="co">// ??$foo@M@@YAXM@Z</span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="co">// void __cdecl foo&lt;float&gt;(float)</span></a></code></pre></div>
 <p><strong>References:</strong></p>
 <ul>
 <li><a href="https://gcc.gnu.org/onlinedocs/gcc/Function-Names.html">GCC: Function names as strings</a></li>
