@@ -8,26 +8,27 @@
   <title>Code Yarns – Visual C++: Warning C4100</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -36,9 +37,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -88,7 +89,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-  
+
     gtag('config', 'UA-143311697-1');
   </script>
   <!-- Google Adsense -->
@@ -121,53 +122,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="date">📅 2010-Aug-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#visual-cpp'>visual cpp</a>, <a href='index.html#warnings'>warnings</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong><a href="http://msdn.microsoft.com/en-us/library/26kb9fy0.aspx">Warning 4100</a>: unreferenced formal parameter</strong> might appear when C++ code is compiled at <strong>Warning Level 4 (/W4)</strong> with the Visual C++ compiler. For example, a function that generates C4100:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb1-1" title="1"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )</a>
-<a class="sourceLine" id="cb1-2" title="2">{</a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb1-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>{</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>}</span></code></pre></div>
 <p>There are a few ways to deal with this warning:</p>
 <ul>
 <li>If this warning made you aware that you had a redundant parameter, that is good! Remove the unused parameter from both the function declaration and the definition:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb2-1" title="1"><span class="dt">void</span> Foo::OnEvent()</a>
-<a class="sourceLine" id="cb2-2" title="2">{</a>
-<a class="sourceLine" id="cb2-3" title="3">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb2-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dt">void</span> Foo::OnEvent()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>{</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>}</span></code></pre></div>
 <ul>
 <li>If the function signature cannot be changed but you do not really use the parameter in the function body, then remove the parameter name, while retaining the parameter type:</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; )</a>
-<a class="sourceLine" id="cb3-2" title="2">{</a>
-<a class="sourceLine" id="cb3-3" title="3">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb3-4" title="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; )</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>{</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>}</span></code></pre></div>
 <ul>
 <li>If you are playing around with the code in the function body and will need the parameter in the future, then comment the parameter temporarily:</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; <span class="co">/* event */</span> )</a>
-<a class="sourceLine" id="cb4-2" title="2">{</a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="co">// Some commented code that uses &quot;event&quot; parameter</span></a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb4-5" title="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; <span class="co">/* event */</span> )</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>{</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="co">// Some commented code that uses &quot;event&quot; parameter</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>}</span></code></pre></div>
 <ul>
 <li><strong><a href="https://codeyarns.com/tech/2010/07/27/visual-c-pragma-warning/">pragma warning</a></strong> directives can be used to disable the warning locally:</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" title="1"><span class="pp">#pragma warning( push )</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="pp">#pragma warning( disable: 4100 )</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )</a>
-<a class="sourceLine" id="cb5-4" title="4">{</a>
-<a class="sourceLine" id="cb5-5" title="5">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb5-6" title="6">}</a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="pp">#pragma warning( pop )</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="pp">#pragma warning( push )</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="pp">#pragma warning( disable: 4100 )</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>{</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="pp">#pragma warning( pop )</span></span></code></pre></div>
 <ul>
 <li>If you are having many such functions generating warnings and want to do nothing to fix them, then use a pragma warning directive over the entire source file:</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" title="1"><span class="co">// Foo.cpp</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="pp">#pragma warning( disable: 4100 )  </span><span class="co">// Disable for entire source file Foo.cpp</span></a>
-<a class="sourceLine" id="cb6-3" title="3"></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )</a>
-<a class="sourceLine" id="cb6-5" title="5">{</a>
-<a class="sourceLine" id="cb6-6" title="6">    <span class="cf">return</span>;</a>
-<a class="sourceLine" id="cb6-7" title="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">// Foo.cpp</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="pp">#pragma warning( disable: 4100 )  </span><span class="co">// Disable for entire source file Foo.cpp</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="dt">void</span> Foo::OnEvent( <span class="at">const</span> FooEvent&amp; event )</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>{</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>}</span></code></pre></div>
 <p>A final note: Visual C++ 2010 does not seem to have this warning at all! It has been mysteriously removed without providing any reason.</p>
 </div>
 
@@ -175,9 +176,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="contentbox">
 
-<div class="footer"><a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a> <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: xx-large;">📧</a> <a href="https://www.buymeacoffee.com/codeyarns"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 38px !important;width: 163px !important;" ></a></div>
-<br />
-<div style="text-align: center">© 2022 Ashwin Nanjappa • All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons BY-SA</a> license</div>
+<div style="text-align: center">
+© 2022 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a>
+•
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
+</div>
 </div>
 
 </body>
