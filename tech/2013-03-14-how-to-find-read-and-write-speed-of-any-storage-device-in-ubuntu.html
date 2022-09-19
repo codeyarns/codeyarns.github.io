@@ -55,15 +55,29 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to find read and write speed of any storage device in Ubuntu</h1>
-<p class="date">📅 2013-Mar-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dd'>dd</a>, <a href='index.html#performance'>performance</a>, <a href='index.html#read'>read</a>, <a href='index.html#speed'>speed</a>, <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#write'>write</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Mar-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dd'>dd</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>You do not need to rely on the <strong>read</strong> and <strong>write</strong> speeds provided by a hard disk, USB flash drive or SD card manufacturer. It is quite easy to figure out by yourself the sustained read or write speed of any storage device in Ubuntu.</p>
-<p>Make sure your storage device is plugged in, has a filesystem and is mounted under Ubuntu. Assume it is mounted at <code>/media/my-usb-disk/</code> To find the write and read speeds, we write and read a 100MB file to and from a directory of this storage device using the dd command.</p>
-<pre><code>$ dd if=/dev/zero of=/media/my-usb-disk/speed-test-file bs=100K count=1k
-$ dd if=/media/my-usb-disk/speed-test-file of=/dev/null bs=100K count=1k
-$ rm /media/my-usb-disk/speed-test-file</code></pre>
-<p>Replace the location of the speed test file with any directory inside the storage medium you are testing. Also, remember to delete the speed test file once you are done.</p>
-<p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
+<p>Make sure your storage device is plugged in, has a filesystem and is mounted under Ubuntu. Let us assume it is mounted at <code>/media/my-usb-disk/</code>.</p>
+<ul>
+<li>To find the write speed we write a 100MB file:</li>
+</ul>
+<pre><code>$ dd if=/dev/zero of=/media/my-usb-disk/speed-test-file bs=100K count=1k</code></pre>
+<ul>
+<li>To find the read speed we read the 100MB file:</li>
+</ul>
+<pre><code>$ dd if=/media/my-usb-disk/speed-test-file of=/dev/null bs=100K count=1k</code></pre>
+<p>Remember to delete the temporary file after the test is done:</p>
+<pre><code>$ rm /media/my-usb-disk/speed-test-file</code></pre>
+<h2 id="results">Results</h2>
+<p>Some read-write speeds I found on my devices:</p>
+<ul>
+<li>Internal SSD in Windows notebook: 6.1 GB/s read, 1.9 GB/s write</li>
+<li>Internal SSD in Linux notebook: 2.6 GB/s read, 389 MB/s write</li>
+<li>USB 3.0 harddisk of Windows notebook: 225 MB/s read, 34 MB/s write</li>
+<li>USB 2.0 harddisk of Nvidia Shield accessed as SMB share: 446 KB/s read, 1.2 MB/s write (terrible!)</li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 22.04 LTS</p>
 </div>
 
 <br />
