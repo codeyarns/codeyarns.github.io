@@ -60,24 +60,24 @@
 <p>During a <strong><a href="http://www.udacity.com/">Udacity</a> CS101</strong> class, Prof. <strong>David Evans</strong> introduces Python dictionaries and mentions that the viewer can learn more about the implementation of this data type in the book <strong>Beautiful Code</strong>. I looked it up and Chapter 18 of the book titled <strong>Python’s Dictionary Implementation: Being All Things to All People</strong> written by <strong>Andrew Kuchling</strong> actually turned out to be quite interesting.</p>
 <p>Here are some notes about the dictionary implementation:</p>
 <ul>
-<li><p>Dictionary is used heavily in Python:</p>
+<li>Dictionary is used heavily in Python:
 <ul>
-<li><p>In Python programs, dictionaries are the most popular data type after lists.</p></li>
-<li><p>Python’s implementation of classes uses dictionary underneath to store the class <strong>attributes</strong>.</p></li>
-<li><p><strong>Keyword arguments</strong> to functions are implemented using dictionary. So, a dictionary is created and destroyed on each such function call.</p></li>
+<li>In Python programs, dictionaries are the most popular data type after lists.</li>
+<li>Python’s implementation of classes uses dictionary underneath to store the class <strong>attributes</strong>.</li>
+<li><strong>Keyword arguments</strong> to functions are implemented using dictionary. So, a dictionary is created and destroyed on each such function call.</li>
+<li>Due to such popular and diverse uses, the dictionary needs to offer fast lookup and insertion, fast creation and destruction and should be conservative on memory use.</li>
+<li>In CPython, dictionary is implemented as a <strong>hash table</strong>. The number of <strong>slots</strong> in the table is a power-of-2.</li>
+<li>Each slot has three items: pointer to the <strong>key</strong>, pointer to the <strong>value</strong> and a copy of the <strong>hash</strong> of the key. The hash is cached for fast comparison, instead of having to touch the key (which may be large) and compute hash from that.</li>
+<li>Unlike a typical hash table, the hash of the key is not an index into the table. Instead, the (hash &amp; mask) is the index into the table. Mask is the table-size - 1.</li>
+<li><strong>Open addressing</strong> is used to deal with <strong>collision</strong>. Linear probing, the simplest open addressing technique, is useless because of how a hash is converted to index (see above). Instead, the bits of the hash are used to perturb until an empty slot is found.</li>
+<li>The table is <strong>resized</strong> when it becomes 2/3 full. The <strong>resize factor</strong> is chosen based on the number of keys. If less than 50,000 keys, the factor is 4, else 2.</li>
+<li>A lot of the dictionaries used internally by Python have string keys. To optimize for these, a dictionary always begins its life with a string-only <strong>lookup function</strong>. Only on the first non-string lookup or insertion, the lookup function switched permanently to a slower generic lookup function.</li>
+<li>Most dictionaries tend to be small. To optimize for this, a 8-slot hash table is an integral part of the dictionary object. This small table can fit inside two 64-byte cache lines. A larger table is allocated and it is used instead of the small table when the number of keys increases beyond 5.</li>
+<li>Internally, Python maintains an array of dictionaries that were used and discarded earlier. These are reused whenever possible, instead of creating new dictionaries from scratch.</li>
+<li>I looked up some of the above data structures and functions in <a href="http://hg.python.org/cpython/">CPython source code</a>. Much like Python itself, its implementation is refreshingly simple, easy to read and understand. The relevant files are: <code>Include/dictobject.h</code>, <code>Objects/dictobject.c</code> and <code>Objects/dictnotes.txt</code>.</li>
 </ul></li>
-<li><p>Due to such popular and diverse uses, the dictionary needs to offer fast lookup and insertion, fast creation and destruction and should be conservative on memory use.</p></li>
-<li><p>In CPython, dictionary is implemented as a <strong>hash table</strong>. The number of <strong>slots</strong> in the table is a power-of-2.</p></li>
-<li><p>Each slot has three items: pointer to the <strong>key</strong>, pointer to the <strong>value</strong> and a copy of the <strong>hash</strong> of the key. The hash is cached for fast comparison, instead of having to touch the key (which may be large) and compute hash from that.</p></li>
-<li><p>Unlike a typical hash table, the hash of the key is not an index into the table. Instead, the (hash &amp; mask) is the index into the table. Mask is the table-size - 1.</p></li>
-<li><p><strong>Open addressing</strong> is used to deal with <strong>collision</strong>. Linear probing, the simplest open addressing technique, is useless because of how a hash is converted to index (see above). Instead, the bits of the hash are used to perturb until an empty slot is found.</p></li>
-<li><p>The table is <strong>resized</strong> when it becomes 2/3 full. The <strong>resize factor</strong> is chosen based on the number of keys. If less than 50,000 keys, the factor is 4, else 2.</p></li>
-<li><p>A lot of the dictionaries used internally by Python have string keys. To optimize for these, a dictionary always begins its life with a string-only <strong>lookup function</strong>. Only on the first non-string lookup or insertion, the lookup function switched permanently to a slower generic lookup function.</p></li>
-<li><p>Most dictionaries tend to be small. To optimize for this, a 8-slot hash table is an integral part of the dictionary object. This small table can fit inside two 64-byte cache lines. A larger table is allocated and it is used instead of the small table when the number of keys increases beyond 5.</p></li>
-<li><p>Internally, Python maintains an array of dictionaries that were used and discarded earlier. These are reused whenever possible, instead of creating new dictionaries from scratch.</p></li>
-<li><p>I looked up some of the above data structures and functions in <a href="http://hg.python.org/cpython/">CPython source code</a>. Much like Python itself, its implementation is refreshingly simple, easy to read and understand. The relevant files are: <code>Include/dictobject.h</code>, <code>Objects/dictobject.c</code> and <code>Objects/dictnotes.txt</code>.</p></li>
 </ul>
-<p>I hope you have fun spelunking the dictionary implementation in Python 😊</p>
+<p>I hope you have fun spelunking the dictionary implementation in Python. 😊</p>
 </div>
 
 <br />
