@@ -131,6 +131,10 @@
 <li>Grep does look through <strong>binary files</strong> by default. If the searched text was found, it will just report that the binary file has that text, it does not try to print the matching line, for obvious reasons (no line separators in binary file). However, if you do not want grep poking around in binary files, use the <code>-I</code> or <code>--binary-file=without-match</code> option:</li>
 </ul>
 <pre><code>$ grep --binary-file=without-match Xanadu *</code></pre>
+<ul>
+<li>Sometimes it is useful to stop searching after a certain number of matches are found inside every file. Specify the number of maximum number of matches in each file:</li>
+</ul>
+<pre><code>$ grep --max-count=2 Xanadu *</code></pre>
 <p><strong>Tried with:</strong> Grep 3.1 and Ubuntu 18.04</p>
 </div>
 
