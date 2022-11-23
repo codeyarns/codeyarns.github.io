@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>}</span></code></pre></div>
 <p>One wishes that this were enough, but there seems to be an additional problem with CUDA. If the header file containing these functions is merely included into multiple CUDA compilation units, one faces a <strong>multiple definition error</strong> on the device function:</p>
 <blockquote>
-FooDevice.cu.obj : error LNK2005: "int __cdecl getCurThreadIdx(void)" (?getCurThreadIdx@<span class="citation" data-cites="YAHXZ">@YAHXZ</span>) already defined in Main.cu.obj
+FooDevice.cu.obj : error LNK2005: "int __cdecl getCurThreadIdx(void)" (?<a href="mailto:getCurThreadIdx@@YAHXZ" class="email">getCurThreadIdx@@YAHXZ</a>) already defined in Main.cu.obj
 </blockquote>
 <p>The only solution for this seems to be that the device function being called by a template kernel also needs to be explicitly inlined! The explicit inlining can be specified using the <code>__forceinline__</code> qualifier on the <strong>device</strong> function:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>__forceinline__ __device__ <span class="dt">int</span> getCurThreadIdx()</span>
@@ -166,7 +166,7 @@ FooDevice.cu.obj : error LNK2005: "int __cdecl getCurThreadIdx(void)" (?getCurTh
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
-<a href="https://twitter.com/codeyarns" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @codeyarns</a>
+<a href="https://hachyderm.io/@codeyarns">🐘 @codeyarns@hachyderm.io</a>
 •
 <a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
 </div>
