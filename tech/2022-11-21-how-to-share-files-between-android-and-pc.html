@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – duf</title>
+  <title>Code Yarns – How to share files between Android and PC</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -54,31 +54,16 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">duf</h1>
-<p class="date">📅 2022-Nov-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#storage'>storage</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">How to share files between Android and PC</h1>
+<p class="date">📅 2022-Nov-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#bluetooth'>bluetooth</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://github.com/muesli/duf"><strong>duf</strong></a> is a beautified commandline variant of the venerable <strong>df</strong> tool to see disk usage/free. duf shows the same information as df, but in a colorful format in text tables. Most importantly the space left on each partition is shown as a graphic plot for quick consumption.</p>
+<p>There is no direct way to share files between a computer and an Android device. How tragic!</p>
+<h2 id="using-bluetooth">Using Bluetooth</h2>
 <ul>
-<li>Installation is easy:</li>
+<li>Turn on Bluetooth on the Android device and enable it to be discovered by the Windows computer.</li>
+<li>On the Windows computer, open Bluetooth, find the Android device and <em>pair</em> with it. You might need to confirm a set of digits that the Android device displays for you.</li>
+<li>To share file from Windows to Android: In the Bluetooth settings, choose <em>Send or receive files via Bluetooth</em>, choose the file and send it. On my Android device, I get a prompt to download the file and it is downloaded to a <code>bluetooth</code> directory on the internal storage.</li>
 </ul>
-<pre><code>$ sudo apt install duf</code></pre>
-<ul>
-<li>The default command shows all local and network partitions and their disk free information:</li>
-</ul>
-<pre><code>$ duf</code></pre>
-<ul>
-<li>To see only local or only network or only special partitions:</li>
-</ul>
-<pre><code>$ duf -only local
-
-$ duf -only network
-
-$ duf -only special</code></pre>
-<ul>
-<li>To see only partitions of a certain filesystem type:</li>
-</ul>
-<pre><code>$ duf -only-fs ext4</code></pre>
-<p><strong>Tried with:</strong> duf 0.6.2 and Ubuntu 22.04</p>
 </div>
 
 <br />
