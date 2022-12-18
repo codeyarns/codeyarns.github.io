@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to view files over SSH using SimpleHTTPServer</title>
+  <title>Code Yarns – How to serve files using HTTP server</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -54,20 +54,30 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to view files over SSH using SimpleHTTPServer</h1>
-<p class="date">📅 2018-Sep-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a>, <a href='index.html#simplehttpserver'>simplehttpserver</a>, <a href='index.html#ssh'>ssh</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">How to serve files using HTTP server</h1>
+<p class="date">📅 2018-Sep-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>It is convenient to connect to a remote computer using <strong>SSH</strong> and work at the shell. But viewing images files and other such common files can be a problem. Using a X server might not always be possible. A simple solution that works for me is to use the <strong>SimpleHTTPServer</strong> module that ships in Python.</p>
+<p>Files can be shared over a home or local network using SMB or Windows sharing or SSH-based techniques (like SSHFS). But sometimes it is easiest to run a simple HTTP server on the source computer and browse the files in any web browser on client computers on the network. To do this we need to run a HTTP server on the source computer.</p>
+<h2 id="python-http-server">Python HTTP Server</h2>
+<p>The simplest HTTP server that allows file browsing is the one that is built into Python called <a href="https://docs.python.org/3/library/http.server.html"><strong>http.server</strong></a>.</p>
 <ul>
-<li><p>Change to the directory which holds the files you want to view from a remote computer.</p></li>
-<li><p>Run the SimpleHTTPServer there and provide a port number for the server:</p></li>
+<li>To serve the content in the current directory:</li>
 </ul>
-<pre><code>$ python -m SimpleHTTPServer 8901</code></pre>
+<pre><code>$ python3 -m http.server</code></pre>
+<p>This serves on port 8000 and you can access the content in any browser on the home network at <code>http://&lt;ip-address-of-server&gt;:8000/</code>.</p>
 <ul>
-<li><p>On the local computer, open a browser and connect to the server using the address: <code>http://put-remote-computer-ip-here:8901</code></p></li>
-<li><p>You can now view image files and other common file types right in the browser.</p></li>
+<li>To serve at a different port, say 10000:</li>
 </ul>
-<p><strong>Tried with:</strong> Ubuntu 18.04</p>
+<pre><code>$ python3 -m http.server 10000</code></pre>
+<ul>
+<li>To serve a directory other than the current directory:</li>
+</ul>
+<pre><code>$ python3 -m http.server --directory /path/to/dir</code></pre>
+<ul>
+<li>If you are still using Python 2.x:</li>
+</ul>
+<pre><code>$ python -m SimpleHTTPServer</code></pre>
+<p><strong>Tried with:</strong> Ubuntu 22.04</p>
 </div>
 
 <br />
