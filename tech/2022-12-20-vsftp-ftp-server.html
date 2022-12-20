@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – VSFTP FTP Server</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "3wadqgw95m");
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">VSFTP FTP Server</h1>
+<p class="date">📅 2022-Dec-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ftp'>ftp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><strong>Very Secure FTP Daemon (VSFTPD)</strong> is a popular FTP server for Linux. It can be used for simple file sharing on a network between a Linux server computer and client computers running any OS.</p>
+<h2 id="usage">Usage</h2>
+<ul>
+<li><strong>Install</strong>: Installing on Ubuntu is easy:</li>
+</ul>
+<pre><code>$ sudo apt install vsftpd</code></pre>
+<p>Check if the vsftpd service is running successfully:</p>
+<pre><code>$ sudo systemctl status vsftpd</code></pre>
+<ul>
+<li><strong>Connect from client</strong>: To connect from the client use these settings:
+<ul>
+<li>Protocol: FTP (not SFTP)</li>
+<li>IP address of the server</li>
+<li>Port: 21</li>
+<li>Login and password of any existing user on the server</li>
+</ul></li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<p>Changes to the vsftpd configuration are done by editing its <em>configuration file</em> <code>/etc/vsftpd.conf</code> and restarting the vsftpd service using this command:</p>
+<pre><code>$ sudo systemctl restart vsftpd</code></pre>
+<ul>
+<li><strong>Allow uploads</strong>: In the configuration file, uncomment the <code>write_enable=YES</code> line.</li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 22.04 and VSFTPD 3.0.5</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2022 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://hachyderm.io/@codeyarns">🐘 @codeyarns@hachyderm.io</a>
+•
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
+</div>
+</div>
+
+</body>
+</html>
