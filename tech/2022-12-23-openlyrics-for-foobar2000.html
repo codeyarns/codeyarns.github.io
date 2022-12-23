@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – ImageMagick: PDF to JPG Conversion Error</title>
+  <title>Code Yarns – OpenLyrics for Foobar2000</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -54,23 +54,20 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">ImageMagick: PDF to JPG Conversion Error</h1>
-<p class="date">📅 2010-Sep-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#ghostscript'>ghostscript</a>, <a href='index.html#imagemagick'>imagemagick</a>, <a href='index.html#pdf'>pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">OpenLyrics for Foobar2000</h1>
+<p class="date">📅 2022-Dec-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#foobar2000'>foobar2000</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Problem</strong></p>
-<p>I tried to convert a PDF file to a JPG image using <code>convert.exe</code> from ImageMagick and got the following error:</p>
-<pre><code>$ convert Foobar.pdf Foobar.jpg
-convert: `%s&#39; (%d) &quot;gswin32c.exe&quot; -q -dQUIET -dPARANOIDSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dEPSCrop -dAlignToPixels=0 -dGridFitTT=2 &quot;-sDEVICE=pnmraw&quot; -dTextAlphaBits=4 -dGraph
-icsAlphaBits=4 &quot;-r72x72&quot;  &quot;-sOutputFile=C:/Users/Joe/AppData/Local/Temp/magick-p1m2jxT1&quot; &quot;-fC:/Users/Joe/AppData/Local/Temp/magick-tf9Qz_d_&quot; &quot;-fC:/Users/Joe/AppData/Local/Temp/magick-sa
-5AGTv3&quot; @ error/utility.c/SystemCommand/2093.
-convert: Postscript delegate failed `Foobar.pdf&#39;: No such file or directory @ error/pdf.c/ReadPDFImage/645.
-convert: missing an image filename `Foobar.jpg&#39; @ error/convert.c/ConvertImageCommand/2970.</code></pre>
-<p><strong>Solution</strong></p>
-<p>It looks like the input or output filenames are missing or have some problem. Look closer and it is an error caused by <code>gswin32c.exe</code>. ImageMagick uses <code>gswin32c.exe</code> from the <strong><a href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a></strong> package to convert PDF files. So, to fix this error make sure that:</p>
-<ol type="1">
-<li>Ghostscript package is installed.</li>
-<li>The directory containing <code>gswin32c.exe</code> is in the <code>PATH</code> environment variable.</li>
-</ol>
+<p><a href="https://www.foobar2000.org/components/view/foo_openlyrics"><strong>OpenLyrics</strong></a> is a plugin for <strong>Foobar2000</strong> that provides a live scrolling display of lyrics for any song that is being played.</p>
+<ul>
+<li><strong>Source code:</strong> Source code of this plugin is at: <a href="https://github.com/jacquesh/foo_openlyrics" class="uri">https://github.com/jacquesh/foo_openlyrics</a></li>
+<li><strong>Download:</strong> Get the latest release from <a href="https://github.com/jacquesh/foo_openlyrics/releases">here</a>, download the file with extension <code>.fb2k-component</code>.</li>
+<li><strong>Install:</strong> Double-click on the downloaded file and it is opened by Foobar2000 and installed. You will need to restart Foobar2000.</li>
+<li><strong>Add to UI layout:</strong> Choose View -&gt; Layout -&gt; Enable layout editing mode. Select the rectangle in your layout where you’d like the lyrics to be displayed by clicking in it. Right-click and choose <em>Replace UI element</em> and choose <em>OpenLyrics Panel</em>.</li>
+<li><strong>Play and enjoy:</strong> Play any song and watch the lyrics being downloaded for it and live scrolled along with the playback in the lyrics panel.</li>
+<li><strong>Settings:</strong> Right-click on the lyrics panel to configure every aspect of it: sources to search, editing lyrics, directory to store it and how to display it.</li>
+<li><strong>Lyrics directory:</strong> By default, the lyric files are stored at <code>%USERPROFILE%\AppData\Roaming\foobar2000\lyrics</code>.</li>
+</ul>
+<p><strong>Tried with:</strong> OpenLyrics 1.4 and Foobar2000 1.6.12</p>
 </div>
 
 <br />
