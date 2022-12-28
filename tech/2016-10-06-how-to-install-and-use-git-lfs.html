@@ -58,13 +58,17 @@
 <p class="date">📅 2016-Oct-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#lfs'>lfs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Git</strong> repositories and its hosts like Github have limits on the file size of what can be stored there. While the file size is not really an issue for text files, it becomes a problem if you are trying to use Git to store large binary files. This is usually the case for executable files or libraries, video game assets or deep learning models. <a href="https://git-lfs.github.com/"><strong>Large File Storage (LFS)</strong></a> is an extension to Git that can help you to handle large files. For the rest of this post, we need to assume that your Git server or host (like Github) supports LFS.</p>
+<h2 id="install">Install</h2>
 <ul>
-<li><strong>Install</strong>: Installing is easy:</li>
+<li>Installing is easy:</li>
 </ul>
 <pre><code>$ sudo apt install git-lfs</code></pre>
-<p>In older versions of Ubuntu, you had to install from the LFS repository like this:</p>
+<ul>
+<li>In older versions of Ubuntu, you had to install from the LFS repository like this:</li>
+</ul>
 <pre><code>$ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 $ sudo apt install git-lfs</code></pre>
+<h2 id="clone-repo-with-large-files">Clone repo with large files</h2>
 <ul>
 <li><strong>Clone all the large files</strong>: Cloning a LFS repository uses the same command as always:</li>
 </ul>
@@ -102,6 +106,27 @@ $ git add foobar.bin</code></pre>
 </ul>
 <p>To view which large files are modified or not added to the repository:</p>
 <pre><code>$ git lfs status</code></pre>
+<h2 id="push-large-files-to-repo">Push large files to repo</h2>
+<ul>
+<li>Request LFS to track the large files:</li>
+</ul>
+<pre><code>$ git lfs track foobar-large-file
+$ git lfs track *.large-file-ext</code></pre>
+<ul>
+<li>Check if the large files are being tracked:</li>
+</ul>
+<pre><code>$ git lfs track</code></pre>
+<ul>
+<li>Add the modified <code>.gitattributes</code> and large files and create a commit:</li>
+</ul>
+<pre><code>$ git add .gitattributes
+$ git add foobar-large-file
+$ git add *.large-file-ext
+$ git commit -m &quot;Add large files&quot;</code></pre>
+<ul>
+<li>You can now push a large file to the remote:</li>
+</ul>
+<pre><code>$ git push remote-name</code></pre>
 <p><strong>Tried with:</strong> Git 2.17.1 and Ubuntu 18.04</p>
 </div>
 
