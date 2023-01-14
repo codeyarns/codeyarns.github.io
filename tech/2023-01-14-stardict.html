@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – How to have a commandline dictionary using StarDict</title>
+  <title>Code Yarns – StarDict</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -54,24 +54,16 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to have a commandline dictionary using StarDict</h1>
-<p class="date">📅 2013-Jun-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dictionary'>dictionary</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">StarDict</h1>
+<p class="date">📅 2023-Jan-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dictionary'>dictionary</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>If you spend a lot of time at the shell, you might prefer to look up the meaning of words from the commandline, rather than from a GUI program or in the browser. One solution is to use the console version of the <a href="http://www.huzheng.org/stardict/"><strong>StarDict</strong></a> program.</p>
+<p><a href="http://www.huzheng.org/stardict/"><strong>StarDict</strong></a> is a GUI dictionary software for Windows and Linux created by <strong>Hu Zheng</strong> that can be used to manage multiple dictionaries and lookup words in them. There is a <a href="2013-06-02-how-to-have-a-commandline-dictionary-using-stardict.html">console version</a> too for folks who prefer that. The source code of this tool can be found <a href="https://github.com/huzheng001/stardict-3">here</a>.</p>
 <ul>
-<li><strong>Install:</strong> Installing in Ubuntu is easy:</li>
+<li><p><strong>Install:</strong> Download the Windows installer from the <a href="http://www.huzheng.org/stardict/">homepage</a> and install it.</p></li>
+<li><p><strong>Add dictionaries:</strong> StarDict does not come pre-installed with any dictionaries. Dictionary files need to be installed and many such dictionary files are available <a href="http://download.huzheng.org/bigdict/">here</a>. Download and unzip the dictionary file until you have a directory with <code>.idx</code>, <code>.ifo</code> and <code>.dict.dz</code> files inside it. Move this directory to the <code>C:\Program Files (x86)\StarDict\dic</code> directory.</p></li>
+<li><p><strong>Lookup:</strong> Lookup a word and if it exists in the dictionaries you installed, it should be displayed. If the word exists in multiple dictionaries, then all of those definitions are displayed. The order of the dictionaries used for lookup can be changed in the settings.</p></li>
 </ul>
-<pre><code>$ sudo apt-get install sdcv</code></pre>
-<ul>
-<li><p><strong>Install dictionaries:</strong> You can find dictionaries that are English-English or between any two languages, encyclopedias, thesaurus or etymology sources online that can be installed to work with sdcv. For example, a few of such dictionaries can be found <a href="http://abloz.com/huzheng/stardict-dic/dict.org/">here</a>. To install a dictionary, first create the <code>/usr/share/stardict/dic</code> directory. Next unzip the dictionary file and copy that directory to the above directory.</p></li>
-<li><p><strong>List dictionaries:</strong> You can list the dictionaries that are installed using:</p></li>
-</ul>
-<pre><code>$ sdcv --list-dicts</code></pre>
-<ul>
-<li><strong>Lookup word:</strong> To look up a word:</li>
-</ul>
-<pre><code>$ sdcv mollify</code></pre>
-<p><strong>Tried with:</strong> Console Version of StarDict 0.4.2 and Ubuntu 12.04 LTS</p>
+<p><strong>Tried with:</strong> StarDict 3.0.1.2</p>
 </div>
 
 <br />
