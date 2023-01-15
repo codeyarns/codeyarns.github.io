@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Coding Games in Python Errata</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "3wadqgw95m");
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+  <!-- Google Adsense -->
+  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <!-- Twitter button -->
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Coding Games in Python Errata</h1>
+<p class="date">📅 2023-Jan-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#book'>book</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><strong>Coding Games in Python</strong> is a 2018 book that introduces programming to kids using Python to create simple games. I found that directly following the instructions from the book would not work with <strong>Python 3.10</strong> on Windows.</p>
+<p>Below are some changes you need to do to get the code from the book working:</p>
+<h2 id="typing-code-and-running-it">Typing code and running it</h2>
+<p>The book asks the reader to type the code in the IDLE editor and run it. The IDLE that ships with Python 3.10 seems to show the interpreter instead of the editor by default. So, a child that directly follows the instructions in the book will be stumped why their code is not running.</p>
+<p>This can be switched by choosing Options -&gt; Configure IDLE -&gt; Windows and for <em>At Startup</em> choose <em>Open Edit Window</em>. Restart IDLE, it should show an editor window. In case there is some text (like the opening text from Python interpreter) in the editor, delete it all.</p>
+<p>Remember that to run the typed code, choose Run -&gt; Run Module. It opens an interpreter window where the code is executed. Close that window or any other secondary windows it spawns once you have viewed the results.</p>
+<h2 id="pygame-zero-import">PyGame Zero import</h2>
+<p>PyGame Zero seems to have been designed to work without having any import. This is why the code in the book surprisingly does not have any import statements.</p>
+<p>However, that might have been true for an older version of PyGame Zero. But now it seems like you need to have <code>import pgzrun</code> in the file.</p>
+<p>Type the above import line in all the files or chapters that use this module.</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://hachyderm.io/@codeyarns">🐘 @codeyarns@hachyderm.io</a>
+•
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
+</div>
+</div>
+
+</body>
+</html>
