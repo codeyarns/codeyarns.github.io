@@ -10,14 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Microsoft Clarity Analytics -->
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "3wadqgw95m");
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -28,11 +20,6 @@
 
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- Google Adsense -->
-  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  </script>
-  <!-- Twitter button -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -55,13 +42,25 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to create or delete user in Linux</h1>
-<p class="date">📅 2018-Jul-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#create'>create</a>, <a href='index.html#delete'>delete</a>, <a href='index.html#user'>user</a>, <a href='index.html#useradd'>useradd</a>, <a href='index.html#userdel'>userdel</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2018-Jul-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#user'>user</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
+<p>There are 2 commands in a modern Ubuntu to create new users: adduser and useradd. Unless you know what you are doing, <strong>do not use useradd</strong>.</p>
+<h2 id="adduser-use-this">adduser (USE THIS)</h2>
+<ul>
+<li>To create a new user named joe:</li>
+</ul>
+<pre><code>$ sudo adduser joe</code></pre>
+<p>This creates a normal user, creates their home directory, copies over the dot files from <code>/etc/skel</code>, requests you to set the password for this user and generally sets up everything for the user to login and use the shell.</p>
+<p>In addition, if you also want the user directories like <code>Desktop</code>, <code>Downloads</code> and such to be created:</p>
+<pre><code>&lt;login as joe&gt;
+
+$ xdg-user-dirs-update</code></pre>
+<h2 id="useradd-not-recommended">useradd (NOT RECOMMENDED)</h2>
 <ul>
 <li>To create a new user named joe:</li>
 </ul>
 <pre><code>$ sudo useradd joe</code></pre>
-<p>The above command does not create a home directory for the new user.</p>
+<p>This command does not even create a home directory for the new user.</p>
 <ul>
 <li>To create a new user named joe and create a home directory for him:</li>
 </ul>
@@ -74,8 +73,12 @@
 <ul>
 <li>To delete a user named joe and remove all the files owned by him:</li>
 </ul>
-<pre><code>$ sudo userdel -r joe</code></pre>
-<p><strong>Tried with:</strong> Ubuntu 16.04</p>
+<pre><code>$ sudo userdel --remove-all-files joe</code></pre>
+<p><strong>References:</strong></p>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/XDG_user_directories" class="uri">https://wiki.archlinux.org/title/XDG_user_directories</a></li>
+</ul>
+<p><strong>Tried with:</strong> Ubuntu 22.04</p>
 </div>
 
 <br />
@@ -83,7 +86,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2022 Ashwin Nanjappa
+© 2023 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
