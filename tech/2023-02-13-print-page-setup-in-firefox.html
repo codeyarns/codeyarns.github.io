@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Print page setup in Firefox</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Print page setup in Firefox</h1>
+<p class="date">📅 2023-Feb-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#firefox'>firefox</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<h2 id="problem">Problem</h2>
+<p>Recently I tried to print a webpage to PDF using Firefox 109.0.1 and noticed that it prints the URL and other information in the header and footer of each PDF page. I did not want any header or footer information and I further wanted to change the margins too. Looking around the Firefox UI I did not see any option to change the page setup.</p>
+<h2 id="solution">Solution</h2>
+<p>Firefox seems to have removed the <em>page setup</em> option from recent versions. I am guessing that is because not many people print webpages either to PDF anymore.</p>
+<p>Thankfully, the page setup option can still be restored from <code>about:config</code> by setting <code>print.show_page_setup_menu</code> to true. Once this is done, you can open a simple page setup dialog by pressing <code>F10</code> (to display the titlebar) and choosing File -&gt; Page Setup. Here I found options to set the header, footer and page scale/size. By default, I found that this config toggling had reset the page scale to a terrible 10% (tiny!).</p>
+<p>All the page setup customization options can be found in <code>about:config</code> by searching for <code>print.printer_Mozilla_Save_to_PDF</code>. I changed the following options to get a decent looking PDF:</p>
+<ul>
+<li><code>print.printer_Mozilla_Save_to_PDF.print_shrink_to_fit</code>: <code>true</code></li>
+<li><code>print.printer_Mozilla_Save_to_PDF.print_margin_top</code>: <code>0.5</code></li>
+<li><code>print.printer_Mozilla_Save_to_PDF.print_margin_bottom</code>: <code>0.2</code></li>
+<li><code>print.printer_Mozilla_Save_to_PDF.print_margin_left</code>: <code>0.2</code></li>
+<li><code>print.printer_Mozilla_Save_to_PDF.print_margin_right</code>: <code>0.2</code></li>
+</ul>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://hachyderm.io/@codeyarns">🐘 @codeyarns@hachyderm.io</a>
+•
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
+</div>
+</div>
+
+</body>
+</html>
