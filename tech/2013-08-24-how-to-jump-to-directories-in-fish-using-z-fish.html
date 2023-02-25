@@ -10,14 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Microsoft Clarity Analytics -->
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "3wadqgw95m");
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -28,11 +20,6 @@
 
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- Google Adsense -->
-  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  </script>
-  <!-- Twitter button -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -55,15 +42,15 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to jump to directories in fish using z-fish</h1>
-<p class="date">📅 2013-Aug-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fish'>fish</a>, <a href='index.html#z'>z</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Aug-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fish'>fish</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>The biggest problem with using the <strong>shell</strong> is that it is painful to <strong>jump</strong> to different directories. If only the shell could <strong>remember</strong> the directories you most frequently use and allow you to jump to them by only typing only a few characters of its name? This is what <a href="http://github.com/rupa/z"><strong>z</strong></a> does! However, z is written for bash. Fish users need not despair since there is <a href="https://github.com/sjl/z-fish"><strong>z-fish</strong></a>.</p>
 <p><strong>Install and use</strong></p>
 <ol type="1">
-<li><p>Clone the Github <a href="https://github.com/sjl/z-fish">repository</a> of z-fish</p></li>
+<li><p>Clone the Github <a href="https://github.com/sjl/z-fish">repository</a> of z-fish. It has the <code>z.fish</code> shell file that is the <code>z</code> command.</p></li>
 <li><p>Add this line to your <strong>~/.config/fish/config.fish</strong></p></li>
 </ol>
-<pre><code>. /path/to/z.fish</code></pre>
+<pre><code>. /path/to/z-fish/z.fish</code></pre>
 <ol start="3" type="1">
 <li><p>cd around to all the directories you frequently use. This helps z-fish build its database. You can see this in the file <strong>~/.z</strong></p></li>
 <li><p>Now, to jump to any directory just provide a substring of its name to z. For example: <code>z foo</code></p></li>
@@ -76,7 +63,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2022 Ashwin Nanjappa
+© 2023 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
