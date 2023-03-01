@@ -10,14 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Microsoft Clarity Analytics -->
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "3wadqgw95m");
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -28,11 +20,6 @@
 
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- Google Adsense -->
-  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  </script>
-  <!-- Twitter button -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -63,7 +50,7 @@
 <p>There are various <strong>classes</strong> of devices supported by USB: like <strong>mass storage</strong> or <strong>HID</strong> (human interface device) as examples. Classes were designed so that OSes could ship with class drivers, enabling creators of devices to focus on just hardware development and not worry about driver development. In case, you need to go beyond the capabilities of class drivers for your device, it is easiest by using filter drivers in Windows.</p>
 <p>There are good illustrations in the book showing the possible tree of controllers, hubs and devices in 2.0 and 3.1. The host computer needs to have one controller (or more) and a root hub with ports. The ports on the hub can connect downstream to more hubs (with their own ports) or to devices.</p>
 <p>Tools like the Windows <strong>device manager</strong> or <strong>USBLPM</strong> can be used to examine the USB controllers, hubs and devices on a computer. (Personally, I prefer USBView <a href="2011-12-21-usb-view-on-windows.html">on Windows</a> and <a href="2015-07-30-usbview-on-linux.html">on Linux</a> though.)</p>
-<p>One of the best features of USB is that it can deliver some amount of power to devices. Many devices can fully function on this power, saving creators from adding expense and complexity and users from extra power connections. Upto 500 mA in 2.0 and 900 mA in 3.1 at a nominal voltage of 5V can be delivered by USB. The new power revision supported up to 5A and 20V, for a total power of 100W.</p>
+<p>One of the best features of USB is that it can deliver some amount of power to devices using <a href="https://www.usb.org/usb-charger-pd"><strong>USB Power Delivery (USB PD)</strong></a>. Many devices can fully function on this power, saving creators from adding expense and complexity and users from extra power connections. Upto 500 mA in 2.0 and 900 mA in 3.1 at a nominal voltage of 5V can be delivered by USB. The new power revision supported up to 5A and 20V, for a total power of 100W. (A more recent PD 3.1 further increases this to 240W.)</p>
 <p>A chapter towards the end also looked at the various USB connectors. 2.0 has 4 wires and uses type A connectors for host and device and various type B connectors for devices, like micro-B. 3.0 has 10 wires and uses new <strong>Type-C</strong> connectors which can connect to both hosts and devices and are reversible.</p>
 <p>Written for developers, the book covers a lot more related to the USB protocol which I skipped over: wire protocol, packets, descriptors, protocol analysers, Windows device drivers, USB chips and boards. I wish there was more information about the new power revision - this was the one sore point. Also, a lot of the information is duplicated across chapters and the book could have done with a closer proofread. Minor quibbles aside, this was a good resource to learn all about USB. I came away clearly knowing USB’s strengths, limitations and jargon.</p>
 <p><strong>Rating:</strong> 3/4</p>
@@ -74,7 +61,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2022 Ashwin Nanjappa
+© 2023 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
