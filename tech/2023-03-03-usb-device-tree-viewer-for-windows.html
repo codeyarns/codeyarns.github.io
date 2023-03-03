@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – USBView on Windows</title>
+  <title>Code Yarns – USB Device Tree Viewer for Windows</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,15 +41,19 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">USBView on Windows</h1>
-<p class="date">📅 2011-Dec-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#usb'>usb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">USB Device Tree Viewer for Windows</h1>
+<p class="date">📅 2023-Mar-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#usb'>usb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<figure>
-<img src="http://codeyarns.files.wordpress.com/2011/12/20111221-usbview.png" alt="" /><figcaption> </figcaption>
-</figure>
-<p>Do you wonder what is the <strong>topography</strong> of the <strong>USB</strong> subsystem on your computer? <a href="http://msdn.microsoft.com/en-us/library/ff560019.aspx"><strong>USBView</strong></a> (aka USB Device Viewer) is an useful <strong>Windows</strong> tool that displays this tree of USB controllers and hubs and the devices connected to them in a neat graphical format. If any node in the tree is clicked, the properties of the corresponding controller, hub or device is displayed in the right pane. Press F5 to refresh the tree after you connect or disconnect a hub or device.</p>
-<p>USB View is one of the many debugging tools that ship with the <a href="https://developer.microsoft.com/en-us/windows/downloads/windows-sdk/"><strong>Windows SDK</strong></a>. So, to obtain USB View you need to install Windows SDK. In the installation dialog of Windows SDK, make sure the <strong>Debugging Tools</strong> option is ticked. After installation, <code>usbview.exe</code> can be found in the <code>C:\Program Files (x86)\Windows Kits\10\Debuggers\x64</code> directory. This exe can be copied and used on any computer without requiring any installation or dependencies.</p>
-<p><strong>Tried with:</strong> Windows 10 SDK and Windows 10 x64</p>
+<p>The <a href="https://www.uwe-sieber.de/usbtreeview_e.html"><strong>USB Device Tree Viewer</strong></a>,.also called <strong>USBTreeView</strong>, is a Windows tool that can be used to view the tree of USB hubs, roots and devices and their information. It is based on the source code of the <a href="2011-12-21-usb-view-on-windows.html"><strong>USBView</strong></a> tool, so it looks pretty much the same.</p>
+<p>Some of the nice features in this tool:</p>
+<ul>
+<li>Shows the high-speed (H), full-speed (F) and super-speed (S) designation on the tree icons itself.</li>
+<li>Shows the actual name of the device (and not just the device type) in the tree view itself.</li>
+<li>Shows newly added devices in green.</li>
+<li>Shows removed devices in red.</li>
+<li>Shows the error number in a yellow circle on devices that has an error.</li>
+</ul>
+<p><strong>Tried with:</strong> USBTreeView 3.8.4</p>
 </div>
 
 <br />
