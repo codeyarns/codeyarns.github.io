@@ -42,29 +42,26 @@
 <div class="contentbox">
 <header>
 <h1 class="title">The case of the freezing external display</h1>
-<p class="date">📅 2023-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#case'>case</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2023-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#usb'>usb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was typing an email today when everything seemed to have frozen on my system. Both the external keyboard and my trackball had stopped working.</p>
+<p>I was typing an email today when everything seemed to have frozen on my system. Both the external keyboard and my trackball had stopped working. My trackball is connected using Bluetooth and my keyboard is connected to my external display, which is in turn connected to my laptop.</p>
 <p>The pertinent details of the devices involved are:</p>
 <ul>
 <li><a href="2020-04-19-kensington-expert-mouse-wireless-trackball.html">Kensington Expert Mouse wireless trackball</a>: Connected over Bluetooth to my laptop.</li>
 <li><a href="2022-03-22-dell-c3422we.html">Dell C3422WE display</a>: Connected over USB-C to my laptop. Acts as external display, powers my laptop and also a USB hub to which my external keyboard is connected (see below).</li>
 <li><a href="2022-01-06-ikbc-cd87-bt-keyboard.html">iKBC CD87 BT keyboard</a>: Connected using a USB cable to my external display (see above).</li>
 </ul>
+<h2 id="investigation">Investigation</h2>
 <p>I unhooked the external display from my laptop (thus disconnecting the external keyboard), but the trackball was still not working. What really puzzled me was why the trackball, which used Bluetooth, was also freezing - even though it was not even connected to the display/USB.</p>
 <p>I rebooted the Windows laptop (but did not connect the display and keyboard) and the trackball was working. Once I connected the display, the keyboard worked for a few seconds, before the entire system froze like above. These symptoms repeated on every reboot and diagnosis.</p>
-<h2 id="experiments">Experiments</h2>
-<p>Since multiple devices were freezing, I suspected the USB-C external display was the suspect and was at a total loss what to do.</p>
-<p>However, on one of the final tries I saw an error notification in Windows that a <strong>USB device had malfunctioned</strong> - this put the suspicion on the external keyboard. I unplugged the external keyboard and hooked it directly over USB to another laptop and sure enough - <strong>it was dead</strong>. This was surprising, I had never seen a keyboard die on me before in my entire life!</p>
-<p>To finally confirm, I connected a different keyboard and the frozen trackball still did not work. Everything worked only on a reboot.</p>
-<h2 id="conclusion">Conclusion</h2>
-<p>Here is my guess of what had happened:</p>
+<p>I suspected that USB was the culprit. One of the tries I saw an error notification in Windows that a <strong>USB device had malfunctioned</strong> - this put the suspicion on the external keyboard.</p>
+<p>Since USB was suspect, I monitored the system with <a href="2023-03-03-usb-device-tree-viewer-for-windows.html">USBTreeView</a> and noticed two things:</p>
 <ul>
-<li><p>The external keyboard was in the final throes of its death and thus crashing the USB hub in the external display and also the USB stack on Windows. This is why the external display was also frozen.</p></li>
-<li><p>The flaky keyboard being a HID device was also screwing up my trackball (another HID device). Do not ask me why Windows would be so terribly designed that a USB stack error was freezing up a Bluetooth stack. This is the only connection I can make between these devices.</p></li>
+<li>This laptop’s Bluetooth controller was connected to the main USB controller. So that explained why Bluetooth went haywire along with USB.</li>
+<li>When things went wrong, the entire USB hub of the external display or sometimes some of its ports had errors. Sometimes the laptop would enumerate them over again and recover those devices. Sometimes it would remain in that error state.</li>
 </ul>
-<p>I was just glad that I had found the real cause behind this problem. Replacing the dead USB keyboard with a new one fixed the issue.</p>
+<p>Either or both the Dell display and the Dell laptop’s USB controllers had become unstable after a recent firmware/software update. This is the only reason I could think of why things had suddenly gone wrong.</p>
 </div>
 
 <br />
