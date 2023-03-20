@@ -10,14 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Microsoft Clarity Analytics -->
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "3wadqgw95m");
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -28,11 +20,6 @@
 
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- Google Adsense -->
-  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  </script>
-  <!-- Twitter button -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -74,7 +61,7 @@
 <p>The kind of display used for the notification can be configured in Growl. Enjoy your build notifications! 😊</p>
 <p><strong>Fix</strong></p>
 <p>I could not get the Visual Studio plugin working on my computer, i.e., there was no Growl menu item in Visual Studio. Though I chose to install for Everyone, I found that the Visual Studio plugin was installing to <code>C:\Users\Superuser\AppData\Roaming\Microsoft\MSEnvShared\Addins\Growl Add-In</code>, where <code>Superuser</code> is the login of an administrator. It is actually supposed to install to <code>C:\Program Files (x86)\Growl Extras\Growl Add-In for Visual Studio\</code>.</p>
-<p>A quick fix worked for me. I copied the <code>Growl Add-in</code> folder to <code>C:\Users\Joe\AppData\Roaming\Microsoft\MSEnvShared\Addins\Growl Add-In</code>, where <code>Joe</code> is my non-admin username. And when I opened Visual Studio as the user <code>Joe</code>, Growl worked! 😊</p>
+<p>A quick fix worked for me. I copied the <code>Growl Add-in</code> folder to <code>%USERPROFILE%\AppData\Roaming\Microsoft\MSEnvShared\Addins\Growl Add-In</code>, where <code>Joe</code> is my non-admin username. And when I opened Visual Studio as the user <code>Joe</code>, Growl worked! 😊</p>
 <p><strong>Tried with:</strong> Growl 2.0.8 and Visual Studio 2008 and 2010</p>
 </div>
 
@@ -83,7 +70,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2022 Ashwin Nanjappa
+© 2023 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Windows environment variables and paths</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Windows environment variables and paths</h1>
+<p class="date">📅 2023-Mar-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#environment-variables'>environment variables</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>Windows has several default <strong>environment variables</strong> for values and paths. I prefer to use these environment variables instead of the actual paths in commands, scripts and programs. This is because using variables makes their portable and agnostic and works the same no matter who is the user or the system it is used on.</p>
+<h2 id="view-environment-variables">View environment variables</h2>
+<ul>
+<li><strong>Command prompt:</strong>
+<ul>
+<li>Use the <code>set</code> command to see the list of environment variables and their values.</li>
+<li>Use the <code>echo</code> command to print the value of a specific environment variable. For example: <code>echo %PATH%</code>.</li>
+</ul></li>
+<li><strong>GUI:</strong> Type <em>environment variables</em> in the Start menu and choose the first option that opens the dialog in Control Panel.</li>
+</ul>
+<h2 id="list-of-variables">List of variables</h2>
+<p>For this list of environment variables, I assume a user named <code>archimedes</code>, a computer named <code>aragon</code> and a company named <code>acme.com</code>:</p>
+<ul>
+<li><code>%ALLUSERSPROFILE%</code>: <code>C:\ProgramData</code></li>
+<li><code>%APPDATA%</code>: <code>C:\Users\archimedes\AppData\Roaming</code></li>
+<li><code>%CD%</code>: <code>C:\Users\archimedes</code></li>
+<li><code>%CMDCMDLINE%</code>: <code>"C:\Windows\system32\cmd.exe"</code></li>
+<li><code>%CMDEXTVERSION%</code>: <code>2</code></li>
+<li><code>%COMPUTERNAME%</code>: <code>aragon</code>. Name of the computer. This will usually be its hostname too.</li>
+<li><code>%COMSPEC%</code>: <code>C:\Windows\system32\cmd.exe</code></li>
+<li><code>%CommonProgramFiles%</code>: <code>C:\Program Files\Common Files</code></li>
+<li><code>%CommonProgramFiles(x86)%</code>: <code>C:\Program Files (x86)\Common Files</code></li>
+<li><code>%CommonProgramW6432%</code>: <code>C:\Program Files\Common Files</code></li>
+<li><code>%DATE%</code>: <code>Sun 03/19/2023</code></li>
+<li><code>%DriverData%</code>: <code>C:\Windows\System32\Drivers\DriverData</code></li>
+<li><code>%ERRORLEVEL%</code>: <code>0</code></li>
+<li><code>%HOMEDRIVE%</code>: <code>C:</code></li>
+<li><code>%HOMEPATH%</code>: <code>\Users\archimedes</code></li>
+<li><code>%LOCALAPPDATA%</code>: <code>C:\Users\archimedes\AppData\Local</code></li>
+<li><code>%LOGONSERVER%</code>: <code>\\aragon</code></li>
+<li><code>%NUMBER_OF_PROCESSORS%</code>: <code>16</code></li>
+<li><code>%OS%</code>: <code>Windows_NT</code></li>
+<li><code>%OneDrive%</code>: <code>C:\Users\archimedes\OneDrive</code></li>
+<li><code>%PATH%</code>: <code>C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Users\archimedes\AppData\Local\Microsoft\WindowsApps;</code></li>
+<li><code>%PATHEXT%</code>: <code>.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</code></li>
+<li><code>%PROCESSOR_IDENTIFIER%</code>: <code>Intel64 Family 6 Model 141 Stepping 1, GenuineIntel</code></li>
+<li><code>%PROCESSOR_LEVEL%</code>: <code>6</code></li>
+<li><code>%PROCESSOR_REVISION%</code>: <code>8d01</code></li>
+<li><code>%PROMPT%</code>: <code>$P$G</code></li>
+<li><code>%PSModulePath%</code>: <code>C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft Azure Information Protection\Powershell</code></li>
+<li><code>%PUBLIC%</code>: <code>C:\Users\Public</code></li>
+<li><code>%ProgramData%</code>: <code>C:\ProgramData</code></li>
+<li><code>%ProgramFiles%</code>: <code>C:\Program Files</code></li>
+<li><code>%ProgramFiles(x86)%</code>: <code>C:\Program Files (x86)</code></li>
+<li><code>%ProgramW6432%</code>: <code>C:\Program Files</code></li>
+<li><code>%RANDOM%</code>: Generate a random number between 0 and 32767.</li>
+<li><code>%SystemDrive%</code>: <code>C:</code></li>
+<li><code>%SystemRoot%</code>: <code>C:\Windows</code></li>
+<li><code>%TEMP%</code>: <code>C:\Users\ARCHIM~1\AppData\Local\Temp</code></li>
+<li><code>%TIME%</code>: <code>17:57:46.37</code></li>
+<li><code>%TMP%</code>: <code>C:\Users\ARCHIM~1\AppData\Local\Temp</code></li>
+<li><code>%USERDOMAIN%</code>: <code>acme.com</code></li>
+<li><code>%USERPROFILE%</code>: <code>C:\Users\archimedes</code></li>
+<li><code>%UserName%</code>: <code>archimedes</code></li>
+<li><code>%windir%</code>: <code>C:\Windows</code></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://cloudinfrastructureservices.co.uk/windows-environment-variables-list-complete-list-on-windows-10-11/" class="uri">https://cloudinfrastructureservices.co.uk/windows-environment-variables-list-complete-list-on-windows-10-11/</a></li>
+<li><a href="https://superuser.com/questions/341192/how-can-i-display-the-contents-of-an-environment-variable-from-the-command-promp" class="uri">https://superuser.com/questions/341192/how-can-i-display-the-contents-of-an-environment-variable-from-the-command-promp</a></li>
+</ul>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://hachyderm.io/@codeyarns">🐘 @codeyarns@hachyderm.io</a>
+•
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
+</div>
+</div>
+
+</body>
+</html>
