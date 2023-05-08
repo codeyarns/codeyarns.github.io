@@ -44,7 +44,7 @@
 <h1 class="title">uBlock Origin addon for browsers</h1>
 <p class="date">📅 2015-Sep-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#extension'>extension</a>, <a href='index.html#firefox'>firefox</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/"><strong>uBlock Origin</strong></a> is a great browser addon to block all sorts of trackers and content in webpages. This addon is open-sourced at Github <a href="https://github.com/gorhill/uBlock">here</a>. Though I had tried this addon in 2015, I returned to it fully only in 2022 after my favorite <a href="2017-01-30-umatrix-extension-for-firefox.html"><strong>uMatrix</strong></a> addon was no longer supported. I use the addon on Firefox and so my description here is based on the UI in that browser.</p>
+<p><a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/"><strong>uBlock Origin</strong></a> is a great browser addon created by <a href="https://github.com/gorhill"><strong>Raymond Hill</strong></a> to aid in blocking all sorts of trackers and content in webpages. This addon is open-sourced at Github <a href="https://github.com/gorhill/uBlock">here</a>. Though I had tried this addon in 2015, I returned to it fully only in 2022 after my favorite <a href="2017-01-30-umatrix-extension-for-firefox.html"><strong>uMatrix</strong></a> addon was no longer supported. I use the addon on Firefox and so my description here is based on the UI in that browser.</p>
 <ul>
 <li><p><strong>Basic mode:</strong> In this mode the addon uses the domain/filter lists maintained online by others to block trackers and content. This is called <strong>static filtering</strong>. You can configure which lists to use for this in the <em>Filter lists</em> tab in the addon settings.</p></li>
 <li><p><strong>Advanced mode:</strong> Choose <em>I am an advanced user</em> in the <em>Settings</em> tab to enable this. This gives a popup UI (like in uMatrix) to selectively block content/domain either globally or just for the current site. This is called <strong>dynamic filtering</strong> and it selectively overrides the static filters.</p></li>
@@ -54,10 +54,11 @@
 <p>This is the popup UI dialog that appears to the left of the basic dialog when the addon’s button is clicked in the toolbar.</p>
 <ul>
 <li><p><strong>Colors:</strong> The colors on the left side indicate if that particular row is being fully allowed (green), partially blocked (yellow) or fully blocked (green).</p></li>
-<li><p><strong>Rows:</strong> Each row is a certain type of content or domain. The rows at the top before the domain rows, from <code>all</code> to <code>3rd-party frames</code>, apply generally to those types of content. Among these I like to globally block all the 3rd-party rows and then selectively enable required domains on specific websites.</p>
+<li><p><strong>Rows:</strong> Each row is a certain type of content or domain. The rows at the top before the domain rows, from <code>all</code> to <code>3rd-party frames</code>, apply generally to those types of content.</p>
 <ul>
 <li>Clicking to the left of the <code>all</code> row toggles showing/hiding all the subdomains under the domain rows. So it helps in filtering the parent domain or specific subdomains.</li>
 <li>Clicking the <code>...</code> on certain domain rows does the same as above for that specific parent row.</li>
+<li>Among these rows I like to globally block <code>3rd-party</code>, <code>3rd-party scripts</code> and <code>3rd-party frames</code> and then selectively enable required domains on specific websites. This is called <a href="https://github.com/gorhill/uBlock/wiki/Blocking-mode:-hard-mode"><em>hard blocking mode</em></a> in this addon.</li>
 </ul></li>
 <li><p><strong>Global rules:</strong> Among the two columns, the left one is for global filtering. Each cell has two options: click on the right-side in that cell to block it (it becomes red) or click on the left-side inside that cell to noop it (it become gray).</p>
 <ul>
@@ -73,7 +74,7 @@
 <ul>
 <li><a href="https://github.com/gorhill/uBlock/wiki">Complete Wiki Guide</a></li>
 </ul>
-<p><strong>Tried with:</strong> uBlock Origin 1.1.1, Firefox 41 and Ubuntu 15.04</p>
+<p><strong>Tried with:</strong> uBlock Origin 1.49.2, Firefox 112.0.2 and Windows 11</p>
 </div>
 
 <br />
