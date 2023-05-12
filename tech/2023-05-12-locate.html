@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Search files with locate</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Search files with locate</h1>
+<p class="date">📅 2023-May-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#search'>search</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>The <strong>locate</strong> command in Linux enables a fast search for filenames from a compiled database of the filesystem. This is similar in sprit to the <a href="2022-11-21-everything-search-engine.html"><strong>Everything</strong></a> search tool on Windows. Note that <code>locate</code> is different from the <a href="2016-09-19-find-cheatsheet.html"><strong>find</strong></a> command which does a live walk of the filesystem tree and so can be very slow.</p>
+<ul>
+<li><strong>Install:</strong> The search tool <code>locate</code> and its database creator <code>updatedb</code> ship in a single package that can be installed:</li>
+</ul>
+<pre><code>$ sudo apt install locate</code></pre>
+<ul>
+<li><strong>Update the database:</strong> A cron job to update the database runs regularly, but if you wish to update the DB with the current state of the filesystem manually:</li>
+</ul>
+<pre><code>$ sudo updatedb</code></pre>
+<h2 id="search">Search</h2>
+<ul>
+<li>Searching is straightforward and wildcards are supported:</li>
+</ul>
+<pre><code>$ locate foobar
+$ locate foo*</code></pre>
+<ul>
+<li>To do a case-insensitive search:</li>
+</ul>
+<pre><code>$ locate -i foobar</code></pre>
+<ul>
+<li>To check if the file exists in the filesystem before returning the result:</li>
+</ul>
+<pre><code>$ locate -e foobar</code></pre>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.man7.org/linux/man-pages/man1/locate.1.html">man locate</a></li>
+<li><a href="https://man7.org/linux/man-pages/man1/updatedb.1.html">man updatedb</a></li>
+</ul>
+<p><strong>Tried with:</strong> locate 4.8.0 and Ubuntu 22.04</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://hachyderm.io/@codeyarns">🐘 @codeyarns@hachyderm.io</a>
+•
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
+</div>
+</div>
+
+</body>
+</html>
