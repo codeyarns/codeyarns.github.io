@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – vmmem process consuming CPU</title>
+  <title>Code Yarns – F-Droid</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,20 +41,17 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">vmmem process consuming CPU</h1>
-<p class="date">📅 2023-Jun-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">F-Droid</h1>
+<p class="date">📅 2023-Jun-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#android'>android</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<h2 id="problem">Problem</h2>
-<p>When I woke up my Windows laptop from sleep to work, I noticed that everything seemed to be sluggish and the laptop fans were running at full blast. This is usually a sign of some runaway process consuming all of the CPU. I opened <em>Task Manager</em> to check this and found a <code>vmmem</code> process consuming almost all of the CPU. I found that this process was unkillable from Task Manager, even with administrator privileges.</p>
-<h2 id="solution">Solution</h2>
-<p>It turns out that <em>vmmem</em> is a process used by Windows VM (virtual machine) subsystem, most typically used by WSL. I had been running a Ubuntu WSL in a Terminal before closing that window. I guess WSL had not been cleanly shutdown and its vmmem was a runaway process now.</p>
-<p>We know the root cause, how do we kill an unkillable process like vmmem? It turns out that shutting down WSL cleanly will clean up the VMs too.</p>
-<p>I opened a command prompt and used this command to shutdown WSL:</p>
-<pre><code>C:\&gt; wsl --shutdown</code></pre>
-<p>This command ran for about a minute and vmmem disappeared after that and the laptop fans became quiet.</p>
-<h2 id="references">References</h2>
+<p><a href="https://f-droid.org/"><strong>F-Droid</strong></a> is an alternative to the <em>Google Play Store</em> that focuses on offering a catalog of open source software to install and update on your Android devices. Not all open source software is available on the Play Store, but might need to downloaded and installed as APK files from their websites. Instead, I find it easier to install and manage all these apps from F-Droid.</p>
 <ul>
-<li><a href="https://thegeekpage.com/vmmem-high-memory-and-cpu-usage/" class="uri">https://thegeekpage.com/vmmem-high-memory-and-cpu-usage/</a></li>
+<li><strong>Install</strong>: F-Droid itself is not available on the Play Store. So download the <code>.apk</code> file from the website and install it on your device.
+<ul>
+<li>You might be warned about installing from <em>unsafe</em> files and might need to provide this permission for the installation to work.</li>
+<li>The installation was straightforward on Android smartphones and tablets for me.</li>
+<li>For Android TV device, I had a copy the <code>.apk</code> file to a USB drive, plug that into the TV device, open a file explorer app, find the installer file and install it.</li>
+</ul></li>
 </ul>
 </div>
 
