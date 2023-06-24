@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Ubuntu: Launchy</title>
+  <title>Code Yarns – vmmem process consuming CPU</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,14 +41,21 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Ubuntu: Launchy</h1>
-<p class="date">📅 2010-Mar-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">vmmem process consuming CPU</h1>
+<p class="date">📅 2023-Jun-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I cannot use <strong>Windows</strong> without a <strong>launcher</strong> application, I am so used to it. On Windows XP, I use <strong><a href="http://www.launchy.net/">Launchy</a></strong> and on Windows 7, I use the new <strong>Start</strong> menu <strong>Search</strong> box.</p>
-<p>On <strong>Ubuntu</strong>, I am now using Launchy to do the same. Launchy does not seem to be included in any Ubuntu repository. So, it needs to be installed manually.</p>
-<p>I tried the stable <strong>2.1.2</strong> version of Launchy available <strong><a href="http://sourceforge.net/projects/launchy/files/">here</a></strong>. But, it was a bit buggy and could not launch commands which had parameters (for example: <code>firefox %u</code>). To get around this, I use the <strong>2.5 Beta</strong> version of Launchy from <a href="http://www.launchy.net/download.php">here</a>. My preferred shortcut to launch Launchy is <strong>Ctrl+Space</strong>.</p>
-<p>To install Launchy, download the <code>.deb</code> file from the above sources and install using the <strong><a href="http://en.wikipedia.org/wiki/Gdebi">GDebi Package Installer</a></strong> (usually invoked by double-clicking or right-clicking the file).</p>
-<p>Tried with: Launchy 2.1.2 and 2.5 Beta</p>
+<h2 id="problem">Problem</h2>
+<p>When I woke up my Windows laptop from sleep to work, I noticed that everything seemed to be sluggish and the laptop fans wer running at full blast. This is usually a sign of some runaway process consuming all of the CPU. I opened <em>Task Manager</em> to check this and found a <code>vmmem</code> process consuming almost all of the CPU. I found that this process was unkillable from Task Manager, even with administrator privileges.</p>
+<h2 id="solution">Solution</h2>
+<p>It turns out that <em>vmmem</em> is a process used by Windows VM (virtual machine) subsystem, most typically used by WSL. I had been running a Ubuntu WSL in a Terminal before closing that window. I guess WSL had not been cleanly shutdown and its vmmem was a runaway process now.</p>
+<p>We know the root cause, how do we kill an unkillable process like vmmem? It turns out that shutting down WSL cleanly will clean up the VMs too.</p>
+<p>I opened a command prompt and used this command to shutdown WSL:</p>
+<pre><code>C:\&gt; wsl --shutdown</code></pre>
+<p>This command ran for about a minute and vmmem disappeared after that and the laptop fans became quiet.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://thegeekpage.com/vmmem-high-memory-and-cpu-usage/" class="uri">https://thegeekpage.com/vmmem-high-memory-and-cpu-usage/</a></li>
+</ul>
 </div>
 
 <br />

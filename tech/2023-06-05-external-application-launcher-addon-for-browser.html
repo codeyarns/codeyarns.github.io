@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – External Application Button addon for browser</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">External Application Button addon for browser</h1>
+<p class="date">📅 2023-Jun-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#chrome'>chrome</a>, <a href='index.html#firefox'>firefox</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>I wanted to have a way to launch external Windows application for certain URLs from Firefox and Chrome. Surprisingly, there is absolutely no addon that can do this job directly, probably due to security restrictions from the browser. Almost none of the Firefox addons worked, and the few that seemed to partially work need some external hookup for the browser.</p>
+<p>The only addon that worked for me was <strong>External Application Button</strong> and it is available for both Firefox and Chrome!</p>
+<h2 id="configuration">Configuration</h2>
+<ul>
+<li>Install for <a href="https://addons.mozilla.org/en-US/firefox/addon/external-application/">Firefox here</a> or <a href="https://chrome.google.com/webstore/detail/external-application-laun/bifmfjgpgndemajpeeoiopbeilbaifdo">Chrome here</a>.</li>
+<li>Once installed, you will need to add configuration for each external program you want to launch for the currently open URL or right-click and launch on a link.</li>
+<li>Some of the options that need to configured for adding an external application:
+<ul>
+<li>Display Name: Application name that appears as button or in right-click menu.</li>
+<li>Executable Name: Full path to .exe file of the application.</li>
+<li>Arguments: What is passed to the application. For example, use <code>[HREF]</code> if URL needs to be passed to the application.</li>
+<li>Placement: At least one of these needs to be chosen. Enable <em>Toolbar button</em> to get a button for this app in toolbar. Enable <em>Link Context</em> to get this app in right-click menu on a link.</li>
+</ul></li>
+<li>Click <em>Add Application</em> to add this app. It should appear in toolbar/right-click menu.</li>
+<li>The first time you launch an external app, the addon will guide you to download a <code>.zip</code> file, extract it and run the <code>.bat</code> there to add some registry entries. It also has a test button to check if the step worked.</li>
+<li>Once all this setup is done, external app launches can be done as you configure from the browser.</li>
+</ul>
+<h2 id="possible-uses">Possible uses</h2>
+<p>Here are some ways I use this addon:</p>
+<ul>
+<li>Open certain URLs in a different browser (like Firefox or Chrome).</li>
+<li>Watch Youtube URLs in <a href="2022-11-21-freetube.html">FreeTube</a>.</li>
+<li>Lookup selected text in WordWeb dictionary.</li>
+</ul>
+<h2 id="addons-that-did-not-work">Addons that did not work</h2>
+<p>There are some extensions that claim to solve this problem, but these did not work for me:</p>
+<ul>
+<li><p><a href="https://addons.mozilla.org/en-US/firefox/addon/external-app-launcher/">External App Launcher</a>: Claims to be able to forward URLs matching a pattern to external apps. But even its builtin example of forwarding Youtube URLs to an external app did not work for me. Source code can be found on Github <a href="https://github.com/DavidVentura/Firefox_External_Applications">here</a>.</p></li>
+<li><p><a href="https://addons.mozilla.org/en-US/firefox/addon/open-with/">Open With</a>: This one looked promising. However the Python script it wanted me to download and run did not enable the hookup between browser and external apps.</p></li>
+</ul>
+<p><strong>Tried with:</strong> Firefox 113.0.2</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://hachyderm.io/@codeyarns">🐘 @codeyarns@hachyderm.io</a>
+•
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
+</div>
+</div>
+
+</body>
+</html>
