@@ -48,9 +48,13 @@
 <ul>
 <li><p><strong>Source:</strong> In addition to Youtube, this app also supports other similar sources such as SoundCloud, BandCamp and a few others no one uses. Press the ☰ and choose the source you want from the dropdown under the NewPipe name.</p></li>
 <li><p><strong>🔥 Trending:</strong> This shows a random list of trending videos from Youtube. Not sure how this list is generated and I have never used this.</p></li>
-<li><p><strong>📺 Subscriptions:</strong> This shows your **channel groups* and the individual channels you are subscribed to. All the channels you manually (or imported) subscribed to are collected under the <em>All</em> channel group here. I find it useful to create other channel groups (like comedy, national news, local news etc.) and add the already-subscribed channels to a channel group. Clicking on the channel group shows the latest videos from that channel group.</p></li>
+<li><p><strong>📺 Subscriptions:</strong> This lists all the individual channels you are subscribed to and all the **channel groups* you have created from those channels. All the channels you manually (or imported) subscribed to are collected under the <em>All</em> channel group here. I find it useful to create other channel groups (like comedy, national news, local news etc.) and add the already-subscribed channels to a channel group. Clicking on a channel group shows the last videos from that channel group. Pull down to refresh the videos from that channel group.</p></li>
 <li><p><strong>▶ What’s New:</strong> This shows a combined list of all new videos from all the channels you are subscribed to. This is essentially what the <em>All</em> channel group in Subscriptions shows too.</p></li>
-<li><p><strong>🔖 Bookmarked Playlists:</strong> This is empty until you start <em>adding</em> individual videos to playlists. The first time you to try to add a video it will ask you to create a playlist with a new name. I add videos to a <em>To Watch</em> list and catch up on those videos under this section.</p></li>
+<li><p><strong>🔖 Bookmarked Playlists:</strong> This is empty until you start <em>adding</em> individual videos to playlists that you create. The first time you to try to add a video it will ask you to create a playlist with a new name.</p>
+<ul>
+<li>I like to add videos to a <em>To Watch</em> list and catch up on those videos under this section.</li>
+<li>I also like to have a playlist of all the live TV stream videos I like to watch.</li>
+</ul></li>
 <li><p><strong>Video playback options:</strong> When a video is playing there are options at the top that allow you to change the playback speed and switch to different chapter (if chapters are present in the video). At the bottom of the app window, you can switch between comments, similar videos and video info (from left to right).</p></li>
 <li><p><strong>Import Youtube channels/subscriptions</strong>: Due to the privacy-focused design of the app, there is no direct importing of your Google/Youtube account in this application. Instead follow these steps:</p>
 <ul>
@@ -58,9 +62,19 @@
 <li>Go to Subscriptions in the NewPipe app, choose ⋮ at the top-right corner and choose Import from -&gt; Youtube. Import the CSV file you had obtained from Google Takeout.</li>
 <li>Once imported, you will find all the recent videos from your channels listed under Subscriptions under the <em>All</em> channel group.</li>
 </ul></li>
-<li><p><strong>Sync to other NewPipe instances</strong>: Since I use NewPipe on my phone and tablet, it would have been convenient to sync my subscriptions and channel groups between the devices. Sadly there does not seem to be a way to do this.</p></li>
+<li><p><strong>Import/Export from NewPipe</strong>:</p>
+<ul>
+<li><em>Subscriptions:</em> Use the import/export option in the top-right corner in the subscriptions tab. This imports/exports just the list of channels (not the channel groups) into a JSON file.</li>
+<li><em>Settings:</em> Use the import/export option in the settings section. This imports/exports channels, channel groups, playlists and all other settings into a <code>.zip</code> file. This file has a <code>.db</code> file (SQLite database) and a <code>.settings</code> file (Java serialized data).</li>
+<li><em>Sync:</em> Either of the above settings can be imported/exported between NewPipe instances on different devices. However, there is no way to sync. Importing will <strong>overwrite</strong> existing settings.</li>
+</ul></li>
 <li><p><strong>Sync to FreeTube</strong>: I use FreeTube on Windows for the same reason I use NewPipe on Android. It would have been convenient to sync my subscriptions and channel groups between Android and Windows. Sadly there does not seem to be a way to do this.</p></li>
-<li><p><strong>Android TV</strong>: Though NewPipe supports Android TV officially, it is a difficult experience to use it. I was able to install the app easily using F-Droid. However, the UX and controls have not been adapted for non-touch use and are a pain to use with remote. Video cannot be made to play in full screen by default and the keyboard isn’t enabled wherever text needs to be entered forcing me to use the onscreen keyboard for text entry. (Note that to get from the seeking to full-screen button, you need to press <em>down</em> on the remote, not <em>right</em>.)</p></li>
+<li><p><strong>Android TV</strong>: Though NewPipe supports Android TV officially, it is a difficult experience to use it. I was able to install the app easily using F-Droid. However, the UX and controls have not been adapted for non-touch use and are a pain to use with remote.</p>
+<ul>
+<li>Video cannot be made to play in full screen by default and the keyboard isn’t enabled wherever text needs to be entered forcing me to use the onscreen keyboard for text entry.</li>
+<li>To get from the seeking to full-screen button, you need to press <em>down</em> on the remote, not <em>right</em>.</li>
+<li>Importing subscriptions or settings from file does not work. The file open dialog doesn’t show any of the files from the TV filesystem or that from an inserted USB flashdrive.</li>
+</ul></li>
 </ul>
 <p><strong>Tried with:</strong> NewPipe 0.24.1</p>
 </div>
