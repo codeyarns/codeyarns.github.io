@@ -65,6 +65,26 @@
 <li>Back: 2 triggers on the left, 2 triggers on the right</li>
 </ul></li>
 </ul>
+<h2 id="storage">Storage</h2>
+<ul>
+<li>The first micro-SD card is 64GB split into 4 partitions.</li>
+<li>Partition 1: FAT32 of size 10MB called <code>misc</code>.
+<ul>
+<li>This partition seems to have files used for booting the Linux OS.</li>
+</ul></li>
+<li>Partition 2: EXT4 of size 193MB called <code>system</code>.
+<ul>
+<li>This partition seems be the root filesystem of the super-minimal Linux distribution used by the system.</li>
+</ul></li>
+<li>Partition 3: EXT4 of size 469MB called <code>NONAME</code>.
+<ul>
+<li>This partition seems to hold the saved settings.</li>
+</ul></li>
+<li>Partition 4: FAT32/VFAT of size 56GB called <code>ROMS</code>.
+<ul>
+<li>This partition has directories with names of each retro console. Place the ROM file into its retro console directory and the system will pick that game up and display it.</li>
+</ul></li>
+</ul>
 </div>
 
 <br />
