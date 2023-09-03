@@ -74,14 +74,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Microsoft Clarity Analytics -->
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "3wadqgw95m");
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -92,11 +84,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- Google Adsense -->
-  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  </script>
-  <!-- Twitter button -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -121,18 +108,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">How to use argparse</h1>
 <p class="date">📅 2013-Feb-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#argparse'>argparse</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>argparse</strong> module makes it really easy to read, parse and use the input arguments passed to a <strong>Python</strong> program.</p>
+<p>The <a href="https://docs.python.org/3/library/argparse.html"><strong>argparse</strong></a> module makes it really easy to read, parse and use the input arguments passed to a <strong>Python</strong> program.</p>
+<h2 id="usage">Usage</h2>
 <p>Usage is in 3 simple steps:</p>
 <ul>
 <li><p>Create an object of <code>ArgumentParser</code></p></li>
 <li><p>Add the arguments you want to parse one by one using <code>add_argument</code></p></li>
 <li><p>Parse the inputs and extract the arguments using <code>parse_args</code>. The arguments are returned in an object with the values available using the object members.</p></li>
 </ul>
+<h2 id="example">Example</h2>
 <p>Here is a simple program that illustrates usage of argparse with different types of input arguments:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> argparse</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="im">import</span> sys</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">def</span> foo(args):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">def</span> print_args(args):</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="bu">print</span> args</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="bu">print</span> <span class="st">&quot;Radius:   &quot;</span>, args.rad</span>
@@ -144,29 +133,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="kw">def</span> main():</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="co"># Create parser</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    arg_parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">&quot;This program achieves nothing!&quot;</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    <span class="co"># Add arguments you want to handle</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    modes <span class="op">=</span> [<span class="st">&quot;release&quot;</span>, <span class="st">&quot;debug&quot;</span>]</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--radius&quot;</span>,    <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>,          default<span class="op">=</span><span class="fl">1.2</span>,   <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Radius of the component&quot;</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;-d&quot;</span>,          <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>,            default<span class="op">=</span><span class="dv">9</span>,     <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Distance to the component&quot;</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--name&quot;</span>,      <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>,                           <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Name of component&quot;</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--mode&quot;</span>,      <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>,            choices<span class="op">=</span>modes, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Mode to use. Should be either release or debug&quot;</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--recompute&quot;</span>, action<span class="op">=</span><span class="st">&quot;store_true&quot;</span>, default<span class="op">=</span><span class="va">False</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Indicate if recomputation is needed&quot;</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--in_files&quot;</span>,  <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>,            nargs<span class="op">=</span><span class="st">&quot;+&quot;</span>,     <span class="bu">help</span><span class="op">=</span><span class="st">&quot;One or more input file paths&quot;</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    <span class="cf">if</span> <span class="bu">len</span>(sys.argv) <span class="op">==</span> <span class="dv">1</span>:</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>        arg_parser.print_help()</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>        sys.exit(<span class="dv">1</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>    <span class="co"># Parse sys.argv using parser</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    args <span class="op">=</span> arg_parser.parse_args()</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>    <span class="co"># Pass arguments around</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>    foo(args)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a>    main()</span></code></pre></div>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    arg_parser <span class="op">=</span> argparse.ArgumentParser(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>        description<span class="op">=</span><span class="st">&quot;This program achieves nothing!&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>        formatter_class<span class="op">=</span>argparse.ArgumentDefaultsHelpFormatter)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    <span class="co"># Add arguments you want to handle</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>    modes <span class="op">=</span> [<span class="st">&quot;release&quot;</span>, <span class="st">&quot;debug&quot;</span>]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--radius&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">1.2</span>, required<span class="op">=</span><span class="va">True</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Radius of the component&quot;</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;-d&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">9</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Distance to the component&quot;</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--name&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Name of component&quot;</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--mode&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, choices<span class="op">=</span>modes, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Mode to use. Should be either release or debug&quot;</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--recompute&quot;</span>, action<span class="op">=</span><span class="st">&quot;store_true&quot;</span>, default<span class="op">=</span><span class="va">False</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Indicate if recomputation is needed&quot;</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    arg_parser.add_argument(<span class="st">&quot;--in_files&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, nargs<span class="op">=</span><span class="st">&quot;+&quot;</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;One or more input file paths&quot;</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>    <span class="cf">if</span> <span class="bu">len</span>(sys.argv) <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>        arg_parser.print_help()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>        sys.exit(<span class="dv">1</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    <span class="co"># Parse sys.argv using parser</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>    args <span class="op">=</span> arg_parser.parse_args()</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>    <span class="co"># Pass arguments around</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>    foo(args)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>    main()</span></code></pre></div>
 <h2 id="argumentparser">ArgumentParser</h2>
 <p>This call has many useful options, the only one I actually use is:</p>
 <ul>
@@ -187,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>dest</strong> parameter: Specify the member name to be used to store the value passed to this option. By default it has the same name as the option name. If the option name had dashes, they are converted to underscores to create a valid member name.</p></li>
 <li><p>When the program is invoked with <code>-h</code> or <code>--help</code>, it will list the input options available and the documentation you have provided for each option.</p></li>
 </ul>
-<p><strong>Tried with:</strong> Python 3.5 and Ubuntu 16.04</p>
+<p><strong>Tried with:</strong> Python 3.10 and Ubuntu 22.04</p>
 </div>
 
 <br />
@@ -195,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2022 Ashwin Nanjappa
+© 2023 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
