@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – requirements.txt in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">requirements.txt in Python</h1>
+<p class="date">📅 2023-Sep-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>The <a href="https://pip.pypa.io/en/latest/user_guide/#requirements-files"><strong>requirements.txt</strong></a> file makes it convenient to list and maintain the packages that are imported and required by your project. This file is used with pip to indicate the packages and their versions to install.</p>
+<ul>
+<li><strong>File format</strong>:</li>
+</ul>
+<p>The <a href="https://pip.pypa.io/en/latest/reference/requirements-file-format/#requirements-file-format">format</a> of this file is pretty simple, it is a list of package names, one per line. Optionally, versions of the package can be indicated by a suffix of <code>==</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code> and the version.</p>
+<p>All possible variants of package names are shown below:</p>
+<pre><code># Comments are allowed in the file
+
+apple
+bat==9.2.3
+cat &lt; 3.4
+dog&lt;=2.6
+elephant&gt;9.5
+fox&gt;=10.4
+giraffe&gt;2.7,&lt;7.9
+
+# Local and internet package files can also be specified
+/home/joe/foobar.whl
+https://codeyarns.com/horse.whl</code></pre>
+<ul>
+<li><strong>Location</strong>:</li>
+</ul>
+<p>The file is typically placed in the root directory of the project. But since its path is passed to pip, it can be placed anyplace.</p>
+<ul>
+<li><strong>Install packages</strong>:</li>
+</ul>
+<p>This file is fed to pip and it figures out the additional dependent packages, the versions to resolve and installs the resulting solution of packages:</p>
+<pre><code>$ python3 -m pip install -r requirements.txt</code></pre>
+<p><strong>Tried with</strong>: Python 3.10.12 and Ubuntu 22.04</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://hachyderm.io/@codeyarns">🐘 @codeyarns@hachyderm.io</a>
+•
+<a href="mailto:codeyarns@gmail.com" style="text-decoration: none; font-size: x-large;">📧</a>
+</div>
+</div>
+
+</body>
+</html>
