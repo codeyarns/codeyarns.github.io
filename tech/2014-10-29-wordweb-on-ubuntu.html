@@ -10,14 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Microsoft Clarity Analytics -->
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "3wadqgw95m");
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -28,11 +20,6 @@
 
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- Google Adsense -->
-  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  </script>
-  <!-- Twitter button -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -55,18 +42,23 @@
 <div class="contentbox">
 <header>
 <h1 class="title">WordWeb on Ubuntu</h1>
-<p class="date">📅 2014-Oct-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#wordweb'>wordweb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2014-Oct-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dictionary'>dictionary</a>, <a href='index.html#linux'>linux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I use the WordWeb free dictionary application, both on Windows and Android. It does not ship a program for Linux. Thankfully, WordWeb works fine under Wine.</p>
+<p>I have used the <a href="https://wordweb.info/free/"><strong>WordWeb</strong></a> free dictionary as my primary dictionary for many years, on both Windows and Android. When I use Linux, I immediately miss having a Linux version of WordWeb.</p>
+<p>Thankfully, it seems to run fine under Wine as described below:</p>
 <ul>
-<li>Install Wine, if you do not have it:</li>
+<li>Install Wine, if you do not have it already:</li>
 </ul>
 <pre><code>$ sudo apt install wine</code></pre>
 <ul>
 <li><p>Download the Windows installer of WordWeb from <a href="http://wordweb.info/free/">here</a>.</p></li>
-<li><p>Right-click on the downloaded EXE file and choose to install using Wine. The installation should work fine and you end up having the Wordweb icon in the bar at the top. Click it to use WordWeb.</p></li>
+<li><p>Run the WordWeb installer using Wine:</p></li>
 </ul>
-<p><strong>Tried with:</strong> WordWeb 7.1, Wine 1.6.2 and Ubuntu 14.04</p>
+<pre><code>$ wine wordweb10.exe</code></pre>
+<ul>
+<li>Wine fully installs the app so that I can launch it using its name <em>WordWeb</em> in the desktop and lookup words. It can even be minimized to the system tray of GNOME/Ubuntu desktop!</li>
+</ul>
+<p><strong>Tried with:</strong> WordWeb 10.33, Wine 6.0.3 and Ubuntu 22.04</p>
 </div>
 
 <br />
@@ -74,7 +66,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2022 Ashwin Nanjappa
+© 2023 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
