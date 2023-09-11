@@ -10,14 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Microsoft Clarity Analytics -->
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "3wadqgw95m");
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -28,11 +20,6 @@
 
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- Google Adsense -->
-  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  </script>
-  <!-- Twitter button -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -55,7 +42,7 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to mount Moto G on Ubuntu using MTP</h1>
-<p class="date">📅 2013-Dec-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fuse'>fuse</a>, <a href='index.html#moto-g'>moto g</a>, <a href='index.html#mount'>mount</a>, <a href='index.html#mtp'>mtp</a>, <a href='index.html#ptp'>ptp</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Dec-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#mount'>mount</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Moto G</strong> is an Android smartphone that does not have a microSD slot. So, the storage of the smartphone cannot be extended. If you want to transfer files between your Ubuntu computer and the Moto G, there are 3 possible ways to do that: FTP over wireless, <strong>PTP</strong> over USB and <strong>MTP</strong> over USB.</p>
 <p>If your Ubuntu computer has wireless, I highly recommend using <a href="2012/12/29/ftpserver-app-for-android/">FTP over wireless</a>. It is convenient (no wires!), offers good transfer speed and the entire <code>/sdcard</code> contents are available for read and write.</p>
@@ -88,44 +75,23 @@ Android device detected, assigning default bug flags</code></pre>
 <ul>
 <li>Restart the USB service and create a directory to mount the Moto G:</li>
 </ul>
-<p>[code lang=bash] $ sudo service udev restart $ sudo mkdir /media/motog $ sudo chmod a+rwx /media/motog $ sudo adduser your-user-name fuse</p>
-<pre><code>
-
-
-  * Open the `/etc/fuse.conf` file as `sudo` and uncomment the line for `user_allow_other`
-
-
-
-  * Restart your computer. Connect back the Moto G to the computer.
-
-
-
-  * You can now mount the `/sdcard` of your Moto G using this command:
-
-
-
-</code></pre>
-<p>$ mtpfs -o allow_other /media/motog/</p>
-<pre><code>
-
-
-Note that the mounting operation is slow and might take about a minute.
-
-
-
-
-
-  * You can find all the directories and files in `/sdcard` of Moto G in `/media/motog`. You can read and write to these directories.
-
-
-
-  * To unmount use this command:
-
-
-
-</code></pre>
-<p>$ fusermount -u /media/motog/ ```</p>
-<p>That is it! You may want to create aliases for the mount and unmount command to make it easy to use 😊</p>
+<pre><code>$ sudo service udev restart
+$ sudo mkdir /media/motog
+$ sudo chmod a+rwx /media/motog
+$ sudo adduser your-user-name fuse</code></pre>
+<ul>
+<li><p>Open the <code>/etc/fuse.conf</code> file as <code>sudo</code> and uncomment the line for <code>user_allow_other</code></p></li>
+<li><p>Restart your computer. Connect back the Moto G to the computer.</p></li>
+<li><p>You can now mount the <code>/sdcard</code> of your Moto G using this command:</p></li>
+</ul>
+<pre><code>$ mtpfs -o allow_other /media/motog/</code></pre>
+<p>Note that the mounting operation is slow and might take about a minute.</p>
+<ul>
+<li><p>You can find all the directories and files in <code>/sdcard</code> of Moto G in <code>/media/motog</code>. You can read and write to these directories.</p></li>
+<li><p>To unmount use this command:</p></li>
+</ul>
+<pre><code>$ fusermount -u /media/motog/</code></pre>
+<p>That is it! You may want to create aliases for the mount and unmount command to make it easy to use. 😊</p>
 <p><strong>Note:</strong> You will not get the USB mass storage option in Moto G since that can be provided for external storage, not for partitions from which the Linux kernel is currently running. And in any case, you will need root access on the phone to touch those directories.</p>
 <p><strong>Tried with:</strong> Moto G and Ubuntu 12.04</p>
 </div>
@@ -135,7 +101,7 @@ Note that the mounting operation is slow and might take about a minute.
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2022 Ashwin Nanjappa
+© 2023 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
