@@ -10,14 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Microsoft Clarity Analytics -->
-  <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "3wadqgw95m");
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
   </script>
@@ -28,11 +20,6 @@
 
     gtag('config', 'UA-143311697-1');
   </script>
-  <!-- Google Adsense -->
-  <script data-ad-client="ca-pub-1956250892185343" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-  </script>
-  <!-- Twitter button -->
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -55,12 +42,11 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to use iwlist to find WiFi channels used in your neighborhood</h1>
-<p class="date">📅 2014-Jan-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#iwlist'>iwlist</a>, <a href='index.html#wireless-channel'>wireless channel</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2014-Jan-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#wifi'>wifi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>The maximum wireless transfer speed that can be achieved between your computer and your wireless router is dependent on which <strong>wireless channels</strong> are being used in your neighborhood. If your wireless router is using a channel that is used by lots of your neighbors then you will experience less speed. So, it is a good idea to check what wireless channels are being used in your neighborhood and pick one that is not used or less used.</p>
 <p>You can see the channels being used in your neighborhood using this command:</p>
-<pre><code>&lt;code&gt;$ sudo iwlist wlan0 scan | grep Frequency | sort | uniq -c | sort -n
-&lt;/code&gt;</code></pre>
+<pre><code>$ sudo iwlist wlan0 scan | grep Frequency | sort | uniq -c | sort -n</code></pre>
 <p><code>iwlist</code> in <code>scan</code> mode finds information about all the wireless networks in the neighborhood using the <code>wlan0</code> network interface of your computer. The lines with <code>Frequency</code> have the frequency in GHz and the channel number. <code>sort</code> followed by <code>uniq -c</code> counts the number of networks using the same channel. And finally <code>sort -n</code> rearranges the results in ascending order of channel used.</p>
 <p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
 </div>
@@ -70,7 +56,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2022 Ashwin Nanjappa
+© 2023 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
