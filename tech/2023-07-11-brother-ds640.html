@@ -49,7 +49,12 @@
 <li><p><strong>Scan using Brother iPrint&amp;Scan</strong>: The <em>iPrint&amp;Scan</em> is available for installation during the driver install. Once the app is open, choose <em>Select your machine</em> at the bottom-right and select the scanner. The rest of the scanning process is similar as any normal scanning using this software.</p></li>
 <li><p><strong>Scan options</strong>: For a small sheet scanned at 300x300 DPI, I found different levels of PDF/A filesizes when I tried the 4 different scanning options in iPrint&amp;Scan: <code>Black &amp; White</code> (51 KB), <code>Gray (Error Diffusion)</code> (130 KB), <code>True Gray</code> (235 KB) and <code>24bit Color</code> (265 KB).</p></li>
 <li><p><strong>Calibration</strong>: Insert the Calibration sheet that came with the scanner face up into the scanner. Open the <em>Brother Utilities</em> application and choose the scanner from the dropdown list at the top-left corner. Choose <em>Tools</em> -&gt; Remote Setup -&gt; Machine Info. Choose <em>Start</em> for the Calibration. The scanner will ingest the calibration sheet and calibrate itself.</p></li>
+<li><p><strong>Linux</strong>: This scanner would not be recognized in Ubuntu 22.04 until I downloaded its Linux installer from its <a href="https://www.brother-usa.com/support/DS640">support page</a>. I installed and checked that using these commands:</p></li>
 </ul>
+<pre><code>$ sudo dpkg -i --force-all brscan5-1.3.0-0.amd64.deb
+
+$ dpkg -l | grep Brother</code></pre>
+<p>However, I had to restart the computer for the scanner to be detected. After that it appeared in apps like Simple Scan and I could scan.</p>
 </div>
 
 <br />
