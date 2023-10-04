@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Virtual Environments in Python</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Virtual Environments in Python</h1>
+<p class="date">📅 2023-Oct-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>Python programs running on real systems have 2 problems with packages. First, there is always a mix of packages to manage and it is a mess: the OS Python packages (installed using <code>apt</code> for example) and the local Python packages (installed using <code>pip</code>). A second problem is the inability to keep separate versions of packages for each program. The solution that is built into Python for these problems is <a href="https://docs.python.org/3/library/venv.html"><strong>virtual environments</strong></a>.</p>
+<ul>
+<li><strong>Install</strong>: To get started install the venv package:</li>
+</ul>
+<pre><code>$ sudo apt install python3-venv</code></pre>
+<ul>
+<li><strong>Create</strong>: Go the root of any Python project for which you want an unique virtual environment and create it with a name you prefer:</li>
+</ul>
+<pre><code>$ python3 -m venv my_venv</code></pre>
+<p>This creates a <code>my_venv</code> subdirectory in the current directory with all the files required to use the virtual environment. This is also the directory where packages will be installed for this project.</p>
+<p>It is a good idea to ignore all the files inside the virtual environment directory in Git by adding this line to <code>.gitignore</code>: <code>my_venv/</code>.</p>
+<ul>
+<li><strong>Activate</strong>: Enable the virtual environment by activating it. This is done by sourcing a shell script that is present in the <code>my_venv</code> directory.</li>
+</ul>
+<pre><code>$ source my_venv/source/activate
+
+$ source my_venv/source/activate.fish</code></pre>
+<p>You are now inside a fresh virtual environment where there is just Python and its standard packages and nothing else. There is none of the OS/apt packages or packages you had installed using pip outside.</p>
+<ul>
+<li><strong>Install Python packages</strong>: Inside the activated virtual environment, install just the Python packages you need for this particular project using any method that suits you:</li>
+</ul>
+<pre><code>$ python3 -m pip some_package
+
+$ python3 -m pip install -r requirements.txt</code></pre>
+<ul>
+<li><strong>Run</strong>: Run the Python program as normal inside the activated virtual environment. It will use only the Python packages installed inside the virtual environment.</li>
+</ul>
+<pre><code>$ python3 my_program.py</code></pre>
+<ul>
+<li><strong>Deactivate</strong>: Disable the virtual environment at the shell once you are done and want to move to a different directory to do something else:</li>
+</ul>
+<pre><code>$ deactivate</code></pre>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://realpython.com/python-virtual-environments-a-primer/" class="uri">https://realpython.com/python-virtual-environments-a-primer/</a></li>
+</ul>
+<p><strong>Tried with:</strong> Python 3.10.12 and Ubuntu 22.04</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
