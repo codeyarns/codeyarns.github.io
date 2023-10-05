@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – VirtualFish</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">VirtualFish</h1>
+<p class="date">📅 2023-Oct-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fish'>fish</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a href="https://virtualfish.readthedocs.io/"><strong>VirtualFish</strong></a> provides a <code>vf</code> command that makes working with Python <a href="2023-10-04-virtual-environments-in-python.html">virtual environments</a> a lot easier with the Fish shell.</p>
+<ul>
+<li><strong>Install</strong>: Install the Python package for the user:</li>
+</ul>
+<pre><code>$ python3 -m pip install --user virtualfish</code></pre>
+<p>After that, install into the Fish shell:</p>
+<pre><code>$ vf install
+$ exec fish</code></pre>
+<ul>
+<li><strong>Uninstall</strong>: First we uninstall from the Fish shell and after that we remove the Python package:</li>
+</ul>
+<pre><code>$ vf uninstall
+$ exec fish
+$ python3 -m pip install virtualfish</code></pre>
+<ul>
+<li><strong>Create</strong>:</li>
+</ul>
+<p>Create a new virtual environment that is added under <code>~/.virtualenvs/</code> by default:</p>
+<pre><code>$ vf new my_venv</code></pre>
+<p>I could not find an option to create a virtual environment in the current directory. This was important to me since I wanted to maintain a virtual environment in every Python project I had, all the environments with the same name. Since this was not possible, this became the reason why I stopped using VirtualFish.</p>
+<ul>
+<li><strong>List</strong>: List all the virtual environments that are created and managed by VirtualFish (other virtual environments are not listed):</li>
+</ul>
+<pre><code>$ vf ls
+my_venv</code></pre>
+<ul>
+<li><strong>Activate</strong>:</li>
+</ul>
+<pre><code>$ vf activate my_venv</code></pre>
+<ul>
+<li><strong>Deactivate</strong>:</li>
+</ul>
+<pre><code>$ vf deactivate my_venv</code></pre>
+<ul>
+<li><strong>Remove</strong>:</li>
+</ul>
+<p>Delete a virtual environment that was created by VirtualFish:</p>
+<pre><code>$ vf rm my_venv</code></pre>
+<p><strong>Tried with:</strong> VirtualFish 2.5.5, Python 3.10 and Ubuntu 22.04</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
