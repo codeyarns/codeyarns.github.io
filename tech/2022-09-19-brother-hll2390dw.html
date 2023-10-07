@@ -52,6 +52,25 @@
 <li><p><strong>Refurbished</strong>: Brother sells refurbished products on their website for good discounts. These products have a R prefix on their model name, for example RHL-L2390DW.</p></li>
 <li><p><strong>2.5G/5G auto Wifi network</strong>: I faced problems when I switched to using a home wireless router that had <em>auto 2.5G/5G</em> mode. The printer could not be found intermitently by my computer for printing. Eventually, I forced the entire network explicitly to 2.5G to get around this problem.</p></li>
 </ul>
+<h2 id="windows-install">Windows install</h2>
+<p>I downloaded the installation file for Windows from the support section of the Brother website. This was a 482MB file named <code>Y17C_C1_UWL_PP-usa-inst-F2.exe</code>. Executing the file runs a GUI wizard that helps wireless installation of the printer, installation of the Windows driver and the iPrint&amp;Scan program for scanning.</p>
+<h2 id="linux-install">Linux install</h2>
+<p>My printer had already been connected to the home network wirelessly back when I did its installation using Windows. Below are the steps I followed on my Linux computer to be able to print wirelessly to this printer:</p>
+<ul>
+<li><p>Download the driver installation file from the <a href="https://support.brother.com/g/b/downloadtop.aspx?c=us&amp;lang=en&amp;prod=hll2390dw_us">support section</a> of the Brother website. I chose the option <em>Driver Install Tool</em> which said that it would install both the printer and scanner drivers. The 24KB file I downloaded was named <code>linux-brprinter-installer-2.2.3-1.gz</code>.</p></li>
+<li><p>Unzip the file:</p></li>
+</ul>
+<pre><code>$ gunzip linux-brprinter-installer-2.2.3-1.gz</code></pre>
+<p>This resulted in a 143KB Bash script named <code>linux-brprinter-installer-2.2.3-1</code>.</p>
+<ul>
+<li><p>Power up the printer and make sure it is connected to the home network.</p></li>
+<li><p>Run the script with sudo:</p></li>
+</ul>
+<pre><code>$ sudo bash linux-brprinter-installer-2.2.3-1</code></pre>
+<ul>
+<li><p>In the steps that followed, I chose <em>Yes</em> to specify the <strong>DeviceURI</strong>. It probed and listed the various URI and I entered the index of the <em>Auto</em> option listed at the end. After this, it gave me a chance to print a test page, I did that and the print was successful. It installed some <code>.deb</code> files and then asked me for the printer <strong>IP address</strong>. I found this IP address from the web interface of my home router and that finished the install successfully.</p></li>
+<li><p>In the Printers settings of Ubuntu, I found 2 printers listed there: <code>Brother_HL_L2390DW</code> (<em>Brother HL-L2390DW, driverless</em>) and <code>HLL2390DW</code> (<em>Brother HLL2390DW for CUPS</em>). Both of them seem to be capable of printing.</p></li>
+</ul>
 </div>
 
 <br />
