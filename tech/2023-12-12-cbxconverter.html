@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – CbxConverter</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">CbxConverter</h1>
+<p class="date">📅 2023-Dec-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cbz'>cbz</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>Comic book CBZ/CBR files can be quite large when the scans are of a high DPI. <a href="https://tomeko.net/software/CbxConverter/"><strong>CbxConverter</strong></a> is a tool created by <a href="https://tomeko.net/"><strong>Tomasz Ostrowski</strong></a> that can be used to reduce the filesize by resizing or changing the image format of the files inside the CBZ.</p>
+<ul>
+<li><p><strong>Download and install:</strong> Download the latest version from <a href="https://tomeko.net/software/CbxConverter/">here</a> and unzip it into a separate directory. There is a separate Unicode version available, but I did not have any problems using the regular version of the program.</p></li>
+<li><p><strong>Dependencies:</strong> This is a simple Windows GUI tool that uses 7Zip for dealing with the compression and ImageMagick for image manipulation. The dependent library files ship with the tool itself requiring no other installation.</p></li>
+<li><p><strong>Run on Linux:</strong> Though it is a Windows program, it can run under Wine easily. Just cd to its directory and invoke as:</p></li>
+</ul>
+<pre><code>$ wine CbxConverter.exe</code></pre>
+<ul>
+<li><p><strong>Usage:</strong> Add the input files using File -&gt; Add Source Files. Choose all the added files, right-click and choose Resize and pick from 25%, 33%, 50% and 66%. Click the <em>Start conversion</em> at the bottom-left to start conversion. When it is done, the files can be found in the <code>out</code> subdirectory inside the CbxConverter directory.</p></li>
+<li><p><strong>Settings:</strong> Open Configuration -&gt; Settings to change settings.</p>
+<ul>
+<li><strong>Output to JPG:</strong> By default, it outputs the images inside a CBZ to the WebP format. Though WebP has a smaller filesize than JPG/PNG for the same image quality, many comic book readers might not be able to display the file. The output format can be changed to JPG/PNG in General -&gt; Output extension section.</li>
+<li><strong>Directories:</strong> Click the <em>Use source directory as output directory</em> option to output in the same directory as the input file. The output file will have the format <code>foobar.jpg.cbz</code> or <code>foobar.webp.cbz</code>.</li>
+</ul></li>
+</ul>
+<p><strong>Tried with:</strong> CbxConverter 0.14.0.0, Wine 6.0.3 and Ubuntu 22.04</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2023 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
