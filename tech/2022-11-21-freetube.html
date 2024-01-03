@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – FreeTube</title>
+  <title>Code Yarns – FreeTube client for YouTube</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,16 +41,28 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">FreeTube</h1>
+<h1 class="title">FreeTube client for YouTube</h1>
 <p class="date">📅 2022-Nov-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#youtube'>youtube</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><a href="https://freetubeapp.io/"><strong>FreeTube</strong></a> is a privacy-focused Youtube video watching application for Windows and Linux. It is useful to users who want to watch videos, avoid ads, keep their own list of channels/subscriptions without giving that data to Google. Because of this intentional design there will be no direct importing of your Google/Youtube account in this application. This application is similar in intention to the <a href="2022-11-21-newpipe.html"><strong>NewPipe</strong></a> app for Android.</p>
 <ul>
+<li><p><strong>Install on Windows</strong>: Download and install from: <a href="https://freetubeapp.io/#download" class="uri">https://freetubeapp.io/#download</a></p></li>
+<li><p><strong>Install on Linux</strong>: It can be installed from the distribution:</p></li>
+</ul>
+<pre><code>$ sudo apt install freetube</code></pre>
+<p>However, this version can be old and missing new features. It is <strong>recommended</strong> to download and install the latest from: <a href="https://freetubeapp.io/#download" class="uri">https://freetubeapp.io/#download</a></p>
+<ul>
 <li><p><strong>Subscriptions</strong>: Shows a reverse chronological feed of all the videos from all the channels you are subscribed to.</p></li>
 <li><p><strong>Channels</strong>: Shows all the channels you are subscribed to. Click on the channel to view its videos. Click on <em>Unsubscribe</em> to drop that channel.</p></li>
-<li><p><strong>Import Youtube channels/subscriptions</strong>: Go to <a href="https://takeout.google.com/"><strong>Google Takeout</strong></a> and export your Youtube subscriptions. Google will make it available to you as a CSV file. Import this CSV file in Freetube under Settings -&gt; Data Settings -&gt; Import Subscriptions. Once imported, you will find all the recent videos from your channels listed under Subscriptions.</p></li>
+<li><p><strong>Profiles</strong>: A <em>profile</em> in FreeTube is similar to a <em>channel group</em> in NewPipe. There is a default profile and more profile can be created, each with an unique name, color and collection of channels. To change profiles and configure them click the top-right button in the window.</p></li>
+<li><p><strong>Keyboard shortcuts</strong>: The list of supported shortcuts can be found here: <a href="https://docs.freetubeapp.io/usage/keyboard-shortcuts/" class="uri">https://docs.freetubeapp.io/usage/keyboard-shortcuts/</a></p></li>
+<li><p><strong>Export</strong>: Go to Settings -&gt; Data Settings to find options to export subscriptions (to Freetube, YouTube or NewPipe), history and playlists.</p></li>
+<li><p><strong>Import</strong>: Go to Settings -&gt; Data Settings to find options to import subscriptions, history and playlists.</p>
+<ul>
+<li><strong>Import Youtube channels/subscriptions</strong>: Go to <a href="https://takeout.google.com/"><strong>Google Takeout</strong></a> and export your Youtube subscriptions. Google will make it available to you as a CSV file. Import this CSV file in Freetube as above. Once imported, you will find all the recent videos from your channels listed under Subscriptions.</li>
+</ul></li>
 <li><p><strong>Set default playback speed</strong>: Go to Settings -&gt; Player Settings and set the <em>Default Playback Rate</em>. I like to keep mine at 1.5x. The speed can also be set per-video during playback from the video’s controls.</p></li>
-<li><p><strong>SponsorBlock</strong>: This is supported, but disabled by default. Enable and configure it under Settings -&gt; SponsorBlock Settings.</p></li>
+<li><p><strong>SponsorBlock</strong>: This is supported, but disabled by default. Enable and configure it under Settings -&gt; SponsorBlock Settings. For each kind of sponsor content, you get to set a unique color (to display in the seek bar) and 3 choices: <em>Auto Skip</em> (FreeTube automatically skips over the content for you), <em>Show in seek bar</em> (color is displayed in seek bar, you can use your mouse to go past this content) and <em>Do Nothing</em> (no color displayed in seek bar).</p></li>
 </ul>
 <p><strong>Tried with:</strong> FreeTube 0.18.0 and Windows 10 x64</p>
 </div>
@@ -60,7 +72,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2023 Ashwin Nanjappa
+© 2024 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
