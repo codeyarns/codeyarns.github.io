@@ -42,11 +42,16 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to get autocomplete for command options in Fish</h1>
-<p class="date">📅 2016-May-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#autocomplete'>autocomplete</a>, <a href='index.html#fish'>fish</a>, <a href='index.html#git'>git</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2016-May-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#autocomplete'>autocomplete</a>, <a href='index.html#fish'>fish</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Fish</strong> has support to autocomplete the options of any command at the shell. (This is sometimes called tab completions.) For example, when I type <code>ls -</code> and <code>TAB</code>, Fish shows me the options available for the <code>ls</code> command. This works even when you’ve typed out part of an option. Fish generates this information by parsing all the man pages installed on your system.</p>
-<p>If you find that Fish autocomplete is not working for the options of a command, that can be fixed easily by asking Fish to reindex from man pages. The Fish function that you need to run for this is: <code>fish_update_completions</code>.</p>
-<p>I recently installed Git. Since Git is infamous for its myriad command-line options I missed having autocomplete at the shell for Git command options. After running <code>fish_update_completions</code>, I could get autocomplete for options of all Git commands! The icing on top was to discover that Fish could autocomplete options even for my Git aliases!</p>
+<p><strong>Fish</strong> has support to autocomplete the options of any command at the shell. This is sometimes called <strong>tab completion</strong>.</p>
+<p>For example, when I type <code>ls -</code> and <code>TAB</code>, Fish shows me the options available for the <code>ls</code> command. This works even when you’ve typed out part of an option. Fish generates this information by parsing all the man pages installed on your system. Fish also ships with completions for most of the common commandline tools used in Linux.</p>
+<ul>
+<li><p>The completions that ship with Fish can be seen as files in the <code>/usr/share/fish/completions</code> directory. On my system, I found more than 700 such files.</p></li>
+<li><p>The completions that are generated from man pages after Fish is installed or used can be seen as files in the <code>$HOME/.local/share/fish/generated_completions</code> directory. In my home directory, I found about 1500 such files.</p></li>
+<li><p>If you find that Fish autocomplete is not working for the options of a command, that can be fixed easily by asking Fish to reindex from man pages. The Fish function that you need to run for this is: <code>fish_update_completions</code>.</p></li>
+</ul>
+<p>I recently installed Git. Since Git is infamous for its myriad command-line options I missed having autocomplete at the shell for Git command options. After running <code>fish_update_completions</code>, I could get autocomplete for options of all Git commands. The icing on top was to discover that Fish could autocomplete options even for my Git aliases.</p>
 <p><strong>Tried with:</strong> Fish 2.2.0</p>
 </div>
 
@@ -55,7 +60,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2023 Ashwin Nanjappa
+© 2024 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
