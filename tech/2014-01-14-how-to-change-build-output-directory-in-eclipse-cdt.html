@@ -42,14 +42,19 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to change build output directory in Eclipse CDT</h1>
-<p class="date">📅 2014-Jan-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#build-output-directory'>build output directory</a>, <a href='index.html#eclipse-cdt'>eclipse cdt</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2014-Jan-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#eclipse'>eclipse</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
 <p>When you build a C/C++ project in <strong>Eclipse CDT</strong>, the executable and other build files are written to <strong>Debug</strong> or <strong>Release</strong> directories, depending on the Build Configuration. For example, for a project in <code>/home/joe/workspace/foobar</code>, the build output directory might be <code>/home/joe/workspace/foobar/Debug</code>. Sometimes, you may want the build output files and executable to be placed in a specific directory in your project directory. Let us assume we want both the Debug and Release builds to put their output files in <code>/home/joe/workspace/foobar/bin</code></p>
 <h2 id="solution">Solution</h2>
 <p>Changing the build output directory is not simple in Eclipse CDT. A few of the complex solutions can be seen <a href="http://stackoverflow.com/questions/4882231/set-build-output-directory-in-eclipse-c">here</a>.</p>
 <p>As an alternative, there is a simple trick you can use: create symbolic links named Debug and Release that point to the build output directory you want:</p>
-<p>[code lang=bash] $ cd /home/joe/workspace/foobar $ rm -rf Debug $ rm -rf Release $ mkdir bin $ ln -s bin Debug $ ln -s bin Release ```</p>
+<pre><code>$ cd /home/joe/workspace/foobar
+$ rm -rf Debug
+$ rm -rf Release
+$ mkdir bin
+$ ln -s bin Debug
+$ ln -s bin Release</code></pre>
 <p>Eclipse CDT will now think it is building to Debug or Release directories, but all those files end up in the build output directory that you wanted 😊</p>
 <p><strong>Tried with:</strong> Eclipse 3.7.2</p>
 </div>
@@ -59,7 +64,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2023 Ashwin Nanjappa
+© 2024 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •

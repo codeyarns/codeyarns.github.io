@@ -42,13 +42,13 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to remove duplicate entry in Devices list in Nautilus</h1>
-<p class="date">📅 2013-Mar-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fstab'>fstab</a>, <a href='index.html#mount'>mount</a>, <a href='index.html#nautilus'>nautilus</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Mar-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#nautilus'>nautilus</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
 <p>The <strong>Devices</strong> list shown at the top of the Sidebar in <strong>Nautilus</strong> lists the other partitions found in the hard disk or any other storage devices plugged into the computer. Since I dual-boot between Windows and Ubuntu, the Devices list shows the NTFS partitions on the hard disk. I added a line to <code>/etc/fstab</code> to mount one of my NTFS partitions automatically at boot. After I did this, the Devices list in Nautilus started to show a <strong>duplicate</strong> entry for this partition, with one of it mounted and the other unmounted.</p>
 <p><strong>Solution</strong></p>
 <p>There seems to be a <a href="http://askubuntu.com/questions/99097/">simple solution</a> to this bizarre problem. The fstab entry I am using to mount the NTFS partition uses the <code>UUID</code> of the partition. Replacing this with the old style <code>/dev/sda</code> partition name fixed this problem.</p>
-<p>For example, my fstab entry read <code>UUID=A5190634180941Z5</code>. I changed that to <code>/dev/sda5</code> You can list the dev and UUID entries for all your partitions by using the command <code>sudo blkid</code></p>
+<p>For example, my fstab entry read <code>UUID=A5190634180941Z5</code>. I changed that to <code>/dev/sda5</code>. You can list the dev and UUID entries for all your partitions by using the command <code>sudo blkid</code></p>
 <p><strong>Tried with:</strong> Ubuntu 12.04.2 LTS</p>
 </div>
 
@@ -57,7 +57,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2023 Ashwin Nanjappa
+© 2024 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
