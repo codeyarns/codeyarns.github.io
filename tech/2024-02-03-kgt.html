@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Kate’s Grammar Tool (KGT)</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Kate’s Grammar Tool (KGT)</h1>
+<p class="date">📅 2024-Feb-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#grammar'>grammar</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a href="https://github.com/katef/kgt"><strong>Kate’s Grammar Tool (KGT)</strong></a> is a swiss-army knife to handle the various BNF grammar files and visualize them as railroad diagrams.</p>
+<ul>
+<li><p><strong>Source code</strong>: KGT is open source and its source code is available at <a href="https://github.com/katef/kgt" class="uri">https://github.com/katef/kgt</a>.</p></li>
+<li><p><strong>Build</strong>: Instructions to build this tool:</p></li>
+</ul>
+<pre><code>$ git clone git@github.com:katef/kgt.git
+$ cd kgt
+$ bmake -r</code></pre>
+<p>This produces the binary <code>build/bin/kgt</code>.</p>
+<ul>
+<li><strong>Product railroad diagrams</strong>: To produce railroad diagrams for a ABNF file in ASCII text, UTF8 or SVG formats:</li>
+</ul>
+<pre><code>$ kgt -l abnf -e rrtext &lt; in.abnf &gt; out.txt
+
+$ kgt -l abnf -e rrutf8 &lt; in.abnf &gt; out.txt
+
+$ kgt -l abnf -e svg    &lt; in.abnf &gt; out.svg</code></pre>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2024 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
