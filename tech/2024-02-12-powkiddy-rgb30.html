@@ -78,10 +78,27 @@
 <li>Main menu: <code>Start</code></li>
 <li>Quit game: <code>Select + Start</code> 2 times</li>
 </ul>
+<h2 id="beginner-notes">Beginner notes</h2>
+<ul>
+<li><p>The device shipped with <a href="https://github.com/JustEnoughLinuxOS"><strong>Just Enough Linux OS (JELOS)</strong></a> v20230612. It takes several minutes for the JELOS bootup logo to show up and several more minutes for it to finish its initial configuration. The first time, I pressed some keys while waiting and it showed some ncurses configuration screens and flickered. I somehow got it to boot by inserting an empty micro SD card in the TFGAME slot and rebooting.</p></li>
+<li><p>After reboot, JELOS would not create the game directories in the TFGAME micro SD card even though I requested it using the Main Menu -&gt; System Settings -&gt; Create game directories option.</p></li>
+<li><p>I gave up and instead copied over the rom files into console directories inside the <code>/storage/roms</code> on the main TFOS micro SD card. This worked and the games showed up on reboot and the games worked.</p></li>
+<li><p><strong>No audio</strong>: However, there was absolutely no audio! I scoured all the search results and tried all the solutions, but to no avail. Finally, the solution that restored audio was to do a fresh installation of the latest version of JELOS. See the next section for details.</p></li>
+</ul>
+<h2 id="jelos-installation">JELOS Installation</h2>
+<p>To get around the problems I faced with the default software, I installed the latest version of JELOS:</p>
+<ul>
+<li><p>Do not use the micro SD card provided by the manufacturer. This is a no-name brand card.</p></li>
+<li><p>Get 2 micro SD cards, one for the OS and the other for the games.</p></li>
+<li><p>Download the latest OS image from <a href="">Releases</a> that has RK3566 in its filename and unzip the <code>.img</code> file. Flash this to the OS micro SD card.</p></li>
+<li><p>Format the TFGAME micro SD card as FAT or exFAT and create a <code>roms</code> directory on it.</p></li>
+<li><p>Insert <em>both</em> the micro SD cards into the device for the first boot. During its initial configuration, JELOS should use the TFGAME micro SD card as its <em>external</em> source of game directories. Note: If you do not have both cards inserted for the OS setup, it will use the OS card for its game directories. And it would not use the TFGAME card no matter if I had a <code>roms</code> directory on it and asked it to create game directories.</p></li>
+<li><p>Go to Main Menu -&gt; System Settings -&gt; Create game directories. You must see the TFGAME card listed as the <em>external</em> game source under Main Menu -&gt; System Settings -&gt; Information.</p></li>
+<li><p>Now you can copy roms to the respective console directory, for example <code>/roms/nes</code>, in the TFGAME card. When inserted back into the device, the console and its games should automatically appear for playing.</p></li>
+</ul>
 <h2 id="usage">Usage</h2>
 <ul>
-<li><p><strong>OS</strong>: The device shipped with the <a href="https://github.com/JustEnoughLinuxOS"><strong>Just Enough Linux OS (JELOS)</strong></a> v20230612. It takes almost 5 minutes to boot up. When I booted it up for the very first time, it showed all sorts of flickering ncurses options displays. I inserted an empty microSD card into the <em>TFGAME</em> slot and the next time it booted up fine.</p></li>
-<li><p><strong>SSH</strong>: Enable ** in Main Menu -&gt; Network Settings. SSH into the device from a computer using <code>ssh root@&lt;ip address&gt;</code> and <code>linux</code> as password.</p></li>
+<li><strong>SSH</strong>: Enable ** in Main Menu -&gt; Network Settings. SSH into the device from a computer using <code>ssh root@&lt;ip address&gt;</code> and <code>linux</code> as password.</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
