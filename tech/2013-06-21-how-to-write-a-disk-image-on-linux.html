@@ -42,25 +42,24 @@
 <div class="contentbox">
 <header>
 <h1 class="title">How to write a disk image on Linux</h1>
-<p class="date">📅 2013-Jun-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dd'>dd</a>, <a href='index.html#disk-image'>disk image</a>, <a href='index.html#linux'>linux</a>, <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#umount'>umount</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<p class="date">📅 2013-Jun-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dd'>dd</a>, <a href='index.html#disk-image'>disk image</a>, <a href='index.html#linux'>linux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You may sometimes need to write a <strong>disk image</strong> to a <strong>USB thumbdrive</strong> or a <strong>SD card</strong>. This is typically done to create a system that you can use to boot a device. The image file typically has the <code>.img</code> file extension, though its not necessary and does not matter. Writing the disk image can be easily done on Ubuntu or any other Linux distribution.</p>
+<p>You may sometimes need to write a <strong>disk image</strong> to a <strong>USB thumbdrive</strong> or a <strong>SD card</strong>. This is typically done to create a bootable USB flashdrive or a bootable micro-SD card. The image file typically has the <code>.img</code> file extension, though its not necessary and does not matter. Writing the disk image can be easily done on Ubuntu or any other Linux distribution.</p>
 <ul>
 <li><p>Insert the USB thumbdrive or SD or microSD card to your computer. It should be detected and Ubuntu might mount it automatically. If it does not, that is okay as long as it is detected.</p></li>
-<li><p>We need to find out what is the <strong>device file</strong> which represents the inserted USB thumbdrive or SD card as described <a href="2015/01/23/how-to-find-storage-devices-attached-to-computer/">here</a>.</p></li>
-<li><p>Before we write the disk image, we need to <strong>unmount</strong> the device. This can be done by passing the device name to the <code>umount</code> command:</p></li>
+<li><p>We need to find out what is the <strong>device file</strong> which represents the inserted USB thumbdrive or SD card as described <a href="2015-01-23-how-to-find-storage-devices-attached-to-computer.html">here</a>. For example, something like <code>/dev/mmcblk01p1</code>.</p></li>
+<li><p>If the card or drive is mounted, we need to <strong>unmount</strong> the device. This can be done by passing the device name to the <code>umount</code> command:</p></li>
 </ul>
-<pre><code>$ umount /dev/sdb</code></pre>
+<pre><code>$ umount /dev/mmcblk01p1</code></pre>
 <ul>
 <li>To write the disk image we can use the <code>dd</code> command. Provide the disk image file as the <strong>input file</strong> and the device file as the <strong>output file</strong> with a suitable <strong>block size</strong>:</li>
 </ul>
-<pre><code>$ sudo dd if=/blah/foo.img of=/dev/sdb bs=1M</code></pre>
+<pre><code>$ sudo dd if=/blah/foo.img of=/dev/mmcblk01p1 bs=1M</code></pre>
 <ul>
 <li>Finally, we flush the disk buffers to ensure that the writing is finished:</li>
 </ul>
 <pre><code>$ sync</code></pre>
 <p>That is it! The disk image is written and you can take out your USB thumbdrive or SD card to use it.</p>
-<p><strong>Related:</strong> <a href="2013/06/21/how-to-write-a-disk-image-using-win32-disk-imager/">How to write a disk image on Windows using Win32 Disk Imager</a></p>
 <p><strong>Tried with:</strong> Ubuntu 12.04</p>
 </div>
 
@@ -69,7 +68,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2023 Ashwin Nanjappa
+© 2024 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
