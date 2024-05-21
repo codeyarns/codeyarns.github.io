@@ -51,7 +51,11 @@
 </ul>
 <h2 id="2023">2023</h2>
 <ul>
-<li><a href="https://lwn.net/Articles/918224/">Beyond microblogging with ActivityPub</a>: Blogging, link aggregation, photo sharing, video sharing, book sharing and other services that are being built around ActivityPub, besides Mastodon.</li>
+<li><p><a href="https://lwn.net/Articles/943758/">Prerequisites for large anonymous folios</a>: Whenever it handles a page fault on an anonymous virtual-memory area (VMA), the kernel will allocate a group of pages as a folio (16-64KB) rather than a single page. Allocating and mapping an entire folio will reduce page faults, since the process will not need to fault in the other pages in that folio.</p></li>
+<li><p><a href="https://lwn.net/Articles/937239/">Large folios for anonymous memory</a>: <em>Anonymous pages</em> are pages associated with program data and not backed by a file on disk. Virtual-address translation involves stepping through 3-5 levels of page tables, perhaps incurring cache misses at each step. The CPU tries to avoid misses by maintaining a cache of recent translations in the translation lookaside buffer (TLB). An application’s performance will be determined by how well it fits into the TLB, whose size in CPU hardware is limited due to costs. A huge page covers a lot of memory and requires a single TLB entry. However, page size larger than 4KB has its own problem: internal fragmentation that can waste a significant amount of memory. Recent CPUs have a bit in their page-table entries to indicate that a range of pages has been placed in physically contiguous memory. The processor can use that information to use a single TLB entry for all those contiguous pages.</p></li>
+<li><p><a href="https://lwn.net/Articles/944038/">Arduino: open source for microcontroller boards</a>: The Arduino project originated in 2005 at the Interaction Design Institute Ivrea in Italy as an educational tool for teaching students how to create and program interactive devices with sensors and actuators. Arduino is actually a combination of Arduino hardware (microcontroller boards with open-hardware designs), an open-source IDE that supports C++ programming using libraries provided with the tool, Arduino “core” that supports a specific board family, third-party Arduino libraries and the Arduino company (oversees the development and possesses the Arduino trademark).</p></li>
+<li><p><a href="https://lwn.net/Articles/943619/">Altering Python attribute handling for modules</a>: Attributes can be accidentally and silently set on modules and that is undesirable. Various solutions to make module attributes read-only are described.</p></li>
+<li><p><a href="https://lwn.net/Articles/918224/">Beyond microblogging with ActivityPub</a>: Blogging, link aggregation, photo sharing, video sharing, book sharing and other services that are being built around ActivityPub, besides Mastodon.</p></li>
 </ul>
 <h2 id="2022">2022</h2>
 <ul>
@@ -79,7 +83,8 @@
 </ul>
 <h2 id="2021">2021</h2>
 <ul>
-<li><a href="https://lwn.net/Articles/860389/">Features in Python 3.10</a>: switch-case, improved type hinting and user-friendly error reporting.</li>
+<li><p><a href="https://lwn.net/Articles/849538/">Clarifying memory management with page folios</a>: Memory management generally works at the level of pages, which is typically 4KB, but may be larger depending on CPU architecture. The kernel will also allocate a <em>compound page</em> when a set of physically contiguous pages is needed, noted as consisting of a <em>head page</em> and <em>tail pages</em>. A <em>page folio</em> is a structure to aid operating on a full compound page.</p></li>
+<li><p><a href="https://lwn.net/Articles/860389/">Features in Python 3.10</a>: switch-case, improved type hinting and user-friendly error reporting.</p></li>
 </ul>
 <h2 id="2020">2020</h2>
 <ul>
@@ -117,7 +122,7 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2023 Ashwin Nanjappa
+© 2024 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
