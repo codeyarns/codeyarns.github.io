@@ -45,50 +45,77 @@
 <p class="date">📅 2013-Aug-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#preview'>preview</a>, <a href='index.html#ranger'>ranger</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2013/08/20141107-ranger.png" alt="" /><figcaption>Image preview in Ranger</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2013/08/20141107-ranger.png"
+alt="Image preview in Ranger" />
+<figcaption aria-hidden="true">Image preview in Ranger</figcaption>
 </figure>
-<p><a href="http://ranger.nongnu.org/"><strong>Ranger</strong></a> is a file manager for the shell with <strong>vi keybindings</strong>. Its interface is similar to the <strong>Finder</strong> in Mac OS X. You can move up and down files or directories in the current path by pressing <code>j</code> and <code>k</code>. To move to parent directory use <code>h</code> and to open the directory or file currently highlighted press <code>l</code>. These navigation keys should be very intuitive for the vim user.</p>
-<p>Ranger can also utilize many other tools to show <strong>previews</strong> of many types of files. This is really useful because you can see previews of source code, contents of zip files, text inside PDF files and even ASCII rendering of image files (JPG/PNG) all from inside ranger in color!</p>
-<p><a href="https://www.youtube.com/watch?v=E9LCsGWYuiE" class="uri">https://www.youtube.com/watch?v=E9LCsGWYuiE</a></p>
+<p><a href="http://ranger.nongnu.org/"><strong>Ranger</strong></a> is a
+file manager for the shell with <em>vi keybindings</em>. Its interface
+is similar to the <strong>Finder</strong> in Mac OS X. You can move up
+and down files or directories in the current path by pressing
+<code>j</code> and <code>k</code>. To move to parent directory use
+<code>h</code> and to open the directory or file currently highlighted
+press <code>l</code>. These navigation keys should be very intuitive for
+a user of vim.</p>
+<p>Ranger can also utilize many other tools to show <em>previews</em> of
+many types of files. This is really useful because you can see previews
+of source code, contents of zip files, text inside PDF files and even
+ASCII rendering of image files (JPG/PNG) all from inside ranger in
+color!</p>
+<p><a href="https://www.youtube.com/watch?v=E9LCsGWYuiE"
+class="uri">https://www.youtube.com/watch?v=E9LCsGWYuiE</a></p>
 <h2 id="install">Install</h2>
-<p>If you like the previews, first install those relevant tools, followed by ranger from the Ubuntu repositories:</p>
-<p>[code lang=“text”] $ sudo apt install highlight atool w3m poppler-utils caca-utils $ sudo apt install ranger</p>
-<pre><code>
-The version of Ranger in Ubuntu can be pretty old. To install the latest Ranger from source:
-
-
-
-
-
-  * Download the latest Ranger source code from Github [here](https://github.com/hut/ranger):
-
-
-
-[code lang=&quot;text&quot;]
-$ git clone https://github.com/hut/ranger.git</code></pre>
+<p>If you like the previews, first install those relevant tools,
+followed by ranger from the Ubuntu repositories:</p>
+<pre><code>$ sudo apt install highlight atool w3m poppler-utils caca-utils
+$ sudo apt install ranger</code></pre>
+<p>The version of Ranger in Ubuntu can be pretty old. To install the
+latest Ranger from source:</p>
+<ul>
+<li>Download the latest Ranger source code from Github <a
+href="https://github.com/hut/ranger">here</a>:</li>
+</ul>
+<pre><code>$ git clone https://github.com/hut/ranger.git</code></pre>
 <ul>
 <li>Build and install:</li>
 </ul>
-<p>[code lang=“text”] $ cd ranger $ sudo make install</p>
-<pre><code>
-
-
-# Usage
-
-
-
-Run ranger once so that it creates its default configuration directory in `~/.config/ranger`. After that run ranger so that it copies over its configuration files to this location. This is necessary to configure ranger or for it to enable previews.
-
-[code lang=&quot;text&quot;]
-$ ranger
+<pre><code>$ cd ranger
+$ sudo make install</code></pre>
+<h2 id="usage">Usage</h2>
+<p>Run ranger once so that it creates its default configuration
+directory in <code>~/.config/ranger</code>. After that run ranger so
+that it copies over its configuration files to this location. This is
+necessary to configure ranger or for it to enable previews.</p>
+<pre><code>$ ranger
 $ ranger --copy-config=all</code></pre>
-<p>After this you are good to go: enjoy navigating around your directory and seeing colorful previews of all your files, right in your shell! 😊</p>
+<p>After this you are good to go: enjoy navigating around your directory
+and seeing colorful previews of all your files, right in your shell!
+😊</p>
 <h2 id="keyboard-shortcuts">Keyboard shortcuts</h2>
-<p>[code lang=“text”] Space: Select current file or directory Del: Delete selected files and directories</p>
-<p>S: Open shell in current directory Ctrl+n: Open new tab Tab: Switch to next tab Ctrl+w: Close tab</p>
-<p>gh: Go to home directory gr: Go to root directory gm: Go to media directory</p>
-<p>cw: Rename current file or directory zh: Show hidden files and directories dc: Compute size of directory under cursor. Size is displayed in status line at bottom.</p>
-<p>On files: Enter: Open in default program. i: Open in pager. r: Open with o: Change sort order Space: Select/unselect current file ```</p>
+<ul>
+<li><code>Space</code>: Select current file or directory</li>
+<li><code>Del</code>: Delete selected files and directories</li>
+<li><code>s</code>: Open shell in current directory</li>
+<li><code>Ctrl + n</code>: Open new tab</li>
+<li><code>Tab</code>: Switch to next tab</li>
+<li><code>Ctrl + w</code>: Close tab</li>
+<li><code>gh</code>: Go to home directory</li>
+<li><code>gr</code>: Go to root directory</li>
+<li><code>gm</code>: Go to media directory</li>
+<li><code>cw</code>: Rename current file or directory</li>
+<li><code>zh</code>: Show hidden files and directories</li>
+<li><code>dc</code>: Compute size of directory under cursor. Size is
+displayed in status line at bottom.</li>
+</ul>
+<p>When you are operating on files:</p>
+<ul>
+<li><code>Enter</code>: Open in default program.</li>
+<li><code>i</code>: Open in pager.</li>
+<li><code>r</code>: Open with</li>
+<li><code>o</code>: Change sort order</li>
+<li><code>Space</code>: Select/unselect current file</li>
+</ul>
 <p><strong>Tried with:</strong> Ranger 1.5.2 and Ubuntu 12.04</p>
 </div>
 

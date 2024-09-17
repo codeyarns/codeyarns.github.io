@@ -44,29 +44,51 @@
 <h1 class="title">How to enable version control in Ranger</h1>
 <p class="date">📅 2014-Sep-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ranger'>ranger</a>, <a href='index.html#vcs'>vcs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="2013-08-26-how-to-install-and-use-ranger.html"><strong>Ranger</strong></a> can show the version control status of files and directories. Symbols are displayed in colors along the right side, beside the file size, to indicate the <strong>version control status</strong> of those files. For example, a green tick mark is shown if the file is up-to-date. Version control systems that are supported include <strong>Git</strong>, <strong>Mercurial</strong> (Hg) and <strong>Bazaar</strong>. The version control feature is only available in Ranger v1.6.1 and later. If the version from your distribution is older than this, then you need to get the latest version.</p>
+<p><a
+href="2013-08-26-how-to-install-and-use-ranger.html"><strong>Ranger</strong></a>
+can show the version control status of files and directories. Symbols
+are displayed in colors along the right side, beside the file size, to
+indicate the <em>version control status</em> of those files. For
+example, a green tick mark is shown if the file is up-to-date. Version
+control systems that are supported include Git, Mercurial and Bazaar.
+The version control feature is only available in Ranger v1.6.1 and
+later. If the version from your distribution is older than this, then
+you need to get the latest version.</p>
 <h2 id="install-latest-version">Install latest version</h2>
 <ul>
-<li>Before installing the latest version of Ranger, I remove the old one:</li>
+<li>Before installing the latest version of Ranger, I remove the old
+one:</li>
 </ul>
 <pre><code>$ sudo apt remove ranger</code></pre>
 <ul>
-<li>Install the latest version of Ranger as described <a href="2013-08-26-how-to-install-and-use-ranger.html">here</a>.</li>
+<li>Install the latest version of Ranger as described <a
+href="2013-08-26-how-to-install-and-use-ranger.html">here</a>.</li>
 </ul>
-<h2 id="configure-version-control-feature">Configure version control feature</h2>
+<h2 id="configure-version-control-feature">Configure version control
+feature</h2>
 <ul>
-<li>To enable version control support, have this line in your <code>~/.config/ranger/rc.conf</code>:</li>
+<li>To enable version control support, have this line in your
+<code>~/.config/ranger/rc.conf</code>:</li>
 </ul>
 <pre><code>set vcs_aware true</code></pre>
 <ul>
-<li>Next we need to specify which version control systems we want to be supported. For each version control system, are three possible options: <code>disabled</code>, <code>local</code> (use only local information) and <code>enabled</code> (get remote information too).</li>
+<li>Next we need to specify which version control systems we want to be
+supported. For each version control system, are three possible options:
+<code>disabled</code>, <code>local</code> (use only local information)
+and <code>enabled</code> (get remote information too).</li>
 </ul>
-<p>For example, to enable Git and Mercurial support with only local information, I add this to <code>rc.conf</code>:</p>
+<p>For example, to enable Git and Mercurial support with only local
+information, I add this to <code>rc.conf</code>:</p>
 <pre><code>set vcs_backend_git local
 set vcs_backend_hg local</code></pre>
-<p>Open Ranger now in a directory that is inside any repository and you will see the file status information displayed at the right side of the column.</p>
+<p>Open Ranger now in a directory that is inside any repository and you
+will see the file status information displayed at the right side of the
+column.</p>
 <ul>
-<li>I found that having VCS enabled made Ranger extremely slow to start. So, I disabled it by default and instead mapped a keyboard shortcut <code>zg</code> to enable it when I needed it. This can be done by adding these lines to <code>rc.conf</code>:</li>
+<li>I found that having VCS enabled made Ranger extremely slow to start.
+So, I disabled it by default and instead mapped a keyboard shortcut
+<code>zg</code> to enable it when I needed it. This can be done by
+adding these lines to <code>rc.conf</code>:</li>
 </ul>
 <pre><code>set vcs_aware false
 map zg set vcs_aware true</code></pre>
