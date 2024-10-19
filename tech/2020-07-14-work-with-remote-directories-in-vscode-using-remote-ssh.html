@@ -41,42 +41,86 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Work with remote directories in VSCode using Remote SSH</h1>
+<h1 class="title">Work with remote directories in VSCode using Remote
+SSH</h1>
 <p class="date">📅 2020-Jul-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ssh'>ssh</a>, <a href='index.html#vscode'>vscode</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"><strong>Remote - SSH</strong></a> extension makes opening and working with remote directories just as natural and fully-featured in <strong>Visual Studio Code</strong> as working with local directories. Once you set it up and have a remote directory open, you can browse the directory tree, open any files, find-replace and lookup definitions across all the files.</p>
-<p>This is in contrast to the <a href="2018-05-03-how-to-edit-remote-files-using-remote-vscode.html"><strong>Remote VSCode</strong></a> extension which made it easy to open individual files residing on a remote computer using SSH, but was not ideal for larger-scale work like working on a project or directory of files.</p>
+<p>The <a
+href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh"><strong>Remote
+- SSH</strong></a> extension makes opening and working with remote
+directories just as natural and fully-featured in <strong>Visual Studio
+Code</strong> as working with local directories. Once you set it up and
+have a remote directory open, you can browse the directory tree, open
+any files, find-replace and lookup definitions across all the files.</p>
+<p>This is in contrast to the <a
+href="2018-05-03-how-to-edit-remote-files-using-remote-vscode.html"><strong>Remote
+VSCode</strong></a> extension which made it easy to open individual
+files residing on a remote computer using SSH, but was not ideal for
+larger-scale work like working on a project or directory of files.</p>
 <h2 id="usage">Usage</h2>
 <p>To use this:</p>
 <ul>
-<li>Search for the <strong>Remote - SSH</strong> extension in VSCode and install it.</li>
-<li>Open <strong>Remote Explorer</strong> on the left and choose <strong>SSH Targets</strong> from the top dropdown. (If you are also using WSL, you might see <strong>WSL Targets</strong> listed there, but that is <em>not</em> what we want.)</li>
-<li>Click the <code>+</code> to add a new remote directory by providing the <code>ssh joe@remote123</code> command and then the path on the remote computer. VSCode will prompt you for the password on the remote computer.</li>
-<li>You should now be able to do everything you could do locally in VSCode on this remote directory. Even code completion and code exploration across the files in the directory worked fine in Python and C++ code for me.</li>
-<li>If you open multiple remote directories, you can switch between them in the Remote Explorer or in the File -&gt; Open Recent section.</li>
+<li>Search for the <strong>Remote - SSH</strong> extension in VSCode and
+install it.</li>
+<li>Open <strong>Remote Explorer</strong> on the left and choose
+<strong>SSH Targets</strong> from the top dropdown. (If you are also
+using WSL, you might see <strong>WSL Targets</strong> listed there, but
+that is <em>not</em> what we want.)</li>
+<li>Click the <code>+</code> to add a new remote directory by providing
+the <code>ssh joe@remote123</code> command and then the path on the
+remote computer. VSCode will prompt you for the password on the remote
+computer.</li>
+<li>You should now be able to do everything you could do locally in
+VSCode on this remote directory. Even code completion and code
+exploration across the files in the directory worked fine in Python and
+C++ code for me.</li>
+<li>If you open multiple remote directories, you can switch between them
+in the Remote Explorer or in the File -&gt; Open Recent section.</li>
 </ul>
 <h2 id="use-without-password">Use without password</h2>
-<p>You will notice that VSCode asks for the remote password every time you open the remote directory or reopen VSCode. To avoid this, we need to understand how VSCode uses ssh and then provide the ssh client with an identity file as follows:</p>
+<p>You will notice that VSCode asks for the remote password every time
+you open the remote directory or reopen VSCode. To avoid this, we need
+to understand how VSCode uses ssh and then provide the ssh client with
+an identity file as follows:</p>
 <ul>
-<li>The Remote - SSH extension uses the OpenSSH Windows client located at <code>C:\Windows\System32\OpenSSH\ssh.exe</code> for its SSH operations.</li>
-<li>It stores its remote computer (not remote directory) configuration in the <code>%USERPROFILE%/.ssh/config</code> file.</li>
-<li>By default, when you added a single remote computer, it would have these lines:</li>
+<li>The Remote - SSH extension uses the OpenSSH Windows client located
+at <code>C:\Windows\System32\OpenSSH\ssh.exe</code> for its SSH
+operations.</li>
+<li>It stores its remote computer (not remote directory) configuration
+in the <code>%USERPROFILE%/.ssh/config</code> file.</li>
+<li>By default, when you added a single remote computer, it would have
+these lines:</li>
 </ul>
 <pre><code>Host 10.110.22.22
   HostName 10.110.22.22
   User joe</code></pre>
 <ul>
-<li>To avoid entering password every time, we need to create a public-private key pair locally and share the key with the remote computer, as described <a href="2016-01-20-how-to-ssh-without-username-or-password.html">here</a>. I used the ssh inside WSL to create the public-private key pair and then shared the <code>.pub</code> key with the remote computer.</li>
-<li>To make the VSCode’s SSH client use these <strong>identity files</strong>, we copy over the private and public key files (for example <code>id_ed25519</code> and <code>id_ed25519.pub</code>) generated by the above step to the <code>%USERPROFILE%\.ssh</code> directory. (Actually, the public key file is not really needed, since we have already shared it to the remote computer in the earlier step.)</li>
-<li>Specify the private key file that should be used with the remote computer in the <code>%USERPROFILE%\.ssh\config</code> file:</li>
+<li>To avoid entering password every time, we need to create a
+public-private key pair locally and share the key with the remote
+computer, as described <a
+href="2016-01-20-how-to-ssh-without-username-or-password.html">here</a>.
+I used the ssh inside WSL to create the public-private key pair and then
+shared the <code>.pub</code> key with the remote computer.</li>
+<li>To make the VSCode’s SSH client use these <strong>identity
+files</strong>, we copy over the private and public key files (for
+example <code>id_ed25519</code> and <code>id_ed25519.pub</code>)
+generated by the above step to the <code>%USERPROFILE%\.ssh</code>
+directory. (Actually, the public key file is not really needed, since we
+have already shared it to the remote computer in the earlier step.)</li>
+<li>Specify the private key file that should be used with the remote
+computer in the <code>%USERPROFILE%\.ssh\config</code> file:</li>
 </ul>
 <pre><code>Host 10.110.22.22
   HostName 10.110.22.22
   User joe
-  IdentityFile ~\.ssh\id_ed25519</code></pre>
-<p>Note how the OpenSSH Windows client can understand the Unix <code>~</code> to map to <code>%USERPROFILE</code>, but needs Windows forward slashes (not the Unix back slashes) in the path.</p>
-<p>After this setup, you should be able to connect to the remote host and open directories on it just like they were on the local computer.</p>
-<p><strong>Tried with:</strong> Visual Studio Code 1.47 and Windows 10</p>
+  IdentityFile C:\Users\joe\.ssh\id_ed25519</code></pre>
+<p>Note how the OpenSSH Windows client can only understand the standard
+Windows users path <code>C:\Users\joe</code> in the path.</p>
+<p>After this setup, you should be able to connect to the remote host
+and open directories on it just like they were on the local
+computer.</p>
+<p><strong>Tried with:</strong> Visual Studio Code 1.47 and Windows
+10</p>
 </div>
 
 <br />
