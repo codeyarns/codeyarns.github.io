@@ -44,76 +44,262 @@
 <h1 class="title">LWN Bookmarks</h1>
 <p class="date">📅 2022-Jun-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#bookmarks'>bookmarks</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://lwn.net/"><strong>Linux Weekly News (LWN)</strong></a> is a treasure trove of high-quality articles about the Linux kernel, C, Python, tools and Linux distributions. Collected below are my favorite articles from LWN:</p>
+<p><a href="https://lwn.net/"><strong>Linux Weekly News
+(LWN)</strong></a> is a treasure trove of high-quality articles about
+the Linux kernel, C, Python, tools and Linux distributions. Collected
+below are my favorite articles from LWN:</p>
 <ul>
-<li><a href="https://lwn.net/Kernel/Index/">LWN Index</a>: Index of all LWN topics and their articles.</li>
-<li><a href="https://lwn.net/Calendar/">LWN Calendar</a>: Calendar of Linux conferences.</li>
+<li><a href="https://lwn.net/Kernel/Index/">LWN Index</a>: Index of all
+LWN topics and their articles.</li>
+<li><a href="https://lwn.net/Calendar/">LWN Calendar</a>: Calendar of
+Linux conferences.</li>
+</ul>
+<h2 id="2024">2024</h2>
+<ul>
+<li><a href="https://lwn.net/Articles/995159/">OSI readies controversial
+Open AI definition</a>: OSI’s Open Source AI Definition (OSAID) requires
+making available training code, model weights and configurations and
+detailed information about the training data. However, there is no
+requirement to make training data available.</li>
 </ul>
 <h2 id="2023">2023</h2>
 <ul>
-<li><p><a href="https://lwn.net/Articles/943758/">Prerequisites for large anonymous folios</a>: Whenever it handles a page fault on an anonymous virtual-memory area (VMA), the kernel will allocate a group of pages as a folio (16-64KB) rather than a single page. Allocating and mapping an entire folio will reduce page faults, since the process will not need to fault in the other pages in that folio.</p></li>
-<li><p><a href="https://lwn.net/Articles/937239/">Large folios for anonymous memory</a>: <em>Anonymous pages</em> are pages associated with program data and not backed by a file on disk. Virtual-address translation involves stepping through 3-5 levels of page tables, perhaps incurring cache misses at each step. The CPU tries to avoid misses by maintaining a cache of recent translations in the translation lookaside buffer (TLB). An application’s performance will be determined by how well it fits into the TLB, whose size in CPU hardware is limited due to costs. A huge page covers a lot of memory and requires a single TLB entry. However, page size larger than 4KB has its own problem: internal fragmentation that can waste a significant amount of memory. Recent CPUs have a bit in their page-table entries to indicate that a range of pages has been placed in physically contiguous memory. The processor can use that information to use a single TLB entry for all those contiguous pages.</p></li>
-<li><p><a href="https://lwn.net/Articles/944038/">Arduino: open source for microcontroller boards</a>: The Arduino project originated in 2005 at the Interaction Design Institute Ivrea in Italy as an educational tool for teaching students how to create and program interactive devices with sensors and actuators. Arduino is actually a combination of Arduino hardware (microcontroller boards with open-hardware designs), an open-source IDE that supports C++ programming using libraries provided with the tool, Arduino “core” that supports a specific board family, third-party Arduino libraries and the Arduino company (oversees the development and possesses the Arduino trademark).</p></li>
-<li><p><a href="https://lwn.net/Articles/943619/">Altering Python attribute handling for modules</a>: Attributes can be accidentally and silently set on modules and that is undesirable. Various solutions to make module attributes read-only are described.</p></li>
-<li><p><a href="https://lwn.net/Articles/918224/">Beyond microblogging with ActivityPub</a>: Blogging, link aggregation, photo sharing, video sharing, book sharing and other services that are being built around ActivityPub, besides Mastodon.</p></li>
+<li><p><a href="https://lwn.net/Articles/943758/">Prerequisites for
+large anonymous folios</a>: Whenever it handles a page fault on an
+anonymous virtual-memory area (VMA), the kernel will allocate a group of
+pages as a folio (16-64KB) rather than a single page. Allocating and
+mapping an entire folio will reduce page faults, since the process will
+not need to fault in the other pages in that folio.</p></li>
+<li><p><a href="https://lwn.net/Articles/937239/">Large folios for
+anonymous memory</a>: <em>Anonymous pages</em> are pages associated with
+program data and not backed by a file on disk. Virtual-address
+translation involves stepping through 3-5 levels of page tables, perhaps
+incurring cache misses at each step. The CPU tries to avoid misses by
+maintaining a cache of recent translations in the translation lookaside
+buffer (TLB). An application’s performance will be determined by how
+well it fits into the TLB, whose size in CPU hardware is limited due to
+costs. A huge page covers a lot of memory and requires a single TLB
+entry. However, page size larger than 4KB has its own problem: internal
+fragmentation that can waste a significant amount of memory. Recent CPUs
+have a bit in their page-table entries to indicate that a range of pages
+has been placed in physically contiguous memory. The processor can use
+that information to use a single TLB entry for all those contiguous
+pages.</p></li>
+<li><p><a href="https://lwn.net/Articles/944038/">Arduino: open source
+for microcontroller boards</a>: The Arduino project originated in 2005
+at the Interaction Design Institute Ivrea in Italy as an educational
+tool for teaching students how to create and program interactive devices
+with sensors and actuators. Arduino is actually a combination of Arduino
+hardware (microcontroller boards with open-hardware designs), an
+open-source IDE that supports C++ programming using libraries provided
+with the tool, Arduino “core” that supports a specific board family,
+third-party Arduino libraries and the Arduino company (oversees the
+development and possesses the Arduino trademark).</p></li>
+<li><p><a href="https://lwn.net/Articles/943619/">Altering Python
+attribute handling for modules</a>: Attributes can be accidentally and
+silently set on modules and that is undesirable. Various solutions to
+make module attributes read-only are described.</p></li>
+<li><p><a href="https://lwn.net/Articles/918224/">Beyond microblogging
+with ActivityPub</a>: Blogging, link aggregation, photo sharing, video
+sharing, book sharing and other services that are being built around
+ActivityPub, besides Mastodon.</p></li>
 </ul>
 <h2 id="2022">2022</h2>
 <ul>
-<li><a href="https://lwn.net/Articles/909611/">Hybrid scheduling gets more complicated</a>: Intel’s hybrid CPUs (such as Alder Lake) have a combination of P-cores (for performance) and E-cores (for efficiency, aka Atom). To guide kernel on which process to move to suitable core, each core has a register that shows which performance class best suits currently running process.</li>
-<li><a href="https://lwn.net/Articles/902049/">Docker and the OCI container ecosystem</a>: Containers depend on 3 features: Bind mounts &amp; overlayfs (to construct the container FS), control groups (to partition CPU/mem/IO) and namespaces (to keep process inside container isolated). Most Docker features have been standardized as Open Container Initiative (OCI) specs for image, distribution and runtime. Docker is just one of many OCI-compatible container runtimes now.</li>
-<li><a href="https://lwn.net/Articles/899543/">The trouble with symbolic links</a>: Hard links can be only to files, within a FS. Symlinks can be to dirs or files, across filesystems, but there can be race conditions using them if the underlying symlinks in a path change while operating on that path.</li>
-<li><a href="https://lwn.net/Articles/900739/">Native Python support for units?</a>: Why adding custom literals (like in C++), unit and unit conversion is turning out to be difficult in Python.</li>
-<li><a href="https://lwn.net/Articles/899420/">An Ubuntu kernel bug causes container crashes</a>: Ubuntu picks long-term maintenance kernel branch for LTS and any branch for non-LTS releases. For LTS, it also publishes new hardware enablement (HWE) stacks with backports from recent LTS/non-LTS releases. OverlayFS (and AUFS) overlay files in “upper” directory over files in “lower” directory, with upper files overriding lower when paths are same. ShiftFS remaps user/group IDs in a mounted filesystem. <code>/proc/&lt;PID&gt;/map_files</code> shows address-&gt;file mappings for that process.</li>
-<li><a href="https://lwn.net/Articles/893193/">An overview of structural pattern matching for Python</a>: Py finally gets switch-case, but it’s called match-case and can do pattern matching.</li>
-<li><a href="https://lwn.net/Articles/893686/">Modern Python performance considerations</a>: Different builds of CPython (like Ubuntu/Win/MacOS) have different performance. None of the projects (Pyston/Faster CPython/Cinder) looked like they’d do anything to reduce the 10-100x perf gap with C.</li>
-<li><a href="https://lwn.net/Articles/898452/">Introducing PyScript</a>: New in-browser Python interpreter that executes the Python code embedded within <code>py-script</code> tags in HTML. Created by compiling CPython’s C code to WebAssembly using the Emscripten compiler. “Python is like a Honda Civic with mounting bolts for a warp drive”. Engraving at Boston Public Library: “The commonwealth requires the education of the people as the safeguard of order and liberty.”</li>
-<li><a href="https://lwn.net/Articles/898522/">Whatever happened to SHA-256 support in Git?</a>: SHA-256 support was added in 2020 after SHA-1 was considered broken. But without any Git hosting providers supporting it and repos of SHA-1/256 not being interoperable, there is visibility when most folks would use it.</li>
-<li><a href="https://lwn.net/Articles/898262/">NFS: the new millennium</a>: 2nd and final part about NFS looks at how state management was added to NFS. NFSv4.1 in 2010, updated in 2020. NFSv4.2 in 2016.</li>
-<li><a href="https://lwn.net/Articles/897917/">NFS: the early years</a>: NFSv2 was first publicly available implementation introduced by Sun in 1984, described in RFC 1094. 32-byte file handle was central feature, unique for a NFS server. No state to handle file open/lock/cache - which led to several problems. (Unix Ed7/BSD did not have file locking, lock files <code>.lock</code> were used instead.) Other protocols to handle locking, status monitoring, mounting, remote quotas and ACLs. NFSv3 in 1995 to support larger files.</li>
-<li><a href="https://lwn.net/Articles/898766/">Two memory-tiering patch sets</a>: A system can have many types of memory which can be faster (GPU HBM, CXL) or slower (persistent) than DRAM. A memory tier system is introduced with higher IDs for faster memory: <code>MEMORY_TIER_DRAM=200</code>, <code>_HBM_GPU=300</code>, <code>_PMEM=100</code>. Memory tier config on any system can be queried through <code>/sys/devices/system/memtier/</code>. Pages can be demoted from DRAM to slower memory, while another changeset allows slower tier pages to be moved to faster memory.</li>
-<li><a href="https://lwn.net/Articles/899182/">A “fireside” chat</a>: Linus Torvalds has been working remote for 20 years. Every Linux release has had a 9-10 week development cycle in the past 15 years. Linus is more famous among CS students for Git (which he worked on 6 months before handing off to Junio Hamano) than for Linux.</li>
-<li><a href="https://lwn.net/Articles/897435/">Vetting the cargo</a>: Mozilla introduces a cargo vetting process using audited package lists for Rust.</li>
-<li><a href="https://lwn.net/Articles/896738/">Per-file OOM badness</a>: OOM killer will now also take into account the memory attached to files of a process, when choosing the victim process to kill.</li>
-<li><a href="https://lwn.net/Articles/895587/">Improved error reporting in CPython 3.10 and later</a>: Possible thanks to its old LL1 parser replaced with a parsing expression parser.</li>
-<li><a href="https://lwn.net/Articles/894598/">CXL 1: Management and tiering</a>: Compute eXpress Link is cache coherent interconnect for connecting CPU, RAM and accelerators (like GPU) between nodes. That is, you could have CPU-only node accessing its RAM from a RAM-only node through CXL.</li>
-<li><a href="https://lwn.net/Articles/892080/">Super in Python Part 2</a>: Looks at super() call with 2 arguments and its complexities. Normal super() is equivalent to super(ThisClassName, self). super(X, self) takes MRO call chain of self and then fast forwards to after X and does calls.</li>
-<li><a href="https://lwn.net/Articles/892755/">Risks of embedded bare repositories in Git</a>: Bare repositories embedded inside a normal repo is apparently a vector for user inadvertently running any random cmd. Article shows it with good example and commands. I don’t see why this bare repository feature is essential, just kill it.</li>
-<li><a href="https://lwn.net/Articles/889171/">KOReader on Kobo review</a>: Seems like lots of features, but super slow.</li>
-<li><a href="https://lwn.net/Articles/891398/">Super Python Part 1</a>: super() in multiple inheritance creates a MRO (Method Resolution Order) chain in topological order (C3 linearization) and follows those calls. This is confusing because in a diamond example, super() calls in Bottom, will call Left-&gt;Right-&gt;Top, while you normally expect Left-&gt;Top.</li>
+<li><a href="https://lwn.net/Articles/909611/">Hybrid scheduling gets
+more complicated</a>: Intel’s hybrid CPUs (such as Alder Lake) have a
+combination of P-cores (for performance) and E-cores (for efficiency,
+aka Atom). To guide kernel on which process to move to suitable core,
+each core has a register that shows which performance class best suits
+currently running process.</li>
+<li><a href="https://lwn.net/Articles/902049/">Docker and the OCI
+container ecosystem</a>: Containers depend on 3 features: Bind mounts
+&amp; overlayfs (to construct the container FS), control groups (to
+partition CPU/mem/IO) and namespaces (to keep process inside container
+isolated). Most Docker features have been standardized as Open Container
+Initiative (OCI) specs for image, distribution and runtime. Docker is
+just one of many OCI-compatible container runtimes now.</li>
+<li><a href="https://lwn.net/Articles/899543/">The trouble with symbolic
+links</a>: Hard links can be only to files, within a FS. Symlinks can be
+to dirs or files, across filesystems, but there can be race conditions
+using them if the underlying symlinks in a path change while operating
+on that path.</li>
+<li><a href="https://lwn.net/Articles/900739/">Native Python support for
+units?</a>: Why adding custom literals (like in C++), unit and unit
+conversion is turning out to be difficult in Python.</li>
+<li><a href="https://lwn.net/Articles/899420/">An Ubuntu kernel bug
+causes container crashes</a>: Ubuntu picks long-term maintenance kernel
+branch for LTS and any branch for non-LTS releases. For LTS, it also
+publishes new hardware enablement (HWE) stacks with backports from
+recent LTS/non-LTS releases. OverlayFS (and AUFS) overlay files in
+“upper” directory over files in “lower” directory, with upper files
+overriding lower when paths are same. ShiftFS remaps user/group IDs in a
+mounted filesystem. <code>/proc/&lt;PID&gt;/map_files</code> shows
+address-&gt;file mappings for that process.</li>
+<li><a href="https://lwn.net/Articles/893193/">An overview of structural
+pattern matching for Python</a>: Py finally gets switch-case, but it’s
+called match-case and can do pattern matching.</li>
+<li><a href="https://lwn.net/Articles/893686/">Modern Python performance
+considerations</a>: Different builds of CPython (like Ubuntu/Win/MacOS)
+have different performance. None of the projects (Pyston/Faster
+CPython/Cinder) looked like they’d do anything to reduce the 10-100x
+perf gap with C.</li>
+<li><a href="https://lwn.net/Articles/898452/">Introducing PyScript</a>:
+New in-browser Python interpreter that executes the Python code embedded
+within <code>py-script</code> tags in HTML. Created by compiling
+CPython’s C code to WebAssembly using the Emscripten compiler. “Python
+is like a Honda Civic with mounting bolts for a warp drive”. Engraving
+at Boston Public Library: “The commonwealth requires the education of
+the people as the safeguard of order and liberty.”</li>
+<li><a href="https://lwn.net/Articles/898522/">Whatever happened to
+SHA-256 support in Git?</a>: SHA-256 support was added in 2020 after
+SHA-1 was considered broken. But without any Git hosting providers
+supporting it and repos of SHA-1/256 not being interoperable, there is
+visibility when most folks would use it.</li>
+<li><a href="https://lwn.net/Articles/898262/">NFS: the new
+millennium</a>: 2nd and final part about NFS looks at how state
+management was added to NFS. NFSv4.1 in 2010, updated in 2020. NFSv4.2
+in 2016.</li>
+<li><a href="https://lwn.net/Articles/897917/">NFS: the early years</a>:
+NFSv2 was first publicly available implementation introduced by Sun in
+1984, described in RFC 1094. 32-byte file handle was central feature,
+unique for a NFS server. No state to handle file open/lock/cache - which
+led to several problems. (Unix Ed7/BSD did not have file locking, lock
+files <code>.lock</code> were used instead.) Other protocols to handle
+locking, status monitoring, mounting, remote quotas and ACLs. NFSv3 in
+1995 to support larger files.</li>
+<li><a href="https://lwn.net/Articles/898766/">Two memory-tiering patch
+sets</a>: A system can have many types of memory which can be faster
+(GPU HBM, CXL) or slower (persistent) than DRAM. A memory tier system is
+introduced with higher IDs for faster memory:
+<code>MEMORY_TIER_DRAM=200</code>, <code>_HBM_GPU=300</code>,
+<code>_PMEM=100</code>. Memory tier config on any system can be queried
+through <code>/sys/devices/system/memtier/</code>. Pages can be demoted
+from DRAM to slower memory, while another changeset allows slower tier
+pages to be moved to faster memory.</li>
+<li><a href="https://lwn.net/Articles/899182/">A “fireside” chat</a>:
+Linus Torvalds has been working remote for 20 years. Every Linux release
+has had a 9-10 week development cycle in the past 15 years. Linus is
+more famous among CS students for Git (which he worked on 6 months
+before handing off to Junio Hamano) than for Linux.</li>
+<li><a href="https://lwn.net/Articles/897435/">Vetting the cargo</a>:
+Mozilla introduces a cargo vetting process using audited package lists
+for Rust.</li>
+<li><a href="https://lwn.net/Articles/896738/">Per-file OOM badness</a>:
+OOM killer will now also take into account the memory attached to files
+of a process, when choosing the victim process to kill.</li>
+<li><a href="https://lwn.net/Articles/895587/">Improved error reporting
+in CPython 3.10 and later</a>: Possible thanks to its old LL1 parser
+replaced with a parsing expression parser.</li>
+<li><a href="https://lwn.net/Articles/894598/">CXL 1: Management and
+tiering</a>: Compute eXpress Link is cache coherent interconnect for
+connecting CPU, RAM and accelerators (like GPU) between nodes. That is,
+you could have CPU-only node accessing its RAM from a RAM-only node
+through CXL.</li>
+<li><a href="https://lwn.net/Articles/892080/">Super in Python Part
+2</a>: Looks at super() call with 2 arguments and its complexities.
+Normal super() is equivalent to super(ThisClassName, self). super(X,
+self) takes MRO call chain of self and then fast forwards to after X and
+does calls.</li>
+<li><a href="https://lwn.net/Articles/892755/">Risks of embedded bare
+repositories in Git</a>: Bare repositories embedded inside a normal repo
+is apparently a vector for user inadvertently running any random cmd.
+Article shows it with good example and commands. I don’t see why this
+bare repository feature is essential, just kill it.</li>
+<li><a href="https://lwn.net/Articles/889171/">KOReader on Kobo
+review</a>: Seems like lots of features, but super slow.</li>
+<li><a href="https://lwn.net/Articles/891398/">Super Python Part 1</a>:
+super() in multiple inheritance creates a MRO (Method Resolution Order)
+chain in topological order (C3 linearization) and follows those calls.
+This is confusing because in a diamond example, super() calls in Bottom,
+will call Left-&gt;Right-&gt;Top, while you normally expect
+Left-&gt;Top.</li>
 </ul>
 <h2 id="2021">2021</h2>
 <ul>
-<li><p><a href="https://lwn.net/Articles/849538/">Clarifying memory management with page folios</a>: Memory management generally works at the level of pages, which is typically 4KB, but may be larger depending on CPU architecture. The kernel will also allocate a <em>compound page</em> when a set of physically contiguous pages is needed, noted as consisting of a <em>head page</em> and <em>tail pages</em>. A <em>page folio</em> is a structure to aid operating on a full compound page.</p></li>
-<li><p><a href="https://lwn.net/Articles/860389/">Features in Python 3.10</a>: switch-case, improved type hinting and user-friendly error reporting.</p></li>
+<li><p><a href="https://lwn.net/Articles/849538/">Clarifying memory
+management with page folios</a>: Memory management generally works at
+the level of pages, which is typically 4KB, but may be larger depending
+on CPU architecture. The kernel will also allocate a <em>compound
+page</em> when a set of physically contiguous pages is needed, noted as
+consisting of a <em>head page</em> and <em>tail pages</em>. A <em>page
+folio</em> is a structure to aid operating on a full compound
+page.</p></li>
+<li><p><a href="https://lwn.net/Articles/860389/">Features in Python
+3.10</a>: switch-case, improved type hinting and user-friendly error
+reporting.</p></li>
 </ul>
 <h2 id="2020">2020</h2>
 <ul>
-<li><a href="https://lwn.net/Articles/831783/">Features in Python 3.9</a></li>
+<li><a href="https://lwn.net/Articles/831783/">Features in Python
+3.9</a></li>
 </ul>
 <h2 id="2019">2019</h2>
 <ul>
-<li><a href="https://lwn.net/Articles/793818/">Features in Python 3.8</a></li>
+<li><a href="https://lwn.net/Articles/793818/">Features in Python
+3.8</a></li>
 </ul>
 <h2 id="2018">2018</h2>
 <ul>
-<li><a href="https://lwn.net/Articles/764647/">Feedforward network to classify bugfix patches</a>: Feedforward neural networks with three layers: input, hidden, and output. The layer organization is a way of describing the formula for making the decision; there are weights associated with each of the steps in the paths through the network. But where do those weights come from? The weights come from the training process. Data that has results with expected values can be used to “back-propagate” weights in order to tune the model. Training is a process of “moving in some direction in our weight space” to produce better results, Lawall said. It is a hill-climbing problem where each iteration tries to improve on the last. At some point, she said, you decide that the error is small enough and stop. Their network is called PatchNet.</li>
-<li><a href="https://lwn.net/ml/ksummit-discuss/CAKMK7uE535-7Vs9EAa2725XL2TX2ChJCN0Zb3YaMe=MarYJOyw@mail.gmail.com/">Make CI as addictive as a slot machine</a>: “But the trick in making CI really effective is to make it about as addictive as a slot machine. Instant gratification and quick results is absolutely key, and developers want to watch it do its things. The more you can give them that, the more your developers will care about CI results (the green checkmark quickly starts to look like candy in your eyes), and the less maintainers have to check this themselves.”</li>
-<li><a href="https://lwn.net/Articles/751763/">Terminal emulator comparison by LWN</a>: Comparison based on latency, scroll speed and resource usage. Xterm has low latency, but slow speed. Urxvt has speed, but bad latency.</li>
-<li><a href="https://lwn.net/Articles/750306/">Macro to check if input is an ICE (integer constant expression)</a>: See in LWN article. <a href="https://lkml.org/lkml/2018/3/20/845">Linus Torvalds explaining how it works</a>.</li>
+<li><a href="https://lwn.net/Articles/764647/">Feedforward network to
+classify bugfix patches</a>: Feedforward neural networks with three
+layers: input, hidden, and output. The layer organization is a way of
+describing the formula for making the decision; there are weights
+associated with each of the steps in the paths through the network. But
+where do those weights come from? The weights come from the training
+process. Data that has results with expected values can be used to
+“back-propagate” weights in order to tune the model. Training is a
+process of “moving in some direction in our weight space” to produce
+better results, Lawall said. It is a hill-climbing problem where each
+iteration tries to improve on the last. At some point, she said, you
+decide that the error is small enough and stop. Their network is called
+PatchNet.</li>
+<li><a
+href="https://lwn.net/ml/ksummit-discuss/CAKMK7uE535-7Vs9EAa2725XL2TX2ChJCN0Zb3YaMe=MarYJOyw@mail.gmail.com/">Make
+CI as addictive as a slot machine</a>: “But the trick in making CI
+really effective is to make it about as addictive as a slot machine.
+Instant gratification and quick results is absolutely key, and
+developers want to watch it do its things. The more you can give them
+that, the more your developers will care about CI results (the green
+checkmark quickly starts to look like candy in your eyes), and the less
+maintainers have to check this themselves.”</li>
+<li><a href="https://lwn.net/Articles/751763/">Terminal emulator
+comparison by LWN</a>: Comparison based on latency, scroll speed and
+resource usage. Xterm has low latency, but slow speed. Urxvt has speed,
+but bad latency.</li>
+<li><a href="https://lwn.net/Articles/750306/">Macro to check if input
+is an ICE (integer constant expression)</a>: See in LWN article. <a
+href="https://lkml.org/lkml/2018/3/20/845">Linus Torvalds explaining how
+it works</a>.</li>
 </ul>
 <h2 id="2017">2017</h2>
 <ul>
-<li><a href="https://lwn.net/Articles/725508/">Memory use of CPython and MicroPython</a>: Also see these <a href="https://speakerdeck.com/kavya719/the-memory-chronicles">slides</a>.</li>
-<li><a href="https://lwn.net/Articles/715090/">Case against password hashers</a>: LessPass seems to have more features than SuperGenPass. Might have to switch.</li>
+<li><a href="https://lwn.net/Articles/725508/">Memory use of CPython and
+MicroPython</a>: Also see these <a
+href="https://speakerdeck.com/kavya719/the-memory-chronicles">slides</a>.</li>
+<li><a href="https://lwn.net/Articles/715090/">Case against password
+hashers</a>: LessPass seems to have more features than SuperGenPass.
+Might have to switch.</li>
 </ul>
 <h2 id="2013">2013</h2>
 <ul>
-<li><a href="http://lwn.net/Articles/576276/">BTRFS filesystem</a>: B-tree filesystem. ext2 keeps pointers to individual disc blocks. This means the metadata is quite huge since files have been getting bigger. In constrast, (ext4 and) BTRFS keeps pointers to extends: a set of contiguous blocks. COW (Copy on write): Changed blocks are written elsewhere, so older blocks are still kept on disk (until garbage collected when disc gets full). Thanks to COW, no journal is needed (like ext4). So recovery from crash is easy. COW also enables easy snapshots of files (or history). FS can also span across disks and volumes. Checksums for data and metadata to catch any disk error.</li>
-<li><a href="http://lwn.net/Articles/568169/">Free drivers for ARM graphics</a></li>
+<li><a href="http://lwn.net/Articles/576276/">BTRFS filesystem</a>:
+B-tree filesystem. ext2 keeps pointers to individual disc blocks. This
+means the metadata is quite huge since files have been getting bigger.
+In constrast, (ext4 and) BTRFS keeps pointers to extends: a set of
+contiguous blocks. COW (Copy on write): Changed blocks are written
+elsewhere, so older blocks are still kept on disk (until garbage
+collected when disc gets full). Thanks to COW, no journal is needed
+(like ext4). So recovery from crash is easy. COW also enables easy
+snapshots of files (or history). FS can also span across disks and
+volumes. Checksums for data and metadata to catch any disk error.</li>
+<li><a href="http://lwn.net/Articles/568169/">Free drivers for ARM
+graphics</a></li>
 </ul>
 <h2 id="2004">2004</h2>
 <ul>
-<li><a href="https://lwn.net/Articles/104185/">Comparing OOM killer to choosing passengers to throw out of airplane</a></li>
+<li><a href="https://lwn.net/Articles/104185/">Comparing OOM killer to
+choosing passengers to throw out of airplane</a></li>
 </ul>
 </div>
 
