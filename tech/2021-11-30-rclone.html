@@ -44,36 +44,63 @@
 <h1 class="title">rclone</h1>
 <p class="date">📅 2021-Nov-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#rclone'>rclone</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://rclone.org/"><strong>rclone</strong></a> is a great tool to manage cloud storage from the commandline. It supports almost all of the popular cloud storage providers, so you can sync up and sync down from any of them using the same commands.</p>
+<p><a href="https://rclone.org/"><strong>rclone</strong></a> is a great
+tool to manage cloud storage from the commandline. It supports almost
+all of the popular cloud storage providers, so you can sync up and sync
+down from any of them using the same commands.</p>
 <ul>
 <li>Installing is easy on Ubuntu:</li>
 </ul>
 <pre><code>$ sudo apt install rclone</code></pre>
 <ul>
-<li>rclone reads access and config information about the cloud storage provider (CSP) you want to use from the file <code>~/.config/rclone/rclone.conf</code>. To create this file use this interactive command:</li>
+<li>rclone reads access and config information about the cloud storage
+provider (CSP) you want to use from the file
+<code>~/.config/rclone/rclone.conf</code>. To create this file use this
+interactive command:</li>
 </ul>
 <pre><code>$ rclone config</code></pre>
-<p>Minimally, you will be asked for information like the CSP you want to use, your account, your access key and a name for this CSP account.</p>
-<p>Contents of an example <code>rclone.conf</code> for a Backblaze B2 account:</p>
+<p>Minimally, you will be asked for information like the CSP you want to
+use, your account, your access key and a name for this CSP account.</p>
+<p>Contents of an example <code>rclone.conf</code> for Backblaze B2 and
+Google Drive accounts:</p>
 <pre><code>[backblaze_foobar]
 type = b2
 account = abracadabra
 key = 0010fae0bf57e8779
-endpoint =</code></pre>
-<p>Information about all the CSPs supported by rclone and their configs can be found <a href="https://rclone.org/#providers">here</a>.</p>
+endpoint =
+
+[gdrive_ashwin]
+type = drive
+client_id = abracadabra.apps.googleusercontent.com
+client_secret = 0010fae0bf57e8779
+scope = drive.readonly
+token = {&quot;access_token&quot;:&quot;asfasfshgfshlsghjsmvosaujhsfg&quot;}
+team_drive =</code></pre>
+<p>Information about all the CSPs supported by rclone and their configs
+can be found <a href="https://rclone.org/#providers">here</a>.</p>
+<ul>
+<li><p>For the configuration to read/write from <strong>Google
+Drive</strong>, you need a <code>Client ID</code> and a
+<code>Client Secret</code>. You can create this at the Google API
+Console following the instructions provided <a
+href="https://rclone.org/drive/#making-your-own-client-id">here</a>.</p></li>
+<li><p>To sync files from a cloud storage bucket to a local
+directory:</p></li>
+</ul>
+<pre><code>$ rclone sync backblaze_foobar:foobar_bucket /local/path/foobar
+
+$ rclone sync gdrive_foobar: /local/path/foobar</code></pre>
 <ul>
 <li>To sync files from a local directory to a cloud storage bucket:</li>
 </ul>
 <pre><code>$ rclone sync /local/path/foobar backblaze_foobar:foobar_bucket</code></pre>
 <ul>
-<li>To sync files from a cloud storage bucket to a local directory:</li>
+<li><p>To get verbose output, add the <code>--verbose</code>
+option.</p></li>
+<li><p>To do a dry run without modifying any files, add the
+<code>--dry-run</code> option.</p></li>
 </ul>
-<pre><code>$ rclone sync backblaze_foobar:foobar_bucket /local/path/foobar</code></pre>
-<ul>
-<li><p>To get verbose output, add the <code>--verbose</code> option.</p></li>
-<li><p>To do a dry run without modifying any files, add the <code>--dry-run</code> option.</p></li>
-</ul>
-<p><strong>Tried with:</strong> rclone 1.50.2 and Ubuntu 20.04</p>
+<p><strong>Tried with:</strong> rclone 1.60.1 and Ubuntu 24.04</p>
 </div>
 
 <br />
@@ -81,11 +108,13 @@ endpoint =</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2025 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>
