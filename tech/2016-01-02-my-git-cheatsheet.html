@@ -44,13 +44,15 @@
 <h1 class="title">My Git Cheatsheet</h1>
 <p class="date">📅 2016-Jan-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#git'>git</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Git</strong> incantations that I need to lookup sometimes:</p>
+<p><strong>Git</strong> incantations that I need to lookup
+sometimes:</p>
 <h2 id="revision-information">Revision information</h2>
 <ul>
 <li>Show all the information associated with a revision:</li>
 </ul>
 <pre><code>$ git show 123456</code></pre>
-<p>This shows the revision’s hash, author, commit message and a full diff of all the files in the revision.</p>
+<p>This shows the revision’s hash, author, commit message and a full
+diff of all the files in the revision.</p>
 <ul>
 <li>Show only the names of files changed in a revision:</li>
 </ul>
@@ -69,24 +71,32 @@ fatal: ambiguous argument &#39;123456&#39;: unknown revision or path not in the 
 <li>To refer to a revision by a substring from its commit message:</li>
 </ul>
 <pre><code>$ git show &quot;:/foobar&quot;</code></pre>
-<p>This chooses the most recent revision which has <code>foobar</code> in its commit message.</p>
-<p>All other ways to refer to a revision are listed <a href="https://git-scm.com/docs/revisions">here</a> in the documentation.</p>
+<p>This chooses the most recent revision which has <code>foobar</code>
+in its commit message.</p>
+<p>All other ways to refer to a revision are listed <a
+href="https://git-scm.com/docs/revisions">here</a> in the
+documentation.</p>
 <h2 id="working-copy">Working copy</h2>
 <ul>
-<li>When you clone a repo, Git automatically checks out the master branch. To clone and check out a different branch:</li>
+<li>When you clone a repo, Git automatically checks out the master
+branch. To clone and check out a different branch:</li>
 </ul>
 <pre><code>$ git clone git@github.com:joe/foobar --branch branch123</code></pre>
 <ul>
-<li><p><a href="2014-06-07-how-to-git-clone-only-the-latest-revision.html">To clone only the latest revision</a></p></li>
+<li><p><a
+href="2014-06-07-how-to-git-clone-only-the-latest-revision.html">To
+clone only the latest revision</a></p></li>
 <li><p>To unstage all the files in the index:</p></li>
 </ul>
 <pre><code>$ git reset</code></pre>
-<p>This moves all the files in the index back into the working directory.</p>
+<p>This moves all the files in the index back into the working
+directory.</p>
 <ul>
 <li>To unstage a staged file:</li>
 </ul>
 <pre><code>$ git reset HEAD file123</code></pre>
-<p>This moves the file out from the index back to the working directory.</p>
+<p>This moves the file out from the index back to the working
+directory.</p>
 <ul>
 <li>To revert a staged or modified file back to its last commit:</li>
 </ul>
@@ -96,48 +106,62 @@ fatal: ambiguous argument &#39;123456&#39;: unknown revision or path not in the 
 </ul>
 <pre><code>$ git reset --hard</code></pre>
 <ul>
-<li>To revert a specific revision from the past and add that reverted change as a new revision:</li>
+<li>To revert a specific revision from the past and add that reverted
+change as a new revision:</li>
 </ul>
 <pre><code>$ git revert sha_hash_of_revision_123</code></pre>
 <ul>
-<li>To revert a series of specific revisions from the past and add each of those reverted changes as new revisions:</li>
+<li>To revert a series of specific revisions from the past and add each
+of those reverted changes as new revisions:</li>
 </ul>
 <pre><code>$ git revert sha_hash_of_revision_700
 $ git revert sha_hash_of_revision_99
 $ git revert sha_hash_of_revision_1</code></pre>
-<p>Though you can revert revisions in any order, I like to revert in opposite order of history. That is, revert the latest revision first and so on.</p>
+<p>Though you can revert revisions in any order, I like to revert in
+opposite order of history. That is, revert the latest revision first and
+so on.</p>
 <ul>
-<li>To revert a series of specific revisions from the past and create a <em>single</em> new revision out of them:</li>
+<li>To revert a series of specific revisions from the past and create a
+<em>single</em> new revision out of them:</li>
 </ul>
 <pre><code>$ git revert --no-commit sha_hash_of_revision_700
 $ git revert --no-commit sha_hash_of_revision_99
 $ git revert --no-commit sha_hash_of_revision_1
 $ git commit</code></pre>
-<p>The <code>--no-commit</code> stages the reverted changes, but does not commit them. So, we follow them up with a commit.</p>
+<p>The <code>--no-commit</code> stages the reverted changes, but does
+not commit them. So, we follow them up with a commit.</p>
 <ul>
-<li>To undo or delete the last commit and also completely lose all of its changes:</li>
+<li>To undo or delete the last commit and also completely lose all of
+its changes:</li>
 </ul>
 <pre><code>$ git reset --hard HEAD~1</code></pre>
 <ul>
-<li>To undo or delete the last commit, and keep its changes as unstaged changes in the working directory:</li>
+<li>To undo or delete the last commit, and keep its changes as unstaged
+changes in the working directory:</li>
 </ul>
 <pre><code>$ git reset --soft HEAD~1</code></pre>
 <ul>
 <li>To remove all untracked files from the local repo directory:</li>
 </ul>
 <pre><code>$ git clean -fd</code></pre>
-<p>This does not touch files ignored by git (<code>.gitignore</code>).</p>
+<p>This does not touch files ignored by git
+(<code>.gitignore</code>).</p>
 <ul>
-<li>To remove all untracked files (including git ignored files) from the local repo directory:</li>
+<li>To remove all untracked files (including git ignored files) from the
+local repo directory:</li>
 </ul>
 <pre><code>$ git clean -fdx</code></pre>
-<p>This pretty much restores the repo directory to a pristine state with no extraneous files.</p>
+<p>This pretty much restores the repo directory to a pristine state with
+no extraneous files.</p>
 <ul>
 <li>To revert non-staged non-committed changes:</li>
 </ul>
 <pre><code>$ git checkout file123</code></pre>
 <ul>
-<li>To checkin an empty directory - well that is not possible since Git will not do that. A common method folks have been using is to put an empty <code>.gitkeep</code> file in the empty directory and check that file in.</li>
+<li>To checkin an empty directory - well that is not possible since Git
+will not do that. A common method folks have been using is to put an
+empty <code>.gitkeep</code> file in the empty directory and check that
+file in.</li>
 </ul>
 <pre><code>$ mkdir empty_dir
 $ touch empty_dir/.gitkeep
@@ -163,9 +187,13 @@ $ git add empty_dir/.gitkeep</code></pre>
 <li>To delete a local branch:</li>
 </ul>
 <pre><code>$ git branch -d branch_name</code></pre>
-<p>Note that you cannot delete the current branch. Checkout to a different branch and then delete the branch you wanted to. This is because imagine chopping off the branch of a tree you are sitting on. You will fall down! 😁</p>
+<p>Note that you cannot delete the current branch. Checkout to a
+different branch and then delete the branch you wanted to. This is
+because imagine chopping off the branch of a tree you are sitting on.
+You will fall down! 😁</p>
 <ul>
-<li>To list all the branches that contain a given commit <code>01234</code>:</li>
+<li>To list all the branches that contain a given commit
+<code>01234</code>:</li>
 </ul>
 <pre><code>$ git branch -vva --contains 01234</code></pre>
 <ul>
@@ -173,9 +201,11 @@ $ git add empty_dir/.gitkeep</code></pre>
 </ul>
 <pre><code>$ git diff branch1 branch2 -- path/to/file
 $ git difftool branch1 branch2 -- path/to/file</code></pre>
-<p>Here the assumption is that <code>branch2</code> has the updated changes, so is placed after <code>branch1</code>.</p>
+<p>Here the assumption is that <code>branch2</code> has the updated
+changes, so is placed after <code>branch1</code>.</p>
 <ul>
-<li>To get the new changes from one branch <code>from_branch</code> to another branch <code>to_branch</code> as a commit:</li>
+<li>To get the new changes from one branch <code>from_branch</code> to
+another branch <code>to_branch</code> as a commit:</li>
 </ul>
 <pre><code>$ git diff to_branch from_branch | git apply --index -
 $ git commit</code></pre>
@@ -231,11 +261,13 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 </ul>
 <pre><code>$ git push remote_name local_branch_name:remote_branch_name</code></pre>
 <ul>
-<li>To push the current local branch to a remote branch and make the current local branch track that remote branch:</li>
+<li>To push the current local branch to a remote branch and make the
+current local branch track that remote branch:</li>
 </ul>
 <pre><code>$ git push -u remote_name remote_branch_name</code></pre>
 <ul>
-<li>To push a local branch to a remote branch and make the local branch track that remote branch:</li>
+<li>To push a local branch to a remote branch and make the local branch
+track that remote branch:</li>
 </ul>
 <pre><code>$ git push -u remote_name local_branch_name:remote_branch_name</code></pre>
 <ul>
@@ -243,16 +275,20 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 </ul>
 <pre><code>$ git push remote_name --delete remote_branch</code></pre>
 <ul>
-<li>To checkout a remote branch to a new local branch (of same name) with tracking:</li>
+<li>To checkout a remote branch to a new local branch (of same name)
+with tracking:</li>
 </ul>
 <pre><code>$ git checkout -t remote_name/remote_branch</code></pre>
 <ul>
-<li>To make an existing local branch track a remote branch (or change remote tracking branch):</li>
+<li>To make an existing local branch track a remote branch (or change
+remote tracking branch):</li>
 </ul>
 <pre><code>$ git branch local_branch -u remote_name/remote_branch</code></pre>
 <ul>
-<li><p><a href="2017-10-12-how-to-rename-remote-branch-in-git.html">To rename a remote branch</a></p></li>
-<li><p>If some branches have been removed at the remote and you want them removed from the local repository too:</p></li>
+<li><p><a href="2017-10-12-how-to-rename-remote-branch-in-git.html">To
+rename a remote branch</a></p></li>
+<li><p>If some branches have been removed at the remote and you want
+them removed from the local repository too:</p></li>
 </ul>
 <pre><code>$ git remote prune FOOBAR_REMOTE</code></pre>
 <h2 id="submodules">Submodules</h2>
@@ -265,25 +301,34 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 </ul>
 <pre><code>$ git fetch --all --recurse-submodules</code></pre>
 <ul>
-<li>To update all submodules to revision required by main module revision:</li>
+<li>To update all submodules to revision required by main module
+revision:</li>
 </ul>
 <pre><code>$ git submodule update --recursive</code></pre>
 <ul>
-<li>To initialize all submodules the first time and update them to revision required by main module revision:</li>
+<li>To initialize all submodules the first time and update them to
+revision required by main module revision:</li>
 </ul>
 <pre><code>$ git submodule update --init --recursive</code></pre>
 <ul>
-<li>To view the commit of a submodule (named <code>foobar</code>) corresponding to a commit (say <code>999792b</code>) of the main module:</li>
+<li>To view the commit of a submodule (named <code>foobar</code>)
+corresponding to a commit (say <code>999792b</code>) of the main
+module:</li>
 </ul>
 <pre><code>$ git ls-tree 999792b foobar</code></pre>
 <h2 id="tags">Tags</h2>
 <ul>
-<li><a href="2017-10-04-how-to-use-tags-in-git.html">To use tags in Git</a></li>
+<li><a href="2017-10-04-how-to-use-tags-in-git.html">To use tags in
+Git</a></li>
 </ul>
 <h2 id="misc">Misc</h2>
 <ul>
-<li><p><a href="2011-06-03-how-to-generate-patch-of-commit-in-git.html">To generate patch of commit</a></p></li>
-<li><p><a href="2012-12-04-how-to-list-configuration-settings-in-git.html">To list configuration settings</a></p></li>
+<li><p><a
+href="2011-06-03-how-to-generate-patch-of-commit-in-git.html">To
+generate patch of commit</a></p></li>
+<li><p><a
+href="2012-12-04-how-to-list-configuration-settings-in-git.html">To list
+configuration settings</a></p></li>
 <li><p>To view HEAD history of your local repository:</p></li>
 </ul>
 <pre><code>$ git reflog</code></pre>
@@ -292,9 +337,17 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 </ul>
 <pre><code>$ git log --follow --patch /path/to/file</code></pre>
 <ul>
-<li>Find which commit added or deleted a certain string:</li>
+<li>Find which commits had the file changes which added or deleted a
+certain string:</li>
 </ul>
 <pre><code>$ git log -S foobar</code></pre>
+<ul>
+<li>Find which commit messages had a certain string (case sensitive and
+case insensitive):</li>
+</ul>
+<pre><code>$ git log --grep=&quot;foobar&quot;
+
+$ git log --grep=&quot;foobar&quot; -i</code></pre>
 <ul>
 <li>Get the history of a function:</li>
 </ul>
@@ -312,17 +365,20 @@ $ git rebase remote_123/remote_branch_678</code></pre>
 </ul>
 <pre><code>$ git diff --name-only old_rev new_rev</code></pre>
 <ul>
-<li>List files that changed and also their status (added/modified/deleted) between two revisions:</li>
+<li>List files that changed and also their status
+(added/modified/deleted) between two revisions:</li>
 </ul>
 <pre><code>$ git diff --name-status old_rev new_rev</code></pre>
 <ul>
-<li>Create an archive or zip file of the contents of the entire repo at a given commit:</li>
+<li>Create an archive or zip file of the contents of the entire repo at
+a given commit:</li>
 </ul>
 <pre><code>$ git archive -o out.tar HEAD
 $ git archive -o out2.zip SOME_TAG
 $ git archive -o out3.zip SOME_COMMIT_HASH</code></pre>
 <ul>
-<li>Create a zip file of just the files that were changed by a given commit:</li>
+<li>Create a zip file of just the files that were changed by a given
+commit:</li>
 </ul>
 <pre><code>$ git archive -o foobar.zip SOME_REV $(git diff --name-only SOME_REV PREV_REV)</code></pre>
 </div>
@@ -332,11 +388,13 @@ $ git archive -o out3.zip SOME_COMMIT_HASH</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2025 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>
