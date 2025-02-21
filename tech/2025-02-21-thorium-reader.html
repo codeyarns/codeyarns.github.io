@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – FBReader</title>
+  <title>Code Yarns – Thorium Reader</title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
@@ -41,23 +41,32 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">FBReader</h1>
-<p class="date">📅 2014-May-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#android'>android</a>, <a href='index.html#ebook-reader'>ebook reader</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+<h1 class="title">Thorium Reader</h1>
+<p class="date">📅 2025-Feb-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ebook-reader'>ebook reader</a>, <a href='index.html#epub'>epub</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Calibre</strong> is the most popular application on Linux for
-handling <strong>ebooks</strong>. But, if you just want to read ebooks
-then Calibre might be too heavy a tool for that. I prefer <a
-href="http://fbreader.org/"><strong>FBReader</strong></a> for reading
-EPUB, MOBI and other ebook formats.</p>
-<p>To install FBReader on Ubuntu:</p>
-<pre><code>$ sudo apt install fbreader</code></pre>
-<p>To associate a ebook format with FBReader look for the application
-named <strong>E-Book Reader</strong> in Dash.</p>
-<p>FBReader is open source and is also available for
-<strong>Android</strong> from the Play Store. But the Android app seems
-to be pushy these days with ads, so I would not recommend it.</p>
-<p><strong>Tried with:</strong> FBReader 0.12.0, Android 4.4.4, Moto G
-and Ubuntu 14.04</p>
+<p>I recently had to open a complex EPUB file with fixed layout of
+images and overlaid text. None of the regular ebook readers on Linux,
+like Calibre or FBReader could do the job. <a
+href="https://www.edrlab.org/software/thorium-reader/"><strong>Thorium
+Reader</strong></a> turned out to be the one which accomplished the task
+perfectly. This software is open-sourced on Github <a
+href="https://github.com/edrlab/thorium-reader">here</a>.</p>
+<ul>
+<li><strong>Install</strong>: I downloaded the <code>.deb</code> file
+for the latest release from <a
+href="https://github.com/edrlab/thorium-reader/releases">here</a> and
+installed it at the shell:</li>
+</ul>
+<pre><code>$ sudo dpkg -i EDRLab.ThoriumReader_3.1.0_amd64.deb</code></pre>
+<ul>
+<li><strong>Sandbox error</strong>: Running Thorium for the first time,
+gave me the all-familiar sandbox error. Fixing that was simple:</li>
+</ul>
+<pre><code>$ sudo chown root:root /opt/Thorium/chrome-sandbox
+
+$ sudo chmod 4755 /opt/Thorium/chrome-sandbox</code></pre>
+<p><strong>Tried with</strong>: Thorium Reader 3.1.0 and Ubuntu
+24.04</p>
 </div>
 
 <br />
