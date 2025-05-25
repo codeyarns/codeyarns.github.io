@@ -44,7 +44,9 @@
 <h1 class="title">Beelink SER5 Mini PC</h1>
 <p class="date">📅 2023-Sep-08 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#minipc'>minipc</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://www.bee-link.com/"><strong>Beelink SER5</strong></a> is a popular series of mini PC that I recently acquired to use as a home PC.</p>
+<p>The <a href="https://www.bee-link.com/"><strong>Beelink
+SER5</strong></a> is a popular series of mini PC that I recently
+acquired to use as a home PC.</p>
 <h2 id="specifications">Specifications</h2>
 <ul>
 <li>CPU: AMD Ryzen 5 5500U (6 cores, 12 threads)</li>
@@ -57,29 +59,56 @@
 <li>USB: Realtek RTL8153 Gigabit Ethernet Adapter</li>
 <li>Wifi: Intel Wi-Fi 6 AX200</li>
 </ul>
-<h2 id="usage">Usage</h2>
+<h2 id="boot-keys">Boot keys</h2>
 <ul>
 <li><code>F7</code>: Get boot menu</li>
 <li><code>Del</code>: Get into BIOS</li>
 </ul>
+<h2 id="first-steps">First steps</h2>
+<ul>
+<li>Note that the board inside the mini PC was not really screwed in.
+Thankfully, I had to open it up to add a harddisk (see below) and I
+noticed that the 4 screws were not really holding the motherboard in
+place. Shaking the box a bit dislodged all of them and I promptly
+screwed them back in.</li>
+</ul>
 <h2 id="dual-booting-with-linux">Dual booting with Linux</h2>
-<p>This was pretty straightforward except for some problems I faced since I had added an extra hard disk that used to be a bootable Linux OS earlier.</p>
+<p>This was pretty straightforward except for some problems I faced
+since I had added an extra hard disk that used to be a bootable Linux OS
+earlier.</p>
 <p>Here is what worked:</p>
 <ul>
-<li>Create a Linux installer USB flash drive as described <a href="2013-03-17-how-to-create-a-ubuntu-installer-usb-flash-drive-on-windows.html">here</a>.</li>
-<li>Restart the mini PC, choose <code>F7</code> to get the boot menu and choose to boot from the flash drive.</li>
-<li>Install Ubuntu. Either choose the <em>alongside the Windows boot manager</em> option or you can create an ext4 <code>/</code> partition and use that. Remove the flash drive and reboot.</li>
-<li>To my surprise, even after installing Ubuntu, there was no Grub boot menu and the system booted into Windows directly. After a lot of frustrations and reinstalls, I finally figured out that I needed to get into the BIOS and place the <em>Ubuntu</em> option higher than the <em>Windows boot manager</em> option in <strong>UEFI Boot</strong> priorities.</li>
-<li>After that, I was able to see the Grub menu on restart and boot into Linux.</li>
+<li>Create a Linux installer USB flash drive as described <a
+href="2013-03-17-how-to-create-a-ubuntu-installer-usb-flash-drive-on-windows.html">here</a>.</li>
+<li>Restart the mini PC, choose <code>F7</code> to get the boot menu and
+choose to boot from the flash drive.</li>
+<li>Install Ubuntu. Either choose the <em>alongside the Windows boot
+manager</em> option or you can create an ext4 <code>/</code> partition
+and use that. Remove the flash drive and reboot.</li>
+<li>To my surprise, even after installing Ubuntu, there was no Grub boot
+menu and the system booted into Windows directly. After a lot of
+frustrations and reinstalls, I finally figured out that I needed to get
+into the BIOS and place the <em>Ubuntu</em> option higher than the
+<em>Windows boot manager</em> option in <strong>UEFI Boot</strong>
+priorities.</li>
+<li>After that, I was able to see the Grub menu on restart and boot into
+Linux.</li>
 </ul>
 <h2 id="installing-hard-disk">Installing hard disk</h2>
-<p>There is dedicated space underneath the bottom cover for installing an extra harddisk. Here is what I had to do to install a 1TB harddisk to the Beelink:</p>
+<p>There is dedicated space underneath the bottom cover for installing
+an extra harddisk. Here is what I had to do to install a 1TB harddisk to
+the Beelink:</p>
 <ul>
 <li>Power off the Beelink, unplug everything and flip it over.</li>
-<li>Remove the 4 screws at the bottom and using the fabric tab pull up the cover gently.</li>
-<li>The harddisk slot under the bottom cover was already connected by a cable to the motherboard.</li>
-<li>All I did was to slide the hard disk or SSD into the slot and press until it locks into the interface inside.</li>
-<li>You can secure it with up to 4 screws provided in the box, but the holes were slightly misaligned with my hard disk so I could not do it.</li>
+<li>Remove the 4 screws at the bottom and using the fabric tab pull up
+the cover gently.</li>
+<li>The harddisk slot under the bottom cover was already connected by a
+cable to the motherboard.</li>
+<li>All I did was to slide the hard disk or SSD into the slot and press
+until it locks into the interface inside.</li>
+<li>You can secure it with up to 4 screws provided in the box, but the
+holes were slightly misaligned with my hard disk so I could not do
+it.</li>
 <li>Close the cover and screw in. Reboot and enjoy.</li>
 </ul>
 </div>
@@ -89,11 +118,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2025 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>
