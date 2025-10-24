@@ -57,7 +57,7 @@ acquired to use as a home PC.</p>
 <li>SSD: 500GB NVME</li>
 <li>LAN: Realtek RTL8111/8168/8411 PCIe Gigabit Ethernet</li>
 <li>USB: Realtek RTL8153 Gigabit Ethernet Adapter</li>
-<li>Wifi: Intel Wi-Fi 6 AX200</li>
+<li>Wifi/Bluetooth: Intel AX200</li>
 </ul>
 <h2 id="boot-keys">Boot keys</h2>
 <ul>
@@ -111,6 +111,14 @@ holes were slightly misaligned with my hard disk so I could not do
 it.</li>
 <li>Close the cover and screw in. Reboot and enjoy.</li>
 </ul>
+<h2 id="bluetooth">Bluetooth</h2>
+<p>After a Ubuntu upgrade, I found that the Bluetooth settings dialog
+was saying <code>No Bluetooth found</code>. It turned out that the Linux
+kernel module for Bluetooth devices <code>btusb</code> was not
+loaded.</p>
+<p>I loaded it using this command and Bluetooth started working
+immediately:</p>
+<pre><code>$ sudo modprobe btusb</code></pre>
 </div>
 
 <br />
