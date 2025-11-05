@@ -119,6 +119,28 @@ loaded.</p>
 <p>I loaded it using this command and Bluetooth started working
 immediately:</p>
 <pre><code>$ sudo modprobe btusb</code></pre>
+<h2 id="disconnecting-wifi">Disconnecting Wifi</h2>
+<p>After a recent Ubuntu upgrade, the wifi connection with my home
+router started to disconnect and reconnect every 2 minutes.</p>
+<p>dmesg showed these logs repeating every 2 minutes:</p>
+<pre><code>1386:[Tue Nov  4 15:35:49 2025] wlo1: 80 MHz not supported, disabling VHT
+1387:[Tue Nov  4 15:35:49 2025] wlo1: authenticate with &lt;Wifi router MAC address&gt;
+1388:[Tue Nov  4 15:35:49 2025] wlo1: send auth to &lt;Wifi router MAC address&gt; (try 1/3)
+1388:[Tue Nov  4 15:35:49 2025] wlo1: send auth to &lt;Wifi router MAC address&gt; (try 2/3)
+1388:[Tue Nov  4 15:35:49 2025] wlo1: send auth to &lt;Wifi router MAC address&gt; (try 3/3)
+1391:[Tue Nov  4 15:35:50 2025] wlo1: authentication &lt;Wifi router MAC address&gt; timed out</code></pre>
+<p>From the above logs, we see that authentication is timing out and so
+our connection is disconnecting.</p>
+<p>First suggestion was to open
+<code>/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf</code>,
+set <code>wifi.powersave = 0</code> and restart
+<code>sudo systemctl restart NetworkManager</code>. This did not fix the
+problem.</p>
+<p>The 80 MHz band and VHT (Very High Throughput) are from the 5 MHz
+network, so I disabled 5 MHz wifi in the router settings. This still did
+not fix the problem. To make sure this was cleanly applied, I restarted
+the wifi router and also the Beelink’s NetworkManager. This seemed to
+fix the problem.</p>
 </div>
 
 <br />
