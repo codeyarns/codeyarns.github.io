@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – JankyBorders</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-143311697-1');
+  </script>
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+  </div>
+  <div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+  </div>
+  <div class="header">
+      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
+      <div class="gcse-search"></div>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">JankyBorders</h1>
+<p class="date">📅 2025-Nov-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#macos'>macos</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p>Something I miss from older versions of Windows is clear indication
+of which window is currently in focus. In MacOS Tahoe, the only
+indication of the window in focus is that its traffic light buttons are
+in color, while they are greyed out for the rest of the windows. <a
+href="https://github.com/FelixKratz/JankyBorders"><strong>JankyBorders</strong></a>
+is an open-source app that helps draw a colored border around the
+currently focused window.</p>
+<ul>
+<li><strong>Install</strong>:</li>
+</ul>
+<pre><code>$ brew tap FelixKratz/formulae
+$ brew install borders</code></pre>
+<ul>
+<li><strong>Test the app</strong>:</li>
+</ul>
+<p>To test the app from the terminal with a thick green border:</p>
+<pre><code>$ borders width=10 active_color=0xFF00FF00</code></pre>
+<ul>
+<li><strong>To run as service</strong>:</li>
+</ul>
+<p>First create a configuration file
+<code>~/.config/borders/bordersrc</code>:</p>
+<pre><code>#!/bin/bash
+
+options=(
+    width=10
+    active_color=0xFF00FF00
+)
+
+borders &quot;${options[@]}&quot;</code></pre>
+<p>Next run as service in the background:</p>
+<pre><code>$ brew services start borders</code></pre>
+<p><strong>Tried with:</strong> JankyBorders 1.8.4 and MacOS Tahoe
+26.0.1</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2025 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
