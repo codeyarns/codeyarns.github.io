@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,19 @@
 <h1 class="title">Error building Caffe with Python 3 support</h1>
 <p class="date">📅 2017-Jan-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#boost'>boost</a>, <a href='index.html#caffe'>caffe</a>, <a href='index.html#error'>error</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Caffe</strong> can be built with support for Python 2.x. This allows you to invoke Caffe easily from Python code. However, I wanted to call Caffe from Python 3.x code.</p>
+<p><strong>Caffe</strong> can be built with support for Python 2.x. This
+allows you to invoke Caffe easily from Python code. However, I wanted to
+call Caffe from Python 3.x code.</p>
 <ul>
-<li><p>I built Boost with Python 3.x support. I could see that <code>libboost_python3</code> library files were generated.</p></li>
-<li><p>I added this to the normal CMake command that I use to build Caffe: <code>-Dpython_version=3</code></p></li>
+<li><p>I built Boost with Python 3.x support. I could see that
+<code>libboost_python3</code> library files were generated.</p></li>
+<li><p>I added this to the normal CMake command that I use to build
+Caffe: <code>-Dpython_version=3</code></p></li>
 </ul>
 <p>Sadly, this popped up errors of this type:</p>
 <pre><code>libboost_python.so: undefined reference to `PyClass_Type&#39;</code></pre>
-<p>This type of error indicates that the Python 2.x Boost library was being used to compile with Python 3.x libraries.</p>
+<p>This type of error indicates that the Python 2.x Boost library was
+being used to compile with Python 3.x libraries.</p>
 </div>
 
 <br />
@@ -59,11 +50,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

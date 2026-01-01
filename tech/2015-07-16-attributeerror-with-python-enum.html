@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,10 @@
 <p class="date">📅 2015-Jul-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#enum'>enum</a>, <a href='index.html#error'>error</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I had code that had worked correctly with Python 2.7 and that used the old <a href="https://pypi.python.org/pypi/enum/"><strong>enum</strong></a> module. Recently it started throwing this error:</p>
+<p>I had code that had worked correctly with Python 2.7 and that used
+the old <a
+href="https://pypi.python.org/pypi/enum/"><strong>enum</strong></a>
+module. Recently it started throwing this error:</p>
 <pre><code>$ ./foo.py 
 Traceback (most recent call last):
   File &quot;./foo.py&quot;, line 146, in &lt;module&gt;
@@ -56,8 +45,17 @@ Traceback (most recent call last):
     raise AttributeError(name)
 AttributeError: Line</code></pre>
 <h2 id="solution">Solution</h2>
-<p>This error is caused when the <a href="https://pypi.python.org/pypi/enum34/"><strong>enum34</strong></a> module has been installed alongside the old enum module. enum34 is the backport for Python 2.x of the standard enum in Python 3.4. Many packages have started to use it and so it will be installed implicitly while installing another package. enum34 overrides the old enum files and causes this error.</p>
-<p>You could remove enum34 and get rid of this error. But since Python 3.x has already adapted a new enum type, it might be wiser to uninstall the old enum and rewrite your code to use enum34. Its syntax is shown in <a href="2013/05/01/how-to-use-enum-in-python/">this example</a>.</p>
+<p>This error is caused when the <a
+href="https://pypi.python.org/pypi/enum34/"><strong>enum34</strong></a>
+module has been installed alongside the old enum module. enum34 is the
+backport for Python 2.x of the standard enum in Python 3.4. Many
+packages have started to use it and so it will be installed implicitly
+while installing another package. enum34 overrides the old enum files
+and causes this error.</p>
+<p>You could remove enum34 and get rid of this error. But since Python
+3.x has already adapted a new enum type, it might be wiser to uninstall
+the old enum and rewrite your code to use enum34. Its syntax is shown in
+<a href="2013/05/01/how-to-use-enum-in-python/">this example</a>.</p>
 <p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
 </div>
 
@@ -66,11 +64,13 @@ AttributeError: Line</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

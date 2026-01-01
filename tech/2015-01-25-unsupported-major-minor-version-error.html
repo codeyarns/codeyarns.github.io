@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,8 @@
 <p class="date">📅 2015-Jan-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#java'>java</a>, <a href='index.html#version'>version</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I executed a Java program downloaded from the web and got this error:</p>
+<p>I executed a Java program downloaded from the web and got this
+error:</p>
 <pre><code>Exception in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: net/filebot/Main : Unsupported major.minor version 52.0
     at java.lang.ClassLoader.defineClass1(Native Method)
     at java.lang.ClassLoader.defineClass(ClassLoader.java:800)
@@ -61,8 +48,18 @@
     at java.lang.ClassLoader.loadClass(ClassLoader.java:358)
     at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:482)</code></pre>
 <h2 id="solution">Solution</h2>
-<p>This error from the Java virtual machine (VM) executing the Java class file indicates that the version 52.0 is not supported by it. This is usually means that the Java program requires a newer version of Java VM for its execution.</p>
-<p>The mysterious part is the number 52, which is much higher than any Java version we know. This is a <strong>Java class file format</strong> version number. The Java version that maps to 52 can be found from the table of <a href="2015/01/25/major-minor-version-of-java-class-file/">class file format version to Java version mapping</a>. For 52.0, it is Java 8. So, this error means that I need to have Java 8 VM to execute this class file. That was correct since I had Java 7 on this computer.</p>
+<p>This error from the Java virtual machine (VM) executing the Java
+class file indicates that the version 52.0 is not supported by it. This
+is usually means that the Java program requires a newer version of Java
+VM for its execution.</p>
+<p>The mysterious part is the number 52, which is much higher than any
+Java version we know. This is a <strong>Java class file format</strong>
+version number. The Java version that maps to 52 can be found from the
+table of <a
+href="2015/01/25/major-minor-version-of-java-class-file/">class file
+format version to Java version mapping</a>. For 52.0, it is Java 8. So,
+this error means that I need to have Java 8 VM to execute this class
+file. That was correct since I had Java 7 on this computer.</p>
 </div>
 
 <br />
@@ -70,11 +67,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

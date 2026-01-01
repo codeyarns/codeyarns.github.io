@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,23 @@
 <h1 class="title">How to warn on shadow declaration</h1>
 <p class="date">📅 2015-Oct-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#gcc'>gcc</a>, <a href='index.html#shadow'>shadow</a>, <a href='index.html#warning'>warning</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Shadow declarations</strong> are a major source of misunderstanding and bugs in C or C++ code. C and C++ allow shadow declarations, but this is one of those features that is better not used in production code that needs to be understood and maintained by multiple people.</p>
+<p><strong>Shadow declarations</strong> are a major source of
+misunderstanding and bugs in C or C++ code. C and C++ allow shadow
+declarations, but this is one of those features that is better not used
+in production code that needs to be understood and maintained by
+multiple people.</p>
 <ul>
-<li><p>Use the <code>-Wshadow</code> compiler option to be warned about shadow declarations.</p></li>
-<li><p>Note that this option is not part of <code>-Wall</code> or <code>-Wextra</code>, so you will need to explicitly add this to your build.</p></li>
-<li><p>You might find that header files you included from external libraries might throw this warning. (I have faced this with the OpenNI library.) In such a case, ignore this warning only for that particular header file inclusion by using diagnostic pragma, as described <a href="2014/03/11/how-to-selectively-ignore-a-gcc-warning/">here</a> .</p></li>
+<li><p>Use the <code>-Wshadow</code> compiler option to be warned about
+shadow declarations.</p></li>
+<li><p>Note that this option is not part of <code>-Wall</code> or
+<code>-Wextra</code>, so you will need to explicitly add this to your
+build.</p></li>
+<li><p>You might find that header files you included from external
+libraries might throw this warning. (I have faced this with the OpenNI
+library.) In such a case, ignore this warning only for that particular
+header file inclusion by using diagnostic pragma, as described <a
+href="2014/03/11/how-to-selectively-ignore-a-gcc-warning/">here</a>
+.</p></li>
 </ul>
 <p><strong>Tried with:</strong> GCC 5.1 and Ubuntu 14.04</p>
 </div>
@@ -58,11 +56,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

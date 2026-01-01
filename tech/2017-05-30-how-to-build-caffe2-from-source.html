@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,9 +30,11 @@
 <h1 class="title">How to build Caffe2 from source</h1>
 <p class="date">📅 2017-May-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#caffe2'>caffe2</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I followed these steps to build and use <a href="https://caffe2.ai"><strong>Caffe2</strong></a> from source:</p>
+<p>I followed these steps to build and use <a
+href="https://caffe2.ai"><strong>Caffe2</strong></a> from source:</p>
 <ul>
-<li><p>If you have a GPU, install CUDA and cuDNN as described <a href="2017-05-20-how-to-install-cudnn.html">here</a>.</p></li>
+<li><p>If you have a GPU, install CUDA and cuDNN as described <a
+href="2017-05-20-how-to-install-cudnn.html">here</a>.</p></li>
 <li><p>Install the package prerequisites:</p></li>
 </ul>
 <pre><code>$ sudo apt install build-essential cmake git libgoogle-glog-dev libprotobuf-dev protobuf-compiler python-dev python-pip libgflags2 libgtest-dev libiomp-dev libleveldb-dev liblmdb-dev libopencv-dev libopenmpi-dev libsnappy-dev openmpi-bin openmpi-doc python-pydot</code></pre>
@@ -59,19 +47,33 @@
 </ul>
 <pre><code>$ git clone git@github.com:caffe2/caffe2.git</code></pre>
 <ul>
-<li>Caffe2 is under rapid deployment, so I find that the master branch may sometimes not compile. It is better to check the available release tags and checkout the latest release:</li>
+<li>Caffe2 is under rapid deployment, so I find that the master branch
+may sometimes not compile. It is better to check the available release
+tags and checkout the latest release:</li>
 </ul>
 <pre><code>$ git tag
 $ git co -b v_0_7_0 v0.7.0</code></pre>
 <ul>
-<li>The install guide suggests running make to build. Note that this in turn creates a <code>build</code> directory, runs CMake from there and later runs make in a subshell. The child make running from inside a Makefile will not get the <code>MAKEFLAGS</code> of the parent make. So, you cannot make in parallel by using <code>--jobs</code> or <code>-j</code> settings. And believe me building Caffe2 without parallel make takes extremely long! So, I prefer doing the CMake and make myself:</li>
+<li>The install guide suggests running make to build. Note that this in
+turn creates a <code>build</code> directory, runs CMake from there and
+later runs make in a subshell. The child make running from inside a
+Makefile will not get the <code>MAKEFLAGS</code> of the parent make. So,
+you cannot make in parallel by using <code>--jobs</code> or
+<code>-j</code> settings. And believe me building Caffe2 without
+parallel make takes extremely long! So, I prefer doing the CMake and
+make myself:</li>
 </ul>
 <pre><code>$ mkdir build
 $ cd build
 $ cmake ..
 $ make</code></pre>
 <ul>
-<li>After Caffe2 is built, you need to install the Caffe2 headers, libraries and Python files to a different location. If you do not configure anything, CMake will try to install Caffe2 to <code>/usr/local</code>, which requires superuser privileges. I prefer installing Caffe2 to a local directory, say <code>/home/joe/caffe2_deploy</code>. To be able to to this:</li>
+<li>After Caffe2 is built, you need to install the Caffe2 headers,
+libraries and Python files to a different location. If you do not
+configure anything, CMake will try to install Caffe2 to
+<code>/usr/local</code>, which requires superuser privileges. I prefer
+installing Caffe2 to a local directory, say
+<code>/home/joe/caffe2_deploy</code>. To be able to to this:</li>
 </ul>
 <pre><code>$ cmake -DCMAKE_INSTALL_PREFIX:PATH=/home/joe/caffe2_deploy ..
 $ make install</code></pre>
@@ -80,7 +82,8 @@ $ make install</code></pre>
 </ul>
 <pre><code>$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/joe/caffe2_deploy/lib</code></pre>
 <ul>
-<li>Add the install directory to <code>PYTHONPATH</code> to be able to use Caffe2 from Python:</li>
+<li>Add the install directory to <code>PYTHONPATH</code> to be able to
+use Caffe2 from Python:</li>
 </ul>
 <pre><code>$ export PYTHONPATH=$PYTHONPATH:/home/joe/caffe2_deploy</code></pre>
 <ul>
@@ -95,11 +98,13 @@ $ make install</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

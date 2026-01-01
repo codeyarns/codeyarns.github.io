@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,32 @@
 <h1 class="title">Robocopy: Backup rights on Windows 7</h1>
 <p class="date">📅 2009-Dec-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#robocopy'>robocopy</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>My <em><a href="http://en.wikipedia.org/wiki/Robocopy">Robocopy</a></em> backup script has a few lines of:</p>
+<p>My <em><a
+href="http://en.wikipedia.org/wiki/Robocopy">Robocopy</a></em> backup
+script has a few lines of:</p>
 <pre><code>robocopy D:\Source_Dir K:\Backup_Dir /MIR /B</code></pre>
-<p>This worked fine on Windows XP, but stopped working once I moved to Windows 7. Robocopy would give the following error:</p>
+<p>This worked fine on Windows XP, but stopped working once I moved to
+Windows 7. Robocopy would give the following error:</p>
 <pre><code>ERROR : You do not have the Backup and Restore Files user rights.
 *****  You need these to perform Backup copies (/B or /ZB).</code></pre>
-<p>Surprisingly, I would get this error <em>even</em> if I was logged onto an Administrator account!</p>
-<p>The reason turned out to be that running in <code>/B</code> (<em>Backup mode</em>) requires permissions to open files without any security restrictions. With the UAC in Windows 7, even a normal invocation of <code>cmd.exe</code> by an Administrator account does not have these rights!</p>
-<p>To run Robocopy in <code>/B</code> (Backup mode) one needs to start <code>cmd</code> explicitly with Administrator rights! To do this type <code>cmd</code> at the Start menu, right-click on <code>cmd.exe</code> and choose <em>Run as Administrator</em>. This works fine even from a non-Administrator account (assuming you know some Administrator credentials.)</p>
+<p>Surprisingly, I would get this error <em>even</em> if I was logged
+onto an Administrator account!</p>
+<p>The reason turned out to be that running in <code>/B</code>
+(<em>Backup mode</em>) requires permissions to open files without any
+security restrictions. With the UAC in Windows 7, even a normal
+invocation of <code>cmd.exe</code> by an Administrator account does not
+have these rights!</p>
+<p>To run Robocopy in <code>/B</code> (Backup mode) one needs to start
+<code>cmd</code> explicitly with Administrator rights! To do this type
+<code>cmd</code> at the Start menu, right-click on <code>cmd.exe</code>
+and choose <em>Run as Administrator</em>. This works fine even from a
+non-Administrator account (assuming you know some Administrator
+credentials.)</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2009/12/2009_12_26_cmd_administrator.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2009/12/2009_12_26_cmd_administrator.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 </div>
 
@@ -62,11 +64,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

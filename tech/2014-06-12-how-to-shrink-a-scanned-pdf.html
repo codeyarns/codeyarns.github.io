@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,22 +30,38 @@
 <h1 class="title">How to compress a scanned PDF</h1>
 <p class="date">📅 2014-Jun-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#compress'>compress</a>, <a href='index.html#imagemagick'>imagemagick</a>, <a href='index.html#pdf'>pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Scanned documents are typically stored in the <strong>PDF</strong> format. Depending on the scanning options used, these scanned documents can be large and you might need to shrink their size to fit certain size requirements.</p>
-<p>Such compression can be achieved using <strong>ImageMagick</strong> tools by playing with the pixel density of the images, the image format used (JPEG) and the JPEG quality options. ImageMagick uses Ghostscript to actually do this conversion, invoking it with a long list of options to achieve what we requested.</p>
+<p>Scanned documents are typically stored in the <strong>PDF</strong>
+format. Depending on the scanning options used, these scanned documents
+can be large and you might need to shrink their size to fit certain size
+requirements.</p>
+<p>Such compression can be achieved using <strong>ImageMagick</strong>
+tools by playing with the pixel density of the images, the image format
+used (JPEG) and the JPEG quality options. ImageMagick uses Ghostscript
+to actually do this conversion, invoking it with a long list of options
+to achieve what we requested.</p>
 <ul>
 <li>Install Ghostscript and Imagemagick if you do not have it:</li>
 </ul>
 <pre><code>$ sudo apt install ghostscript imagemagick</code></pre>
 <ul>
-<li>Use the ImageMagick <strong>convert</strong> tool to compress the PDF:</li>
+<li>Use the ImageMagick <strong>convert</strong> tool to compress the
+PDF:</li>
 </ul>
 <pre><code>$ convert -density 200x200 -quality 80 -compress jpeg original.pdf out.pdf</code></pre>
-<p>I typically play with the <code>-density</code> values until the PDF fits the size I need. I only play with the <code>-quality</code> value if it really affects the scan quality, increasing it to <code>90</code> if necessary.</p>
+<p>I typically play with the <code>-density</code> values until the PDF
+fits the size I need. I only play with the <code>-quality</code> value
+if it really affects the scan quality, increasing it to <code>90</code>
+if necessary.</p>
 <ul>
-<li>To see the Ghostscript invocation used underneath for the conversion, apply the verbose option:</li>
+<li>To see the Ghostscript invocation used underneath for the
+conversion, apply the verbose option:</li>
 </ul>
 <pre><code>$ convert -density 200x200 -quality 80 -compress jpeg -verbose original.pdf out.pdf</code></pre>
-<p><strong>Note:</strong> Another way to shrink PDF is to convert to PS (pdf2ps) and then back to PDF (ps2pdf). Note that this does double the work and creates a ginormous intermediate PS file. I would not recommend this since it takes longer time, creates huge intermediate files and you get no control over the DPI or compression ratio.</p>
+<p><strong>Note:</strong> Another way to shrink PDF is to convert to PS
+(pdf2ps) and then back to PDF (ps2pdf). Note that this does double the
+work and creates a ginormous intermediate PS file. I would not recommend
+this since it takes longer time, creates huge intermediate files and you
+get no control over the DPI or compression ratio.</p>
 <p><strong>Tried with:</strong> Ubuntu 20.04</p>
 </div>
 
@@ -68,11 +70,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

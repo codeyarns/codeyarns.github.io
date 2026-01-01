@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,14 +31,23 @@
 <p class="date">📅 2017-Jan-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cmake'>cmake</a>, <a href='index.html#error'>error</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I got this error from <strong>CMake</strong> when building a project that needs to link with Python 3.4 libraries:</p>
+<p>I got this error from <strong>CMake</strong> when building a project
+that needs to link with Python 3.4 libraries:</p>
 <pre><code>-- Found PythonInterp: /usr/bin/python3 (found suitable version &quot;3.4.3&quot;, minimum required is &quot;3.0&quot;)
 -- Could NOT find PythonLibs (missing:  PYTHON_LIBRARIES PYTHON_INCLUDE_DIRS) (Required is at least version &quot;3.0&quot;)</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Turns out that the CMake available on my system only supported finding Python 3 packages upto version 3.3. To change it to support Python 3.4 was possible by editing two files:</p>
+<p>Turns out that the CMake available on my system only supported
+finding Python 3 packages upto version 3.3. To change it to support
+Python 3.4 was possible by editing two files:</p>
 <ul>
-<li><p>In file <code>/usr/share/cmake-3.4/Modules/FindPythonInterp.cmake</code> find the line containing <code>_PYTHON3_VERSIONS</code> and prepend <code>3.4</code> to the versions already listed there.</p></li>
-<li><p>In file <code>/usr/share/cmake-3.4/Modules/FindPythonLibs.cmake</code> find the line containing <code>_PYTHON3_VERSIONS</code> and prepend <code>3.4</code> to the versions already listed there.</p></li>
+<li><p>In file
+<code>/usr/share/cmake-3.4/Modules/FindPythonInterp.cmake</code> find
+the line containing <code>_PYTHON3_VERSIONS</code> and prepend
+<code>3.4</code> to the versions already listed there.</p></li>
+<li><p>In file
+<code>/usr/share/cmake-3.4/Modules/FindPythonLibs.cmake</code> find the
+line containing <code>_PYTHON3_VERSIONS</code> and prepend
+<code>3.4</code> to the versions already listed there.</p></li>
 </ul>
 <p>I was able to build with Python 3.x libraries after that.</p>
 </div>
@@ -62,11 +57,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

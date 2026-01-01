@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,39 +95,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">A dissection of C++ virtual functions</h1>
 <p class="date">📅 2017-Jun-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#objdump'>objdump</a>, <a href='index.html#readelf'>readelf</a>, <a href='index.html#virtual'>virtual</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Virtual functions</strong> are a key feature of C++ to enable runtime polymorphism. This post is my attempt in understanding how they are implemented and executed at runtime. The compiler used is GCC 5.4.0 on Ubuntu 16.04.</p>
-<p>Here is a simple program that uses virtual functions that we will use as an example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">struct</span> A</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>{</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="kw">virtual</span> <span class="dt">void</span> do_something() {}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="kw">virtual</span> <span class="dt">void</span> do_something2() { <span class="bu">std::</span>cerr &lt;&lt; <span class="st">&quot;In A</span><span class="sc">\n</span><span class="st">&quot;</span>; }</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>};</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">struct</span> B : <span class="kw">public</span> A</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>{</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="dt">void</span> do_something() {}</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="dt">void</span> do_something2() { <span class="bu">std::</span>cerr &lt;&lt; <span class="st">&quot;In B</span><span class="sc">\n</span><span class="st">&quot;</span>; }</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>};</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="dt">int</span> main()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>{</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    A* a = <span class="kw">new</span> B();</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    a-&gt;do_something2();</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>    </span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>}</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a><span class="co">// When executed, this program will print:</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="co">// $ ./a.out</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a><span class="co">// In B</span></span></code></pre></div>
-<p>To aid us in understanding what this code is compiled into, we request GCC to add debugging information (using option <code>-g</code>) when we compile it:</p>
+<p><strong>Virtual functions</strong> are a key feature of C++ to enable
+runtime polymorphism. This post is my attempt in understanding how they
+are implemented and executed at runtime. The compiler used is GCC 5.4.0
+on Ubuntu 16.04.</p>
+<p>Here is a simple program that uses virtual functions that we will use
+as an example:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> A</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">virtual</span> <span class="dt">void</span> do_something<span class="op">()</span> <span class="op">{}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">virtual</span> <span class="dt">void</span> do_something2<span class="op">()</span> <span class="op">{</span> <span class="bu">std::</span>cerr <span class="op">&lt;&lt;</span> <span class="st">&quot;In A</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> B <span class="op">:</span> <span class="kw">public</span> A</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> do_something<span class="op">()</span> <span class="op">{}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> do_something2<span class="op">()</span> <span class="op">{</span> <span class="bu">std::</span>cerr <span class="op">&lt;&lt;</span> <span class="st">&quot;In B</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    A<span class="op">*</span> a <span class="op">=</span> <span class="kw">new</span> B<span class="op">();</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    a<span class="op">-&gt;</span>do_something2<span class="op">();</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">// When executed, this program will print:</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">// $ ./a.out</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">// In B</span></span></code></pre></div>
+<p>To aid us in understanding what this code is compiled into, we
+request GCC to add debugging information (using option <code>-g</code>)
+when we compile it:</p>
 <pre><code>$ g++ -g virtual_function_example.cpp
 $ ./a.out
 In B</code></pre>
-<p>Almost all C++ compilers implement virtual functions by using <strong>virtual tables</strong>, more commonly called as <strong>vtables</strong>. This is a table of function addresses, one for each virtual function in the class. One virtual table is created for each class that has virtual functions.</p>
-<p>We can see the existence of the methods and virtual tables of each class and their addresses by examining the binary:</p>
+<p>Almost all C++ compilers implement virtual functions by using
+<strong>virtual tables</strong>, more commonly called as
+<strong>vtables</strong>. This is a table of function addresses, one for
+each virtual function in the class. One virtual table is created for
+each class that has virtual functions.</p>
+<p>We can see the existence of the methods and virtual tables of each
+class and their addresses by examining the binary:</p>
 <pre><code>$ readelf --symbols a.out | c++filt | grep -E &quot;vtable|A::|B::&quot;
 
     86: 0000000000400936    11 FUNC    WEAK   DEFAULT   14 A::do_something()
@@ -151,12 +150,20 @@ In B</code></pre>
     69: 00000000004009a2    39 FUNC    WEAK   DEFAULT   14 B::B()
     92: 0000000000400a68    32 OBJECT  WEAK   DEFAULT   16 vtable for B
     63: 0000000000400a88    32 OBJECT  WEAK   DEFAULT   16 vtable for A</code></pre>
-<p>Here we use the <strong>readelf</strong> program to extract the symbols from the binary. The symbols are in mangled form that is difficult to decipher for humans. So, we pipe it through a demangler.</p>
+<p>Here we use the <strong>readelf</strong> program to extract the
+symbols from the binary. The symbols are in mangled form that is
+difficult to decipher for humans. So, we pipe it through a
+demangler.</p>
 <p>Here is the output I got on my computer:</p>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2017/06/20170613_readelf.png" alt="" /><figcaption> </figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2017/06/20170613_readelf.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>We can check which sections of virtual memory the class methods and virtual tables will be loaded into by examining the sections of the binary:</p>
+<p>We can check which sections of virtual memory the class methods and
+virtual tables will be loaded into by examining the sections of the
+binary:</p>
 <pre><code>$ readelf --sections a.out
 There are 37 section headers, starting at offset 0x6b78:
 
@@ -172,11 +179,21 @@ Key to Flags:
   W (write), A (alloc), X (execute), M (merge), S (strings), l (large)
   I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
   O (extra OS processing required) o (OS specific), p (processor specific)</code></pre>
-<p>We can cross-examine the addresses of the class methods and virtual tables with the starting addresses and sizes of the sections. We see that the class methods will be loaded into the <code>.text</code> section and the virtual tables into the <code>.rodata</code> segment. The flags of these sections indicate that only the <code>.text</code> section is executable, as it should be.</p>
+<p>We can cross-examine the addresses of the class methods and virtual
+tables with the starting addresses and sizes of the sections. We see
+that the class methods will be loaded into the <code>.text</code>
+section and the virtual tables into the <code>.rodata</code> segment.
+The flags of these sections indicate that only the <code>.text</code>
+section is executable, as it should be.</p>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2017/06/20170703_readelf_2.png" alt="" /><figcaption> </figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2017/06/20170703_readelf_2.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>Finally, let us examine how the virtual tables are used at runtime to determine which method to execute. To do this, we disassemble the binary instructions in the binary:</p>
+<p>Finally, let us examine how the virtual tables are used at runtime to
+determine which method to execute. To do this, we disassemble the binary
+instructions in the binary:</p>
 <pre><code>$ objdump --disassemble --demangle --source a.out
 
 int main()
@@ -208,18 +225,41 @@ int main()
   4008df:       5b                      pop    %rbx
   4008e0:       5d                      pop    %rbp
   4008e1:       c3                      retq</code></pre>
-<p>From the output of <strong>objdump</strong>, only the disassembly of the main function is shown above. In the above command, we have requested objdump to <code>--disassemble</code> the binary code to assembly code, to <code>--demangle</code> the symbol names to human readable form and to annotate the disassembly with the original C++ <code>--source</code> statements.</p>
-<p>By examining the disassembled code, the runtime mystery is revealed. We need to note that every object of a class, that has virtual methods, stores a pointer to its class virtual table. On a 64-bit computer, this means that objects of such classes need extra space of 8 bytes. This pointer is placed at the beginning of the memory layout of the object, even before other members of the object.</p>
-<p>When you call a virtual method in C++ code, the compiler generates these instructions:</p>
+<p>From the output of <strong>objdump</strong>, only the disassembly of
+the main function is shown above. In the above command, we have
+requested objdump to <code>--disassemble</code> the binary code to
+assembly code, to <code>--demangle</code> the symbol names to human
+readable form and to annotate the disassembly with the original C++
+<code>--source</code> statements.</p>
+<p>By examining the disassembled code, the runtime mystery is revealed.
+We need to note that every object of a class, that has virtual methods,
+stores a pointer to its class virtual table. On a 64-bit computer, this
+means that objects of such classes need extra space of 8 bytes. This
+pointer is placed at the beginning of the memory layout of the object,
+even before other members of the object.</p>
+<p>When you call a virtual method in C++ code, the compiler generates
+these instructions:</p>
 <ul>
-<li>Jump to the beginning of the object. This is a location on the <strong>heap</strong> or <strong>stack</strong>, depending on how the object was created. This is where a pointer to its class virtual table is stored.</li>
-<li>Jump to the start of the class virtual table. This is a location in the <code>.rodata</code> section of the process virtual memory, as we noted earlier.</li>
-<li>Depending on which virtual method is needed, jump to that entry in the virtual table. This entry has the address of that virtual method.</li>
-<li>Finally, jump to the address of the virtual method and start executing its instructions. This is in the <code>.text</code> section of the process virtual memory.</li>
+<li>Jump to the beginning of the object. This is a location on the
+<strong>heap</strong> or <strong>stack</strong>, depending on how the
+object was created. This is where a pointer to its class virtual table
+is stored.</li>
+<li>Jump to the start of the class virtual table. This is a location in
+the <code>.rodata</code> section of the process virtual memory, as we
+noted earlier.</li>
+<li>Depending on which virtual method is needed, jump to that entry in
+the virtual table. This entry has the address of that virtual
+method.</li>
+<li>Finally, jump to the address of the virtual method and start
+executing its instructions. This is in the <code>.text</code> section of
+the process virtual memory.</li>
 </ul>
 <p>Here is an illustration of the code disassembly:</p>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2017/06/20170703_objdump.png" alt="" /><figcaption> </figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2017/06/20170703_objdump.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 </div>
 
@@ -228,11 +268,13 @@ int main()
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

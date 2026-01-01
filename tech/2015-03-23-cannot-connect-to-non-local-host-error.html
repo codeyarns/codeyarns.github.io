@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,12 +31,21 @@
 <p class="date">📅 2015-Mar-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#hostname'>hostname</a>, <a href='index.html#ice'>ice</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I changed the <strong>hostname</strong> of my computer by editing <code>/etc/hostname</code> and <code>/etc/hosts</code>, as explained <a href="2015/03/20/how-to-change-hostname/">here</a>. After this, whenever I ran Vim and some other programs at the terminal, this message was printed:</p>
+<p>I changed the <strong>hostname</strong> of my computer by editing
+<code>/etc/hostname</code> and <code>/etc/hosts</code>, as explained <a
+href="2015/03/20/how-to-change-hostname/">here</a>. After this, whenever
+I ran Vim and some other programs at the terminal, this message was
+printed:</p>
 <pre><code>_IceTransSocketUNIXConnect: Cannot connect to non-local host old-hostname
 _IceTransSocketUNIXConnect: Cannot connect to non-local host old-hostname</code></pre>
 <h2 id="solution">Solution</h2>
-<p>After a bit of Googling, I found that this error was originating from <strong>ICE</strong>, an IPC protocol used by X clients. This was due to the old hostname still being present in the <code>~/.ICEauthority</code> file.</p>
-<p>I deleted this file and restarted the computer. The new <code>~/.ICEauthority</code> that was automatically generated had the new hostname. Also, the error did not occur after this.</p>
+<p>After a bit of Googling, I found that this error was originating from
+<strong>ICE</strong>, an IPC protocol used by X clients. This was due to
+the old hostname still being present in the <code>~/.ICEauthority</code>
+file.</p>
+<p>I deleted this file and restarted the computer. The new
+<code>~/.ICEauthority</code> that was automatically generated had the
+new hostname. Also, the error did not occur after this.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
@@ -59,11 +54,13 @@ _IceTransSocketUNIXConnect: Cannot connect to non-local host old-hostname</code>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

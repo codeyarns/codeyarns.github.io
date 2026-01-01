@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -105,64 +92,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to get started with Tao Framework using IronPython</h1>
+<h1 class="title">How to get started with Tao Framework using
+IronPython</h1>
 <p class="date">📅 2013-Jun-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#freeglut'>freeglut</a>, <a href='index.html#glu'>glu</a>, <a href='index.html#glut'>glut</a>, <a href='index.html#ironpython'>ironpython</a>, <a href='index.html#opengl'>opengl</a>, <a href='index.html#tao-framework'>tao framework</a>, <a href='index.html#visual-studio'>visual studio</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># IronPython example program to demonstrate Tao Framework</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">#</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="co"># Steps:</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co"># 1. Install Tao Framework.</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co"># 2. Create an empty IronPython project in Visual Studio</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co"># 3. Place Tao.OpenGl.dll and Tao.FreeGlut.dll in directory of Python source file.</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">#    These DLL files are found in C:\Program Files (x86)\TaoFramework\bin</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co"># 4. Place freeglut.dll in directory of Python source file.</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">#    This DLL file is found in C:\Program Files (x86)\TaoFramework\lib</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co"># 5. Paste this source code into the Python source file</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co"># 6. Run. You should see a grey teapot.</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="co">#</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co"># Copyright (c) 2013 Ashwin Nanjappa</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co"># Released under the MIT License</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="im">import</span> clr</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>clr.AddReferenceToFile(<span class="st">&quot;Tao.OpenGl.dll&quot;</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>clr.AddReferenceToFile(<span class="st">&quot;Tao.FreeGlut.dll&quot;</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="im">import</span> Tao.OpenGl.Gl <span class="im">as</span> Gl</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="im">import</span> Tao.OpenGl.Glu <span class="im">as</span> Glu</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a><span class="im">import</span> Tao.FreeGlut.Glut <span class="im">as</span> Glut</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a><span class="kw">def</span> init_graphics():</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>    Gl.glEnable(Gl.GL_LIGHTING)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    Gl.glEnable(Gl.GL_LIGHT0)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    Gl.glLightfv(Gl.GL_LIGHT0, Gl.GL_POSITION, (<span class="dv">1</span>, <span class="fl">.5</span>, <span class="dv">1</span>))</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>    Gl.glEnable(Gl.GL_DEPTH_TEST)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>    Gl.glClearColor(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a><span class="kw">def</span> on_display():</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a>    Gl.glClear(Gl.GL_COLOR_BUFFER_BIT <span class="op">|</span> Gl.GL_DEPTH_BUFFER_BIT)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>    Gl.glLoadIdentity()</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>    Glu.gluLookAt(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>    Glut.glutSolidTeapot(<span class="dv">1</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a>    Glut.glutSwapBuffers()</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a><span class="kw">def</span> on_reshape(w, h):</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>    Gl.glMatrixMode(Gl.GL_PROJECTION)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a>    Gl.glLoadIdentity()</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>    Gl.glViewport(<span class="dv">0</span>, <span class="dv">0</span>, w, h)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>    Glu.gluPerspective(<span class="dv">40</span>, <span class="bu">float</span>(w) <span class="op">/</span> h, <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>    Gl.glMatrixMode(Gl.GL_MODELVIEW)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a><span class="kw">def</span> main():</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>    Glut.glutInit()</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a>    Glut.glutInitWindowSize(<span class="dv">500</span>, <span class="dv">500</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a>    Glut.glutCreateWindow(<span class="st">&quot;Tao Example&quot;</span>)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a>    init_graphics()</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>    Glut.glutDisplayFunc(on_display)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a>    Glut.glutReshapeFunc(on_reshape)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>    Glut.glutMainLoop()</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a><span class="cf">if</span> <span class="st">&quot;__main__&quot;</span> <span class="op">==</span> <span class="va">__name__</span>:</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a>    main()</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># IronPython example program to demonstrate Tao Framework</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Steps:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Install Tao Framework.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Create an empty IronPython project in Visual Studio</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Place Tao.OpenGl.dll and Tao.FreeGlut.dll in directory of Python source file.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#    These DLL files are found in C:\Program Files (x86)\TaoFramework\bin</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Place freeglut.dll in directory of Python source file.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#    This DLL file is found in C:\Program Files (x86)\TaoFramework\lib</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Paste this source code into the Python source file</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Run. You should see a grey teapot.</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Copyright (c) 2013 Ashwin Nanjappa</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Released under the MIT License</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> clr</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>clr.AddReferenceToFile(<span class="st">&quot;Tao.OpenGl.dll&quot;</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>clr.AddReferenceToFile(<span class="st">&quot;Tao.FreeGlut.dll&quot;</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Tao.OpenGl.Gl <span class="im">as</span> Gl</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Tao.OpenGl.Glu <span class="im">as</span> Glu</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Tao.FreeGlut.Glut <span class="im">as</span> Glut</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> init_graphics():</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    Gl.glEnable(Gl.GL_LIGHTING)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    Gl.glEnable(Gl.GL_LIGHT0)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    Gl.glLightfv(Gl.GL_LIGHT0, Gl.GL_POSITION, (<span class="dv">1</span>, <span class="fl">.5</span>, <span class="dv">1</span>))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    Gl.glEnable(Gl.GL_DEPTH_TEST)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    Gl.glClearColor(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_display():</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    Gl.glClear(Gl.GL_COLOR_BUFFER_BIT <span class="op">|</span> Gl.GL_DEPTH_BUFFER_BIT)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    Gl.glLoadIdentity()</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    Glu.gluLookAt(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    Glut.glutSolidTeapot(<span class="dv">1</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    Glut.glutSwapBuffers()</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_reshape(w, h):</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    Gl.glMatrixMode(Gl.GL_PROJECTION)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    Gl.glLoadIdentity()</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    Gl.glViewport(<span class="dv">0</span>, <span class="dv">0</span>, w, h)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    Glu.gluPerspective(<span class="dv">40</span>, <span class="bu">float</span>(w) <span class="op">/</span> h, <span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    Gl.glMatrixMode(Gl.GL_MODELVIEW)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> main():</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    Glut.glutInit()</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    Glut.glutInitWindowSize(<span class="dv">500</span>, <span class="dv">500</span>)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    Glut.glutCreateWindow(<span class="st">&quot;Tao Example&quot;</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    init_graphics()</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    Glut.glutDisplayFunc(on_display)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    Glut.glutReshapeFunc(on_reshape)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    Glut.glutMainLoop()</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">&quot;__main__&quot;</span> <span class="op">==</span> <span class="va">__name__</span>:</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    main()</span></code></pre></div>
 </div>
 
 <br />
@@ -170,11 +159,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

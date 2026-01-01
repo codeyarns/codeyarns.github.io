@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,11 @@
 <p class="date">📅 2017-Oct-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#docker'>docker</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="build">Build</h2>
-<p>You need to create a <strong>Dockerfile</strong> that describes the plan to build an image. Here is a simple Dockerfile named <code>Dockerfile</code> that creates an image based off <code>busybox</code> Linux image into which we are copying a local file:</p>
+<p>You need to create a <strong>Dockerfile</strong> that describes the
+plan to build an image. Here is a simple Dockerfile named
+<code>Dockerfile</code> that creates an image based off
+<code>busybox</code> Linux image into which we are copying a local
+file:</p>
 <pre><code>FROM busybox
 COPY haha.cpp /somedir/haha.cpp</code></pre>
 <ul>
@@ -53,36 +43,62 @@ COPY haha.cpp /somedir/haha.cpp</code></pre>
 </ul>
 <pre><code>$ docker build .
 $ docker build -f Dockerfile .</code></pre>
-<p>This looks for a <code>Dockerfile</code> in the current directory and also uses all the content of the current directory as the <strong>build context</strong>. Having a big build context with lots of files and directories in it can slow down a Docker build.</p>
-<p>The build ends printing the hash of the image it has created. This image can be run using <code>docker run</code> commands (see below) by using this hash.</p>
+<p>This looks for a <code>Dockerfile</code> in the current directory and
+also uses all the content of the current directory as the <strong>build
+context</strong>. Having a big build context with lots of files and
+directories in it can slow down a Docker build.</p>
+<p>The build ends printing the hash of the image it has created. This
+image can be run using <code>docker run</code> commands (see below) by
+using this hash.</p>
 <ul>
-<li>To build a Docker image that picks the build context from a different directory:</li>
+<li>To build a Docker image that picks the build context from a
+different directory:</li>
 </ul>
 <pre><code>$ docker build -f /path/to/Dockerfile path/of/build/context</code></pre>
 <h2 id="remote-registry">Remote registry</h2>
 <ul>
-<li><p>To list all the images and tags from a Docker Hub repository: there does not seem to be a command to do this.</p></li>
+<li><p>To list all the images and tags from a Docker Hub repository:
+there does not seem to be a command to do this.</p></li>
 <li><p>To pull an image <code>imagename</code>:</p></li>
 </ul>
 <pre><code>$ docker pull &lt;imagename&gt;
 
 $ docker pull ubuntu
 $ docker pull nvidia/cuda</code></pre>
-<p>For a list of Docker image names that I find useful, go <a href="2022-02-05-useful-docker-images.html">here</a>.</p>
-<p>When no tag is specified, like above, docker automatically pulls the image with the tag <code>latest</code>.</p>
-<p>Notice that we are not specifying the domain name or URL of any Docker registry. In such cases, Docker will look for and pull <code>imagename</code> from the default Docker registry: <code>https://hub.docker.com/</code> The image name can be a single word (<code>ubuntu</code>) or a relative path (<code>nvidia/cuda</code>). For a single word image name, its tags can be seen listed at the <code>https://hub.docker.com/_/ubuntu</code>. The image name with a path has its repositories listed at <code>https://hub.docker.com/u/nvidia</code> and the tags of a particular image at <code>https://hub.docker.com/r/nvidia/cuda</code>.</p>
+<p>For a list of Docker image names that I find useful, go <a
+href="2022-02-05-useful-docker-images.html">here</a>.</p>
+<p>When no tag is specified, like above, docker automatically pulls the
+image with the tag <code>latest</code>.</p>
+<p>Notice that we are not specifying the domain name or URL of any
+Docker registry. In such cases, Docker will look for and pull
+<code>imagename</code> from the default Docker registry:
+<code>https://hub.docker.com/</code> The image name can be a single word
+(<code>ubuntu</code>) or a relative path (<code>nvidia/cuda</code>). For
+a single word image name, its tags can be seen listed at the
+<code>https://hub.docker.com/_/ubuntu</code>. The image name with a path
+has its repositories listed at
+<code>https://hub.docker.com/u/nvidia</code> and the tags of a
+particular image at
+<code>https://hub.docker.com/r/nvidia/cuda</code>.</p>
 <ul>
-<li>To pull an image with a specific tag, for example pulling ubuntu with <code>20.04</code> tag:</li>
+<li>To pull an image with a specific tag, for example pulling ubuntu
+with <code>20.04</code> tag:</li>
 </ul>
 <pre><code>$ docker pull ubuntu:20.04</code></pre>
-<p>Note how the <code>:</code> character is used to separate the image name and the tag. In the case of Ubuntu, the list of available tags can be viewed <a href="https://hub.docker.com/_/ubuntu/?tab=tags">here</a>. Not all registries may support viewing tags like this.</p>
+<p>Note how the <code>:</code> character is used to separate the image
+name and the tag. In the case of Ubuntu, the list of available tags can
+be viewed <a href="https://hub.docker.com/_/ubuntu/?tab=tags">here</a>.
+Not all registries may support viewing tags like this.</p>
 <ul>
 <li>To pull an image from a specific registry:</li>
 </ul>
 <pre><code>$ docker pull &lt;registry.domain&gt;/imagename</code></pre>
-<p>You might need to first authenticate to the registry domain before the pull will work:</p>
+<p>You might need to first authenticate to the registry domain before
+the pull will work:</p>
 <pre><code>$ docker login &lt;registry.domain&gt;</code></pre>
-<p>After a successful login, Docker will store a key provided by the registry server in your <code>~/.docker/config.json</code>. It will reuse this key for subsequent pull or push to this registry.</p>
+<p>After a successful login, Docker will store a key provided by the
+registry server in your <code>~/.docker/config.json</code>. It will
+reuse this key for subsequent pull or push to this registry.</p>
 <h2 id="local-images">Local images</h2>
 <ul>
 <li>To view Docker images available on your local computer:</li>
@@ -90,13 +106,18 @@ $ docker pull nvidia/cuda</code></pre>
 <pre><code>$ docker images</code></pre>
 <p>This is the same as this command:</p>
 <pre><code>$ docker image ls</code></pre>
-<p>What is listed are the images that you either pulled from a registry or built locally.</p>
+<p>What is listed are the images that you either pulled from a registry
+or built locally.</p>
 <ul>
-<li>By default, only the images that you pulled by name are displayed. To view all images on your local computer, including the unnamed intermediate images that were pulled down to compose the named images that you pulled:</li>
+<li>By default, only the images that you pulled by name are displayed.
+To view all images on your local computer, including the unnamed
+intermediate images that were pulled down to compose the named images
+that you pulled:</li>
 </ul>
 <pre><code>$ docker images -a</code></pre>
 <ul>
-<li>To view the full repository name, tag name and ID of images, use the <code>--no-trunc</code> option:</li>
+<li>To view the full repository name, tag name and ID of images, use the
+<code>--no-trunc</code> option:</li>
 </ul>
 <pre><code>$ docker images --no-trunc</code></pre>
 <ul>
@@ -116,35 +137,41 @@ $ docker pull nvidia/cuda</code></pre>
 </ul>
 <pre><code>$ docker image prune -a</code></pre>
 <ul>
-<li><strong>Filtering</strong> can be used with all the prune commands. For example, to remove all unused images older than a week:</li>
+<li><strong>Filtering</strong> can be used with all the prune commands.
+For example, to remove all unused images older than a week:</li>
 </ul>
 <pre><code>$ docker image prune -a --filter &quot;until=168h&quot;</code></pre>
 <ul>
 <li>To remove unused containers, images and data:</li>
 </ul>
 <pre><code>$ docker system prune</code></pre>
-<p>This is useful when your filesystem runs out of space due to docker images.</p>
+<p>This is useful when your filesystem runs out of space due to docker
+images.</p>
 <ul>
 <li>To remove <em>all</em> unused containers, images and data:</li>
 </ul>
 <pre><code>$ docker system prune -a</code></pre>
-<p>This pretty much removes all Docker data on your system. This is useful when you really want to clean out everything.</p>
+<p>This pretty much removes all Docker data on your system. This is
+useful when you really want to clean out everything.</p>
 <ul>
 <li>To look at Docker’s disk usage:</li>
 </ul>
 <pre><code>$ docker system df</code></pre>
-<p>In this output, the <em>size</em> of the <em>Images</em> is the disk space occupied by your Docker images.</p>
+<p>In this output, the <em>size</em> of the <em>Images</em> is the disk
+space occupied by your Docker images.</p>
 <h2 id="containers">Containers</h2>
 <ul>
 <li>To run a Docker image as a container:</li>
 </ul>
 <pre><code>$ docker run image_name</code></pre>
-<p>This is only useful if running the container runs a service or a daemon inside it automatically.</p>
+<p>This is only useful if running the container runs a service or a
+daemon inside it automatically.</p>
 <ul>
 <li>To run a Docker image as a container and get a shell into it:</li>
 </ul>
 <pre><code>$ docker run -it image_name /bin/bash</code></pre>
-<p>This is usually the method to use to have interactive access to a container.</p>
+<p>This is usually the method to use to have interactive access to a
+container.</p>
 <ul>
 <li>To view all running containers:</li>
 </ul>
@@ -154,11 +181,13 @@ $ docker pull nvidia/cuda</code></pre>
 </ul>
 <pre><code>$ docker ps -a</code></pre>
 <ul>
-<li>To view the full container ID, image name and command use the <code>--no-trunc</code> option:</li>
+<li>To view the full container ID, image name and command use the
+<code>--no-trunc</code> option:</li>
 </ul>
 <pre><code>$ docker ps --no-trunc</code></pre>
 <ul>
-<li>To stop a running Docker container provide its container name (not image name) or its container hash:</li>
+<li>To stop a running Docker container provide its container name (not
+image name) or its container hash:</li>
 </ul>
 <pre><code>$ docker stop container_name</code></pre>
 <ul>
@@ -171,9 +200,11 @@ $ docker pull nvidia/cuda</code></pre>
 </ul>
 <pre><code>$ docker cp ecstatic_moore:/etc/lsb-release my_lsb_release
 $ docker cp 763338cb8aa1:/etc/lsb-release my_lsb_release</code></pre>
-<p>As shown above, either the container <em>name</em> or the container <em>ID</em> can be used as the source.</p>
+<p>As shown above, either the container <em>name</em> or the container
+<em>ID</em> can be used as the source.</p>
 <ul>
-<li>To copy contents of the host filesystem into a running container:</li>
+<li>To copy contents of the host filesystem into a running
+container:</li>
 </ul>
 <pre><code>$ docker cp my_details ecstatic_moore:/etc/my_details
 $ docker cp my_details 763338cb8aa1:/etc/lsb-release</code></pre>
@@ -185,11 +216,13 @@ $ docker cp my_details 763338cb8aa1:/etc/lsb-release</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

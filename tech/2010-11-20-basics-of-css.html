@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,97 +95,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Basics of CSS</h1>
 <p class="date">📅 2010-Nov-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#css'>css</a>, <a href='index.html#html'>html</a>, <a href='index.html#xml'>xml</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Cascading Style Sheets (CSS)</strong> is the language used to describe the look of a HTML or XML document. When it is separate from the HTML document, it is specified as a set of rules. Each rule is of the format:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">/* Note: This is a CSS comment. */</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">/* Simple rule format */</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>selector</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>{</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    property: value<span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>}</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">/* Example: Display all paragraph text in monospace font. */</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>p</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>{</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>}</span></code></pre></div>
-<p>A <strong>selector</strong> can have many <strong>property-value</strong> pairs enclosed in the curly brackets and separated by semicolons:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">/* A selector with multiple property-value pairs */</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>selector</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>{</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    property0<span class="in">: value0</span>;</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    property1<span class="in">: value1</span>;</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">/* Example: Display all paragraph text in monospace font that is italicized. */</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>p</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>{</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    <span class="kw">font-style</span>: <span class="dv">italic</span><span class="op">;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>}</span></code></pre></div>
-<p>Many selectors that have the same property-value pairs can be grouped by using commas:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co">/* Multiple selectors with same property-value pairs */</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>selector1<span class="op">,</span> selector2</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>{</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    property: value<span class="op">;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>}</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">/* Example: Display all paragraph and H1 header text in monospace font. */</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>p<span class="op">,</span> h1</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>{</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>}</span></code></pre></div>
-<p>A style specified by CSS can generally be <strong>overridden</strong> by a CSS style that comes after it or by a style specified at the HTML element itself. To <strong>force</strong> a style use the <code>!important</code> specifier at the end of the value:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">/* Example: Force all paragraph text to monospace font. */</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>p</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>{</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span> <span class="at">!important</span><span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>}</span></code></pre></div>
+<p><strong>Cascading Style Sheets (CSS)</strong> is the language used to
+describe the look of a HTML or XML document. When it is separate from
+the HTML document, it is specified as a set of rules. Each rule is of
+the format:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Note: This is a CSS comment. */</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">/* Simple rule format */</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>selector</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    property: value<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: Display all paragraph text in monospace font. */</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>A <strong>selector</strong> can have many
+<strong>property-value</strong> pairs enclosed in the curly brackets and
+separated by semicolons:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* A selector with multiple property-value pairs */</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>selector</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    property0<span class="in">: value0</span>;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    property1<span class="in">: value1</span>;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: Display all paragraph text in monospace font that is italicized. */</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-style</span>: <span class="dv">italic</span><span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Many selectors that have the same property-value pairs can be grouped
+by using commas:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Multiple selectors with same property-value pairs */</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>selector1<span class="op">,</span> selector2</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    property: value<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: Display all paragraph and H1 header text in monospace font. */</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>p<span class="op">,</span> h1</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>A style specified by CSS can generally be <strong>overridden</strong>
+by a CSS style that comes after it or by a style specified at the HTML
+element itself. To <strong>force</strong> a style use the
+<code>!important</code> specifier at the end of the value:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: Force all paragraph text to monospace font. */</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><strong>Class</strong></p>
-<p>To define a class, prefix the class name with a period. Such a generic class can be used by any HTML element.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">/* Example: A class named showMono */</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="fu">.showMono</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>{</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>}</span></code></pre></div>
-<p>The showMono style from above will be applied on both the HTML elements in this example because it is generic:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">&lt;h1</span><span class="ot"> class=</span><span class="st">&quot;showMono&quot;</span><span class="kw">&gt;</span>Green Lantern!<span class="kw">&lt;/h1&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;showMono&quot;</span><span class="kw">&gt;</span>Coming in 2011!<span class="kw">&lt;/p&gt;</span></span></code></pre></div>
+<p>To define a class, prefix the class name with a period. Such a
+generic class can be used by any HTML element.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: A class named showMono */</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.showMono</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The showMono style from above will be applied on both the HTML
+elements in this example because it is generic:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">h1</span><span class="ot"> class=</span><span class="st">&quot;showMono&quot;</span>&gt;Green Lantern!&lt;/<span class="kw">h1</span>&gt;</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">p</span><span class="ot"> class=</span><span class="st">&quot;showMono&quot;</span>&gt;Coming in 2011!&lt;/<span class="kw">p</span>&gt;</span></code></pre></div>
 <p>To define a class on a specific HTML element, use this format:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">/* Example: A class showMono defined only on paragraph element. */</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>p<span class="fu">.showMono</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>{</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>}</span></code></pre></div>
-<p>This class would apply only on the parapraph element in HTML and would be ignored on other elements.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: A class showMono defined only on paragraph element. */</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>p<span class="fu">.showMono</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>This class would apply only on the parapraph element in HTML and
+would be ignored on other elements.</p>
 <p><strong>ID</strong></p>
-<p>A ID is defined in CSS and used in HTML just like a class. The only difference is that the prefix used for ID is #. For example:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co">/* Example: ID named showMono defined only for paragraph element */</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>p<span class="pp">#showItalic</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>{</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>    <span class="kw">font-style</span>: <span class="dv">italic</span><span class="op">;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a>}</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">/* HTML snippet using the above ID */</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a>&lt;p id=&quot;showItalic&quot;<span class="op">&gt;</span>Green Lantern&lt;/p<span class="op">&gt;</span></span></code></pre></div>
+<p>A ID is defined in CSS and used in HTML just like a class. The only
+difference is that the prefix used for ID is #. For example:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: ID named showMono defined only for paragraph element */</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>p<span class="pp">#showItalic</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-style</span>: <span class="dv">italic</span><span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">/* HTML snippet using the above ID */</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>&lt;p id=&quot;showItalic&quot;<span class="op">&gt;</span>Green Lantern&lt;/p<span class="op">&gt;</span></span></code></pre></div>
 <p><strong>ANDing</strong></p>
-<p>Two class names can be ANDed together for use by a HTML element. In CSS, the class names are appended using periods. In HTML, they are separated by spaces.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co">/* Example: Classes showMono AND showItalic defined on paragraph element */</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>p<span class="fu">.showMono.showItalic</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>{</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>    <span class="kw">font-style</span>: <span class="dv">italic</span><span class="op">;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>}</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co">/* HTML snippet using above classes */</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a>&lt;p class=&quot;showMono showItalic&quot;<span class="op">&gt;</span>Green Lantern&lt;/p<span class="op">&gt;</span></span></code></pre></div>
+<p>Two class names can be ANDed together for use by a HTML element. In
+CSS, the class names are appended using periods. In HTML, they are
+separated by spaces.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: Classes showMono AND showItalic defined on paragraph element */</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p<span class="fu">.showMono.showItalic</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-style</span>: <span class="dv">italic</span><span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* HTML snippet using above classes */</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>&lt;p class=&quot;showMono showItalic&quot;<span class="op">&gt;</span>Green Lantern&lt;/p<span class="op">&gt;</span></span></code></pre></div>
 <p><strong>Nesting</strong></p>
-<p>A CSS style can be specified for use on a certain nested order of HTML elements. To define this in CSS, the selectors are separated by spaces:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="co">/* Example: See below for HTML on which this style is effective. */</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>body<span class="fu">.showBlack</span> div p<span class="fu">.showMono</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>{</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode css"><code class="sourceCode css"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a>&lt;body class=&quot;showBlack&quot;<span class="op">&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>    &lt;div<span class="op">&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a>        &lt;p class=&quot;showMono&quot;<span class="op">&gt;</span>Green Lantern&lt;/p<span class="op">&gt;</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a>    &lt;/div<span class="op">&gt;</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>&lt;/body<span class="op">&gt;</span></span></code></pre></div>
-<p>With these basics of CSS it should be easy to read and understand any CSS or HTML style code! 😊</p>
+<p>A CSS style can be specified for use on a certain nested order of
+HTML elements. To define this in CSS, the selectors are separated by
+spaces:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Example: See below for HTML on which this style is effective. */</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>body<span class="fu">.showBlack</span> div p<span class="fu">.showMono</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span>: <span class="dv">monospace</span><span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>&lt;body class=&quot;showBlack&quot;<span class="op">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    &lt;div<span class="op">&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        &lt;p class=&quot;showMono&quot;<span class="op">&gt;</span>Green Lantern&lt;/p<span class="op">&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    &lt;/div<span class="op">&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>&lt;/body<span class="op">&gt;</span></span></code></pre></div>
+<p>With these basics of CSS it should be easy to read and understand any
+CSS or HTML style code! 😊</p>
 </div>
 
 <br />
@@ -206,11 +222,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

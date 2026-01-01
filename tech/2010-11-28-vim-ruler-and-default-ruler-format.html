@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,42 @@
 <h1 class="title">ViM: Ruler and Default Ruler Format</h1>
 <p class="date">📅 2010-Nov-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ruler'>ruler</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><img src="http://codeyarns.files.wordpress.com/2010/11/20101128_vim_rulerformat.png" alt=" " />]</p>
-<p>In <strong>ViM</strong>, the <strong>ruler</strong> can be enabled by typing:</p>
+<p><img
+src="http://codeyarns.files.wordpress.com/2010/11/20101128_vim_rulerformat.png"
+alt=" " />]</p>
+<p>In <strong>ViM</strong>, the <strong>ruler</strong> can be enabled by
+typing:</p>
 <pre><code>:set ruler</code></pre>
-<p>When enabled, the ruler is displayed on the right side of the status line at the bottom of the window. By default, it displays the <strong>line number</strong>, the <strong>column number</strong>, the <strong>virtual column number</strong>, and the <strong>relative position</strong> of the cursor in the file (as a percentage).</p>
+<p>When enabled, the ruler is displayed on the right side of the status
+line at the bottom of the window. By default, it displays the
+<strong>line number</strong>, the <strong>column number</strong>, the
+<strong>virtual column number</strong>, and the <strong>relative
+position</strong> of the cursor in the file (as a percentage).</p>
 <p><strong>Default Ruler Format</strong></p>
-<p>The ruler format can be set by using the <code>rulerformat</code> command. Curiously, the default <code>rulerformat</code> is empty even though it is displaying the above details! You can find this out for yourself by typing:</p>
+<p>The ruler format can be set by using the <code>rulerformat</code>
+command. Curiously, the default <code>rulerformat</code> is empty even
+though it is displaying the above details! You can find this out for
+yourself by typing:</p>
 <pre><code>:set rulerformat?</code></pre>
-<p>A little digging into the ViM source code reveals that the default format is not a <code>rulerformat</code> string at all. Instead, it is formatted manually in the <code>win_redr_ruler</code> function of <code>screen.c</code> in the code. Only Bram Moolenaar must know why he does this manually instead of using rulerformat itself.</p>
-<p>Anyway, a close equivalent of the default rulerformat can be set by using:</p>
+<p>A little digging into the ViM source code reveals that the default
+format is not a <code>rulerformat</code> string at all. Instead, it is
+formatted manually in the <code>win_redr_ruler</code> function of
+<code>screen.c</code> in the code. Only Bram Moolenaar must know why he
+does this manually instead of using rulerformat itself.</p>
+<p>Anyway, a close equivalent of the default rulerformat can be set by
+using:</p>
 <pre><code>:set rulerformat=%-14.(%l,%c%V%)\ %P</code></pre>
-<p>The ruler is <strong>18 characters</strong> in length by default. (It is not 17 as the ViM documentation in options.txt claims.) <strong>14 characters</strong> (<code>%-14</code>) is the minimum width reserved for line, column and virtual column numbers (<code>%l,%c%V%</code>). A space separates that from the relative position display (<code>%P</code>) which is always <strong>3 characters</strong> in length. When rulerformat is not set, if the total length of the ruler information exceeds 18, only the left-most 18 characters are displayed. With the above format, the rightmost 18 characters are displayed.</p>
-<p><strong>Note:</strong> Check out a simpler alternative for the default ruler format shared by Peter Fröhlich in the comments below.</p>
+<p>The ruler is <strong>18 characters</strong> in length by default. (It
+is not 17 as the ViM documentation in options.txt claims.) <strong>14
+characters</strong> (<code>%-14</code>) is the minimum width reserved
+for line, column and virtual column numbers (<code>%l,%c%V%</code>). A
+space separates that from the relative position display
+(<code>%P</code>) which is always <strong>3 characters</strong> in
+length. When rulerformat is not set, if the total length of the ruler
+information exceeds 18, only the left-most 18 characters are displayed.
+With the above format, the rightmost 18 characters are displayed.</p>
+<p><strong>Note:</strong> Check out a simpler alternative for the
+default ruler format shared by Peter Fröhlich in the comments below.</p>
 </div>
 
 <br />
@@ -63,11 +73,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

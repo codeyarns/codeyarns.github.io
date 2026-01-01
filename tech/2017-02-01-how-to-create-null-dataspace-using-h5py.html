@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,19 +31,29 @@
 <p class="date">📅 2017-Feb-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#h5py'>h5py</a>, <a href='index.html#hdf5'>hdf5</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was trying to write a <strong>HDF5</strong> file using the <strong>H5Py</strong> package. What I wanted to create was a HDF5 dataset whose <strong>dataspace</strong> is <code>NULL</code>. This is what I wanted (when dumped by <strong>h5dump</strong>):</p>
+<p>I was trying to write a <strong>HDF5</strong> file using the
+<strong>H5Py</strong> package. What I wanted to create was a HDF5
+dataset whose <strong>dataspace</strong> is <code>NULL</code>. This is
+what I wanted (when dumped by <strong>h5dump</strong>):</p>
 <pre><code>DATASPACE  NULL
 DATA {
 }</code></pre>
-<p>I could not find any input parameters to the <a href="http://docs.h5py.org/en/latest/high/dataset.html"><code>create_dataset</code></a> call that could achieve this. The closest was by passing an empty tuple to the <code>shape</code> parameter.</p>
+<p>I could not find any input parameters to the <a
+href="http://docs.h5py.org/en/latest/high/dataset.html"><code>create_dataset</code></a>
+call that could achieve this. The closest was by passing an empty tuple
+to the <code>shape</code> parameter.</p>
 <p>However, that created a dataset with this structure:</p>
 <pre><code>DATASPACE  SCALAR
 DATA {
 (0): NULL
 }</code></pre>
 <h2 id="solution">Solution</h2>
-<p>It turns out that the H5Py had no support to create a NULL dataspace! Thankfully, support for this had just been added to v2.7 as mentioned <a href="//github.com/h5py/h5py/pull/664">here</a>.</p>
-<p>I used the latest version of H5Py and was able to create a dataset with NULL dataspace. This is done by passing <code>None</code> to the shape parameter.</p>
+<p>It turns out that the H5Py had no support to create a NULL dataspace!
+Thankfully, support for this had just been added to v2.7 as mentioned <a
+href="//github.com/h5py/h5py/pull/664">here</a>.</p>
+<p>I used the latest version of H5Py and was able to create a dataset
+with NULL dataspace. This is done by passing <code>None</code> to the
+shape parameter.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
@@ -66,11 +62,13 @@ DATA {
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

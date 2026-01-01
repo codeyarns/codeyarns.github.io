@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,10 +30,15 @@
 <h1 class="title">How to view environment of process</h1>
 <p class="date">📅 2016-Sep-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#process'>process</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Sometimes you might be curious to find out the environment variables and values of a running process.</p>
-<p>This is easy to do with the <strong>ps</strong> command, by providing the PID of the process (say 9999):</p>
+<p>Sometimes you might be curious to find out the environment variables
+and values of a running process.</p>
+<p>This is easy to do with the <strong>ps</strong> command, by providing
+the PID of the process (say 9999):</p>
 <pre><code>$ ps eww 9999</code></pre>
-<p>The ps command on Linux relies heavily on the <code>/proc</code> pseudo filesystem to gather almost all of its information on processes. So, as you might guess you can get the exact same environment that ps prints from <code>/proc</code>. Just provide the PID, say 9999:</p>
+<p>The ps command on Linux relies heavily on the <code>/proc</code>
+pseudo filesystem to gather almost all of its information on processes.
+So, as you might guess you can get the exact same environment that ps
+prints from <code>/proc</code>. Just provide the PID, say 9999:</p>
 <pre><code>$ cat /proc/9999/environ</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
@@ -57,11 +48,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

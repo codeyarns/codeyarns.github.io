@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,24 +30,36 @@
 <h1 class="title">IPython Notebook error: Unsupported JSON nbformat</h1>
 <p class="date">📅 2015-Jul-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://codeyarns.files.wordpress.com/2015/07/20150701_ipython_error.png"><img src="https://codeyarns.files.wordpress.com/2015/07/20150701_ipython_error.png" alt="20150701_ipython_error" /></a></p>
+<p><a
+href="https://codeyarns.files.wordpress.com/2015/07/20150701_ipython_error.png"><img
+src="https://codeyarns.files.wordpress.com/2015/07/20150701_ipython_error.png"
+alt="20150701_ipython_error" /></a></p>
 <h2 id="problem">Problem</h2>
-<p>I ran the <strong>IPython Notebook</strong> server in a directory containing a <code>.ipynb</code> notebook file:</p>
+<p>I ran the <strong>IPython Notebook</strong> server in a directory
+containing a <code>.ipynb</code> notebook file:</p>
 <pre><code>$ ipython notebook</code></pre>
-<p>It opened the URL <code>http://127.0.0.1:8888</code> in my browser. The notebook file was listed in the webpage. I clicked it to load it and got this error:</p>
+<p>It opened the URL <code>http://127.0.0.1:8888</code> in my browser.
+The notebook file was listed in the webpage. I clicked it to load it and
+got this error:</p>
 <pre><code>Error loading notebook
 
 Unreadable Notebook: Unsupported JSON
 nbformat version 4 (supported version: 3)</code></pre>
 <h2 id="solution">Solution</h2>
-<p>This error is caused due to opening a notebook created with a newer IPython on a computer with an older IPython. On my computer, I was using IPython installed from Ubuntu repositories, which is ancient.</p>
+<p>This error is caused due to opening a notebook created with a newer
+IPython on a computer with an older IPython. On my computer, I was using
+IPython installed from Ubuntu repositories, which is ancient.</p>
 <p>I first uninstalled it:</p>
 <pre><code>$ sudo apt remove ipython</code></pre>
-<p>I installed the latest IPython from the <strong>Python Package Index</strong>:</p>
+<p>I installed the latest IPython from the <strong>Python Package
+Index</strong>:</p>
 <pre><code>$ sudo pip install ipython</code></pre>
-<p>The installation was successful, but on running IPython it complained about many other programs. I installed the libraries it complained about:</p>
+<p>The installation was successful, but on running IPython it complained
+about many other programs. I installed the libraries it complained
+about:</p>
 <pre><code>$ sudo apt install python-zmq python-jinja2 python-jsonschema</code></pre>
-<p>IPython Notebook ran correctly and I was able to open the notebook after this! 😊</p>
+<p>IPython Notebook ran correctly and I was able to open the notebook
+after this! 😊</p>
 <p><strong>Tried with:</strong> IPython 3.2 and Ubuntu 14.04</p>
 </div>
 
@@ -70,11 +68,13 @@ nbformat version 4 (supported version: 3)</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

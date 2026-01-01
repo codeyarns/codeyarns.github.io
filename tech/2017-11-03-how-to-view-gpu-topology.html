@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,24 @@
 <h1 class="title">How to view GPU topology</h1>
 <p class="date">📅 2017-Nov-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#numa'>numa</a>, <a href='index.html#nvidia-smi'>nvidia-smi</a>, <a href='index.html#topology'>topology</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>NVIDIA System Management Interface</strong> tool is the easiest way to explore the GPU topology on your system. This tool is available as <strong>nvidia-smi</strong> and is installed as part of the NVIDIA display driver. GPU topology describes how one or more GPUs in the system are connected to each other and to the CPU and other devices in the system. The topology is important to know how data is copied between GPUs or between a GPU and CPU or other device.</p>
+<p>The <strong>NVIDIA System Management Interface</strong> tool is the
+easiest way to explore the GPU topology on your system. This tool is
+available as <strong>nvidia-smi</strong> and is installed as part of the
+NVIDIA display driver. GPU topology describes how one or more GPUs in
+the system are connected to each other and to the CPU and other devices
+in the system. The topology is important to know how data is copied
+between GPUs or between a GPU and CPU or other device.</p>
 <ul>
 <li>To view the available commands related to GPU topology:</li>
 </ul>
 <pre><code>$ nvidia-smi topo -h</code></pre>
 <ul>
-<li>To view the connection matrix between the GPUs and the CPUs they are close to (CPU affinities):</li>
+<li>To view the connection matrix between the GPUs and the CPUs they are
+close to (CPU affinities):</li>
 </ul>
 <pre><code>$ nvidia-smi topo -m</code></pre>
-<p>The output of this command shows a matrix of the connections between your GPUs with interconnect info, CPU affinity and NUMA affinity.</p>
+<p>The output of this command shows a matrix of the connections between
+your GPUs with interconnect info, CPU affinity and NUMA affinity.</p>
 <p>On a system with a single GPU:</p>
 <pre><code>$ nvidia-smi topo -m
       GPU0  CPU Affinity
@@ -81,11 +75,13 @@ GPU3    NV4     NV4     NV4      X      0-15,64-79      0</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

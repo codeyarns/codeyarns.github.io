@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,13 +95,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Using FreeGLUT calls with PyOpenGL</h1>
 <p class="date">📅 2012-Apr-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#freeglut'>freeglut</a>, <a href='index.html#glut'>glut</a>, <a href='index.html#pyopengl'>pyopengl</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>PyOpenGL</strong> exposes OpenGL GL, GLU and GLUT calls to Python programs. The <strong>FreeGLUT</strong> library was developed as an extension to GLUT and adds some important functionality to GLUT. The one which I like the most is the support for the <strong>scroll wheel</strong> of the mouse.</p>
+<p><strong>PyOpenGL</strong> exposes OpenGL GL, GLU and GLUT calls to
+Python programs. The <strong>FreeGLUT</strong> library was developed as
+an extension to GLUT and adds some important functionality to GLUT. The
+one which I like the most is the support for the <strong>scroll
+wheel</strong> of the mouse.</p>
 <p>To use GLUT calls in a Python program, we do:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">from</span> OpenGL.GLUT <span class="im">import</span> <span class="op">*</span></span></code></pre></div>
-<p>However, it is not obvious how to use the FreeGLUT functionality from PyOpenGL. If I include a FreeGLUT call like <strong>glutMouseWheelFunc()</strong> in a Python program, it crashes with an error:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> OpenGL.GLUT <span class="im">import</span> <span class="op">*</span></span></code></pre></div>
+<p>However, it is not obvious how to use the FreeGLUT functionality from
+PyOpenGL. If I include a FreeGLUT call like
+<strong>glutMouseWheelFunc()</strong> in a Python program, it crashes
+with an error:</p>
 <pre><code>OpenGL.error.NullFunctionError: Undefined GLUT callback function MouseWheel, check for bool(glutMouseWheelFunc) before calling</code></pre>
-<p>On further investigation, it turns out that PyOpenGL chooses the first available DLL between glut and freeglut. This can be seen in <code>Python32\Lib\site-packages\OpenGL\platform\win32.py</code>. So, to get FreeGLUT functionality, we need to make PyOpenGL to pick the freeglut DLL file instead of glut. We can do this by deleting the glut DLL file(s) in <code>Python32\Lib\site-packages\OpenGL\DLLS</code>. Once this is done, PyOpenGL should pick the freeglut DLL and the FreeGLUT calls should be routed to it without any problem.</p>
-<p><strong>Tried with:</strong> PyOpenGL 3.0.2a6 and Python 3.2 64-bit</p>
+<p>On further investigation, it turns out that PyOpenGL chooses the
+first available DLL between glut and freeglut. This can be seen in
+<code>Python32\Lib\site-packages\OpenGL\platform\win32.py</code>. So, to
+get FreeGLUT functionality, we need to make PyOpenGL to pick the
+freeglut DLL file instead of glut. We can do this by deleting the glut
+DLL file(s) in <code>Python32\Lib\site-packages\OpenGL\DLLS</code>. Once
+this is done, PyOpenGL should pick the freeglut DLL and the FreeGLUT
+calls should be routed to it without any problem.</p>
+<p><strong>Tried with:</strong> PyOpenGL 3.0.2a6 and Python 3.2
+64-bit</p>
 </div>
 
 <br />
@@ -122,11 +125,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

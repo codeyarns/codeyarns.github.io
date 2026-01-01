@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,24 +31,36 @@
 <p class="date">📅 2014-Nov-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#eclipse'>eclipse</a>, <a href='index.html#error'>error</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I had some C++ code in <strong>Eclipse CDT</strong>. It was indicating that some lines of code had error like this:</p>
+<p>I had some C++ code in <strong>Eclipse CDT</strong>. It was
+indicating that some lines of code had error like this:</p>
 <pre><code>function to_string could not be resolved
 
 Method length could not be resolved</code></pre>
-<p>This code compiles correctly without any error or warning. I was just looking for a way to make this spurious error highlighting in Eclipse go away.</p>
+<p>This code compiles correctly without any error or warning. I was just
+looking for a way to make this spurious error highlighting in Eclipse go
+away.</p>
 <h2 id="solution">Solution</h2>
-<p>These errors are shown by the <strong>Indexer</strong> in Eclipse. It may not be able to resolve symbols because these symbols are not visible to it. This can happen for example if:</p>
+<p>These errors are shown by the <strong>Indexer</strong> in Eclipse. It
+may not be able to resolve symbols because these symbols are not visible
+to it. This can happen for example if:</p>
 <ul>
 <li><p>Indexer is using a different version of the compiler</p></li>
 <li><p>Indexer is using compiler directives that are different</p></li>
-<li><p>Indexer is not aware of the include directories of libraries you are using.</p></li>
+<li><p>Indexer is not aware of the include directories of libraries you
+are using.</p></li>
 </ul>
 <p>My above errors went away when I solved them like this:</p>
 <ul>
-<li><p><code>to_string</code> is a C++11 feature. So, I enabled <code>-std=c++11</code> in the Indexer compiler settings as described <a href="2015-10-02-how-to-change-compiler-options-used-by-indexer-in-eclipse-cdt.html">here</a>.</p></li>
-<li><p><code>length</code> was a class method from an external library that I was using. I added the include directory of that library to my Project Properties as described <a href="2013-09-22-how-to-add-include-directory-in-eclipse-cdt.html">here</a>.</p></li>
+<li><p><code>to_string</code> is a C++11 feature. So, I enabled
+<code>-std=c++11</code> in the Indexer compiler settings as described <a
+href="2015-10-02-how-to-change-compiler-options-used-by-indexer-in-eclipse-cdt.html">here</a>.</p></li>
+<li><p><code>length</code> was a class method from an external library
+that I was using. I added the include directory of that library to my
+Project Properties as described <a
+href="2013-09-22-how-to-add-include-directory-in-eclipse-cdt.html">here</a>.</p></li>
 </ul>
-<p><strong>Tried with:</strong> Eclipse Luna 4.4.1, GCC 4.9.2 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Eclipse Luna 4.4.1, GCC 4.9.2 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -70,11 +68,13 @@ Method length could not be resolved</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

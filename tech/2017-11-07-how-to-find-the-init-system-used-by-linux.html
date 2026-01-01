@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,22 +30,35 @@
 <h1 class="title">How to find the init system used by Linux</h1>
 <p class="date">📅 2017-Nov-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#init'>init</a>, <a href='index.html#systemd'>systemd</a>, <a href='index.html#upstart'>upstart</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>init</strong> is the first process that is started by an Unix operating system. It has PID 1 and handles creation of all other processes and daemon processes required by the OS. It acts as the ancestor of all processes. There are many init systems that have been used in Linux distributions over the years. Some of the popular init systems are the classic <strong>System V init</strong>, <strong>upstart</strong> (Ubuntu used to use this) and <strong>systemd</strong> (popular right now for all Linux distros).</p>
-<p>So, you are sitting at a Linux computer, do you know which init system it is using? There is no straightforward method to find this out.</p>
+<p><strong>init</strong> is the first process that is started by an Unix
+operating system. It has PID 1 and handles creation of all other
+processes and daemon processes required by the OS. It acts as the
+ancestor of all processes. There are many init systems that have been
+used in Linux distributions over the years. Some of the popular init
+systems are the classic <strong>System V init</strong>,
+<strong>upstart</strong> (Ubuntu used to use this) and
+<strong>systemd</strong> (popular right now for all Linux distros).</p>
+<p>So, you are sitting at a Linux computer, do you know which init
+system it is using? There is no straightforward method to find this
+out.</p>
 <p>Here are a few methods, one of which should work:</p>
 <ul>
-<li>Check the init version, it should report the init system name too:</li>
+<li>Check the init version, it should report the init system name
+too:</li>
 </ul>
 <pre><code>$ init --version
 init (upstart 1.12.1)
 Copyright (C) 2006-2014 Canonical Ltd., 2011 Scott James Remnant</code></pre>
-<p>This was on a Ubuntu 14.04 system. You can see that it uses upstart.</p>
+<p>This was on a Ubuntu 14.04 system. You can see that it uses
+upstart.</p>
 <ul>
-<li>Sometimes the <code>/sbin/init</code> is a symbolic link to the actual init:</li>
+<li>Sometimes the <code>/sbin/init</code> is a symbolic link to the
+actual init:</li>
 </ul>
 <pre><code>$ stat /sbin/init
   File: &#39;/sbin/init&#39; -&gt; &#39;/lib/systemd/systemd&#39;</code></pre>
-<p>This was on a Ubuntu 16.04 system. You can see that it uses systemd.</p>
+<p>This was on a Ubuntu 16.04 system. You can see that it uses
+systemd.</p>
 </div>
 
 <br />
@@ -67,11 +66,13 @@ Copyright (C) 2006-2014 Canonical Ltd., 2011 Scott James Remnant</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

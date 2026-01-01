@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,25 +31,43 @@
 <p class="date">📅 2023-Oct-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#firefox'>firefox</a>, <a href='index.html#fonts'>fonts</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>Recently I got a new computer and installed Ubuntu 22.04 on it. The Firefox that was installed in Ubuntu rendered all the websites with their custom fonts. However, when I loaded my own homepage, that did not use the fonts that I set in my CSS stylesheet.</p>
+<p>Recently I got a new computer and installed Ubuntu 22.04 on it. The
+Firefox that was installed in Ubuntu rendered all the websites with
+their custom fonts. However, when I loaded my own homepage, that did not
+use the fonts that I set in my CSS stylesheet.</p>
 <h2 id="analysis">Analysis</h2>
-<p>I had the following CSS style in my website’s <code>styles.css</code>:</p>
+<p>I had the following CSS style in my website’s
+<code>styles.css</code>:</p>
 <pre><code>font-family: &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif;</code></pre>
-<p>But when I inspected the page in Firefox, I found that all the fonts listed above were skipped and the webpage was being rendered using the final <code>sans-serif</code> default font set in my browser. This happened though I had all those fonts (Segoe UI, Helvetic, Arial) installed on my system.</p>
+<p>But when I inspected the page in Firefox, I found that all the fonts
+listed above were skipped and the webpage was being rendered using the
+final <code>sans-serif</code> default font set in my browser. This
+happened though I had all those fonts (Segoe UI, Helvetic, Arial)
+installed on my system.</p>
 <p>The strange part was that all other websites rendered fine.</p>
-<p>I installed Chromium and it rendered my webpage correctly too! What was Firefox doing differently than Chromium?</p>
+<p>I installed Chromium and it rendered my webpage correctly too! What
+was Firefox doing differently than Chromium?</p>
 <h2 id="solution">Solution</h2>
-<p>It turns out that the default Firefox on Ubuntu 22.04 is installed using snap. So, it has its own local snap directory and only chooses the fonts installed inside there. Chromium behaved differently because I had installed it using <code>apt</code>.</p>
-<p>So, the solution was to symlink my local fonts directory to the Firefox snap’s fonts directory:</p>
+<p>It turns out that the default Firefox on Ubuntu 22.04 is installed
+using snap. So, it has its own local snap directory and only chooses the
+fonts installed inside there. Chromium behaved differently because I had
+installed it using <code>apt</code>.</p>
+<p>So, the solution was to symlink my local fonts directory to the
+Firefox snap’s fonts directory:</p>
 <pre><code>$ ln -s ~/.local/share/fonts ~/snap/firefox/current/.local/share/fonts
 
 $ ln -s ~/.config/fontconfig ~/snap/firefox/current/.config/fontconfig</code></pre>
-<p>I restarted Firefox and it then rendered my webpage using my local fonts correctly!</p>
-<p>Note that these symlinks need to be recreated every time the Firefox snap is updated to a new version. 🙄</p>
+<p>I restarted Firefox and it then rendered my webpage using my local
+fonts correctly!</p>
+<p>Note that these symlinks need to be recreated every time the Firefox
+snap is updated to a new version. 🙄</p>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://askubuntu.com/questions/1427695/how-to-make-snap-firefox-use-locally-installed-fonts" class="uri">https://askubuntu.com/questions/1427695/how-to-make-snap-firefox-use-locally-installed-fonts</a></li>
-<li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1760996" class="uri">https://bugzilla.mozilla.org/show_bug.cgi?id=1760996</a></li>
+<li><a
+href="https://askubuntu.com/questions/1427695/how-to-make-snap-firefox-use-locally-installed-fonts"
+class="uri">https://askubuntu.com/questions/1427695/how-to-make-snap-firefox-use-locally-installed-fonts</a></li>
+<li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1760996"
+class="uri">https://bugzilla.mozilla.org/show_bug.cgi?id=1760996</a></li>
 </ul>
 </div>
 
@@ -72,11 +76,13 @@ $ ln -s ~/.config/fontconfig ~/snap/firefox/current/.config/fontconfig</code></p
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

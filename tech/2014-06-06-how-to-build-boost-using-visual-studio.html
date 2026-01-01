@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,28 +30,50 @@
 <h1 class="title">How to build Boost using Visual Studio</h1>
 <p class="date">📅 2014-Jun-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#boost'>boost</a>, <a href='index.html#visual-studio'>visual studio</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>If your code compiled with Visual Studio needs Boost, you can get <a href="http://boost.teeks99.com/">prebuilt Boost libraries</a>. However, if your code needs to link with Boost library files, then the Visual Studio version used for your code and used to build Boost has to match. If you cannot find a prebuilt Boost library matching your Visual Studio then you might have to build Boost by yourself.</p>
-<p>I had this problem since my code was using C++11 features that required Visual Studio 2015, but the prebuilt Boost libraries were only available for Visual Studio 2012.</p>
+<p>If your code compiled with Visual Studio needs Boost, you can get <a
+href="http://boost.teeks99.com/">prebuilt Boost libraries</a>. However,
+if your code needs to link with Boost library files, then the Visual
+Studio version used for your code and used to build Boost has to match.
+If you cannot find a prebuilt Boost library matching your Visual Studio
+then you might have to build Boost by yourself.</p>
+<p>I had this problem since my code was using C++11 features that
+required Visual Studio 2015, but the prebuilt Boost libraries were only
+available for Visual Studio 2012.</p>
 <p>To build Boost for Visual Studio, I followed these steps:</p>
 <ul>
-<li><p>Download the source of Boost from <a href="http://www.boost.org/users/download/">here</a>. Unzip it anywhere.</p></li>
-<li><p>Open the Developer Command Prompt for Visual Studio. Change to the directory where Boost is unzipped.</p></li>
-<li><p>Build the Boost.Build tool (<code>b2.exe</code>) using this command:</p></li>
+<li><p>Download the source of Boost from <a
+href="http://www.boost.org/users/download/">here</a>. Unzip it
+anywhere.</p></li>
+<li><p>Open the Developer Command Prompt for Visual Studio. Change to
+the directory where Boost is unzipped.</p></li>
+<li><p>Build the Boost.Build tool (<code>b2.exe</code>) using this
+command:</p></li>
 </ul>
 <pre><code>&gt; bootstrap.bat</code></pre>
 <ul>
 <li>Build Boost using this compile invocation:</li>
 </ul>
 <pre><code>&gt; b2 toolset=msvc-14.0 --build-type=complete --abbreviate-paths architecture=x86 address-model=64 install -j4</code></pre>
-<p><code>toolset</code>: Use this to specify the Visual C++ compiler to use. For Visual Studio 2015, this is <code>msvc-14.0</code>. For other versions of Visual Studio see <a href="2014-08-06-visual-studio-versions.html">this post</a>.</p>
-<p><code>architecture</code>: This is the processor architecture. Keep this <code>x86</code> for both 32-bit and 64-bit builds!</p>
-<p><code>address-model</code>: Use this to specify whether you want <code>32</code> or <code>64</code> bit library to be built.</p>
-<p><code>-j</code>: Use this to specify how many cores to use for parallel compilation.</p>
+<p><code>toolset</code>: Use this to specify the Visual C++ compiler to
+use. For Visual Studio 2015, this is <code>msvc-14.0</code>. For other
+versions of Visual Studio see <a
+href="2014-08-06-visual-studio-versions.html">this post</a>.</p>
+<p><code>architecture</code>: This is the processor architecture. Keep
+this <code>x86</code> for both 32-bit and 64-bit builds!</p>
+<p><code>address-model</code>: Use this to specify whether you want
+<code>32</code> or <code>64</code> bit library to be built.</p>
+<p><code>-j</code>: Use this to specify how many cores to use for
+parallel compilation.</p>
 <ul>
-<li>This compilation took about 30 minutes and after it is done, the Boost header files and built libraries are dumped in <code>C:\Boost</code>.</li>
+<li>This compilation took about 30 minutes and after it is done, the
+Boost header files and built libraries are dumped in
+<code>C:\Boost</code>.</li>
 </ul>
-<p>Note: Detailed steps to build Boost for Visual Studio can be found in <a href="http://stackoverflow.com/questions/2629421">this StackOverflow post</a>.</p>
-<p><strong>Tried with:</strong> Boost 1.59, Visual Studio 2015 and Windows 7 x64</p>
+<p>Note: Detailed steps to build Boost for Visual Studio can be found in
+<a href="http://stackoverflow.com/questions/2629421">this StackOverflow
+post</a>.</p>
+<p><strong>Tried with:</strong> Boost 1.59, Visual Studio 2015 and
+Windows 7 x64</p>
 </div>
 
 <br />
@@ -73,11 +81,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

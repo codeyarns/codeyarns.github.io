@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,13 +31,24 @@
 <p class="date">📅 2011-Jul-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#compute-capability'>compute capability</a>, <a href='index.html#cuda'>cuda</a>, <a href='index.html#errors'>errors</a>, <a href='index.html#exceptions'>exceptions</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Symptom</strong></p>
-<p>Your CUDA program executes, but the computed result is wrong. You run the program in Debug mode and it spews out a bunch of first-chance <strong>exceptions</strong> on <code>cudaError_enum</code> and <code>cudaError</code> of this form in the Output window:</p>
+<p>Your CUDA program executes, but the computed result is wrong. You run
+the program in Debug mode and it spews out a bunch of first-chance
+<strong>exceptions</strong> on <code>cudaError_enum</code> and
+<code>cudaError</code> of this form in the Output window:</p>
 <pre><code>First-chance exception at 0x74dcb727 in HelloCUDA.exe: Microsoft C++ exception: cudaError_enum at memory location 0x002af650..
 First-chance exception at 0x74dcb727 in HelloCUDA.exe: Microsoft C++ exception: cudaError at memory location 0x002af4ec..
 First-chance exception at 0x74dcb727 in HelloCUDA.exe: Microsoft C++ exception: [rethrow] at memory location 0x00000000..</code></pre>
 <p><strong>Diagnosis</strong></p>
-<p>One of the reasons for this behaviour is if the device you are using cannot support the <strong>compute capability</strong> the program was compiled for. Ideally, such a program should be able to detect the device capability, compare and exit with a meaningful error. I have no idea why NVIDIA does not do this.</p>
-<p>Anyway, if your device is of compute capability 1.1 and the program was compiled for compute capability 2.0, that is <code>sm_20</code> GPU architecture, then it can result in such silent failures. Recompile the program for the compute capability of your device and the error should be gone.</p>
+<p>One of the reasons for this behaviour is if the device you are using
+cannot support the <strong>compute capability</strong> the program was
+compiled for. Ideally, such a program should be able to detect the
+device capability, compare and exit with a meaningful error. I have no
+idea why NVIDIA does not do this.</p>
+<p>Anyway, if your device is of compute capability 1.1 and the program
+was compiled for compute capability 2.0, that is <code>sm_20</code> GPU
+architecture, then it can result in such silent failures. Recompile the
+program for the compute capability of your device and the error should
+be gone.</p>
 <p><strong>Tried with</strong>: CUDA 4.0</p>
 </div>
 
@@ -60,11 +57,13 @@ First-chance exception at 0x74dcb727 in HelloCUDA.exe: Microsoft C++ exception: 
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

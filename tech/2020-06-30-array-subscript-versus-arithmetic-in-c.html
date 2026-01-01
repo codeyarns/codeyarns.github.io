@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,41 @@
 <h1 class="title">Array subscript versus arithmetic in C++</h1>
 <p class="date">📅 2020-Jun-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>In C++, given a pointer (or iterator) <code>a</code> and integer <code>i</code>, which of these two expressions should you prefer to use: <code>a + i</code> or <code>&amp;a[i]</code>?</p>
-<p>These two expressions are equivalent and legal, as long as <code>a + i</code> points to a valid element of the underlying array.</p>
-<p>The <code>a + i</code> expression has two advantages compared to <code>&amp;a[i]</code>:</p>
+<p>In C++, given a pointer (or iterator) <code>a</code> and integer
+<code>i</code>, which of these two expressions should you prefer to use:
+<code>a + i</code> or <code>&amp;a[i]</code>?</p>
+<p>These two expressions are equivalent and legal, as long as
+<code>a + i</code> points to a valid element of the underlying
+array.</p>
+<p>The <code>a + i</code> expression has two advantages compared to
+<code>&amp;a[i]</code>:</p>
 <ul>
-<li><p>It is legal and valid for <code>a + i</code> to point to one element past the last element of the underlying array. In fact, this is how C++ iterators (or pointers) work with C++ iteration algorithms, their <code>end()</code> value is one past the last element. It is illegal and undefined behavior for <code>&amp;a[i]</code> to be pointing to one past the last element. Checking tools might actually flag this as a violation, if they can deduce this statically.</p></li>
-<li><p>When <code>a</code> is a null pointer and <code>i</code> is 0, <code>a + i</code> is legal. The C++ standard specifically allows this to simplify generic programming code, so that it can operate without failing on all iterators and offset values. However, <code>&amp;a[0]</code> is illegal and fails if <code>a</code> is a null pointer.</p></li>
+<li><p>It is legal and valid for <code>a + i</code> to point to one
+element past the last element of the underlying array. In fact, this is
+how C++ iterators (or pointers) work with C++ iteration algorithms,
+their <code>end()</code> value is one past the last element. It is
+illegal and undefined behavior for <code>&amp;a[i]</code> to be pointing
+to one past the last element. Checking tools might actually flag this as
+a violation, if they can deduce this statically.</p></li>
+<li><p>When <code>a</code> is a null pointer and <code>i</code> is 0,
+<code>a + i</code> is legal. The C++ standard specifically allows this
+to simplify generic programming code, so that it can operate without
+failing on all iterators and offset values. However,
+<code>&amp;a[0]</code> is illegal and fails if <code>a</code> is a null
+pointer.</p></li>
 </ul>
-<p>Both of the above subtle differences are listed in the C++20 standard <em>§7.6.6 Additive operators</em>:</p>
+<p>Both of the above subtle differences are listed in the C++20 standard
+<em>§7.6.6 Additive operators</em>:</p>
 <blockquote>
-<p>When an expression J that has integral type is added to or subtracted from an expression P of pointer type, the result has the type of P. (4.1) — If P evaluates to a null pointer value and J evaluates to 0, the result is a null pointer value. (4.2) — Otherwise, if P points to an array element i of an array object x with n elements, the expressions P + J and J + P (where J has the value j) point to the (possibly-hypothetical) array element i + j of x if 0 ≤ i + j ≤ n and the expression P - J points to the (possibly-hypothetical) array element i − j of x if 0 ≤ i − j ≤ n.</p>
+<p>When an expression J that has integral type is added to or subtracted
+from an expression P of pointer type, the result has the type of P.
+(4.1) — If P evaluates to a null pointer value and J evaluates to 0, the
+result is a null pointer value. (4.2) — Otherwise, if P points to an
+array element i of an array object x with n elements, the expressions P
++ J and J + P (where J has the value j) point to the
+(possibly-hypothetical) array element i + j of x if 0 ≤ i + j ≤ n and
+the expression P - J points to the (possibly-hypothetical) array element
+i − j of x if 0 ≤ i − j ≤ n.</p>
 </blockquote>
 </div>
 
@@ -62,11 +73,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

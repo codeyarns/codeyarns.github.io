@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,18 +31,29 @@
 <p class="date">📅 2015-Feb-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#driver'>driver</a>, <a href='index.html#nvidia'>nvidia</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>On a computer with a <a href="http://www.geforce.com/hardware/desktop-gpus/geforce-gts250"><strong>NVIDIA GeForce GTS 250</strong></a> graphics card running Ubuntu 14.04, I decided to update the installed driver from <code>nvidia-331</code> to <code>nvidia-343</code>. I did this:</p>
+<p>On a computer with a <a
+href="http://www.geforce.com/hardware/desktop-gpus/geforce-gts250"><strong>NVIDIA
+GeForce GTS 250</strong></a> graphics card running Ubuntu 14.04, I
+decided to update the installed driver from <code>nvidia-331</code> to
+<code>nvidia-343</code>. I did this:</p>
 <pre><code>$ sudo apt-get install nvidia-343</code></pre>
-<p>It installed the driver and then compiled and installed the kernel module. I rebooted the computer. I was able to login in the GUI, but got an empty desktop!</p>
+<p>It installed the driver and then compiled and installed the kernel
+module. I rebooted the computer. I was able to login in the GUI, but got
+an empty desktop!</p>
 <h2 id="solution">Solution</h2>
-<p>What kind of graphics driver problem allows graphics, but only hides the desktop elements in Unity? No idea. I dug through <code>/var/syslog</code>, searched for <code>nvidia</code> and found this:</p>
+<p>What kind of graphics driver problem allows graphics, but only hides
+the desktop elements in Unity? No idea. I dug through
+<code>/var/syslog</code>, searched for <code>nvidia</code> and found
+this:</p>
 <pre><code>NVRM: The NVIDIA GeForce GTS 250 GPU installed in this system is
 NVRM:  supported through the NVIDIA 340.xx Legacy drivers. Please
 NVRM:  visit http://www.nvidia.com/object/unix.html for more
 NVRM:  information.  The 343.22 NVIDIA driver will ignore
 NVRM:  this GPU.  Continuing probe...
 NVRM: ignoring the legacy GPU 0000:03:00.0</code></pre>
-<p>So, it turns out that the GTS 250 is no longer supported in the 343 version drivers and later. I removed this driver and reinstalled back 331 driver and got back my desktop.</p>
+<p>So, it turns out that the GTS 250 is no longer supported in the 343
+version drivers and later. I removed this driver and reinstalled back
+331 driver and got back my desktop.</p>
 </div>
 
 <br />
@@ -64,11 +61,13 @@ NVRM: ignoring the legacy GPU 0000:03:00.0</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,10 @@
 <h1 class="title">Tools of FontConfig</h1>
 <p class="date">📅 2023-Oct-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fonts'>fonts</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://www.freedesktop.org/wiki/Software/fontconfig/"><strong>FontConfig</strong></a> library ships with several tools that are essential to learning and managing the fonts on Linux.</p>
+<p>The <a
+href="https://www.freedesktop.org/wiki/Software/fontconfig/"><strong>FontConfig</strong></a>
+library ships with several tools that are essential to learning and
+managing the fonts on Linux.</p>
 <h2 id="list">List</h2>
 <ul>
 <li>To list all the installed fonts on the system:</li>
@@ -54,30 +43,37 @@
 <li>To list a particular font:</li>
 </ul>
 <pre><code>$ fc-list &quot;Ubuntu Mono&quot;</code></pre>
-<p>An example line from the output shows the path to the font file, the font name and its style:</p>
+<p>An example line from the output shows the path to the font file, the
+font name and its style:</p>
 <pre><code>/usr/share/fonts/truetype/ubuntu/UbuntuMono-R.ttf: Ubuntu Mono:style=Regular</code></pre>
 <h2 id="dump">Dump</h2>
 <ul>
-<li>To dump all the information about all the installed files from their cache files:</li>
+<li>To dump all the information about all the installed files from their
+cache files:</li>
 </ul>
 <pre><code>$ fc-cat</code></pre>
-<p>An example line from the output shows all the information about that font:</p>
+<p>An example line from the output shows all the information about that
+font:</p>
 <pre><code>&quot;UbuntuMono-R.ttf&quot; 0 &quot;Ubuntu Mono:familylang=en:style=Regular:stylelang=en:fullname=Ubuntu Mono:fullnamelang=en:slant=0:weight=80:width=100:spacing=100:foundry=DAMA:index=0:outline=True:scalable=True:charset=20-7e a0-24f 292 2bc 2c6-2c7 2c9 2d8-2dd 311 384-386 388-38a 38c 38e-3a1 3a3-3ce 400-45f 462-463 472-475 48a-4f9 1e80-1e85 1ef2-1ef3 1f00-1f15 1f18-1f1d 1f20-1f45 1f48-1f4d 1f50-1f57 1f59 1f5b 1f5d 1f5f-1f7d 1f80-1fb4 1fb6-1fc4 1fc6-1fd3 1fd6-1fdb 1fdd-1fef 1ff2-1ff4 1ff6-1ffe 2013-2015 2018-201a 201c-201e 2020-2022 2026 2030 2039-203a 2044 2070 2074-2079 2080-2089 20ac 20ae 20b4 20b9 2113 2116 2122 2126 212e 2153-215e 2202 2206 220f 2211-2212 2215 2219-221a 221e 222b 2248 2260 2264-2265 2500 2502 250c 2510 2514 2518 251c 2524 252c 2534 253c 2550-256c 2588 2591-2593 25ca e0ff effd f000-f002 f506-f511 f80a-f81d fb01-fb02 fffd:lang=aa|ab|af|av|ay|ba|be|bg|bi|br|bs|bua|ca|ce|ch|chm|co|cs|cv|cy|da|de|el|en|eo|es|et|eu|fi|fj|fo|fr|fur|fy|gd|gl|gv|ho|hr|hu|ia|id|ie|ik|io|is|it|kaa|ki|kk|kl|kum|kv|kw|ky|la|lb|lez|lt|lv|mg|mh|mk|mo|mt|nb|nds|nl|nn|no|nr|nso|ny|oc|om|os|pl|pt|rm|ro|ru|sah|sco|se|sel|sh|sk|sl|sma|smj|smn|sms|so|sq|sr|ss|st|sv|sw|tg|tk|tl|tn|tr|ts|tt|tyv|uk|uz|vo|vot|wa|wen|wo|xh|yap|zu|an|crh|csb|fil|hsb|ht|jv|kj|kr|ku-tr|kwm|lg|li|mn-mn|ms|na|ng|pap-an|pap-aw|rn|rw|sc|sg|sn|su|ty|za:fontversion=52428:capability=otlayout\\:cyrl otlayout\\:grek otlayout\\:latn:fontformat=TrueType:decorative=False:postscriptname=UbuntuMono-Regular:color=False:symbol=False:variable=False&quot;</code></pre>
 <h2 id="match">Match</h2>
 <ul>
-<li>To find out which font would be chosen by fontconfig by applying its matching rules for a given input string:</li>
+<li>To find out which font would be chosen by fontconfig by applying its
+matching rules for a given input string:</li>
 </ul>
 <pre><code>$ fc-match &quot;Ubuntu Mono&quot;
 UbuntuMono-R.ttf: &quot;Ubuntu Mono&quot; &quot;Regular&quot;</code></pre>
 <h2 id="cache">Cache</h2>
 <ul>
-<li>To add fonts to the fontconfig cache, copy the font files to <code>~/.fonts</code> and run this command:</li>
+<li>To add fonts to the fontconfig cache, copy the font files to
+<code>~/.fonts</code> and run this command:</li>
 </ul>
 <pre><code>$ fc-cache -fv</code></pre>
-<p>This installs the font files to <code>$HOME/.local/share/fonts</code>.</p>
+<p>This installs the font files to
+<code>$HOME/.local/share/fonts</code>.</p>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://linuxiac.com/how-to-install-fonts-on-linux/" class="uri">https://linuxiac.com/how-to-install-fonts-on-linux/</a></li>
+<li><a href="https://linuxiac.com/how-to-install-fonts-on-linux/"
+class="uri">https://linuxiac.com/how-to-install-fonts-on-linux/</a></li>
 </ul>
 <p><strong>Tried with:</strong> FontConfig 2.13.1 and Ubuntu 22.04</p>
 </div>
@@ -87,11 +83,13 @@ UbuntuMono-R.ttf: &quot;Ubuntu Mono&quot; &quot;Regular&quot;</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

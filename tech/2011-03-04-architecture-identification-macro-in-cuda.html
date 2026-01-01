@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,27 +95,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Architecture Identification Macro in CUDA</h1>
 <p class="date">📅 2011-Mar-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#architecture'>architecture</a>, <a href='index.html#compiler'>compiler</a>, <a href='index.html#cuda'>cuda</a>, <a href='index.html#macro'>macro</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <code>__CUDA_ARCH__</code> macro is defined only for device code. It is a macro that identifies the CUDA architecture version that the NVCC compiler is compiling the code for. When defined, it holds a 3-digit value of the form <code>xy0</code>, which indicates a particular CUDA architecture. For example, <code>sm_20</code> is stored as 200, <code>sm_13</code> as 130 and so on.</p>
-<p>This macro is useful to compile different code for host and device:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>__host__ __device__ <span class="dt">void</span> foobar()</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>{</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="pp">#ifdef __CUDA_ARCH__</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="co">// Device specific code</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="pp">#else</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="co">// Host specific code</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="pp">#endif</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>}</span></code></pre></div>
-<p>This macro is also useful to write device code that is specific to particular architectures:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>__global__ <span class="dt">void</span> fooKernel()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>{</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="pp">#if __CUDA_ARCH__ &gt;= 200</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="co">// Code that uses advanced features</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    <span class="co">// introduced in sm_20 and later</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="pp">#else</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    <span class="co">// Fallback code for older architectures</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="pp">#endif</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>}</span></code></pre></div>
-<p><strong>Reference</strong>: Section on <em>Virtual Architecture Identification Macro</em> in the <strong>NVCC Manual</strong>.</p>
+<p>The <code>__CUDA_ARCH__</code> macro is defined only for device code.
+It is a macro that identifies the CUDA architecture version that the
+NVCC compiler is compiling the code for. When defined, it holds a
+3-digit value of the form <code>xy0</code>, which indicates a particular
+CUDA architecture. For example, <code>sm_20</code> is stored as 200,
+<code>sm_13</code> as 130 and so on.</p>
+<p>This macro is useful to compile different code for host and
+device:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>__host__ __device__ <span class="dt">void</span> foobar<span class="op">()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef __CUDA_ARCH__</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Device specific code</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Host specific code</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This macro is also useful to write device code that is specific to
+particular architectures:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>__global__ <span class="dt">void</span> fooKernel<span class="op">()</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#if __CUDA_ARCH__ &gt;= 200</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Code that uses advanced features</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// introduced in sm_20 and later</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Fallback code for older architectures</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><strong>Reference</strong>: Section on <em>Virtual Architecture
+Identification Macro</em> in the <strong>NVCC Manual</strong>.</p>
 <p><strong>Tried with</strong>: CUDA 5.5 and Ubuntu 12.04 LTS</p>
 </div>
 
@@ -137,11 +134,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,35 @@
 <h1 class="title">NUMA</h1>
 <p class="date">📅 2021-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#numa'>numa</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>NUMA</strong> (Non Uniform Memory Access) is a multiprocessor system where it does <em>not</em> take the same amount of time to access any given memory location. The system memory (RAM) is split contiguously between the CPUs (first half to CPU0 and second half to CPU1 on a 2-CPU NUMA) such that accessing memory associated with a different CPU might take longer than accessing memory of one’s own CPU. It takes longer because the data needs to travel through the interconnect between the CPUs. Most of the NUMA magic is supported by the CPUs itself, so that normal load-store machine instructions do all this behind the scenes.</p>
+<p><strong>NUMA</strong> (Non Uniform Memory Access) is a multiprocessor
+system where it does <em>not</em> take the same amount of time to access
+any given memory location. The system memory (RAM) is split contiguously
+between the CPUs (first half to CPU0 and second half to CPU1 on a 2-CPU
+NUMA) such that accessing memory associated with a different CPU might
+take longer than accessing memory of one’s own CPU. It takes longer
+because the data needs to travel through the interconnect between the
+CPUs. Most of the NUMA magic is supported by the CPUs itself, so that
+normal load-store machine instructions do all this behind the
+scenes.</p>
 <ul>
-<li><p>A NUMA-capable system where NUMA is not enabled runs in <strong>UMA</strong> (Uniform Memory Access) mode. By definition, UMA is supposed to provide constant-time access to memory locations, but realistically on Intel systems the memory access times seems to vary - faster for memory close by and slower for memory attached to a different CPU.</p></li>
-<li><p>You might need to check your BIOS or use tools provided by the CPU or system vendor to enable or disable NUMA and to choose from among the NUMA configs supported by the CPU or system vendor.</p></li>
-<li><p><a href="2021-02-25-numactl.html"><strong>numactl</strong></a> is a common tool that can be used to view and set NUMA configs.</p></li>
-<li><p>APIs provided in the libnuma library (set_mempolicy) can be used to isolate all succeeding memory allocations use the memory associated with specified CPU when they need to use RAM. This is easiest to do with the set-and-fork multi-process model. This can be used with multi-threading model too, but the benefits might vary.</p></li>
-<li><p><strong>numastat</strong> tool (that ships with numactl) can be used to print per-NUMA-node memory statistics:</p></li>
+<li><p>A NUMA-capable system where NUMA is not enabled runs in
+<strong>UMA</strong> (Uniform Memory Access) mode. By definition, UMA is
+supposed to provide constant-time access to memory locations, but
+realistically on Intel systems the memory access times seems to vary -
+faster for memory close by and slower for memory attached to a different
+CPU.</p></li>
+<li><p>You might need to check your BIOS or use tools provided by the
+CPU or system vendor to enable or disable NUMA and to choose from among
+the NUMA configs supported by the CPU or system vendor.</p></li>
+<li><p><a href="2021-02-25-numactl.html"><strong>numactl</strong></a> is
+a common tool that can be used to view and set NUMA configs.</p></li>
+<li><p>APIs provided in the libnuma library (set_mempolicy) can be used
+to isolate all succeeding memory allocations use the memory associated
+with specified CPU when they need to use RAM. This is easiest to do with
+the set-and-fork multi-process model. This can be used with
+multi-threading model too, but the benefits might vary.</p></li>
+<li><p><strong>numastat</strong> tool (that ships with numactl) can be
+used to print per-NUMA-node memory statistics:</p></li>
 </ul>
 <pre><code>$ numastat
                            node0           node1           node2           node3
@@ -61,22 +69,32 @@ interleave_hit             62341           62613           62331           62595
 local_node               2067691          369541          543901          566566
 other_node                 31068           83583           82215           96763</code></pre>
 <ul>
-<li>If you do not want to mess with manual tuning of NUMA nodes, the Linux kernel can do automatic tuning. To check if that is enabled:</li>
+<li>If you do not want to mess with manual tuning of NUMA nodes, the
+Linux kernel can do automatic tuning. To check if that is enabled:</li>
 </ul>
 <pre><code>$ sudo cat /proc/sys/kernel/numa_balancing
 1</code></pre>
 <p>Echo a 0 or 1 to that file to toggle the tuning.</p>
 <ul>
-<li>On systems with multiple GPUs and multiple CPUs, configuring the right affinity between GPUs and CPUs might be important to get optimal performance for your application. The topology related options of nvidia-smi can be used to find the CPU affinities and NUMA nodes associated with the GPUs.</li>
+<li>On systems with multiple GPUs and multiple CPUs, configuring the
+right affinity between GPUs and CPUs might be important to get optimal
+performance for your application. The topology related options of
+nvidia-smi can be used to find the CPU affinities and NUMA nodes
+associated with the GPUs.</li>
 </ul>
-<p>Alternatively, find the PCI bus IDs of the GPUs (as shown here) and check the NUMA node of that PCI bus ID like this:</p>
+<p>Alternatively, find the PCI bus IDs of the GPUs (as shown here) and
+check the NUMA node of that PCI bus ID like this:</p>
 <pre><code>$ cat /sys/bus/pci/devices/0000:01:00.0/numa_node
 3
 
 $ cat /sys/bus/pci/devices/0000:c2:00.0/numa_node
 0</code></pre>
 <ul>
-<li>AMD EPYC CPUs have a configuration called <strong>NPS</strong> (NUMA Nodes Per Socket) that needs to be configured in the BIOS. Details about what value to set for NPS can be found in the <a href="https://developer.amd.com/resources/epyc-resources/epyc-tuning-guides/">High Performance Tuning Guide for AMD EPYC 7002 Series Processors</a>.</li>
+<li>AMD EPYC CPUs have a configuration called <strong>NPS</strong> (NUMA
+Nodes Per Socket) that needs to be configured in the BIOS. Details about
+what value to set for NPS can be found in the <a
+href="https://developer.amd.com/resources/epyc-resources/epyc-tuning-guides/">High
+Performance Tuning Guide for AMD EPYC 7002 Series Processors</a>.</li>
 </ul>
 </div>
 
@@ -85,11 +103,13 @@ $ cat /sys/bus/pci/devices/0000:c2:00.0/numa_node
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,20 @@
 <h1 class="title">How to convert Mercurial repository to Git</h1>
 <p class="date">📅 2019-Sep-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#mercurial'>mercurial</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>With <strong>Mercurial</strong> losing the DVCS race to <strong>Git</strong>, I had a bunch of Hg repositories that I needed to convert to Git. I did that using the <strong>hg-git</strong> extension to Mercurial like this:</p>
+<p>With <strong>Mercurial</strong> losing the DVCS race to
+<strong>Git</strong>, I had a bunch of Hg repositories that I needed to
+convert to Git. I did that using the <strong>hg-git</strong> extension
+to Mercurial like this:</p>
 <ul>
-<li>Get the hg-git Mercurial extension by grabbing its latest source:</li>
+<li>Get the hg-git Mercurial extension by grabbing its latest
+source:</li>
 </ul>
 <pre><code>$ hg clone ssh://hg@bitbucket.org/durin42/hg-git</code></pre>
-<p>hg-git is available through PyPI, but I had problems when I used it. hg-git is also available on a <a href="https://github.com/schacon/hg-git">Github mirror</a>. However, that mirror has not been updated since 2016 and I ran into problems when I used the tool.</p>
+<p>hg-git is available through PyPI, but I had problems when I used it.
+hg-git is also available on a <a
+href="https://github.com/schacon/hg-git">Github mirror</a>. However,
+that mirror has not been updated since 2016 and I ran into problems when
+I used the tool.</p>
 <ul>
 <li>Add the following lines to your <code>.hgrc</code>:</li>
 </ul>
@@ -57,28 +51,37 @@
 hggit = /path/to/hg-git/hggit
 hgext.bookmarks =</code></pre>
 <ul>
-<li>Install the dulwich Python Git library, which is used by hg-git:</li>
+<li>Install the dulwich Python Git library, which is used by
+hg-git:</li>
 </ul>
 <pre><code>$ pip install -U --user dulwich</code></pre>
 <ul>
-<li>Create a bare Git repository to populate from your Mercurial repository:</li>
+<li>Create a bare Git repository to populate from your Mercurial
+repository:</li>
 </ul>
 <pre><code>$ git init --bare foobar_git_bare</code></pre>
 <ul>
-<li>In our Mercurial repository, we add a <code>hg</code> bookmark at the top:</li>
+<li>In our Mercurial repository, we add a <code>hg</code> bookmark at
+the top:</li>
 </ul>
 <pre><code>$ hg bookmarks hg</code></pre>
 <ul>
-<li>To convert from Mercurial to Git, just push to the Git repository:</li>
+<li>To convert from Mercurial to Git, just push to the Git
+repository:</li>
 </ul>
 <pre><code>$ hg push /path/to/foobar_git_bare</code></pre>
 <ul>
-<li>Now our bare Git repository is ready to be cloned to a general Git repository:</li>
+<li>Now our bare Git repository is ready to be cloned to a general Git
+repository:</li>
 </ul>
 <pre><code>$ git clone foobar_git_bare foobar_git</code></pre>
-<p>You can change to the <code>foobar_git</code> repository and view all your commits and branches from the old Mercurial repository. This Git repository is now ready for action.</p>
+<p>You can change to the <code>foobar_git</code> repository and view all
+your commits and branches from the old Mercurial repository. This Git
+repository is now ready for action.</p>
 <ul>
-<li>If you want to push the new Git repository to Github, then create a repository on Github, delete the existing <code>origin</code> remote and push it:</li>
+<li>If you want to push the new Git repository to Github, then create a
+repository on Github, delete the existing <code>origin</code> remote and
+push it:</li>
 </ul>
 <pre><code>$ git remote remove origin
 $ git remote add origin git@github.com:joe/foobar.git
@@ -91,11 +94,13 @@ $ git push --set-upstream origin master</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

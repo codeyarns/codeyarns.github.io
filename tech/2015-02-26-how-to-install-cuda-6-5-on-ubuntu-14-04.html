@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,23 @@
 <h1 class="title">How to install CUDA 6.5 on Ubuntu 14.04</h1>
 <p class="date">📅 2015-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#installation'>installation</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Installing <strong>CUDA</strong> is becoming increasingly easier on <strong>Ubuntu</strong>. I think I keep hitting problems because I am usually updating from an older NVIDIA graphics driver or CUDA version. NVIDIA continues to be quite bad at providing error-free upgrades. Anyway, this is what worked for me:</p>
+<p>Installing <strong>CUDA</strong> is becoming increasingly easier on
+<strong>Ubuntu</strong>. I think I keep hitting problems because I am
+usually updating from an older NVIDIA graphics driver or CUDA version.
+NVIDIA continues to be quite bad at providing error-free upgrades.
+Anyway, this is what worked for me:</p>
 <ul>
-<li><p>Do <strong>not</strong> try to install any of the NVIDIA drivers or CUDA packages that are in the Ubuntu repositories. I wasted a day with the errors these operations threw up!</p></li>
-<li><p>Uninstall all CUDA packages and NVIDIA drivers you may have on your Ubuntu system.</p></li>
-<li><p>Download the CUDA <code>.deb</code> package for Ubuntu 14.04 from <a href="https://developer.nvidia.com/cuda-downloads">here</a>. For me, it was a <code>cuda-repo-ubuntu1404_6.5-14_amd64.deb</code> file.</p></li>
-<li><p>The <code>.deb</code> file just adds a CUDA repository maintained by NVIDIA. Install this <code>.deb</code> file and update:</p></li>
+<li><p>Do <strong>not</strong> try to install any of the NVIDIA drivers
+or CUDA packages that are in the Ubuntu repositories. I wasted a day
+with the errors these operations threw up!</p></li>
+<li><p>Uninstall all CUDA packages and NVIDIA drivers you may have on
+your Ubuntu system.</p></li>
+<li><p>Download the CUDA <code>.deb</code> package for Ubuntu 14.04 from
+<a href="https://developer.nvidia.com/cuda-downloads">here</a>. For me,
+it was a <code>cuda-repo-ubuntu1404_6.5-14_amd64.deb</code>
+file.</p></li>
+<li><p>The <code>.deb</code> file just adds a CUDA repository maintained
+by NVIDIA. Install this <code>.deb</code> file and update:</p></li>
 </ul>
 <pre><code>$ sudo gdebi cuda-repo-ubuntu1404_6.5-14_amd64.deb
 $ sudo apt-get update</code></pre>
@@ -57,9 +54,17 @@ $ sudo apt-get update</code></pre>
 <li>Installing CUDA now is easy as this:</li>
 </ul>
 <pre><code>$ sudo apt-get install cuda</code></pre>
-<p>This is a big install, it will install everything including a <code>nvidia-340</code> driver that actually worked and NVIDIA NSight. After the install, reboot the computer. Your CUDA is ready for work now 😊</p>
-<p><strong>Note:</strong> I tried this on two systems. On one, it installed without any problem. On the other, it gave an error of unmet dependencies. I have described <a href="2015/02/26/cuda-installation-error-of-unmet-dependencies/">here</a> how I solved this problem.</p>
-<p><strong>Tried with:</strong> NVIDIA GeForce GTS 250 and NVIDIA GTX Titan</p>
+<p>This is a big install, it will install everything including a
+<code>nvidia-340</code> driver that actually worked and NVIDIA NSight.
+After the install, reboot the computer. Your CUDA is ready for work now
+😊</p>
+<p><strong>Note:</strong> I tried this on two systems. On one, it
+installed without any problem. On the other, it gave an error of unmet
+dependencies. I have described <a
+href="2015/02/26/cuda-installation-error-of-unmet-dependencies/">here</a>
+how I solved this problem.</p>
+<p><strong>Tried with:</strong> NVIDIA GeForce GTS 250 and NVIDIA GTX
+Titan</p>
 </div>
 
 <br />
@@ -67,11 +72,13 @@ $ sudo apt-get update</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

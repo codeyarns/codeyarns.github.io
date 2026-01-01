@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,12 +31,20 @@
 <p class="date">📅 2011-Jan-31 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#errors'>errors</a>, <a href='index.html#linker'>linker</a>, <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>The Problem</strong></p>
-<p>When building a Visual Studio solution which has CUDA source files (<code>*.cu</code>), <strong>LNK2005</strong> linker errors of the following kind might be seen:</p>
+<p>When building a Visual Studio solution which has CUDA source files
+(<code>*.cu</code>), <strong>LNK2005</strong> linker errors of the
+following kind might be seen:</p>
 <pre><code>LIBCMT.lib(hooks.obj) : error LNK2005: &quot;void __cdecl terminate(void)&quot; (?terminate@@YAXXZ) already defined in MSVCRT.lib(MSVCR90.dll)</code></pre>
 <p><strong>What does it mean?</strong></p>
-<p>This indicates a mismatch between the kind of <strong>C runtime library</strong> used by the CUDA Build Rule and that used for the rest of the Visual C++ project.</p>
+<p>This indicates a mismatch between the kind of <strong>C runtime
+library</strong> used by the CUDA Build Rule and that used for the rest
+of the Visual C++ project.</p>
 <p><strong>How to fix it?</strong></p>
-<p>This problem can be fixed by making both of these use the same kind of C runtime library. For example, if the Visual C++ project is compiled using <code>Multi Threaded DLL (/MD)</code> and the CUDA build rule has <code>Multi Threaded (/MT)</code>, then change the CUDA build rule to use <code>/MD</code> too.</p>
+<p>This problem can be fixed by making both of these use the same kind
+of C runtime library. For example, if the Visual C++ project is compiled
+using <code>Multi Threaded DLL (/MD)</code> and the CUDA build rule has
+<code>Multi Threaded (/MT)</code>, then change the CUDA build rule to
+use <code>/MD</code> too.</p>
 <p><strong>Tried with</strong>: CUDA 3.2 and Visual Studio 2008</p>
 </div>
 
@@ -59,11 +53,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

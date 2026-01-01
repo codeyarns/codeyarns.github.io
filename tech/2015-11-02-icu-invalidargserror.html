@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -62,8 +48,11 @@ Traceback (most recent call last):
     self.icu = pyicu.Locale(localeID)
 icu.InvalidArgsError: (&lt;type &#39;icu.Locale&#39;&gt;, &#39;__init__&#39;, (None,))</code></pre>
 <h2 id="solution">Solution</h2>
-<p>This is a well known bug in the <code>parsedatetime</code> package as described <a href="https://bugs.launchpad.net/ubuntu/+source/parsedatetime/+bug/1302963">here</a>.</p>
-<p>The solution is to remove the package installed from Ubuntu archives and install a recent version of it from the Python Package Index:</p>
+<p>This is a well known bug in the <code>parsedatetime</code> package as
+described <a
+href="https://bugs.launchpad.net/ubuntu/+source/parsedatetime/+bug/1302963">here</a>.</p>
+<p>The solution is to remove the package installed from Ubuntu archives
+and install a recent version of it from the Python Package Index:</p>
 <pre><code>$ sudo apt-get remove python-parsedatetime
 
 $ sudo pip install --upgrade parsedatetime</code></pre>
@@ -75,11 +64,13 @@ $ sudo pip install --upgrade parsedatetime</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

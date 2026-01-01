@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,27 @@
 <h1 class="title">How to build and install Bluez</h1>
 <p class="date">📅 2017-Jun-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#bluetooth'>bluetooth</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://www.bluez.org/"><strong>Bluez</strong></a> is the default Bluetooth protocol stack on Linux. It should be present and installed on your Linux distribution. If not, building and installing from source is not too difficult:</p>
+<p><a href="http://www.bluez.org/"><strong>Bluez</strong></a> is the
+default Bluetooth protocol stack on Linux. It should be present and
+installed on your Linux distribution. If not, building and installing
+from source is not too difficult:</p>
 <ul>
-<li><p>Download the latest stable source release of Bluez from <a href="http://www.bluez.org/download/">here</a>. Unzip the compressed file you downloaded.</p></li>
-<li><p>Install the headers and libraries required for Bluez compilation:</p></li>
+<li><p>Download the latest stable source release of Bluez from <a
+href="http://www.bluez.org/download/">here</a>. Unzip the compressed
+file you downloaded.</p></li>
+<li><p>Install the headers and libraries required for Bluez
+compilation:</p></li>
 </ul>
 <pre><code>$ sudo apt install libdbus-1-dev libudev-dev libical-dev libreadline-dev</code></pre>
-<p>If you do not install the <code>libdbus-1-dev</code>, you will later get this strange error:</p>
+<p>If you do not install the <code>libdbus-1-dev</code>, you will later
+get this strange error:</p>
 <pre><code>configure: error: D-Bus &gt;= 1.6 is required</code></pre>
 <ul>
 <li>Next configure the Makefile:</li>
 </ul>
 <pre><code>$ ./configure</code></pre>
-<p>This gave an error about systemd, which is not present on the relatively old Ubuntu I was on:</p>
+<p>This gave an error about systemd, which is not present on the
+relatively old Ubuntu I was on:</p>
 <pre><code>checking systemd system unit dir... configure: error: systemd system unit directory is required</code></pre>
 <p>So, I ran configure disabling systemd:</p>
 <pre><code>$ ./configure --disable-systemd</code></pre>
@@ -73,11 +67,13 @@ $ sudo make install</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

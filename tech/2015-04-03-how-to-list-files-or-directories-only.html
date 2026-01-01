@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,21 @@
 <h1 class="title">How to list files or directories only</h1>
 <p class="date">📅 2015-Apr-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#find'>find</a>, <a href='index.html#ls'>ls</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>There are many instances where I have wanted to list <strong>only the files</strong> or <strong>only the directories</strong>. The <code>find</code> tool seems to be the most convenient way to do this.</p>
+<p>There are many instances where I have wanted to list <strong>only the
+files</strong> or <strong>only the directories</strong>. The
+<code>find</code> tool seems to be the most convenient way to do
+this.</p>
 <p>To list only the files in current directory:</p>
 <pre><code>$ find . -maxdepth 1 -type f | sort</code></pre>
 <p>To list only the directories in current directory:</p>
 <pre><code>$ find . -maxdepth 1 -type d | sort</code></pre>
-<p>The <code>-maxdepth</code> says it should only look in the directory and not recurse into subdirectories. The <code>-type</code> indicates that only files (or directories) should be found. The results of <code>find</code> are not in sorted order, so we pipe them to <code>sort</code>.</p>
-<p>I recommend making an aliases out of this, so that they can be called easily like say <code>lsf</code> or <code>lsd</code>.</p>
+<p>The <code>-maxdepth</code> says it should only look in the directory
+and not recurse into subdirectories. The <code>-type</code> indicates
+that only files (or directories) should be found. The results of
+<code>find</code> are not in sorted order, so we pipe them to
+<code>sort</code>.</p>
+<p>I recommend making an aliases out of this, so that they can be called
+easily like say <code>lsf</code> or <code>lsd</code>.</p>
 <p><strong>Tried with:</strong> FindUtils 4.4.2-7 and Ubuntu 14.04</p>
 </div>
 
@@ -59,11 +53,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

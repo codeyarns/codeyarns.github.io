@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,16 +31,45 @@
 <p class="date">📅 2017-Jul-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#wifi'>wifi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2017/07/20170723_wifianalyzer.png" alt="" /><figcaption>dBm signal strength of my wifi connection</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2017/07/20170723_wifianalyzer.png"
+alt="dBm signal strength of my wifi connection" />
+<figcaption aria-hidden="true">dBm signal strength of my wifi
+connection</figcaption>
 </figure>
-<p>You usually check the <strong>signal strength</strong> of your wireless connection on your phone or laptop by looking at how many <strong>bars</strong> or waves are highlighted in the GUI. This is a good approximation to know if your signal is weak or strong. However, if you need to measure the strength of your connection, for example at different locations in your home, then you need to know the actual metric.</p>
+<p>You usually check the <strong>signal strength</strong> of your
+wireless connection on your phone or laptop by looking at how many
+<strong>bars</strong> or waves are highlighted in the GUI. This is a
+good approximation to know if your signal is weak or strong. However, if
+you need to measure the strength of your connection, for example at
+different locations in your home, then you need to know the actual
+metric.</p>
 <ul>
-<li><p><a href="https://en.wikipedia.org/wiki/DBm"><strong>dBm (decibel-milliwatts)</strong></a> is the commonly used metric to measure wifi signal strength or power.</p></li>
-<li><p>If you check the technical specifications of your wireless router, you should find that it transmits at less than <code>-20dBm</code>. Note that this a negative value. So, a value that looks bigger, like <code>-50dBm</code> means a weaker signal.</p></li>
-<li><p>If you put your phone or laptop right beside your wireless router, you should find the strength to be between <code>-20dBm</code> and <code>-30dBm</code>. This gives you an idea of the max strength you can realistically achieve with your home setup.</p></li>
-<li><p>According to <a href="https://support.metageek.com/hc/en-us/articles/201955754-Understanding-WiFi-Signal-Strength">this page</a>, you will need at least <code>-70dBm</code> for browsing and <code>-80dBm</code> is the farthest signal strength thats practically usable. At <code>-90dBm</code> the signal is basically indistinguishable from noise.</p></li>
-<li><p>To view the dBm signal strength of your wifi connection on your <strong>Android</strong> device, I highly recommend the open-source <a href="2014-05-04-wifi-analyzer.html"><strong>WiFiAnalyzer</strong></a> app. You can see the dBm signal strength of your and all other wifi connections from your phone with this app.</p></li>
-<li><p>To view the dBm signal strength of your wifi connection on your Linux computer, just type <strong>iwconfig</strong> and note the <strong>Signal level</strong> field in the output:</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/DBm"><strong>dBm
+(decibel-milliwatts)</strong></a> is the commonly used metric to measure
+wifi signal strength or power.</p></li>
+<li><p>If you check the technical specifications of your wireless
+router, you should find that it transmits at less than
+<code>-20dBm</code>. Note that this a negative value. So, a value that
+looks bigger, like <code>-50dBm</code> means a weaker signal.</p></li>
+<li><p>If you put your phone or laptop right beside your wireless
+router, you should find the strength to be between <code>-20dBm</code>
+and <code>-30dBm</code>. This gives you an idea of the max strength you
+can realistically achieve with your home setup.</p></li>
+<li><p>According to <a
+href="https://support.metageek.com/hc/en-us/articles/201955754-Understanding-WiFi-Signal-Strength">this
+page</a>, you will need at least <code>-70dBm</code> for browsing and
+<code>-80dBm</code> is the farthest signal strength thats practically
+usable. At <code>-90dBm</code> the signal is basically indistinguishable
+from noise.</p></li>
+<li><p>To view the dBm signal strength of your wifi connection on your
+<strong>Android</strong> device, I highly recommend the open-source <a
+href="2014-05-04-wifi-analyzer.html"><strong>WiFiAnalyzer</strong></a>
+app. You can see the dBm signal strength of your and all other wifi
+connections from your phone with this app.</p></li>
+<li><p>To view the dBm signal strength of your wifi connection on your
+Linux computer, just type <strong>iwconfig</strong> and note the
+<strong>Signal level</strong> field in the output:</p></li>
 </ul>
 <pre><code>$ iwconfig
 wlp4s0    IEEE 802.11  ESSID:&quot;my_wifi_network&quot;  
@@ -65,7 +80,10 @@ wlp4s0    IEEE 802.11  ESSID:&quot;my_wifi_network&quot;
           Link Quality=42/70  Signal level=-68 dBm  
           Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
           Tx excessive retries:0  Invalid misc:96   Missed beacon:0</code></pre>
-<p>You can move around your laptop to different locations in your home and note the dBm values there. This can be useful if you want to decide on the optimal placement of your wifi router or if you are planning to get a <strong>wifi extender</strong> for your home.</p>
+<p>You can move around your laptop to different locations in your home
+and note the dBm values there. This can be useful if you want to decide
+on the optimal placement of your wifi router or if you are planning to
+get a <strong>wifi extender</strong> for your home.</p>
 </div>
 
 <br />
@@ -73,11 +91,13 @@ wlp4s0    IEEE 802.11  ESSID:&quot;my_wifi_network&quot;
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

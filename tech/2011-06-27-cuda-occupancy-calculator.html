@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,20 +30,47 @@
 <h1 class="title">CUDA: Occupancy Calculator</h1>
 <p class="date">📅 2011-Jun-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>CUDA Occupancy Calculator</strong> is an Excel spreadsheet that ships with the CUDA Toolkit. It can be used to determine if the number of threads per block being used to launch a kernel is optimal. This spreadsheet can be found at <code>%ProgramData%\NVIDIA Corporation\GPU SDK\C\tools</code></p>
-<p>The spreadsheet requires 4 inputs from you specific to the kernel you are analyzing:</p>
+<p>The <strong>CUDA Occupancy Calculator</strong> is an Excel
+spreadsheet that ships with the CUDA Toolkit. It can be used to
+determine if the number of threads per block being used to launch a
+kernel is optimal. This spreadsheet can be found at
+<code>%ProgramData%\NVIDIA Corporation\GPU SDK\C\tools</code></p>
+<p>The spreadsheet requires 4 inputs from you specific to the kernel you
+are analyzing:</p>
 <ol type="1">
 <li><p>The compute capability of the CUDA device</p></li>
 <li><p>Threads per block you are using for the kernel</p></li>
 <li><p>Registers per thread for the kernel</p></li>
 <li><p>Shared memory per block</p></li>
 </ol>
-<p>You already know (1) and (2) since you are the author of the kernel. (3) and (4) can be found by compiling the code with the option <code>--ptxas-options=-v</code>. This information can be found in the Output window of Visual Studio during compilation. Another alternative is to run the CUDA program with the <strong>Compute Visual Profiler</strong> and this information can be found in the <strong>Profiler Output</strong> sheet.</p>
-<p>Once the above 4 numbers are entered, the 3 charts on the spreadsheet update to show the position of your kernel on them. The 3 charts deal with the parameters threads per block, registers per block and shared memory respectively. Look for the red triangle on the chart whose parameter you have the flexibility to change.</p>
+<p>You already know (1) and (2) since you are the author of the kernel.
+(3) and (4) can be found by compiling the code with the option
+<code>--ptxas-options=-v</code>. This information can be found in the
+Output window of Visual Studio during compilation. Another alternative
+is to run the CUDA program with the <strong>Compute Visual
+Profiler</strong> and this information can be found in the
+<strong>Profiler Output</strong> sheet.</p>
+<p>Once the above 4 numbers are entered, the 3 charts on the spreadsheet
+update to show the position of your kernel on them. The 3 charts deal
+with the parameters threads per block, registers per block and shared
+memory respectively. Look for the red triangle on the chart whose
+parameter you have the flexibility to change.</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/06/20110627-cuda-occupancy.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/06/20110627-cuda-occupancy.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>For example, say for a given kernel I have no say in the number of registers and shared memory it uses. However, I have the ability to change the number of threads per block it launches with. Assume that I am currently using 200 threads per block for this kernel. For this case, I look at Chart 1 (Varying Block Size), and check if the red triangle is on any of the global maxima of the curve. If it is not, I look at the threads per block that will put this kernel at the global maxima and try my kernel with that (say 256). In most cases, my CUDA program should execute a bit faster due to this change since the occupancy of the GPU by the threads of this kernel has been improved.</p>
+<p>For example, say for a given kernel I have no say in the number of
+registers and shared memory it uses. However, I have the ability to
+change the number of threads per block it launches with. Assume that I
+am currently using 200 threads per block for this kernel. For this case,
+I look at Chart 1 (Varying Block Size), and check if the red triangle is
+on any of the global maxima of the curve. If it is not, I look at the
+threads per block that will put this kernel at the global maxima and try
+my kernel with that (say 256). In most cases, my CUDA program should
+execute a bit faster due to this change since the occupancy of the GPU
+by the threads of this kernel has been improved.</p>
 <p><strong>Tried with</strong>: CUDA 4.0</p>
 </div>
 
@@ -66,11 +79,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

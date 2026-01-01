@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,14 +27,27 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to view hierarchy of shared library dependencies using lddtree</h1>
+<h1 class="title">How to view hierarchy of shared library dependencies
+using lddtree</h1>
 <p class="date">📅 2015-Dec-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dependency-walker'>dependency walker</a>, <a href='index.html#elf'>elf</a>, <a href='index.html#ldd'>ldd</a>, <a href='index.html#lddtree'>lddtree</a>, <a href='index.html#shared-library'>shared library</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/12/20151216_lddtree.png" alt="" /><figcaption>Tree of library dependencies shown by lddtree</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/12/20151216_lddtree.png"
+alt="Tree of library dependencies shown by lddtree" />
+<figcaption aria-hidden="true">Tree of library dependencies shown by
+lddtree</figcaption>
 </figure>
-<p><strong>ldd</strong> is one of the key tools that should be familiar to all programmers. It shows the list of all <strong>shared libraries</strong> that an executable binary <strong>depends</strong> on.</p>
-<p>A binary, say ELF file, lists only the immediate shared libraries it depends on in its header. Each of these shared libraries could further depend on other libraries and so on. It would be very useful if you could see the <strong>hierarchical tree</strong> of these dependencies between the shared libraries. Thankfully, there is a tool that does exactly that named <strong>lddtree</strong>.</p>
+<p><strong>ldd</strong> is one of the key tools that should be familiar
+to all programmers. It shows the list of all <strong>shared
+libraries</strong> that an executable binary <strong>depends</strong>
+on.</p>
+<p>A binary, say ELF file, lists only the immediate shared libraries it
+depends on in its header. Each of these shared libraries could further
+depend on other libraries and so on. It would be very useful if you
+could see the <strong>hierarchical tree</strong> of these dependencies
+between the shared libraries. Thankfully, there is a tool that does
+exactly that named <strong>lddtree</strong>.</p>
 <ul>
 <li>It can be installed easily:</li>
 </ul>
@@ -58,11 +57,18 @@
 </ul>
 <pre><code>$ lddtree foo</code></pre>
 <ul>
-<li>By default, the tool does not show <strong>duplicated dependencies</strong>. That is, the dependency between a library A and B is shown only once and skipped after that, though it may occur many times. To view all the dependencies, including duplicates:</li>
+<li>By default, the tool does not show <strong>duplicated
+dependencies</strong>. That is, the dependency between a library A and B
+is shown only once and skipped after that, though it may occur many
+times. To view all the dependencies, including duplicates:</li>
 </ul>
 <pre><code>$ lddtree -a foo</code></pre>
-<p>Beware that this can result in a very big tree. This is because dependencies like <code>libc</code>, the <code>ld-linux</code> loader and such will appear for almost all shared libraries.</p>
-<p><strong>Note:</strong> The <strong>Dependency Walker</strong> tool does something similar on Windows and can be used as described <a href="2010-07-01-dependency-walker.html">here</a>.</p>
+<p>Beware that this can result in a very big tree. This is because
+dependencies like <code>libc</code>, the <code>ld-linux</code> loader
+and such will appear for almost all shared libraries.</p>
+<p><strong>Note:</strong> The <strong>Dependency Walker</strong> tool
+does something similar on Windows and can be used as described <a
+href="2010-07-01-dependency-walker.html">here</a>.</p>
 <p><strong>Tried with:</strong> PaX-Utils 0.2.3 and Ubuntu 14.04</p>
 </div>
 
@@ -71,11 +77,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

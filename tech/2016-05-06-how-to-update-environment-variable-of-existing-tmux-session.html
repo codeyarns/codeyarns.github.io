@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,20 +27,39 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to update environment variable of existing Tmux session</h1>
+<h1 class="title">How to update environment variable of existing Tmux
+session</h1>
 <p class="date">📅 2016-May-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#fish'>fish</a>, <a href='index.html#tmux'>tmux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I use <strong>Byobu</strong> (which is a wrapper on <strong>Tmux</strong>) to maintain shell sessions on the many servers I login to. I connect, disconnect and reconnect to the same Tmux sessions on these servers. When I reconnect back to an existing Tmux session, a new value is assigned to the <code>DISPLAY</code> environment variable. If I create a new Tmux session, by opening a new split or tab, then Tmux sets the new <code>DISPLAY</code> value correctly for that session. However, existing Tmux sessions have their old <code>DISPLAY</code> value which gives the familiar <code>cannot open display</code> error. I can find out the new <code>DISPLAY</code> value and set it manually in the existing session, but that is cumbersome.</p>
+<p>I use <strong>Byobu</strong> (which is a wrapper on
+<strong>Tmux</strong>) to maintain shell sessions on the many servers I
+login to. I connect, disconnect and reconnect to the same Tmux sessions
+on these servers. When I reconnect back to an existing Tmux session, a
+new value is assigned to the <code>DISPLAY</code> environment variable.
+If I create a new Tmux session, by opening a new split or tab, then Tmux
+sets the new <code>DISPLAY</code> value correctly for that session.
+However, existing Tmux sessions have their old <code>DISPLAY</code>
+value which gives the familiar <code>cannot open display</code> error. I
+can find out the new <code>DISPLAY</code> value and set it manually in
+the existing session, but that is cumbersome.</p>
 <h2 id="solution">Solution</h2>
-<p>I found a simple solution to this problem. Whenever I SSH to a server, I save the new <code>DISPLAY</code> assigned to this server in a <code>.display.txt</code> file in the home directory. For example, this can be done in <code>.bashrc</code>:</p>
+<p>I found a simple solution to this problem. Whenever I SSH to a
+server, I save the new <code>DISPLAY</code> assigned to this server in a
+<code>.display.txt</code> file in the home directory. For example, this
+can be done in <code>.bashrc</code>:</p>
 <pre><code>echo $DISPLAY &gt; ~/.display.txt</code></pre>
-<p>To pick up the new <code>DISPLAY</code> value from this file in existing sessions, create a shell alias or function that you can call when you realize that the environment variable is wrong.</p>
-<p>For example, for Fish shell, I added a <code>~/.config/fish/functions/set_display.fish</code> file with these lines:</p>
+<p>To pick up the new <code>DISPLAY</code> value from this file in
+existing sessions, create a shell alias or function that you can call
+when you realize that the environment variable is wrong.</p>
+<p>For example, for Fish shell, I added a
+<code>~/.config/fish/functions/set_display.fish</code> file with these
+lines:</p>
 <pre><code>function set_display
     set --export DISPLAY (cat ~/.display.txt)
 end</code></pre>
-<p>When I need to update <code>DISPLAY</code>, I just call <code>set_display</code> at the shell! 😊</p>
+<p>When I need to update <code>DISPLAY</code>, I just call
+<code>set_display</code> at the shell! 😊</p>
 <p><strong>Tried with:</strong> Byobu 5.74, Tmux 1.8 and Fish 2.2.0</p>
 </div>
 
@@ -63,11 +68,13 @@ end</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

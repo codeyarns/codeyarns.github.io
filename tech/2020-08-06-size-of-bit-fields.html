@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,44 +95,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Size of bit fields</h1>
 <p class="date">📅 2020-Aug-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Bit fields</strong> can be used in structures and classes to have members whose size is limited to a certain number of bits. The size of the structure having bit fields can wildly vary between compilers. The worst case is the VC++ compiler, that can generate bit field structures that are huge compared to the GCC or clang ones.</p>
-<p>The behavior of VC++ is quite ironic, when you consider that a big reason for using bit fields is to save space, using precisely how much you need. Just how much bigger are the VC++ bit field structures? Here is an example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">enum</span> <span class="kw">class</span> CarType : <span class="dt">uint8_t</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>{</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    Sedan,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    SUV,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>};</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="kw">class</span> CarParams</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>{</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="kw">public</span>:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    CarType c : <span class="dv">8</span>;</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    <span class="dt">uint32_t</span> v : <span class="dv">24</span>;</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>};</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co">// Size of CarParams on different compilers:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="co">// x86-64 gcc 10.2: 4 bytes</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="co">// x64 msvc 19.24: 8 bytes</span></span></code></pre></div>
-<p>In this example, the developer probably wrote their code to exactly fit the information required for <code>CarParams</code> into 32 bits. They compile their code on GCC and it is indeed 4 bytes. When they compile their code for Windows, the size of their objects doubles to 8 bytes!</p>
-<p>Suppose we want our <code>CarParams</code> to be as compact as possible (4 bytes) and be that size on all platforms, how can we achieve that? One possible solution is to use the <strong>pack pragma</strong>. These pragma directives seem to be supported by both gcc and VC++. They request the compiler to pack the members of the structure to a byte-alignment boundary of the value specified in the pragma. The possible values that can be used are power-of-two like: 1, 2, 4 and 8.</p>
-<p>I found that using the pack pragma did help reduce the size of the structure on VC++ to 5 bytes. But I could not find a way to reduce to 4 bytes.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">#pragma pack(1)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">class</span> CarParams</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>{</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">public</span>:</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    CarType c : <span class="dv">8</span>;</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="dt">uint32_t</span> v : <span class="dv">24</span>;</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>};</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="co">// Size of CarParams on different compilers:</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co">// x86-64 gcc 10.2: 4 bytes</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co">// x64 msvc 19.24: 5 bytes</span></span></code></pre></div>
+<p><strong>Bit fields</strong> can be used in structures and classes to
+have members whose size is limited to a certain number of bits. The size
+of the structure having bit fields can wildly vary between compilers.
+The worst case is the VC++ compiler, that can generate bit field
+structures that are huge compared to the GCC or clang ones.</p>
+<p>The behavior of VC++ is quite ironic, when you consider that a big
+reason for using bit fields is to save space, using precisely how much
+you need. Just how much bigger are the VC++ bit field structures? Here
+is an example:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> <span class="kw">class</span> CarType <span class="op">:</span> <span class="dt">uint8_t</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    Sedan<span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    SUV<span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CarParams</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    CarType c <span class="op">:</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint32_t</span> v <span class="op">:</span> <span class="dv">24</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">// Size of CarParams on different compilers:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">// x86-64 gcc 10.2: 4 bytes</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">// x64 msvc 19.24: 8 bytes</span></span></code></pre></div>
+<p>In this example, the developer probably wrote their code to exactly
+fit the information required for <code>CarParams</code> into 32 bits.
+They compile their code on GCC and it is indeed 4 bytes. When they
+compile their code for Windows, the size of their objects doubles to 8
+bytes!</p>
+<p>Suppose we want our <code>CarParams</code> to be as compact as
+possible (4 bytes) and be that size on all platforms, how can we achieve
+that? One possible solution is to use the <strong>pack pragma</strong>.
+These pragma directives seem to be supported by both gcc and VC++. They
+request the compiler to pack the members of the structure to a
+byte-alignment boundary of the value specified in the pragma. The
+possible values that can be used are power-of-two like: 1, 2, 4 and
+8.</p>
+<p>I found that using the pack pragma did help reduce the size of the
+structure on VC++ to 5 bytes. But I could not find a way to reduce to 4
+bytes.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#pragma pack(1)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CarParams</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    CarType c <span class="op">:</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">uint32_t</span> v <span class="op">:</span> <span class="dv">24</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Size of CarParams on different compilers:</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">// x86-64 gcc 10.2: 4 bytes</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">// x64 msvc 19.24: 5 bytes</span></span></code></pre></div>
 <h2 id="related">Related</h2>
 <ul>
-<li><a href="https://randomascii.wordpress.com/2010/06/06/bit-field-packing-with-visual-c/">Bit field packing with Visual C++</a> (RandomASCII)</li>
-<li>Visual C++ documentation on <a href="https://docs.microsoft.com/en-us/cpp/cpp/cpp-bit-fields">C++ Bit Fields</a></li>
-<li>Visual C++ documentation on <a href="https://docs.microsoft.com/en-us/cpp/preprocessor/pack?view=vs-2019">pack pragma</a></li>
-<li>GCC documentation on <a href="https://gcc.gnu.org/onlinedocs/gcc/Structure-Layout-Pragmas.html">Structure Layout Pragmas</a></li>
+<li><a
+href="https://randomascii.wordpress.com/2010/06/06/bit-field-packing-with-visual-c/">Bit
+field packing with Visual C++</a> (RandomASCII)</li>
+<li>Visual C++ documentation on <a
+href="https://docs.microsoft.com/en-us/cpp/cpp/cpp-bit-fields">C++ Bit
+Fields</a></li>
+<li>Visual C++ documentation on <a
+href="https://docs.microsoft.com/en-us/cpp/preprocessor/pack?view=vs-2019">pack
+pragma</a></li>
+<li>GCC documentation on <a
+href="https://gcc.gnu.org/onlinedocs/gcc/Structure-Layout-Pragmas.html">Structure
+Layout Pragmas</a></li>
 </ul>
 </div>
 
@@ -154,11 +171,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

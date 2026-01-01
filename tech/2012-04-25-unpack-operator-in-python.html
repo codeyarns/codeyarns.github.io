@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,48 +95,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">unpack operator in Python</h1>
 <p class="date">📅 2012-Apr-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a>, <a href='index.html#splat-operator'>splat operator</a>, <a href='index.html#unpack-operator'>unpack operator</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>In Python, the <code>*</code> (asterisk) character is not only used for multiplication and replication, but also for <strong>unpacking</strong>. There does not seem to be any name for this <code>*</code> operator and <code>**</code> operator. So, searching for information on it online can sometimes be difficult. But, they are commonly called as the <strong>unpack</strong> or <strong>splat</strong> operator in this role.</p>
+<p>In Python, the <code>*</code> (asterisk) character is not only used
+for multiplication and replication, but also for
+<strong>unpacking</strong>. There does not seem to be any name for this
+<code>*</code> operator and <code>**</code> operator. So, searching for
+information on it online can sometimes be difficult. But, they are
+commonly called as the <strong>unpack</strong> or <strong>splat</strong>
+operator in this role.</p>
 <h2 id="-operator"><code>*</code> operator</h2>
-<p>Applying <code>*</code> on any iterable object, by placing it to the left of the object, produces the individual elements of the iterable. If applied on a list-like iterable, it produces the elements of the list in the order they appear in the list. If applied on a dict-like object, it produces the keys of the dict in the order you would get as if you iterated the dict.</p>
-<p>I imagine this operator as shattering the container that holds the items together, so they are now free and individual. The look of the asterisk character helps bolster this imagination.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">def</span> foo(x, y, z):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;First is &quot;</span>, x, <span class="st">&quot; then &quot;</span>, y, <span class="st">&quot; lastly &quot;</span>, z)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">50</span>, <span class="dv">99</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>foo(a)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co"># TypeError: foo() takes exactly 3 arguments (1 given)</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>foo(<span class="op">*</span>a)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co"># First is 1 then 50 lastly 99</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>b <span class="op">=</span> [[<span class="dv">55</span>,<span class="dv">66</span>,<span class="dv">77</span>], <span class="dv">88</span>, <span class="dv">99</span>]</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>foo(<span class="op">*</span>b)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co"># First is [55,66,77] then 88 lastly 99</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>d <span class="op">=</span> {<span class="st">&quot;y&quot;</span>: <span class="dv">23</span>, <span class="st">&quot;z&quot;</span>: <span class="dv">56</span>, <span class="st">&quot;x&quot;</span>: <span class="dv">15</span>}</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>foo(<span class="op">*</span>d)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a><span class="co"># This passes in the keys of the dict</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="co"># First is z then x lastly y</span></span></code></pre></div>
+<p>Applying <code>*</code> on any iterable object, by placing it to the
+left of the object, produces the individual elements of the iterable. If
+applied on a list-like iterable, it produces the elements of the list in
+the order they appear in the list. If applied on a dict-like object, it
+produces the keys of the dict in the order you would get as if you
+iterated the dict.</p>
+<p>I imagine this operator as shattering the container that holds the
+items together, so they are now free and individual. The look of the
+asterisk character helps bolster this imagination.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> foo(x, y, z):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;First is &quot;</span>, x, <span class="st">&quot; then &quot;</span>, y, <span class="st">&quot; lastly &quot;</span>, z)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">50</span>, <span class="dv">99</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>foo(a)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># TypeError: foo() takes exactly 3 arguments (1 given)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>foo(<span class="op">*</span>a)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># First is 1 then 50 lastly 99</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [[<span class="dv">55</span>,<span class="dv">66</span>,<span class="dv">77</span>], <span class="dv">88</span>, <span class="dv">99</span>]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>foo(<span class="op">*</span>b)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># First is [55,66,77] then 88 lastly 99</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">&quot;y&quot;</span>: <span class="dv">23</span>, <span class="st">&quot;z&quot;</span>: <span class="dv">56</span>, <span class="st">&quot;x&quot;</span>: <span class="dv">15</span>}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>foo(<span class="op">*</span>d)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># This passes in the keys of the dict</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># First is z then x lastly y</span></span></code></pre></div>
 <h2 id="-operator-1"><code>**</code> operator</h2>
-<p>Applying <code>**</code> on any dict-like object, by placing it to the left of the object, produces the individual key-value pairs of the iterable. The order of the key-value pairs produced is in the order you would get as if you iterated the dict.</p>
-<p>This <code>**</code> operator makes it easy to pass a dictionary to a function that has keyword arguments. Just make sure that the number of keys and the name of the keys in the dict exactly match the number and names of the function parameters. If the number of keys is less or more than in the function parameters or if some keys do not match the function parameter names, then the function call fails.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">def</span> foo(x, y, z):</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    <span class="bu">print</span>(<span class="st">&quot;First is &quot;</span>, x, <span class="st">&quot; then &quot;</span>, y, <span class="st">&quot; lastly &quot;</span>, z)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>d <span class="op">=</span> {<span class="st">&quot;y&quot;</span>: <span class="dv">23</span>, <span class="st">&quot;z&quot;</span>: <span class="dv">56</span>, <span class="st">&quot;x&quot;</span>: <span class="dv">15</span>}</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>foo(d)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co"># TypeError: foo() takes exactly 3 arguments (1 given)</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>foo(<span class="op">*</span>d)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a><span class="co"># Works, but not what you wanted</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a><span class="co"># First is z then x lastly y</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>foo(<span class="op">**</span>d)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a><span class="co"># First is 15 then 23 lastly 56</span></span></code></pre></div>
-<p>For more info, see <a href="http://docs.python.org/tutorial/controlflow.html">More Control Flow Tools</a>.</p>
+<p>Applying <code>**</code> on any dict-like object, by placing it to
+the left of the object, produces the individual key-value pairs of the
+iterable. The order of the key-value pairs produced is in the order you
+would get as if you iterated the dict.</p>
+<p>This <code>**</code> operator makes it easy to pass a dictionary to a
+function that has keyword arguments. Just make sure that the number of
+keys and the name of the keys in the dict exactly match the number and
+names of the function parameters. If the number of keys is less or more
+than in the function parameters or if some keys do not match the
+function parameter names, then the function call fails.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> foo(x, y, z):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;First is &quot;</span>, x, <span class="st">&quot; then &quot;</span>, y, <span class="st">&quot; lastly &quot;</span>, z)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="st">&quot;y&quot;</span>: <span class="dv">23</span>, <span class="st">&quot;z&quot;</span>: <span class="dv">56</span>, <span class="st">&quot;x&quot;</span>: <span class="dv">15</span>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>foo(d)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># TypeError: foo() takes exactly 3 arguments (1 given)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>foo(<span class="op">*</span>d)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Works, but not what you wanted</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># First is z then x lastly y</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>foo(<span class="op">**</span>d)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># First is 15 then 23 lastly 56</span></span></code></pre></div>
+<p>For more info, see <a
+href="http://docs.python.org/tutorial/controlflow.html">More Control
+Flow Tools</a>.</p>
 <p><strong>Tried with:</strong> Python 3.5.2</p>
 </div>
 
@@ -158,11 +170,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

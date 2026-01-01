@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,32 +30,62 @@
 <h1 class="title">Using vim-addon-manager on Windows</h1>
 <p class="date">📅 2010-Dec-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#plugins'>plugins</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://www.vim.org/scripts/script.php?script_id=2905"><strong>vim-addon-manager</strong></a> is a Vim plugin written by <a href="http://github.com/MarcWeber"><strong>Marc Weber</strong></a> that can be used to automatically manage Vim plugins. Most popular plugins install many files into several directories, thus making the task of installing, updating and uninstalling them quite tedious. vim-addon-manager attempts to make these tasks easy and automatic. It is still a work-in-progress, especially so on Windows, on which I found it to be quite flaky.</p>
+<p><a
+href="http://www.vim.org/scripts/script.php?script_id=2905"><strong>vim-addon-manager</strong></a>
+is a Vim plugin written by <a
+href="http://github.com/MarcWeber"><strong>Marc Weber</strong></a> that
+can be used to automatically manage Vim plugins. Most popular plugins
+install many files into several directories, thus making the task of
+installing, updating and uninstalling them quite tedious.
+vim-addon-manager attempts to make these tasks easy and automatic. It is
+still a work-in-progress, especially so on Windows, on which I found it
+to be quite flaky.</p>
 <p><strong>Before Installation</strong></p>
-<p>vim-addon-manager automatically pulls off plugins from the Internet both for installation and for updating. So, it requires a set of tools to be installed on Windows before it can be used.</p>
+<p>vim-addon-manager automatically pulls off plugins from the Internet
+both for installation and for updating. So, it requires a set of tools
+to be installed on Windows before it can be used.</p>
 <ol type="1">
-<li><a href="http://curl.haxx.se/"><strong>Curl</strong></a>: vim-addon-manager uses Curl to download files from the web.</li>
+<li><a href="http://curl.haxx.se/"><strong>Curl</strong></a>:
+vim-addon-manager uses Curl to download files from the web.</li>
 </ol>
 <pre><code>* Install a Windows binary of Curl and remember to add the curl.exe directory to the `PATH` environment variable.</code></pre>
 <ol start="2" type="1">
-<li><a href="http://www.7-zip.org/"><strong>7-Zip</strong></a>: Many Vim plugins are packaged as .gz or .bz2 files. vim-addon-manager requires a tool to uncompress these files. I prefer to use the awesome 7-Zip tool for this purpose.</li>
+<li><a href="http://www.7-zip.org/"><strong>7-Zip</strong></a>: Many Vim
+plugins are packaged as .gz or .bz2 files. vim-addon-manager requires a
+tool to uncompress these files. I prefer to use the awesome 7-Zip tool
+for this purpose.</li>
 </ol>
 <pre><code>* Install 7-Zip if you do not already have it. Add the 7z.exe directory to the `PATH` environment variable.</code></pre>
 <ol start="3" type="1">
-<li><a href="http://git-scm.com/"><strong>Git</strong></a>: A lot of Vim plugins are hosted on GitHub and other public Git repositories. A Git installation is convenient since vim-addon-manager itself is hosted on GitHub. (If you do not want to install Git, zip files of vim-addon-manager are available from GitHub. See Marc Weber’s comment below.)</li>
+<li><a href="http://git-scm.com/"><strong>Git</strong></a>: A lot of Vim
+plugins are hosted on GitHub and other public Git repositories. A Git
+installation is convenient since vim-addon-manager itself is hosted on
+GitHub. (If you do not want to install Git, zip files of
+vim-addon-manager are available from GitHub. See Marc Weber’s comment
+below.)</li>
 </ol>
 <pre><code>1. Currently, there are 2 versions of Git for Windows available. I prefer to install the **[MsysGit](http://code.google.com/p/msysgit/)** version. During its installation, make sure to choose the option _Run Git from the Windows Command Prompt_.
 
 
 2. The MsysGit installer should have added the Git\cmd directory to the `PATH` environment variable. Add it to `PATH` if this is not the case.</code></pre>
 <ol start="4" type="1">
-<li><strong>Hg</strong> or <strong>SVN</strong>: A few Vim plugins are hosted on Sourceforge, Bitbucket and other public repositories that use Mercurial or Subversion. If the plugin you use is hosted on such a service, install Hg or SVN binaries for Windows and add their directories to the PATH environment variable.</li>
+<li><strong>Hg</strong> or <strong>SVN</strong>: A few Vim plugins are
+hosted on Sourceforge, Bitbucket and other public repositories that use
+Mercurial or Subversion. If the plugin you use is hosted on such a
+service, install Hg or SVN binaries for Windows and add their
+directories to the PATH environment variable.</li>
 </ol>
 <p>We are now ready to install vim-addon-manager! 😊</p>
 <p><strong>Installation</strong></p>
 <ol type="1">
-<li><p>vim-addon-manager will store its own files and the files of all the plugins it will handle in one directory. <code>%USERPROFILE%</code> on Windows is a good place to host such a directory. <code>%USERPROFILE%</code> on Windows 7 resolves to <code>C:\Users\Joe</code>. Create a directory named <strong>vim-addons</strong> in <code>%USERPROFILE%</code>.</p></li>
-<li><p>Open a command prompt in vim-addons and install vim-addon-manager here using:</p></li>
+<li><p>vim-addon-manager will store its own files and the files of all
+the plugins it will handle in one directory. <code>%USERPROFILE%</code>
+on Windows is a good place to host such a directory.
+<code>%USERPROFILE%</code> on Windows 7 resolves to
+<code>C:\Users\Joe</code>. Create a directory named
+<strong>vim-addons</strong> in <code>%USERPROFILE%</code>.</p></li>
+<li><p>Open a command prompt in vim-addons and install vim-addon-manager
+here using:</p></li>
 </ol>
 <pre><code>$ git clone git://github.com/MarcWeber/vim-addon-manager.git</code></pre>
 <ol start="3" type="1">
@@ -92,23 +108,49 @@ endf
 au VimEnter * call LoadVimAddonManager()
 
 &quot;-------------------------------------------------------------------------------</code></pre>
-<p>The first time you run vim-addon-manager it will load another plugin named <strong>vim-addon-manager-known-repositories</strong>. This plugin is used as a database of all Vim plugin names and URLs to obtain them from. After this, vim-addon-manager will try to install the plugins listed in <code>scriptmanager#Activate()</code>.</p>
+<p>The first time you run vim-addon-manager it will load another plugin
+named <strong>vim-addon-manager-known-repositories</strong>. This plugin
+is used as a database of all Vim plugin names and URLs to obtain them
+from. After this, vim-addon-manager will try to install the plugins
+listed in <code>scriptmanager#Activate()</code>.</p>
 <p><strong>Usage</strong></p>
 <ul>
-<li><p>To <strong>install</strong> a new plugin, just add its name to the list in the call to <code>scriptmanager#Activate()</code>. It will installed the next time Vim is executed.</p></li>
-<li><p>All the existing plugins listed in the call to <code>scriptmanager#Activate()</code> are <strong>loaded</strong> at runtime everytime a new Vim instance is invoked.</p></li>
-<li><p>To <strong>update</strong> all the installed plugins from the web use the command <code>:UpdateAddons</code></p></li>
+<li><p>To <strong>install</strong> a new plugin, just add its name to
+the list in the call to <code>scriptmanager#Activate()</code>. It will
+installed the next time Vim is executed.</p></li>
+<li><p>All the existing plugins listed in the call to
+<code>scriptmanager#Activate()</code> are <strong>loaded</strong> at
+runtime everytime a new Vim instance is invoked.</p></li>
+<li><p>To <strong>update</strong> all the installed plugins from the web
+use the command <code>:UpdateAddons</code></p></li>
 <li><p>To <strong>uninstall</strong>a plugin:</p>
 <ol type="1">
-<li><p>Open vimrc and remove the plugin name from the list in <code>scriptmanager#Activate()</code>. This means that it will not be loaded at runtime. However, the plugin files are still present on the harddisk.</p></li>
-<li><p>To remove the plugin files, close all Vim instances, open a new Vim window and invoke <code>:UninstallNotLoadedAddons the_plugin_name</code></p></li>
+<li><p>Open vimrc and remove the plugin name from the list in
+<code>scriptmanager#Activate()</code>. This means that it will not be
+loaded at runtime. However, the plugin files are still present on the
+harddisk.</p></li>
+<li><p>To remove the plugin files, close all Vim instances, open a new
+Vim window and invoke
+<code>:UninstallNotLoadedAddons the_plugin_name</code></p></li>
 </ol></li>
 </ul>
 <p><strong>Notes</strong></p>
 <ul>
-<li><p>vim-addon-manager relies heavily on being able to handle inputs of paths and output paths to other tools it invokes. So, it breaks down if you have shellslash enabled in your vimrc. Remove any <code>:set shellslash</code> in your setup files.</p></li>
-<li><p>I found that invoking <code>scriptmanager#Activate()</code> directly in vimrc at startup does not work. It only works properly if invoked after all the Vim setup is complete. Mark Weber suggests using the event <code>GUIEnter</code> to trigger <code>scriptmanager#Activate()</code>. I found that this breaks down since the input function does not work this early in the Vim startup. The <code>VimEnter</code> event seems to work fine for me, so I use it to trigger <code>scriptmanager#Activate()</code>.</p></li>
-<li><p>If you want to a simpler plugin to only manage each installed plugin in their subdirectory, check out <a href="https://codeyarns.com/tech/2010/12/09/vim-pathogen-plugin/"><strong>Pathogen</strong></a>.</p></li>
+<li><p>vim-addon-manager relies heavily on being able to handle inputs
+of paths and output paths to other tools it invokes. So, it breaks down
+if you have shellslash enabled in your vimrc. Remove any
+<code>:set shellslash</code> in your setup files.</p></li>
+<li><p>I found that invoking <code>scriptmanager#Activate()</code>
+directly in vimrc at startup does not work. It only works properly if
+invoked after all the Vim setup is complete. Mark Weber suggests using
+the event <code>GUIEnter</code> to trigger
+<code>scriptmanager#Activate()</code>. I found that this breaks down
+since the input function does not work this early in the Vim startup.
+The <code>VimEnter</code> event seems to work fine for me, so I use it
+to trigger <code>scriptmanager#Activate()</code>.</p></li>
+<li><p>If you want to a simpler plugin to only manage each installed
+plugin in their subdirectory, check out <a
+href="https://codeyarns.com/tech/2010/12/09/vim-pathogen-plugin/"><strong>Pathogen</strong></a>.</p></li>
 </ul>
 </div>
 
@@ -117,11 +159,13 @@ au VimEnter * call LoadVimAddonManager()
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,18 @@
 <h1 class="title">Log of sudo commands</h1>
 <p class="date">📅 2016-Sep-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#log'>log</a>, <a href='index.html#sudo'>sudo</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I recently discovered that a user on a server had accidentally killed my program. Many users, including me, on this server have <strong>sudo</strong> permissions. So, I guess the kill was carried out by using sudo. How to find out who is the killer?</p>
-<p>Thankfully, all actions taken under sudo are logged in the <code>/var/log/auth.log</code> file. You will find entries of this form:</p>
+<p>I recently discovered that a user on a server had accidentally killed
+my program. Many users, including me, on this server have
+<strong>sudo</strong> permissions. So, I guess the kill was carried out
+by using sudo. How to find out who is the killer?</p>
+<p>Thankfully, all actions taken under sudo are logged in the
+<code>/var/log/auth.log</code> file. You will find entries of this
+form:</p>
 <pre><code>Sep 26 08:31:26 foobar-machine sudo:   joe : TTY=pts/1 ; PWD=/home/joe/scripts ; USER=root ; COMMAND=/usr/sbin/openvpn --daemon --config foobar.ovpn
 Sep 26 08:31:26 foobar-machine sudo: pam_unix(sudo:session): session opened for user root by joe(uid=0)
 Sep 26 08:31:27 foobar-machine sudo: pam_unix(sudo:session): session closed for user root</code></pre>
-<p>You can see that all pertinent information is available in the log: who ran the command, what command and when.</p>
+<p>You can see that all pertinent information is available in the log:
+who ran the command, what command and when.</p>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 </div>
 
@@ -58,11 +50,13 @@ Sep 26 08:31:27 foobar-machine sudo: pam_unix(sudo:session): session closed for 
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,20 +30,32 @@
 <h1 class="title">lspci Cheatsheet</h1>
 <p class="date">📅 2020-Nov-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#pci'>pci</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>lspci</strong> is the primary tool on Linux to get information about the PCI buses, bridges and devices on your system. I have primarily used lspci to find information about wired/wireless network adapters and graphics cards.</p>
+<p><strong>lspci</strong> is the primary tool on Linux to get
+information about the PCI buses, bridges and devices on your system. I
+have primarily used lspci to find information about wired/wireless
+network adapters and graphics cards.</p>
 <ul>
-<li>This and other PCI tools ship in the pciutils package. Installing it is easy:</li>
+<li>This and other PCI tools ship in the pciutils package. Installing it
+is easy:</li>
 </ul>
 <pre><code>$ sudo apt install pciutils</code></pre>
 <ul>
-<li><p>The source code of pciutils can be accessed <a href="https://github.com/pciutils/pciutils">here</a>. I find it useful to sometimes go to the source to understand some of the lspci output.</p></li>
-<li><p>To get a listing of all the buses, bridges and devices on your system:</p></li>
+<li><p>The source code of pciutils can be accessed <a
+href="https://github.com/pciutils/pciutils">here</a>. I find it useful
+to sometimes go to the source to understand some of the lspci
+output.</p></li>
+<li><p>To get a listing of all the buses, bridges and devices on your
+system:</p></li>
 </ul>
 <pre><code>$ lspci</code></pre>
-<p>I typically grep this output to find the specific type of devices I am looking for. For example, to find graphics cards I typically use:</p>
+<p>I typically grep this output to find the specific type of devices I
+am looking for. For example, to find graphics cards I typically use:</p>
 <pre><code>$ lspci | grep -i vga
 $ lspci | grep -i nvidia</code></pre>
-<p>Every output line of this command has information such as the domain/bus/device/function assigned to the device by the system/OS, the class of device and finally the vendor and device names looked up from the PCI ID database. Here is one example device output line:</p>
+<p>Every output line of this command has information such as the
+domain/bus/device/function assigned to the device by the system/OS, the
+class of device and finally the vendor and device names looked up from
+the PCI ID database. Here is one example device output line:</p>
 <pre><code>ff:0b.0 System peripheral: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D R3 QPI Link 0/1 (rev 01)
 
 [0000]: Domain. This is not shown when its value is 0x0000. Values are in the range 0x0000 - 0xFFFF.
@@ -70,12 +68,14 @@ System peripheral: Class of device. Other values I have seen are host bridge, PC
                    controller, performance counters.
 Intel Corporation Xeon E7 v4: Vendor and device name looked up from PCI ID database.</code></pre>
 <ul>
-<li>To list verbose information about the devices, use one of three levels of verbosity:</li>
+<li>To list verbose information about the devices, use one of three
+levels of verbosity:</li>
 </ul>
 <pre><code>$ lspci -v
 $ lspci -vv
 $ lspci -vvv</code></pre>
-<p>Here is an example of the difference in verbose output between <code>-v</code> and <code>-vv</code>:</p>
+<p>Here is an example of the difference in verbose output between
+<code>-v</code> and <code>-vv</code>:</p>
 <pre><code>$ lspci -d 10de: -v
 01:00.0 VGA compatible controller: NVIDIA Corporation GV100 [TITAN V] (rev a1) (prog-if 00 [VGA controller])
         Subsystem: NVIDIA Corporation GV100 [TITAN V]
@@ -108,10 +108,13 @@ $ lspci -d 10de: -vv
         Kernel driver in use: nvidia
         Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia</code></pre>
 <ul>
-<li>Note that many of the capabilities of the devices may not be displayed in verbose output for non-root users. To get all the information use <code>sudo</code>:</li>
+<li>Note that many of the capabilities of the devices may not be
+displayed in verbose output for non-root users. To get all the
+information use <code>sudo</code>:</li>
 </ul>
 <pre><code>$ sudo lspci -d 10de: -vv</code></pre>
-<p>Here is the super detailed output with <code>sudo</code> for the same card as above:</p>
+<p>Here is the super detailed output with <code>sudo</code> for the same
+card as above:</p>
 <pre><code>$ sudo lspci -d 10de: -vv
 01:00.0 VGA compatible controller: NVIDIA Corporation GV100 [TITAN V] (rev a1) (prog-if 00 [VGA controller])
         Subsystem: NVIDIA Corporation GV100 [TITAN V]
@@ -178,13 +181,23 @@ $ lspci -d 10de: -vv
         Capabilities: [ac0 v1] #23
         Kernel driver in use: nvidia
         Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia</code></pre>
-<p>Some of the information I find useful in the sudo verbose output are:</p>
+<p>Some of the information I find useful in the sudo verbose output
+are:</p>
 <ul>
-<li><p><code>LnkSta</code> line: From this <em>Link Status</em> line above (<a href="https://github.com/pciutils/pciutils/blob/5bdf63b6b1bc35b59c4b3f47f7ca83ca1868155b/ls-caps.c#L840">source</a>) I can see that this has a speed of <code>2.5GT/s</code>. This means it is PCIe v1 (<a href="https://github.com/pciutils/pciutils/blob/5bdf63b6b1bc35b59c4b3f47f7ca83ca1868155b/ls-caps.c#L740">source</a>). And I can see the width is <code>x16</code> so it has 16 lanes. What this translates to is <code>2.5 / 8 * 16 = 5GB/s</code>.</p></li>
-<li><p>To list PCI information in a machine readable format, that is easy for parsing through scripts:</p></li>
+<li><p><code>LnkSta</code> line: From this <em>Link Status</em> line
+above (<a
+href="https://github.com/pciutils/pciutils/blob/5bdf63b6b1bc35b59c4b3f47f7ca83ca1868155b/ls-caps.c#L840">source</a>)
+I can see that this has a speed of <code>2.5GT/s</code>. This means it
+is PCIe v1 (<a
+href="https://github.com/pciutils/pciutils/blob/5bdf63b6b1bc35b59c4b3f47f7ca83ca1868155b/ls-caps.c#L740">source</a>).
+And I can see the width is <code>x16</code> so it has 16 lanes. What
+this translates to is <code>2.5 / 8 * 16 = 5GB/s</code>.</p></li>
+<li><p>To list PCI information in a machine readable format, that is
+easy for parsing through scripts:</p></li>
 </ul>
 <pre><code>$ lspci -m</code></pre>
-<p>Here is an example output line showing the difference between the default and machine readable options:</p>
+<p>Here is an example output line showing the difference between the
+default and machine readable options:</p>
 <pre><code>ff:0b.0 System peripheral: Intel Corporation Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D R3 QPI Link 0/1 (rev 01)
 
 ff:0b.0 &quot;System peripheral&quot; &quot;Intel Corporation&quot; &quot;Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D R3 QPI Link 0/1&quot; -r01 &quot;ASRock Incorporation&quot; &quot;Xeon E7 v4/Xeon E5 v4/Xeon E3 v4/Xeon D R3 QPI Link 0/1&quot;</code></pre>
@@ -204,16 +217,19 @@ ff:0b.0 &quot;System peripheral&quot; &quot;Intel Corporation&quot; &quot;Xeon E
 $ lspci -d 10de:  # List NVIDIA devices
 
 $ lspci -d :6f81</code></pre>
-<p>Filtering by vendor ID is useful to look at devices by popular vendors, like Intel or NVIDIA for example.</p>
+<p>Filtering by vendor ID is useful to look at devices by popular
+vendors, like Intel or NVIDIA for example.</p>
 <ul>
-<li>To list the kernel driver and kernel modules used by the devices:</li>
+<li>To list the kernel driver and kernel modules used by the
+devices:</li>
 </ul>
 <pre><code>$ lspci -k</code></pre>
 <ul>
 <li>To view the tree of PCI connections:</li>
 </ul>
 <pre><code>$ lspci -t</code></pre>
-<p>Here is an example output showing that roots are buses and leaf nodes are devices:</p>
+<p>Here is an example output showing that roots are buses and leaf nodes
+are devices:</p>
 <pre><code>-+-[0000:ff]-+-0b.0
              +-0b.1
              +-0b.2
@@ -229,8 +245,11 @@ $ lspci -d :6f81</code></pre>
 This device will list in the default output as ff:0b.0.</code></pre>
 <p><strong>References:</strong></p>
 <ul>
-<li><a href="https://www.man7.org/linux/man-pages/man8/lspci.8.html">lspci manpage</a></li>
-<li><a href="https://www.thegeekstuff.com/2014/04/lspci-examples/">lspci examples</a> (The Geek Stuff)</li>
+<li><a
+href="https://www.man7.org/linux/man-pages/man8/lspci.8.html">lspci
+manpage</a></li>
+<li><a href="https://www.thegeekstuff.com/2014/04/lspci-examples/">lspci
+examples</a> (The Geek Stuff)</li>
 </ul>
 <p><strong>Tried with:</strong> Ubuntu 18.04</p>
 </div>
@@ -240,11 +259,13 @@ This device will list in the default output as ff:0b.0.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

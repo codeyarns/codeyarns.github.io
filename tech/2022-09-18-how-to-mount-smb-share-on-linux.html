@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,29 @@
 <h1 class="title">How to mount SMB share on Linux</h1>
 <p class="date">📅 2022-Sep-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#smb'>smb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://en.wikipedia.org/wiki/Server_Message_Block"><strong>SMB/CIFS</strong></a> networking protocal can be used to share a directory on the local network with other computers. Such <strong>network share</strong> directories can be shared by Windows computers and devices like NVIDIA Shield. Any Linux computer can also share a directory using SMB/CIFS as described <a href="2014-07-07-how-to-share-directory-using-smb.html">here</a>.</p>
-<p>To mount such a network share on a Ubuntu computer I used these steps:</p>
+<p>The <a
+href="https://en.wikipedia.org/wiki/Server_Message_Block"><strong>SMB/CIFS</strong></a>
+networking protocal can be used to share a directory on the local
+network with other computers. Such <strong>network share</strong>
+directories can be shared by Windows computers and devices like NVIDIA
+Shield. Any Linux computer can also share a directory using SMB/CIFS as
+described <a
+href="2014-07-07-how-to-share-directory-using-smb.html">here</a>.</p>
+<p>To mount such a network share on a Ubuntu computer I used these
+steps:</p>
 <ul>
 <li>Install SMB and CIFS packages:</li>
 </ul>
 <pre><code>$ sudo apt install smbclient cifs-utils</code></pre>
 <ul>
-<li>Check if the network shares on the host can be listed by using hostname or IP address:</li>
+<li>Check if the network shares on the host can be listed by using
+hostname or IP address:</li>
 </ul>
 <pre><code>$ smbclient -L foobarserver -U joe
 
 $ smbclient -L 10.0.0.180 -U joe</code></pre>
-<p>Note the <em>sharename</em> that are listed, we will need to use those to mount later.</p>
+<p>Note the <em>sharename</em> that are listed, we will need to use
+those to mount later.</p>
 <ul>
 <li>Create a directory to mount the share:</li>
 </ul>
@@ -65,22 +61,29 @@ $ smbclient -L 10.0.0.180 -U joe</code></pre>
 <li>To mount using the commandline:</li>
 </ul>
 <pre><code>$ sudo mount -t cifs -o username=joe,password=supersecret //10.0.0.180/somesharename /media/foobarshare</code></pre>
-<p>I found that using the IP address worked, but using the server name <code>foobarserver</code> gave the error <code>mount: bad usage</code>. You should be able to see the contents of the share in <code>/media/foobarshare</code> now.</p>
+<p>I found that using the IP address worked, but using the server name
+<code>foobarserver</code> gave the error <code>mount: bad usage</code>.
+You should be able to see the contents of the share in
+<code>/media/foobarshare</code> now.</p>
 <ul>
 <li>To unmount the share:</li>
 </ul>
 <pre><code>$ sudo umount /media/foobarshare</code></pre>
 <ul>
-<li>To make the mount writeable, use the UID of your username in the mount options:</li>
+<li>To make the mount writeable, use the UID of your username in the
+mount options:</li>
 </ul>
 <pre><code>-o username=joe,password=supersecret,uid=$(id -u)</code></pre>
 <ul>
-<li>Add the mount entry to <code>/etc/fstab</code> if want this mounted all the time:</li>
+<li>Add the mount entry to <code>/etc/fstab</code> if want this mounted
+all the time:</li>
 </ul>
 <pre><code>//10.0.0.180/somesharename /media/foobarshare cifs username=joe,password=supersecret 0 0</code></pre>
 <p>and mount with:</p>
 <pre><code>$ sudo mount -a</code></pre>
-<p><strong>Reference:</strong> <a href="https://wiki.ubuntu.com/MountWindowsSharesPermanently">Ubuntu: Mount Windows share permanently</a></p>
+<p><strong>Reference:</strong> <a
+href="https://wiki.ubuntu.com/MountWindowsSharesPermanently">Ubuntu:
+Mount Windows share permanently</a></p>
 <p><strong>Tried with:</strong> Ubuntu 22.04</p>
 </div>
 
@@ -89,11 +92,13 @@ $ smbclient -L 10.0.0.180 -U joe</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,36 +30,58 @@
 <h1 class="title">How to stash in Git</h1>
 <p class="date">📅 2016-Jun-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#stash'>stash</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Stashing</strong> in <strong>Git</strong> is a very useful technique that eases daily work with code. Many a time, you are in the middle of writing or changing some code when you might be required to quickly checkout a different branch. For example, another team member wants you to quickly run a test in a different branch or fix a bug appearing in a different branch. It is pretty easy to clone a new repository to do these things if the repository is small and building files is quick. If your repository or build setup is large, complicated or time consuming, then stashing is a great addition to your workflow.</p>
-<p>Stashing just saves all your staged or unstaged files that are changed and saves them up in your local repository. The stashed commits are actually stored locally in a reflog for a branch named stash. So, the git stash commands are just simple wrappers over standard git commands.</p>
+<p><strong>Stashing</strong> in <strong>Git</strong> is a very useful
+technique that eases daily work with code. Many a time, you are in the
+middle of writing or changing some code when you might be required to
+quickly checkout a different branch. For example, another team member
+wants you to quickly run a test in a different branch or fix a bug
+appearing in a different branch. It is pretty easy to clone a new
+repository to do these things if the repository is small and building
+files is quick. If your repository or build setup is large, complicated
+or time consuming, then stashing is a great addition to your
+workflow.</p>
+<p>Stashing just saves all your staged or unstaged files that are
+changed and saves them up in your local repository. The stashed commits
+are actually stored locally in a reflog for a branch named stash. So,
+the git stash commands are just simple wrappers over standard git
+commands.</p>
 <ul>
-<li>To save all your changes to the stash and have a clean slate in the working directory:</li>
+<li>To save all your changes to the stash and have a clean slate in the
+working directory:</li>
 </ul>
 <pre><code>$ git stash</code></pre>
-<p>By default this stash commit is saved with a generic commit message that includes the branch, the commit hash and the log of the commit upon which the stash was created.</p>
+<p>By default this stash commit is saved with a generic commit message
+that includes the branch, the commit hash and the log of the commit upon
+which the stash was created.</p>
 <ul>
-<li>It is very easy to forget what your changes your stash contained. So, I like to stash with my own commit message:</li>
+<li>It is very easy to forget what your changes your stash contained.
+So, I like to stash with my own commit message:</li>
 </ul>
 <pre><code>$ git stash save &quot;WIP on enabling write to disk&quot;</code></pre>
 <ul>
-<li><p>You can stash many times in a local repository. The stashes are saved in a LIFO stack.</p></li>
+<li><p>You can stash many times in a local repository. The stashes are
+saved in a LIFO stack.</p></li>
 <li><p>You can list and view all the stashes in the stack:</p></li>
 </ul>
 <pre><code>$ git stash list</code></pre>
 <ul>
-<li>You can see that this is just showing the items from the stash reflog:</li>
+<li>You can see that this is just showing the items from the stash
+reflog:</li>
 </ul>
 <pre><code>$ git reflog stash</code></pre>
 <ul>
-<li>To pop the top-most item from the stash and apply its changes to your working directory:</li>
+<li>To pop the top-most item from the stash and apply its changes to
+your working directory:</li>
 </ul>
 <pre><code>$ git stash pop</code></pre>
 <ul>
-<li>To apply the changes from the top-most item in the stash to your working directory, without popping it from the stash:</li>
+<li>To apply the changes from the top-most item in the stash to your
+working directory, without popping it from the stash:</li>
 </ul>
 <pre><code>$ git stash apply</code></pre>
 <ul>
-<li>Since the top-most stash is applied, the above command is the same as:</li>
+<li>Since the top-most stash is applied, the above command is the same
+as:</li>
 </ul>
 <pre><code>$ git stash apply stash@{0}</code></pre>
 <ul>
@@ -88,7 +96,8 @@
 <li>To clear all items from the stash:</li>
 </ul>
 <pre><code>$ git stash clear</code></pre>
-<p>That is all there is to it! This is one of the easier and straightforward commands in Git 😊</p>
+<p>That is all there is to it! This is one of the easier and
+straightforward commands in Git 😊</p>
 <p><strong>Tried with:</strong> Git 2.17.1</p>
 </div>
 
@@ -97,11 +106,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

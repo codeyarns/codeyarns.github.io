@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,20 +30,28 @@
 <h1 class="title">Trailing slash in symbolic link</h1>
 <p class="date">📅 2016-Oct-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#slash'>slash</a>, <a href='index.html#symbolic-link'>symbolic link</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I recently noticed something strange when creating a <strong>symbolic link</strong> to a directory:</p>
+<p>I recently noticed something strange when creating a <strong>symbolic
+link</strong> to a directory:</p>
 <pre><code>$ ln -s foo_dir/ slink_to_dir
 $ ls -l
 drwxrwxr-x 2 ashwin ashwin 4.0K 2016-10-05 21:37 foo_dir/
 lrwxrwxrwx 1 ashwin ashwin    7 2016-10-10 21:47 slink_to_dir -&gt; foo_dir//</code></pre>
-<p>Notice the double slash (one extra slash) in the destination of the symbolic link.</p>
-<p>In fact, you can add multiple slashes and they all show up with one extra slash:</p>
+<p>Notice the double slash (one extra slash) in the destination of the
+symbolic link.</p>
+<p>In fact, you can add multiple slashes and they all show up with one
+extra slash:</p>
 <pre><code>$ ln -s foo_dir/// slink_to_dir
 $ ls -l
 drwxrwxr-x 2 ashwin ashwin 4.0K 2016-10-05 21:37 foo_dir/
 lrwxrwxrwx 1 ashwin ashwin    7 2016-10-10 21:47 slink_to_dir -&gt; foo_dir////</code></pre>
-<p>Turns out that this is the standard working of the <code>ln</code> command. If you are pedantic, you can keep it clean by never specifying a slash when creating a symbolic link using ln:</p>
+<p>Turns out that this is the standard working of the <code>ln</code>
+command. If you are pedantic, you can keep it clean by never specifying
+a slash when creating a symbolic link using ln:</p>
 <pre><code>$ ln -s foo_dir slink_to_dir</code></pre>
-<p>Anyway, even if you use the extra slashes they have no effect either since Unix (and Linux) <a href="http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap03.html#tag_03_266">allow and ignore</a> the multiple slashes in a path.</p>
+<p>Anyway, even if you use the extra slashes they have no effect either
+since Unix (and Linux) <a
+href="http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap03.html#tag_03_266">allow
+and ignore</a> the multiple slashes in a path.</p>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 </div>
 
@@ -66,11 +60,13 @@ lrwxrwxrwx 1 ashwin ashwin    7 2016-10-10 21:47 slink_to_dir -&gt; foo_dir////<
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

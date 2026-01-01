@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,21 +27,30 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Not found in mesa table OpenGL error with VirtualBox</h1>
+<h1 class="title">Not found in mesa table OpenGL error with
+VirtualBox</h1>
 <p class="date">📅 2014-Feb-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#opengl'>opengl</a>, <a href='index.html#virtualbox'>virtualbox</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I have a setup where I am running Ubuntu under VirtualBox on top of Windows. Inside Ubuntu, I ran a program that uses OpenGL and it threw up many lines of errors of this type:</p>
+<p>I have a setup where I am running Ubuntu under VirtualBox on top of
+Windows. Inside Ubuntu, I ran a program that uses OpenGL and it threw up
+many lines of errors of this type:</p>
 <pre><code>OpenGL Warning: glVertexArrayRangeNV not found in mesa table</code></pre>
 <p>And the program ended in a segmentation fault (SIGSEGV).</p>
 <h2 id="solution">Solution</h2>
-<p>This problem is supposedly caused only when you have <strong>3D acceleration</strong> turned on for the Ubuntu virtual machine. VirtualBox does not support OpenGL 3.0 and later. So, programs that expect those OpenGL extensions might crash.</p>
-<p>Surprisingly, the solution is to shutdown the virtual machine, turn off 3D acceleration, start it and try the OpenGL program again. After I did that, the program threw up warnings like this:</p>
+<p>This problem is supposedly caused only when you have <strong>3D
+acceleration</strong> turned on for the Ubuntu virtual machine.
+VirtualBox does not support OpenGL 3.0 and later. So, programs that
+expect those OpenGL extensions might crash.</p>
+<p>Surprisingly, the solution is to shutdown the virtual machine, turn
+off 3D acceleration, start it and try the OpenGL program again. After I
+did that, the program threw up warnings like this:</p>
 <pre><code>OpenGL Warning: Failed to connect to host. Make sure 3D acceleration is enabled for this VM.
 libGL error: failed to load driver: vboxvideo
 libGL error: Try again with LIBGL_DEBUG=verbose for more details.</code></pre>
 <p>Thankfully, the program executed fine despite these warnings.</p>
-<p><strong>Tried with:</strong> Ubuntu 12.04 LTS, VirtualBox 4.3.6 and Windows 7 x64</p>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS, VirtualBox 4.3.6 and
+Windows 7 x64</p>
 </div>
 
 <br />
@@ -63,11 +58,13 @@ libGL error: Try again with LIBGL_DEBUG=verbose for more details.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

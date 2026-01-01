@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,23 +27,43 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to share the same Dropbox directory between Windows and Ubuntu</h1>
+<h1 class="title">How to share the same Dropbox directory between
+Windows and Ubuntu</h1>
 <p class="date">📅 2013-Mar-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dropbox'>dropbox</a>, <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I use a computer where I <strong>dual boot</strong> between <strong>Windows</strong> and <strong>Ubuntu</strong>. To avoid wasting disk space, I would like to use the same <strong>Dropbox</strong> directory between both Windows and Ubuntu. Here is how I was able to do this:</p>
+<p>I use a computer where I <strong>dual boot</strong> between
+<strong>Windows</strong> and <strong>Ubuntu</strong>. To avoid wasting
+disk space, I would like to use the same <strong>Dropbox</strong>
+directory between both Windows and Ubuntu. Here is how I was able to do
+this:</p>
 <ol type="1">
-<li><p>I first installed the Dropbox client on Windows. Assume it uses the directory <code>C:\Users\joe\Dropbox</code> in my NTFS partition.</p></li>
-<li><p>Boot into Ubuntu. Edit <code>/etc/fstab</code> so that the NTFS partition which contains the Dropbox directory on Windows is mounted automatically at boot. I assume it is mounted at <code>/media/my-c-drive</code></p></li>
-<li><p>Install the Dropbox client for Ubuntu. During installation, let it pick its default directory as <code>/home/joe/Dropbox</code></p></li>
-<li><p>You can see the Dropbox client running in the Panel. Quit it.</p></li>
-<li><p>Delete the Dropbox directory and replace it with a symbolic link to the Dropbox directory on the NTFS Windows partition:</p></li>
+<li><p>I first installed the Dropbox client on Windows. Assume it uses
+the directory <code>C:\Users\joe\Dropbox</code> in my NTFS
+partition.</p></li>
+<li><p>Boot into Ubuntu. Edit <code>/etc/fstab</code> so that the NTFS
+partition which contains the Dropbox directory on Windows is mounted
+automatically at boot. I assume it is mounted at
+<code>/media/my-c-drive</code></p></li>
+<li><p>Install the Dropbox client for Ubuntu. During installation, let
+it pick its default directory as <code>/home/joe/Dropbox</code></p></li>
+<li><p>You can see the Dropbox client running in the Panel. Quit
+it.</p></li>
+<li><p>Delete the Dropbox directory and replace it with a symbolic link
+to the Dropbox directory on the NTFS Windows partition:</p></li>
 </ol>
 <pre><code>$ rm -rf /home/joe/Dropbox
 $ ln -s /media/my-c-drive/Users/joe/Dropbox /home/joe/Dropbox</code></pre>
 <ol type="1">
-<li>Start the Dropbox client again and you are done. It will use the same directory as that used by Windows for syncing.</li>
+<li>Start the Dropbox client again and you are done. It will use the
+same directory as that used by Windows for syncing.</li>
 </ol>
-<p><strong>Note:</strong> As you might have suspected, there is a small problem with this technique. Every time you switch between Windows and Ubuntu, the Dropbox client will re-index the contents of its directory. This will happen in the background, but it will consume CPU, disk and network bandwidth. How irritating this is depends on the size of your Dropbox directory. If your Dropbox directory is large, then this type of sharing can only be a temporary solution for these reasons.</p>
+<p><strong>Note:</strong> As you might have suspected, there is a small
+problem with this technique. Every time you switch between Windows and
+Ubuntu, the Dropbox client will re-index the contents of its directory.
+This will happen in the background, but it will consume CPU, disk and
+network bandwidth. How irritating this is depends on the size of your
+Dropbox directory. If your Dropbox directory is large, then this type of
+sharing can only be a temporary solution for these reasons.</p>
 <p><strong>Tried with:</strong> Windows 8 x64 and Ubuntu 12.04 LTS</p>
 </div>
 
@@ -66,11 +72,13 @@ $ ln -s /media/my-c-drive/Users/joe/Dropbox /home/joe/Dropbox</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

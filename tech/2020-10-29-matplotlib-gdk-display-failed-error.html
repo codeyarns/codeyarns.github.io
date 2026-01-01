@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,9 @@
 <p class="date">📅 2020-Oct-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#matplotlib'>matplotlib</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I had a Python script to generate a plot and write it to an image file using <strong>Matplotlib</strong>. But the matplotlib import line in the script started failing on a certain computer with this error:</p>
+<p>I had a Python script to generate a plot and write it to an image
+file using <strong>Matplotlib</strong>. But the matplotlib import line
+in the script started failing on a certain computer with this error:</p>
 <pre><code>&gt;&gt;&gt; import matplotlib.pyplot as pyplot
 
 Unable to init server: Could not connect: Connection refused
@@ -53,8 +41,11 @@ Unable to init server: Could not connect: Connection refused
 
 (my_plotter.py:13763): Gdk-CRITICAL **: 13:58:24.057: gdk_cursor_new_for_display: assertion &#39;GDK_IS_DISPLAY (display)&#39; failed</code></pre>
 <h2 id="solution">Solution</h2>
-<p>It seemed like GDK was being used to render the plot and it was requiring a correct X display configuration for some reason.</p>
-<p>On a hunch, I checked the <code>DISPLAY</code> of my shell and it was not set. So I set it to the default value and this fixed the above error:</p>
+<p>It seemed like GDK was being used to render the plot and it was
+requiring a correct X display configuration for some reason.</p>
+<p>On a hunch, I checked the <code>DISPLAY</code> of my shell and it was
+not set. So I set it to the default value and this fixed the above
+error:</p>
 <pre><code>export DISPLAY=:0.0</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 18.04</p>
 </div>
@@ -64,11 +55,13 @@ Unable to init server: Could not connect: Connection refused
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

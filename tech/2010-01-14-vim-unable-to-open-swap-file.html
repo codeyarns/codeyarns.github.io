@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,18 +31,52 @@
 <p class="date">📅 2010-Jan-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#vim'>vim</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_gvim_swapfile.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_gvim_swapfile.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p><strong>Problem</strong></p>
 <pre><code>E303: Unable to open swap file for &quot;[No Name]&quot;, recovery impossible</code></pre>
-<p>You might see this error while using <strong>ViM</strong> as a <strong>standard user</strong> on <strong>Windows 7</strong>. This is a result of ViM still catching up to being used as a standard user on Windows 7.</p>
-<p>By default, ViM opens a <strong><a href="http://vimdoc.sourceforge.net/htmldoc/recover.html#swap-file">swap file</a></strong> when the user starts editing an already existing file. On Windows, the swap file is a hidden dot file named the same as the opened file with a suffix of <code>.swp</code>. For example, editing <code>hello.cpp</code> will create a hidden <code>.hello.cpp.swp</code>. This swap file is created in the same directory as the opened file.</p>
-<p>If the user just opened ViM and started editing into the empty editor, what happens? On Windows, a hidden swap file named <code>_.swp</code> is created. The above error is caused because ViM on Windows 7 tries to create this swap file in <code>C:\Windows\System32</code>. A standard user does not have the permissions to create files there and thus ViM throws the <strong><a href="http://vimdoc.sourceforge.net/htmldoc/message.html#E303"><code>E303</code></a></strong> error.</p>
+<p>You might see this error while using <strong>ViM</strong> as a
+<strong>standard user</strong> on <strong>Windows 7</strong>. This is a
+result of ViM still catching up to being used as a standard user on
+Windows 7.</p>
+<p>By default, ViM opens a <strong><a
+href="http://vimdoc.sourceforge.net/htmldoc/recover.html#swap-file">swap
+file</a></strong> when the user starts editing an already existing file.
+On Windows, the swap file is a hidden dot file named the same as the
+opened file with a suffix of <code>.swp</code>. For example, editing
+<code>hello.cpp</code> will create a hidden <code>.hello.cpp.swp</code>.
+This swap file is created in the same directory as the opened file.</p>
+<p>If the user just opened ViM and started editing into the empty
+editor, what happens? On Windows, a hidden swap file named
+<code>_.swp</code> is created. The above error is caused because ViM on
+Windows 7 tries to create this swap file in
+<code>C:\Windows\System32</code>. A standard user does not have the
+permissions to create files there and thus ViM throws the <strong><a
+href="http://vimdoc.sourceforge.net/htmldoc/message.html#E303"><code>E303</code></a></strong>
+error.</p>
 <p><strong>Solution</strong></p>
-<p>The solution would be to tell ViM to create the swap files in a temporary directory where a standard user has all the necessary permissions. A good location would be the directory pointed to by the <code>%TEMP%</code> environment variable. On Windows 7, this points to <code>%USERPROFILE%\AppData\Local\Temp</code>.</p>
-<p>The directory where ViM creates its swap files is read from the <strong><a href="http://vimdoc.sourceforge.net/htmldoc/options.html#%27directory%27"><code>dir</code></a></strong> (or <strong><a href="http://vimdoc.sourceforge.net/htmldoc/options.html#%27directory%27"><code>directory</code></a></strong>) variable. Setting it to <code>%TEMP%</code> solves the above error:</p>
+<p>The solution would be to tell ViM to create the swap files in a
+temporary directory where a standard user has all the necessary
+permissions. A good location would be the directory pointed to by the
+<code>%TEMP%</code> environment variable. On Windows 7, this points to
+<code>%USERPROFILE%\AppData\Local\Temp</code>.</p>
+<p>The directory where ViM creates its swap files is read from the
+<strong><a
+href="http://vimdoc.sourceforge.net/htmldoc/options.html#%27directory%27"><code>dir</code></a></strong>
+(or <strong><a
+href="http://vimdoc.sourceforge.net/htmldoc/options.html#%27directory%27"><code>directory</code></a></strong>)
+variable. Setting it to <code>%TEMP%</code> solves the above error:</p>
 <pre><code>:set dir=$TEMP</code></pre>
-<p>Note that ViM swap file behaviour changes a bit when the <code>dir</code> variable is set. All swap files are created in this directory, as opposed to being created in the directories of the files being edited. And the swap filenames are <strong>not</strong> prepended with a dot. For example, editing <code>D:\Work\hello.cpp</code> creates a hidden swap file <code>%USERPROFILE%\AppData\Local\Temp\hello.cpp.swp</code></p>
+<p>Note that ViM swap file behaviour changes a bit when the
+<code>dir</code> variable is set. All swap files are created in this
+directory, as opposed to being created in the directories of the files
+being edited. And the swap filenames are <strong>not</strong> prepended
+with a dot. For example, editing <code>D:\Work\hello.cpp</code> creates
+a hidden swap file
+<code>%USERPROFILE%\AppData\Local\Temp\hello.cpp.swp</code></p>
 </div>
 
 <br />
@@ -64,11 +84,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

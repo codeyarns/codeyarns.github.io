@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,28 +30,60 @@
 <h1 class="title">How to install and use OpenNI2</h1>
 <p class="date">📅 2015-Aug-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#openni'>openni</a>, <a href='index.html#primesense'>primesense</a>, <a href='index.html#usb'>usb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I use <strong>OpenNI</strong> to read from a <strong>Primesense RD1.09</strong> depth camera. <strong>Ubuntu</strong> has OpenNI library packages in its archive, but this is the older OpenNI 1.x. I find its API and device support lacking and so prefer to use OpenNI2. Also, there is no need to build the newer OpenNI2 from source since pre-built packages are available.</p>
+<p>I use <strong>OpenNI</strong> to read from a <strong>Primesense
+RD1.09</strong> depth camera. <strong>Ubuntu</strong> has OpenNI library
+packages in its archive, but this is the older OpenNI 1.x. I find its
+API and device support lacking and so prefer to use OpenNI2. Also, there
+is no need to build the newer OpenNI2 from source since pre-built
+packages are available.</p>
 <p>Installing and using OpenNI2 with Primesense is easy:</p>
 <ul>
-<li><p><strong>Download:</strong> The pre-built SDK file for your Linux can be downloaded from the OpenNI <a href="http://structure.io/openni">homepage</a>. It is available for x86, x64 and ARM. I downloaded the x64 SDK file and unzipped it.</p></li>
-<li><p><strong>OpenNI directory:</strong> Your OpenNI code and programs will look for header and library files from this unzipped directory. So, move it to a suitable location. I like to keep it in <code>~/lib</code></p></li>
-<li><p><strong>Install:</strong> Run the installer from the unzipped directory:</p></li>
+<li><p><strong>Download:</strong> The pre-built SDK file for your Linux
+can be downloaded from the OpenNI <a
+href="http://structure.io/openni">homepage</a>. It is available for x86,
+x64 and ARM. I downloaded the x64 SDK file and unzipped it.</p></li>
+<li><p><strong>OpenNI directory:</strong> Your OpenNI code and programs
+will look for header and library files from this unzipped directory. So,
+move it to a suitable location. I like to keep it in
+<code>~/lib</code></p></li>
+<li><p><strong>Install:</strong> Run the installer from the unzipped
+directory:</p></li>
 </ul>
 <pre><code>$ sudo ./install.sh</code></pre>
-<p>All this does is to place the UDEV rules for the Primesense camera in <code>/etc/udev/rules.d</code>. Your camera is now ready to be used!</p>
+<p>All this does is to place the UDEV rules for the Primesense camera in
+<code>/etc/udev/rules.d</code>. Your camera is now ready to be used!</p>
 <ul>
-<li><p><strong>Camera detection:</strong> Plug in your depth camera to a USB port on your computer. Check if the camera is detected using <code>lsusb</code> command. My camera is listed as <code>ASUS</code> in this listing when it is detected.</p></li>
-<li><p><strong>Simple viewer:</strong> Run the simple viewer provided in OpenNI. You should be able to view depth and color (RGB) images now:</p></li>
+<li><p><strong>Camera detection:</strong> Plug in your depth camera to a
+USB port on your computer. Check if the camera is detected using
+<code>lsusb</code> command. My camera is listed as <code>ASUS</code> in
+this listing when it is detected.</p></li>
+<li><p><strong>Simple viewer:</strong> Run the simple viewer provided in
+OpenNI. You should be able to view depth and color (RGB) images
+now:</p></li>
 </ul>
 <pre><code>$ cd Tools
 $ ./NiViewer</code></pre>
 <ul>
-<li><p><strong>Device error:</strong> If <code>NiViewer</code> failed with a <strong>no devices found</strong> error, then a solution I discovered is described <a href="2015/09/28/no-devices-found-error-with-openni2/">here</a>.</p></li>
-<li><p><strong>Color image error:</strong> If <code>NiViewer</code> only shows depth image, but no color image: this sometimes happens. Unplug and plug in the camera and try again.</p></li>
-<li><p><strong>Header and libraries:</strong> You will find a <code>OpenNIDevEnvironment</code> file containing the paths for two environment variables: <code>OPENNI2_INCLUDE</code> and <code>OPENNI2_REDIST</code>. Use these include and library paths when you build your own C++ code that uses OpenNI. To link with OpenNI libraries add the <code>-lOpenNI2</code> directive.</p></li>
-<li><p><strong>Sample C++ project:</strong> If you need help starting off, I have a CMake project with code for reading from Primesense camera <a href="https://github.com/ashwin/openni2_primesense_viewer">here</a>.</p></li>
+<li><p><strong>Device error:</strong> If <code>NiViewer</code> failed
+with a <strong>no devices found</strong> error, then a solution I
+discovered is described <a
+href="2015/09/28/no-devices-found-error-with-openni2/">here</a>.</p></li>
+<li><p><strong>Color image error:</strong> If <code>NiViewer</code> only
+shows depth image, but no color image: this sometimes happens. Unplug
+and plug in the camera and try again.</p></li>
+<li><p><strong>Header and libraries:</strong> You will find a
+<code>OpenNIDevEnvironment</code> file containing the paths for two
+environment variables: <code>OPENNI2_INCLUDE</code> and
+<code>OPENNI2_REDIST</code>. Use these include and library paths when
+you build your own C++ code that uses OpenNI. To link with OpenNI
+libraries add the <code>-lOpenNI2</code> directive.</p></li>
+<li><p><strong>Sample C++ project:</strong> If you need help starting
+off, I have a CMake project with code for reading from Primesense camera
+<a
+href="https://github.com/ashwin/openni2_primesense_viewer">here</a>.</p></li>
 </ul>
-<p><strong>Tried with:</strong> OpenNI 2.2.0.33, Primesense RD1.09 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> OpenNI 2.2.0.33, Primesense RD1.09 and
+Ubuntu 14.04</p>
 </div>
 
 <br />
@@ -73,11 +91,13 @@ $ ./NiViewer</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

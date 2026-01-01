@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,23 +31,38 @@
 <p class="date">📅 2015-Oct-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#android'>android</a>, <a href='index.html#intellij'>intellij</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/10/20151021_intellij_font.png" alt="" /><figcaption>Before and after fixing font in Android Studio</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/10/20151021_intellij_font.png"
+alt="Before and after fixing font in Android Studio" />
+<figcaption aria-hidden="true">Before and after fixing font in Android
+Studio</figcaption>
 </figure>
 <h2 id="problem">Problem</h2>
-<p><strong>IntelliJ</strong> and other tools based on it, like <strong>Android Studio</strong>, look terrible on <strong>Ubuntu 14.04</strong> with <strong>OpenJDK 7</strong>. The font rendering in the UI is terribly aliased and is a pain on the eyes. This is surprising since <strong>Eclipse</strong> renders beautifully using the same JDK and Ubuntu system.</p>
+<p><strong>IntelliJ</strong> and other tools based on it, like
+<strong>Android Studio</strong>, look terrible on <strong>Ubuntu
+14.04</strong> with <strong>OpenJDK 7</strong>. The font rendering in
+the UI is terribly aliased and is a pain on the eyes. This is surprising
+since <strong>Eclipse</strong> renders beautifully using the same JDK
+and Ubuntu system.</p>
 <h2 id="solution">Solution</h2>
-<p>Eclipse uses GTK for its GUI while IntelliJ and Android Studio use Swing. Thankfully, this situation can be fixed.</p>
+<p>Eclipse uses GTK for its GUI while IntelliJ and Android Studio use
+Swing. Thankfully, this situation can be fixed.</p>
 <ul>
-<li>Replace the OpenJDK with a version in which font rendering has been fixed:</li>
+<li>Replace the OpenJDK with a version in which font rendering has been
+fixed:</li>
 </ul>
 <pre><code>$ sudo apt-get purge openjdk-7-jdk
 $ sudo add-apt-repository ppa:no1wantdthisname/openjdk-fontfix
 $ sudo apt-get update
 $ sudo apt install openjdk-7-jdk</code></pre>
 <ul>
-<li>Open the <code>studio64.vmoptions</code> file and change the anti-aliased font setting to <code>-Dawt.useSystemAAFontSettings=on</code>. Other options suggested by users online did not work for me.</li>
+<li>Open the <code>studio64.vmoptions</code> file and change the
+anti-aliased font setting to
+<code>-Dawt.useSystemAAFontSettings=on</code>. Other options suggested
+by users online did not work for me.</li>
 </ul>
-<p>Now IntelliJ or Android Studio should render the font much better. I still notice a bit of aliasing with Consolas, but it is manageable.</p>
+<p>Now IntelliJ or Android Studio should render the font much better. I
+still notice a bit of aliasing with Consolas, but it is manageable.</p>
 <p><strong>Tried with:</strong> Android Studio 1.4 and Ubuntu 14.04</p>
 </div>
 
@@ -70,11 +71,13 @@ $ sudo apt install openjdk-7-jdk</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

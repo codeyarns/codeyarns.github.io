@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,13 +31,25 @@
 <p class="date">📅 2016-May-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#autocomplete'>autocomplete</a>, <a href='index.html#eclipse'>eclipse</a>, <a href='index.html#go'>go</a>, <a href='index.html#goclipse'>goclipse</a>, <a href='index.html#gocode'>gocode</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I installed the <strong>Go</strong> compiler and set the <code>GOROOT</code> and <code>GOPATH</code> environment variables correctly. To work with Go files, I installed the <strong>GoClipse</strong> plugin in <strong>Eclipse</strong>. When I tried to make Goclipse autocomplete my code, I got this error:</p>
+<p>I installed the <strong>Go</strong> compiler and set the
+<code>GOROOT</code> and <code>GOPATH</code> environment variables
+correctly. To work with Go files, I installed the
+<strong>GoClipse</strong> plugin in <strong>Eclipse</strong>. When I
+tried to make Goclipse autocomplete my code, I got this error:</p>
 <pre><code>Cannot run program &quot;gocode&quot;: error=2, No such file or directory</code></pre>
 <h2 id="solution">Solution</h2>
-<p>The Go compiler is not typically used for autocompletion. There is a separate <a href="https://github.com/nsf/gocode"><strong>gocode</strong></a> tool that is used for this purpose. So, to get autocompletion we need to install this by using this command:</p>
+<p>The Go compiler is not typically used for autocompletion. There is a
+separate <a
+href="https://github.com/nsf/gocode"><strong>gocode</strong></a> tool
+that is used for this purpose. So, to get autocompletion we need to
+install this by using this command:</p>
 <pre><code>$ go get -u github.com/nsf/gocode</code></pre>
-<p>I found that this installed the <code>gocode</code> binary in <code>$GOPATH/bin</code>. I opened Window -&gt; Preferences -&gt; Go -&gt; Tools and set this path for gocode. Autocompletion started working immediately after this! 😊</p>
-<p><strong>Tried with:</strong> GoClipse 0.14.1, Eclipse 4.5.2 and Go 1.6.2</p>
+<p>I found that this installed the <code>gocode</code> binary in
+<code>$GOPATH/bin</code>. I opened Window -&gt; Preferences -&gt; Go
+-&gt; Tools and set this path for gocode. Autocompletion started working
+immediately after this! 😊</p>
+<p><strong>Tried with:</strong> GoClipse 0.14.1, Eclipse 4.5.2 and Go
+1.6.2</p>
 </div>
 
 <br />
@@ -59,11 +57,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

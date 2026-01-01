@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,16 +31,26 @@
 <p class="date">📅 2014-May-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#latex'>latex</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>A LaTeX document that uses BibLaTeX was compiling without errors on Ubuntu 12.04 using Vim-LaTeX. When I changed to Ubuntu 14.04, compiling the same document gave this warning:</p>
+<p>A LaTeX document that uses BibLaTeX was compiling without errors on
+Ubuntu 12.04 using Vim-LaTeX. When I changed to Ubuntu 14.04, compiling
+the same document gave this warning:</p>
 <pre><code>LaTeX Warning: Empty bibliography on input line 728.</code></pre>
 <p>The resulting PDF had no citations and no bibliography!</p>
 <h2 id="solution">Solution</h2>
-<p>In Ubuntu, the TeX-Live distribution is typically used for LaTeX compilation. In the years since the TeX-Live of Ubuntu 12.04, BibLaTeX has switched from bibtex to biber as its backend. Also, Vim-LaTeX has not been updated in these years and it still uses bibtex. This was causing the error.</p>
+<p>In Ubuntu, the TeX-Live distribution is typically used for LaTeX
+compilation. In the years since the TeX-Live of Ubuntu 12.04, BibLaTeX
+has switched from bibtex to biber as its backend. Also, Vim-LaTeX has
+not been updated in these years and it still uses bibtex. This was
+causing the error.</p>
 <p>First, we install biber:</p>
 <pre><code>$ sudo apt-get install biber</code></pre>
-<p>Next, using the <a href="http://tex.stackexchange.com/questions/83715/biber-backend-and-vim-latex">clues given by Paul</a> I forked Vim-LaTeX and fixed it to use biber. To use this fork:</p>
+<p>Next, using the <a
+href="http://tex.stackexchange.com/questions/83715/biber-backend-and-vim-latex">clues
+given by Paul</a> I forked Vim-LaTeX and fixed it to use biber. To use
+this fork:</p>
 <pre><code>$ git clone https://github.com/ashwin/vim-latex.git</code></pre>
-<p>Compiling the LaTeX document using Vim-LaTeX now should not have this error and the bibliography should be produced. 😊</p>
+<p>Compiling the LaTeX document using Vim-LaTeX now should not have this
+error and the bibliography should be produced. 😊</p>
 </div>
 
 <br />
@@ -62,11 +58,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

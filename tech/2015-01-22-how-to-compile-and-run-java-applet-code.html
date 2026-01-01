@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,23 +30,33 @@
 <h1 class="title">How to compile and run Java applet code</h1>
 <p class="date">📅 2015-Jan-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#applet'>applet</a>, <a href='index.html#firefox'>firefox</a>, <a href='index.html#java'>java</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>Java</strong> programming language can be used to write <strong>applets</strong> that run in a browser. Applet source code is similar to a typical Java program source code, except that it does not have a <code>main</code> method. Applet source code can be created in <code>.java</code> files.</p>
+<p>The <strong>Java</strong> programming language can be used to write
+<strong>applets</strong> that run in a browser. Applet source code is
+similar to a typical Java program source code, except that it does not
+have a <code>main</code> method. Applet source code can be created in
+<code>.java</code> files.</p>
 <p>Compiling them is the same as usual:</p>
 <pre><code>$ javac foo.java</code></pre>
 <p>This generates a <code>foo.class</code> compiled bytecode file.</p>
-<p>However, running the generated <code>.class</code> file using the Java VM gives this error:</p>
+<p>However, running the generated <code>.class</code> file using the
+Java VM gives this error:</p>
 <pre><code>$ java foo
 Error: Main method not found in class foo, please define the main method as:
    public static void main(String[] args)</code></pre>
-<p>Applet can only be executed in a browser by opening a HTML file that refers to this applet <code>.class</code> file. A minimal HTML file that does is:</p>
+<p>Applet can only be executed in a browser by opening a HTML file that
+refers to this applet <code>.class</code> file. A minimal HTML file that
+does is:</p>
 <pre><code>&lt;html&gt;
 &lt;body&gt;
 &lt;applet code=foo width=400 height=200&gt;
 &lt;/applet&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-<p>Save this as <code>foo.html</code> file in the same directory as the <code>foo.class</code> file. Open it in a browser that can run Java applets and you can see the result. :)</p>
-<p><strong>Tried with:</strong> Java 1.7, Firefox 34 and Ubuntu 14.04</p>
+<p>Save this as <code>foo.html</code> file in the same directory as the
+<code>foo.class</code> file. Open it in a browser that can run Java
+applets and you can see the result. :)</p>
+<p><strong>Tried with:</strong> Java 1.7, Firefox 34 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -68,11 +64,13 @@ Error: Main method not found in class foo, please define the main method as:
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

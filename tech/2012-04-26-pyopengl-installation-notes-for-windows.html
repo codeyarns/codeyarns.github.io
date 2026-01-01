@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,37 @@
 <h1 class="title">PyOpenGL Installation Notes for Windows</h1>
 <p class="date">📅 2012-Apr-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pyopengl'>pyopengl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://pyopengl.sourceforge.net/"><strong>PyOpenGL</strong></a> provides Python bindings to OpenGL, GLU and GLUT libraries.</p>
+<p><a
+href="http://pyopengl.sourceforge.net/"><strong>PyOpenGL</strong></a>
+provides Python bindings to OpenGL, GLU and GLUT libraries.</p>
 <p><strong>The painful solution</strong></p>
-<p>Assume you are using Python 3.x 64-bit on Windows 7 64-bit. There is no official PyOpenGL package for Python 3.x. Tough luck!</p>
-<p>So, you take the pains of installing Python 2.x 64-bit on your OS. You then get the official PyOpenGL package and install it using <code>python setup.py install</code>. Everything seems to be working fine.</p>
-<p>You write your simple PyOpenGL program, but when you execute it, you get this error:</p>
+<p>Assume you are using Python 3.x 64-bit on Windows 7 64-bit. There is
+no official PyOpenGL package for Python 3.x. Tough luck!</p>
+<p>So, you take the pains of installing Python 2.x 64-bit on your OS.
+You then get the official PyOpenGL package and install it using
+<code>python setup.py install</code>. Everything seems to be working
+fine.</p>
+<p>You write your simple PyOpenGL program, but when you execute it, you
+get this error:</p>
 <pre><code>File &quot;C:\Program Files\Python27\lib\site-packages\OpenGL\GLUT\special.py&quot;, line 324, in glutInit
     _base_glutInit( ctypes.byref(count), holder )
 TypeError: &#39;NoneType&#39; object is not callable</code></pre>
-<p>It turns out that there are many problems with the official PyOpenGL package. It does not copy the required DLLs and even if you figure this out and copy them manually it will not work on work properly on 64-bit Windows. So, give up using the official package.</p>
+<p>It turns out that there are many problems with the official PyOpenGL
+package. It does not copy the required DLLs and even if you figure this
+out and copy them manually it will not work on work properly on 64-bit
+Windows. So, give up using the official package.</p>
 <p><strong>The better solution </strong></p>
-<p>Skip the error-prone official PyOpenGL package and get the unofficial PyOpenGL installer from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">here</a>. Pick the version that matches your Windows version, 32-64-bitness and Python version (2.x or 3.x). Double-click to install and you are done! This is one of those cases where the unofficial builds are far better than the official one. Cheers to <a href="http://www.lfd.uci.edu/~gohlke/">Christoph Gohlke</a> for maintaining them 😊</p>
-<p><strong>Tried with:</strong> Windows 7 64-bit and Python 3.2 64-bit</p>
+<p>Skip the error-prone official PyOpenGL package and get the unofficial
+PyOpenGL installer from <a
+href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">here</a>. Pick the
+version that matches your Windows version, 32-64-bitness and Python
+version (2.x or 3.x). Double-click to install and you are done! This is
+one of those cases where the unofficial builds are far better than the
+official one. Cheers to <a
+href="http://www.lfd.uci.edu/~gohlke/">Christoph Gohlke</a> for
+maintaining them 😊</p>
+<p><strong>Tried with:</strong> Windows 7 64-bit and Python 3.2
+64-bit</p>
 </div>
 
 <br />
@@ -63,11 +68,13 @@ TypeError: &#39;NoneType&#39; object is not callable</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

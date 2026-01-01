@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,10 @@
 <h1 class="title">Millisecond sleep on Windows</h1>
 <p class="date">📅 2015-Oct-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#sleep'>sleep</a>, <a href='index.html#usleep'>usleep</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I had code that slept for a certain number of <strong>milliseconds</strong> using the <code>usleep</code> function available from <code>unistd.h</code> on Unix systems. This function sleeps in <strong>microseconds</strong>.</p>
+<p>I had code that slept for a certain number of
+<strong>milliseconds</strong> using the <code>usleep</code> function
+available from <code>unistd.h</code> on Unix systems. This function
+sleeps in <strong>microseconds</strong>.</p>
 <p>Code:</p>
 <pre><code>#include &lt;unistd.h&gt;
 
@@ -52,8 +41,13 @@ void msleep(int ms)
 {
     usleep(ms * 1000);
 }</code></pre>
-<p>This code cannot be ported to Windows because it does not have <code>usleep</code>. You have two alternatives: use the high performance timer or the ancient <code>Sleep</code> call.</p>
-<p>Information on <code>Sleep</code> can be found <a href="https://msdn.microsoft.com/en-us/library/ms686298.aspx">here</a>. Include the <code>Windows.h</code> to be able to compile it. I changed the code to:</p>
+<p>This code cannot be ported to Windows because it does not have
+<code>usleep</code>. You have two alternatives: use the high performance
+timer or the ancient <code>Sleep</code> call.</p>
+<p>Information on <code>Sleep</code> can be found <a
+href="https://msdn.microsoft.com/en-us/library/ms686298.aspx">here</a>.
+Include the <code>Windows.h</code> to be able to compile it. I changed
+the code to:</p>
 <pre><code>#ifdef _WIN32
 #include &lt;Windows.h&gt;
 #else
@@ -75,11 +69,13 @@ void msleep(int ms)
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

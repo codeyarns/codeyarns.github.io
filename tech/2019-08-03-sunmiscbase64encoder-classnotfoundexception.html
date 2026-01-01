@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,11 +31,17 @@
 <p class="date">📅 2019-Aug-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#java'>java</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p><a href="2014-04-04-how-to-run-jnlp-file.html">Running a JNLP</a> application file using javaws would terminate with this error:</p>
+<p><a href="2014-04-04-how-to-run-jnlp-file.html">Running a JNLP</a>
+application file using javaws would terminate with this error:</p>
 <pre><code>Caused by: java.lang.ClassNotFoundException: sun.misc.BASE64Encoder</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Turns out that my Ubuntu was using OpenJDK 11 and Oracle had <a href="https://docs.oracle.com/javase/9/migrate/toc.htm#JSMIG-GUID-BA521187-60FD-4CA5-B998-58A1D05587BC">removed</a> the <code>sun.misc.BASE64Encoder</code> class in Java 9.</p>
-<p>Once I installed OpenJDK 8 (Java 8) and <a href="2015-12-01-how-to-set-default-java-version-in-ubuntu.html">made it the default Java</a>, I was able to run the JNLP application without any errors.</p>
+<p>Turns out that my Ubuntu was using OpenJDK 11 and Oracle had <a
+href="https://docs.oracle.com/javase/9/migrate/toc.htm#JSMIG-GUID-BA521187-60FD-4CA5-B998-58A1D05587BC">removed</a>
+the <code>sun.misc.BASE64Encoder</code> class in Java 9.</p>
+<p>Once I installed OpenJDK 8 (Java 8) and <a
+href="2015-12-01-how-to-set-default-java-version-in-ubuntu.html">made it
+the default Java</a>, I was able to run the JNLP application without any
+errors.</p>
 </div>
 
 <br />
@@ -57,11 +49,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

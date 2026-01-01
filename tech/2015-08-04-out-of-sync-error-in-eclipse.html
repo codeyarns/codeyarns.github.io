@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,16 +31,27 @@
 <p class="date">📅 2015-Aug-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#eclipse'>eclipse</a>, <a href='index.html#sync'>sync</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p><strong>Eclipse</strong> has a strange behavior that I have not seen in any other editor or IDE. Assume that a file belonging to a project in the workspace has been modified outside of Eclipse. If you now open that file in Eclipse, it does not open it, but shows this error:</p>
+<p><strong>Eclipse</strong> has a strange behavior that I have not seen
+in any other editor or IDE. Assume that a file belonging to a project in
+the workspace has been modified outside of Eclipse. If you now open that
+file in Eclipse, it does not open it, but shows this error:</p>
 <pre><code>Resource is out of sync with the file system: &#39;/src/foo.cpp&#39;.
 
 Press &#39;F5&#39; or select File &gt; Refresh to refresh the file.</code></pre>
 <p>You can press <code>F5</code> and the file will be displayed.</p>
 <h2 id="solution">Solution</h2>
-<p>I cannot imagine a scenario in practice where I would not want to keep the updated file. To make this out of sync error go away by refreshing files automatically, you have two options:</p>
+<p>I cannot imagine a scenario in practice where I would not want to
+keep the updated file. To make this out of sync error go away by
+refreshing files automatically, you have two options:</p>
 <ol type="1">
-<li><p>You can make Eclipse refresh the file automatically when it is opened. To do this enable Windows -&gt; Preferences -&gt; General -&gt; Workspace -&gt; Refresh on access.</p></li>
-<li><p>You can make Eclipse refresh the file by being signaled by the filesystem (this is efficient) or polling the filesystem (this is inefficient). This is efficient only on Windows. To do this enable Windows -&gt; Preferences -&gt; General -&gt; Workspace -&gt; Refresh using native hooks or polling.</p></li>
+<li><p>You can make Eclipse refresh the file automatically when it is
+opened. To do this enable Windows -&gt; Preferences -&gt; General -&gt;
+Workspace -&gt; Refresh on access.</p></li>
+<li><p>You can make Eclipse refresh the file by being signaled by the
+filesystem (this is efficient) or polling the filesystem (this is
+inefficient). This is efficient only on Windows. To do this enable
+Windows -&gt; Preferences -&gt; General -&gt; Workspace -&gt; Refresh
+using native hooks or polling.</p></li>
 </ol>
 <p><strong>Tried with:</strong> Eclipse 4.5 and Ubuntu 14.04</p>
 </div>
@@ -64,11 +61,13 @@ Press &#39;F5&#39; or select File &gt; Refresh to refresh the file.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

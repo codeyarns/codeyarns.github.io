@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,31 @@
 <h1 class="title">C: Initializer List</h1>
 <p class="date">📅 2011-Jul-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#initializer-list'>initializer list</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A common practice in <strong>C</strong> is to <strong>initialize</strong> the elements of arrays and structures to <strong>zero</strong> like this:</p>
+<p>A common practice in <strong>C</strong> is to
+<strong>initialize</strong> the elements of arrays and structures to
+<strong>zero</strong> like this:</p>
 <pre><code>int iarr[3]    = { 0 };
 struct Foo foo = { 0 };</code></pre>
-<p>Experienced C programmers know that this kind of initialization works <strong>only</strong> for zero, not for any other value! 😊 For example, this <strong>will not</strong> initialize the elements of the array or structure to -1:</p>
+<p>Experienced C programmers know that this kind of initialization works
+<strong>only</strong> for zero, not for any other value! 😊 For example,
+this <strong>will not</strong> initialize the elements of the array or
+structure to -1:</p>
 <pre><code>int iarr[3]    = { -1 };  // Initialized to [-1, 0, 0]
 struct Foo foo = { -1 };</code></pre>
-<p>The above only initializes the first element of the array or structure to -1. The rest are initialized to 0.</p>
-<p>The single initializer shown in examples above is just a special case of an <strong>initializer list</strong> that does not completely handle all the elements of the array or structure. For such partial initializer lists, C will step in and initialize the rest of the elements to 0. For example:</p>
+<p>The above only initializes the first element of the array or
+structure to -1. The rest are initialized to 0.</p>
+<p>The single initializer shown in examples above is just a special case
+of an <strong>initializer list</strong> that does not completely handle
+all the elements of the array or structure. For such partial initializer
+lists, C will step in and initialize the rest of the elements to 0. For
+example:</p>
 <pre><code>int iarr[3] = { -1, 99 }; // Initialized to [-1, 99, 0]</code></pre>
-<p>Finally, modern compilers like Visual C++ provide an easier alternative to initialize all the elements to zero:</p>
+<p>Finally, modern compilers like Visual C++ provide an easier
+alternative to initialize all the elements to zero:</p>
 <pre><code>int iarr[3] = {}; // Initialized to [0, 0, 0]</code></pre>
-<p>For more on initializer lists, refer to <strong>Appendix A.8.7</strong> in <strong>The C Programming Language</strong> (2nd Edition).</p>
+<p>For more on initializer lists, refer to <strong>Appendix
+A.8.7</strong> in <strong>The C Programming Language</strong> (2nd
+Edition).</p>
 </div>
 
 <br />
@@ -63,11 +62,13 @@ struct Foo foo = { -1 };</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

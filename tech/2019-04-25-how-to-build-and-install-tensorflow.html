@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,9 @@
 <h1 class="title">How to build and install TensorFlow</h1>
 <p class="date">📅 2019-Apr-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#tensorflow'>tensorflow</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>TensorFlow (TF)</strong> can be built from source easily and installed as a Python wheel package. I used the following steps to build it using Python3 and with support for CUDA and TensorRT:</p>
+<p><strong>TensorFlow (TF)</strong> can be built from source easily and
+installed as a Python wheel package. I used the following steps to build
+it using Python3 and with support for CUDA and TensorRT:</p>
 <ul>
 <li>Install Python3 pre-requisites:</li>
 </ul>
@@ -55,10 +43,23 @@
 <pre><code>$ pip3 install -U --user six numpy wheel setuptools mock
 $ pip3 install -U --user keras_applications==1.0.6 --no-deps
 $ pip3 install -U --user keras_preprocessing==1.0.5 --no-deps</code></pre>
-<p>These packages are installed to your <code>~/.local/lib/python3.x/site-packages</code> directory. TF documentation also installs the latest pip3 from PyPI. However, doing that causes the infamous <a href="2018-08-03-cannot-import-name-main.html">“Cannot import name main”</a> error, so I do not do that.</p>
+<p>These packages are installed to your
+<code>~/.local/lib/python3.x/site-packages</code> directory. TF
+documentation also installs the latest pip3 from PyPI. However, doing
+that causes the infamous <a
+href="2018-08-03-cannot-import-name-main.html">“Cannot import name
+main”</a> error, so I do not do that.</p>
 <ul>
-<li><p>TF uses Bazel as its build tool. Install it as described <a href="https://docs.bazel.build/versions/master/install.html">here</a>. I ended up placing its binary in my <code>~/bin</code>. Since my <code>~/bin</code> is in my <code>PATH</code>, the Bazel binary can be executed from any place.</p></li>
-<li><p>I recommend creating a <code>tensorflow_root</code> directory. This is because the TF packaging tends to write out to a location outside the TF source directory. Also, TF needs to access other libraries. So this root directory makes it easy to create all TF related directories under one umbrella.</p></li>
+<li><p>TF uses Bazel as its build tool. Install it as described <a
+href="https://docs.bazel.build/versions/master/install.html">here</a>. I
+ended up placing its binary in my <code>~/bin</code>. Since my
+<code>~/bin</code> is in my <code>PATH</code>, the Bazel binary can be
+executed from any place.</p></li>
+<li><p>I recommend creating a <code>tensorflow_root</code> directory.
+This is because the TF packaging tends to write out to a location
+outside the TF source directory. Also, TF needs to access other
+libraries. So this root directory makes it easy to create all TF related
+directories under one umbrella.</p></li>
 <li><p>Clone the TF Git repository inside the root directory:</p></li>
 </ul>
 <pre><code>$ cd tensorflow_root
@@ -70,9 +71,13 @@ $ cd tensorflow</code></pre>
 <pre><code>$ ./configure</code></pre>
 <p>Some of the questions it asks and my replies:</p>
 <ul>
-<li><p>Please specify the location of python. <code>/usr/bin/python3</code></p></li>
-<li><p>Please input the desired Python library path to use. <code>/usr/local/lib/python3.6/dist-packages</code></p></li>
-<li><p>Enable: XLA JIT, CUDA and TensorRT. Be careful, TF might not work with latest versions of CUDA, cuDNN and TensorRT. I used CUDA 10.0 and cuDNN 7.3 and TensorRT 5.0.</p></li>
+<li><p>Please specify the location of python.
+<code>/usr/bin/python3</code></p></li>
+<li><p>Please input the desired Python library path to use.
+<code>/usr/local/lib/python3.6/dist-packages</code></p></li>
+<li><p>Enable: XLA JIT, CUDA and TensorRT. Be careful, TF might not work
+with latest versions of CUDA, cuDNN and TensorRT. I used CUDA 10.0 and
+cuDNN 7.3 and TensorRT 5.0.</p></li>
 <li><p>Did not enable: OpenCL SYCL and ROCm.</p>
 <ul>
 <li>It is time to build TF. The command to build is:</li>
@@ -81,12 +86,16 @@ $ cd tensorflow</code></pre>
 <pre><code>$ bazel build --config=opt //tensorflow/tools/pip_package:build_pip_package</code></pre>
 <p>The first build can take 2-4 hours to complete.</p>
 <ul>
-<li>Now we are ready to package the build artifacts into a Python package. Specify where you want that package to be placed in the packaging command:</li>
+<li>Now we are ready to package the build artifacts into a Python
+package. Specify where you want that package to be placed in the
+packaging command:</li>
 </ul>
 <pre><code>$ ./bazel-bin/tensorflow/tools/pip_package/build_pip_package /path_to_tensorflow_root/tensorflow_pkg</code></pre>
-<p>I found that it had generated a Python wheel file named: <code>tensorflow-1.13.1-cp36-cp36m-linux_x86_64.whl</code></p>
+<p>I found that it had generated a Python wheel file named:
+<code>tensorflow-1.13.1-cp36-cp36m-linux_x86_64.whl</code></p>
 <ul>
-<li>We are ready to install TF. Make sure you remove older versions of TF:</li>
+<li>We are ready to install TF. Make sure you remove older versions of
+TF:</li>
 </ul>
 <pre><code>$ pip3 uninstall tensorflow tensorflow-estimator</code></pre>
 <ul>
@@ -105,11 +114,13 @@ $ cd tensorflow</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,17 +30,26 @@
 <h1 class="title">Find Cheatsheet</h1>
 <p class="date">📅 2016-Sep-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#search'>search</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>find</strong> command in Linux is immensely useful to perform a <em>live search</em> of the filesystem to find files and directories. Note that the <a href="2023-05-12-locate.html"><strong>locate</strong></a> command can be much faster if you are OK with searching from a compiled database of filenames.</p>
-<p>Here are some invocations of the <code>find</code> command I find useful:</p>
+<p>The <strong>find</strong> command in Linux is immensely useful to
+perform a <em>live search</em> of the filesystem to find files and
+directories. Note that the <a
+href="2023-05-12-locate.html"><strong>locate</strong></a> command can be
+much faster if you are OK with searching from a compiled database of
+filenames.</p>
+<p>Here are some invocations of the <code>find</code> command I find
+useful:</p>
 <ul>
 <li>List all files and directories under a specified directory:</li>
 </ul>
 <pre><code>$ find /usr/include
 $ find ../foobar/lib
 $ find .</code></pre>
-<p>Unlike commands like <code>ls</code>, note that the <code>find</code> command is recursive by default. It will list everything under the specified directory.</p>
+<p>Unlike commands like <code>ls</code>, note that the <code>find</code>
+command is recursive by default. It will list everything under the
+specified directory.</p>
 <ul>
-<li>List only normal files (symbolic links and directories will not be shown):</li>
+<li>List only normal files (symbolic links and directories will not be
+shown):</li>
 </ul>
 <pre><code>$ find /usr/include -type f</code></pre>
 <ul>
@@ -70,7 +65,8 @@ $ find .</code></pre>
 </ul>
 <pre><code>$ find /bin -executable</code></pre>
 <ul>
-<li>Combining two or more types can be done. For example, to list normal files and symbolic links:</li>
+<li>Combining two or more types can be done. For example, to list normal
+files and symbolic links:</li>
 </ul>
 <pre><code>$ find /usr/foobar -type f -or -type l</code></pre>
 <ul>
@@ -96,7 +92,8 @@ $ find /usr/foobar -name &quot;*some_substring*&quot;</code></pre>
 </ul>
 <pre><code>$ find /usr/foobar -group somegroup</code></pre>
 <ul>
-<li>List files whose size is exactly or greater than a specific size:</li>
+<li>List files whose size is exactly or greater than a specific
+size:</li>
 </ul>
 <pre><code>$ find /usr/foobar -size 10k
 $ find /usr/foobar -size +10k
@@ -107,7 +104,8 @@ $ find /usr/foobar -size +10G</code></pre>
 </ul>
 <pre><code>$ find /usr/foobar -size 0</code></pre>
 <ul>
-<li>List files and directories newer than the specified file or directory:</li>
+<li>List files and directories newer than the specified file or
+directory:</li>
 </ul>
 <pre><code>$ find /usr/foobar -newer stdio.cpp</code></pre>
 <ul>
@@ -119,14 +117,21 @@ $ find /usr/foobar -size +10G</code></pre>
 </ul>
 <pre><code>$ find /usr/foobar -size +20k -delete</code></pre>
 <ul>
-<li>Note that many of the above operations can be performed by piping the results of <code>find</code> to the immensely useful <code>xargs</code> command. For example, to <code>ls</code> on the results of <code>find</code>:</li>
+<li>Note that many of the above operations can be performed by piping
+the results of <code>find</code> to the immensely useful
+<code>xargs</code> command. For example, to <code>ls</code> on the
+results of <code>find</code>:</li>
 </ul>
 <pre><code>$ find /usr/foobar -size +20k | xargs ls -l</code></pre>
 <p><strong>Reference</strong>:</p>
 <ul>
-<li><a href="https://www.man7.org/linux/man-pages/man1/find.1.html">man find</a></li>
-<li><strong>The Linux Command Line: A Complete Introduction</strong> by William Shotts</li>
-<li><a href="https://www.cyberciti.biz/faq/how-do-i-find-all-the-files-owned-by-a-particular-user-or-group/" class="uri">https://www.cyberciti.biz/faq/how-do-i-find-all-the-files-owned-by-a-particular-user-or-group/</a></li>
+<li><a href="https://www.man7.org/linux/man-pages/man1/find.1.html">man
+find</a></li>
+<li><strong>The Linux Command Line: A Complete Introduction</strong> by
+William Shotts</li>
+<li><a
+href="https://www.cyberciti.biz/faq/how-do-i-find-all-the-files-owned-by-a-particular-user-or-group/"
+class="uri">https://www.cyberciti.biz/faq/how-do-i-find-all-the-files-owned-by-a-particular-user-or-group/</a></li>
 </ul>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 </div>
@@ -136,11 +141,13 @@ $ find /usr/foobar -size +10G</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

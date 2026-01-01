@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,14 @@
 <h1 class="title">How to pass Thrust device vector to CUDA kernel</h1>
 <p class="date">📅 2011-Apr-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#device-vector'>device vector</a>, <a href='index.html#kernel'>kernel</a>, <a href='index.html#thrust'>thrust</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://github.com/thrust/thrust"><strong>Thrust</strong></a> makes it convenient to handle data with its <code>device_vector</code>. But, things get messy when the <code>device_vector</code> needs to be passed to your own <strong>kernel</strong>. Thrust data types are not understood by a CUDA kernel and need to be converted back to its underlying pointer. This is done using <code>thrust::raw_pointer_cast</code>:</p>
+<p><a
+href="https://github.com/thrust/thrust"><strong>Thrust</strong></a>
+makes it convenient to handle data with its <code>device_vector</code>.
+But, things get messy when the <code>device_vector</code> needs to be
+passed to your own <strong>kernel</strong>. Thrust data types are not
+understood by a CUDA kernel and need to be converted back to its
+underlying pointer. This is done using
+<code>thrust::raw_pointer_cast</code>:</p>
 <pre><code>#include &lt;thrust/device_vector.h&gt;
 
 thrust::device_vector&lt;int&gt; iVec;
@@ -52,7 +45,12 @@ thrust::device_vector&lt;int&gt; iVec;
 int* iArray = thrust::raw_pointer_cast(&amp;iVec[0]);
 
 fooKernel&lt;&lt;&lt;x, y&gt;&gt;&gt;(iArray);</code></pre>
-<p>Inside a kernel, I typically need not only a pointer to the array, but also the length of the array. Thus, I find it is useful to convert <code>device_vector</code> to a structure that holds both a pointer to the array and its length. (Very much like a vector itself.) Creating such a structure and its conversion function is easy thanks to templates:</p>
+<p>Inside a kernel, I typically need not only a pointer to the array,
+but also the length of the array. Thus, I find it is useful to convert
+<code>device_vector</code> to a structure that holds both a pointer to
+the array and its length. (Very much like a vector itself.) Creating
+such a structure and its conversion function is easy thanks to
+templates:</p>
 <pre><code>// Template structure to pass to kernel
 template &lt;typename T&gt;
 struct KernelArray
@@ -71,7 +69,8 @@ KernelArray&lt;T&gt; convertToKernel(thrust::device_vector&lt;T&gt;&amp; dVec)
 
     return kArray;
 }</code></pre>
-<p>Passing <code>device_vector</code> to kernels and accessing its array inside the kernel is easy thanks to this infrastructure:</p>
+<p>Passing <code>device_vector</code> to kernels and accessing its array
+inside the kernel is easy thanks to this infrastructure:</p>
 <pre><code>thrust::device_vector&lt;int&gt; iVec;
 
 fooKernel&lt;&lt;&lt;x, y&gt;&gt;&gt;(convertToKernel(iVec)); // Explicit conversion from iVec to KernelArray&lt;int&gt;
@@ -83,8 +82,13 @@ __global__ fooKernel(KernelArray&lt;int&gt; inArray)
     // ...
     return;
 }</code></pre>
-<p>You can take it a notch higher and make the conversion from <code>device_vector</code> to <code>KernelArray</code> to be implicit. This can be done by adding a constructor to <code>KernelArray</code> that takes one input parameter of type <code>device_vector</code>. (See Stephen’s comment below the post.)</p>
-<p>With such a constructor, you can now pass a <code>device_vector</code> seamlessly to the kernel:</p>
+<p>You can take it a notch higher and make the conversion from
+<code>device_vector</code> to <code>KernelArray</code> to be implicit.
+This can be done by adding a constructor to <code>KernelArray</code>
+that takes one input parameter of type <code>device_vector</code>. (See
+Stephen’s comment below the post.)</p>
+<p>With such a constructor, you can now pass a
+<code>device_vector</code> seamlessly to the kernel:</p>
 <pre><code>thrust::device_vector&lt;int&gt; iVec;
 
 fooKernel&lt;&lt;&lt;x, y&gt;&gt;&gt;(iVec); // Implicit conversion from iVec to KernelArray&lt;int&gt;
@@ -101,11 +105,13 @@ __global__ fooKernel(KernelArray&lt;int&gt; inArray)
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

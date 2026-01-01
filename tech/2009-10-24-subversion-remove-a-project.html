@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,21 @@
 <h1 class="title">Subversion: Remove a Project</h1>
 <p class="date">📅 2009-Oct-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#subversion'>subversion</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>There is <a href="http://stackoverflow.com/questions/1436320">no straightforward way</a> to remove all the information of a project from the SVN repository and retrieve that diskspace. The only way to achieve this:</p>
+<p>There is <a href="http://stackoverflow.com/questions/1436320">no
+straightforward way</a> to remove all the information of a project from
+the SVN repository and retrieve that diskspace. The only way to achieve
+this:</p>
 <ol type="1">
 <li>Dump the repository to a <em>dumpfile</em>.</li>
 </ol>
 <pre><code>$ svnadmin dump C:\Foo_Rep &gt; C:\foo_rep_dump</code></pre>
 <ol start="2" type="1">
-<li><em>Filter</em> out the project you want to remove from the dumpfile.</li>
+<li><em>Filter</em> out the project you want to remove from the
+dumpfile.</li>
 </ol>
 <pre><code>$ svndumpfilter exclude Project_to_del &lt; C:\foo_rep_dump &gt; C:\foo_rep_dump_updated</code></pre>
-<p>If you have many projects that you want to remove, repeat this step for each of them.</p>
+<p>If you have many projects that you want to remove, repeat this step
+for each of them.</p>
 <ol start="3" type="1">
 <li>Create a new repository.</li>
 </ol>
@@ -69,11 +60,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

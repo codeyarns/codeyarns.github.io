@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -46,22 +32,35 @@
 </header>
 <p><strong>Problem</strong></p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2013/08/20130801-directx.png" alt="" /><figcaption>DirectX SDK install error</figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2013/08/20130801-directx.png"
+alt="DirectX SDK install error" />
+<figcaption aria-hidden="true">DirectX SDK install error</figcaption>
 </figure>
-<p>I was trying to install <strong>Microsoft DirectX SDK (June 2010)</strong>, which was downloaded from <a href="http://www.microsoft.com/en-us/download/details.aspx?id=6812">here</a>. The installation failed with the following error dialog:</p>
+<p>I was trying to install <strong>Microsoft DirectX SDK (June
+2010)</strong>, which was downloaded from <a
+href="http://www.microsoft.com/en-us/download/details.aspx?id=6812">here</a>.
+The installation failed with the following error dialog:</p>
 <pre><code>Setup failed.
 Errors were encountered during installation of redistributable packages.
 Please close all open programs and try running setup again.
 If problems persist, contact DirectX Developer Support.
 
 Error code: S1023</code></pre>
-<p>Needless to mention that even when it was run after closing all open programs, it failed again with the same mysterious error code.</p>
+<p>Needless to mention that even when it was run after closing all open
+programs, it failed again with the same mysterious error code.</p>
 <p><strong>Solution</strong></p>
-<p>The problem seems to be caused because my Windows has a <strong>Visual C++ 2010 Redistributable</strong> that is newer than the one that this SDK is trying to install. The solution, explained <a href="http://support.microsoft.com/kb/2728613">here</a>, is to uninstall all the Visual C++ 2010 Redistributable packages and try installing this SDK.</p>
+<p>The problem seems to be caused because my Windows has a
+<strong>Visual C++ 2010 Redistributable</strong> that is newer than the
+one that this SDK is trying to install. The solution, explained <a
+href="http://support.microsoft.com/kb/2728613">here</a>, is to uninstall
+all the Visual C++ 2010 Redistributable packages and try installing this
+SDK.</p>
 <p>I found that I had the following two packages:</p>
 <pre><code>Microsoft Visual C++ 2010  x64 Redistributable - 10.0.40219
 Microsoft Visual C++ 2010  x86 Redistributable - 10.0.40219</code></pre>
-<p>I uninstalled them and the DirectX SDK installed without a problem after that.</p>
+<p>I uninstalled them and the DirectX SDK installed without a problem
+after that.</p>
 <p><strong>Tried with:</strong> Windows 7 x64</p>
 </div>
 
@@ -70,11 +69,13 @@ Microsoft Visual C++ 2010  x86 Redistributable - 10.0.40219</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,37 +30,56 @@
 <h1 class="title">How to git fetch everything</h1>
 <p class="date">📅 2016-May-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fetch'>fetch</a>, <a href='index.html#git'>git</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><code>git fetch</code> is a common command used to fetch and update the local repository with commits and branches from one or more remote repositories.</p>
+<p><code>git fetch</code> is a common command used to fetch and update
+the local repository with commits and branches from one or more remote
+repositories.</p>
 <ul>
 <li>The simplest version of the command is:</li>
 </ul>
 <pre><code>$ git fetch</code></pre>
-<p>This fetches only from the <code>origin</code> remote. Also, note that it does not fetch for any of the submodules inside the current repository.</p>
+<p>This fetches only from the <code>origin</code> remote. Also, note
+that it does not fetch for any of the submodules inside the current
+repository.</p>
 <ul>
 <li>To fetch from a particular remote:</li>
 </ul>
 <pre><code>$ git fetch some_remote</code></pre>
-<p>This can be useful when there are many remotes and you want to fetch from just one to save time.</p>
+<p>This can be useful when there are many remotes and you want to fetch
+from just one to save time.</p>
 <ul>
-<li>To fetch from all the remotes you have associated with the current repository:</li>
+<li>To fetch from all the remotes you have associated with the current
+repository:</li>
 </ul>
 <pre><code>$ git fetch --all</code></pre>
 <p>Note again, that this does nothing for the submodules.</p>
 <ul>
-<li>To fetch from the <code>origin</code> remote of the main repository and the <code>origin</code> remote of all submodule repositories:</li>
+<li>To fetch from the <code>origin</code> remote of the main repository
+and the <code>origin</code> remote of all submodule repositories:</li>
 </ul>
 <pre><code>$ git fetch --recurse-submodules</code></pre>
 <ul>
-<li>What if we want to fetch from all remotes for the main repository and also from all remotes for all the submodules? We might think that this does that:</li>
+<li>What if we want to fetch from all remotes for the main repository
+and also from all remotes for all the submodules? We might think that
+this does that:</li>
 </ul>
 <pre><code>$ git fetch --all --recurse-submodules</code></pre>
-<p>And here you land into a Git trap! Strangely, the above command only fetches from all remotes for the main repository. For the submodules, it only fetches from their <code>origin</code> remote!</p>
-<p>So, what if I do want to fetch from all remotes for all submodules? That can be achieved by using the very useful <code>submodule foreach</code> which loops over all submodules (but not the main repository!) and executes the git command you specify. Knowing this, we can do this:</p>
+<p>And here you land into a Git trap! Strangely, the above command only
+fetches from all remotes for the main repository. For the submodules, it
+only fetches from their <code>origin</code> remote!</p>
+<p>So, what if I do want to fetch from all remotes for all submodules?
+That can be achieved by using the very useful
+<code>submodule foreach</code> which loops over all submodules (but not
+the main repository!) and executes the git command you specify. Knowing
+this, we can do this:</p>
 <pre><code>$ git submodule foreach --recursive git fetch --all</code></pre>
-<p>We are almost there! Can we create one mega command to fetch from all remotes for both the main repository and all the submodules? We can do it at the shell by combining two commands:</p>
+<p>We are almost there! Can we create one mega command to fetch from all
+remotes for both the main repository and all the submodules? We can do
+it at the shell by combining two commands:</p>
 <pre><code>$ git fetch --all &amp;&amp; git submodule foreach --recursive git fetch --all</code></pre>
 <ul>
-<li>If you deal with submodules all the time, you can turn the above command into a Git <strong>alias</strong> by adding this to your <code>.gitconfig</code>:</li>
+<li>If you deal with submodules all the time, you can turn the above
+command into a Git <strong>alias</strong> by adding this to your
+<code>.gitconfig</code>:</li>
 </ul>
 <pre><code>[alias]
 fetch-all-recur = !git fetch --all &amp;&amp; git submodule foreach --recursive git fetch --all</code></pre>
@@ -89,11 +94,13 @@ fetch-all-recur = !git fetch --all &amp;&amp; git submodule foreach --recursive 
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,145 +95,178 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">C++: Return Value versus Output Parameter</h1>
 <p class="date">📅 2010-Oct-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#performance'>performance</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The C++ programmer has to be constantly aware of the performance of the code he is writing. One conundrum that arises often is with the <strong>output</strong> of a function. If this output is an object of substantial size, is it better to return it as the <strong>return value</strong> or as an <strong>output parameter</strong>?</p>
+<p>The C++ programmer has to be constantly aware of the performance of
+the code he is writing. One conundrum that arises often is with the
+<strong>output</strong> of a function. If this output is an object of
+substantial size, is it better to return it as the <strong>return
+value</strong> or as an <strong>output parameter</strong>?</p>
 <p><strong>Question:</strong> Which of these functions is faster?</p>
 <pre><code>Foo Function1();
 void Function2( Foo&amp; );</code></pre>
-<p><strong>Answer:</strong> It depends. Typically it is Function2, sometimes both are comparable.</p>
+<p><strong>Answer:</strong> It depends. Typically it is Function2,
+sometimes both are comparable.</p>
 <ul>
-<li><p><strong>Function1</strong> looks elegant, both for a programmer and for a mathematician. However, it breaks down as soon as one wants to return <strong>multiple values</strong> from a function. One could use modern C++ constructs like <strong>pair</strong> or <strong>tuple</strong>, but that is extra machinery.</p></li>
-<li><p><strong>Function2</strong> does not look as elegant as Function1. One needs to be careful here to pass the output parameter as a reference (or pointer) parameter. However, this format can handle multiple output parameters easily.</p></li>
-<li><p>Returning built-in types (like integer) or tiny objects are easy for the C++ compiler to optimize. They should be equally fast with both Function1 and Function2.</p></li>
-<li><p>Function1 typically needs to <strong>construct</strong> the object it is returning. Depending on the class of the object, this might take substantial amount of time. After construction, it may need to modify or fill the object with data. <code>cpp Foo Function1() {     Foo foo; // Construction cost     foo.fillSomething();     return foo; }</code></p></li>
-<li><p>Function2 assumes that the parameter object is already created. It only modifies or fills the object with data.</p></li>
+<li><p><strong>Function1</strong> looks elegant, both for a programmer
+and for a mathematician. However, it breaks down as soon as one wants to
+return <strong>multiple values</strong> from a function. One could use
+modern C++ constructs like <strong>pair</strong> or
+<strong>tuple</strong>, but that is extra machinery.</p></li>
+<li><p><strong>Function2</strong> does not look as elegant as Function1.
+One needs to be careful here to pass the output parameter as a reference
+(or pointer) parameter. However, this format can handle multiple output
+parameters easily.</p></li>
+<li><p>Returning built-in types (like integer) or tiny objects are easy
+for the C++ compiler to optimize. They should be equally fast with both
+Function1 and Function2.</p></li>
+<li><p>Function1 typically needs to <strong>construct</strong> the
+object it is returning. Depending on the class of the object, this might
+take substantial amount of time. After construction, it may need to
+modify or fill the object with data.
+<code>cpp Foo Function1() {     Foo foo; // Construction cost     foo.fillSomething();     return foo; }</code></p></li>
+<li><p>Function2 assumes that the parameter object is already created.
+It only modifies or fills the object with data.</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="dt">void</span> Function1( Foo&amp; foo)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>{</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    foo.fillSomething();</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Function1<span class="op">(</span> Foo<span class="op">&amp;</span> foo<span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    foo<span class="op">.</span>fillSomething<span class="op">();</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <ul>
-<li>The performance also depends on what is happening in the caller. The caller might be assigning the return value to initialize a new object or to an already existing object.</li>
+<li>The performance also depends on what is happening in the caller. The
+caller might be assigning the return value to initialize a new object or
+to an already existing object.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="dt">int</span> main()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>{</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="co">// New object</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    Foo f1 = Function1();</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    Foo f2;</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    Function2( f2 );</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="co">// Existing object</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    Foo f;</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>    <span class="cf">while</span> ( x )</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    {</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>        <span class="co">// Do something</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>        f = Function1();</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>        <span class="co">// Do something</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>        f.clear();</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>        Function2( f );</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    }</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// New object</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    Foo f1 <span class="op">=</span> Function1<span class="op">();</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    Foo f2<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    Function2<span class="op">(</span> f2 <span class="op">);</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Existing object</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    Foo f<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span> x <span class="op">)</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Do something</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        f <span class="op">=</span> Function1<span class="op">();</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Do something</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        f<span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        Function2<span class="op">(</span> f <span class="op">);</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <ul>
-<li><p>Function1 involves <strong>one object creation</strong> inside the function and <strong>one copy</strong> of this object to the destination object. That looks very expensive! However, all modern C++ compilers perform <a href="http://en.wikipedia.org/wiki/Return_value_optimization"><strong>Return Value Optimization (RVO)</strong></a> that eliminates the expensive copy operation.</p></li>
-<li><p>Note that RVO cannot always be applied by the compiler. When this happens, Function1 becomes all the more expensive.</p></li>
+<li><p>Function1 involves <strong>one object creation</strong> inside
+the function and <strong>one copy</strong> of this object to the
+destination object. That looks very expensive! However, all modern C++
+compilers perform <a
+href="http://en.wikipedia.org/wiki/Return_value_optimization"><strong>Return
+Value Optimization (RVO)</strong></a> that eliminates the expensive copy
+operation.</p></li>
+<li><p>Note that RVO cannot always be applied by the compiler. When this
+happens, Function1 becomes all the more expensive.</p></li>
 </ul>
-<p>I conducted a simple test using the STL <strong>vector</strong> as the return object. The code used for this is below:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;ctime&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">typedef</span> vector&lt;<span class="dt">int</span>&gt; IntVec;</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="at">const</span> <span class="dt">int</span> MAX = <span class="dv">10000</span>;</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>IntVec Function1( <span class="at">const</span> <span class="dt">int</span> size )</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>{</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a>    IntVec ivec;</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; size; ++i )</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>        ivec.push_back( i );</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="cf">return</span> ivec;</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a>}</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="dt">void</span> Function2( <span class="at">const</span> <span class="dt">int</span> size, IntVec&amp; ivec )</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>{</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a>    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; size; ++i )</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>        ivec.push_back( i );</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>}</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="dt">int</span> main()</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>{</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a>    <span class="co">// *** New Object</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a>    <span class="dt">double</span> time1 = <span class="fl">0.0</span>;</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a>    <span class="dt">double</span> time2 = <span class="fl">0.0</span>;</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a>    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; MAX; ++i )</span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true"></a>    {</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true"></a>        <span class="at">const</span> <span class="dt">int</span> randVal = rand();</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true"></a></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true"></a>        <span class="co">// *** Function1</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true"></a></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true"></a>        <span class="dt">clock_t</span> begin1  = clock();</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true"></a>        IntVec ivec1    = Function1( randVal );</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true"></a>        <span class="dt">clock_t</span> end1    = clock();</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true"></a>        <span class="dt">double</span> timeSec1 = (end1 - begin1) / <span class="kw">static_cast</span>&lt;<span class="dt">double</span>&gt;( CLOCKS_PER_SEC );</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true"></a>        time1           += timeSec1;</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true"></a></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true"></a>        <span class="co">// *** Function2</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true"></a>        <span class="dt">clock_t</span> begin2  = clock();</span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true"></a>        IntVec ivec2;</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true"></a>        Function2( randVal, ivec2 );</span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true"></a>        <span class="dt">clock_t</span> end2    = clock();</span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true"></a>        <span class="dt">double</span> timeSec2 = (end2 - begin2) / <span class="kw">static_cast</span>&lt;<span class="dt">double</span>&gt;( CLOCKS_PER_SEC );</span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true"></a>        time2           += timeSec2;</span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true"></a>    }</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true"></a></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true"></a>    cout &lt;&lt; <span class="st">&quot;New object ...&quot;</span> &lt;&lt; endl;</span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true"></a>    cout &lt;&lt; <span class="st">&quot;Function1: &quot;</span> &lt;&lt; time1 &lt;&lt; endl;</span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true"></a>    cout &lt;&lt; <span class="st">&quot;Function2: &quot;</span> &lt;&lt; time2 &lt;&lt; endl;</span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true"></a></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true"></a>    <span class="co">// *** Existing Object</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true"></a></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true"></a>    time1 = <span class="fl">0.0</span>;</span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true"></a>    time2 = <span class="fl">0.0</span>;</span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true"></a></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true"></a>    IntVec ivec3;</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true"></a></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true"></a>    <span class="cf">for</span> ( <span class="dt">int</span> i = <span class="dv">0</span>; i &lt; MAX; ++i )</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true"></a>    {</span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true"></a>        <span class="at">const</span> <span class="dt">int</span> randVal = rand();</span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true"></a></span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true"></a>        <span class="co">// *** Function1</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true"></a></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true"></a>        ivec3.clear();</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true"></a>        <span class="dt">clock_t</span> begin1  = clock();</span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true"></a>        ivec3           = Function1( randVal );</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true"></a>        <span class="dt">clock_t</span> end1    = clock();</span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true"></a>        <span class="dt">double</span> timeSec1 = (end1 - begin1) / <span class="kw">static_cast</span>&lt;<span class="dt">double</span>&gt;( CLOCKS_PER_SEC );</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true"></a>        time1           += timeSec1;</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true"></a></span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true"></a>        <span class="co">// *** Function2</span></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true"></a></span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true"></a>        ivec3.clear();</span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true"></a>        <span class="dt">clock_t</span> begin2  = clock();</span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true"></a>        Function2( randVal, ivec3 );</span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true"></a>        <span class="dt">clock_t</span> end2    = clock();</span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true"></a>        <span class="dt">double</span> timeSec2 = (end2 - begin2) / <span class="kw">static_cast</span>&lt;<span class="dt">double</span>&gt;( CLOCKS_PER_SEC );</span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true"></a>        time2           += timeSec2;</span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true"></a>    }</span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true"></a></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true"></a>    cout &lt;&lt; <span class="st">&quot;Existing object ...&quot;</span> &lt;&lt; endl;</span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true"></a>    cout &lt;&lt; <span class="st">&quot;Function1: &quot;</span> &lt;&lt; time1 &lt;&lt; endl;</span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true"></a>    cout &lt;&lt; <span class="st">&quot;Function2: &quot;</span> &lt;&lt; time2 &lt;&lt; endl;</span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true"></a></span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true"></a>}</span></code></pre></div>
-<p>The code was compiled using the <strong>Visual C++ 2010</strong> compiler (16.00.30319.01) in Release mode.</p>
+<p>I conducted a simple test using the STL <strong>vector</strong> as
+the return object. The code used for this is below:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;ctime&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> IntVec<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> MAX <span class="op">=</span> <span class="dv">10000</span><span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>IntVec Function1<span class="op">(</span> <span class="at">const</span> <span class="dt">int</span> size <span class="op">)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    IntVec ivec<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span> <span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> size<span class="op">;</span> <span class="op">++</span>i <span class="op">)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        ivec<span class="op">.</span>push_back<span class="op">(</span> i <span class="op">);</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ivec<span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Function2<span class="op">(</span> <span class="at">const</span> <span class="dt">int</span> size<span class="op">,</span> IntVec<span class="op">&amp;</span> ivec <span class="op">)</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span> <span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> size<span class="op">;</span> <span class="op">++</span>i <span class="op">)</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        ivec<span class="op">.</span>push_back<span class="op">(</span> i <span class="op">);</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// *** New Object</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> time1 <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> time2 <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span> <span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> MAX<span class="op">;</span> <span class="op">++</span>i <span class="op">)</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">const</span> <span class="dt">int</span> randVal <span class="op">=</span> rand<span class="op">();</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>        <span class="co">// *** Function1</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clock_t</span> begin1  <span class="op">=</span> clock<span class="op">();</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        IntVec ivec1    <span class="op">=</span> Function1<span class="op">(</span> randVal <span class="op">);</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clock_t</span> end1    <span class="op">=</span> clock<span class="op">();</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> timeSec1 <span class="op">=</span> <span class="op">(</span>end1 <span class="op">-</span> begin1<span class="op">)</span> <span class="op">/</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span> CLOCKS_PER_SEC <span class="op">);</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        time1           <span class="op">+=</span> timeSec1<span class="op">;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>        <span class="co">// *** Function2</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clock_t</span> begin2  <span class="op">=</span> clock<span class="op">();</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        IntVec ivec2<span class="op">;</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>        Function2<span class="op">(</span> randVal<span class="op">,</span> ivec2 <span class="op">);</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clock_t</span> end2    <span class="op">=</span> clock<span class="op">();</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> timeSec2 <span class="op">=</span> <span class="op">(</span>end2 <span class="op">-</span> begin2<span class="op">)</span> <span class="op">/</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span> CLOCKS_PER_SEC <span class="op">);</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>        time2           <span class="op">+=</span> timeSec2<span class="op">;</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">&quot;New object ...&quot;</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Function1: &quot;</span> <span class="op">&lt;&lt;</span> time1 <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Function2: &quot;</span> <span class="op">&lt;&lt;</span> time2 <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>    <span class="co">// *** Existing Object</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a>    time1 <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>    time2 <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>    IntVec ivec3<span class="op">;</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span> <span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> MAX<span class="op">;</span> <span class="op">++</span>i <span class="op">)</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>        <span class="at">const</span> <span class="dt">int</span> randVal <span class="op">=</span> rand<span class="op">();</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>        <span class="co">// *** Function1</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>        ivec3<span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clock_t</span> begin1  <span class="op">=</span> clock<span class="op">();</span></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>        ivec3           <span class="op">=</span> Function1<span class="op">(</span> randVal <span class="op">);</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clock_t</span> end1    <span class="op">=</span> clock<span class="op">();</span></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> timeSec1 <span class="op">=</span> <span class="op">(</span>end1 <span class="op">-</span> begin1<span class="op">)</span> <span class="op">/</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span> CLOCKS_PER_SEC <span class="op">);</span></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>        time1           <span class="op">+=</span> timeSec1<span class="op">;</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>        <span class="co">// *** Function2</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>        ivec3<span class="op">.</span>clear<span class="op">();</span></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clock_t</span> begin2  <span class="op">=</span> clock<span class="op">();</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>        Function2<span class="op">(</span> randVal<span class="op">,</span> ivec3 <span class="op">);</span></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>        <span class="dt">clock_t</span> end2    <span class="op">=</span> clock<span class="op">();</span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>        <span class="dt">double</span> timeSec2 <span class="op">=</span> <span class="op">(</span>end2 <span class="op">-</span> begin2<span class="op">)</span> <span class="op">/</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span> CLOCKS_PER_SEC <span class="op">);</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>        time2           <span class="op">+=</span> timeSec2<span class="op">;</span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Existing object ...&quot;</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Function1: &quot;</span> <span class="op">&lt;&lt;</span> time1 <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Function2: &quot;</span> <span class="op">&lt;&lt;</span> time2 <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The code was compiled using the <strong>Visual C++ 2010</strong>
+compiler (16.00.30319.01) in Release mode.</p>
 <pre><code>New object ...
 Function1: 1.753
 Function2: 1.615
@@ -254,7 +274,10 @@ Function2: 1.615
 Existing object ...
 Function1: 1.671
 Function2: 1.035</code></pre>
-<p>The results clearly show that <strong>output parameter</strong> is always <strong>faster</strong>. When assigning to a new object, the speed difference is negligible. However, when reusing an existing object, the speed difference is substantial! 😊</p>
+<p>The results clearly show that <strong>output parameter</strong> is
+always <strong>faster</strong>. When assigning to a new object, the
+speed difference is negligible. However, when reusing an existing
+object, the speed difference is substantial! 😊</p>
 </div>
 
 <br />
@@ -262,11 +285,13 @@ Function2: 1.035</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

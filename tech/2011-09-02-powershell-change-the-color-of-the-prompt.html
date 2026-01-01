@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,18 +31,35 @@
 <p class="date">📅 2011-Sep-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#colors'>colors</a>, <a href='index.html#powershell'>powershell</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/09/20110903-powershell-color.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/09/20110903-powershell-color.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p><strong>PowerShell</strong> opens up in a soothing white-on-blue console by default. But, the prompt is displayed in the same color as the rest of the text. The <strong>color</strong> of the <strong>prompt</strong> can be changed by overriding the default <code>Prompt</code> method by writing a custom <code>Prompt</code> method and placing it in your <a href="https://codeyarns.com/tech/2011/07/30/powershell-profile-script/">profile script</a>.</p>
-<p>This is a simple <code>Prompt</code> method that sets the color of the prompt to yellow:</p>
+<p><strong>PowerShell</strong> opens up in a soothing white-on-blue
+console by default. But, the prompt is displayed in the same color as
+the rest of the text. The <strong>color</strong> of the
+<strong>prompt</strong> can be changed by overriding the default
+<code>Prompt</code> method by writing a custom <code>Prompt</code>
+method and placing it in your <a
+href="https://codeyarns.com/tech/2011/07/30/powershell-profile-script/">profile
+script</a>.</p>
+<p>This is a simple <code>Prompt</code> method that sets the color of
+the prompt to yellow:</p>
 <pre><code>function Prompt
 {
     $promptString = &quot;PS &quot; + $(Get-Location) + &quot;&gt;&quot;
     Write-Host $promptString -NoNewline -ForegroundColor Yellow
     return &quot; &quot;
 }</code></pre>
-<p>The above <code>Prompt</code> method is enough if the profile script is meant for the default PowerShell console only. If you are using a profile script that will be used by other PowerShell hosts (like <strong>PowerShell ISE</strong> for example), then maybe you do not want the prompt to be yellow in those hosts.</p>
-<p>For such cases, this is a <code>Prompt</code> method that sets the color of the prompt to yellow only for the default PowerShell console and uses the default color for the other hosts:</p>
+<p>The above <code>Prompt</code> method is enough if the profile script
+is meant for the default PowerShell console only. If you are using a
+profile script that will be used by other PowerShell hosts (like
+<strong>PowerShell ISE</strong> for example), then maybe you do not want
+the prompt to be yellow in those hosts.</p>
+<p>For such cases, this is a <code>Prompt</code> method that sets the
+color of the prompt to yellow only for the default PowerShell console
+and uses the default color for the other hosts:</p>
 <pre><code>function Prompt
 {
     $promptString = &quot;PS &quot; + $(Get-Location) + &quot;&gt;&quot;
@@ -82,11 +85,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,29 @@
 <h1 class="title">CUDA: Block and Grid Dimensions</h1>
 <p class="date">📅 2011-Feb-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Sometimes the number of possible dimensions of a <strong>CUDA</strong> block and grid can get confusing. This is not helped by the fact that both of their dimensions is specified by the type dim3.</p>
-<p>I try to distinguish their dimensions by the meaning of their words:</p>
+<p>Sometimes the number of possible dimensions of a
+<strong>CUDA</strong> block and grid can get confusing. This is not
+helped by the fact that both of their dimensions is specified by the
+type dim3.</p>
+<p>I try to distinguish their dimensions by the meaning of their
+words:</p>
 <ul>
-<li><p><strong>Block</strong>: Think of a block of wood. It has all 3 dimensions: length, width and height.</p></li>
-<li><p><strong>Grid</strong>: A grid is a lattice of horizontal and vertical lines. Thus it has only 2 dimensions.</p></li>
-<li><p>Thus, a block has a <strong>maximum</strong> of 3 dimensions and a grid a maximum of 2 dimensions.</p></li>
-<li><p>A block has a <strong>minimum</strong> of 1 dimension and a grid too has a minimum of 1 dimension. This seems obvious, but in the CUDA 1.x days, the minimum dimension of a block was 2. Needless to say that many programmers must have swore at NVIDIA for that weird restriction! 😁</p></li>
+<li><p><strong>Block</strong>: Think of a block of wood. It has all 3
+dimensions: length, width and height.</p></li>
+<li><p><strong>Grid</strong>: A grid is a lattice of horizontal and
+vertical lines. Thus it has only 2 dimensions.</p></li>
+<li><p>Thus, a block has a <strong>maximum</strong> of 3 dimensions and
+a grid a maximum of 2 dimensions.</p></li>
+<li><p>A block has a <strong>minimum</strong> of 1 dimension and a grid
+too has a minimum of 1 dimension. This seems obvious, but in the CUDA
+1.x days, the minimum dimension of a block was 2. Needless to say that
+many programmers must have swore at NVIDIA for that weird restriction!
+😁</p></li>
 </ul>
-<p>Similarly, I also find the global variables <code>blockDim</code> and <code>gridDim</code> very confusing. Instead, I mentally replace <code>blockDim</code> by <strong>threads-per-block</strong> and <code>gridDim</code> by <strong>blocks-per-grid</strong>.</p>
+<p>Similarly, I also find the global variables <code>blockDim</code> and
+<code>gridDim</code> very confusing. Instead, I mentally replace
+<code>blockDim</code> by <strong>threads-per-block</strong> and
+<code>gridDim</code> by <strong>blocks-per-grid</strong>.</p>
 </div>
 
 <br />
@@ -60,11 +60,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

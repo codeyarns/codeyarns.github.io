@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,17 +30,29 @@
 <h1 class="title">How to delete EFI System Partition</h1>
 <p class="date">📅 2020-Aug-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#diskpart'>diskpart</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I was given a USB flash drive that had a <strong>FAT</strong> drive which appeared to be a <strong>EFI System Partition</strong> when viewed in the Windows <strong>Disk Management</strong> tool. I wanted to delete this partition, but the disk management tool did not provide any option to resize or delete this partition.</p>
-<p>To delete the EFI System Partition, we need to wipe the partition table of this flash drive. To do that:</p>
+<p>I was given a USB flash drive that had a <strong>FAT</strong> drive
+which appeared to be a <strong>EFI System Partition</strong> when viewed
+in the Windows <strong>Disk Management</strong> tool. I wanted to delete
+this partition, but the disk management tool did not provide any option
+to resize or delete this partition.</p>
+<p>To delete the EFI System Partition, we need to wipe the partition
+table of this flash drive. To do that:</p>
 <ul>
 <li>Insert the flash drive to computer and copy over all the files.</li>
 <li>Open a command prompt in Administrator mode.</li>
-<li>Type <code>diskpart</code> to open the commandline disk partition tool.</li>
-<li>List the disks connected to your computer using the command: <code>list disk</code>. Carefully note down the <strong>disk number</strong> of the flash drive. In my case, it was number <code>2</code>.</li>
-<li>Select the disk using the command: <code>select disk 2</code>. Replace <code>2</code> with your disk number.</li>
-<li>Type <code>clean</code> to wipe the partition table of the disk.</li>
+<li>Type <code>diskpart</code> to open the commandline disk partition
+tool.</li>
+<li>List the disks connected to your computer using the command:
+<code>list disk</code>. Carefully note down the <strong>disk
+number</strong> of the flash drive. In my case, it was number
+<code>2</code>.</li>
+<li>Select the disk using the command: <code>select disk 2</code>.
+Replace <code>2</code> with your disk number.</li>
+<li>Type <code>clean</code> to wipe the partition table of the
+disk.</li>
 <li>Type <code>exit</code> to exit the disk partition tool.</li>
-<li>After this I was able to create any partition I wanted on the flash drive using the GUI Disk Management tool.</li>
+<li>After this I was able to create any partition I wanted on the flash
+drive using the GUI Disk Management tool.</li>
 </ul>
 <p><strong>Tried with:</strong> Windows 10</p>
 </div>
@@ -64,11 +62,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

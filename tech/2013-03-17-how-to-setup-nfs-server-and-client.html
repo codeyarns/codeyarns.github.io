@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,25 +30,47 @@
 <h1 class="title">How to setup NFS server and client</h1>
 <p class="date">📅 2013-Mar-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#nfs'>nfs</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>NFS</strong> is a popular method to share a directory for read and write access between two Linux computers. The computer whose hard disk where the shared directory actually resides is the <strong>NFS server</strong>. The computer which will mount the directory on the NFS server for read and write access is the <strong>NFS client</strong>.</p>
+<p><strong>NFS</strong> is a popular method to share a directory for
+read and write access between two Linux computers. The computer whose
+hard disk where the shared directory actually resides is the <strong>NFS
+server</strong>. The computer which will mount the directory on the NFS
+server for read and write access is the <strong>NFS client</strong>.</p>
 <h2 id="on-the-nfs-server-computer">On the NFS server computer</h2>
 <ul>
 <li>Install the NFS server software:</li>
 </ul>
 <pre><code>$ sudo apt install nfs-kernel-server</code></pre>
 <ul>
-<li><p>Add an entry in <code>/etc/exports</code> that informs the NFS server which directory is being shared, to which computer on the network and with what settings.</p></li>
-<li><p>For example, if user <code>joe_on_server</code> wants to share his <code>workspace</code> directory to <strong>all</strong> computers on the network:</p></li>
+<li><p>Add an entry in <code>/etc/exports</code> that informs the NFS
+server which directory is being shared, to which computer on the network
+and with what settings.</p></li>
+<li><p>For example, if user <code>joe_on_server</code> wants to share
+his <code>workspace</code> directory to <strong>all</strong> computers
+on the network:</p></li>
 </ul>
 <pre><code>/home/joe_on_server/workspace *(rw,sync,no_subtree_check)</code></pre>
-<p>The <code>*</code> indicates that NFS clients of all IP addresses can access this shared filesystem. <code>rw</code> indicates that the NFS client can read and write to this directory. async improves performance. <code>no_subtree_check</code> also improves performance by not checking the sub-directories. <code>no_root_squash</code> prevents the normal behavior of converting access by root user to normal user. <code>insecure</code> turns off the checking if the access is originating from reserved ports. More information about the options can be seen in <code>man exports</code>.</p>
+<p>The <code>*</code> indicates that NFS clients of all IP addresses can
+access this shared filesystem. <code>rw</code> indicates that the NFS
+client can read and write to this directory. async improves performance.
+<code>no_subtree_check</code> also improves performance by not checking
+the sub-directories. <code>no_root_squash</code> prevents the normal
+behavior of converting access by root user to normal user.
+<code>insecure</code> turns off the checking if the access is
+originating from reserved ports. More information about the options can
+be seen in <code>man exports</code>.</p>
 <ul>
-<li>If we want to share only with a specific computer on the network, then specify its IP address or hostname:</li>
+<li>If we want to share only with a specific computer on the network,
+then specify its IP address or hostname:</li>
 </ul>
 <pre><code>/home/joe_on_server/workspace 192.168.0.100(rw,sync,no_subtree_check)</code></pre>
-<p>Remember to ping and be sure that the hostname or IP address works.</p>
+<p>Remember to ping and be sure that the hostname or IP address
+works.</p>
 <ul>
-<li>If the user on the NFS client machine has a different UID or GID from the UID or GID of the directory and files being shared from the NFS server, you will get <code>permission denied</code> errors. If this is the case, then specify what UID and GID on the NFS server should be used to map <strong>all</strong> users who access on NFS client:</li>
+<li>If the user on the NFS client machine has a different UID or GID
+from the UID or GID of the directory and files being shared from the NFS
+server, you will get <code>permission denied</code> errors. If this is
+the case, then specify what UID and GID on the NFS server should be used
+to map <strong>all</strong> users who access on NFS client:</li>
 </ul>
 <pre><code>/home/joe_on_server/workspace 192.168.0.100(rw,sync,no_subtree_check,all_squash,anonuid=1001,anongid=1001)</code></pre>
 <ul>
@@ -90,23 +98,31 @@
 <li>Create a directory where you want to mount the NFS share:</li>
 </ul>
 <pre><code>$ sudo mkdir /mnt/joe_nfs_share</code></pre>
-<p>I do not recommend mounting to a directory inside your home directory. This can lead to all kinds of irritating UID and GID permission problems.</p>
+<p>I do not recommend mounting to a directory inside your home
+directory. This can lead to all kinds of irritating UID and GID
+permission problems.</p>
 <ul>
-<li>Add an entry in <code>/etc/fstab</code> to request NFS to mount to this directory:</li>
+<li>Add an entry in <code>/etc/fstab</code> to request NFS to mount to
+this directory:</li>
 </ul>
 <pre><code>nfs_server_hostname:/home/joe_on_server/workspace  /mnt/joe_nfs_share none bind 0 0</code></pre>
 <ul>
 <li>Mount the NFS share:</li>
 </ul>
 <pre><code>$ sudo mount /mnt/joe_nfs_share</code></pre>
-<p>That is it! You should be able to have read and write access to files in your NFS share on the client machine.</p>
+<p>That is it! You should be able to have read and write access to files
+in your NFS share on the client machine.</p>
 <p>If you run into any problems, please check these:</p>
 <ul>
 <li><p>Hostname or IP should be pingable</p></li>
-<li><p>UID and GID of users on NFS server and NFS client machines</p></li>
-<li><p>If you make any change to file permissions, remember to <code>umount</code> on NFS client machine and mount again.</p></li>
+<li><p>UID and GID of users on NFS server and NFS client
+machines</p></li>
+<li><p>If you make any change to file permissions, remember to
+<code>umount</code> on NFS client machine and mount again.</p></li>
 </ul>
-<p>I found the <a href="http://www.troubleshooters.com/linux/nfs.htm">NFS Overview and Gotchas</a> very useful to setup and debug my NFS problems.</p>
+<p>I found the <a
+href="http://www.troubleshooters.com/linux/nfs.htm">NFS Overview and
+Gotchas</a> very useful to setup and debug my NFS problems.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
@@ -115,11 +131,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

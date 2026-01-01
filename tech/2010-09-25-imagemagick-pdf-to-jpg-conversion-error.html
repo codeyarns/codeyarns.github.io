@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,9 @@
 <p class="date">📅 2010-Sep-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#ghostscript'>ghostscript</a>, <a href='index.html#imagemagick'>imagemagick</a>, <a href='index.html#pdf'>pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>I tried to convert a PDF file to a JPG image using <code>convert.exe</code> from ImageMagick and got the following error:</p>
+<p>I tried to convert a PDF file to a JPG image using
+<code>convert.exe</code> from ImageMagick and got the following
+error:</p>
 <pre><code>$ convert Foobar.pdf Foobar.jpg
 convert: `%s&#39; (%d) &quot;gswin32c.exe&quot; -q -dQUIET -dPARANOIDSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dEPSCrop -dAlignToPixels=0 -dGridFitTT=2 &quot;-sDEVICE=pnmraw&quot; -dTextAlphaBits=4 -dGraph
 icsAlphaBits=4 &quot;-r72x72&quot;  &quot;-sOutputFile=C:/Users/Joe/AppData/Local/Temp/magick-p1m2jxT1&quot; &quot;-fC:/Users/Joe/AppData/Local/Temp/magick-tf9Qz_d_&quot; &quot;-fC:/Users/Joe/AppData/Local/Temp/magick-sa
@@ -53,10 +41,16 @@ icsAlphaBits=4 &quot;-r72x72&quot;  &quot;-sOutputFile=C:/Users/Joe/AppData/Loca
 convert: Postscript delegate failed `Foobar.pdf&#39;: No such file or directory @ error/pdf.c/ReadPDFImage/645.
 convert: missing an image filename `Foobar.jpg&#39; @ error/convert.c/ConvertImageCommand/2970.</code></pre>
 <p><strong>Solution</strong></p>
-<p>It looks like the input or output filenames are missing or have some problem. Look closer and it is an error caused by <code>gswin32c.exe</code>. ImageMagick uses <code>gswin32c.exe</code> from the <strong><a href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a></strong> package to convert PDF files. So, to fix this error make sure that:</p>
+<p>It looks like the input or output filenames are missing or have some
+problem. Look closer and it is an error caused by
+<code>gswin32c.exe</code>. ImageMagick uses <code>gswin32c.exe</code>
+from the <strong><a
+href="http://pages.cs.wisc.edu/~ghost/">Ghostscript</a></strong> package
+to convert PDF files. So, to fix this error make sure that:</p>
 <ol type="1">
 <li>Ghostscript package is installed.</li>
-<li>The directory containing <code>gswin32c.exe</code> is in the <code>PATH</code> environment variable.</li>
+<li>The directory containing <code>gswin32c.exe</code> is in the
+<code>PATH</code> environment variable.</li>
 </ol>
 </div>
 
@@ -65,11 +59,13 @@ convert: missing an image filename `Foobar.jpg&#39; @ error/convert.c/ConvertIma
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

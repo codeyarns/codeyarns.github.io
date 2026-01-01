@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,26 @@
 <h1 class="title">How to copy or move from shell with progressbar</h1>
 <p class="date">📅 2014-Aug-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cp'>cp</a>, <a href='index.html#mv'>mv</a>, <a href='index.html#progressbar'>progressbar</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>When I am copying or moving a big file or a large number of small files, I wish I could see some progress of the operation and the speed at which the operation is being performed. This can be done by using the <strong>Advanced Copy</strong> mod of the cp and mv commands, which have been patched to display a progressbar with all this information during the operation. You can either get the source code or pre-built binaries from <a href="http://www.beatex.org/web/advancedcopy.html">here</a>.</p>
-<p>I like to use these commands by default, so I move them to <code>/usr/local/bin</code>:</p>
+<p>When I am copying or moving a big file or a large number of small
+files, I wish I could see some progress of the operation and the speed
+at which the operation is being performed. This can be done by using the
+<strong>Advanced Copy</strong> mod of the cp and mv commands, which have
+been patched to display a progressbar with all this information during
+the operation. You can either get the source code or pre-built binaries
+from <a href="http://www.beatex.org/web/advancedcopy.html">here</a>.</p>
+<p>I like to use these commands by default, so I move them to
+<code>/usr/local/bin</code>:</p>
 <pre><code>$ sudo cp ./cp /usr/local/bin
 $ sudo cp ./mv /usr/local/bin</code></pre>
-<p>Typically, your <code>PATH</code> puts <code>/usr/local/bin</code> ahead of <code>/bin</code>, so the patched versions of the commands will be executed now. Else, change your <code>PATH</code> to accomplish this.</p>
-<p>To view the progressbar for a operation, use the <code>-g</code> option:</p>
+<p>Typically, your <code>PATH</code> puts <code>/usr/local/bin</code>
+ahead of <code>/bin</code>, so the patched versions of the commands will
+be executed now. Else, change your <code>PATH</code> to accomplish
+this.</p>
+<p>To view the progressbar for a operation, use the <code>-g</code>
+option:</p>
 <pre><code>$ cp -g -R foo-big-file.bin /media/joe/backup/</code></pre>
-<p>I use the fish shell, where I have added aliases for both of these commands with progressbar display:</p>
+<p>I use the fish shell, where I have added aliases for both of these
+commands with progressbar display:</p>
 <pre><code>function cpg
     cp -g $argv
 end
@@ -67,11 +65,13 @@ end</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

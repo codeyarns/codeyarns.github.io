@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,19 @@
 <h1 class="title">How to handle Bluetooth devices from shell</h1>
 <p class="date">📅 2014-Aug-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#bluetooth'>bluetooth</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Bluetooth devices can be listed, connected and disconnected by clicking the Bluetooth icon in the top Panel in the Ubuntu Unity desktop. If you prefer to do these simple operations from the commandline, that can be done too.</p>
+<p>Bluetooth devices can be listed, connected and disconnected by
+clicking the Bluetooth icon in the top Panel in the Ubuntu Unity
+desktop. If you prefer to do these simple operations from the
+commandline, that can be done too.</p>
 <h2 id="ubuntu-2204">Ubuntu 22.04</h2>
 <ul>
-<li>Install the <code>bluez</code> package that has many Bluetooth tools:</li>
+<li>Install the <code>bluez</code> package that has many Bluetooth
+tools:</li>
 </ul>
 <pre><code>$ sudo apt install bluez</code></pre>
 <ul>
-<li>The tool we need to use is <code>bluetoothctl</code> and to get help about its usage:</li>
+<li>The tool we need to use is <code>bluetoothctl</code> and to get help
+about its usage:</li>
 </ul>
 <pre><code>$ bluetoothctl help</code></pre>
 <ul>
@@ -67,34 +58,41 @@
 <li>To list the Bluetooth devices paired to this computer:</li>
 </ul>
 <pre><code>$ bluetoothctl paired-devices</code></pre>
-<p>This lists the UUID and user-friendly name of each Bluetooth device.</p>
+<p>This lists the UUID and user-friendly name of each Bluetooth
+device.</p>
 <ul>
 <li>To list detailed info about a Bluetooth device:</li>
 </ul>
 <pre><code>$ bluetoothctl info &lt;UUID of device&gt;</code></pre>
-<p>If no UUID is provided, it prints the info for only the connected Bluetooth devices.</p>
+<p>If no UUID is provided, it prints the info for only the connected
+Bluetooth devices.</p>
 <ul>
 <li>To connect a Bluetooth device:</li>
 </ul>
 <pre><code>$ bluetoothctl connect &lt;UUID of device&gt;</code></pre>
-<p>Note that in the Fish shell, I can type a few letters of the device name and have Fish tab-complete it to the matching UUID.</p>
+<p>Note that in the Fish shell, I can type a few letters of the device
+name and have Fish tab-complete it to the matching UUID.</p>
 <ul>
 <li>To disconnect a Bluetooth device:</li>
 </ul>
 <pre><code>$ bluetoothctl disconnect &lt;UUID of device&gt;</code></pre>
-<p>Note that in the Fish shell, I can type a few letters of the device name and have Fish tab-complete it to the matching UUID.</p>
+<p>Note that in the Fish shell, I can type a few letters of the device
+name and have Fish tab-complete it to the matching UUID.</p>
 <h2 id="ubuntu-1404">Ubuntu 14.04</h2>
 <ul>
-<li>To do this, we need the tools from the <code>bluez-tools</code> package:</li>
+<li>To do this, we need the tools from the <code>bluez-tools</code>
+package:</li>
 </ul>
 <pre><code>$ sudo apt install bluez-tools</code></pre>
 <ul>
 <li>To list all the devices that have paired in the past:</li>
 </ul>
 <pre><code>$ bt-device --list</code></pre>
-<p>This lists each device with its name and UUID. The UUID of a device can be used to connect or disconnect from it.</p>
+<p>This lists each device with its name and UUID. The UUID of a device
+can be used to connect or disconnect from it.</p>
 <ul>
-<li>To connect an audio device using its UUID, say <code>00:02:3C:2F:F1:D4</code>:</li>
+<li>To connect an audio device using its UUID, say
+<code>00:02:3C:2F:F1:D4</code>:</li>
 </ul>
 <pre><code>$ bt-audio --connect 00:02:3C:2F:F1:D4</code></pre>
 <ul>
@@ -104,7 +102,8 @@
 <p><strong>Tried with:</strong> Bluez-tools 0.1.38 and Ubuntu 14.04</p>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://www.baeldung.com/linux/bluetooth-via-terminal" class="uri">https://www.baeldung.com/linux/bluetooth-via-terminal</a></li>
+<li><a href="https://www.baeldung.com/linux/bluetooth-via-terminal"
+class="uri">https://www.baeldung.com/linux/bluetooth-via-terminal</a></li>
 </ul>
 </div>
 
@@ -113,11 +112,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,27 +31,67 @@
 <p class="date">📅 2011-Aug-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#rdp'>rdp</a>, <a href='index.html#tesla'>tesla</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/08/20110812-cuda-tesla-rdp1.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/08/20110812-cuda-tesla-rdp1.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p><strong>Problem</strong></p>
-<p>Typically, <strong>CUDA</strong> programs cannot be executed over a <strong>Remote Desktop</strong> session. (For more on this problem, see <a href="https://codeyarns.com/tech/2011/02/03/cuda-and-remote-desktop/">here</a>.) However, if the CUDA device is a <strong>Tesla</strong> and if it does not need to be the primary graphics device, then you are in luck! A typical setup for Tesla is to have another Quadro device handle the desktop graphics, while the Tesla device handles the computation. In such setups, CUDA programs can be executed on the Tesla device over Remote Desktop! 😊</p>
+<p>Typically, <strong>CUDA</strong> programs cannot be executed over a
+<strong>Remote Desktop</strong> session. (For more on this problem, see
+<a
+href="https://codeyarns.com/tech/2011/02/03/cuda-and-remote-desktop/">here</a>.)
+However, if the CUDA device is a <strong>Tesla</strong> and if it does
+not need to be the primary graphics device, then you are in luck! A
+typical setup for Tesla is to have another Quadro device handle the
+desktop graphics, while the Tesla device handles the computation. In
+such setups, CUDA programs can be executed on the Tesla device over
+Remote Desktop! 😊</p>
 <p><strong>Solution</strong></p>
-<p>To be able to successfully execute CUDA programs on a Tesla device, you need to use a <strong>Tesla Compute Cluster (TCC) driver</strong> and set the Tesla device to <strong>TCC mode</strong>.</p>
+<p>To be able to successfully execute CUDA programs on a Tesla device,
+you need to use a <strong>Tesla Compute Cluster (TCC) driver</strong>
+and set the Tesla device to <strong>TCC mode</strong>.</p>
 <p><strong>1. Install TCC Driver</strong></p>
-<p>CUDA programs can execute on Tesla devices with the CUDA <strong>developer driver</strong> you might have downloaded off the CUDA webpage. However, the developer driver is not the same as the device specific driver. (For more on the difference, see <a href="http://stackoverflow.com/questions/4847124">here</a>.) To be able to use the TCC mode of the Tesla device, the TCC driver specific to the Tesla device is needed.</p>
-<p>To get the Tesla driver, use the <a href="http://www.nvidia.com/Download/index.aspx">NVIDIA Drivers</a> webpage and choose the driver for your Tesla device. This is its TCC driver. Install it.</p>
+<p>CUDA programs can execute on Tesla devices with the CUDA
+<strong>developer driver</strong> you might have downloaded off the CUDA
+webpage. However, the developer driver is not the same as the device
+specific driver. (For more on the difference, see <a
+href="http://stackoverflow.com/questions/4847124">here</a>.) To be able
+to use the TCC mode of the Tesla device, the TCC driver specific to the
+Tesla device is needed.</p>
+<p>To get the Tesla driver, use the <a
+href="http://www.nvidia.com/Download/index.aspx">NVIDIA Drivers</a>
+webpage and choose the driver for your Tesla device. This is its TCC
+driver. Install it.</p>
 <p><strong>2. Switch to TCC Mode</strong></p>
-<p>By default, the Tesla device will be working in a <strong>Windows Display Driver Model (WDDM)</strong> mode. This is the mode used by most CUDA devices, since they might need to support desktop graphics. If the Tesla device is in the WDDM mode, then it will not be able to execute CUDA programs over Remote Desktop.</p>
-<p>To <em>switch</em> the Tesla device to TCC mode, we can use the <strong>NVIDIA System Management Interface (SMI)</strong> tool. On Windows, this is provided as an executable file named <code>nvidia-smi.exe</code>. On my system, this was found in the <code>C:\Program Files\NVIDIA Corporation\NVSMI</code> directory. Open a Windows command prompt with elevated (Administrator) privileges and change to this directory. (One way to open an Administrator command prompt is described <a href="https://codeyarns.com/tech/2011/02/21/windows-7-start-any-application-as-administrator-from-keyboard/">here</a>.)</p>
+<p>By default, the Tesla device will be working in a <strong>Windows
+Display Driver Model (WDDM)</strong> mode. This is the mode used by most
+CUDA devices, since they might need to support desktop graphics. If the
+Tesla device is in the WDDM mode, then it will not be able to execute
+CUDA programs over Remote Desktop.</p>
+<p>To <em>switch</em> the Tesla device to TCC mode, we can use the
+<strong>NVIDIA System Management Interface (SMI)</strong> tool. On
+Windows, this is provided as an executable file named
+<code>nvidia-smi.exe</code>. On my system, this was found in the
+<code>C:\Program Files\NVIDIA Corporation\NVSMI</code> directory. Open a
+Windows command prompt with elevated (Administrator) privileges and
+change to this directory. (One way to open an Administrator command
+prompt is described <a
+href="https://codeyarns.com/tech/2011/02/21/windows-7-start-any-application-as-administrator-from-keyboard/">here</a>.)</p>
 <p>To list the available NVIDIA devices use the command:</p>
 <pre><code>nvidia-smi -q</code></pre>
 <p>To view the details of a specific device use the command:</p>
 <pre><code>nvidia-smi -q -i 0</code></pre>
-<p>The <code>-i</code> specifies the ID of the device. Device IDs begin from 0 upwards.</p>
-<p>Finally, to flip the driver model of a device from WDDM to TCC mode:</p>
+<p>The <code>-i</code> specifies the ID of the device. Device IDs begin
+from 0 upwards.</p>
+<p>Finally, to flip the driver model of a device from WDDM to TCC
+mode:</p>
 <pre><code>nvidia-smi -dm 1 -i 0</code></pre>
-<p>The <code>-dm</code> parameter takes two values: <code>0</code> for WDDM and <code>1</code> for TCC.</p>
-<p>Changing the driver model mode of the Tesla requires a restart of the system. After the restart, you should be able to execute CUDA programs remotely on the Tesla computer! 😊</p>
+<p>The <code>-dm</code> parameter takes two values: <code>0</code> for
+WDDM and <code>1</code> for TCC.</p>
+<p>Changing the driver model mode of the Tesla requires a restart of the
+system. After the restart, you should be able to execute CUDA programs
+remotely on the Tesla computer! 😊</p>
 <p><strong>Tried with:</strong> Tesla C2050 and Quadro 4000</p>
 </div>
 
@@ -74,11 +100,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

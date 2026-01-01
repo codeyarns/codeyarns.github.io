@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,31 @@
 <h1 class="title">How Vim handles comments</h1>
 <p class="date">📅 2015-Apr-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#comments'>comments</a>, <a href='index.html#commentstring'>commentstring</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You might have noticed that <strong>Vim</strong> is aware of <strong>comments</strong> in a source file. For example, it can fold a block of comments. When you continue typing a comment into a new line it inserts the appropriate comment string. You might have used plugins which can toggle comments on a block of code.</p>
-<p>All of this relies on the <code>comments</code> and <code>commentstring</code> options in Vim. These options are set for each filetype that Vim can detect. You can see what they are set to for a particular language by looking for the respective Vim file in <code>/usr/share/vim/vim74/ftplugin</code>.</p>
-<p>For example, for Java open the file <code>/usr/share/vim/vim74/ftplugin/java.vim</code> and you can see that it sets these options as:</p>
+<p>You might have noticed that <strong>Vim</strong> is aware of
+<strong>comments</strong> in a source file. For example, it can fold a
+block of comments. When you continue typing a comment into a new line it
+inserts the appropriate comment string. You might have used plugins
+which can toggle comments on a block of code.</p>
+<p>All of this relies on the <code>comments</code> and
+<code>commentstring</code> options in Vim. These options are set for
+each filetype that Vim can detect. You can see what they are set to for
+a particular language by looking for the respective Vim file in
+<code>/usr/share/vim/vim74/ftplugin</code>.</p>
+<p>For example, for Java open the file
+<code>/usr/share/vim/vim74/ftplugin/java.vim</code> and you can see that
+it sets these options as:</p>
 <pre><code>setlocal comments&amp; comments^=sO:* -,mO:*  ,exO:*/
 setlocal commentstring=//%s</code></pre>
-<p>The <code>comments</code> option is typically used for C-style comments which have a different beginning and ending components. The <code>commentstring</code> option is used for C++-style comments which are set for the entire rest of the line.</p>
-<p>To enable correct commenting behavior in Vim for your own filetypes, set these options by yourself in your Vimrc. For example, see <a href="2015/04/28/how-to-set-commentstring-in-vim/">How to set commentstring in Vim</a>.</p>
-<p>For more info, see <code>:help comments</code> and <code>:help commentstring</code></p>
+<p>The <code>comments</code> option is typically used for C-style
+comments which have a different beginning and ending components. The
+<code>commentstring</code> option is used for C++-style comments which
+are set for the entire rest of the line.</p>
+<p>To enable correct commenting behavior in Vim for your own filetypes,
+set these options by yourself in your Vimrc. For example, see <a
+href="2015/04/28/how-to-set-commentstring-in-vim/">How to set
+commentstring in Vim</a>.</p>
+<p>For more info, see <code>:help comments</code> and
+<code>:help commentstring</code></p>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
 </div>
 
@@ -60,11 +63,13 @@ setlocal commentstring=//%s</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

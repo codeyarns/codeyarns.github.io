@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,31 +95,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">C++: Insert or Update a Map</h1>
 <p class="date">📅 2011-Jan-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#insert'>insert</a>, <a href='index.html#maps'>maps</a>, <a href='index.html#stl'>stl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A C++ STL <strong>map</strong> is used to store and manage <strong>key-value pairs</strong>. The elements are maintained in the <strong>sorted</strong> order of the keys. The keys in a map cannot be changed. Either a new key-value pair can be added or the value of an already existing key-value pair can be changed. These operations are supported by 2 interfaces: <strong>insert()</strong> and the <strong>subscript operator</strong> []. These 2 interfaces differ slightly and it is important to be aware how since it has implications on correctness and efficiency.</p>
+<p>A C++ STL <strong>map</strong> is used to store and manage
+<strong>key-value pairs</strong>. The elements are maintained in the
+<strong>sorted</strong> order of the keys. The keys in a map cannot be
+changed. Either a new key-value pair can be added or the value of an
+already existing key-value pair can be changed. These operations are
+supported by 2 interfaces: <strong>insert()</strong> and the
+<strong>subscript operator</strong> []. These 2 interfaces differ
+slightly and it is important to be aware how since it has implications
+on correctness and efficiency.</p>
 <p>Consider a map:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;map&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">typedef</span> map&lt;KeyType, ValType&gt; KVMap;</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>KVMap kvmap;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;map&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> map<span class="op">&lt;</span>KeyType<span class="op">,</span> ValType<span class="op">&gt;</span> KVMap<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>KVMap kvmap<span class="op">;</span></span></code></pre></div>
 <p>To <strong>insert</strong> a new key-value pair to the map use:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>kvmap.insert( KVMap::<span class="dt">value_type</span>( key0, val0 ) );</span></code></pre></div>
-<p>It is important to note that if <code>key0</code> already exists in the map, this operation silently fails, returning a <code>bool</code> value of <code>false</code>! This might seem obvious, put another way, the insert operation <em>cannot</em> be used to update an element of the map.</p>
-<p>If the key does not already exist in the map, this is the most convenient and most efficient method to insert a key-value pair into the map.</p>
-<p>To update the value of an existing element of the map, use the <strong>subscript operator</strong>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>kvmap[ key0 ] = val1;</span></code></pre></div>
-<p>This interface is very convenient, but the user needs to be acutely aware of how this works:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kvmap<span class="op">.</span>insert<span class="op">(</span> KVMap<span class="op">::</span><span class="dt">value_type</span><span class="op">(</span> key0<span class="op">,</span> val0 <span class="op">)</span> <span class="op">);</span></span></code></pre></div>
+<p>It is important to note that if <code>key0</code> already exists in
+the map, this operation silently fails, returning a <code>bool</code>
+value of <code>false</code>! This might seem obvious, put another way,
+the insert operation <em>cannot</em> be used to update an element of the
+map.</p>
+<p>If the key does not already exist in the map, this is the most
+convenient and most efficient method to insert a key-value pair into the
+map.</p>
+<p>To update the value of an existing element of the map, use the
+<strong>subscript operator</strong>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>kvmap<span class="op">[</span> key0 <span class="op">]</span> <span class="op">=</span> val1<span class="op">;</span></span></code></pre></div>
+<p>This interface is very convenient, but the user needs to be acutely
+aware of how this works:</p>
 <ol type="1">
-<li><p>The subscript operator [] uses the <code>key0</code> to search for that element in the map. If the element exists, a reference to its value is returned. If the element does not exist, a new element with the given key and a value <em>constructed</em> using the default constructor is used.</p></li>
-<li><p>The assignment operator assigns the value to the reference returned by the subscript operator [].</p></li>
+<li><p>The subscript operator [] uses the <code>key0</code> to search
+for that element in the map. If the element exists, a reference to its
+value is returned. If the element does not exist, a new element with the
+given key and a value <em>constructed</em> using the default constructor
+is used.</p></li>
+<li><p>The assignment operator assigns the value to the reference
+returned by the subscript operator [].</p></li>
 </ol>
-<p>What all of this means is that the subscript operator is both convenient and efficient to <em>update</em> the value of an already existing element in the map. Since the value is constructed by default once and then assigned again, it is <em>not</em> an efficient way to insert a key-value pair to the map!</p>
-<p>The subscript operator can be dangerous when used without assigning any value! If the map does not have an element with <code>key99</code>, the following statement creates a new element with <code>key99</code> in the map:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>kvmap[ key99 ];</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="co">// or ...</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>cout &lt;&lt; kvmap[ key99 ];</span></code></pre></div>
-<p>Inserting and updating elements in a map has these few potholes, so drive carefully when using them! 😁</p>
+<p>What all of this means is that the subscript operator is both
+convenient and efficient to <em>update</em> the value of an already
+existing element in the map. Since the value is constructed by default
+once and then assigned again, it is <em>not</em> an efficient way to
+insert a key-value pair to the map!</p>
+<p>The subscript operator can be dangerous when used without assigning
+any value! If the map does not have an element with <code>key99</code>,
+the following statement creates a new element with <code>key99</code> in
+the map:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>kvmap<span class="op">[</span> key99 <span class="op">];</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">// or ...</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> kvmap<span class="op">[</span> key99 <span class="op">];</span></span></code></pre></div>
+<p>Inserting and updating elements in a map has these few potholes, so
+drive carefully when using them! 😁</p>
 </div>
 
 <br />
@@ -140,11 +160,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

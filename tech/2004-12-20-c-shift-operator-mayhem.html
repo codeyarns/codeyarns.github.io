@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,8 @@
 <h1 class="title">C: Shift Operator Mayhem</h1>
 <p class="date">📅 2004-Dec-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#operators'>operators</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Came across a puzzling piece of code today. The actual code is confusing, however it basically boils down to this:</p>
+<p>Came across a puzzling piece of code today. The actual code is
+confusing, however it basically boils down to this:</p>
 <pre><code>#include &lt;stdint.h&gt;
 
 int main()
@@ -55,21 +42,45 @@ int main()
 
     return 0;
 }</code></pre>
-<p>What do you think will be the result in val? Me thought 0. Turned out to be 1.</p>
-<p>After further investigation, I found that this was due to a combination of an undefined behaviour in C, vague behaviour of certain IA-32 architecture operations and my ignorance of both.</p>
-<p>On examining the code above, it is natural to think that 32 right shifts applied on <code>val</code> would boot out the puny 1 and the result would be 0. Though this is right almost always, it has some exceptions.</p>
+<p>What do you think will be the result in val? Me thought 0. Turned out
+to be 1.</p>
+<p>After further investigation, I found that this was due to a
+combination of an undefined behaviour in C, vague behaviour of certain
+IA-32 architecture operations and my ignorance of both.</p>
+<p>On examining the code above, it is natural to think that 32 right
+shifts applied on <code>val</code> would boot out the puny 1 and the
+result would be 0. Though this is right almost always, it has some
+exceptions.</p>
 <p>From The C Programming Language [1]:</p>
 <blockquote>
-The result is undefined if the right operand is negative, or greater than or <strong>equal</strong> to the number of bits in the left expression’s type.
+The result is undefined if the right operand is negative, or greater
+than or <strong>equal</strong> to the number of bits in the left
+expression’s type.
 </blockquote>
-<p>(Taking <code>val &gt;&gt; count</code> as example, left expression is <code>val</code> and right operand is <code>count</code>.)</p>
-<p>So, that explains why the result should not be relied on. But why <code>val</code> is 1? On digging deeper for that, I found that the compiler [2] generated the Intel instruction <code>sar</code> or <code>shr</code> (or it’s variants) for the C shift operation. And here lies another nasty info …</p>
-<p>From the IA-32 Intel Architecture Software Developer’s Manual [3]:</p>
+<p>(Taking <code>val &gt;&gt; count</code> as example, left expression
+is <code>val</code> and right operand is <code>count</code>.)</p>
+<p>So, that explains why the result should not be relied on. But why
+<code>val</code> is 1? On digging deeper for that, I found that the
+compiler [2] generated the Intel instruction <code>sar</code> or
+<code>shr</code> (or it’s variants) for the C shift operation. And here
+lies another nasty info …</p>
+<p>From the IA-32 Intel Architecture Software Developer’s Manual
+[3]:</p>
 <blockquote>
-The 8086 does not mask the shift count. However, all other IA-32 processors (starting with the Intel 286 processor) do mask the shift count to 5 bits, resulting in a maximum count of 31. This masking is done in all operating modes (including the virtual-8086 mode) to reduce the maximum execution time of the instructions.
+The 8086 does not mask the shift count. However, all other IA-32
+processors (starting with the Intel 286 processor) do mask the shift
+count to 5 bits, resulting in a maximum count of 31. This masking is
+done in all operating modes (including the virtual-8086 mode) to reduce
+the maximum execution time of the instructions.
 </blockquote>
-<p>So, not only is the behaviour in C undefined, on code generated for IA-32 processors, a 5 bit mask is applied on the shift count. This means that on IA-32 processors, the range of a shift count will be 0-31 only.</p>
-<p>[1] A7.8 Shift Operators, Appendix A. Reference Manual, The C Programming Language [2] Observed with both Visual C++ and GCC compilers [3] SAL/SAR/SHL/SHR - Shift, Chapter 4. Instruction Set Reference, IA-32 Intel Architecture Software Developer’s Manual</p>
+<p>So, not only is the behaviour in C undefined, on code generated for
+IA-32 processors, a 5 bit mask is applied on the shift count. This means
+that on IA-32 processors, the range of a shift count will be 0-31
+only.</p>
+<p>[1] A7.8 Shift Operators, Appendix A. Reference Manual, The C
+Programming Language [2] Observed with both Visual C++ and GCC compilers
+[3] SAL/SAR/SHL/SHR - Shift, Chapter 4. Instruction Set Reference, IA-32
+Intel Architecture Software Developer’s Manual</p>
 </div>
 
 <br />
@@ -77,11 +88,13 @@ The 8086 does not mask the shift count. However, all other IA-32 processors (sta
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

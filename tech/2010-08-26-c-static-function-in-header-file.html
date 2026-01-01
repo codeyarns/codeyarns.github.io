@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,33 @@
 <h1 class="title">C++: Static Function in Header File</h1>
 <p class="date">📅 2010-Aug-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#header'>header</a>, <a href='index.html#inline'>inline</a>, <a href='index.html#static'>static</a>, <a href='index.html#warning'>warning</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A colleague handed some C++ code to integrate which had <strong>static functions</strong> in its <strong>header file</strong> like this:</p>
+<p>A colleague handed some C++ code to integrate which had
+<strong>static functions</strong> in its <strong>header file</strong>
+like this:</p>
 <pre><code>// Foo.h
 static void FooFun()
 { /***/ }</code></pre>
-<p>In every <code>.cpp</code> file that includes <code>Foo.h</code>, a static <code>FooFun()</code> definition is compiled in. But, if you are compiling code at <strong>Warning Level 4 (/W4)</strong>, then for every <code>.cpp</code> file where <code>FooFun()</code> is <em>not</em> invoked, the following warning is produced:</p>
+<p>In every <code>.cpp</code> file that includes <code>Foo.h</code>, a
+static <code>FooFun()</code> definition is compiled in. But, if you are
+compiling code at <strong>Warning Level 4 (/W4)</strong>, then for every
+<code>.cpp</code> file where <code>FooFun()</code> is <em>not</em>
+invoked, the following warning is produced:</p>
 <pre><code>Main.cpp Foo.h(1): warning C4505: &#39;FooFun&#39; : unreferenced local function has been removed</code></pre>
-<p>Due to some constraints, my colleague was not interested in moving the <code>FooFun()</code> definition into the <code>Foo.cpp</code> source file and exposing only the <code>FooFun()</code> declaration in <code>Foo.h</code>.</p>
+<p>Due to some constraints, my colleague was not interested in moving
+the <code>FooFun()</code> definition into the <code>Foo.cpp</code>
+source file and exposing only the <code>FooFun()</code> declaration in
+<code>Foo.h</code>.</p>
 <ul>
-<li><code>FooFun()</code> cannot be defined as a normal non-static function in the header file <code>Foo.h</code>, since that would lead to <strong>linker errors</strong> that <code>FooFun()</code> is already defined in another <code>.cpp</code> file:</li>
+<li><code>FooFun()</code> cannot be defined as a normal non-static
+function in the header file <code>Foo.h</code>, since that would lead to
+<strong>linker errors</strong> that <code>FooFun()</code> is already
+defined in another <code>.cpp</code> file:</li>
 </ul>
 <pre><code>Main.obj : error LNK2005: &quot;void __cdecl FooFun(void)&quot; (?FooFun@@YAXXZ) already defined in Joe.obj</code></pre>
 <ul>
-<li>The ideal way to handle this situation is to encapsulate <code>FooFun()</code> as a static function in a <strong>class</strong>:</li>
+<li>The ideal way to handle this situation is to encapsulate
+<code>FooFun()</code> as a static function in a
+<strong>class</strong>:</li>
 </ul>
 <pre><code>// Foo.h
 class Foo
@@ -65,14 +65,21 @@ public:
     static void FooFun()
     { /***/ }
 };</code></pre>
-<p>The header file can be included in all <code>.cpp</code> files with no problems. The function can be invoked as <code>Foo::FooFun()</code> in other <code>.cpp</code> files and there is no compiler warning.</p>
+<p>The header file can be included in all <code>.cpp</code> files with
+no problems. The function can be invoked as <code>Foo::FooFun()</code>
+in other <code>.cpp</code> files and there is no compiler warning.</p>
 <ul>
-<li>If for some reason this is not suitable, then the only other solution is to make the function as <strong>static inline</strong>:</li>
+<li>If for some reason this is not suitable, then the only other
+solution is to make the function as <strong>static inline</strong>:</li>
 </ul>
 <pre><code>// Foo.h
 static inline void FooFun()
 { /***/ }</code></pre>
-<p>Inclusion of this function definition causes no problems, and invocation of the function causes it to be inlined, thus leaving no symbols behind for linker errors. Note however, that it comes with the baggage of inline, so it should be used only for tiny function bodies.</p>
+<p>Inclusion of this function definition causes no problems, and
+invocation of the function causes it to be inlined, thus leaving no
+symbols behind for linker errors. Note however, that it comes with the
+baggage of inline, so it should be used only for tiny function
+bodies.</p>
 </div>
 
 <br />
@@ -80,11 +87,13 @@ static inline void FooFun()
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

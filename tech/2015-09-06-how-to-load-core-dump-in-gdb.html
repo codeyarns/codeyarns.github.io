@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,23 @@
 <h1 class="title">How to load core dump in GDB</h1>
 <p class="date">📅 2015-Sep-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#backtrace'>backtrace</a>, <a href='index.html#core'>core</a>, <a href='index.html#core-dump'>core dump</a>, <a href='index.html#gdb'>gdb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Running an erroneous program may result it in exiting and dumping a <strong>core dump</strong> file named <code>core</code>. For example:</p>
+<p>Running an erroneous program may result it in exiting and dumping a
+<strong>core dump</strong> file named <code>core</code>. For
+example:</p>
 <pre><code>$ ./a.out
 ./a.out terminated by signal SIGSEGV (Address boundary error)</code></pre>
-<p>We need to load the core dump file in <strong>GDB</strong> to begin investigating the cause of the error. This is typically done using the command:</p>
+<p>We need to load the core dump file in <strong>GDB</strong> to begin
+investigating the cause of the error. This is typically done using the
+command:</p>
 <pre><code>$ gdb ./a.out core</code></pre>
-<p>GDB loads the program and using the information from the core dump, the program stack and other information is restored to the point where it encountered the error.</p>
-<p>A common first step in investigation is print the <strong>stack frames</strong> at this point:</p>
+<p>GDB loads the program and using the information from the core dump,
+the program stack and other information is restored to the point where
+it encountered the error.</p>
+<p>A common first step in investigation is print the <strong>stack
+frames</strong> at this point:</p>
 <pre><code>(gdb) backtrace</code></pre>
-<p><strong>Tried with:</strong> GDB 7.7.1, GCC 5.1.0 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> GDB 7.7.1, GCC 5.1.0 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -60,11 +54,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

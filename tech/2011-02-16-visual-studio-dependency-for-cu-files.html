@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,24 +31,48 @@
 <p class="date">📅 2011-Feb-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#visual-studio'>visual studio</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>Visual Studio understands that if a C++ file includes a header file, then it means that the C++ file is <strong>dependent</strong> on that header file. That is, when the .h file is changed, Visual Studio recompiles the .cpp file.</p>
-<p>Much like in C++, it is common in CUDA to spread the code across .cu and .h files. However, Visual Studio <em>cannot</em> understand the dependency between a .cu file and a .h file that it might include. Thus, when the .h file is changed, the .cu file is <em>not</em> recompiled!</p>
+<p>Visual Studio understands that if a C++ file includes a header file,
+then it means that the C++ file is <strong>dependent</strong> on that
+header file. That is, when the .h file is changed, Visual Studio
+recompiles the .cpp file.</p>
+<p>Much like in C++, it is common in CUDA to spread the code across .cu
+and .h files. However, Visual Studio <em>cannot</em> understand the
+dependency between a .cu file and a .h file that it might include. Thus,
+when the .h file is changed, the .cu file is <em>not</em>
+recompiled!</p>
 <p><strong>Solution</strong></p>
-<p>The dependency between a given .cu file and the .h files it includes needs to be specified explicity to Visual Studio. Consider the Visual Studio solution shown below:</p>
+<p>The dependency between a given .cu file and the .h files it includes
+needs to be specified explicity to Visual Studio. Consider the Visual
+Studio solution shown below:</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/02/20110216_source_dependency_1.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/02/20110216_source_dependency_1.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>Assume that <code>Kernels/Foo.cu</code> includes <code>Kernels/FooKernel.h</code>. To make the dependency between these files explicit:</p>
+<p>Assume that <code>Kernels/Foo.cu</code> includes
+<code>Kernels/FooKernel.h</code>. To make the dependency between these
+files explicit:</p>
 <ol type="1">
-<li><p>Right-click on <code>Kernels/Foo.cu</code> and choose <strong>Properties</strong>.</p></li>
-<li><p>In the Properties dialog, choose <strong>CUDA Runtime API</strong> → <strong>Source Dependencies</strong>.</p></li>
-<li><p>Add the files that <code>Kernels/Foo.cu</code> depends on. For us, this is <code>Kernels/FooKernel.h</code>. Make sure the path is correct, like I have done here by using <code>Kernels/</code></p></li>
-<li><p>If there are multiple dependencies, separate them using <strong>semicolons</strong> (;). Using space, comma or anything else will be silently ignored with no errors!</p></li>
+<li><p>Right-click on <code>Kernels/Foo.cu</code> and choose
+<strong>Properties</strong>.</p></li>
+<li><p>In the Properties dialog, choose <strong>CUDA Runtime
+API</strong> → <strong>Source Dependencies</strong>.</p></li>
+<li><p>Add the files that <code>Kernels/Foo.cu</code> depends on. For
+us, this is <code>Kernels/FooKernel.h</code>. Make sure the path is
+correct, like I have done here by using <code>Kernels/</code></p></li>
+<li><p>If there are multiple dependencies, separate them using
+<strong>semicolons</strong> (;). Using space, comma or anything else
+will be silently ignored with no errors!</p></li>
 </ol>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/02/20110216_source_dependency_2.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/02/20110216_source_dependency_2.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p><code>Foo.cu</code> should now be recompiled whenever <code>FooKernel.h</code> is changed! 😊</p>
+<p><code>Foo.cu</code> should now be recompiled whenever
+<code>FooKernel.h</code> is changed! 😊</p>
 <p><strong>Tried with</strong>: CUDA 3.2 and Visual Studio 2008</p>
 </div>
 
@@ -71,11 +81,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

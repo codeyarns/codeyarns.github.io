@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,44 +30,106 @@
 <h1 class="title">Firefox Configuration Editor</h1>
 <p class="date">📅 2023-Oct-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#firefox'>firefox</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://support.mozilla.org/en-US/kb/about-config-editor-firefox"><strong>Configuration Editor</strong></a> in Firefox is invoked by using <code>about:config</code> as the URL in the addressbar. It is used to change the settings of the browser well beyond what is available in the Settings dialog. Any preference that is changed away from its default value is saved by Firefox to a file named <code>prefs.js</code> in its <a href="http://support.mozilla.com/en-US/kb/Profiles">profiles directory</a> (which is <code>%APPDATA%\Mozilla\Firefox\Profiles\SomeRandomgString.default</code> on Windows). This is a file that is written by Firefox and should not be modified by the user. The user can provide Firefox his own settings in a <code>user.js</code>, also placed in the Profiles directory. The <code>user.js</code> preferences will override that in <code>prefs.js</code> or the default.</p>
-<p>This post captures some of these settings that I have found to be useful since 2009:</p>
-<h2 id="appupdateinterval"><a href="http://kb.mozillazine.org/App.update.interval">app.update.interval</a></h2>
-<p>The interval in seconds at which Firefox checks for updates. Set it to 1296000 for example to check once every 15 days.</p>
-<h2 id="browserbackspace_action"><a href="http://kb.mozillazine.org/Browser.backspace_action">browser.backspace_action</a></h2>
-<p>Set the above option to 0 to use the <code>Backspace</code> key to get to the Previous page.</p>
-<p>While this works by default on Windows, that is not the case on Ubuntu. An alternative to this is <code>Alt + ←</code></p>
+<p>The <a
+href="https://support.mozilla.org/en-US/kb/about-config-editor-firefox"><strong>Configuration
+Editor</strong></a> in Firefox is invoked by using
+<code>about:config</code> as the URL in the addressbar. It is used to
+change the settings of the browser well beyond what is available in the
+Settings dialog. Any preference that is changed away from its default
+value is saved by Firefox to a file named <code>prefs.js</code> in its
+<a href="http://support.mozilla.com/en-US/kb/Profiles">profiles
+directory</a> (which is
+<code>%APPDATA%\Mozilla\Firefox\Profiles\SomeRandomgString.default</code>
+on Windows). This is a file that is written by Firefox and should not be
+modified by the user. The user can provide Firefox his own settings in a
+<code>user.js</code>, also placed in the Profiles directory. The
+<code>user.js</code> preferences will override that in
+<code>prefs.js</code> or the default.</p>
+<p>This post captures some of these settings that I have found to be
+useful since 2009:</p>
+<h2 id="appupdateinterval"><a
+href="http://kb.mozillazine.org/App.update.interval">app.update.interval</a></h2>
+<p>The interval in seconds at which Firefox checks for updates. Set it
+to 1296000 for example to check once every 15 days.</p>
+<h2 id="browserbackspace_action"><a
+href="http://kb.mozillazine.org/Browser.backspace_action">browser.backspace_action</a></h2>
+<p>Set the above option to 0 to use the <code>Backspace</code> key to
+get to the Previous page.</p>
+<p>While this works by default on Windows, that is not the case on
+Ubuntu. An alternative to this is <code>Alt + ←</code></p>
 <h2 id="browserctrltabpreviews">browser.ctrltab.previews</h2>
-<p>Set to <code>true</code> to display a Windows task-manager-like <em>previews</em> of open tabs when <code>Ctrl+Tab</code> is used to switch or cycle through the tabs.</p>
-<h2 id="browserlinkopen_newwindowrestriction"><a href="http://kb.mozillazine.org/Browser.link.open_newwindow.restriction">browser.link.open_newwindow.restriction</a></h2>
-<p>It is irritating when clicking a link pops open a new window, because it also takes away the focus from the current window.</p>
-<p>Set the above config to 0 to stop this behaviour and open all popup windows in a new tab.</p>
-<h2 id="browsersearchcontextloadinbackground"><a href="https://developer.mozilla.org/en/Preferences/browser.search.context.loadInBackground">browser.search.context.loadInBackground</a></h2>
-<p>In recent versions of Firefox, if you select any text, right-click and choose <strong>Search Google</strong> (or any search engine), the new tab with these results is opened in the foreground.</p>
-<p>This default behaviour can be changed to load the tab in the background by setting the above config to <code>true</code>.</p>
-<h2 id="browsersearchdefaultenginename">browser.search.defaultenginename</h2>
-<p>If you type some words into the address bar instead of a URL, Google is used as the default search engine to search with those words as keywords. Change the above config to the name of the default search engine you want like. For example, changing <code>Google</code> to <code>Bing</code>.</p>
-<h2 id="browsertabsclosebuttons"><a href="http://kb.mozillazine.org/Browser.tabs.closeButtons">browser.tabs.closeButtons</a></h2>
-<p>To remove the tab close button, set this config to <code>2</code>.</p>
-<p>Firefox displays the close button on each open tab. This is a wastage of the horizontal space in the tab bar. You can close a tab anyway by using the keyboard or mouse as described in <a href="https://codeyarns.com/tech/2011/05/31/firefox-new-tab-and-close-tab/">this post</a>.</p>
-<h2 id="browsertabsloaddivertedinbackground">browser.tabs.loadDivertedInBackground</h2>
-<p>Toggle this to <code>true</code> to open clicked links in the background.</p>
-<h2 id="domdisable_window_move_resize">dom.disable_window_move_resize</h2>
-<p>Some webpages resize or move the browser window. Set the above config to <code>true</code> to disable this.</p>
-<h2 id="extensionsupdateinterval"><a href="http://kb.mozillazine.org/About:config_entries">extensions.update.interval</a></h2>
-<p>The interval in seconds at which Firefox checks for updates to addons. Set it to 1296000 for example to check once every 15 days.</p>
-<h2 id="layoutword_selecteat_space_to_next_word"><a href="http://kb.mozillazine.org/Layout.word_select.eat_space_to_next_word">layout.word_select.eat_space_to_next_word</a></h2>
+<p>Set to <code>true</code> to display a Windows task-manager-like
+<em>previews</em> of open tabs when <code>Ctrl+Tab</code> is used to
+switch or cycle through the tabs.</p>
+<h2 id="browserlinkopen_newwindowrestriction"><a
+href="http://kb.mozillazine.org/Browser.link.open_newwindow.restriction">browser.link.open_newwindow.restriction</a></h2>
+<p>It is irritating when clicking a link pops open a new window, because
+it also takes away the focus from the current window.</p>
+<p>Set the above config to 0 to stop this behaviour and open all popup
+windows in a new tab.</p>
+<h2 id="browsersearchcontextloadinbackground"><a
+href="https://developer.mozilla.org/en/Preferences/browser.search.context.loadInBackground">browser.search.context.loadInBackground</a></h2>
+<p>In recent versions of Firefox, if you select any text, right-click
+and choose <strong>Search Google</strong> (or any search engine), the
+new tab with these results is opened in the foreground.</p>
+<p>This default behaviour can be changed to load the tab in the
+background by setting the above config to <code>true</code>.</p>
+<h2
+id="browsersearchdefaultenginename">browser.search.defaultenginename</h2>
+<p>If you type some words into the address bar instead of a URL, Google
+is used as the default search engine to search with those words as
+keywords. Change the above config to the name of the default search
+engine you want like. For example, changing <code>Google</code> to
+<code>Bing</code>.</p>
+<h2 id="browsertabsclosebuttons"><a
+href="http://kb.mozillazine.org/Browser.tabs.closeButtons">browser.tabs.closeButtons</a></h2>
+<p>To remove the tab close button, set this config to
+<code>2</code>.</p>
+<p>Firefox displays the close button on each open tab. This is a wastage
+of the horizontal space in the tab bar. You can close a tab anyway by
+using the keyboard or mouse as described in <a
+href="https://codeyarns.com/tech/2011/05/31/firefox-new-tab-and-close-tab/">this
+post</a>.</p>
+<h2
+id="browsertabsloaddivertedinbackground">browser.tabs.loadDivertedInBackground</h2>
+<p>Toggle this to <code>true</code> to open clicked links in the
+background.</p>
+<h2
+id="domdisable_window_move_resize">dom.disable_window_move_resize</h2>
+<p>Some webpages resize or move the browser window. Set the above config
+to <code>true</code> to disable this.</p>
+<h2 id="extensionsupdateinterval"><a
+href="http://kb.mozillazine.org/About:config_entries">extensions.update.interval</a></h2>
+<p>The interval in seconds at which Firefox checks for updates to
+addons. Set it to 1296000 for example to check once every 15 days.</p>
+<h2 id="layoutword_selecteat_space_to_next_word"><a
+href="http://kb.mozillazine.org/Layout.word_select.eat_space_to_next_word">layout.word_select.eat_space_to_next_word</a></h2>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/04/20110419_word_highlight.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/04/20110419_word_highlight.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>If you double-click anywhere on a word of text in any application on Windows, it will highlight that word and any following whitespace characters upto the beginning of the next word. <a href="http://stackoverflow.com/questions/2575758">Supposedly</a>, Mac behaves the same way too.</p>
-<p>The reason for this behaviour seems to be to aid in copy-paste of a word inside a document. It also helps if one wants to delete a word, since the following whitespace is also nicely removed.</p>
-<p>However, I find this feature irritating. Especially when I am editing text on Firefox and want to apply formatting on the highlighted word either in rich text mode or HTML mode.</p>
-<p>Thankfully, to highlight only the word on a double-click and ignore the following whitespace set the above config to <code>false</code>.</p>
+<p>If you double-click anywhere on a word of text in any application on
+Windows, it will highlight that word and any following whitespace
+characters upto the beginning of the next word. <a
+href="http://stackoverflow.com/questions/2575758">Supposedly</a>, Mac
+behaves the same way too.</p>
+<p>The reason for this behaviour seems to be to aid in copy-paste of a
+word inside a document. It also helps if one wants to delete a word,
+since the following whitespace is also nicely removed.</p>
+<p>However, I find this feature irritating. Especially when I am editing
+text on Firefox and want to apply formatting on the highlighted word
+either in rich text mode or HTML mode.</p>
+<p>Thankfully, to highlight only the word on a double-click and ignore
+the following whitespace set the above config to <code>false</code>.</p>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://developer.mozilla.org/En/A_Brief_Guide_to_Mozilla_Preferences" class="uri">https://developer.mozilla.org/En/A_Brief_Guide_to_Mozilla_Preferences</a></li>
-<li><a href="http://www.mozilla.org/unix/customizing.html" class="uri">http://www.mozilla.org/unix/customizing.html</a></li>
+<li><a
+href="https://developer.mozilla.org/En/A_Brief_Guide_to_Mozilla_Preferences"
+class="uri">https://developer.mozilla.org/En/A_Brief_Guide_to_Mozilla_Preferences</a></li>
+<li><a href="http://www.mozilla.org/unix/customizing.html"
+class="uri">http://www.mozilla.org/unix/customizing.html</a></li>
 </ul>
 </div>
 
@@ -90,11 +138,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,10 @@
 <p class="date">📅 2020-Jun-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#imagemagick'>imagemagick</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I tried to convert a few PNG files to a PDF file using the <strong>convert</strong> tool that ships with <strong>ImageMagick</strong> as described <a href="2009-12-29-imagemagick-convert-images-to-pdf-document.html">here</a>.</p>
+<p>I tried to convert a few PNG files to a PDF file using the
+<strong>convert</strong> tool that ships with
+<strong>ImageMagick</strong> as described <a
+href="2009-12-29-imagemagick-convert-images-to-pdf-document.html">here</a>.</p>
 <p>With ImageMagick 6.9.7, I got this error message:</p>
 <pre><code>$ convert *.png out.pdf
 convert-im6.q16: not authorized `out.pdf&#39; @ error/constitute.c/WriteImage/1037.</code></pre>
@@ -53,8 +42,13 @@ convert-im6.q16: not authorized `out.pdf&#39; @ error/constitute.c/WriteImage/10
 <pre><code>$ convert *.png out.pdf
 convert-im6.q16: attempt to perform an operation not allowed by the security policy `PDF&#39; @ error/constitute.c/IsCoderAuthorized/408.</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Since ImageMagick is sometimes used on web servers to operate on images for users, it has security checks on certain operations. The above error was caused since my operation failed one of its policies.</p>
-<p>Since I am doing these operations locally, I do not really want ImageMagick imposing security policies. So I moved its policy file so that it is not used:</p>
+<p>Since ImageMagick is sometimes used on web servers to operate on
+images for users, it has security checks on certain operations. The
+above error was caused since my operation failed one of its
+policies.</p>
+<p>Since I am doing these operations locally, I do not really want
+ImageMagick imposing security policies. So I moved its policy file so
+that it is not used:</p>
 <pre><code>$ sudo mv /etc/ImageMagick-6/policy.xml /etc/ImageMagick-6/policy.xml.orig</code></pre>
 <p>My conversion worked after this change.</p>
 </div>
@@ -64,11 +58,13 @@ convert-im6.q16: attempt to perform an operation not allowed by the security pol
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

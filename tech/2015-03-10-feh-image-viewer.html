@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,8 +30,14 @@
 <h1 class="title">Feh Image Viewer</h1>
 <p class="date">📅 2015-Mar-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#feh'>feh</a>, <a href='index.html#image-viewer'>image viewer</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://codeyarns.files.wordpress.com/2015/03/20150310_feh.png"><img src="https://codeyarns.files.wordpress.com/2015/03/20150310_feh.png" alt="20150310_feh" /></a></p>
-<p><a href="http://feh.finalrewind.org/"><strong>Feh</strong></a> is probably the fastest and the most minimal image viewer on Linux. You might want to try it if you need to open and browse through images quickly on even the slowest computers.</p>
+<p><a
+href="https://codeyarns.files.wordpress.com/2015/03/20150310_feh.png"><img
+src="https://codeyarns.files.wordpress.com/2015/03/20150310_feh.png"
+alt="20150310_feh" /></a></p>
+<p><a href="http://feh.finalrewind.org/"><strong>Feh</strong></a> is
+probably the fastest and the most minimal image viewer on Linux. You
+might want to try it if you need to open and browse through images
+quickly on even the slowest computers.</p>
 <h2 id="install">Install</h2>
 <p>Feh can be installed easily:</p>
 <pre><code>$ sudo apt install feh</code></pre>
@@ -62,25 +54,49 @@ Up: Zoom in
 Down: Zoom out
 /: Fit window
 Esc: Close</code></pre>
-<p>You can set your own keyboard shortcuts by creating the file <code>~/.config/feh/keys</code>. An example configuration file can be seen <a href="http://feh.finalrewind.org/examples/derf/keys">here</a>. The config options can be seen in <code>man feh</code>.</p>
+<p>You can set your own keyboard shortcuts by creating the file
+<code>~/.config/feh/keys</code>. An example configuration file can be
+seen <a href="http://feh.finalrewind.org/examples/derf/keys">here</a>.
+The config options can be seen in <code>man feh</code>.</p>
 <h2 id="options">Options</h2>
 <p>The command line options that I usually use:</p>
 <ul>
-<li><p><code>--geometry 1920x1080</code>: Start in a window of the specified size. Note that there is no option to open in a maximized window.</p></li>
+<li><p><code>--geometry 1920x1080</code>: Start in a window of the
+specified size. Note that there is no option to open in a maximized
+window.</p></li>
 <li><p><code>-F</code>: Start in fullscreen mode</p></li>
 <li><p><code>-Z</code>: Zoom images to fit window</p></li>
-<li><p><code>--scale-down</code>: Scale down image to fit window, only when it is bigger than window</p></li>
+<li><p><code>--scale-down</code>: Scale down image to fit window, only
+when it is bigger than window</p></li>
 </ul>
 <h2 id="open-with">Open with</h2>
 <ul>
-<li><p>You can associate it to the default image viewer for all types of images. If you find that it is not appearing in the <strong>Open With</strong> menu, then open <code>/usr/share/applications/feh.desktop</code>. Add <code>%U</code> to the <code>Exec</code> line.</p></li>
-<li><p>When you open an image in your file explorer with Feh, it only displays that image. You cannot move to the previous and next image in that directory. If you want Feh to act like an image browser, use the script provided <a href="https://wiki.archlinux.org/index.php/feh">here</a>. To associate this script with your file explorer, first add it as a main menu entry and then find it in the Open With dialog.</p></li>
+<li><p>You can associate it to the default image viewer for all types of
+images. If you find that it is not appearing in the <strong>Open
+With</strong> menu, then open
+<code>/usr/share/applications/feh.desktop</code>. Add <code>%U</code> to
+the <code>Exec</code> line.</p></li>
+<li><p>When you open an image in your file explorer with Feh, it only
+displays that image. You cannot move to the previous and next image in
+that directory. If you want Feh to act like an image browser, use the
+script provided <a
+href="https://wiki.archlinux.org/index.php/feh">here</a>. To associate
+this script with your file explorer, first add it as a main menu entry
+and then find it in the Open With dialog.</p></li>
 </ul>
 <h2 id="shortcomings">Shortcomings</h2>
-<p>Though Feh is super fast, there are a few problems which make it impossible for me to use it:</p>
+<p>Though Feh is super fast, there are a few problems which make it
+impossible for me to use it:</p>
 <ul>
-<li><p>It does not auto-rotate images to match their EXIF orientation. Since most images are photos generated by cameras or smartphones, not having this feature is a deathblow. I cannot rotate my head while browsing a directory of photos.</p></li>
-<li><p>Manually rotating the image modifies the image! You can rotate the image by 90 degrees using ``, but it actually writes back the rotated image to file! There is no option to just rotate for viewing! This combined with Feh not supporting EXIF rotation tags is a deathblow.</p></li>
+<li><p>It does not auto-rotate images to match their EXIF orientation.
+Since most images are photos generated by cameras or smartphones, not
+having this feature is a deathblow. I cannot rotate my head while
+browsing a directory of photos.</p></li>
+<li><p>Manually rotating the image modifies the image! You can rotate
+the image by 90 degrees using ``, but it actually writes back the
+rotated image to file! There is no option to just rotate for viewing!
+This combined with Feh not supporting EXIF rotation tags is a
+deathblow.</p></li>
 </ul>
 <p><strong>Tried with:</strong> Feh 2.9.3 and Ubuntu 14.04</p>
 </div>
@@ -90,11 +106,13 @@ Esc: Close</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

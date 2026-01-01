@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,19 +95,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">GraphicsMagick: Compression Methods</h1>
 <p class="date">📅 2010-Apr-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#graphicsmagick'>graphicsmagick</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://www.graphicsmagick.org/"><strong>GraphicsMagick</strong></a> programs take a <strong>compression method</strong> parameter specified by using the <a href="http://www.graphicsmagick.org/GraphicsMagick.html#details-compress"><strong>-compress</strong></a> option. For example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>$ <span class="ex">gm</span> convert -compress JPEG scans-*.jpeg fooBar.pdf</span></code></pre></div>
-<p>The resulting image quality and filesize depends on the compression method used. Here is the resulting filesize comparison for the various compression methods on a conversion of 3 JPEG images (~270 KB each) to a PDF file:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">117037</span>  Fax</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="ex">729912</span>  JPEG</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ex">1282909</span> Zip</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ex">1458566</span> LZW</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ex">1797160</span> RLE</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="ex">1797160</span> Lossless</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="ex">1797160</span> Group4</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="ex">1797160</span> BZip</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="ex">8300344</span> None</span></code></pre></div>
-<p>The <strong>default</strong> compression method used, when the -compress option is not specified, depends on the output filetype. For example, the default compression method used to convert to PDF was found to be <strong>Zip</strong>.</p>
+<p><a
+href="http://www.graphicsmagick.org/"><strong>GraphicsMagick</strong></a>
+programs take a <strong>compression method</strong> parameter specified
+by using the <a
+href="http://www.graphicsmagick.org/GraphicsMagick.html#details-compress"><strong>-compress</strong></a>
+option. For example:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gm convert <span class="at">-compress</span> JPEG scans-<span class="pp">*</span>.jpeg fooBar.pdf</span></code></pre></div>
+<p>The resulting image quality and filesize depends on the compression
+method used. Here is the resulting filesize comparison for the various
+compression methods on a conversion of 3 JPEG images (~270 KB each) to a
+PDF file:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">117037</span>  Fax</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">729912</span>  JPEG</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">1282909</span> Zip</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">1458566</span> LZW</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">1797160</span> RLE</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">1797160</span> Lossless</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">1797160</span> Group4</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">1797160</span> BZip</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">8300344</span> None</span></code></pre></div>
+<p>The <strong>default</strong> compression method used, when the
+-compress option is not specified, depends on the output filetype. For
+example, the default compression method used to convert to PDF was found
+to be <strong>Zip</strong>.</p>
 <p>Tried with: GraphicsMagick 1.3.5 2009-01-26 Q8</p>
 </div>
 
@@ -129,11 +129,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

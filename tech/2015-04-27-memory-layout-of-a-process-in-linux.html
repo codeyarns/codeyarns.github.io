@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,12 @@
 <h1 class="title">Memory layout of a process in Linux</h1>
 <p class="date">📅 2015-Apr-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#proc'>proc</a>, <a href='index.html#process'>process</a>, <a href='index.html#procfs'>procfs</a>, <a href='index.html#virtual-memory'>virtual memory</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>After reading <a href="2015/04/25/the-art-of-debugging-with-gdb-ddd-and-eclipse/"><strong>The Art of Debugging</strong></a>, I was curious to see the <strong>memory layout</strong> of a <strong>process</strong> in Linux. In modern operating systems, this is essentially the virtual memory layout and I tried this with a 64-bit Linux.</p>
+<p>After reading <a
+href="2015/04/25/the-art-of-debugging-with-gdb-ddd-and-eclipse/"><strong>The
+Art of Debugging</strong></a>, I was curious to see the <strong>memory
+layout</strong> of a <strong>process</strong> in Linux. In modern
+operating systems, this is essentially the virtual memory layout and I
+tried this with a 64-bit Linux.</p>
 <p>I wrote a simple C++ program which had these components:</p>
 <ul>
 <li><p>Global constants and variables</p></li>
@@ -52,7 +43,8 @@
 <li><p>Dynamic memory allocation</p></li>
 <li><p>Calls to C and C++ standard libraries</p></li>
 </ul>
-<p>I compiled and ran the <code>a.out</code> program, made it wait for user input, found its PID and tried:</p>
+<p>I compiled and ran the <code>a.out</code> program, made it wait for
+user input, found its PID and tried:</p>
 <pre><code>$ cat /proc/PID/maps</code></pre>
 <p>That output, with some annotations, is shown below:</p>
 <pre><code>Address                   Perm Offset   Dev   Inode     Path
@@ -79,25 +71,53 @@
 7fff9b79a000-7fff9b7bb000 rw-p 00000000 00:00 0         [stack]
 7fff9b7fe000-7fff9b800000 r-xp 00000000 00:00 0         [vdso]
 ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0 [vsyscall]</code></pre>
-<p>By observing the memory ranges in this output, we can build the classic memory layout of a process by ourselves:</p>
+<p>By observing the memory ranges in this output, we can build the
+classic memory layout of a process by ourselves:</p>
 <pre><code>0x00                                  0xFF
 Text Data Heap ---&gt; DLLs &lt;--- Stack Kernel</code></pre>
-<p>I always found the vertical layout used in textbooks confusing, so I like to lay it out horizontally like this. Left to right, you go from low to high memory addresses.</p>
+<p>I always found the vertical layout used in textbooks confusing, so I
+like to lay it out horizontally like this. Left to right, you go from
+low to high memory addresses.</p>
 <p>A few notes by observing the output of proc and the layout:</p>
 <ul>
-<li><p>We can see that the device and inode columns are filled for binary images of program and the dynamic libraries, since both of these are loaded from disk.</p></li>
-<li><p>By looking at the address range of small segments, we can see that Linux is still using 4096 bytes as the page size for the 64-bit Intel CPU it is running on. <code>0x1000</code> is 4096 in decimal.</p></li>
-<li><p>All the segments and their permissions are at the granularity of a page. CPU checks the permission of a machine instruction when it operates on a memory location in RAM. Once a page is loaded to RAM and becomes <strong>resident</strong> there, bits set on the page indicate its allowed permissions. CPU enforces these permissions. When program tries to override these permissions, we get segmentation fault.</p></li>
-<li><p>Text segment has read and execute permissions. Machine instructions in text segment need to be read and executed by CPU.</p></li>
-<li><p>Constant data segment has only read permission. Constants used by program should only be allowed to read, not changed (written).</p></li>
-<li><p>Data + BSS segment has read and write permissions. Global variables of program should be read and written too.</p></li>
-<li><p>Text, constant and Data+BSS segments taken together is the binary image of program that has been mapped into virtual memory by loader.</p></li>
-<li><p>Heap does not have execute permission. Program can only read and write to the memory it gets from <code>malloc</code>.</p></li>
-<li><p>All the loaded DLLs also have similar Text, constant and Data segments in each. They also have a mysterious <code>---p</code> segment! 😊</p></li>
-<li><p>Stack is where local variables are stored. Note that it too has only read and write permissions. If this program was multi-threaded, there would be one stack for each thread here.</p></li>
-<li><p><code>vdso</code> and <code>vsyscall</code> is where the user space last sees a system call disappear. From there it enters the rabbit hole to kernel space.</p></li>
+<li><p>We can see that the device and inode columns are filled for
+binary images of program and the dynamic libraries, since both of these
+are loaded from disk.</p></li>
+<li><p>By looking at the address range of small segments, we can see
+that Linux is still using 4096 bytes as the page size for the 64-bit
+Intel CPU it is running on. <code>0x1000</code> is 4096 in
+decimal.</p></li>
+<li><p>All the segments and their permissions are at the granularity of
+a page. CPU checks the permission of a machine instruction when it
+operates on a memory location in RAM. Once a page is loaded to RAM and
+becomes <strong>resident</strong> there, bits set on the page indicate
+its allowed permissions. CPU enforces these permissions. When program
+tries to override these permissions, we get segmentation fault.</p></li>
+<li><p>Text segment has read and execute permissions. Machine
+instructions in text segment need to be read and executed by
+CPU.</p></li>
+<li><p>Constant data segment has only read permission. Constants used by
+program should only be allowed to read, not changed (written).</p></li>
+<li><p>Data + BSS segment has read and write permissions. Global
+variables of program should be read and written too.</p></li>
+<li><p>Text, constant and Data+BSS segments taken together is the binary
+image of program that has been mapped into virtual memory by
+loader.</p></li>
+<li><p>Heap does not have execute permission. Program can only read and
+write to the memory it gets from <code>malloc</code>.</p></li>
+<li><p>All the loaded DLLs also have similar Text, constant and Data
+segments in each. They also have a mysterious <code>---p</code> segment!
+😊</p></li>
+<li><p>Stack is where local variables are stored. Note that it too has
+only read and write permissions. If this program was multi-threaded,
+there would be one stack for each thread here.</p></li>
+<li><p><code>vdso</code> and <code>vsyscall</code> is where the user
+space last sees a system call disappear. From there it enters the rabbit
+hole to kernel space.</p></li>
 </ul>
-<p><strong>Reference:</strong> <a href="https://github.com/torvalds/linux/blob/master/Documentation/filesystems/proc.txt">Proc.txt</a> from Linux kernel source code</p>
+<p><strong>Reference:</strong> <a
+href="https://github.com/torvalds/linux/blob/master/Documentation/filesystems/proc.txt">Proc.txt</a>
+from Linux kernel source code</p>
 <p><strong>Tried with:</strong> Linux 3.13.0-45 and Ubuntu 14.04</p>
 </div>
 
@@ -106,11 +126,13 @@ Text Data Heap ---&gt; DLLs &lt;--- Stack Kernel</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

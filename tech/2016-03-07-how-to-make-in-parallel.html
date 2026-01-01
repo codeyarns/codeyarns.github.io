@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,32 @@
 <h1 class="title">How to make in parallel</h1>
 <p class="date">📅 2016-Mar-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#jobs'>jobs</a>, <a href='index.html#make'>make</a>, <a href='index.html#parallel'>parallel</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Building the source code of big projects can take a lot of time. By default, the <code>make</code> command builds one target at a time. Since most of our computers have multiple cores, this process can be sped up by building multiple targets in parallel. This can be done easily by using the <code>--jobs</code> or <code>-j</code> parameter.</p>
+<p>Building the source code of big projects can take a lot of time. By
+default, the <code>make</code> command builds one target at a time.
+Since most of our computers have multiple cores, this process can be
+sped up by building multiple targets in parallel. This can be done
+easily by using the <code>--jobs</code> or <code>-j</code>
+parameter.</p>
 <ul>
-<li><p><code>make -j</code> will try to build <strong>all</strong> targets in parallel whose dependencies are available. This will swamp your machine with build tasks.</p></li>
-<li><p><code>make -j 6</code> will try to build a maximum of 6 (or any non-zero positive integer you specify) targets in parallel. The actual number of builds done in parallel might be less depending on how many targets have their dependencies ready.</p></li>
-<li><p>If you use parallel make frequently, then it is a good idea to turn it into an alias in your shell.</p></li>
-<li><p>The <code>-j</code> option can be set in the <code>MAKEFLAGS</code> environment variable, if you want parallel make to be used whenever <code>make</code> is invoked. This is better than an alias since parallel make is used even if <code>make</code> is called inside programs which are not using (or not aware of) your alias.</p></li>
-<li><p>You may want to use the same alias or <code>MAKEFLAGS</code> variable across machines with varying number of CPU cores. One way to solve this problem is to use the output of the <code>nproc --all</code> command to set the number of parallel jobs.</p></li>
+<li><p><code>make -j</code> will try to build <strong>all</strong>
+targets in parallel whose dependencies are available. This will swamp
+your machine with build tasks.</p></li>
+<li><p><code>make -j 6</code> will try to build a maximum of 6 (or any
+non-zero positive integer you specify) targets in parallel. The actual
+number of builds done in parallel might be less depending on how many
+targets have their dependencies ready.</p></li>
+<li><p>If you use parallel make frequently, then it is a good idea to
+turn it into an alias in your shell.</p></li>
+<li><p>The <code>-j</code> option can be set in the
+<code>MAKEFLAGS</code> environment variable, if you want parallel make
+to be used whenever <code>make</code> is invoked. This is better than an
+alias since parallel make is used even if <code>make</code> is called
+inside programs which are not using (or not aware of) your
+alias.</p></li>
+<li><p>You may want to use the same alias or <code>MAKEFLAGS</code>
+variable across machines with varying number of CPU cores. One way to
+solve this problem is to use the output of the <code>nproc --all</code>
+command to set the number of parallel jobs.</p></li>
 </ul>
 </div>
 
@@ -59,11 +64,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

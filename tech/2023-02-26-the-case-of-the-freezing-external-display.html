@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,26 +31,61 @@
 <p class="date">📅 2023-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#usb'>usb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was typing an email today when everything seemed to have frozen on my system. Both the external keyboard and my trackball had stopped working. My trackball is connected using Bluetooth and my keyboard is connected to my external display, which is in turn connected to my laptop.</p>
+<p>I was typing an email today when everything seemed to have frozen on
+my system. Both the external keyboard and my trackball had stopped
+working. My trackball is connected using Bluetooth and my keyboard is
+connected to my external display, which is in turn connected to my
+laptop.</p>
 <p>The pertinent details of the devices involved are:</p>
 <ul>
-<li><a href="2022-10-07-dell-precision-5760.html">Dell Precision 5760 laptop</a></li>
-<li><a href="2020-04-19-kensington-expert-mouse-wireless-trackball.html">Kensington Expert Mouse wireless trackball</a>: Connected over Bluetooth to my laptop.</li>
-<li><a href="2022-03-22-dell-c3422we.html">Dell C3422WE display</a>: Connected over USB-C to my laptop. Acts as external display, powers my laptop and also a USB hub to which my external keyboard is connected (see below).</li>
-<li><a href="2022-01-06-ikbc-cd87-bt-keyboard.html">iKBC CD87 BT keyboard</a>: Connected using a USB cable to my external display (see above).</li>
+<li><a href="2022-10-07-dell-precision-5760.html">Dell Precision 5760
+laptop</a></li>
+<li><a
+href="2020-04-19-kensington-expert-mouse-wireless-trackball.html">Kensington
+Expert Mouse wireless trackball</a>: Connected over Bluetooth to my
+laptop.</li>
+<li><a href="2022-03-22-dell-c3422we.html">Dell C3422WE display</a>:
+Connected over USB-C to my laptop. Acts as external display, powers my
+laptop and also a USB hub to which my external keyboard is connected
+(see below).</li>
+<li><a href="2022-01-06-ikbc-cd87-bt-keyboard.html">iKBC CD87 BT
+keyboard</a>: Connected using a USB cable to my external display (see
+above).</li>
 </ul>
 <h2 id="investigation">Investigation</h2>
-<p>I unhooked the external display from my laptop (thus disconnecting the external keyboard), but the trackball was still not working. What really puzzled me was why the trackball, which used Bluetooth, was also freezing - even though it was not even connected to the display/USB.</p>
-<p>I rebooted the Windows laptop (but did not connect the display and keyboard) and the trackball was working. Once I connected the display, the keyboard worked for a few seconds, before the entire system froze like above. These symptoms repeated on every reboot and diagnosis.</p>
-<p>I suspected that USB was the culprit. One of the tries I saw an error notification in Windows that a <strong>USB device had malfunctioned</strong> - this put the suspicion on the external keyboard.</p>
-<p>Since USB was suspect, I monitored the system with <a href="2023-03-03-usb-device-tree-viewer-for-windows.html">USBTreeView</a> and noticed two things:</p>
+<p>I unhooked the external display from my laptop (thus disconnecting
+the external keyboard), but the trackball was still not working. What
+really puzzled me was why the trackball, which used Bluetooth, was also
+freezing - even though it was not even connected to the display/USB.</p>
+<p>I rebooted the Windows laptop (but did not connect the display and
+keyboard) and the trackball was working. Once I connected the display,
+the keyboard worked for a few seconds, before the entire system froze
+like above. These symptoms repeated on every reboot and diagnosis.</p>
+<p>I suspected that USB was the culprit. One of the tries I saw an error
+notification in Windows that a <strong>USB device had
+malfunctioned</strong> - this put the suspicion on the external
+keyboard.</p>
+<p>Since USB was suspect, I monitored the system with <a
+href="2023-03-03-usb-device-tree-viewer-for-windows.html">USBTreeView</a>
+and noticed two things:</p>
 <ul>
-<li>This laptop’s Bluetooth controller was connected to the main USB controller. So that explained why Bluetooth went haywire along with USB.</li>
-<li>When things went wrong, the entire USB hub of the external display or sometimes some of its ports had errors. Sometimes the laptop would enumerate them over again and recover those devices. Sometimes it would remain in that error state.</li>
+<li>This laptop’s Bluetooth controller was connected to the main USB
+controller. So that explained why Bluetooth went haywire along with
+USB.</li>
+<li>When things went wrong, the entire USB hub of the external display
+or sometimes some of its ports had errors. Sometimes the laptop would
+enumerate them over again and recover those devices. Sometimes it would
+remain in that error state.</li>
 </ul>
-<p>Either or both the Dell display and the Dell laptop’s USB controllers had become unstable after a recent firmware/software update. This is the only reason I could think of why things had suddenly gone wrong.</p>
+<p>Either or both the Dell display and the Dell laptop’s USB controllers
+had become unstable after a recent firmware/software update. This is the
+only reason I could think of why things had suddenly gone wrong.</p>
 <h2 id="solution">Solution</h2>
-<p>The only solution I have found to work is to have the external display connected to the laptop while I <em>reboot</em> it. After the reboot, all the devices work fine. I have been doing this after the laptop’s USB subsystem has entered its bad state and it at least seems to keep them in a good state.</p>
+<p>The only solution I have found to work is to have the external
+display connected to the laptop while I <em>reboot</em> it. After the
+reboot, all the devices work fine. I have been doing this after the
+laptop’s USB subsystem has entered its bad state and it at least seems
+to keep them in a good state.</p>
 </div>
 
 <br />
@@ -72,11 +93,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

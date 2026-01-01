@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,27 +27,51 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to screen capture a region to GIF using Byzanz</h1>
+<h1 class="title">How to screen capture a region to GIF using
+Byzanz</h1>
 <p class="date">📅 2014-Jan-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byzanz'>byzanz</a>, <a href='index.html#gif'>gif</a>, <a href='index.html#region'>region</a>, <a href='index.html#screen-capture'>screen capture</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="2014/01/24/how-to-screen-capture-to-gif-using-byzanz/"><strong>Byzanz</strong></a> can be used to screen capture and save it to an animated GIF file. To capture a <strong>region</strong> of the display, you can pass it the XY coordinates of the top-left corner of the region and the width and height of the region. A more intuitive method would have been to draw a region on the display and have Byzanz capture that.</p>
-<p>Thanks to <a href="http://askubuntu.com/users/45058/rob-w">Rob W</a>, you can do that using his Bash script <code>byzanz-record-region</code>, which can be found <a href="http://askubuntu.com/questions/107726">here</a>. Getting this to work takes a few steps:</p>
+<p><a
+href="2014/01/24/how-to-screen-capture-to-gif-using-byzanz/"><strong>Byzanz</strong></a>
+can be used to screen capture and save it to an animated GIF file. To
+capture a <strong>region</strong> of the display, you can pass it the XY
+coordinates of the top-left corner of the region and the width and
+height of the region. A more intuitive method would have been to draw a
+region on the display and have Byzanz capture that.</p>
+<p>Thanks to <a href="http://askubuntu.com/users/45058/rob-w">Rob W</a>,
+you can do that using his Bash script <code>byzanz-record-region</code>,
+which can be found <a
+href="http://askubuntu.com/questions/107726">here</a>. Getting this to
+work takes a few steps:</p>
 <ul>
-<li><p>Install Byzanz as described <a href="2014/01/24/how-to-screen-capture-to-gif-using-byzanz/">here</a>.</p></li>
-<li><p>We need a tool to mark a region of the display. <code>xrectsel</code> is one such tool and it available with <strong>FFcast2</strong>. Clone its repository and build the tool:</p></li>
+<li><p>Install Byzanz as described <a
+href="2014/01/24/how-to-screen-capture-to-gif-using-byzanz/">here</a>.</p></li>
+<li><p>We need a tool to mark a region of the display.
+<code>xrectsel</code> is one such tool and it available with
+<strong>FFcast2</strong>. Clone its repository and build the
+tool:</p></li>
 </ul>
 <pre><code>$ git clone https://github.com/lolilolicon/FFcast2.git
 $ cd FFcast2
 $ make</code></pre>
-<p>Move the <code>xrectsel</code> binary to location accessible from your <code>PATH</code>.</p>
+<p>Move the <code>xrectsel</code> binary to location accessible from
+your <code>PATH</code>.</p>
 <ul>
-<li><p>Create a Bash script file from the source code for <code>byzanz-record-region</code> available <a href="http://askubuntu.com/questions/107726">here</a>.</p></li>
-<li><p>That is it! To record or screen capture a region of the display for 10 seconds, just invoke the script without any parameters:</p></li>
+<li><p>Create a Bash script file from the source code for
+<code>byzanz-record-region</code> available <a
+href="http://askubuntu.com/questions/107726">here</a>.</p></li>
+<li><p>That is it! To record or screen capture a region of the display
+for 10 seconds, just invoke the script without any parameters:</p></li>
 </ul>
 <pre><code>$ byzanz-record-region</code></pre>
-<p>Your mouse cursor turns into a cross-hair. Draw the region on the display. A countdown of 10 seconds is shown followed by a beep. Recording begins and ends after 10 seconds. You can find the resulting animated GIF file in <code>/tmp/recorded.gif</code>.</p>
+<p>Your mouse cursor turns into a cross-hair. Draw the region on the
+display. A countdown of 10 seconds is shown followed by a beep.
+Recording begins and ends after 10 seconds. You can find the resulting
+animated GIF file in <code>/tmp/recorded.gif</code>.</p>
 <ul>
-<li>To provide a different duration of recording or filename, you need to provide both parameters (even if you only need to change one of them):</li>
+<li>To provide a different duration of recording or filename, you need
+to provide both parameters (even if you only need to change one of
+them):</li>
 </ul>
 <pre><code>$ byzanz-record-region 30 foobar.gif</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 12.04</p>
@@ -72,11 +82,13 @@ $ make</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,13 +31,29 @@
 <p class="date">📅 2015-Mar-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#syntax-highlighting'>syntax highlighting</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p><strong>Vim</strong> has had <strong>syntax highlighting</strong> support for <strong>CUDA</strong> source files for a long time now. You can check this: open any <code>.cu</code> file and try the command <code>:set filetype?</code>. You will see that Vim knows that it is a CUDA source file. It applies the syntax highlighting from the file <code>/usr/share/vim/vim74/syntax/cuda.vim</code>.</p>
-<p>So, what is the problem? The syntax highlighting done by Vim for CUDA is very very minimal. My CUDA source files look like pages of plain white text in Vim! Also, the comments in the <code>cuda.vim</code> file that it was last updated in 2007. Now that is old!</p>
+<p><strong>Vim</strong> has had <strong>syntax highlighting</strong>
+support for <strong>CUDA</strong> source files for a long time now. You
+can check this: open any <code>.cu</code> file and try the command
+<code>:set filetype?</code>. You will see that Vim knows that it is a
+CUDA source file. It applies the syntax highlighting from the file
+<code>/usr/share/vim/vim74/syntax/cuda.vim</code>.</p>
+<p>So, what is the problem? The syntax highlighting done by Vim for CUDA
+is very very minimal. My CUDA source files look like pages of plain
+white text in Vim! Also, the comments in the <code>cuda.vim</code> file
+that it was last updated in 2007. Now that is old!</p>
 <h2 id="solution-1">Solution 1</h2>
-<p>There is an alternate <code>cu.vim</code> or <code>cuda.vim</code> syntax file for Vim floating around on the web. You can get it, for example, from <a href="https://github.com/npinto/dotfiles/blob/master/vim/cuda.vim">here</a>.</p>
-<p>I replaced the <code>cuda.vim</code> that ships with Vim with this one and found it slightly better. But not by much. It still looks like lots of plain text.</p>
+<p>There is an alternate <code>cu.vim</code> or <code>cuda.vim</code>
+syntax file for Vim floating around on the web. You can get it, for
+example, from <a
+href="https://github.com/npinto/dotfiles/blob/master/vim/cuda.vim">here</a>.</p>
+<p>I replaced the <code>cuda.vim</code> that ships with Vim with this
+one and found it slightly better. But not by much. It still looks like
+lots of plain text.</p>
 <h2 id="solution-2">Solution 2</h2>
-<p>The better solution for me was to just syntax highlight CUDA file as C++ file. This gave the best results, with the highest number of elements in the file being colored when compared to above two methods.</p>
+<p>The better solution for me was to just syntax highlight CUDA file as
+C++ file. This gave the best results, with the highest number of
+elements in the file being colored when compared to above two
+methods.</p>
 <p>To do this, add this line to your <code>.vimrc</code>:</p>
 <pre><code>autocmd BufRead,BufNewFile *.cu set filetype=cpp</code></pre>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
@@ -62,11 +64,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

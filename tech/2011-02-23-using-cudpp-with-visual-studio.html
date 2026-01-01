@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,41 @@
 <h1 class="title">Using CUDPP with Visual Studio</h1>
 <p class="date">📅 2011-Feb-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cudpp'>cudpp</a>, <a href='index.html#visual-studio'>visual studio</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>CUDPP (CUDA Data Parallel Primitives)</strong> library provides the essential primitives necessary for any parallel data processing on the GPU. This includes functions to scan, compact and sort data. Source code of CUDPP can be downloaded from <a href="http://code.google.com/p/cudpp/">here</a> and compiled using Visual Studio. Beware that the compilation can take quite a while.</p>
-<p>A version of CUDPP is shipped by NVIDIA inside its <strong>GPU Computing SDK</strong>. Using this version of CUDPP with your Visual Studio project is pretty easy:</p>
+<p>The <strong>CUDPP (CUDA Data Parallel Primitives)</strong> library
+provides the essential primitives necessary for any parallel data
+processing on the GPU. This includes functions to scan, compact and sort
+data. Source code of CUDPP can be downloaded from <a
+href="http://code.google.com/p/cudpp/">here</a> and compiled using
+Visual Studio. Beware that the compilation can take quite a while.</p>
+<p>A version of CUDPP is shipped by NVIDIA inside its <strong>GPU
+Computing SDK</strong>. Using this version of CUDPP with your Visual
+Studio project is pretty easy:</p>
 <ol type="1">
-<li><p>Include <code>cudpp.h</code> in source code that uses CUDPP.</p></li>
-<li><p>Add the CUDPP include directory to the <strong>Additional Include Directories</strong> of your <strong>CUDA Build Rule</strong>. Typically this directory is <code>$(NVSDKCOMPUTE_ROOT)/C/common/inc/cudpp</code></p></li>
-<li><p>Link with <code>cudpp32.lib</code> or <code>cudpp64.lib</code>. This library file can be provided in <strong>Linker</strong> → <strong>Input</strong> → <strong>Additional Dependencies</strong></p></li>
-<li><p>Add the CUDPP library directory to <strong>Linker</strong> → <strong>General</strong> → <strong>Additional Library Directories</strong>. Typically this directory is <code>$(NVSDKCOMPUTE_ROOT)/C/common/lib</code></p></li>
-<li><p>When an executable linked with CUDPP is executed, it looks for a CUDPP <strong>DLL file</strong> (<code>cudpp32_32_16.dll</code> for example). This is typically found in the <code>$(NVSDKCOMPUTE_ROOT)/C/common/bin</code> directory. The GPU Computing SDK adds this directory to the <code>%PATH%</code> environment variable when it is installed. For some reason, if it is not found in <code>%PATH%</code>, either add it there or copy the DLL file to the same directory as that of the executable.</p></li>
+<li><p>Include <code>cudpp.h</code> in source code that uses
+CUDPP.</p></li>
+<li><p>Add the CUDPP include directory to the <strong>Additional Include
+Directories</strong> of your <strong>CUDA Build Rule</strong>. Typically
+this directory is
+<code>$(NVSDKCOMPUTE_ROOT)/C/common/inc/cudpp</code></p></li>
+<li><p>Link with <code>cudpp32.lib</code> or <code>cudpp64.lib</code>.
+This library file can be provided in <strong>Linker</strong> →
+<strong>Input</strong> → <strong>Additional
+Dependencies</strong></p></li>
+<li><p>Add the CUDPP library directory to <strong>Linker</strong> →
+<strong>General</strong> → <strong>Additional Library
+Directories</strong>. Typically this directory is
+<code>$(NVSDKCOMPUTE_ROOT)/C/common/lib</code></p></li>
+<li><p>When an executable linked with CUDPP is executed, it looks for a
+CUDPP <strong>DLL file</strong> (<code>cudpp32_32_16.dll</code> for
+example). This is typically found in the
+<code>$(NVSDKCOMPUTE_ROOT)/C/common/bin</code> directory. The GPU
+Computing SDK adds this directory to the <code>%PATH%</code> environment
+variable when it is installed. For some reason, if it is not found in
+<code>%PATH%</code>, either add it there or copy the DLL file to the
+same directory as that of the executable.</p></li>
 </ol>
-<p><strong>Tried with</strong>: CUDPP 1.1.1, CUDA 3.2 and Visual Studio 2008</p>
+<p><strong>Tried with</strong>: CUDPP 1.1.1, CUDA 3.2 and Visual Studio
+2008</p>
 </div>
 
 <br />
@@ -61,11 +72,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,9 +31,11 @@
 <p class="date">📅 2016-Feb-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#matlab'>matlab</a>, <a href='index.html#mkl'>mkl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I ran a <strong>MATLAB</strong> script that uses a <strong>parallel pool</strong> of workers. It failed with this error:</p>
+<p>I ran a <strong>MATLAB</strong> script that uses a <strong>parallel
+pool</strong> of workers. It failed with this error:</p>
 <pre><code>The client lost connection to worker 4. This might be due to network problems, or the interactive communicating job might have errored</code></pre>
-<p>The corresponding <code>matlab_crash_dump</code> file had this stack trace starting from <code>mkl.so</code>:</p>
+<p>The corresponding <code>matlab_crash_dump</code> file had this stack
+trace starting from <code>mkl.so</code>:</p>
 <pre><code>[  0] 0x00007f995128a1c5        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+16769477 mkl_blas_avx_sgemm_mscale+00001253
 [  1] 0x00007f995115ba1c        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+15530524 mkl_blas_avx_xsgemm+00000204
 [  2] 0x00007f99505a1a5c        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+03234396 mkl_blas_xsgemm+00000316
@@ -56,8 +44,16 @@
 [  5] 0x00007f99503b8ba5        /usr/local/MATLAB/R2014a/bin/glnxa64/mkl.so+01231781 sgemm+00000377
 [  6] 0x00007f991b803154    /opt/intel/mkl/lib/intel64/libmkl_intel_lp64.so+01315156 cblas_sgemm+00000372</code></pre>
 <h2 id="solution">Solution</h2>
-<p>To run a parallel pool of workers, we need to use the <code>libmkl_rt.so</code> provided by Intel. I added the path of this library path, which was <code>/opt/intel/mkl/lib/intel64</code> in my case, to my <code>LD_LIBRARY_PATH</code>. I also set the <code>BLAS_VERSION</code> environment variable to <code>libmkl_rt.so</code>.</p>
-<p>After this I checked if everything worked fine by going to Parallel -&gt; Manage cluster profiles -&gt; Local -&gt; Validation profiles -&gt; Validate. All the parallel test tasks were validated successfully. My script too worked fine after this.</p>
+<p>To run a parallel pool of workers, we need to use the
+<code>libmkl_rt.so</code> provided by Intel. I added the path of this
+library path, which was <code>/opt/intel/mkl/lib/intel64</code> in my
+case, to my <code>LD_LIBRARY_PATH</code>. I also set the
+<code>BLAS_VERSION</code> environment variable to
+<code>libmkl_rt.so</code>.</p>
+<p>After this I checked if everything worked fine by going to Parallel
+-&gt; Manage cluster profiles -&gt; Local -&gt; Validation profiles
+-&gt; Validate. All the parallel test tasks were validated successfully.
+My script too worked fine after this.</p>
 <p><strong>Tried with:</strong> MATLAB R2014a and Ubuntu 14.04</p>
 </div>
 
@@ -66,11 +62,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

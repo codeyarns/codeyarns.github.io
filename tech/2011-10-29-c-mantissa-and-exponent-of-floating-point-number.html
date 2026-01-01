@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,10 +27,15 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">C++: Mantissa and Exponent of Floating Point Number</h1>
+<h1 class="title">C++: Mantissa and Exponent of Floating Point
+Number</h1>
 <p class="date">📅 2011-Oct-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#exponent'>exponent</a>, <a href='index.html#floating-point'>floating point</a>, <a href='index.html#mantissa'>mantissa</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The little-known <a href="http://msdn.microsoft.com/en-us/library/w1xfschh.aspx"><strong>frexp</strong></a> function from the C/C++ standard library can be used to extract the <strong>mantissa</strong> and <strong>exponent</strong> of a floating point number (float, double or long double):</p>
+<p>The little-known <a
+href="http://msdn.microsoft.com/en-us/library/w1xfschh.aspx"><strong>frexp</strong></a>
+function from the C/C++ standard library can be used to extract the
+<strong>mantissa</strong> and <strong>exponent</strong> of a floating
+point number (float, double or long double):</p>
 <pre><code>#include &lt;cmath&gt;
 
 const double d = 0.123;
@@ -56,9 +47,24 @@ const double mantissa = frexp( d, &amp;exponent );
 // Exponent: -3</code></pre>
 <p>A few notes:</p>
 <ul>
-<li><p><code>frexp</code> assumes that a floating point number is represented as <code>mantissa * 2 ^ exponent</code>. This is a simple and convenient representation to work with. But, do keep in mind that this is not how the floating point number is actually stored.</p></li>
-<li><p>For a positive floating point number, the mantissa returned by <code>frexp</code> always lies in the range <code>[0.5, 1.0)</code>. This range is enough since a mantissa in the range <code>(0.0, 0.5)</code> can be converted to a value in <code>[0.5, 1.0)</code> by multiplying it by a suitable <code>2 ^ exponent</code>. Note that the <code>exponent</code> can be negative or positive. The exception to this mantissa value is the floating point number <code>0.0</code>, which is displayed as it is.</p></li>
-<li><p>The mantissa and exponent returned by <code>frexp</code> are in no way related to the actual mantissa and exponent values stored in the floating point number format. For example, the IEEE-754 format uses a sign bit and modifies the exponent value using an exponent bias.</p></li>
+<li><p><code>frexp</code> assumes that a floating point number is
+represented as <code>mantissa * 2 ^ exponent</code>. This is a simple
+and convenient representation to work with. But, do keep in mind that
+this is not how the floating point number is actually stored.</p></li>
+<li><p>For a positive floating point number, the mantissa returned by
+<code>frexp</code> always lies in the range <code>[0.5, 1.0)</code>.
+This range is enough since a mantissa in the range
+<code>(0.0, 0.5)</code> can be converted to a value in
+<code>[0.5, 1.0)</code> by multiplying it by a suitable
+<code>2 ^ exponent</code>. Note that the <code>exponent</code> can be
+negative or positive. The exception to this mantissa value is the
+floating point number <code>0.0</code>, which is displayed as it
+is.</p></li>
+<li><p>The mantissa and exponent returned by <code>frexp</code> are in
+no way related to the actual mantissa and exponent values stored in the
+floating point number format. For example, the IEEE-754 format uses a
+sign bit and modifies the exponent value using an exponent
+bias.</p></li>
 </ul>
 </div>
 
@@ -67,11 +73,13 @@ const double mantissa = frexp( d, &amp;exponent );
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

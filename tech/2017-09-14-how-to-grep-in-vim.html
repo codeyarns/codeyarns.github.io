@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,28 +30,76 @@
 <h1 class="title">How to grep in Vim</h1>
 <p class="date">📅 2017-Sep-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#grep'>grep</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><img src="https://codeyarns.files.wordpress.com/2017/09/20170915_vimgrep.gif" alt=" " /> When you are editing files in <strong>Vim</strong>, you might feel like finding out which other files have a certain text. Vim has such <strong>grep</strong> features built into it to support this usage. There are many popular Vim plugins that offer similar features, but you might want to first examine what Vim grep offers. In my opinion, most users should find the grep features built inside Vim to be quite adequate for their use.</p>
-<p>Right off the bat, you need to know that there are two types of grep that are available in Vim: <strong>internal grep</strong> and <strong>external grep</strong>.</p>
-<p>And you should remember that all grep operations operate from the <strong>present working directory (PWD)</strong> of Vim. You can check what is the PWD using the command <code>:pwd</code>. So, it is to your advantage to invoke Vim from the base directory of a code base.</p>
+<p><img
+src="https://codeyarns.files.wordpress.com/2017/09/20170915_vimgrep.gif"
+alt=" " /> When you are editing files in <strong>Vim</strong>, you might
+feel like finding out which other files have a certain text. Vim has
+such <strong>grep</strong> features built into it to support this usage.
+There are many popular Vim plugins that offer similar features, but you
+might want to first examine what Vim grep offers. In my opinion, most
+users should find the grep features built inside Vim to be quite
+adequate for their use.</p>
+<p>Right off the bat, you need to know that there are two types of grep
+that are available in Vim: <strong>internal grep</strong> and
+<strong>external grep</strong>.</p>
+<p>And you should remember that all grep operations operate from the
+<strong>present working directory (PWD)</strong> of Vim. You can check
+what is the PWD using the command <code>:pwd</code>. So, it is to your
+advantage to invoke Vim from the base directory of a code base.</p>
 <h2 id="internal-grep">Internal grep</h2>
-<p>This is the grep feature that is implemented inside Vim. Not surprisingly, this internal grep is far easier to use compared to Unix grep. However, it is also noticeably slower compared to Unix grep, for obvious reasons. However, the ease of use of internal grep is so high that I tend to prefer it over external grep.</p>
-<p>The command to invoke internal grep is <code>:vimgrep</code>. But, you can use the short form <code>:vim</code>. Yeah this is the one command that won the Vim lottery to have the same name as the editor! 😄</p>
-<p>This command in its most common form takes two arguments: the pattern to search for and which files to search for.</p>
+<p>This is the grep feature that is implemented inside Vim. Not
+surprisingly, this internal grep is far easier to use compared to Unix
+grep. However, it is also noticeably slower compared to Unix grep, for
+obvious reasons. However, the ease of use of internal grep is so high
+that I tend to prefer it over external grep.</p>
+<p>The command to invoke internal grep is <code>:vimgrep</code>. But,
+you can use the short form <code>:vim</code>. Yeah this is the one
+command that won the Vim lottery to have the same name as the editor!
+😄</p>
+<p>This command in its most common form takes two arguments: the pattern
+to search for and which files to search for.</p>
 <ul>
-<li><p>To search for <code>Xanadu</code> in all the files in the PWD: <code>:vim Xanadu *</code> This shows all the search results in a <strong>Quickfix window</strong> at the bottom and Vim jumps to the first match right away. You can navigate through this window and press Enter on search results to jump to them.</p></li>
-<li><p>To <strong>recurse</strong> the directories or files in Vim, you have this strange wildcard called <strong>star-star wildcard</strong>. For example, to search recursively in all files and directories in PWD: <code>:vim Xanadu **</code></p></li>
-<li><p>Once you are comfortable with the star-star wildcard, you will find it very convenient to use: <code>:vim Xanadu ../include/**/*.h</code></p></li>
-<li><p>One trick I like to use a lot is to search for the current word under the cursor in the files. I first press <code>*</code> so that the word is selected. Then I use this <strong>empty pattern</strong> to search for it: <code>:vim // *.cpp</code></p></li>
+<li><p>To search for <code>Xanadu</code> in all the files in the PWD:
+<code>:vim Xanadu *</code> This shows all the search results in a
+<strong>Quickfix window</strong> at the bottom and Vim jumps to the
+first match right away. You can navigate through this window and press
+Enter on search results to jump to them.</p></li>
+<li><p>To <strong>recurse</strong> the directories or files in Vim, you
+have this strange wildcard called <strong>star-star wildcard</strong>.
+For example, to search recursively in all files and directories in PWD:
+<code>:vim Xanadu **</code></p></li>
+<li><p>Once you are comfortable with the star-star wildcard, you will
+find it very convenient to use:
+<code>:vim Xanadu ../include/**/*.h</code></p></li>
+<li><p>One trick I like to use a lot is to search for the current word
+under the cursor in the files. I first press <code>*</code> so that the
+word is selected. Then I use this <strong>empty pattern</strong> to
+search for it: <code>:vim // *.cpp</code></p></li>
 </ul>
 <h2 id="external-grep">External grep</h2>
-<p>External grep is nothing but Vim invoking the commandline grep in a shell child process. This is super dumb: Vim just invokes whatever you pass it verbatim and grabs the grep output, parses it and fills it in the Quickfix window.</p>
+<p>External grep is nothing but Vim invoking the commandline grep in a
+shell child process. This is super dumb: Vim just invokes whatever you
+pass it verbatim and grabs the grep output, parses it and fills it in
+the Quickfix window.</p>
 <ul>
-<li><p>To search in all files in the PWD: <code>:grep Xanadu *</code></p></li>
-<li><p>To search recursively in all files and directory under the PWD: <code>grep -R Xanadu *</code> Note how the recursive search is far easier to invoke in the internal grep.</p></li>
+<li><p>To search in all files in the PWD:
+<code>:grep Xanadu *</code></p></li>
+<li><p>To search recursively in all files and directory under the PWD:
+<code>grep -R Xanadu *</code> Note how the recursive search is far
+easier to invoke in the internal grep.</p></li>
 </ul>
-<h2 id="quickfix-window-trick-to-browse-code">Quickfix window trick to browse code</h2>
-<p>No matter whether you use internal or external grep, its results are filled in the Quickfix window. As you do new searches, new Quickfix windows are created and the latest one is displayed at the bottom. You can move through this list of Quickfix windows using the <code>:colder</code> and <code>:cnewer</code> commands.</p>
-<p>With these grep features and Quickfix window history Vim can be used as an rudimentary IDE to examine a code base: use the grep commands to search for text (variables, methods or classes) and jump to them. And you can move back and forth in this investigation using the Quickfix window commands described above.</p>
+<h2 id="quickfix-window-trick-to-browse-code">Quickfix window trick to
+browse code</h2>
+<p>No matter whether you use internal or external grep, its results are
+filled in the Quickfix window. As you do new searches, new Quickfix
+windows are created and the latest one is displayed at the bottom. You
+can move through this list of Quickfix windows using the
+<code>:colder</code> and <code>:cnewer</code> commands.</p>
+<p>With these grep features and Quickfix window history Vim can be used
+as an rudimentary IDE to examine a code base: use the grep commands to
+search for text (variables, methods or classes) and jump to them. And
+you can move back and forth in this investigation using the Quickfix
+window commands described above.</p>
 <p><strong>Tried with:</strong> Vim 7.4 and Kubuntu 16.04</p>
 </div>
 
@@ -74,11 +108,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

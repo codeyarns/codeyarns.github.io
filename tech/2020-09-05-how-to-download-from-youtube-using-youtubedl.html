@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,42 +30,59 @@
 <h1 class="title">How to download from Youtube using youtube-dl</h1>
 <p class="date">📅 2020-Sep-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#youtube'>youtube</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://github.com/ytdl-org/youtube-dl/"><strong>Youtube-DL</strong></a> is an open source tool written in Python that helps download video and audio from Youtube and many other video streaming websites.</p>
+<p><a
+href="https://github.com/ytdl-org/youtube-dl/"><strong>Youtube-DL</strong></a>
+is an open source tool written in Python that helps download video and
+audio from Youtube and many other video streaming websites.</p>
 <ul>
 <li>It can be <strong>installed</strong> easily on Ubuntu:</li>
 </ul>
 <pre><code>$ sudo apt install youtube-dl</code></pre>
-<p>However, the version maintained by Ubuntu tends to be old and since the Youtube website keeps changing its protocol, you might get errors downloading content.</p>
+<p>However, the version maintained by Ubuntu tends to be old and since
+the Youtube website keeps changing its protocol, you might get errors
+downloading content.</p>
 <p>Instead, I recommend installing the latest version using pip:</p>
 <pre><code>$ sudo python3 -m pip install youtube_dl</code></pre>
 <ul>
-<li>To download a Youtube video as a <strong>video file</strong>, just provide its URL:</li>
+<li>To download a Youtube video as a <strong>video file</strong>, just
+provide its URL:</li>
 </ul>
 <pre><code>$ youtube-dl &quot;&lt;youtube video URL&gt;&quot;</code></pre>
-<p>Remember to enclose the URL in double quotes to avoid misinterpretation by your shell. I found that the above command downloaded the content as a <strong>MKV</strong> file.</p>
+<p>Remember to enclose the URL in double quotes to avoid
+misinterpretation by your shell. I found that the above command
+downloaded the content as a <strong>MKV</strong> file.</p>
 <ul>
-<li>To download the audio stream of a Youtube video as an <strong>audio file</strong>:</li>
+<li>To download the audio stream of a Youtube video as an <strong>audio
+file</strong>:</li>
 </ul>
 <pre><code>$ youtube-dl --extract-audio &quot;&lt;youtube video URL&gt;&quot;</code></pre>
-<p>I found that this downloaded the audio as an <a href="https://en.wikipedia.org/wiki/Opus_(audio_format)">Opus</a> file.</p>
+<p>I found that this downloaded the audio as an <a
+href="https://en.wikipedia.org/wiki/Opus_(audio_format)">Opus</a>
+file.</p>
 <ul>
-<li>To download the audio stream of a Youtube video as a <strong>MP3</strong> file:</li>
+<li>To download the audio stream of a Youtube video as a
+<strong>MP3</strong> file:</li>
 </ul>
 <pre><code>$ youtube-dl --extract-audio --audio-format mp3 &quot;&lt;youtube video URL&gt;&quot;</code></pre>
 <p>I found that the created MP3 file had a VBR of 132 kbps.</p>
 <ul>
-<li>To download the audio stream of a Youtube video as a MP3 file of <strong>highest audio quality</strong>:</li>
+<li>To download the audio stream of a Youtube video as a MP3 file of
+<strong>highest audio quality</strong>:</li>
 </ul>
 <pre><code>$ youtube-dl --extract-audio --audio-format mp3 --audio-quality 0 &quot;&lt;youtube video URL&gt;&quot;</code></pre>
 <p>I found that the created MP3 file had a VBR of 255 kbps.</p>
 <ul>
-<li>The <code>--format</code> knob can be used to grab the <strong>best video</strong> or <strong>best audio</strong> streams for download:</li>
+<li>The <code>--format</code> knob can be used to grab the <strong>best
+video</strong> or <strong>best audio</strong> streams for download:</li>
 </ul>
 <pre><code>$ youtube-dl --format bestvideo &quot;&lt;youtube video URL&gt;&quot;
 
 $ youtube-dl --extract-audio --format bestaudio &quot;&lt;youtube video URL&gt;&quot;</code></pre>
-<p>However, it seems like the tool already picks the best video or audio stream by default. I did not see any difference between the files produced with and without this knob.</p>
-<p><strong>Tried with:</strong> Youtube-DL 2020.07.28 and Ubuntu 18.04</p>
+<p>However, it seems like the tool already picks the best video or audio
+stream by default. I did not see any difference between the files
+produced with and without this knob.</p>
+<p><strong>Tried with:</strong> Youtube-DL 2020.07.28 and Ubuntu
+18.04</p>
 </div>
 
 <br />
@@ -87,11 +90,13 @@ $ youtube-dl --extract-audio --format bestaudio &quot;&lt;youtube video URL&gt;&
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

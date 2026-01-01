@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -50,7 +36,8 @@
 </ul>
 <pre><code>$ sudo pip install pycuda</code></pre>
 <ul>
-<li>The installation tries to compile a few C++ files and it failed on the very first file with this error:</li>
+<li>The installation tries to compile a few C++ files and it failed on
+the very first file with this error:</li>
 </ul>
 <pre><code>In file included from src/cpp/cuda.cpp:1:0:
 src/cpp/cuda.hpp:14:18: fatal error: cuda.h: No such file or directory
@@ -60,28 +47,46 @@ compilation terminated.
 error: command &#39;x86_64-linux-gnu-gcc&#39; failed with exit status 1</code></pre>
 <h2 id="investigation">Investigation</h2>
 <ul>
-<li>This error was strange because I had set <code>CUDA_ROOT</code> and had added the <code>bin</code> path of CUDA installation to <code>PATH</code> environment variable. So, the installer should have found <code>cuda.h</code> which I could see was present in <code>$CUDA_ROOT/include</code></li>
-<li>To see what was happening, I tried the same command with verbosity:</li>
+<li>This error was strange because I had set <code>CUDA_ROOT</code> and
+had added the <code>bin</code> path of CUDA installation to
+<code>PATH</code> environment variable. So, the installer should have
+found <code>cuda.h</code> which I could see was present in
+<code>$CUDA_ROOT/include</code></li>
+<li>To see what was happening, I tried the same command with
+verbosity:</li>
 </ul>
 <pre><code>$ sudo pip -vvv install pycuda</code></pre>
 <ul>
 <li>Now I could see that it was failing to find <code>nvcc</code>.</li>
-<li>On downloading the source code of PyCUDA and checking <code>setup.py</code>, I saw that the check for <code>nvcc</code> was used to figure out the <code>CUDA_ROOT</code> and <code>CUDA_INC_DIR</code>.</li>
-<li>The reason <code>nvcc</code> was not visible was that <code>CUDA_ROOT</code> was set for my user, but this <code>PATH</code> is not visible when a command is run under <code>sudo</code>, as described here. The solution was to make the CUDA <code>bin</code> path visible to <code>sudo</code>.</li>
+<li>On downloading the source code of PyCUDA and checking
+<code>setup.py</code>, I saw that the check for <code>nvcc</code> was
+used to figure out the <code>CUDA_ROOT</code> and
+<code>CUDA_INC_DIR</code>.</li>
+<li>The reason <code>nvcc</code> was not visible was that
+<code>CUDA_ROOT</code> was set for my user, but this <code>PATH</code>
+is not visible when a command is run under <code>sudo</code>, as
+described here. The solution was to make the CUDA <code>bin</code> path
+visible to <code>sudo</code>.</li>
 </ul>
 <h2 id="solution">Solution</h2>
-<p>To make the <code>$CUDA_ROOT/bin</code> available in <code>PATH</code> for <code>sudo</code>, we can follow the steps described here. For example, on my system with CUDA 7.0 I followed these steps:</p>
+<p>To make the <code>$CUDA_ROOT/bin</code> available in
+<code>PATH</code> for <code>sudo</code>, we can follow the steps
+described here. For example, on my system with CUDA 7.0 I followed these
+steps:</p>
 <ul>
-<li>Created a new file <code>/etc/profile.d/cuda.sh</code> and added this line:</li>
+<li>Created a new file <code>/etc/profile.d/cuda.sh</code> and added
+this line:</li>
 </ul>
 <pre><code>export PATH=/usr/local/cuda-7.0/bin:$PATH</code></pre>
 <ul>
-<li>Opened <code>root</code> shell without resetting <code>PATH</code> and ran the pip installation:</li>
+<li>Opened <code>root</code> shell without resetting <code>PATH</code>
+and ran the pip installation:</li>
 </ul>
 <pre><code>$ sudo su -
 $ pip install pycuda</code></pre>
 <p>This worked and PyCUDA was installed successfully.</p>
-<p><strong>Tried with:</strong> PyCUDA 2015.1.2, CUDA 7.0 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> PyCUDA 2015.1.2, CUDA 7.0 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -89,11 +94,13 @@ $ pip install pycuda</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

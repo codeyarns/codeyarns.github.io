@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,17 @@
 <h1 class="title">numactl</h1>
 <p class="date">📅 2021-Feb-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#numa'>numa</a>, <a href='index.html#numactl'>numactl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>numactl</strong> is a popular tool that is used to view and set the <a href="2021-02-26-numa.html"><strong>NUMA</strong></a> settings on a computer with multiple processors. It ships along with a complementary tool named <strong>numastat</strong>.</p>
+<p><strong>numactl</strong> is a popular tool that is used to view and
+set the <a href="2021-02-26-numa.html"><strong>NUMA</strong></a>
+settings on a computer with multiple processors. It ships along with a
+complementary tool named <strong>numastat</strong>.</p>
 <ul>
 <li>Installing the tool is easy:</li>
 </ul>
 <pre><code>$ sudo apt install numactl</code></pre>
 <ul>
-<li>The <code>--hardware</code> option can be used to check the NUMA status of your processors.</li>
+<li>The <code>--hardware</code> option can be used to check the NUMA
+status of your processors.</li>
 </ul>
 <p>With a CPU that has no NUMA support:</p>
 <pre><code>$ numactl --hardware
@@ -64,7 +54,9 @@ node 0 free: 2066 MB
 node distances:
 node   0
   0:  10</code></pre>
-<p>In the above output, the CPU has 4 cores, but NUMA sees them as 4 CPUs. This is because the NUMA concept is older than the concept of multi-core CPUs.</p>
+<p>In the above output, the CPU has 4 cores, but NUMA sees them as 4
+CPUs. This is because the NUMA concept is older than the concept of
+multi-core CPUs.</p>
 <p>With a 4-CPU system with NUMA support:</p>
 <pre><code>$ numactl --hardware
 available: 4 nodes (0-3)
@@ -86,10 +78,19 @@ node   0   1   2   3
   1:  12  10  12  12
   2:  12  12  10  12
   3:  12  12  12  10</code></pre>
-<p>Each CPU in the above system has 32 cores, which NUMA sees as 32 different CPUs. We see 4 NUMA nodes in the above output, meaning that each CPU is in it’s own NUMA node. Each CPU (or NUMA node) is associated with 25% of the total system memory.</p>
-<p>The node distance matrix shows that accessing memory from any other node is slower than accessing one’s own memory. In Linux, the typical distance values are 10, 12 and 32. The distance of node to itself is 10, the <strong>Near-Hop Distance</strong> (different NUMA node, but same socket) is 12 and <strong>Far-Hop Distance</strong> (different NUMA node, different socket) is 32.</p>
+<p>Each CPU in the above system has 32 cores, which NUMA sees as 32
+different CPUs. We see 4 NUMA nodes in the above output, meaning that
+each CPU is in it’s own NUMA node. Each CPU (or NUMA node) is associated
+with 25% of the total system memory.</p>
+<p>The node distance matrix shows that accessing memory from any other
+node is slower than accessing one’s own memory. In Linux, the typical
+distance values are 10, 12 and 32. The distance of node to itself is 10,
+the <strong>Near-Hop Distance</strong> (different NUMA node, but same
+socket) is 12 and <strong>Far-Hop Distance</strong> (different NUMA
+node, different socket) is 32.</p>
 <ul>
-<li>The <code>--show</code> prints the NUMA policy of the current process.</li>
+<li>The <code>--show</code> prints the NUMA policy of the current
+process.</li>
 </ul>
 <p>This is what I got on a 4-CPU system:</p>
 <pre><code>$ numactl --show
@@ -109,11 +110,13 @@ membind: 0 1 2 3</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

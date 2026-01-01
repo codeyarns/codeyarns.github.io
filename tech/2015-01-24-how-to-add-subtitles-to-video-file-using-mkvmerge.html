@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,17 +30,37 @@
 <h1 class="title">How to add subtitles to video file using MKVMerge</h1>
 <p class="date">📅 2015-Jan-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#subtitles'>subtitles</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>If you like to watch videos with <strong>subtitles</strong>, you have two options. First, you have an external subtitles file and your player can pick it up while playing the video file. Second, you have a video file with an embedded subtitles stream. You may be forced to use the second option for certain video players or for streaming video content using media servers, like MiniDLNA for example.</p>
-<p>It is possible to embed a subtitles file, for example a SubRip <code>.srt</code> file, into a video file to output a video file that has the subtitles stream embedded in it. The easiest method to achieve this is to output to a <strong>Matroska Multimedia Container (MKV)</strong> file. This is a commonly used container format for video files that can hold multiple streams: video, audio and subtitles. So, we create a MKV file containing the original video file (of any format) and a subtitles stream to be used along with it. The only limitation is that you will need a player that supports MKV to replay this back.</p>
-<p>To deal with MKV files, we need the <code>mkvtoolnix</code> package:</p>
+<p>If you like to watch videos with <strong>subtitles</strong>, you have
+two options. First, you have an external subtitles file and your player
+can pick it up while playing the video file. Second, you have a video
+file with an embedded subtitles stream. You may be forced to use the
+second option for certain video players or for streaming video content
+using media servers, like MiniDLNA for example.</p>
+<p>It is possible to embed a subtitles file, for example a SubRip
+<code>.srt</code> file, into a video file to output a video file that
+has the subtitles stream embedded in it. The easiest method to achieve
+this is to output to a <strong>Matroska Multimedia Container
+(MKV)</strong> file. This is a commonly used container format for video
+files that can hold multiple streams: video, audio and subtitles. So, we
+create a MKV file containing the original video file (of any format) and
+a subtitles stream to be used along with it. The only limitation is that
+you will need a player that supports MKV to replay this back.</p>
+<p>To deal with MKV files, we need the <code>mkvtoolnix</code>
+package:</p>
 <pre><code>$ sudo apt-get install mkvtoolnix</code></pre>
-<p>We use the <code>mkvmerge</code> tool from this package to merge a SubRip SRT file into an existing video file:</p>
+<p>We use the <code>mkvmerge</code> tool from this package to merge a
+SubRip SRT file into an existing video file:</p>
 <pre><code>$ mkvmerge -o out.mkv in.avi in.srt</code></pre>
 <p><strong>Note:</strong></p>
 <ul>
-<li><p>The input file cannot be overwritten with the output file, hence we use a different name here.</p></li>
-<li><p>Multiple subtitle files can be added to MKV file incrementally in this way. This is typically used to embed subtitles of multiple languages into the file.</p></li>
-<li><p>When playing with a player like VLC, one or none of the subtitles can be picked. For example, right-click in the middle of the playing video and choose Subtitle -&gt; Sub Track.</p></li>
+<li><p>The input file cannot be overwritten with the output file, hence
+we use a different name here.</p></li>
+<li><p>Multiple subtitle files can be added to MKV file incrementally in
+this way. This is typically used to embed subtitles of multiple
+languages into the file.</p></li>
+<li><p>When playing with a player like VLC, one or none of the subtitles
+can be picked. For example, right-click in the middle of the playing
+video and choose Subtitle -&gt; Sub Track.</p></li>
 </ul>
 <p><strong>Tried with:</strong> MKVToolNix 6.7.0-1 and Ubuntu 14.04</p>
 </div>
@@ -64,11 +70,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,20 +27,61 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">The strange case of the notebook fan that would start spinning after a few hours</h1>
+<h1 class="title">The strange case of the notebook fan that would start
+spinning after a few hours</h1>
 <p class="date">📅 2019-May-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fan'>fan</a>, <a href='index.html#lxssmanager'>lxssmanager</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>A problem started to happen last week with my Dell notebook running <strong>Windows 10</strong>. After I kept it open for a few hours, its fan would start spinning noisily and never stop. This started to happen without a fail every day. The only brute force solution that worked was to restart Windows. That would keep the fans silent for a few hours before they would start all over again.</p>
+<p>A problem started to happen last week with my Dell notebook running
+<strong>Windows 10</strong>. After I kept it open for a few hours, its
+fan would start spinning noisily and never stop. This started to happen
+without a fail every day. The only brute force solution that worked was
+to restart Windows. That would keep the fans silent for a few hours
+before they would start all over again.</p>
 <h2 id="investigation">Investigation</h2>
-<p>From the minimized <strong>Task Manager</strong> CPU graph I could see that all 8 logical CPU cores seem to have been engaged 100 percent by some process. Opening Task Manager to watch what process was causing this was a dead end because Task Manager window would freeze when restored. In the end, I had to try the same with <strong>Process Explorer</strong> and leave its window open to catch the rogue service: <code>WmiPrvSE.exe</code>.</p>
-<p>Looking into this service turned out to be a dead end. It did not lead to any suitable culprit and it was not clear why this service was going all hammer and tongs on the cores.</p>
-<p>I then looked at the problem from a different angle: this problem was new. What had changed on my Windows recently? I had installed the <strong>1809 update</strong> for its WSL feature. And after that I had switched over from Cygwin to <strong>Ubuntu 18.04</strong> running on WSL. And indeed the problem seemed to only occur when I had Ubuntu open for a few hours.</p>
-<p>The next time this happened, I tried <strong>htop</strong> in Ubuntu. Just like Task Manager and Process Explorer, htop too hung. But I left it open nevertheless and after a while it showed that there were hundreds of <code>wget</code> and <code>timeout 1 wget</code> commands taking over all the cores! Who was running this automatically after a few hours in Ubuntu?</p>
-<p>Using Google helped to reveal a new suspect: <strong>byobu</strong>. This is the terminal multiplexer that I use in Ubuntu. Checking its <a href="https://github.com/dustinkirkland/byobu">source code</a> confirmed that it was using wget commands to get the host IP address (don’t ask me why!). I am guessing it does it periodically to keep its IP address updated. And this simple lookup was somehow acting like a virus outburst after a few hours. Why?</p>
-<p>It turns out that WSL has a serious <a href="https://github.com/microsoft/WSL/issues/3951">bug</a>: if you open a large number of non-blocking TCP connections its ephemeral ports are exhausted. I guess the byobu’s regular requests, when performed over a span of hours, exhausted this. And after that the <strong>LxssManager</strong> service, which is the layer that enables ELF executables to be executed on Windows, would go crazy. The only solution at this point: <a href="https://github.com/Microsoft/WSL/issues/634">restart LxssManager</a>.</p>
+<p>From the minimized <strong>Task Manager</strong> CPU graph I could
+see that all 8 logical CPU cores seem to have been engaged 100 percent
+by some process. Opening Task Manager to watch what process was causing
+this was a dead end because Task Manager window would freeze when
+restored. In the end, I had to try the same with <strong>Process
+Explorer</strong> and leave its window open to catch the rogue service:
+<code>WmiPrvSE.exe</code>.</p>
+<p>Looking into this service turned out to be a dead end. It did not
+lead to any suitable culprit and it was not clear why this service was
+going all hammer and tongs on the cores.</p>
+<p>I then looked at the problem from a different angle: this problem was
+new. What had changed on my Windows recently? I had installed the
+<strong>1809 update</strong> for its WSL feature. And after that I had
+switched over from Cygwin to <strong>Ubuntu 18.04</strong> running on
+WSL. And indeed the problem seemed to only occur when I had Ubuntu open
+for a few hours.</p>
+<p>The next time this happened, I tried <strong>htop</strong> in Ubuntu.
+Just like Task Manager and Process Explorer, htop too hung. But I left
+it open nevertheless and after a while it showed that there were
+hundreds of <code>wget</code> and <code>timeout 1 wget</code> commands
+taking over all the cores! Who was running this automatically after a
+few hours in Ubuntu?</p>
+<p>Using Google helped to reveal a new suspect: <strong>byobu</strong>.
+This is the terminal multiplexer that I use in Ubuntu. Checking its <a
+href="https://github.com/dustinkirkland/byobu">source code</a> confirmed
+that it was using wget commands to get the host IP address (don’t ask me
+why!). I am guessing it does it periodically to keep its IP address
+updated. And this simple lookup was somehow acting like a virus outburst
+after a few hours. Why?</p>
+<p>It turns out that WSL has a serious <a
+href="https://github.com/microsoft/WSL/issues/3951">bug</a>: if you open
+a large number of non-blocking TCP connections its ephemeral ports are
+exhausted. I guess the byobu’s regular requests, when performed over a
+span of hours, exhausted this. And after that the
+<strong>LxssManager</strong> service, which is the layer that enables
+ELF executables to be executed on Windows, would go crazy. The only
+solution at this point: <a
+href="https://github.com/Microsoft/WSL/issues/634">restart
+LxssManager</a>.</p>
 <h2 id="solution">Solution</h2>
-<p>So the solution is: if possible do not use Byobu on Ubuntu WSL. If you get this problem, then restart LxssManager by opening a CMD window with Administrator privilege and running these commands:</p>
+<p>So the solution is: if possible do not use Byobu on Ubuntu WSL. If
+you get this problem, then restart LxssManager by opening a CMD window
+with Administrator privilege and running these commands:</p>
 <pre><code>sc stop LxssManager
 sc start LxssManager</code></pre>
 <p>Note that stopping the LxssManager service kills Ubuntu.</p>
@@ -65,11 +92,13 @@ sc start LxssManager</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

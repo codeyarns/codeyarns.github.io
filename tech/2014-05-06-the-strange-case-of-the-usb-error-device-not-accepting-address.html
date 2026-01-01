@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,21 +27,38 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">The strange case of the USB error: device not accepting address</h1>
+<h1 class="title">The strange case of the USB error: device not
+accepting address</h1>
 <p class="date">📅 2014-May-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#usb'>usb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I connected a USB mouse to a notebook running Ubuntu 14.04. The mouse was not detected. In fact, it turned out that no USB device was being detected on connecting to the notebook.</p>
-<p>To eliminate hardware error, I rebooted into Windows. The USB mouse was detected and worked fine on it!</p>
+<p>I connected a USB mouse to a notebook running Ubuntu 14.04. The mouse
+was not detected. In fact, it turned out that no USB device was being
+detected on connecting to the notebook.</p>
+<p>To eliminate hardware error, I rebooted into Windows. The USB mouse
+was detected and worked fine on it!</p>
 <h2 id="solution">Solution</h2>
-<p>On rebooting back to Ubuntu, I noticed an error message involving USB just because the Ubuntu desktop was displayed. On looking in <code>/var/log/syslog</code>, I found error lines of this form:</p>
+<p>On rebooting back to Ubuntu, I noticed an error message involving USB
+just because the Ubuntu desktop was displayed. On looking in
+<code>/var/log/syslog</code>, I found error lines of this form:</p>
 <pre><code>usb 3-7: device not accepting address 2, error -62
 usb 3-7: new full-speed USB device number 3 using xhci_hcd
 
 usb 3-7: device not accepting address 2, error -108</code></pre>
-<p>No amount of searching and trying fixes seemed to help. I thought that this is a software driver problem. I also wondered how the same hardware and software had worked well just a couple of days ago. What could have gone wrong in 2 days on this notebook where nothing had been touched or tampered with?</p>
-<p>After looking high and low, I finally landed on the <a href="http://paulphilippov.com/articles/how-to-fix-device-not-accepting-address-error">strange post by Paul Philippov</a> where he suggested that this could be due to the USB hub or ports being hot or drawing too much power. I noted that the notebook had been running for many days now. Could some fickle cooling problem have caused this?</p>
-<p>I shutdown Ubuntu and left the notebook powered down for 15 minutes. I powered back on and all the USB ports worked! What a strange solution!!! 😊</p>
+<p>No amount of searching and trying fixes seemed to help. I thought
+that this is a software driver problem. I also wondered how the same
+hardware and software had worked well just a couple of days ago. What
+could have gone wrong in 2 days on this notebook where nothing had been
+touched or tampered with?</p>
+<p>After looking high and low, I finally landed on the <a
+href="http://paulphilippov.com/articles/how-to-fix-device-not-accepting-address-error">strange
+post by Paul Philippov</a> where he suggested that this could be due to
+the USB hub or ports being hot or drawing too much power. I noted that
+the notebook had been running for many days now. Could some fickle
+cooling problem have caused this?</p>
+<p>I shutdown Ubuntu and left the notebook powered down for 15 minutes.
+I powered back on and all the USB ports worked! What a strange
+solution!!! 😊</p>
 </div>
 
 <br />
@@ -63,11 +66,13 @@ usb 3-7: device not accepting address 2, error -108</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

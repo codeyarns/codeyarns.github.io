@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,13 @@
 <h1 class="title">How to debug make using remake</h1>
 <p class="date">📅 2018-Apr-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#debugger'>debugger</a>, <a href='index.html#make'>make</a>, <a href='index.html#remake'>remake</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>In big projects that use <strong>Make</strong>, it can be hard to examine how a make build is working and to diagnose a build problem. Imagine my joy when I finally discovered <a href="https://github.com/rocky/remake"><strong>ReMake</strong></a>. This is a debugger built off a version of GNU Make. It essentially allows you to step through a make build just like you would step through a program using GDB and examine state at any point in time.</p>
+<p>In big projects that use <strong>Make</strong>, it can be hard to
+examine how a make build is working and to diagnose a build problem.
+Imagine my joy when I finally discovered <a
+href="https://github.com/rocky/remake"><strong>ReMake</strong></a>. This
+is a debugger built off a version of GNU Make. It essentially allows you
+to step through a make build just like you would step through a program
+using GDB and examine state at any point in time.</p>
 <ul>
 <li>Installing remake is easy on Ubuntu:</li>
 </ul>
@@ -55,7 +47,8 @@
 <pre><code>$ remake
 $ remake some_target</code></pre>
 <ul>
-<li>If you want a verbose output of what is happening with your build use <code>-x</code> option:</li>
+<li>If you want a verbose output of what is happening with your build
+use <code>-x</code> option:</li>
 </ul>
 <pre><code>$ remake -x</code></pre>
 <ul>
@@ -63,14 +56,20 @@ $ remake some_target</code></pre>
 </ul>
 <pre><code>$ remake --targets</code></pre>
 <ul>
-<li>To print the subset of targets which have commands associated with them:</li>
+<li>To print the subset of targets which have commands associated with
+them:</li>
 </ul>
 <pre><code>$ remake --tasks</code></pre>
 <ul>
 <li>To actually debug a build with its debugger:</li>
 </ul>
 <pre><code>$ remake -X</code></pre>
-<p>The debugger jumps and waits at the line with the target that it needs to execute first. Use the <strong>help</strong> command to get a list of commands that you can use. They are all similar to GDB: <strong>step</strong> to step into, <strong>next</strong> to execute next line, <strong>print</strong> to print values of make variables (this is a lifesaver!) and so on.</p>
+<p>The debugger jumps and waits at the line with the target that it
+needs to execute first. Use the <strong>help</strong> command to get a
+list of commands that you can use. They are all similar to GDB:
+<strong>step</strong> to step into, <strong>next</strong> to execute
+next line, <strong>print</strong> to print values of make variables
+(this is a lifesaver!) and so on.</p>
 <p><strong>Tried with:</strong> remake 3.82 and Ubuntu 16.04</p>
 </div>
 
@@ -79,11 +78,13 @@ $ remake some_target</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

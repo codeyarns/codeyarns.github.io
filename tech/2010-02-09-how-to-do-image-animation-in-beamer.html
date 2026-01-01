@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,20 +30,37 @@
 <h1 class="title">How to do image animation in Beamer</h1>
 <p class="date">📅 2010-Feb-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#animation'>animation</a>, <a href='index.html#beamer'>beamer</a>, <a href='index.html#latex'>latex</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Beamer</strong> makes it very easy to include a <strong>series of images</strong> and display them in a serial <strong>animated</strong> style in separate frames (slides).</p>
-<p>For example, to display the images <code>foobar-0.png</code>, <code>foobar-1.png</code> and <code>foobar-2.png</code> in a serial fashion use:</p>
+<p><strong>Beamer</strong> makes it very easy to include a
+<strong>series of images</strong> and display them in a serial
+<strong>animated</strong> style in separate frames (slides).</p>
+<p>For example, to display the images <code>foobar-0.png</code>,
+<code>foobar-1.png</code> and <code>foobar-2.png</code> in a serial
+fashion use:</p>
 <pre><code>\usepackage{xmpmulti}
 \begin{frame}
 \multiinclude[format=png]{foobar}
 \end{frame}</code></pre>
-<p><strong><code>xmpmulti</code></strong> is a package that ships along with the Beamer package. <code>\**multiinclude**</code> is the command that takes care of putting the <code>foobar-x.png</code> into different frames. Make sure that the files are named as <strong>basename-number.format</strong>, i.e., the basename and the number are separated by a <strong>hyphen</strong>. The <code>format</code> option is the extension of the files.</p>
-<p><code>\multiinclude</code> starts from file number 0. To start from a different number, say 9:</p>
+<p><strong><code>xmpmulti</code></strong> is a package that ships along
+with the Beamer package. <code>\**multiinclude**</code> is the command
+that takes care of putting the <code>foobar-x.png</code> into different
+frames. Make sure that the files are named as
+<strong>basename-number.format</strong>, i.e., the basename and the
+number are separated by a <strong>hyphen</strong>. The
+<code>format</code> option is the extension of the files.</p>
+<p><code>\multiinclude</code> starts from file number 0. To start from a
+different number, say 9:</p>
 <pre><code>\multiinclude[format=png,start=9]{foobar}</code></pre>
-<p><code>\multiinclude</code> inserts all files that are in the above format. To make it <strong>stop</strong> at a certain number, say 7:</p>
+<p><code>\multiinclude</code> inserts all files that are in the above
+format. To make it <strong>stop</strong> at a certain number, say 7:</p>
 <pre><code>\multiinclude[format=png,end=7]{foobar}</code></pre>
-<p>Typically, images are inserted using the <code>\includegraphics</code> command. The settings passed to <code>\includegraphics</code> can be passed to <code>\multiinclude</code> using its <code>graphics</code> option. For example, to set the scale of the image to 0.3:</p>
+<p>Typically, images are inserted using the
+<code>\includegraphics</code> command. The settings passed to
+<code>\includegraphics</code> can be passed to
+<code>\multiinclude</code> using its <code>graphics</code> option. For
+example, to set the scale of the image to 0.3:</p>
 <pre><code>\multiinclude[format=png,graphics={scale=0.3}]{foobar}</code></pre>
-<p>By default, the images are placed one <em>on top</em> of another. To <strong>replace</strong> each image by the next image try:</p>
+<p>By default, the images are placed one <em>on top</em> of another. To
+<strong>replace</strong> each image by the next image try:</p>
 <pre><code>\multiinclude[&lt;+&gt;][format=png]{foobar}</code></pre>
 </div>
 
@@ -66,11 +69,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

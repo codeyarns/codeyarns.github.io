@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,15 +27,22 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">The strange case of the random number generator that was not random</h1>
+<h1 class="title">The strange case of the random number generator that
+was not random</h1>
 <p class="date">📅 2015-Apr-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#glibc'>glibc</a>, <a href='index.html#rand'>rand</a>, <a href='index.html#srand'>srand</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was using the simple <code>rand</code> API provided by C for generating random numbers. I needed to generate <code>m</code> sequences of <code>n</code> numbers each. To my surprise, I found that two of these sequences were exactly the same!</p>
+<p>I was using the simple <code>rand</code> API provided by C for
+generating random numbers. I needed to generate <code>m</code> sequences
+of <code>n</code> numbers each. To my surprise, I found that two of
+these sequences were exactly the same!</p>
 <h2 id="solution">Solution</h2>
-<p>I was using <code>srand</code> to seed the generation of each sequence. In the release version of my code, I was seeding it using <code>time</code>, which is a common practice:</p>
+<p>I was using <code>srand</code> to seed the generation of each
+sequence. In the release version of my code, I was seeding it using
+<code>time</code>, which is a common practice:</p>
 <pre><code>srand((unsigned int) time(nullptr));</code></pre>
-<p>When I needed to debug the code, I needed the sequences to be reproducible, so I seeded them as:</p>
+<p>When I needed to debug the code, I needed the sequences to be
+reproducible, so I seeded them as:</p>
 <pre><code>// m sequences of n random numbers
 for (int i = 0; i &lt; m; ++i)
 {
@@ -57,15 +50,26 @@ for (int i = 0; i &lt; m; ++i)
     for (int j = 0; j &lt; n; ++j)
         // Use rand() here
 }</code></pre>
-<p>On closer observation, the sequences produced by <code>srand(0)</code> and <code>srand(1)</code> were exactly same!</p>
-<p>This was surprising behavior. The <code>srand</code> man page had no information about this. It only warned that if no seed was provided, <code>1</code> would be assumed as seed:</p>
+<p>On closer observation, the sequences produced by
+<code>srand(0)</code> and <code>srand(1)</code> were exactly same!</p>
+<p>This was surprising behavior. The <code>srand</code> man page had no
+information about this. It only warned that if no seed was provided,
+<code>1</code> would be assumed as seed:</p>
 <pre><code>If no seed value is provided, the rand() function is automatically seeded with a value of 1.</code></pre>
-<p>The problem was found by looking in the source code of <strong>GNU Libc</strong>. In the implementation of <code>srand</code> in the file <code>stdlib/random_r.c</code> lies <a href="https://github.com/lattera/glibc/blob/master/stdlib/random_r.c#L179">this gem</a>:</p>
+<p>The problem was found by looking in the source code of <strong>GNU
+Libc</strong>. In the implementation of <code>srand</code> in the file
+<code>stdlib/random_r.c</code> lies <a
+href="https://github.com/lattera/glibc/blob/master/stdlib/random_r.c#L179">this
+gem</a>:</p>
 <pre><code>/* We must make sure the seed is not 0.  Take arbitrarily 1 in this case.  */
 if (seed == 0)
   seed = 1;</code></pre>
-<p>You have got to love open source! So, seed of <code>0</code> is internally reset to <code>1</code> in the glibc implementation of <code>srand</code>!</p>
-<p>So, beware of the seed you pass to <code>srand</code>. It might be wise to make sure that neither <code>0</code> or <code>1</code> is used as seed on Linux.</p>
+<p>You have got to love open source! So, seed of <code>0</code> is
+internally reset to <code>1</code> in the glibc implementation of
+<code>srand</code>!</p>
+<p>So, beware of the seed you pass to <code>srand</code>. It might be
+wise to make sure that neither <code>0</code> or <code>1</code> is used
+as seed on Linux.</p>
 <p><strong>Tried with:</strong> GLibc 2.19.1 and Ubuntu 14.04</p>
 </div>
 
@@ -74,11 +78,13 @@ if (seed == 0)
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

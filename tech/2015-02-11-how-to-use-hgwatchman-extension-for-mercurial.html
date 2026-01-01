@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,9 +30,20 @@
 <h1 class="title">How to use hgwatchman extension for Mercurial</h1>
 <p class="date">📅 2015-Feb-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#inotify'>inotify</a>, <a href='index.html#mercurial-extension'>mercurial extension</a>, <a href='index.html#watchman'>watchman</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><code>hg status</code> command can be very slow on a repository with thousands of files. This is because it has to explicitly check the status of every file. A great method to speed it up is the <a href="https://bitbucket.org/facebook/hgwatchman"><strong>hgwatchman</strong></a> extension for Mercurial. It uses the <a href="2015/02/10/how-to-install-and-use-watchman/"><strong>Watchman</strong></a> tool which relies on the <strong>inotify</strong> mechanism of the Linux kernel to be notified directly of only the changes that occurred to the files in a directory. There are no packages of hgwatchman and Watchman for Ubuntu, so we need to build them from source. But it is pretty easy to do:</p>
+<p><code>hg status</code> command can be very slow on a repository with
+thousands of files. This is because it has to explicitly check the
+status of every file. A great method to speed it up is the <a
+href="https://bitbucket.org/facebook/hgwatchman"><strong>hgwatchman</strong></a>
+extension for Mercurial. It uses the <a
+href="2015/02/10/how-to-install-and-use-watchman/"><strong>Watchman</strong></a>
+tool which relies on the <strong>inotify</strong> mechanism of the Linux
+kernel to be notified directly of only the changes that occurred to the
+files in a directory. There are no packages of hgwatchman and Watchman
+for Ubuntu, so we need to build them from source. But it is pretty easy
+to do:</p>
 <ul>
-<li><p>Install the Watchman tool as described <a href="2015/02/10/how-to-install-and-use-watchman/">here</a>.</p></li>
+<li><p>Install the Watchman tool as described <a
+href="2015/02/10/how-to-install-and-use-watchman/">here</a>.</p></li>
 <li><p>Download the hgwatchman source code:</p></li>
 </ul>
 <pre><code>$ hg clone https://bitbucket.org/facebook/hgwatchman</code></pre>
@@ -55,7 +52,8 @@
 </ul>
 <pre><code>$ cd hgwatchman
 $ make local</code></pre>
-<p>If you forget this step, everything seems to be fine until you start seeing this error:</p>
+<p>If you forget this step, everything seems to be fine until you start
+seeing this error:</p>
 <pre><code>$ hg status
 abort: No module named bser!</code></pre>
 <p><code>bser.so</code> is a module that is built by this step.</p>
@@ -68,9 +66,11 @@ hgwatchman = /path/to/hgwatchman/hgwatchman
 [hgwatchman]
 mode = on</code></pre>
 <ul>
-<li>That is it! You should see a nice improvement in the performance of <code>hg status</code> after using hgwatchman.</li>
+<li>That is it! You should see a nice improvement in the performance of
+<code>hg status</code> after using hgwatchman.</li>
 </ul>
-<p><strong>Tried with:</strong> Watchman 3.0.0, Mercurial. 2.8.3 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Watchman 3.0.0, Mercurial. 2.8.3 and
+Ubuntu 14.04</p>
 </div>
 
 <br />
@@ -78,11 +78,13 @@ mode = on</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

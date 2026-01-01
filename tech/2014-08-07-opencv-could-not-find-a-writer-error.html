@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,15 +31,26 @@
 <p class="date">📅 2014-Aug-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#opencv'>opencv</a>, <a href='index.html#png'>png</a>, <a href='index.html#writer'>writer</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I had this line of code in a program that uses OpenCV to write an image buffer to a PNG file:</p>
+<p>I had this line of code in a program that uses OpenCV to write an
+image buffer to a PNG file:</p>
 <pre><code>cv::imwrite(&quot;foo.png&quot;, foo_mat);</code></pre>
-<p>I was using Visual Studio 2013 to compile and run this file. But, on running I got this error:</p>
+<p>I was using Visual Studio 2013 to compile and run this file. But, on
+running I got this error:</p>
 <pre><code>opencvmoduleshighguisrcloadsave.cpp:276: error: (-2) could not find a writer for the specified extension</code></pre>
 <h2 id="solution">Solution</h2>
 <p>I have found that there are two reasons that this can be caused.</p>
-<p>The most logical reason is that OpenCV was compiled with the PNG write feature (or any other format) left out. In this case, you may have to get the OpenCV source code and compile it, making sure you choose to enable <code>WITH_PNG</code> or similar option enabled in CMake.</p>
-<p>Surprisingly, I found that this error can also occur when the OpenCV library you are using has PNG compiled in. However, you may be linking a OpenCV release library (or DLL) with a compilation being done in Debug mode (or vice versa). Ensure that you are using Debug version of the library files in Debug mode and Release files in Release mode. I found that this resolved the error when I got it on Windows! 😊</p>
-<p><strong>Tried with:</strong> OpenCV 2.4.9, Visual Studio 2013 and Windows 7 x64</p>
+<p>The most logical reason is that OpenCV was compiled with the PNG
+write feature (or any other format) left out. In this case, you may have
+to get the OpenCV source code and compile it, making sure you choose to
+enable <code>WITH_PNG</code> or similar option enabled in CMake.</p>
+<p>Surprisingly, I found that this error can also occur when the OpenCV
+library you are using has PNG compiled in. However, you may be linking a
+OpenCV release library (or DLL) with a compilation being done in Debug
+mode (or vice versa). Ensure that you are using Debug version of the
+library files in Debug mode and Release files in Release mode. I found
+that this resolved the error when I got it on Windows! 😊</p>
+<p><strong>Tried with:</strong> OpenCV 2.4.9, Visual Studio 2013 and
+Windows 7 x64</p>
 </div>
 
 <br />
@@ -61,11 +58,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

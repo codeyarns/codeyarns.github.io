@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,8 @@
 <p class="date">📅 2017-Nov-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#chrpath'>chrpath</a>, <a href='index.html#cuda'>cuda</a>, <a href='index.html#nvml'>nvml</a>, <a href='index.html#rpath'>rpath</a>, <a href='index.html#shared-library'>shared library</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I tried to run a program compiled with CUDA 9.0 inside a Docker container and got this error:</p>
+<p>I tried to run a program compiled with CUDA 9.0 inside a Docker
+container and got this error:</p>
 <pre><code>WARNING:
 
 You should always run with libnvidia-ml.so that is installed with your
@@ -54,14 +41,44 @@ libnvidia-ml.so in GDK package is a stub library that is attached only for
 build purposes (e.g. machine that you build your application doesn&#39;t have
 to have Display Driver installed).</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Let us first try to understand the error and where it is coming from. The program compiled with CUDA 9.0 has been linked to <strong>libnvidia-ml.so</strong>. This is the shared library file of the <strong>NVIDIA Management Library (NVML)</strong>. During execution, libnvidia-ml.so is throwing this error. Why?</p>
-<p>From the error message, we get an indication that there are two libnvidia-ml.so files. One is a <strong>stub</strong> that is used during compilation and linking. I guess it just provides the necessary function symbols and signatures. But that library cannot be used to execute the compiled executable. If we do try to execute with that stub shared library file, it will throw this warning.</p>
-<p>So, there is a second libnvidia-ml.so, the real shared library file. It turns out that the management library is provided by the NVIDIA display driver. So, every version of display driver will have its own libnvidia-ml.so file. I had NVIDIA display driver 384.66 on my machine and I found libnvidia-ml.so under <code>/usr/lib/nvidia-384</code>. The stub library file allows you to compile on machines where the NVIDIA display driver is not installed. In our case, for some reason, the loader is picking up the stub instead of the real library file during execution.</p>
-<p>By using the chrpath tool, described <a href="2017-11-01-how-to-change-rpath-or-runpath-of-executable.html">here</a>, I found that the compiled binary did indeed have the stub library directory in its path:<code>/usr/local/cuda/lib64/stubs</code>. That directory did have a libnvidia-ml.so. Using the <strong>strings</strong> tool on that shared library, confirmed that it was the origin of the above message:</p>
+<p>Let us first try to understand the error and where it is coming from.
+The program compiled with CUDA 9.0 has been linked to
+<strong>libnvidia-ml.so</strong>. This is the shared library file of the
+<strong>NVIDIA Management Library (NVML)</strong>. During execution,
+libnvidia-ml.so is throwing this error. Why?</p>
+<p>From the error message, we get an indication that there are two
+libnvidia-ml.so files. One is a <strong>stub</strong> that is used
+during compilation and linking. I guess it just provides the necessary
+function symbols and signatures. But that library cannot be used to
+execute the compiled executable. If we do try to execute with that stub
+shared library file, it will throw this warning.</p>
+<p>So, there is a second libnvidia-ml.so, the real shared library file.
+It turns out that the management library is provided by the NVIDIA
+display driver. So, every version of display driver will have its own
+libnvidia-ml.so file. I had NVIDIA display driver 384.66 on my machine
+and I found libnvidia-ml.so under <code>/usr/lib/nvidia-384</code>. The
+stub library file allows you to compile on machines where the NVIDIA
+display driver is not installed. In our case, for some reason, the
+loader is picking up the stub instead of the real library file during
+execution.</p>
+<p>By using the chrpath tool, described <a
+href="2017-11-01-how-to-change-rpath-or-runpath-of-executable.html">here</a>,
+I found that the compiled binary did indeed have the stub library
+directory in its path:<code>/usr/local/cuda/lib64/stubs</code>. That
+directory did have a libnvidia-ml.so. Using the <strong>strings</strong>
+tool on that shared library, confirmed that it was the origin of the
+above message:</p>
 <pre><code>$ strings libnividia-ml.so | grep &quot;You should always run with&quot;</code></pre>
-<p>Since the binary has an RPATH, described <a href="2017-11-01-how-shared-library-locations-are-found-at-runtime.html">here</a>, with the stubs path, the stub library was getting picked up with high preference over the actual libnvidia-ml.so, which was present. The solution I came up with for this problem was to add a command to the docker run invocation to delete the stubs directory:</p>
+<p>Since the binary has an RPATH, described <a
+href="2017-11-01-how-shared-library-locations-are-found-at-runtime.html">here</a>,
+with the stubs path, the stub library was getting picked up with high
+preference over the actual libnvidia-ml.so, which was present. The
+solution I came up with for this problem was to add a command to the
+docker run invocation to delete the stubs directory:</p>
 <pre><code>$ rm -rf  /usr/local/cuda/lib64/stubs</code></pre>
-<p>That way, it was still available outside Docker for compilation. It would just appeared deleted inside the Docker container, thus forcing the loader to pick up the real libnvidia-ml.so during execution.</p>
+<p>That way, it was still available outside Docker for compilation. It
+would just appeared deleted inside the Docker container, thus forcing
+the loader to pick up the real libnvidia-ml.so during execution.</p>
 </div>
 
 <br />
@@ -69,11 +86,13 @@ to have Display Driver installed).</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

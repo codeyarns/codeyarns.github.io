@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,52 +95,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Explicit Constructor in C++</h1>
 <p class="date">📅 2010-Dec-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#constructors'>constructors</a>, <a href='index.html#cpp'>cpp</a>, <a href='index.html#explicit'>explicit</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A <strong>C++</strong> constructor acts like an implicit type converter whenever it is needed. In the example below, the <code>Foo( int )</code> constructor acts like an int-to-Foo type converter for the function <code>doSomething</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">class</span> Foo</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>{</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">public</span>:</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    Foo( <span class="dt">int</span> x ) { _val = x; }</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">private</span>:</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="dt">int</span> _val;</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>};</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="dt">void</span> doSomething( <span class="at">const</span> Foo &amp;foo )</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>{}</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>doSomething( <span class="dv">10</span> ); <span class="co">// Acts like doSomething( Foo( 10 ) );</span></span></code></pre></div>
-<p>Only constructors with one non-default parameter can act like implicit convertors. That is, a constructor with only one parameter, which is not a default parameter. Or a constructor with many parameters, where the first parameter is not default and the rest of the parameters are default parameters. In the example below, the constructor with many parameters also acts like an implicit int-to-Foo convertor since all but one are default parameters.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">class</span> Foo</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>{</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">public</span>:</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>    Foo( <span class="dt">int</span> x, <span class="dt">int</span> y = <span class="dv">99</span>, <span class="dt">int</span> z = <span class="dv">999</span> ) { _val = x; }</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="kw">private</span>:</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>    <span class="dt">int</span> _val;</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>};</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="dt">void</span> doSomething( <span class="at">const</span> Foo &amp;foo )</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>{}</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>doSomething( <span class="dv">10</span> );</span></code></pre></div>
-<p>With the inherent complexity of C++, most programmers do not want such implicit conversions happening under the hood. To prevent this from happening, the <strong>explicit</strong> qualifier can be used on such constructors. The example below does not allow implicit conversion.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">class</span> Foo</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>{</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">public</span>:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="kw">explicit</span> Foo( <span class="dt">int</span> x ) { _val = x; }</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">private</span>:</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>    <span class="dt">int</span> _val;</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>};</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="dt">void</span> doSomething( <span class="at">const</span> Foo&amp;amp; foo )</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>{}</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>doSomething( <span class="dv">10</span> );        <span class="co">// Error!</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>doSomething( Foo( <span class="dv">10</span> ) ); <span class="co">// OK</span></span></code></pre></div>
+<p>A <strong>C++</strong> constructor acts like an implicit type
+converter whenever it is needed. In the example below, the
+<code>Foo( int )</code> constructor acts like an int-to-Foo type
+converter for the function <code>doSomething</code>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Foo</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Foo<span class="op">(</span> <span class="dt">int</span> x <span class="op">)</span> <span class="op">{</span> _val <span class="op">=</span> x<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> _val<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> doSomething<span class="op">(</span> <span class="at">const</span> Foo <span class="op">&amp;</span>foo <span class="op">)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">{}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>doSomething<span class="op">(</span> <span class="dv">10</span> <span class="op">);</span> <span class="co">// Acts like doSomething( Foo( 10 ) );</span></span></code></pre></div>
+<p>Only constructors with one non-default parameter can act like
+implicit convertors. That is, a constructor with only one parameter,
+which is not a default parameter. Or a constructor with many parameters,
+where the first parameter is not default and the rest of the parameters
+are default parameters. In the example below, the constructor with many
+parameters also acts like an implicit int-to-Foo convertor since all but
+one are default parameters.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Foo</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Foo<span class="op">(</span> <span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> y <span class="op">=</span> <span class="dv">99</span><span class="op">,</span> <span class="dt">int</span> z <span class="op">=</span> <span class="dv">999</span> <span class="op">)</span> <span class="op">{</span> _val <span class="op">=</span> x<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> _val<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> doSomething<span class="op">(</span> <span class="at">const</span> Foo <span class="op">&amp;</span>foo <span class="op">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">{}</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>doSomething<span class="op">(</span> <span class="dv">10</span> <span class="op">);</span></span></code></pre></div>
+<p>With the inherent complexity of C++, most programmers do not want
+such implicit conversions happening under the hood. To prevent this from
+happening, the <strong>explicit</strong> qualifier can be used on such
+constructors. The example below does not allow implicit conversion.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Foo</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">explicit</span> Foo<span class="op">(</span> <span class="dt">int</span> x <span class="op">)</span> <span class="op">{</span> _val <span class="op">=</span> x<span class="op">;</span> <span class="op">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> _val<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> doSomething<span class="op">(</span> <span class="at">const</span> Foo<span class="op">&amp;</span>amp<span class="op">;</span> foo <span class="op">)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">{}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>doSomething<span class="op">(</span> <span class="dv">10</span> <span class="op">);</span>        <span class="co">// Error!</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>doSomething<span class="op">(</span> Foo<span class="op">(</span> <span class="dv">10</span> <span class="op">)</span> <span class="op">);</span> <span class="co">// OK</span></span></code></pre></div>
 <p>A few notes:</p>
 <ul>
-<li><p>The explicit qualifier can be used only with the constructor declaration, not the definition (if the two are separate).</p></li>
-<li><p>The explicit qualifier can be used on <em>any</em> constructor. Even the default constructor or constructors with many non-default parameters. It is allowed for these, but does not seem to serve any purpose.</p></li>
+<li><p>The explicit qualifier can be used only with the constructor
+declaration, not the definition (if the two are separate).</p></li>
+<li><p>The explicit qualifier can be used on <em>any</em> constructor.
+Even the default constructor or constructors with many non-default
+parameters. It is allowed for these, but does not seem to serve any
+purpose.</p></li>
 </ul>
-<p>Since explicit prevents such under-the-hood activities, it is a good habit to apply it by default on all constructors. Turn it off only when you actually need an implicit conversion. 😊</p>
+<p>Since explicit prevents such under-the-hood activities, it is a good
+habit to apply it by default on all constructors. Turn it off only when
+you actually need an implicit conversion. 😊</p>
 </div>
 
 <br />
@@ -161,11 +169,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

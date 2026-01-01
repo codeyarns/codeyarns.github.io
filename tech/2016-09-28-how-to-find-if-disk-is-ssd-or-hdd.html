@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,20 @@
 <h1 class="title">How to find if disk is SSD or HDD</h1>
 <p class="date">📅 2016-Sep-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#hdd'>hdd</a>, <a href='index.html#ssd'>ssd</a>, <a href='index.html#sys'>sys</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Disk IO can be the bottleneck for certain programs. When I work with such programs on remote servers, I prefer to place their data or direct their output to <strong>SSD</strong> instead of <strong>HDD</strong>. I can view the available partitions and their filesystems using the <code>df</code> command. But, how to find out which of the mounted partitions is on a SSD and which on hard disk?</p>
-<p>You probably know that the disk of a partition listed as <code>/dev/sdb7</code> is <code>/dev/sdb</code>. That is, by removing the numerical suffix from the partition, you get the disk.</p>
-<p>To find out if the disk is SSD or HDD, check the <code>/sys</code> pseudo filesystem using the disk name:</p>
+<p>Disk IO can be the bottleneck for certain programs. When I work with
+such programs on remote servers, I prefer to place their data or direct
+their output to <strong>SSD</strong> instead of <strong>HDD</strong>. I
+can view the available partitions and their filesystems using the
+<code>df</code> command. But, how to find out which of the mounted
+partitions is on a SSD and which on hard disk?</p>
+<p>You probably know that the disk of a partition listed as
+<code>/dev/sdb7</code> is <code>/dev/sdb</code>. That is, by removing
+the numerical suffix from the partition, you get the disk.</p>
+<p>To find out if the disk is SSD or HDD, check the <code>/sys</code>
+pseudo filesystem using the disk name:</p>
 <pre><code>$ cat /sys/block/sdb/queue/rotational</code></pre>
-<p>If it is HDD, and thus a rotational disk, the value will be 1. For SSD, the value will be 0.</p>
+<p>If it is HDD, and thus a rotational disk, the value will be 1. For
+SSD, the value will be 0.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
@@ -57,11 +52,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

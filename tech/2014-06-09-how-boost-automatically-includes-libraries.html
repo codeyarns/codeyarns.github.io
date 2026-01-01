@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,32 @@
 <h1 class="title">How Boost automatically includes libraries</h1>
 <p class="date">📅 2014-Jun-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#boost'>boost</a>, <a href='index.html#library'>library</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Boost is mostly a template based library, but using certain functionality requires linking with its libraries. On Windows, when you include a Boost header file in your code, it automatically generates a linking dependency on its corresponding library file. This library path is used by the linker to complete its linking operation.</p>
-<p>For example, if I use the threading features of Boost, it generates a dependency on the library file: <code>libboost_thread-vc110-mt-gd-1_53.lib</code>.</p>
-<p>This filename has various components: the Boost module, the Visual Studio version, the build type and the Boost version. These are obtained from various definitions in the <code>boost/config/auto_link.hpp</code> header file.</p>
-<p>If you find that your code is looking for a Boost library filename that looks wrong in any way, then you might have to look into the above header file and configure some of the definitions.</p>
-<p>For example, I built Boost 1.53 on Visual Studio 2013, even though it is not officially supported. When I used this Boost with my code, the linker complained that it was looking for <code>libboost_thread-vc110-mt-gd-1_53.lib</code>. This is strange, since I have built both Boost and my code using Visual Studio 2013 (<code>vc120</code>), but it is looking for Visual Studio 2012 (<code>vc110</code>). I found that the variable <code>BOOST_LIB_TOOLSET</code> was set to <code>vc110</code> in <code>auto_link.hpp</code>. Changing this fixed the error.</p>
-<p><strong>Tried with:</strong> Boost 1.53, Visual Studio 2013 and Windows 7 x64</p>
+<p>Boost is mostly a template based library, but using certain
+functionality requires linking with its libraries. On Windows, when you
+include a Boost header file in your code, it automatically generates a
+linking dependency on its corresponding library file. This library path
+is used by the linker to complete its linking operation.</p>
+<p>For example, if I use the threading features of Boost, it generates a
+dependency on the library file:
+<code>libboost_thread-vc110-mt-gd-1_53.lib</code>.</p>
+<p>This filename has various components: the Boost module, the Visual
+Studio version, the build type and the Boost version. These are obtained
+from various definitions in the <code>boost/config/auto_link.hpp</code>
+header file.</p>
+<p>If you find that your code is looking for a Boost library filename
+that looks wrong in any way, then you might have to look into the above
+header file and configure some of the definitions.</p>
+<p>For example, I built Boost 1.53 on Visual Studio 2013, even though it
+is not officially supported. When I used this Boost with my code, the
+linker complained that it was looking for
+<code>libboost_thread-vc110-mt-gd-1_53.lib</code>. This is strange,
+since I have built both Boost and my code using Visual Studio 2013
+(<code>vc120</code>), but it is looking for Visual Studio 2012
+(<code>vc110</code>). I found that the variable
+<code>BOOST_LIB_TOOLSET</code> was set to <code>vc110</code> in
+<code>auto_link.hpp</code>. Changing this fixed the error.</p>
+<p><strong>Tried with:</strong> Boost 1.53, Visual Studio 2013 and
+Windows 7 x64</p>
 </div>
 
 <br />
@@ -57,11 +63,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

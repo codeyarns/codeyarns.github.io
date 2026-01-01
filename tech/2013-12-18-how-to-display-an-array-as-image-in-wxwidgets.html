@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,28 +30,53 @@
 <h1 class="title">How to display an array as image in wxWidgets</h1>
 <p class="date">📅 2013-Dec-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#wxbitmap'>wxbitmap</a>, <a href='index.html#wximage'>wximage</a>, <a href='index.html#wxstaticbitmap'>wxstaticbitmap</a>, <a href='index.html#wxwidgets'>wxwidgets</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>There are many scenarios where you get an array of values that represents an image of certain width and height. For example, the array could contain integers or floats of any range. You might want to display this array in <strong>wxWidgets</strong> to visualize it as a two-dimensional image.</p>
+<p>There are many scenarios where you get an array of values that
+represents an image of certain width and height. For example, the array
+could contain integers or floats of any range. You might want to display
+this array in <strong>wxWidgets</strong> to visualize it as a
+two-dimensional image.</p>
 <p>Here is one way I was able to do this in wxWidgets:</p>
 <ul>
-<li><p>A common type of value that wxWidgets uses for display is <code>unsigned char</code>. This has a range of 0 to 255. So, you will need to convert your <code>float</code>, <code>int</code> or any other type to <code>unsigned char</code>. How you do this conversion will depend on the range of values that are being represented in your type.</p></li>
-<li><p>The typical type of array that wxWidgets uses for display is 3-channel (RGB) or 4-channel (RGBA). So, if you have one or two channel arrays, you will need to convert them to a 3-channel array. The values are arranged such that the RGB values of a pixel are adjacent to each other. That is, the array should be arranged as <code>[R0 G0 B0 R1 G1 B1 ...]</code>. If you have a single channel array, the easiest way to generate 3-channel array is to allocate a new array of 3 times the size and write every value thrice into it. Remember that the values in the array should be of type <code>unsigned char</code> as explained earlier.</p></li>
-<li><p>One of the structures that is used to hold an image is <code>wxImage</code>. You can initialize it with a 3-channel array of type <code>unsigned char</code> as follows:</p></li>
+<li><p>A common type of value that wxWidgets uses for display is
+<code>unsigned char</code>. This has a range of 0 to 255. So, you will
+need to convert your <code>float</code>, <code>int</code> or any other
+type to <code>unsigned char</code>. How you do this conversion will
+depend on the range of values that are being represented in your
+type.</p></li>
+<li><p>The typical type of array that wxWidgets uses for display is
+3-channel (RGB) or 4-channel (RGBA). So, if you have one or two channel
+arrays, you will need to convert them to a 3-channel array. The values
+are arranged such that the RGB values of a pixel are adjacent to each
+other. That is, the array should be arranged as
+<code>[R0 G0 B0 R1 G1 B1 ...]</code>. If you have a single channel
+array, the easiest way to generate 3-channel array is to allocate a new
+array of 3 times the size and write every value thrice into it. Remember
+that the values in the array should be of type
+<code>unsigned char</code> as explained earlier.</p></li>
+<li><p>One of the structures that is used to hold an image is
+<code>wxImage</code>. You can initialize it with a 3-channel array of
+type <code>unsigned char</code> as follows:</p></li>
 </ul>
 <pre><code>unsigned char* imgArray[width * height * 3];
 // Fill in imgArray here ... 
 wxImage img(width, height, imgArray, true);</code></pre>
 <ul>
-<li>The easiest structure to use to draw on the GUI is <code>wxBitmap</code>. You can directly convert a <code>wxImage</code> to it:</li>
+<li>The easiest structure to use to draw on the GUI is
+<code>wxBitmap</code>. You can directly convert a <code>wxImage</code>
+to it:</li>
 </ul>
 <pre><code>wxBitmap bmp(img);</code></pre>
 <ul>
-<li>Finally, we are ready to draw on the GUI. The widget that can be used to draw is <code>wxStaticBitmap</code>. Pass it a <code>wxBitmap</code> and it will render it on the GUI:</li>
+<li>Finally, we are ready to draw on the GUI. The widget that can be
+used to draw is <code>wxStaticBitmap</code>. Pass it a
+<code>wxBitmap</code> and it will render it on the GUI:</li>
 </ul>
 <pre><code>// Start with empty bitmap
 wxStaticBitmap* sbmp = new wxStaticBitmap(this, wxID_STATIC, wxNullBitmap, wxDefaultPosition, wxSize(width, height));
 // Update later with your bitmap
 sbmp-&gt;SetBitmap(bmp);</code></pre>
-<p><strong>Tried with:</strong> wxWidgets 3.0.0 and Visual Studio 2012</p>
+<p><strong>Tried with:</strong> wxWidgets 3.0.0 and Visual Studio
+2012</p>
 </div>
 
 <br />
@@ -73,11 +84,13 @@ sbmp-&gt;SetBitmap(bmp);</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,16 +31,33 @@
 <p class="date">📅 2017-Jul-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#mount'>mount</a>, <a href='index.html#nfs'>nfs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I wanted to share a directory that was on my local computer to a remote computer named <code>medusa</code> using <strong>NFS</strong>. I did the setup of the <strong>NFS server</strong> on my local computer and <strong>NFS client</strong> on the remote computer as described <a href="2013-03-17-how-to-setup-nfs-server-and-client.html">here</a>. However, when I mounted the NFS share on the remote computer, I got this error:</p>
+<p>I wanted to share a directory that was on my local computer to a
+remote computer named <code>medusa</code> using <strong>NFS</strong>. I
+did the setup of the <strong>NFS server</strong> on my local computer
+and <strong>NFS client</strong> on the remote computer as described <a
+href="2013-03-17-how-to-setup-nfs-server-and-client.html">here</a>.
+However, when I mounted the NFS share on the remote computer, I got this
+error:</p>
 <pre><code>$ sudo mount /mnt/my_nfs_share
 mount.nfs: access denied by server while mounting my-local-computer:/path/i/shared</code></pre>
 <h2 id="solution">Solution</h2>
-<p>This turned out to be tricky one! The error message is quite a bit misleading because it turned out that the problem had nothing to do with access. Turns out this remote computer <code>medusa</code> had two Ethernet cards and thus two IP addresses. One of the IP addresses was set to the hostname <code>medusa</code>, but the NFS client was using the second IP address.</p>
-<p>The solution was to add the second IP address <code>192.168.0.100</code> as an entry in the <code>/etc/exports</code> file:</p>
+<p>This turned out to be tricky one! The error message is quite a bit
+misleading because it turned out that the problem had nothing to do with
+access. Turns out this remote computer <code>medusa</code> had two
+Ethernet cards and thus two IP addresses. One of the IP addresses was
+set to the hostname <code>medusa</code>, but the NFS client was using
+the second IP address.</p>
+<p>The solution was to add the second IP address
+<code>192.168.0.100</code> as an entry in the <code>/etc/exports</code>
+file:</p>
 <pre><code>/path/i/shared medusa(rw,sync,no_subtree_check)
 /path/i/shared 192.168.0.100(rw,sync,no_subtree_check)</code></pre>
-<p>The rest of the steps I repeated as described in this <a href="2013-03-17-how-to-setup-nfs-server-and-client.html">post</a>. Everything worked fine and I was able to mount the NFS share on the remote computer.</p>
-<p><strong>Reference:</strong> <a href="https://unix.stackexchange.com/questions/106122/">https://unix.stackexchange.com/questions/106122/</a></p>
+<p>The rest of the steps I repeated as described in this <a
+href="2013-03-17-how-to-setup-nfs-server-and-client.html">post</a>.
+Everything worked fine and I was able to mount the NFS share on the
+remote computer.</p>
+<p><strong>Reference:</strong> <a
+href="https://unix.stackexchange.com/questions/106122/">https://unix.stackexchange.com/questions/106122/</a></p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
@@ -63,11 +66,13 @@ mount.nfs: access denied by server while mounting my-local-computer:/path/i/shar
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,20 @@
 <h1 class="title">How to change resolution of virtual console</h1>
 <p class="date">📅 2015-Jan-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#resolution'>resolution</a>, <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#virtual-console'>virtual console</a>, <a href='index.html#virtualbox'>virtualbox</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>On many systems, I find that the <strong>virtual console</strong> in Ubuntu is limited to <code>80x40</code>. That is, it only displays 80 columns and 40 lines of text. The resolution of my display is much higher than this and I would like to render more lines and columns in the virtual consoles.</p>
+<p>On many systems, I find that the <strong>virtual console</strong> in
+Ubuntu is limited to <code>80x40</code>. That is, it only displays 80
+columns and 40 lines of text. The resolution of my display is much
+higher than this and I would like to render more lines and columns in
+the virtual consoles.</p>
 <p>To do that:</p>
 <ul>
 <li>Open the file <code>/etc/default/grub</code> in an editor:</li>
 </ul>
 <pre><code>$ sudoedit /etc/default/grub</code></pre>
 <ul>
-<li>We add two lines to the file. If these lines are already there, edit or comment them out. The first line provides the pixel resolution (say <code>1920x1200</code>) of your display:</li>
+<li>We add two lines to the file. If these lines are already there, edit
+or comment them out. The first line provides the pixel resolution (say
+<code>1920x1200</code>) of your display:</li>
 </ul>
 <pre><code>GRUB_GFXMODE=1920x1200x32
 GRUB_GFXPAYLOAD_LINUX=keep</code></pre>
@@ -60,9 +52,13 @@ GRUB_GFXPAYLOAD_LINUX=keep</code></pre>
 </ul>
 <pre><code>$ sudo update-grub</code></pre>
 <ul>
-<li>Restart Ubuntu. The virtual console should have a resolution that matches your display resolution.</li>
+<li>Restart Ubuntu. The virtual console should have a resolution that
+matches your display resolution.</li>
 </ul>
-<p><strong>Note:</strong> This also works for virtual console of Ubuntu running inside a VirtualBox virtual machine. Since the VirtualBox window can be resized (and the virtual console cannot), I provide a smaller resolution to GRUB there. For example: <code>1024x768</code>.</p>
+<p><strong>Note:</strong> This also works for virtual console of Ubuntu
+running inside a VirtualBox virtual machine. Since the VirtualBox window
+can be resized (and the virtual console cannot), I provide a smaller
+resolution to GRUB there. For example: <code>1024x768</code>.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
@@ -71,11 +67,13 @@ GRUB_GFXPAYLOAD_LINUX=keep</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,36 +30,76 @@
 <h1 class="title">Byobu Cheatsheet</h1>
 <p class="date">📅 2013-Jan-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#keyboard-shortcuts'>keyboard shortcuts</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://launchpad.net/byobu"><strong>Byobu</strong></a> is a program that makes using terminal multiplexers really easy. A <strong>terminal multiplexer</strong> is like a windowing system for console programs. Byobu uses <strong>tmux</strong> by default, but can be configured to use <strong>GNU screen</strong> too.</p>
-<p>Byobu allows you have many console windows or programs running at the same time. You can detach from Byobu and later restore the session, with all your terminals and programs running intact. This is similar to hibernating and restarting an OS back.</p>
+<p><a href="https://launchpad.net/byobu"><strong>Byobu</strong></a> is a
+program that makes using terminal multiplexers really easy. A
+<strong>terminal multiplexer</strong> is like a windowing system for
+console programs. Byobu uses <strong>tmux</strong> by default, but can
+be configured to use <strong>GNU screen</strong> too.</p>
+<p>Byobu allows you have many console windows or programs running at the
+same time. You can detach from Byobu and later restore the session, with
+all your terminals and programs running intact. This is similar to
+hibernating and restarting an OS back.</p>
 <h2 id="usage">Usage</h2>
 <ul>
-<li><p>When opened, Byobu opens with your default shell. The bottom line of Byobu is like a taskbar and shows currently open windows (or tabs). You can see the default window (or tab) numbered 0 there.</p></li>
-<li><p>To open a new session named foo, use the command: <code>byobu -S foo</code></p></li>
+<li><p>When opened, Byobu opens with your default shell. The bottom line
+of Byobu is like a taskbar and shows currently open windows (or tabs).
+You can see the default window (or tab) numbered 0 there.</p></li>
+<li><p>To open a new session named foo, use the command:
+<code>byobu -S foo</code></p></li>
 </ul>
 <h2 id="keyboard-shortcuts">Keyboard shortcuts</h2>
 <p>Byobu uses the function keys for almost all its operations.</p>
 <ul>
-<li><p><code>F2</code>: Open a new window or tab. This means that a new shell session is opened in that window. This window is numbered 1, as seen at the bottom. Every invocation of <code>F2</code> creates a new window, numbered with the smallest unused integer.</p></li>
-<li><p><code>F3</code> or <code>F4</code>: Switch to the window that is left or right of the current one.</p></li>
-<li><p><code>F6</code>: Detach from Byobu. Puts you back at the shell. All the windows and the shells inside them are still running. You get back to them whenever you want by running <code>byobu</code> again.</p></li>
-<li><p><code>F7</code>: Toggle mode to scroll through history. Hit <code>Enter</code> to get out of this mode. This mode is useful for search and copy-paste, see below.</p></li>
-<li><p><code>Alt + PgUp</code> or <code>Alt + PgDn</code>: Page up or down through history of current window.</p></li>
-<li><p><code>F8</code>: Rename the current window. The new name is shown at the bottom of each window.</p></li>
+<li><p><code>F2</code>: Open a new window or tab. This means that a new
+shell session is opened in that window. This window is numbered 1, as
+seen at the bottom. Every invocation of <code>F2</code> creates a new
+window, numbered with the smallest unused integer.</p></li>
+<li><p><code>F3</code> or <code>F4</code>: Switch to the window that is
+left or right of the current one.</p></li>
+<li><p><code>F6</code>: Detach from Byobu. Puts you back at the shell.
+All the windows and the shells inside them are still running. You get
+back to them whenever you want by running <code>byobu</code>
+again.</p></li>
+<li><p><code>F7</code>: Toggle mode to scroll through history. Hit
+<code>Enter</code> to get out of this mode. This mode is useful for
+search and copy-paste, see below.</p></li>
+<li><p><code>Alt + PgUp</code> or <code>Alt + PgDn</code>: Page up or
+down through history of current window.</p></li>
+<li><p><code>F8</code>: Rename the current window. The new name is shown
+at the bottom of each window.</p></li>
 <li><p><code>Ctrl + F2</code>: Create a vertical split window.</p></li>
-<li><p><code>Shift + F2</code>: Create a horizontal split window.</p></li>
-<li><p><code>Shift + F3</code> or <code>Shift + F4</code>: Cycle forward or backward between split windows.</p></li>
-<li><p><code>Shift + F11</code>: Toggle between maximizing (or full screen) the current split and restoring it back among the splits.</p></li>
-<li><p><code>F9</code>: Change Byobu settings using its inbuilt Curses GUI dialog.</p></li>
-<li><p><code>Alt + F12</code>: Toggle mouse support. More details in this <a href="2016-01-28-how-to-use-mouse-in-byobu.html">post</a>.</p></li>
-<li><p><code>Shift + F12</code>: Toggle function keys. This is useful when you want to use the function keys in a terminal application running inside Byobu.</p></li>
-<li><p><code>F1</code>: View help, including keyboard shortcuts like these.</p></li>
+<li><p><code>Shift + F2</code>: Create a horizontal split
+window.</p></li>
+<li><p><code>Shift + F3</code> or <code>Shift + F4</code>: Cycle forward
+or backward between split windows.</p></li>
+<li><p><code>Shift + F11</code>: Toggle between maximizing (or full
+screen) the current split and restoring it back among the
+splits.</p></li>
+<li><p><code>F9</code>: Change Byobu settings using its inbuilt Curses
+GUI dialog.</p></li>
+<li><p><code>Alt + F12</code>: Toggle mouse support. More details in
+this <a
+href="2016-01-28-how-to-use-mouse-in-byobu.html">post</a>.</p></li>
+<li><p><code>Shift + F12</code>: Toggle function keys. This is useful
+when you want to use the function keys in a terminal application running
+inside Byobu.</p></li>
+<li><p><code>F1</code>: View help, including keyboard shortcuts like
+these.</p></li>
 </ul>
-<p>You can also see these keyboard shortcuts defined in the <code>/usr/share/byobu/keybindings/f-keys.tmux</code> file.</p>
+<p>You can also see these keyboard shortcuts defined in the
+<code>/usr/share/byobu/keybindings/f-keys.tmux</code> file.</p>
 <h2 id="useful-operations">Useful operations</h2>
 <ul>
-<li><p><strong>Search text</strong>: Go to <code>F7</code> mode. Type <code>/foobar</code> or <code>?foobar</code> just like in Vim to search forward and backward through the shell output. Press <code>Enter</code> to exit the mode.</p></li>
-<li><p><strong>Copy-paste text</strong>: Go to <code>F7</code> mode, move the cursor to the start of the text to be copied. Press <code>Space</code> followed by arrow keys to visually mark the text to copy. Press <code>Enter</code> to end the copy operation and exit the mode. To paste, for example at the shell, press <code>Alt + Ins</code>.</p></li>
+<li><p><strong>Search text</strong>: Go to <code>F7</code> mode. Type
+<code>/foobar</code> or <code>?foobar</code> just like in Vim to search
+forward and backward through the shell output. Press <code>Enter</code>
+to exit the mode.</p></li>
+<li><p><strong>Copy-paste text</strong>: Go to <code>F7</code> mode,
+move the cursor to the start of the text to be copied. Press
+<code>Space</code> followed by arrow keys to visually mark the text to
+copy. Press <code>Enter</code> to end the copy operation and exit the
+mode. To paste, for example at the shell, press
+<code>Alt + Ins</code>.</p></li>
 </ul>
 <p><strong>Tried with:</strong> Byobu 5.133 and Ubuntu 20.04</p>
 </div>
@@ -83,11 +109,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

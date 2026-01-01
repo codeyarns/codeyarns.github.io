@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,34 @@
 <h1 class="title">ViM: viminfo</h1>
 <p class="date">📅 2010-Nov-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#vim'>vim</a>, <a href='index.html#viminfo'>viminfo</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>ViM</strong> uses the <strong>viminfo</strong> file as a memory dump to remember information from the last session. On Windows, this file is named <code>_viminfo</code> and stored in the directory <code>%HOMEDRIVE%/%HOMEPATH</code>.</p>
-<p>For example, on a home computer <code>%HOMEDRIVE%</code> might be <code>C:</code> and <code>%HOMEPATH%</code> might be <code>\Users\Joe</code>. Thus, ViM will use <code>C:\Users\Joe\_viminfo</code></p>
-<p>For computers which are connected to a work domain, the <code>%HOMEDRIVE%</code> and <code>%HOMEPATH%</code> are typically set to <strong>shared folders</strong> on the network. These folders might sometimes be down or slow, causing error messages related to viminfo. Therefore, the default viminfo location on Windows is not appropriate if the computer is on a work domain. A good place for it would be the <code>%LOCALAPPDATA%</code> directory.</p>
-<p>To indicate a different viminfo directory to ViM, add this to the <strong>vimrc</strong> file:</p>
+<p><strong>ViM</strong> uses the <strong>viminfo</strong> file as a
+memory dump to remember information from the last session. On Windows,
+this file is named <code>_viminfo</code> and stored in the directory
+<code>%HOMEDRIVE%/%HOMEPATH</code>.</p>
+<p>For example, on a home computer <code>%HOMEDRIVE%</code> might be
+<code>C:</code> and <code>%HOMEPATH%</code> might be
+<code>\Users\Joe</code>. Thus, ViM will use
+<code>C:\Users\Joe\_viminfo</code></p>
+<p>For computers which are connected to a work domain, the
+<code>%HOMEDRIVE%</code> and <code>%HOMEPATH%</code> are typically set
+to <strong>shared folders</strong> on the network. These folders might
+sometimes be down or slow, causing error messages related to viminfo.
+Therefore, the default viminfo location on Windows is not appropriate if
+the computer is on a work domain. A good place for it would be the
+<code>%LOCALAPPDATA%</code> directory.</p>
+<p>To indicate a different viminfo directory to ViM, add this to the
+<strong>vimrc</strong> file:</p>
 <pre><code>set viminfo+=n$LOCALAPPDATA/_viminfo</code></pre>
-<p>The viminfo option is a comma-separated list of parameters. Each parameter is specified by a <strong>single character</strong>, followed by a number or string that is the value of that parameter. The viminfo file parameter is specified by the letter <strong>n</strong>, followed by the string that is the path where _viminfo should be stored. Enclosing the path in double quotes does not work! :x</p>
-<p>Note the <code>+=</code> operator used to set the viminfo option. The viminfo option already has a bunch of parameters that are specified by default. Thus, we <strong>append</strong> the viminfo file path parameter to this by using the <code>+=</code> operator.</p>
+<p>The viminfo option is a comma-separated list of parameters. Each
+parameter is specified by a <strong>single character</strong>, followed
+by a number or string that is the value of that parameter. The viminfo
+file parameter is specified by the letter <strong>n</strong>, followed
+by the string that is the path where _viminfo should be stored.
+Enclosing the path in double quotes does not work! :x</p>
+<p>Note the <code>+=</code> operator used to set the viminfo option. The
+viminfo option already has a bunch of parameters that are specified by
+default. Thus, we <strong>append</strong> the viminfo file path
+parameter to this by using the <code>+=</code> operator.</p>
 </div>
 
 <br />
@@ -58,11 +65,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

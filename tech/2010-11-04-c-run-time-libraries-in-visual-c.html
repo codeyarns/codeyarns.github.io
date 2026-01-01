@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,25 +30,52 @@
 <h1 class="title">C Run-Time Libraries in Visual C++</h1>
 <p class="date">📅 2010-Nov-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#crt'>crt</a>, <a href='index.html#libraries'>libraries</a>, <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Every Visual C++ project is linked with a <strong>C run-time library</strong>. This is called the <strong>CRT</strong> in Microsoft literature.</p>
+<p>Every Visual C++ project is linked with a <strong>C run-time
+library</strong>. This is called the <strong>CRT</strong> in Microsoft
+literature.</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/11/20101104_crt_21.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2010/11/20101104_crt_21.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <ul>
-<li><p><strong>Single threaded CRT</strong>: This can only be <em>statically linked</em>. This CRT is used if one of the compiler options <code>/ML</code> or <code>/MLd</code> is specified. It would be linked with <code>libc.lib</code> or <code>libcd.lib</code> respectively for Release and Debug modes. The single-threaded CRT is completely <strong>deprecated</strong> and should not be used! :x</p></li>
-<li><p><strong>Multi-threaded CRT</strong>: This is the default kind of CRT and should be used always.</p></li>
+<li><p><strong>Single threaded CRT</strong>: This can only be
+<em>statically linked</em>. This CRT is used if one of the compiler
+options <code>/ML</code> or <code>/MLd</code> is specified. It would be
+linked with <code>libc.lib</code> or <code>libcd.lib</code> respectively
+for Release and Debug modes. The single-threaded CRT is completely
+<strong>deprecated</strong> and should not be used! :x</p></li>
+<li><p><strong>Multi-threaded CRT</strong>: This is the default kind of
+CRT and should be used always.</p></li>
 </ul>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/11/20101104_crt_3.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2010/11/20101104_crt_3.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>The type of linking (static or dynamic) and the configuration (Release or Debug), lead to 4 kinds of multi-threaded CRT:</p>
+<p>The type of linking (static or dynamic) and the configuration
+(Release or Debug), lead to 4 kinds of multi-threaded CRT:</p>
 <ul>
-<li><p><strong>Release mode and statically linked</strong>: Specified using the compiler option <code>/MT</code>. The library file used is <code>libcmt.lib</code>.</p></li>
-<li><p><strong>Debug mode and statically linked</strong>: Specified using the compiler option <code>/MTd</code>. The library file used is <code>libcmtd.lib</code>.</p></li>
-<li><p><strong>Release mode and dynamically linked</strong>: Specified using the compiler option <code>/MD</code>. The library file used is <code>msvcrt.lib</code> and the DLL file used at run-time is <code>msvcr100.dll</code> (depends on Visual C++ version).</p></li>
-<li><p><strong>Debug mode and dynamically linked</strong>: Specified using the compiler option <code>/MDd</code>. The library file used is <code>msvcrtd.lib</code> and the DLL file used at run-time is <code>msvcr100d.dll</code> (depends on Visual C++ version).</p></li>
+<li><p><strong>Release mode and statically linked</strong>: Specified
+using the compiler option <code>/MT</code>. The library file used is
+<code>libcmt.lib</code>.</p></li>
+<li><p><strong>Debug mode and statically linked</strong>: Specified
+using the compiler option <code>/MTd</code>. The library file used is
+<code>libcmtd.lib</code>.</p></li>
+<li><p><strong>Release mode and dynamically linked</strong>: Specified
+using the compiler option <code>/MD</code>. The library file used is
+<code>msvcrt.lib</code> and the DLL file used at run-time is
+<code>msvcr100.dll</code> (depends on Visual C++ version).</p></li>
+<li><p><strong>Debug mode and dynamically linked</strong>: Specified
+using the compiler option <code>/MDd</code>. The library file used is
+<code>msvcrtd.lib</code> and the DLL file used at run-time is
+<code>msvcr100d.dll</code> (depends on Visual C++ version).</p></li>
 </ul>
-<p><strong>Reference:</strong> <a href="http://msdn.microsoft.com/en-us/library/abx4dbyh.aspx">C Run-Time Libraries</a> at MSDN.</p>
+<p><strong>Reference:</strong> <a
+href="http://msdn.microsoft.com/en-us/library/abx4dbyh.aspx">C Run-Time
+Libraries</a> at MSDN.</p>
 </div>
 
 <br />
@@ -70,11 +83,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,23 @@
 <h1 class="title">How to resolve symbolic link</h1>
 <p class="date">📅 2016-Mar-08 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#namei'>namei</a>, <a href='index.html#readlink'>readlink</a>, <a href='index.html#symbolic-link'>symbolic link</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Many common programs on Linux are maintained as chain of <strong>symbolic links</strong>. For example, the old <code>cc</code> command will usually be a symlink to <code>gcc</code>, which itself will be a symlink to a specific version of gcc, for example <code>gcc-4.8</code>. Tools such as package installers use symlinks to install, uninstall and switch between multiple versions of the same program.</p>
-<p>Given a file or directory, it would be educational to know its chain of symlinks and the final terminating file or directory.</p>
+<p>Many common programs on Linux are maintained as chain of
+<strong>symbolic links</strong>. For example, the old <code>cc</code>
+command will usually be a symlink to <code>gcc</code>, which itself will
+be a symlink to a specific version of gcc, for example
+<code>gcc-4.8</code>. Tools such as package installers use symlinks to
+install, uninstall and switch between multiple versions of the same
+program.</p>
+<p>Given a file or directory, it would be educational to know its chain
+of symlinks and the final terminating file or directory.</p>
 <ul>
-<li><p>The <code>readlink</code> command can be used if you just want to <strong>resolve</strong> the symlink and know what is the final file or directory in the chain. Example: <code>readlink -m foo_symlink</code></p></li>
-<li><p>The <code>namei</code> command is more interesting to me. It can show the full chain of symlinks in a beautiful hierarchical manner. I like to invoke it as: <code>namei -mv foo_symlink</code></p></li>
+<li><p>The <code>readlink</code> command can be used if you just want to
+<strong>resolve</strong> the symlink and know what is the final file or
+directory in the chain. Example:
+<code>readlink -m foo_symlink</code></p></li>
+<li><p>The <code>namei</code> command is more interesting to me. It can
+show the full chain of symlinks in a beautiful hierarchical manner. I
+like to invoke it as: <code>namei -mv foo_symlink</code></p></li>
 </ul>
 <p>An example output on my system:</p>
 <pre><code>$ namei -mv /usr/bin/cc
@@ -80,11 +78,13 @@ drwxr-xr-x         bin
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,15 +27,22 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to find the process that has locked a file or directory in Ubuntu</h1>
+<h1 class="title">How to find the process that has locked a file or
+directory in Ubuntu</h1>
 <p class="date">📅 2013-Jan-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#file'>file</a>, <a href='index.html#lock'>lock</a>, <a href='index.html#lsof'>lsof</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>When you open a program in Ubuntu, it might quit complaining that another process has <strong>locked</strong> a file or directory it is trying to open.</p>
+<p>When you open a program in Ubuntu, it might quit complaining that
+another process has <strong>locked</strong> a file or directory it is
+trying to open.</p>
 <p>For example, here is an error of this kind:</p>
 <pre><code>E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)
 E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?</code></pre>
-<p>To continue, you might have to find the offending process and stop it. The <a href="2013/01/19/how-to-list-the-files-open-by-processes-in-ubuntu/"><strong>lsof</strong></a> command can be used for this purpose.</p>
-<p>For example, to find out which process has locked the <code>/var/lib/dpkg</code> directory in the above example:</p>
+<p>To continue, you might have to find the offending process and stop
+it. The <a
+href="2013/01/19/how-to-list-the-files-open-by-processes-in-ubuntu/"><strong>lsof</strong></a>
+command can be used for this purpose.</p>
+<p>For example, to find out which process has locked the
+<code>/var/lib/dpkg</code> directory in the above example:</p>
 <pre><code> $ lsof | grep /var/lib/dpkg</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 12.04.1 LTS</p>
 </div>
@@ -59,11 +52,13 @@ E: Unable to lock the administration directory (/var/lib/dpkg/), is another proc
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

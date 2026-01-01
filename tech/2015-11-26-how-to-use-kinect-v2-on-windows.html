@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,24 +31,62 @@
 <p class="date">📅 2015-Nov-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#kinect-studio'>kinect studio</a>, <a href='index.html#kinect-v2'>kinect v2</a>, <a href='index.html#xbox-one'>xbox one</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/11/20151126_kinectv2.png" alt="" /><figcaption>Kinect Studio reading from a Kinect v2</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/11/20151126_kinectv2.png"
+alt="Kinect Studio reading from a Kinect v2" />
+<figcaption aria-hidden="true">Kinect Studio reading from a Kinect
+v2</figcaption>
 </figure>
-<p><strong>Kinect v2</strong> is the <strong>Kinect for Windows</strong> device, that is similar to the Kinect that ships with <strong>Xbox One</strong>. This post is about this device and not the Kinect that you get with Xbox One. If you bought an Xbox One, you need to buy a <strong>Kinect Adapter for Windows</strong> to be able to connect that Kinect to your computer.</p>
+<p><strong>Kinect v2</strong> is the <strong>Kinect for Windows</strong>
+device, that is similar to the Kinect that ships with <strong>Xbox
+One</strong>. This post is about this device and not the Kinect that you
+get with Xbox One. If you bought an Xbox One, you need to buy a
+<strong>Kinect Adapter for Windows</strong> to be able to connect that
+Kinect to your computer.</p>
 <p>My notes on using and programming this device:</p>
 <ul>
-<li><p>Make sure your computer meets the specifications required by Kinect v2, as listed <a href="https://dev.windows.com/en-us/kinect/hardware-setup">here</a>. Take special note: it requires a computer with USB 3.0 port and Windows 8 or 10.</p></li>
-<li><p>Connect the Kinect v2 to the USB 3.0 port of your computer and to the power supply.</p></li>
-<li><p>Download and install the <a href="http://go.microsoft.com/fwlink/p/?LinkID=513889"><strong>Kinect Configuration Verifier</strong></a>. Run the tool. It should be able to detect the Kinect v2 and be able to read the color and depth streams. Else please see its error to find what configuration of your computer is causing a problem.</p></li>
-<li><p>Download and install the <a href="http://go.microsoft.com/fwlink/p/?LinkID=403899"><strong>Kinect for Windows SDK 2.0</strong></a>.</p></li>
-<li><p>Run the <strong>Kinect Studio v2.0</strong> and check if it can display color and depth streams from your device. Note that you need to manually click the <strong>Connect</strong> option in this tool to enable use of the Kinect.</p></li>
-<li><p>Open the <strong>SDK Browser v2.0 (Kinect for Windows)</strong> tool. Here you can see C++ and C# code examples, install those Visual Studio solutions, compile and run them.</p></li>
-<li><p>Refer to the Kinect For Windows SDK 2.0 documentation online at MSDN <a href="https://msdn.microsoft.com/en-us/library/dn799271.aspx">here</a>. For example, the C++ API reference is <a href="https://msdn.microsoft.com/en-us/library/hh855364.aspx">here</a>.</p></li>
-<li><p>Write your own programs using the code samples from the SDK Browser and the documentation from MSDN.</p></li>
-<li><p>For C++, note that the include header is <code>Kinect.h</code>, the include directory is <code>$(KINECTSDK20_DIR)\inc</code>, the library directory is <code>$(KINECTSDK20_DIR)\Lib\x64</code> and the library file is <code>Kinect20.lib</code>.</p></li>
-<li><p>To get started, I have shared the C++ code and CMake build setup for a simple program that reads the depth and color frames of Kinect v2 and displays them using OpenCV <a href="https://github.com/ashwin/kinectv2_viewer">here</a>.</p></li>
+<li><p>Make sure your computer meets the specifications required by
+Kinect v2, as listed <a
+href="https://dev.windows.com/en-us/kinect/hardware-setup">here</a>.
+Take special note: it requires a computer with USB 3.0 port and Windows
+8 or 10.</p></li>
+<li><p>Connect the Kinect v2 to the USB 3.0 port of your computer and to
+the power supply.</p></li>
+<li><p>Download and install the <a
+href="http://go.microsoft.com/fwlink/p/?LinkID=513889"><strong>Kinect
+Configuration Verifier</strong></a>. Run the tool. It should be able to
+detect the Kinect v2 and be able to read the color and depth streams.
+Else please see its error to find what configuration of your computer is
+causing a problem.</p></li>
+<li><p>Download and install the <a
+href="http://go.microsoft.com/fwlink/p/?LinkID=403899"><strong>Kinect
+for Windows SDK 2.0</strong></a>.</p></li>
+<li><p>Run the <strong>Kinect Studio v2.0</strong> and check if it can
+display color and depth streams from your device. Note that you need to
+manually click the <strong>Connect</strong> option in this tool to
+enable use of the Kinect.</p></li>
+<li><p>Open the <strong>SDK Browser v2.0 (Kinect for Windows)</strong>
+tool. Here you can see C++ and C# code examples, install those Visual
+Studio solutions, compile and run them.</p></li>
+<li><p>Refer to the Kinect For Windows SDK 2.0 documentation online at
+MSDN <a
+href="https://msdn.microsoft.com/en-us/library/dn799271.aspx">here</a>.
+For example, the C++ API reference is <a
+href="https://msdn.microsoft.com/en-us/library/hh855364.aspx">here</a>.</p></li>
+<li><p>Write your own programs using the code samples from the SDK
+Browser and the documentation from MSDN.</p></li>
+<li><p>For C++, note that the include header is <code>Kinect.h</code>,
+the include directory is <code>$(KINECTSDK20_DIR)\inc</code>, the
+library directory is <code>$(KINECTSDK20_DIR)\Lib\x64</code> and the
+library file is <code>Kinect20.lib</code>.</p></li>
+<li><p>To get started, I have shared the C++ code and CMake build setup
+for a simple program that reads the depth and color frames of Kinect v2
+and displays them using OpenCV <a
+href="https://github.com/ashwin/kinectv2_viewer">here</a>.</p></li>
 </ul>
 <p>Have fun with your Kinect v2! 😊</p>
-<p><strong>Tried with:</strong> Visual Studio 2013 and Windows 10 x64</p>
+<p><strong>Tried with:</strong> Visual Studio 2013 and Windows 10
+x64</p>
 </div>
 
 <br />
@@ -70,11 +94,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,8 +31,14 @@
 <p class="date">📅 2015-Mar-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#kernel'>kernel</a>, <a href='index.html#nvidia'>nvidia</a>, <a href='index.html#rcu'>rcu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I installed CUDA 7.0 on Ubuntu running on an Aftershock notebook with NVIDIA graphics card. The NVIDIA graphics drivers were upgraded to version 346. To my pleasant surprise, the graphics card was now directly visible to the Linux kernel. There was no longer any need to use Bumblebee.</p>
-<p>However, I started noticing that this Ubuntu would not always boot into Unity. On many cold starts, I saw that Ubuntu would show this error:</p>
+<p>I installed CUDA 7.0 on Ubuntu running on an Aftershock notebook with
+NVIDIA graphics card. The NVIDIA graphics drivers were upgraded to
+version 346. To my pleasant surprise, the graphics card was now directly
+visible to the Linux kernel. There was no longer any need to use
+Bumblebee.</p>
+<p>However, I started noticing that this Ubuntu would not always boot
+into Unity. On many cold starts, I saw that Ubuntu would show this
+error:</p>
 <pre><code>BUG: unable to handle kernel NULL pointer dereference at           (null)
 IP: [&lt;ffffffff8172762b&gt;] __down_common+0x4c/0x144
 PGD 608b48067 PUD 60ba27067 PMD 0 
@@ -91,27 +83,64 @@ Code: 54 49 89 d4 48 8d 57 08 53 48 89 fb 48 83 e4 f0 48 83 ec 28 48 8b 47 10 48
 RIP  [&lt;ffffffff8172762b&gt;] __down_common+0x4c/0x144
  RSP &lt;ffff88060b4f9b48&gt;
 CR2: 0000000000000000</code></pre>
-<p>After displaying this it would get stuck at the Ubuntu bootup screen.</p>
-<p>I also noticed that I could boot up if I first booted into another Ubuntu instance I had on this notebook and later restarted and booted into the current Ubuntu instance.</p>
+<p>After displaying this it would get stuck at the Ubuntu bootup
+screen.</p>
+<p>I also noticed that I could boot up if I first booted into another
+Ubuntu instance I had on this notebook and later restarted and booted
+into the current Ubuntu instance.</p>
 <h2 id="solution">Solution</h2>
-<p><strong>Update:</strong> I no longer have this problem after installing <strong>CUDA 7.5</strong> and the <strong>NVIDIA 352</strong> drivers that come along with it on a fresh <strong>Ubuntu 15.04</strong> system. I still see the syslog errors, but they no longer stop Ubuntu from booting successfully and the GPU/CUDA can be used without problems. Yay! 😄</p>
+<p><strong>Update:</strong> I no longer have this problem after
+installing <strong>CUDA 7.5</strong> and the <strong>NVIDIA 352</strong>
+drivers that come along with it on a fresh <strong>Ubuntu 15.04</strong>
+system. I still see the syslog errors, but they no longer stop Ubuntu
+from booting successfully and the GPU/CUDA can be used without problems.
+Yay! 😄</p>
 <p><strong>Old stuff:</strong></p>
-<p>To analyse this problem I cropped out the relevant portions of <code>/var/log/syslog</code> for the case when Ubuntu booted correctly and when it threw the above kernel panic error. These syslog entries can be seen <a href="https://gist.github.com/ashwin/2a449e05aa7663e795e4">here</a>.</p>
-<p>What I found was that there was some kind of a race condition at boot time. If the <code>nvidia-drm</code> module registered early enough with the kernel, then everything was fine. Otherwise, the kernel would complain that the NVIDIA module was <strong>tainting</strong> it and then it would throw up the above error.</p>
-<p>The problem seems to lie in the Read-Copy-Update mechanism of the kernel. Here, some optimizations seem to have been added in recent versions to improve energy efficiency. RCU wakes up the CPUs only after a period of <code>RCU_IDLE_GP_DELAY</code> jiffies, as explained <a href="http://cateee.net/lkddb/web-lkddb/RCU_FAST_NO_HZ.html">here</a>. This is set to 4 by default, as seen <a href="http://lxr.free-electrons.com/source/kernel/rcu/tree_plugin.h#L1571">here</a>.</p>
-<p>The solution going around the web for this problem is to decrease this sleep time to 1 jiffy, so that the race condition can be ameliorated. Thankfully, we do not need to edit Linux kernel code and recompile to do this! A syslog entry <code>rcu_idle_gp_delay</code> was added for runtime manipulation, as explained <a href="https://lkml.org/lkml/2013/3/18/840">here</a>. If we set this to 1, then the chance of this error reduces a lot.</p>
-<p>To do this, add the following line to <code>/etc/default/grub</code>:</p>
+<p>To analyse this problem I cropped out the relevant portions of
+<code>/var/log/syslog</code> for the case when Ubuntu booted correctly
+and when it threw the above kernel panic error. These syslog entries can
+be seen <a
+href="https://gist.github.com/ashwin/2a449e05aa7663e795e4">here</a>.</p>
+<p>What I found was that there was some kind of a race condition at boot
+time. If the <code>nvidia-drm</code> module registered early enough with
+the kernel, then everything was fine. Otherwise, the kernel would
+complain that the NVIDIA module was <strong>tainting</strong> it and
+then it would throw up the above error.</p>
+<p>The problem seems to lie in the Read-Copy-Update mechanism of the
+kernel. Here, some optimizations seem to have been added in recent
+versions to improve energy efficiency. RCU wakes up the CPUs only after
+a period of <code>RCU_IDLE_GP_DELAY</code> jiffies, as explained <a
+href="http://cateee.net/lkddb/web-lkddb/RCU_FAST_NO_HZ.html">here</a>.
+This is set to 4 by default, as seen <a
+href="http://lxr.free-electrons.com/source/kernel/rcu/tree_plugin.h#L1571">here</a>.</p>
+<p>The solution going around the web for this problem is to decrease
+this sleep time to 1 jiffy, so that the race condition can be
+ameliorated. Thankfully, we do not need to edit Linux kernel code and
+recompile to do this! A syslog entry <code>rcu_idle_gp_delay</code> was
+added for runtime manipulation, as explained <a
+href="https://lkml.org/lkml/2013/3/18/840">here</a>. If we set this to
+1, then the chance of this error reduces a lot.</p>
+<p>To do this, add the following line to
+<code>/etc/default/grub</code>:</p>
 <pre><code>GRUB_CMDLINE_LINUX=&quot;rcutree.rcu_idle_gp_delay=1&quot;</code></pre>
-<p>And run <code>update-grub</code> after this. Hopefully, this should fix the race condition so that every boot is successful.</p>
+<p>And run <code>update-grub</code> after this. Hopefully, this should
+fix the race condition so that every boot is successful.</p>
 <p><strong>Related links</strong>:</p>
 <ul>
-<li><p><a href="https://bbs.archlinux.org/viewtopic.php?id=192466" class="uri">https://bbs.archlinux.org/viewtopic.php?id=192466</a></p></li>
-<li><p><a href="https://answers.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-346/+question/262833" class="uri">https://answers.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-346/+question/262833</a></p></li>
-<li><p><a href="https://forums.gentoo.org/viewtopic-p-7597808.html" class="uri">https://forums.gentoo.org/viewtopic-p-7597808.html</a></p></li>
-<li><p><a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus" class="uri">https://wiki.archlinux.org/index.php/NVIDIA_Optimus</a></p></li>
-<li><p><a href="https://wiki.archlinux.org/index.php/Bumblebee" class="uri">https://wiki.archlinux.org/index.php/Bumblebee</a></p></li>
+<li><p><a href="https://bbs.archlinux.org/viewtopic.php?id=192466"
+class="uri">https://bbs.archlinux.org/viewtopic.php?id=192466</a></p></li>
+<li><p><a
+href="https://answers.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-346/+question/262833"
+class="uri">https://answers.launchpad.net/ubuntu/+source/nvidia-graphics-drivers-346/+question/262833</a></p></li>
+<li><p><a href="https://forums.gentoo.org/viewtopic-p-7597808.html"
+class="uri">https://forums.gentoo.org/viewtopic-p-7597808.html</a></p></li>
+<li><p><a href="https://wiki.archlinux.org/index.php/NVIDIA_Optimus"
+class="uri">https://wiki.archlinux.org/index.php/NVIDIA_Optimus</a></p></li>
+<li><p><a href="https://wiki.archlinux.org/index.php/Bumblebee"
+class="uri">https://wiki.archlinux.org/index.php/Bumblebee</a></p></li>
 </ul>
-<p><strong>Tried with:</strong> NVIDIA GTX 765M, Linux 3.13.0-44-generic and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> NVIDIA GTX 765M, Linux 3.13.0-44-generic
+and Ubuntu 14.04</p>
 </div>
 
 <br />
@@ -119,11 +148,13 @@ CR2: 0000000000000000</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

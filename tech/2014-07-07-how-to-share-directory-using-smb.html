@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,17 +30,24 @@
 <h1 class="title">How to share directory using SMB</h1>
 <p class="date">📅 2014-Jul-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#samba'>samba</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>This post shows the basic steps to share a directory over the network using SMB on the commandline. If you prefer a GUI program, see the post about <a href="2014-04-13-how-to-share-directory-over-smb-using-samba-server-configuration.html">using Samba Server Configuration tool</a>.</p>
+<p>This post shows the basic steps to share a directory over the network
+using SMB on the commandline. If you prefer a GUI program, see the post
+about <a
+href="2014-04-13-how-to-share-directory-over-smb-using-samba-server-configuration.html">using
+Samba Server Configuration tool</a>.</p>
 <ul>
 <li>First, we install Samba:</li>
 </ul>
 <pre><code>$ sudo apt install samba</code></pre>
 <ul>
-<li>Samba uses its own list of users and passwords. To reduce confusion, assume we want the current Linux username to be used to access this share. Set the Samba password for this user, say <code>joe</code>:</li>
+<li>Samba uses its own list of users and passwords. To reduce confusion,
+assume we want the current Linux username to be used to access this
+share. Set the Samba password for this user, say <code>joe</code>:</li>
 </ul>
 <pre><code>$ sudo smbpasswd -a joe</code></pre>
 <ul>
-<li>Check that the user has permissions to read and write to the directory you want to share. Else give him those permissions:</li>
+<li>Check that the user has permissions to read and write to the
+directory you want to share. Else give him those permissions:</li>
 </ul>
 <pre><code>$ sudo chown joe /path/to/share
 $ sudo chown :joe /path/to/share</code></pre>
@@ -63,7 +56,8 @@ $ sudo chown :joe /path/to/share</code></pre>
 </ul>
 <pre><code>$ sudo vim /etc/samba/smb.conf</code></pre>
 <ul>
-<li>Add a section at the end of the file for your share. You will need to provide it a name:</li>
+<li>Add a section at the end of the file for your share. You will need
+to provide it a name:</li>
 </ul>
 <pre><code>[joe-share]
     path = /path/to/share
@@ -80,7 +74,11 @@ $ sudo chown :joe /path/to/share</code></pre>
 <p>or</p>
 <pre><code>$ sudo service samba restart</code></pre>
 <ul>
-<li>You can access this shared directory from any computer in the network. For example, if the IP address of the computer is <code>192.168.0.10</code>, then type this into the address bar of Nautilus: <code>smb://192.168.0.10/joe-share</code>. You will be asked to provide the username and password to access the share.</li>
+<li>You can access this shared directory from any computer in the
+network. For example, if the IP address of the computer is
+<code>192.168.0.10</code>, then type this into the address bar of
+Nautilus: <code>smb://192.168.0.10/joe-share</code>. You will be asked
+to provide the username and password to access the share.</li>
 </ul>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
@@ -90,11 +88,13 @@ $ sudo chown :joe /path/to/share</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

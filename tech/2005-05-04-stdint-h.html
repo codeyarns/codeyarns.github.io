@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,27 @@
 <h1 class="title">stdint.h</h1>
 <p class="date">📅 2005-May-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#types'>types</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A colleague informed me today that my name had appeared in the April 2005 issue of the <a href="http://www.embedded.com/">Embedded Systems Programming</a> magazine. Back in December 2004, I had commented to Dan Saks about his article <a href="http://www.embedded.com/showArticle.jhtml?articleID=55301821">More ways to map memory</a> on the usage of the available C fixed width integer types. We had an email discussion on it and I forgot all about it. I had blogged earlier about these types.</p>
-<p>In his latest article <a href="https://www.embedded.com/sizing-and-aligning-device-registers/">Sizing and aligning device registers</a> he mentions that email conversation. I know this is not anything significant, but this is the first time my name has appeared in a deadwood tech magazine! 😊</p>
+<p>A colleague informed me today that my name had appeared in the April
+2005 issue of the <a href="http://www.embedded.com/">Embedded Systems
+Programming</a> magazine. Back in December 2004, I had commented to Dan
+Saks about his article <a
+href="http://www.embedded.com/showArticle.jhtml?articleID=55301821">More
+ways to map memory</a> on the usage of the available C fixed width
+integer types. We had an email discussion on it and I forgot all about
+it. I had blogged earlier about these types.</p>
+<p>In his latest article <a
+href="https://www.embedded.com/sizing-and-aligning-device-registers/">Sizing
+and aligning device registers</a> he mentions that email conversation. I
+know this is not anything significant, but this is the first time my
+name has appeared in a deadwood tech magazine! 😊</p>
 <blockquote>
-<p>Ashwin N (<a href="mailto:ashwin.n@gmail.com" class="email">ashwin.n@gmail.com</a>) suggested yet another way to define the special_register type:</p>
+<p>Ashwin N (<a href="mailto:ashwin.n@gmail.com"
+class="email">ashwin.n@gmail.com</a>) suggested yet another way to
+define the special_register type:</p>
 <blockquote>
 <blockquote>
-<p>If you want to use an unsigned four-byte word, shouldn’t you be doing:</p>
+<p>If you want to use an unsigned four-byte word, shouldn’t you be
+doing:</p>
 </blockquote>
 <blockquote>
 <blockquote>
@@ -60,10 +60,28 @@ typedef uint32_t volatile special_register;</code></pre>
 This should work with all modern standard C compilers/libraries.
 </blockquote>
 </blockquote>
-<p>The typedef <code>uint32_t</code> is an alias for some unsigned integer type that occupies exactly 32 bits. It’s one of many possible exact-width unsigned integer types with names of the form <code>uintN_t</code>, where <code>N</code> is a decimal integer representing the number of bits the type occupies. Other common exact-width unsigned types are <code>uint8_t</code> and <code>uint16_t</code>. For each type <code>uintN_t</code>, there’s a corresponding type <code>intN_t</code> for a signed integer that occupies exactly <code>N</code> bits and has two’s complement representation.</p>
+<p>The typedef <code>uint32_t</code> is an alias for some unsigned
+integer type that occupies exactly 32 bits. It’s one of many possible
+exact-width unsigned integer types with names of the form
+<code>uintN_t</code>, where <code>N</code> is a decimal integer
+representing the number of bits the type occupies. Other common
+exact-width unsigned types are <code>uint8_t</code> and
+<code>uint16_t</code>. For each type <code>uintN_t</code>, there’s a
+corresponding type <code>intN_t</code> for a signed integer that
+occupies exactly <code>N</code> bits and has two’s complement
+representation.</p>
 </blockquote>
-<p>I have been reluctant to use <code>&lt;stdint.h&gt;</code>. It’s available in C99, but not in earlier C dialects nor in Standard C++. However, it’s becoming increasingly available in C++ compilers, and likely to make it into the C++ Standard someday. Moreover, as Michael Barr observed, if the header isn’t available with your compiler, you can implement it yourself without much fuss. I plan to start using these types more in my work.</p>
-Again, using a typedef such as <code>special_register</code> makes the exact choice of the integer type much less important. However, I’m starting to think that <code>uint32_t</code> is the best type to use in defining the special_register type.
+<p>I have been reluctant to use <code>&lt;stdint.h&gt;</code>. It’s
+available in C99, but not in earlier C dialects nor in Standard C++.
+However, it’s becoming increasingly available in C++ compilers, and
+likely to make it into the C++ Standard someday. Moreover, as Michael
+Barr observed, if the header isn’t available with your compiler, you can
+implement it yourself without much fuss. I plan to start using these
+types more in my work.</p>
+Again, using a typedef such as <code>special_register</code> makes the
+exact choice of the integer type much less important. However, I’m
+starting to think that <code>uint32_t</code> is the best type to use in
+defining the special_register type.
 </blockquote>
 </div>
 
@@ -72,11 +90,13 @@ Again, using a typedef such as <code>special_register</code> makes the exact cho
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

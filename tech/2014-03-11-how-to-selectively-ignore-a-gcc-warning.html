@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,25 @@
 <h1 class="title">How to selectively ignore a GCC warning</h1>
 <p class="date">📅 2014-Mar-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#gcc'>gcc</a>, <a href='index.html#pragma'>pragma</a>, <a href='index.html#warning'>warning</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You may sometimes want to ignore or disable a specific type of <strong>warning</strong> that is generated when compiling your <strong>C</strong> or <strong>C++</strong> code. The <a href="http://gcc.gnu.org/onlinedocs/gcc/Diagnostic-Pragmas.html"><strong>diagnostic pragmas</strong></a> of <strong>GCC</strong> and <strong>G++</strong> compilers can be used to achieve this.</p>
+<p>You may sometimes want to ignore or disable a specific type of
+<strong>warning</strong> that is generated when compiling your
+<strong>C</strong> or <strong>C++</strong> code. The <a
+href="http://gcc.gnu.org/onlinedocs/gcc/Diagnostic-Pragmas.html"><strong>diagnostic
+pragmas</strong></a> of <strong>GCC</strong> and <strong>G++</strong>
+compilers can be used to achieve this.</p>
 <ul>
-<li>For example, to ignore the warning of type <code>-Wenum-compare</code> for an entire C++ source file, add this to your code at the top:</li>
+<li>For example, to ignore the warning of type
+<code>-Wenum-compare</code> for an entire C++ source file, add this to
+your code at the top:</li>
 </ul>
 <pre><code>#pragma GCC diagnostic ignored &quot;-Wenum-compare&quot;
 /**
  * Code that generates this warning
  */</code></pre>
 <ul>
-<li>If you want the warning to be ignored only for a certain section of the code, surround it with <strong>push</strong> and <strong>pop</strong> directives:</li>
+<li>If you want the warning to be ignored only for a certain section of
+the code, surround it with <strong>push</strong> and
+<strong>pop</strong> directives:</li>
 </ul>
 <pre><code>#pragma GCC diagnostic push
 #pragma GCC diagnostic ignored &quot;-Wenum-compare&quot;
@@ -61,7 +56,11 @@
  * Code that generates this warning
  */
 #pragma GCC diagnostic pop</code></pre>
-<p><strong>Note:</strong> As of GCC 5.1, few of the warnings in G++ (that is, only for C++ code) will not be ignored even when this pragma is used! More details <a href="http://stackoverflow.com/questions/31509434">here</a> and <a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53431">here</a>.</p>
+<p><strong>Note:</strong> As of GCC 5.1, few of the warnings in G++
+(that is, only for C++ code) will not be ignored even when this pragma
+is used! More details <a
+href="http://stackoverflow.com/questions/31509434">here</a> and <a
+href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53431">here</a>.</p>
 <p><strong>Tried with:</strong> GCC 4.8 and Ubuntu 12.04 LTS</p>
 </div>
 
@@ -70,11 +69,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

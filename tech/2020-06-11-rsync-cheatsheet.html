@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,10 @@
 <h1 class="title">Rsync Cheatsheet</h1>
 <p class="date">📅 2020-Jun-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#rsync'>rsync</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://en.wikipedia.org/wiki/Rsync"><strong>Rsync</strong></a> is a tool that makes it easy to copy or sync contents across local and remote computers.</p>
+<p><a
+href="https://en.wikipedia.org/wiki/Rsync"><strong>Rsync</strong></a> is
+a tool that makes it easy to copy or sync contents across local and
+remote computers.</p>
 <ul>
 <li>To one-way sync between local or remote directories:</li>
 </ul>
@@ -52,26 +41,40 @@
 $ rsync -av /home/joe/from-dir chetan@some-remote:/media/backup/to-dir
 $ rsync -av chetan@some-remote:/home/chetan/from-dir /media/backup/to-dir
 $ rsync -av joe@some-remote-1:/home/joe/from-dir chetan@some-remote-2:/media/backup/to-dir</code></pre>
-<p>This recursively copies over all the files and directories in the source directory.</p>
-<p><code>-v</code> is verbose, to print list of files being synced. <code>-a</code> is a combination of options required for archival: <code>-rlptgoD</code>.</p>
-<p>Prying apart the options inherent in <code>-a</code>, we get: <code>-r</code> recursive, <code>-l</code> copy symlinks as symlinks, <code>-p</code> preserve permissions, <code>-t</code> preserve modification times, <code>-g</code> preserve group, <code>-o</code> preserve owner and <code>-D</code> preserve device files and special files.</p>
+<p>This recursively copies over all the files and directories in the
+source directory.</p>
+<p><code>-v</code> is verbose, to print list of files being synced.
+<code>-a</code> is a combination of options required for archival:
+<code>-rlptgoD</code>.</p>
+<p>Prying apart the options inherent in <code>-a</code>, we get:
+<code>-r</code> recursive, <code>-l</code> copy symlinks as symlinks,
+<code>-p</code> preserve permissions, <code>-t</code> preserve
+modification times, <code>-g</code> preserve group, <code>-o</code>
+preserve owner and <code>-D</code> preserve device files and special
+files.</p>
 <ul>
-<li>To one-way sync such that the destination is a strict <strong>mirror copy</strong>, thus deleting any extra files (<code>--delete</code>) it may have:</li>
+<li>To one-way sync such that the destination is a strict <strong>mirror
+copy</strong>, thus deleting any extra files (<code>--delete</code>) it
+may have:</li>
 </ul>
 <pre><code>$ rsync -av --delete /home/joe/from-dir /media/backup/to-dir</code></pre>
 <ul>
-<li>To one-way sync using compression (<code>-z</code>) to save transfer time, especially if a remote computer is involved:</li>
+<li>To one-way sync using compression (<code>-z</code>) to save transfer
+time, especially if a remote computer is involved:</li>
 </ul>
 <pre><code>$ rsync -avz /home/joe/from-dir chetan@some-remote:/media/backup/to-dir</code></pre>
 <ul>
-<li><strong>No trailing slash on source directory</strong>: this copies the source directory itself as a subdirectory into the destination directory.</li>
+<li><strong>No trailing slash on source directory</strong>: this copies
+the source directory itself as a subdirectory into the destination
+directory.</li>
 </ul>
 <p>For example:</p>
 <pre><code>$ rsync -a /some/path/foobar .
 $ ls
 foobar/</code></pre>
 <ul>
-<li><strong>Trailing slash on source directory</strong>: this copies the contents inside source directory into the destination directory.</li>
+<li><strong>Trailing slash on source directory</strong>: this copies the
+contents inside source directory into the destination directory.</li>
 </ul>
 <p>For example:</p>
 <pre><code>$ rsync -a /some/path/foobar/ .
@@ -80,11 +83,15 @@ content.txt
 of.txt
 foobar.txt</code></pre>
 <ul>
-<li><strong>When source path has spaces</strong>: We need to double up with both double quotes and slashes. This is because the local shell acts on the path and strips its quotes or slashes before passing it to rsync.</li>
+<li><strong>When source path has spaces</strong>: We need to double up
+with both double quotes and slashes. This is because the local shell
+acts on the path and strips its quotes or slashes before passing it to
+rsync.</li>
 </ul>
 <pre><code>$ rsync joe@foobar:&quot;path/to/some\ thing&quot; .</code></pre>
 <ul>
-<li>To copy only the files in the source directory, we need to turn off the recursive option:</li>
+<li>To copy only the files in the source directory, we need to turn off
+the recursive option:</li>
 </ul>
 <pre><code>$ rsync -a --no-recursive /some/path/foobar/ .</code></pre>
 <p><strong>Tried with:</strong> rsync 3.1.2 and Ubuntu 18.04</p>
@@ -95,11 +102,13 @@ foobar.txt</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

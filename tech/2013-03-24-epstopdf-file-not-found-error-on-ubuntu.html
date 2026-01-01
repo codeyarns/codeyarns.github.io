@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,12 +31,22 @@
 <p class="date">📅 2013-Mar-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#epstopdf'>epstopdf</a>, <a href='index.html#error'>error</a>, <a href='index.html#latex'>latex</a>, <a href='index.html#pdflatex'>pdflatex</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>A <strong>LaTeX</strong> document that compiled with <strong>pdflatex</strong> without errors on Windows using MikTeX was failing with this error on Ubuntu:</p>
+<p>A <strong>LaTeX</strong> document that compiled with
+<strong>pdflatex</strong> without errors on Windows using MikTeX was
+failing with this error on Ubuntu:</p>
 <pre><code>Package epstopdf Warning: Shell escape feature is not enabled.
 ! Package pdftex.def Error: File `foobar-eps-converted-to.pdf&#39; not found.</code></pre>
-<p>The document used the <strong>epstopdf</strong> package to include EPS figures. A <strong>foobar.eps</strong> figure that is included in the document would be converted to a PDF file named <strong>foobar-eps-converted-to.pdf</strong>. The inclusion of foobar.eps in the document was giving this error on Ubuntu.</p>
+<p>The document used the <strong>epstopdf</strong> package to include
+EPS figures. A <strong>foobar.eps</strong> figure that is included in
+the document would be converted to a PDF file named
+<strong>foobar-eps-converted-to.pdf</strong>. The inclusion of
+foobar.eps in the document was giving this error on Ubuntu.</p>
 <p><strong>Solution</strong></p>
-<p>It turns out that epstopdf converts the included EPS document to PDF at compile time. This requires a feature of pdflatex called <strong>shell escape</strong>. This seems to be enabled in MikTeX on Windows, but disabled in Ubuntu. The error went away on enabling the shell escape feature manually while compiling the document:</p>
+<p>It turns out that epstopdf converts the included EPS document to PDF
+at compile time. This requires a feature of pdflatex called
+<strong>shell escape</strong>. This seems to be enabled in MikTeX on
+Windows, but disabled in Ubuntu. The error went away on enabling the
+shell escape feature manually while compiling the document:</p>
 <pre><code>$ pdflatex --shell-escape main.tex</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 12.04.2 LTS</p>
 </div>
@@ -60,11 +56,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

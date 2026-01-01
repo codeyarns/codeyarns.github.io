@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,24 +30,38 @@
 <h1 class="title">How to ignore files and directories in SVN</h1>
 <p class="date">📅 2015-Apr-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#ignore'>ignore</a>, <a href='index.html#mercurial'>mercurial</a>, <a href='index.html#subversion'>subversion</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>It is easy to <strong>ignore</strong> files and directories in <strong>Git</strong> or <strong>Mercurial</strong>. <strong>Ignore files</strong> can be maintained at both the user and repository levels. Git or Mercurial automatically ignore the files and directories that match the <strong>patterns</strong> listed in these ignore files.</p>
-<p>Being a version control system from an older era, Subversion does not have this simple method of ignore.</p>
+<p>It is easy to <strong>ignore</strong> files and directories in
+<strong>Git</strong> or <strong>Mercurial</strong>. <strong>Ignore
+files</strong> can be maintained at both the user and repository levels.
+Git or Mercurial automatically ignore the files and directories that
+match the <strong>patterns</strong> listed in these ignore files.</p>
+<p>Being a version control system from an older era, Subversion does not
+have this simple method of ignore.</p>
 <ul>
-<li>In SVN, ignoring a file or directory is a <strong>property</strong> that can be set at a specific directory in a repository.</li>
+<li>In SVN, ignoring a file or directory is a <strong>property</strong>
+that can be set at a specific directory in a repository.</li>
 </ul>
-<p>For example, to ignore <code>build</code> subdirectory and <code>*.tmp</code> files:</p>
+<p>For example, to ignore <code>build</code> subdirectory and
+<code>*.tmp</code> files:</p>
 <pre><code>$ svn propset svn:ignore build .
 $ svn propset svn:ignore *.tmp .</code></pre>
-<p>Note that both these commands set ignore properties for the current directory <code>.</code></p>
+<p>Note that both these commands set ignore properties for the current
+directory <code>.</code></p>
 <ul>
-<li>To set an ignore property <strong>recursively</strong> to all subdirectories in a repository, go to the repository root directory and issue this:</li>
+<li>To set an ignore property <strong>recursively</strong> to all
+subdirectories in a repository, go to the repository root directory and
+issue this:</li>
 </ul>
 <pre><code>$ svn propset svn:ignore -R *.tmp .</code></pre>
 <ul>
-<li>Thankfully, you can use an <strong>ignore file</strong> containing ignore patterns, one per line, as input:</li>
+<li>Thankfully, you can use an <strong>ignore file</strong> containing
+ignore patterns, one per line, as input:</li>
 </ul>
 <pre><code>$ svn propset svn:ignore -R -F ~/.svnignore .</code></pre>
-<p>Note the difference with Git or Mercurial. You have to manually set this ignore property on every directory. The ignore file we created is for our convenience. If you create a new subdirectory anywhere in this repository, the property needs to be applied again on it.</p>
+<p>Note the difference with Git or Mercurial. You have to manually set
+this ignore property on every directory. The ignore file we created is
+for our convenience. If you create a new subdirectory anywhere in this
+repository, the property needs to be applied again on it.</p>
 <ul>
 <li>Remember to commit after setting the ignore property.</li>
 </ul>
@@ -73,11 +73,13 @@ $ svn propset svn:ignore *.tmp .</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

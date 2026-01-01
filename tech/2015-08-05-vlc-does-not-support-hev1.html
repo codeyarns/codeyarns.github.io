@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,20 +31,29 @@
 <p class="date">📅 2015-Aug-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#decoder'>decoder</a>, <a href='index.html#h265'>h265</a>, <a href='index.html#hev1'>hev1</a>, <a href='index.html#vlc'>vlc</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/08/20150806_vlc_h265.png" alt="" /><figcaption> </figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/08/20150806_vlc_h265.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <h2 id="problem">Problem</h2>
-<p>I tried to play a <strong>MP4</strong> file using <strong>VLC</strong> and it threw up this error:</p>
+<p>I tried to play a <strong>MP4</strong> file using
+<strong>VLC</strong> and it threw up this error:</p>
 <pre><code>No suitable decoder module:
 VLC does not support the audio or video format &quot;hev1&quot;.
 Unfortunately there is no way for you to fix this.</code></pre>
 <h2 id="solution">Solution</h2>
-<p>That surprisingly pessimistic error message is wrong. <strong>hev1</strong> is the <strong>HEVC/H.265</strong> standard, which is a new video compression standard that is getting popular for high DPI content. All VLC needs is a decoder plugin for it.</p>
-<p>There is a PPA that provides this decoder, so installing it is easy:</p>
+<p>That surprisingly pessimistic error message is wrong.
+<strong>hev1</strong> is the <strong>HEVC/H.265</strong> standard, which
+is a new video compression standard that is getting popular for high DPI
+content. All VLC needs is a decoder plugin for it.</p>
+<p>There is a PPA that provides this decoder, so installing it is
+easy:</p>
 <pre><code>$ sudo apt-add-repository ppa:strukturag/libde265
 $ sudo apt-get update
 $ sudo apt install vlc-plugin-libde265</code></pre>
-<p>These video files should play correctly after installing this decoder.</p>
+<p>These video files should play correctly after installing this
+decoder.</p>
 <p><strong>Tried with:</strong> VLC 2.1.6 Rincewind and Ubuntu 14.04</p>
 </div>
 
@@ -67,11 +62,13 @@ $ sudo apt install vlc-plugin-libde265</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

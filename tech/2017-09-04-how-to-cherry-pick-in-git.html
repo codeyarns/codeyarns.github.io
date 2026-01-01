@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,25 +30,41 @@
 <h1 class="title">How to cherry pick in Git</h1>
 <p class="date">📅 2017-Sep-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cherry-pick'>cherry pick</a>, <a href='index.html#git'>git</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Cherry picking</strong> in Git allows you to pick a specific commit and replay the changes done in that single commit on your current commit. This is different from a merge, where Git tries to replay the changes of all the commits from the other branch. Even if you specified a commit for a merge, Git will try to fuse the branch of which that commit is head to your current branch. After a merge, the two branches are fused in the DAG.</p>
-<p>In contrast, a cherry pick replays changes on your current workspace. After you cherry pick a commit and replay it on your current commit, you will see that there is no branch being merged to your commit in the DAG. There will just be one or more new commits.</p>
+<p><strong>Cherry picking</strong> in Git allows you to pick a specific
+commit and replay the changes done in that single commit on your current
+commit. This is different from a merge, where Git tries to replay the
+changes of all the commits from the other branch. Even if you specified
+a commit for a merge, Git will try to fuse the branch of which that
+commit is head to your current branch. After a merge, the two branches
+are fused in the DAG.</p>
+<p>In contrast, a cherry pick replays changes on your current workspace.
+After you cherry pick a commit and replay it on your current commit, you
+will see that there is no branch being merged to your commit in the DAG.
+There will just be one or more new commits.</p>
 <ul>
-<li>To cherry pick a specific commit and replay it on your current commit, use the hash of that commit:</li>
+<li>To cherry pick a specific commit and replay it on your current
+commit, use the hash of that commit:</li>
 </ul>
 <pre><code>$ git cherry-pick 123456</code></pre>
 <ul>
-<li>You can use a branch name too, in which case only the <strong>most recent commit</strong> of the branch is replayed:</li>
+<li>You can use a branch name too, in which case only the <strong>most
+recent commit</strong> of the branch is replayed:</li>
 </ul>
 <pre><code>$ git cherry-pick some_branch</code></pre>
 <ul>
 <li>You can specify multiple commits to cherry pick, in that order:</li>
 </ul>
 <pre><code>$ git cherry-pick 123456 some_branch some_tag</code></pre>
-<p>The above command will result in 3 new commits on your current branch.</p>
-<p>Cherry-picking changes all the files that were changed in a commit. If you need to pick only the changes from a specific file in a specific commit, we need to be a bit more clever.</p>
-<p>First, we get the diff of the changes on a specific file in a specific commit:</p>
+<p>The above command will result in 3 new commits on your current
+branch.</p>
+<p>Cherry-picking changes all the files that were changed in a commit.
+If you need to pick only the changes from a specific file in a specific
+commit, we need to be a bit more clever.</p>
+<p>First, we get the diff of the changes on a specific file in a
+specific commit:</p>
 <pre><code>$ git show 123456 -- foo/bar.cpp</code></pre>
-<p>We can then pipe this diff to be applied as a patch on our current workspace:</p>
+<p>We can then pipe this diff to be applied as a patch on our current
+workspace:</p>
 <pre><code>$ git show 123456 -- foo/bar.cpp | git apply -</code></pre>
 <p><strong>Tried with:</strong> Git 2.7.4 and Ubuntu 16.04</p>
 </div>
@@ -72,11 +74,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

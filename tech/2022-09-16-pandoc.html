@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,58 +30,84 @@
 <h1 class="title">Pandoc</h1>
 <p class="date">📅 2022-Sep-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pandoc'>pandoc</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://pandoc.org/"><strong>Pandoc</strong></a> is a commandline tool written in Haskell that can convert between different markup formats. For example, I write the pages of this blog in Markdown and convert them to HTML pages using Pandoc.</p>
-<p>For detailed information about Pandoc commandline options please see <code>man pandoc</code> or the <a href="https://pandoc.org/MANUAL.html">online manual</a>.</p>
+<p><a href="https://pandoc.org/"><strong>Pandoc</strong></a> is a
+commandline tool written in Haskell that can convert between different
+markup formats. For example, I write the pages of this blog in Markdown
+and convert them to HTML pages using Pandoc.</p>
+<p>For detailed information about Pandoc commandline options please see
+<code>man pandoc</code> or the <a
+href="https://pandoc.org/MANUAL.html">online manual</a>.</p>
 <ul>
 <li>To convert a file from an input format to output format:</li>
 </ul>
 <pre><code>$ pandoc in.markdown -o out.html</code></pre>
 <ul>
-<li>Input format is automatically detected, but can be specified explicitly using <code>--from</code>:</li>
+<li>Input format is automatically detected, but can be specified
+explicitly using <code>--from</code>:</li>
 </ul>
 <pre><code>$ pandoc --from=markdown in.markdown -o out.html</code></pre>
 <ul>
-<li>Output format is automatically detected, but can be specified explicitly using <code>--to</code>:</li>
+<li>Output format is automatically detected, but can be specified
+explicitly using <code>--to</code>:</li>
 </ul>
 <pre><code>$ pandoc --to=html5 in.markdown -o out.html</code></pre>
 <ul>
-<li>To increase or reduce the heading level in the output format use the <code>--shift-heading-level-by</code> option:</li>
+<li>To increase or reduce the heading level in the output format use the
+<code>--shift-heading-level-by</code> option:</li>
 </ul>
 <pre><code>$ pandoc --shift-heading-level-by=1 in.markdown -o out.html</code></pre>
 <ul>
-<li>To add a prefix to the output HTML title of the page use the <code>--title-prefix</code> option:</li>
+<li>To add a prefix to the output HTML title of the page use the
+<code>--title-prefix</code> option:</li>
 </ul>
 <pre><code>$ pandoc --title-prefix=&quot;Foobar&quot; in.markdown -o out.html</code></pre>
-<p>This makes the title of the page as <code>Foobar -- Actual title</code>.</p>
+<p>This makes the title of the page as
+<code>Foobar -- Actual title</code>.</p>
 <ul>
-<li>To use a custom template file for the output file use the <code>--template</code> option:</li>
+<li>To use a custom template file for the output file use the
+<code>--template</code> option:</li>
 </ul>
 <pre><code>$ pandoc --template=foobar.template in.markdown -o out.html</code></pre>
-<p>There is a default output template that is used for each output format and can be seen by using the <code>--print-default-template</code> option. This default template can be used as a starting point to create your own templates.</p>
+<p>There is a default output template that is used for each output
+format and can be seen by using the
+<code>--print-default-template</code> option. This default template can
+be used as a starting point to create your own templates.</p>
 <ul>
-<li>To specify a variable name and its value that can be replaced inside the template file use the <code>--variable</code> option:</li>
+<li>To specify a variable name and its value that can be replaced inside
+the template file use the <code>--variable</code> option:</li>
 </ul>
 <pre><code>$ pandoc --variable=&quot;date:2015-Jan-23&quot; --template=foobar.template in.markdown -o out.html</code></pre>
-<p>We are specifying a variable of name <code>date</code> and value <code>2015-Jan-23</code> here.</p>
+<p>We are specifying a variable of name <code>date</code> and value
+<code>2015-Jan-23</code> here.</p>
 <ul>
-<li>To provide your own CSS stylesheet use the <code>--css</code> option:</li>
+<li>To provide your own CSS stylesheet use the <code>--css</code>
+option:</li>
 </ul>
 <pre><code>$ pandoc --css=foobar.css in.markdown -o out.html</code></pre>
 <ul>
-<li>To include a custom piece of text in the header of the output file use the <code>--include-in-header</code> option:</li>
+<li>To include a custom piece of text in the header of the output file
+use the <code>--include-in-header</code> option:</li>
 </ul>
 <pre><code>$ pandoc --include-in-header=header.txt in.markdown -o out.html</code></pre>
-<p>I find this useful for including the analytics JS code in the HTML header for example.</p>
+<p>I find this useful for including the analytics JS code in the HTML
+header for example.</p>
 <ul>
-<li>To include output markup lines at the top of the output file use the <code>--include-before-body</code> option:</li>
+<li>To include output markup lines at the top of the output file use the
+<code>--include-before-body</code> option:</li>
 </ul>
 <pre><code>$ pandoc --include-before-body=header.html in.markdown -o out.html</code></pre>
 <ul>
-<li>To include output markup lines at the bottom of the output file use the <code>--include-after-body</code> option:</li>
+<li>To include output markup lines at the bottom of the output file use
+the <code>--include-after-body</code> option:</li>
 </ul>
 <pre><code>$ pandoc --include-after-body=header.markdown in.markdown -o out.html</code></pre>
 <ul>
-<li>Pandoc ships with a lot of extensions, many of which are applied by default depending on the input or output format. To enable or disable an extension, add <code>+EXTENSIONNAME</code> or <code>-EXTENSIONNAME</code> to the input format (<code>--from</code>) or output format (<code>--to</code>). For example, to enable two extensions on the input Markdown:</li>
+<li>Pandoc ships with a lot of extensions, many of which are applied by
+default depending on the input or output format. To enable or disable an
+extension, add <code>+EXTENSIONNAME</code> or
+<code>-EXTENSIONNAME</code> to the input format (<code>--from</code>) or
+output format (<code>--to</code>). For example, to enable two extensions
+on the input Markdown:</li>
 </ul>
 <pre><code>$ pandoc --from=markdown+gfm_auto_identifiers+autolink_bare_uris in.markdown -o out.html</code></pre>
 <p>Information on the extensions can be found in the Pandoc manual.</p>
@@ -107,11 +119,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

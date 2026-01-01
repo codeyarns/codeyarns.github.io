@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,15 +31,37 @@
 <p class="date">📅 2012-Apr-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#module'>module</a>, <a href='index.html#python'>python</a>, <a href='index.html#registry'>registry</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2012/04/20120428-python-registry.png" alt="" /><figcaption> </figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2012/04/20120428-python-registry.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p><strong>Problem</strong></p>
-<p>Once you start installing many <strong>Python</strong> <strong>modules</strong>, you are sure to run into this error. When installing a Python module, it pops up this error:</p>
+<p>Once you start installing many <strong>Python</strong>
+<strong>modules</strong>, you are sure to run into this error. When
+installing a Python module, it pops up this error:</p>
 <pre><code>Python version 3.2 required, which was not found in the registry.</code></pre>
 <p>I do have Python 3.2 installed, so what’s up?</p>
 <p><strong>Solution</strong></p>
-<p>The problem is that some module installers look in the wrong place for Python version information. For example, in the case of this one module, the installer was looking for <code>HKEY_CURRENT_USER\SOFTWARE\Python\PythonCore\3.2</code> in the registry. I found that my Python 3.2 installer had placed this information in <code>HKEY_LOCAL_MACHINE\SOFTWARE\Python\PythonCore\3.2</code> instead.</p>
-<p>Once you know the reason, solving it is easy. Open <strong>Registry Editor</strong> (may need administrator privilege) and <strong>export</strong> <code>HKEY_LOCAL_MACHINE\SOFTWARE\Python\PythonCore\3.2</code> into a text file. Open the exported <code>.reg</code> file in a text editor and replace the <code>HKEY_LOCAL_MACHINE</code> entries to <code>HKEY_CURRENT_USER</code>. Add these new entries back to the registry (<a href="https://codeyarns.com/tech/2010/01/27/windows-7-registration-entries-reg-file/">here</a> is how). The module installer should now be able to proceed without throwing the error.</p>
+<p>The problem is that some module installers look in the wrong place
+for Python version information. For example, in the case of this one
+module, the installer was looking for
+<code>HKEY_CURRENT_USER\SOFTWARE\Python\PythonCore\3.2</code> in the
+registry. I found that my Python 3.2 installer had placed this
+information in
+<code>HKEY_LOCAL_MACHINE\SOFTWARE\Python\PythonCore\3.2</code>
+instead.</p>
+<p>Once you know the reason, solving it is easy. Open <strong>Registry
+Editor</strong> (may need administrator privilege) and
+<strong>export</strong>
+<code>HKEY_LOCAL_MACHINE\SOFTWARE\Python\PythonCore\3.2</code> into a
+text file. Open the exported <code>.reg</code> file in a text editor and
+replace the <code>HKEY_LOCAL_MACHINE</code> entries to
+<code>HKEY_CURRENT_USER</code>. Add these new entries back to the
+registry (<a
+href="https://codeyarns.com/tech/2010/01/27/windows-7-registration-entries-reg-file/">here</a>
+is how). The module installer should now be able to proceed without
+throwing the error.</p>
 <p><strong>Tried with:</strong> Python 3.2 64-bit on Windows 7</p>
 </div>
 
@@ -62,11 +70,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

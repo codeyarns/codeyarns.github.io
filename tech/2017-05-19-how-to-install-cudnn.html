@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,27 @@
 <h1 class="title">How to install cuDNN</h1>
 <p class="date">📅 2017-May-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#caffe'>caffe</a>, <a href='index.html#cudnn'>cudnn</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>cuDNN</strong> provides primitives for deep learning networks that have been accelerated for GPUs by NVIDIA.</p>
+<p><strong>cuDNN</strong> provides primitives for deep learning networks
+that have been accelerated for GPUs by NVIDIA.</p>
 <ul>
-<li><p>To download cuDNN head over to the cuDNN page <a href="https://developer.nvidia.com/rdp/cudnn-download">here</a>. cuDNN is not directly available for download. NVIDIA requires you to create a login. After that it presents cuDNN downloads in different formats (.tgz or .deb).</p></li>
-<li><p>I prefer to install from .tgz since it gives more control. Unzip the file and it will create a <code>cuda</code> directory which has the required include and lib directories.</p></li>
+<li><p>To download cuDNN head over to the cuDNN page <a
+href="https://developer.nvidia.com/rdp/cudnn-download">here</a>. cuDNN
+is not directly available for download. NVIDIA requires you to create a
+login. After that it presents cuDNN downloads in different formats (.tgz
+or .deb).</p></li>
+<li><p>I prefer to install from .tgz since it gives more control. Unzip
+the file and it will create a <code>cuda</code> directory which has the
+required include and lib directories.</p></li>
 <li><p>Copy the files over to your CUDA directory:</p></li>
 </ul>
 <pre><code>$ sudo cp cuda/include/cudnn.h /usr/local/cuda-X.Y/include
 $ sudo cp cuda/lib64/libcudnn* /usr/local/cuda-X.Y/lib64
 $ sudo chmod a+r /usr/local/cuda-X.Y/include/cudnn.h
 $ sudo chmod a+r /usr/local/cuda-X.Y/lib64/libcudnn*</code></pre>
-<p>Replace <code>cuda-X.Y</code> with the specific CUDA version directory on your system.</p>
-<p>That is it! Caffe and other projects needing cuDNN should be able to find and link with cuDNN now.</p>
+<p>Replace <code>cuda-X.Y</code> with the specific CUDA version
+directory on your system.</p>
+<p>That is it! Caffe and other projects needing cuDNN should be able to
+find and link with cuDNN now.</p>
 <p><strong>Tried with:</strong> cuDNN 6.0 and Ubuntu 16.04</p>
 </div>
 
@@ -64,11 +59,13 @@ $ sudo chmod a+r /usr/local/cuda-X.Y/lib64/libcudnn*</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

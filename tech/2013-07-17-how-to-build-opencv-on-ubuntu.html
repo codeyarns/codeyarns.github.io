@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,31 +31,69 @@
 <p class="date">📅 2013-Jul-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#build'>build</a>, <a href='index.html#opencv'>opencv</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <ul>
-<li><p>Download the <strong>OpenCV</strong> source code from its <a href="https://github.com/Itseez/opencv">Github repository</a>. I prefer to download the <a href="https://github.com/Itseez/opencv/releases">releases</a>, which are more stable compared to the main branch.</p></li>
+<li><p>Download the <strong>OpenCV</strong> source code from its <a
+href="https://github.com/Itseez/opencv">Github repository</a>. I prefer
+to download the <a
+href="https://github.com/Itseez/opencv/releases">releases</a>, which are
+more stable compared to the main branch.</p></li>
 <li><p>Create a build directory:</p></li>
 </ul>
 <pre><code>$ mkdir build
 $ cd build</code></pre>
 <ul>
-<li>Configure the features you want OpenCV to be compiled with. I prefer the CMake GUI for this:</li>
+<li>Configure the features you want OpenCV to be compiled with. I prefer
+the CMake GUI for this:</li>
 </ul>
 <pre><code>$ cmake-gui ..</code></pre>
 <ul>
-<li><p>Click <strong>Configure</strong>. Go down the list and look for the items named <code>BUILD_*</code>, <code>BUILD_opencv_*</code> and <code>WITH_*</code>. Each of these is a feature that can be compiled into OpenCV. Choose what you would like and uncheck those not needed.</p></li>
-<li><p><code>BUILD_*</code> items: These are related to external libraries. If you enable one of them, during the build, the source code of that external library will be downloaded and built. You typically do not want to do this, since you can install the pre-built library directly by using <code>apt-get</code>. For example, instead of using <code>BUILD_JPEG</code>, you can just install the <code>libjpeg-dev</code> package from Ubuntu repositories.</p></li>
-<li><p><code>BUILD_opencv_*</code> items: These are the features of OpenCV. Choose which of these features you need for your work. These features might be interdependent and it is your responsibility to ensure that all the dependent features are also enabled. You can see if the dependencies for the feature you need were met in the output you get after pressing the Configure button.</p></li>
-<li><p><code>WITH_*</code> items: These are typically related to external libraries. This is different from <code>BUILD_*</code> items, since choosing this indicates that you want OpenCV to link with this external library. For example, choosing <code>WITH_TBB</code> links with the Intel TBB library and certain OpenCV features compute faster due to the added parallelism available from Intel TBB.</p></li>
-<li><p>After you have chosen the features you need, click Configure again. Examine the output at the bottom and if you are satisfied, click Generate. This generates the Makefile.</p></li>
+<li><p>Click <strong>Configure</strong>. Go down the list and look for
+the items named <code>BUILD_*</code>, <code>BUILD_opencv_*</code> and
+<code>WITH_*</code>. Each of these is a feature that can be compiled
+into OpenCV. Choose what you would like and uncheck those not
+needed.</p></li>
+<li><p><code>BUILD_*</code> items: These are related to external
+libraries. If you enable one of them, during the build, the source code
+of that external library will be downloaded and built. You typically do
+not want to do this, since you can install the pre-built library
+directly by using <code>apt-get</code>. For example, instead of using
+<code>BUILD_JPEG</code>, you can just install the
+<code>libjpeg-dev</code> package from Ubuntu repositories.</p></li>
+<li><p><code>BUILD_opencv_*</code> items: These are the features of
+OpenCV. Choose which of these features you need for your work. These
+features might be interdependent and it is your responsibility to ensure
+that all the dependent features are also enabled. You can see if the
+dependencies for the feature you need were met in the output you get
+after pressing the Configure button.</p></li>
+<li><p><code>WITH_*</code> items: These are typically related to
+external libraries. This is different from <code>BUILD_*</code> items,
+since choosing this indicates that you want OpenCV to link with this
+external library. For example, choosing <code>WITH_TBB</code> links with
+the Intel TBB library and certain OpenCV features compute faster due to
+the added parallelism available from Intel TBB.</p></li>
+<li><p>After you have chosen the features you need, click Configure
+again. Examine the output at the bottom and if you are satisfied, click
+Generate. This generates the Makefile.</p></li>
 <li><p>Build OpenCV from the Makefile:</p></li>
 </ul>
 <pre><code>$ make</code></pre>
-<p>The build can take a long time, so you might want to run parallel builds:</p>
+<p>The build can take a long time, so you might want to run parallel
+builds:</p>
 <pre><code>$ make -j</code></pre>
 <ul>
-<li>If you find that a feature you want is not being built, then check the output that is at the bottom of the CMake GUI after you press Configure.</li>
+<li>If you find that a feature you want is not being built, then check
+the output that is at the bottom of the CMake GUI after you press
+Configure.</li>
 </ul>
-<p>Ensure there is nothing displayed in red color. If there is, note down the header file or library that is required and install those packages. Also ensure that all the options you chose have been chosen for build. Some of the features are inter-dependent and may not be built if their dependencies are not chosen.</p>
-<p>Another technique is to go to the subdirectory containing the feature and look at the <code>CMakeLists.txt</code> file there. Look for the text <code>REQUIRED_DEPS</code> that shows what other OpenCV features need to be present for this feature to be built. Ensure those features are also chosen.</p>
+<p>Ensure there is nothing displayed in red color. If there is, note
+down the header file or library that is required and install those
+packages. Also ensure that all the options you chose have been chosen
+for build. Some of the features are inter-dependent and may not be built
+if their dependencies are not chosen.</p>
+<p>Another technique is to go to the subdirectory containing the feature
+and look at the <code>CMakeLists.txt</code> file there. Look for the
+text <code>REQUIRED_DEPS</code> that shows what other OpenCV features
+need to be present for this feature to be built. Ensure those features
+are also chosen.</p>
 <ul>
 <li>To install OpenCV that you have built:</li>
 </ul>
@@ -82,11 +106,13 @@ $ cd build</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

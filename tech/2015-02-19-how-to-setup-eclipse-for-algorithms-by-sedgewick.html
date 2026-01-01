@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,29 +30,81 @@
 <h1 class="title">How to setup Eclipse for Algorithms by Sedgewick</h1>
 <p class="date">📅 2015-Feb-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#checkstyle'>checkstyle</a>, <a href='index.html#eclipse'>eclipse</a>, <a href='index.html#findbugs'>findbugs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Prof. Sedgewick</strong> has written a popular <a href="http://algs4.cs.princeton.edu/"><strong>Algorithms book</strong></a> and developed <strong>Algorithms I and II</strong> courses on <strong>Coursera</strong>. Both of these use Java and provide many source code files and assignments to the students. These have been developed for the <strong>Dr. Java</strong> IDE or to work from the commandline. If you prefer to work with Eclipse for this book or course, just follow these steps:</p>
+<p><strong>Prof. Sedgewick</strong> has written a popular <a
+href="http://algs4.cs.princeton.edu/"><strong>Algorithms
+book</strong></a> and developed <strong>Algorithms I and II</strong>
+courses on <strong>Coursera</strong>. Both of these use Java and provide
+many source code files and assignments to the students. These have been
+developed for the <strong>Dr. Java</strong> IDE or to work from the
+commandline. If you prefer to work with Eclipse for this book or course,
+just follow these steps:</p>
 <ul>
 <li>Install a Java SDK:</li>
 </ul>
 <pre><code>$ sudo apt install openjdk-7-jdk</code></pre>
 <ul>
-<li><p>Install Eclipse. Ubuntu ships with old versions of Eclipse. I prefer to install the latest from the <a href="https://www.eclipse.org/downloads/">Eclipse Downloads</a> webpage. Get the one named <strong>Eclipse IDE for Java Developers</strong>.</p></li>
-<li><p>Create a directory named <code>algs4</code> anywhere under your home directory. This directory will be used to store the packages and configuration files required to work with this book or course.</p></li>
-<li><p>Download the <a href="http://algs4.cs.princeton.edu/code/algs4.jar"><strong>algs4.jar</strong></a> and <a href="http://algs4.cs.princeton.edu/code/stdlib.jar"><strong>stdlib.jar</strong></a> packages to the <code>algs4</code> directory. These include the classes and methods you will need to work on the assignments.</p></li>
-<li><p>Install the <strong>FindBugs</strong> plugin as described <a href="2015/02/19/how-to-use-findbugs-plugin-in-eclipse/">here</a>. This will be useful to check your assignment code for bugs before you submit them. Download the <a href="http://algs4.cs.princeton.edu/mac/findbugs.xml"><strong>findbugs.xml</strong></a> filter file to your <code>algs4</code> directory. In the FindBugs preferences dialog, add this file as an <strong>Exclude filter file</strong>.</p></li>
-<li><p>Install the <strong>CheckStyle</strong> plugin as described <a href="2015/02/19/how-to-use-checkstyle-plugin-in-eclipse/">here</a>. Your assignment submission has to adhere to the coding standard of this book or course and this plugin makes it easy to check that. Download the <a href="http://algs4.cs.princeton.edu/mac/checkstyle.xml"><strong>checkstyle.xml</strong></a> configuration file to your <code>algs4</code> directory. Add this configuration file in the CheckStyle preferences.</p></li>
-<li><p>Using this CheckStyle configuration file in Eclipse gave me these errors:</p></li>
+<li><p>Install Eclipse. Ubuntu ships with old versions of Eclipse. I
+prefer to install the latest from the <a
+href="https://www.eclipse.org/downloads/">Eclipse Downloads</a> webpage.
+Get the one named <strong>Eclipse IDE for Java
+Developers</strong>.</p></li>
+<li><p>Create a directory named <code>algs4</code> anywhere under your
+home directory. This directory will be used to store the packages and
+configuration files required to work with this book or course.</p></li>
+<li><p>Download the <a
+href="http://algs4.cs.princeton.edu/code/algs4.jar"><strong>algs4.jar</strong></a>
+and <a
+href="http://algs4.cs.princeton.edu/code/stdlib.jar"><strong>stdlib.jar</strong></a>
+packages to the <code>algs4</code> directory. These include the classes
+and methods you will need to work on the assignments.</p></li>
+<li><p>Install the <strong>FindBugs</strong> plugin as described <a
+href="2015/02/19/how-to-use-findbugs-plugin-in-eclipse/">here</a>. This
+will be useful to check your assignment code for bugs before you submit
+them. Download the <a
+href="http://algs4.cs.princeton.edu/mac/findbugs.xml"><strong>findbugs.xml</strong></a>
+filter file to your <code>algs4</code> directory. In the FindBugs
+preferences dialog, add this file as an <strong>Exclude filter
+file</strong>.</p></li>
+<li><p>Install the <strong>CheckStyle</strong> plugin as described <a
+href="2015/02/19/how-to-use-checkstyle-plugin-in-eclipse/">here</a>.
+Your assignment submission has to adhere to the coding standard of this
+book or course and this plugin makes it easy to check that. Download the
+<a
+href="http://algs4.cs.princeton.edu/mac/checkstyle.xml"><strong>checkstyle.xml</strong></a>
+configuration file to your <code>algs4</code> directory. Add this
+configuration file in the CheckStyle preferences.</p></li>
+<li><p>Using this CheckStyle configuration file in Eclipse gave me these
+errors:</p></li>
 </ul>
 <pre><code>cannot initialize module TreeWalker - Unable to instantiate RedundantThrows
 cannot initialize module TreeWalker - Unable to instantiate JUnitTestCase</code></pre>
-<p>I removed the lines in <code>checkstyle.xml</code> that used these modules and it worked after that. My version of this configuration file can be downloaded <a href="https://gist.github.com/ashwin/88ffe226eecdf6f42245">here</a>.</p>
+<p>I removed the lines in <code>checkstyle.xml</code> that used these
+modules and it worked after that. My version of this configuration file
+can be downloaded <a
+href="https://gist.github.com/ashwin/88ffe226eecdf6f42245">here</a>.</p>
 <ul>
-<li><p>You are now ready to work on the assignments! 😊 Create a new Java project in Eclipse to work on each new assignment. Use the <code>algs4.jar</code> and <code>stdlib.jar</code> packages in the project by adding them in Properties -&gt; Java Build Path -&gt; Libraries -&gt; Add External JARs.</p></li>
-<li><p>Each assignment provides a barebones template of one or more Java classes. Choose New -&gt; Java class to create a new Java file for each of these classes under the project for that assignment.</p></li>
-<li><p><strong>Important</strong>: When creating the Java class, make sure the <strong>Package</strong> entry is empty. This puts it under the <code>default</code> package. This is required since the <code>algs4.jar</code> and <code>stdlib.jar</code> also provides their classes under the <code>default</code> package. If you do not do this, you will get a <code>cannot be resolved to a type</code> error when you try to use any of the classes from this course.</p></li>
-<li><p>Eclipse automatically compiles the code whenever you save the file. So, you can run the code as soon as you are done writing the code. Make sure to run the CheckStyle and FindBugs before you submit your code.</p></li>
+<li><p>You are now ready to work on the assignments! 😊 Create a new
+Java project in Eclipse to work on each new assignment. Use the
+<code>algs4.jar</code> and <code>stdlib.jar</code> packages in the
+project by adding them in Properties -&gt; Java Build Path -&gt;
+Libraries -&gt; Add External JARs.</p></li>
+<li><p>Each assignment provides a barebones template of one or more Java
+classes. Choose New -&gt; Java class to create a new Java file for each
+of these classes under the project for that assignment.</p></li>
+<li><p><strong>Important</strong>: When creating the Java class, make
+sure the <strong>Package</strong> entry is empty. This puts it under the
+<code>default</code> package. This is required since the
+<code>algs4.jar</code> and <code>stdlib.jar</code> also provides their
+classes under the <code>default</code> package. If you do not do this,
+you will get a <code>cannot be resolved to a type</code> error when you
+try to use any of the classes from this course.</p></li>
+<li><p>Eclipse automatically compiles the code whenever you save the
+file. So, you can run the code as soon as you are done writing the code.
+Make sure to run the CheckStyle and FindBugs before you submit your
+code.</p></li>
 </ul>
-<p><strong>Tried with:</strong> CheckStyle 6.2, FindBugs 3.0.0, Eclipse 4.4.1 (Luna) and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> CheckStyle 6.2, FindBugs 3.0.0, Eclipse
+4.4.1 (Luna) and Ubuntu 14.04</p>
 </div>
 
 <br />
@@ -74,11 +112,13 @@ cannot initialize module TreeWalker - Unable to instantiate JUnitTestCase</code>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

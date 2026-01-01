@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,26 +30,44 @@
 <h1 class="title">How to view CMake cache variables</h1>
 <p class="date">📅 2017-Sep-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cache-variable'>cache variable</a>, <a href='index.html#cmake'>cmake</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Running <strong>CMake</strong> for a project creates many variables that are required for its own operation and for the project being built. If you use the CMake GUI, then these are the variables which you see populated after you perform <strong>Configure</strong> and then <strong>Generate</strong>. When you want to diagnose a CMake build problem at the shell, it is useful to be able to view these variables.</p>
+<p>Running <strong>CMake</strong> for a project creates many variables
+that are required for its own operation and for the project being built.
+If you use the CMake GUI, then these are the variables which you see
+populated after you perform <strong>Configure</strong> and then
+<strong>Generate</strong>. When you want to diagnose a CMake build
+problem at the shell, it is useful to be able to view these
+variables.</p>
 <ul>
-<li>To perform a CMake build and then print the <strong>cache variables</strong>:</li>
+<li>To perform a CMake build and then print the <strong>cache
+variables</strong>:</li>
 </ul>
 <pre><code>$ cmake -L ..</code></pre>
-<p>Note that in the above command, I am in the <code>build</code> directory and the <code>CMakeLists.txt</code> is in the parent directory. This command builds as usual and at the end prints the CMake variables and their values.</p>
+<p>Note that in the above command, I am in the <code>build</code>
+directory and the <code>CMakeLists.txt</code> is in the parent
+directory. This command builds as usual and at the end prints the CMake
+variables and their values.</p>
 <ul>
-<li>To perform a CMake build and list all the cache variables, including <strong>advanced variables</strong>:</li>
+<li>To perform a CMake build and list all the cache variables, including
+<strong>advanced variables</strong>:</li>
 </ul>
 <pre><code>$ cmake -LA ..</code></pre>
-<p>Note that the number of variables that are printed can be quite high for big projects. I have seen it run into the hundreds.</p>
+<p>Note that the number of variables that are printed can be quite high
+for big projects. I have seen it run into the hundreds.</p>
 <ul>
-<li>To perform a CMake build and list all the cache variables and print the <strong>help documentation</strong> about each variable too:</li>
+<li>To perform a CMake build and list all the cache variables and print
+the <strong>help documentation</strong> about each variable too:</li>
 </ul>
 <pre><code>$ cmake -LAH ..</code></pre>
 <ul>
-<li>If you have already done a CMake build and just need to print out the cache variables, add the <code>-N</code> option:</li>
+<li>If you have already done a CMake build and just need to print out
+the cache variables, add the <code>-N</code> option:</li>
 </ul>
 <pre><code>$ cmake -L -N</code></pre>
-<p>This command assumes that the current directory is the build directory containing the cache files, so no directory needs to be specified. This command is quick because it does not do a CMake build. Additionally, you can also add the <code>-AH</code> options as before if you want.</p>
+<p>This command assumes that the current directory is the build
+directory containing the cache files, so no directory needs to be
+specified. This command is quick because it does not do a CMake build.
+Additionally, you can also add the <code>-AH</code> options as before if
+you want.</p>
 <p><strong>Tried with:</strong> CMake 2.8.12.2 and Ubuntu 16.04</p>
 </div>
 
@@ -72,11 +76,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

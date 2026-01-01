@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,49 +30,79 @@
 <h1 class="title">How to view Python documentation using pydoc</h1>
 <p class="date">📅 2019-Dec-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pydoc'>pydoc</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Python</strong> ships with a tool to generate and view documentation. This tool can be used to lookup documentation from the Python standard library and also from your own modules and scripts. The tool can render documentation like a manpage or dump it to a simple HTML file or serve it from a local HTTP server.</p>
+<p><strong>Python</strong> ships with a tool to generate and view
+documentation. This tool can be used to lookup documentation from the
+Python standard library and also from your own modules and scripts. The
+tool can render documentation like a manpage or dump it to a simple HTML
+file or serve it from a local HTTP server.</p>
 <ul>
-<li><p>Every version of Python interpreter you have installed on your system ships with its own pydoc. For example, my Python 2.7 seems to have a <code>pydoc2.7</code> and my Python 3.6 seems to have a corresponding <code>pydoc3.6</code>.</p></li>
-<li><p>There also seems to be a major version <code>pydoc3</code> that is symbolically linked to one of the Python 3 versions:</p></li>
+<li><p>Every version of Python interpreter you have installed on your
+system ships with its own pydoc. For example, my Python 2.7 seems to
+have a <code>pydoc2.7</code> and my Python 3.6 seems to have a
+corresponding <code>pydoc3.6</code>.</p></li>
+<li><p>There also seems to be a major version <code>pydoc3</code> that
+is symbolically linked to one of the Python 3 versions:</p></li>
 </ul>
 <pre><code>$ readlink -m `which pydoc3`
 /usr/bin/pydoc3.6</code></pre>
 <ul>
-<li>The canonical <code>pydoc</code> is symbolically linked to one of the pydoc tools you have on your system. On mine it seemed to be linked to the Python 2.7 pydoc tool:</li>
+<li>The canonical <code>pydoc</code> is symbolically linked to one of
+the pydoc tools you have on your system. On mine it seemed to be linked
+to the Python 2.7 pydoc tool:</li>
 </ul>
 <pre><code>$ readlink -m `which pydoc`
 /usr/bin/pydoc2.7</code></pre>
 <ul>
-<li>To view Python documentation for a Python module or method at the shell:</li>
+<li>To view Python documentation for a Python module or method at the
+shell:</li>
 </ul>
 <pre><code>$ pydoc os
 $ pydoc os.path
 $ pydoc os.path.join</code></pre>
-<p>This renders the docstring of the module or method colorfully formatted like a manpage. This is great for quick lookups at the shell in the midst of programming. This can be a great alternative to Googling or visiting the official Python guide online.</p>
+<p>This renders the docstring of the module or method colorfully
+formatted like a manpage. This is great for quick lookups at the shell
+in the midst of programming. This can be a great alternative to Googling
+or visiting the official Python guide online.</p>
 <ul>
-<li>To view Python documentation for your own <code>foobar.py</code> at the shell:</li>
+<li>To view Python documentation for your own <code>foobar.py</code> at
+the shell:</li>
 </ul>
 <pre><code>$ pydoc foobar</code></pre>
-<p>Note how the tool requires just the module name, so we drop the <code>.py</code> file extension.</p>
+<p>Note how the tool requires just the module name, so we drop the
+<code>.py</code> file extension.</p>
 <ul>
 <li>To search for something in the synopsis lines of all modules:</li>
 </ul>
 <pre><code>$ pydoc -k foobar</code></pre>
-<p>This <em>search</em> is of limited utility since it just does a string search in the one-line synopsis of every module. So essentially it helps you find modules, but not methods or classes or constants inside the modules. I have resorted to using <strong>pydocsearch</strong> for searching for those.</p>
+<p>This <em>search</em> is of limited utility since it just does a
+string search in the one-line synopsis of every module. So essentially
+it helps you find modules, but not methods or classes or constants
+inside the modules. I have resorted to using
+<strong>pydocsearch</strong> for searching for those.</p>
 <ul>
 <li>To view the Python documentation in your local browser:</li>
 </ul>
 <pre><code>$ pydoc -p 9999</code></pre>
-<p>This serves up the Python documentation as HTML pages at the <code>http://localhost:9999</code> URL. Once you open this URL in your local browser you can find the Python standard documentation rendered as simple formatted HTML webpages. Navigating to specific modules is not clear here. For example, I could not find <code>os.path</code> documentation listed at <code>http://localhost:9999</code>, but it was available when I specifically typed <code>http://localhost:9999/os.path.html</code> into the addressbar.</p>
+<p>This serves up the Python documentation as HTML pages at the
+<code>http://localhost:9999</code> URL. Once you open this URL in your
+local browser you can find the Python standard documentation rendered as
+simple formatted HTML webpages. Navigating to specific modules is not
+clear here. For example, I could not find <code>os.path</code>
+documentation listed at <code>http://localhost:9999</code>, but it was
+available when I specifically typed
+<code>http://localhost:9999/os.path.html</code> into the addressbar.</p>
 <ul>
-<li>To dump a simple formatted HTML documentation for a specific module, say write <code>os.path</code> documentation to <code>os.path.html</code>:</li>
+<li>To dump a simple formatted HTML documentation for a specific module,
+say write <code>os.path</code> documentation to
+<code>os.path.html</code>:</li>
 </ul>
 <pre><code>$ pydoc -w os.path</code></pre>
 <ul>
 <li>To view Python documentation in a Tkinter GUI program:</li>
 </ul>
 <pre><code>$ pydoc -g</code></pre>
-<p>This threw up a Tkinter GUI tool, but it did not render the documentation.</p>
+<p>This threw up a Tkinter GUI tool, but it did not render the
+documentation.</p>
 <p><strong>Tried with:</strong> Ubuntu 18.04</p>
 </div>
 
@@ -95,11 +111,13 @@ $ pydoc os.path.join</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

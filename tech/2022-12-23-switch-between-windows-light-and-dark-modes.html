@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,34 +27,63 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Switch between Windows light and dark modes at scheduled times</h1>
+<h1 class="title">Switch between Windows light and dark modes at
+scheduled times</h1>
 <p class="date">📅 2022-Dec-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dark-mode'>dark mode</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Windows 10</strong> has support for <strong>light mode</strong> and <strong>dark mode</strong> for both Windows and for applications. The former changes the colors for the Windows taskbar, while the latter affects all the application windows. However, switching between these modes can only be done manually. I wanted Windows to have light mode during the day and automatically switch to dark mode at night.</p>
-<p>One way to solve this problem is to use the <strong>Task Scheduler</strong> that is in Windows. Essentially we schedule daily tasks to do the switch between light and dark modes. We can do the switch by setting the registry keys <code>SystemUsesLightTheme</code> and <code>AppsUseLightTheme</code> to 0 or 1.</p>
+<p><strong>Windows 10</strong> has support for <strong>light
+mode</strong> and <strong>dark mode</strong> for both Windows and for
+applications. The former changes the colors for the Windows taskbar,
+while the latter affects all the application windows. However, switching
+between these modes can only be done manually. I wanted Windows to have
+light mode during the day and automatically switch to dark mode at
+night.</p>
+<p>One way to solve this problem is to use the <strong>Task
+Scheduler</strong> that is in Windows. Essentially we schedule daily
+tasks to do the switch between light and dark modes. We can do the
+switch by setting the registry keys <code>SystemUsesLightTheme</code>
+and <code>AppsUseLightTheme</code> to 0 or 1.</p>
 <p>Here is how to do that:</p>
 <ul>
 <li>Open <strong>Task Scheduler</strong>.</li>
 <li>Create a <strong>Switch to Dark mode</strong> scheduled task:
 <ul>
 <li>Choose Actions -&gt; Create Basic Task.</li>
-<li>Provide a name, choose <em>Daily</em> trigger, choose the daily time for this task and choose to recur every 1 day.</li>
-<li>For Windows dark mode: Choose <em>Start a Program</em>, use the program <code>reg</code> and arguments <code>add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v SystemUsesLightTheme /t REG_DWORD /d 0 /f</code>.</li>
-<li>For application dark mode: Choose <em>Start a Program</em>, use the program <code>reg</code> and arguments <code>add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f</code>.</li>
-<li>Open Properties, disable <em>Start the task only if the computer is on AC power</em> and enable <em>Run task as soon as possible after a scheduled start is missed</em>.</li>
+<li>Provide a name, choose <em>Daily</em> trigger, choose the daily time
+for this task and choose to recur every 1 day.</li>
+<li>For Windows dark mode: Choose <em>Start a Program</em>, use the
+program <code>reg</code> and arguments
+<code>add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v SystemUsesLightTheme /t REG_DWORD /d 0 /f</code>.</li>
+<li>For application dark mode: Choose <em>Start a Program</em>, use the
+program <code>reg</code> and arguments
+<code>add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 0 /f</code>.</li>
+<li>Open Properties, disable <em>Start the task only if the computer is
+on AC power</em> and enable <em>Run task as soon as possible after a
+scheduled start is missed</em>.</li>
 </ul></li>
 <li>Create a <strong>Switch to Light mode</strong> scheduled task:
 <ul>
-<li>Same as above, provide the time when light mode should be enabled.</li>
-<li>For Windows light mode: Choose <em>Start a Program</em>, use the program <code>reg</code> and arguments <code>add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v SystemUsesLightTheme /t REG_DWORD /d 1 /f</code>.</li>
-<li>For application light mode: Choose <em>Start a Program</em>, use the program <code>reg</code> and arguments <code>add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f</code>.</li>
+<li>Same as above, provide the time when light mode should be
+enabled.</li>
+<li>For Windows light mode: Choose <em>Start a Program</em>, use the
+program <code>reg</code> and arguments
+<code>add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v SystemUsesLightTheme /t REG_DWORD /d 1 /f</code>.</li>
+<li>For application light mode: Choose <em>Start a Program</em>, use the
+program <code>reg</code> and arguments
+<code>add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize /v AppsUseLightTheme /t REG_DWORD /d 1 /f</code>.</li>
 </ul></li>
-<li>You can test either of the tasks by right-clicking on them and choosing Run to see if the mode changes.</li>
+<li>You can test either of the tasks by right-clicking on them and
+choosing Run to see if the mode changes.</li>
 </ul>
-<p>All done! You should see the light and dark modes switching at the scheduled time now.</p>
+<p>All done! You should see the light and dark modes switching at the
+scheduled time now.</p>
 <p><strong>Reference</strong>:</p>
 <ul>
-<li><a href="https://www.howtogeek.com/356087/how-to-automatically-enable-windows-10s-dark-theme-at-night/">How-To Geek: How to Automatically Enable Windows 10’s Dark Theme at Night</a>: Good guide, but only covers the application mode and not the Windows mode.</li>
+<li><a
+href="https://www.howtogeek.com/356087/how-to-automatically-enable-windows-10s-dark-theme-at-night/">How-To
+Geek: How to Automatically Enable Windows 10’s Dark Theme at Night</a>:
+Good guide, but only covers the application mode and not the Windows
+mode.</li>
 </ul>
 </div>
 
@@ -77,11 +92,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,24 @@
 <h1 class="title">How to save image in different format</h1>
 <p class="date">📅 2016-May-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#convert'>convert</a>, <a href='index.html#imagemagick'>imagemagick</a>, <a href='index.html#jpeg'>jpeg</a>, <a href='index.html#mogrify'>mogrify</a>, <a href='index.html#png'>png</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A common operation when working with images is to save them in a different <strong>format</strong>. Not surprisingly, <strong>ImageMagick</strong> has tools that make this very easy to perform at the shell.</p>
-<p>The easiest way to save an image in a different format is to use <code>convert</code>:</p>
+<p>A common operation when working with images is to save them in a
+different <strong>format</strong>. Not surprisingly,
+<strong>ImageMagick</strong> has tools that make this very easy to
+perform at the shell.</p>
+<p>The easiest way to save an image in a different format is to use
+<code>convert</code>:</p>
 <pre><code>$ convert foo.png bar.jpg</code></pre>
-<p>This saves an existing <code>foo.png</code> in PNG format to another file <code>bar.jpg</code> in the JPEG format.</p>
-<p>Note that this command does not work if you want to convert a set of images. To do that, we use the <code>mogrify</code> command with its <code>-format</code> option.</p>
-<p>To convert all PNG images in the current directory to JPEG format images keeping the same filename:</p>
+<p>This saves an existing <code>foo.png</code> in PNG format to another
+file <code>bar.jpg</code> in the JPEG format.</p>
+<p>Note that this command does not work if you want to convert a set of
+images. To do that, we use the <code>mogrify</code> command with its
+<code>-format</code> option.</p>
+<p>To convert all PNG images in the current directory to JPEG format
+images keeping the same filename:</p>
 <pre><code>$ mogrify -format &quot;jpg&quot; *.png</code></pre>
-<p>Mogrify usually overwrites its source files. In this case however, the original PNG files are left untouched since the new files have a different file extension.</p>
+<p>Mogrify usually overwrites its source files. In this case however,
+the original PNG files are left untouched since the new files have a
+different file extension.</p>
 <p><strong>Tried with:</strong> ImageMagick 6.7.7 and Ubuntu 14.04</p>
 </div>
 
@@ -60,11 +56,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,14 +31,23 @@
 <p class="date">📅 2011-Jan-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#errors'>errors</a>, <a href='index.html#mercurial'>mercurial</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p><strong>Mercurial</strong> repositories can sometimes be left in a locked state. A lock is created whenever a client is connected to a repository. But, this lock is not removed if the client got disconnected, say over the network. If any client now tries to change the repository (say <em>push</em> changes), Mercurial complains that it is waiting for the lock.</p>
+<p><strong>Mercurial</strong> repositories can sometimes be left in a
+locked state. A lock is created whenever a client is connected to a
+repository. But, this lock is not removed if the client got
+disconnected, say over the network. If any client now tries to change
+the repository (say <em>push</em> changes), Mercurial complains that it
+is waiting for the lock.</p>
 <p>Here is an example:</p>
 <pre><code>P:\Foobar&gt;hg push
 pushing to Q:\FoobarRep
 waiting for lock on repository Q:\FoobarRep held by &#39;Computer42:9999&#39;</code></pre>
-<p>In this example, Mercurial is complaining that a lock is still being held by a client from the computer named <code>Computer42</code> over port <code>9999</code>.</p>
+<p>In this example, Mercurial is complaining that a lock is still being
+held by a client from the computer named <code>Computer42</code> over
+port <code>9999</code>.</p>
 <p><strong>Solution</strong></p>
-<p>Delete the <code>lock</code> file in the <code>.hg\store</code> directory of the repository. In the example above, delete the file <code>Q:\FoobarRep\.hg\store\lock</code></p>
+<p>Delete the <code>lock</code> file in the <code>.hg\store</code>
+directory of the repository. In the example above, delete the file
+<code>Q:\FoobarRep\.hg\store\lock</code></p>
 </div>
 
 <br />
@@ -60,11 +55,13 @@ waiting for lock on repository Q:\FoobarRep held by &#39;Computer42:9999&#39;</c
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

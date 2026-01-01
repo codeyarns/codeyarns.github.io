@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,68 +95,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Notes from Effective STL</h1>
 <p class="date">📅 2010-May-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#notes'>notes</a>, <a href='index.html#stl'>stl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I recently read <strong>Effective STL</strong> by Scott Meyers. My review of the book can be found <a href="2010-05-25-effective-stl.html">here</a>. Below are my notes from the book:</p>
+<p>I recently read <strong>Effective STL</strong> by Scott Meyers. My
+review of the book can be found <a
+href="2010-05-25-effective-stl.html">here</a>. Below are my notes from
+the book:</p>
 <ul>
-<li><p>One guideline that is missing in the book: Do <strong>not</strong> extend the STL containers. It is possible, but brings about nothing but misery.</p></li>
-<li><p>Item 1: Choose your containers with care. The standard sequence containers are: vector, list, deque, string. The standard associative containers are: set, multiset, map, multimap.</p></li>
+<li><p>One guideline that is missing in the book: Do
+<strong>not</strong> extend the STL containers. It is possible, but
+brings about nothing but misery.</p></li>
+<li><p>Item 1: Choose your containers with care. The standard sequence
+containers are: vector, list, deque, string. The standard associative
+containers are: set, multiset, map, multimap.</p></li>
 </ul>
-<p>string is <code>typedef basic_string&lt;char&gt;</code>. wstring is <code>typedef basic_string&lt;wchar_t&gt;</code>.</p>
-<p>Scott does not mention this, but I find this useful because when you get compilation errors on string, they will mention <code>basic_string&lt;&gt;</code> and not <code>string</code>.</p>
+<p>string is <code>typedef basic_string&lt;char&gt;</code>. wstring is
+<code>typedef basic_string&lt;wchar_t&gt;</code>.</p>
+<p>Scott does not mention this, but I find this useful because when you
+get compilation errors on string, they will mention
+<code>basic_string&lt;&gt;</code> and not <code>string</code>.</p>
 <ul>
-<li>Item 2: Beware of the illusion of container-independent code. This item mentions the most important trick to cut the verbosity of STL: Typedef everything possible. For example:</li>
+<li>Item 2: Beware of the illusion of container-independent code. This
+item mentions the most important trick to cut the verbosity of STL:
+Typedef everything possible. For example:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">class</span> Foo;</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">typedef</span> <span class="bu">std::</span>vector&lt;Foo&gt; FooVec;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="kw">typedef</span> FooVec::iterator FooVecIter;</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Foo<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="bu">std::</span>vector<span class="op">&lt;</span>Foo<span class="op">&gt;</span> FooVec<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> FooVec<span class="op">::</span>iterator FooVecIter<span class="op">;</span></span></code></pre></div>
 <ul>
-<li><p>Item 4: Call <code>empty()</code> instead of checking <code>size()</code> against zero. <code>empty()</code> is a constant time operation on all containers. <code>size()</code> can sometimes be a linear time operation on certain containers, like <code>std::list</code>.</p></li>
-<li><p>Item 5: Prefer range member functions to their single element counterparts. Instead of doing:</p></li>
+<li><p>Item 4: Call <code>empty()</code> instead of checking
+<code>size()</code> against zero. <code>empty()</code> is a constant
+time operation on all containers. <code>size()</code> can sometimes be a
+linear time operation on certain containers, like
+<code>std::list</code>.</p></li>
+<li><p>Item 5: Prefer range member functions to their single element
+counterparts. Instead of doing:</p></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="cf">for</span> (<span class="dt">int</span> i = <span class="dv">0</span>; i &lt; MAX; ++i)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>    vec.push_back(arr[i]);</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> MAX<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    vec<span class="op">.</span>push_back<span class="op">(</span>arr<span class="op">[</span>i<span class="op">]);</span></span></code></pre></div>
 <p>Try this:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="bu">std::</span>copy( arr, arr, <span class="bu">std::</span>back_inserter(vec) );</span></code></pre></div>
-<p>For an example usage of <code>std::back_inserter</code> see <a href="2010-05-25-c-stl-find-common-elements-of-2-sorted-vectors.html">this post</a>.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>copy<span class="op">(</span> arr<span class="op">,</span> arr<span class="op">,</span> <span class="bu">std::</span>back_inserter<span class="op">(</span>vec<span class="op">)</span> <span class="op">);</span></span></code></pre></div>
+<p>For an example usage of <code>std::back_inserter</code> see <a
+href="2010-05-25-c-stl-find-common-elements-of-2-sorted-vectors.html">this
+post</a>.</p>
 <ul>
-<li>Item 9: Choose carefully among erasing options. To me, this is STL’s biggest gotcha! <code>std::remove()</code> does not remove elements from the container.</li>
+<li>Item 9: Choose carefully among erasing options. To me, this is STL’s
+biggest gotcha! <code>std::remove()</code> does not remove elements from
+the container.</li>
 </ul>
 <p>Use the <em>erase-remove idiom</em> to achieve actual removal:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>fooVec.erase( <span class="bu">std::</span>remove(), fooVec.end() );</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fooVec<span class="op">.</span>erase<span class="op">(</span> <span class="bu">std::</span>remove<span class="op">(),</span> fooVec<span class="op">.</span>end<span class="op">()</span> <span class="op">);</span></span></code></pre></div>
 <ul>
 <li><p>Item 14: Use reserve to avoid unnecessary reallocations.</p></li>
-<li><p>Item 16: Know how to pass vector and string data to legacy APIs.</p></li>
+<li><p>Item 16: Know how to pass vector and string data to legacy
+APIs.</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="cf">if</span> ( !fooVec.empty() )  <span class="co">// This is important!</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>    someCFunctionCall( &amp;v[<span class="dv">0</span>], v.size() );</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span> <span class="op">!</span>fooVec<span class="op">.</span>empty<span class="op">()</span> <span class="op">)</span>  <span class="co">// This is important!</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    someCFunctionCall<span class="op">(</span> <span class="op">&amp;</span>v<span class="op">[</span><span class="dv">0</span><span class="op">],</span> v<span class="op">.</span>size<span class="op">()</span> <span class="op">);</span></span></code></pre></div>
 <ul>
 <li>Item 18: Avoid using <code>vector&lt;bool&gt;</code>.</li>
 </ul>
-<p>It is a pseudo-container with a compressed representation of bools. Avoid using <code>std::vector&lt;bool&gt;</code>, use <code>std::deque&lt;bool&gt;</code> instead. It offers everything that the former does.</p>
+<p>It is a pseudo-container with a compressed representation of bools.
+Avoid using <code>std::vector&lt;bool&gt;</code>, use
+<code>std::deque&lt;bool&gt;</code> instead. It offers everything that
+the former does.</p>
 <ul>
-<li><p>Item 21: Always have comparison functions return false for equal values.</p></li>
-<li><p>Item 23: Consider replacing associative containers with sorted vectors. If the container is used in a phased manner, first phase only for insertions and the second phase only for lookups, then a sequence container might offer better performance than an associative container.</p></li>
-<li><p>Item 27: Use distance and advance to convert a container’s const_iterator to iterator.</p></li>
+<li><p>Item 21: Always have comparison functions return false for equal
+values.</p></li>
+<li><p>Item 23: Consider replacing associative containers with sorted
+vectors. If the container is used in a phased manner, first phase only
+for insertions and the second phase only for lookups, then a sequence
+container might offer better performance than an associative
+container.</p></li>
+<li><p>Item 27: Use distance and advance to convert a container’s
+const_iterator to iterator.</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>STLContainer v;</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>STLContainer::const_iterator ci = SomeFunction();</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a>STLContainer::iterator i( v.begin() );</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="bu">std::</span>advance( i, <span class="bu">std::</span>distance&lt;STLContainer::const_iterator&gt;( i, ci ));</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>STLContainer v<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>STLContainer<span class="op">::</span>const_iterator ci <span class="op">=</span> SomeFunction<span class="op">();</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>STLContainer<span class="op">::</span>iterator i<span class="op">(</span> v<span class="op">.</span>begin<span class="op">()</span> <span class="op">);</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>advance<span class="op">(</span> i<span class="op">,</span> <span class="bu">std::</span>distance<span class="op">&lt;</span>STLContainer<span class="op">::</span>const_iterator<span class="op">&gt;(</span> i<span class="op">,</span> ci <span class="op">));</span></span></code></pre></div>
 <ul>
-<li>Item 28: Understand how to use a <code>reverse_iterator</code>’s base iterator.</li>
+<li>Item 28: Understand how to use a <code>reverse_iterator</code>’s
+base iterator.</li>
 </ul>
-<p>The <code>base()</code> iterator of a <code>reverse_iterator</code> points 1 element in front of the <code>reverse_iterator</code> position. Use with care.</p>
+<p>The <code>base()</code> iterator of a <code>reverse_iterator</code>
+points 1 element in front of the <code>reverse_iterator</code> position.
+Use with care.</p>
 <ul>
-<li>Item 29: Consider <code>istreambuf_iterator</code> for character-by-character input.</li>
+<li>Item 29: Consider <code>istreambuf_iterator</code> for
+character-by-character input.</li>
 </ul>
 <p>Useful for unformatted input from files:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="co">// Read file to string</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="bu">std::</span>ifstream iFile(<span class="st">&quot;haha.txt&quot;</span>);</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="bu">std::</span>string fileData( <span class="bu">std::</span>istreambuf_iterator&lt;<span class="dt">char</span>&gt;( iFile ) ), <span class="bu">std::</span>istreambuf_iterator&lt;<span class="dt">char</span>&gt;() );</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Read file to string</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>ifstream iFile<span class="op">(</span><span class="st">&quot;haha.txt&quot;</span><span class="op">);</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>string fileData<span class="op">(</span> <span class="bu">std::</span>istreambuf_iterator<span class="op">&lt;</span><span class="dt">char</span><span class="op">&gt;(</span> iFile <span class="op">)</span> <span class="op">),</span> <span class="bu">std::</span>istreambuf_iterator<span class="op">&lt;</span><span class="dt">char</span><span class="op">&gt;()</span> <span class="op">);</span></span></code></pre></div>
 <ul>
 <li>Item 30: Make sure destination ranges are big enough.</li>
 </ul>
-<p>This usually leads to bugs. Instead, whenever possible use one of the inserters: <code>std::inserter</code>, <code>std::back_inserter</code> or <code>std::front_inserter</code>.</p>
-<p>For an example usage of <code>std::back_inserter</code> see <a href="2010-05-25-c-stl-find-common-elements-of-2-sorted-vectors.html">this post</a>.</p>
+<p>This usually leads to bugs. Instead, whenever possible use one of the
+inserters: <code>std::inserter</code>, <code>std::back_inserter</code>
+or <code>std::front_inserter</code>.</p>
+<p>For an example usage of <code>std::back_inserter</code> see <a
+href="2010-05-25-c-stl-find-common-elements-of-2-sorted-vectors.html">this
+post</a>.</p>
 <ul>
 <li>Item 31: Know your sorting options.</li>
 </ul>
@@ -199,19 +232,28 @@ includes</code></pre>
 <li><p>Item 37: Use accumulate or for_each to summarize ranges.</p></li>
 <li><p>Item 39: Make predicates pure functions</p></li>
 </ul>
-<p>Predicate is a function that returns bool. Pure function is a function whose return value depends only on its input parameters. It does not have any side effects.</p>
+<p>Predicate is a function that returns bool. Pure function is a
+function whose return value depends only on its input parameters. It
+does not have any side effects.</p>
 <ul>
 <li>Item 40: Make functor classes adaptable.</li>
 </ul>
-<p>Inherit functors from std::unary_function or std::binary_function so that the necessary types are defined nicely for you.</p>
-<p>Defining functors as classes or structs is purely a matter of style. STL uses structs. Some may find it better since there is no need to declare it as public.</p>
+<p>Inherit functors from std::unary_function or std::binary_function so
+that the necessary types are defined nicely for you.</p>
+<p>Defining functors as classes or structs is purely a matter of style.
+STL uses structs. Some may find it better since there is no need to
+declare it as public.</p>
 <ul>
 <li><p>Item 43: Prefer algorithm calls to hand written loops.</p></li>
-<li><p>Item 44: Prefer member functions to algorithms with the same names.</p></li>
-<li><p>Item 45: Distinguish among count, find, binary_search, lower_bound, upper_bound and equal_range.</p></li>
-<li><p>Item 46: Consider function objects instead of functions as algorithm parameters.</p></li>
+<li><p>Item 44: Prefer member functions to algorithms with the same
+names.</p></li>
+<li><p>Item 45: Distinguish among count, find, binary_search,
+lower_bound, upper_bound and equal_range.</p></li>
+<li><p>Item 46: Consider function objects instead of functions as
+algorithm parameters.</p></li>
 </ul>
-<p>Passing functors is actually faster than passing pointer to a function! 😊</p>
+<p>Passing functors is actually faster than passing pointer to a
+function! 😊</p>
 </div>
 
 <br />
@@ -219,11 +261,13 @@ includes</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

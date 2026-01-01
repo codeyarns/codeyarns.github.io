@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,30 @@
 <h1 class="title">How to export a version in Mercurial</h1>
 <p class="date">📅 2011-Dec-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#archive'>archive</a>, <a href='index.html#export'>export</a>, <a href='index.html#mercurial'>mercurial</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Most of the work of transitioning from one version control system to another is figuring out the mapping from the jargon of the old one to the new. In <strong>Subversion</strong>, you could give someone a copy of a certain version using the <strong>export</strong> command. The copy thus created would be free of any repository information.</p>
-<p>The corresponding operation in Mercurial is called <strong>archive</strong>. This creates an unversioned archive of a certain revision of the repository. Creating an archive of the current revision of your repository to give to a colleague named Harry is as easy as:</p>
+<p>Most of the work of transitioning from one version control system to
+another is figuring out the mapping from the jargon of the old one to
+the new. In <strong>Subversion</strong>, you could give someone a copy
+of a certain version using the <strong>export</strong> command. The copy
+thus created would be free of any repository information.</p>
+<p>The corresponding operation in Mercurial is called
+<strong>archive</strong>. This creates an unversioned archive of a
+certain revision of the repository. Creating an archive of the current
+revision of your repository to give to a colleague named Harry is as
+easy as:</p>
 <pre><code>$ hg archive ../Copy-For-Harry</code></pre>
-<p>Another cool feature of the archive command is that it can create archives in compressed formats like zip. For example, to create a zip archive of the above:</p>
+<p>Another cool feature of the archive command is that it can create
+archives in compressed formats like zip. For example, to create a zip
+archive of the above:</p>
 <pre><code>$ hg archive Copy-For-Harry.zip</code></pre>
-<p>The hash of the revision being exported can be used in the name of the destination directory or file. For example:</p>
+<p>The hash of the revision being exported can be used in the name of
+the destination directory or file. For example:</p>
 <pre><code>$ hg archive Copy-For-Harry-%h.zip</code></pre>
-<p>The above command will create a file whose name might be <code>Copy-For-Harry-72f497079285.zip</code>, where <code>72f497079285</code> is the hash of the exported revision.</p>
-<p>(Thanks to <a href="http://stackoverflow.com/users/311635">Rudi</a> and <a href="http://stackoverflow.com/users/309760">Paul</a> on StackOverflow for these tips.)</p>
+<p>The above command will create a file whose name might be
+<code>Copy-For-Harry-72f497079285.zip</code>, where
+<code>72f497079285</code> is the hash of the exported revision.</p>
+<p>(Thanks to <a href="http://stackoverflow.com/users/311635">Rudi</a>
+and <a href="http://stackoverflow.com/users/309760">Paul</a> on
+StackOverflow for these tips.)</p>
 <p><strong>Tried with:</strong> Mercurial 1.9.2</p>
 </div>
 
@@ -61,11 +62,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

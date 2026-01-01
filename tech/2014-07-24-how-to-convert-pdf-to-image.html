@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,9 @@
 <h1 class="title">How to convert PDF to image</h1>
 <p class="date">📅 2014-Jul-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#conversion'>conversion</a>, <a href='index.html#image'>image</a>, <a href='index.html#pdf'>pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You may sometimes want to convert a PDF file into an image format like PNG or JPG. Doing this is easy using the convert application from ImageMagick.</p>
+<p>You may sometimes want to convert a PDF file into an image format
+like PNG or JPG. Doing this is easy using the convert application from
+ImageMagick.</p>
 <p>If you do not have it, first install ImageMagick:</p>
 <pre><code>$ sudo apt install imagemagick</code></pre>
 <p>To convert a PDF with a single page into a JPG:</p>
@@ -52,17 +40,24 @@
 $ ls
 foo.pdf
 foo.jpg</code></pre>
-<p>If the PDF has multiple pages, one image file is produced per page:</p>
+<p>If the PDF has multiple pages, one image file is produced per
+page:</p>
 <pre><code>$ convert foo.pdf foo.png
 $ ls
 foo.pdf
 foo-1.png
 foo-2.png
 foo-3.png</code></pre>
-<p>By default, the image file is produced at 96 DPI resolution of the PDF. If you need higher DPI, use the density option. For example, to generate at 300 DPI:</p>
+<p>By default, the image file is produced at 96 DPI resolution of the
+PDF. If you need higher DPI, use the density option. For example, to
+generate at 300 DPI:</p>
 <pre><code>$ convert -density 300 foo.pdf foo.png</code></pre>
-<p><strong>Note:</strong> The <code>-density</code> parameter has to come first. If you place it anywhere else, the program runs silently without complaining, but the output image will be in the default DPI.</p>
-<p><strong>Tried with:</strong> ImageMagick 6.7.7-10 and Ubuntu 14.04</p>
+<p><strong>Note:</strong> The <code>-density</code> parameter has to
+come first. If you place it anywhere else, the program runs silently
+without complaining, but the output image will be in the default
+DPI.</p>
+<p><strong>Tried with:</strong> ImageMagick 6.7.7-10 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -70,11 +65,13 @@ foo-3.png</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

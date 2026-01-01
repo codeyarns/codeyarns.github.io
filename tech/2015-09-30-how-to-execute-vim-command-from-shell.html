@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,28 @@
 <h1 class="title">How to execute Vim command from shell</h1>
 <p class="date">📅 2015-Sep-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#command'>command</a>, <a href='index.html#mkspell'>mkspell</a>, <a href='index.html#spellfile'>spellfile</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Vim</strong> can be started just for the purpose of executing one or more Vim <strong>commands</strong>. This can be done using the <code>-c</code> commandline option to Vim. When one or more of these is provided, Vim is started, then executes these commands first and then renders the edit window.</p>
+<p><strong>Vim</strong> can be started just for the purpose of executing
+one or more Vim <strong>commands</strong>. This can be done using the
+<code>-c</code> commandline option to Vim. When one or more of these is
+provided, Vim is started, then executes these commands first and then
+renders the edit window.</p>
 <p>For example, to open Vim with its internal help documentation:</p>
 <pre><code>$ vim -c help</code></pre>
-<p>Note how the internal help command is <code>:help</code> and we can drop the colon when using the command option.</p>
-<p>To open a file named <code>foo</code> in Vim using this command option:</p>
+<p>Note how the internal help command is <code>:help</code> and we can
+drop the colon when using the command option.</p>
+<p>To open a file named <code>foo</code> in Vim using this command
+option:</p>
 <pre><code>$ vim -c &quot;e foo&quot;</code></pre>
-<p>To open two files named <code>foo</code> and <code>bar</code> in Vim using this command option:</p>
+<p>To open two files named <code>foo</code> and <code>bar</code> in Vim
+using this command option:</p>
 <pre><code>$ vim -c &quot;e foo&quot; -c &quot;e bar&quot;</code></pre>
-<p>The above examples are convoluted, since files can be opened directly without using this command option.</p>
-<p>Here is a problem that I could solve only using this command option: I update the Vim text <strong>spellfile</strong> manually and I want to compile the binary spellfile from the shell or from a script. Easy to achieve by calling the command to compile spellfile <code>mkspell</code> and then quit <code>q</code>:</p>
+<p>The above examples are convoluted, since files can be opened directly
+without using this command option.</p>
+<p>Here is a problem that I could solve only using this command option:
+I update the Vim text <strong>spellfile</strong> manually and I want to
+compile the binary spellfile from the shell or from a script. Easy to
+achieve by calling the command to compile spellfile <code>mkspell</code>
+and then quit <code>q</code>:</p>
 <pre><code>$ vim -c &quot;mkspell! ~/.vim/spell/en.utf-8.add&quot; -c q</code></pre>
 <p><strong>Tried with:</strong> Vim 7.4.52 and Ubuntu 14.04</p>
 </div>
@@ -63,11 +61,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

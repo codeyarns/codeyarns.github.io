@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,23 +30,44 @@
 <h1 class="title">attrs package in Python</h1>
 <p class="date">📅 2016-Sep-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#attrs'>attrs</a>, <a href='index.html#dataclasses'>dataclasses</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>It is very rare that you learn something that completely changes how you program. Reading <a href="https://glyph.twistedmatrix.com/2016/08/attrs.html">this post</a> about the <strong>attrs</strong> package in <strong>Python</strong> was a revelation to me.</p>
-<p>Coming from C++, I am not too big a fan on returning everything as lists and tuples. In many cases, you want to have structure and attributes and the class in Python is a good fit for this. However, creating a proper class with attributes that has all the necessary basic methods is a pain.</p>
-<p>This is where attrs comes in. Add its decorator to the class and designate the attributes of the class using its methods and it will generate all the necessary <a href="https://wiki.python.org/moin/DunderAlias"><strong>dunder</strong></a> methods for you. You can also get some nice type checking and default values for the attributes too.</p>
+<p>It is very rare that you learn something that completely changes how
+you program. Reading <a
+href="https://glyph.twistedmatrix.com/2016/08/attrs.html">this post</a>
+about the <strong>attrs</strong> package in <strong>Python</strong> was
+a revelation to me.</p>
+<p>Coming from C++, I am not too big a fan on returning everything as
+lists and tuples. In many cases, you want to have structure and
+attributes and the class in Python is a good fit for this. However,
+creating a proper class with attributes that has all the necessary basic
+methods is a pain.</p>
+<p>This is where attrs comes in. Add its decorator to the class and
+designate the attributes of the class using its methods and it will
+generate all the necessary <a
+href="https://wiki.python.org/moin/DunderAlias"><strong>dunder</strong></a>
+methods for you. You can also get some nice type checking and default
+values for the attributes too.</p>
 <ul>
-<li><p>First, let us get the biggest confusion about this package out of the way! It is called <strong>attrs</strong> when you install it cause there is already another existing package called <strong>attr</strong> (the singular). But when you import and use it, then it is called <strong>attr</strong>. I know it is irritating, but this is the way it is.</p></li>
+<li><p>First, let us get the biggest confusion about this package out of
+the way! It is called <strong>attrs</strong> when you install it cause
+there is already another existing package called <strong>attr</strong>
+(the singular). But when you import and use it, then it is called
+<strong>attr</strong>. I know it is irritating, but this is the way it
+is.</p></li>
 <li><p>To install it:</p></li>
 </ul>
 <pre><code>$ python3 -m pip install attrs</code></pre>
 <ul>
-<li>To decorate the class use <code>attr.s</code>. I read it is as the plural attrs. And to declare the class attributes, use <code>attr.ib</code> method. I read it as attribute.</li>
+<li>To decorate the class use <code>attr.s</code>. I read it is as the
+plural attrs. And to declare the class attributes, use
+<code>attr.ib</code> method. I read it as attribute.</li>
 </ul>
 <pre><code>@attr.s
 class Creature:
     eyes = attr.ib()
     legs = attr.ib()</code></pre>
 <ul>
-<li>Once declared like this, the attributes can be provided while constructing an object of the class:</li>
+<li>Once declared like this, the attributes can be provided while
+constructing an object of the class:</li>
 </ul>
 <pre><code>c = Creature(2, 4)</code></pre>
 <ul>
@@ -68,7 +75,9 @@ class Creature:
 </ul>
 <pre><code>c = Creature(legs=6, eyes=1000)</code></pre>
 <ul>
-<li>Notice that we have not specified any default value for the attributes. So, it will rightfully complain when constructing without values:</li>
+<li>Notice that we have not specified any default value for the
+attributes. So, it will rightfully complain when constructing without
+values:</li>
 </ul>
 <pre><code>c = Creature()
 
@@ -82,15 +91,18 @@ class Creature:
     legs = attr.ib(default=6)
 
 c = Creature()</code></pre>
-<p>Note that if there are some rules you run up against if you provide default values for some attributes and not to others.</p>
+<p>Note that if there are some rules you run up against if you provide
+default values for some attributes and not to others.</p>
 <ul>
-<li>A beautiful <code>__repr__</code> dunder method is automatically generated for your class. So, you can print any object:</li>
+<li>A beautiful <code>__repr__</code> dunder method is automatically
+generated for your class. So, you can print any object:</li>
 </ul>
 <pre><code>c = Creature(3, 6)
 print(c)
 
 Creature(eyes=3, legs=6)</code></pre>
-<p>This is for me the killer feature! This is far more informational than just looking at a bunch of list or dict values.</p>
+<p>This is for me the killer feature! This is far more informational
+than just looking at a bunch of list or dict values.</p>
 <ul>
 <li>Attributes can be get or set just like normal class attributes:</li>
 </ul>
@@ -98,13 +110,15 @@ Creature(eyes=3, legs=6)</code></pre>
 c.eyes = 10
 print(c.legs)</code></pre>
 <ul>
-<li>Comparison methods are already generated for you, so you can go ahead and compare objects:</li>
+<li>Comparison methods are already generated for you, so you can go
+ahead and compare objects:</li>
 </ul>
 <pre><code>c1 = Creature(2, 4)
 c2 = Creature(3, 9)
 c1 == c2</code></pre>
 <ul>
-<li>You can add some semblance of type checking to attributes by using the <code>instance_of</code> validators provided by the package:</li>
+<li>You can add some semblance of type checking to attributes by using
+the <code>instance_of</code> validators provided by the package:</li>
 </ul>
 <pre><code>@attr.s
 class Creature:
@@ -115,28 +129,37 @@ c = Creature(3.14, 6)
 
 TypeError: (&quot;&#39;eyes&#39; must be &lt;class &#39;int&#39;&gt; (got 3.14 that is a &lt;class &#39;float&#39;&gt;).&quot;</code></pre>
 <ul>
-<li>By default, class attributes are stored in a dictionary. You can switch this to use slots by changing the decorator:</li>
+<li>By default, class attributes are stored in a dictionary. You can
+switch this to use slots by changing the decorator:</li>
 </ul>
 <pre><code>@attr.s(slots=True)
 class Creature:
     eyes = attr.ib()
     legs = attr.ib()</code></pre>
 <ul>
-<li>Are you curious to see the definition of the dunder methods it generates? You can do that using the <strong>inspect</strong> package:</li>
+<li>Are you curious to see the definition of the dunder methods it
+generates? You can do that using the <strong>inspect</strong>
+package:</li>
 </ul>
 <pre><code>import inspect
 print(inspect.getsource(Creature.__init__))
 print(inspect.getsource(Creature.__eq__))
 print(inspect.getsource(Creature.__gt__))</code></pre>
 <ul>
-<li>Want to see what are all the methods and fields the package creates for a class?</li>
+<li>Want to see what are all the methods and fields the package creates
+for a class?</li>
 </ul>
 <pre><code>print(attr.fields(Creature))
 
 (Attribute(name=&#39;eyes&#39;, default=NOTHING, validator=&lt;instance_of validator for type &lt;class &#39;int&#39;&gt;&gt;, repr=True, cmp=True, hash=True, init=True, convert=None), Attribute(name=&#39;legs&#39;, default=NOTHING, validator=None, repr=True, cmp=True, hash=True, init=True, convert=None))</code></pre>
-<p>There is a lot more stuff in this awesome must-use package that can be read <a href="https://attrs.readthedocs.io/en/stable/">here</a></p>
-<p><strong>Update</strong>: <a href="https://docs.python.org/3.7/library/dataclasses.html"><strong>dataclasses</strong></a> were introduced in Python 3.7 and they seem to have a lot of features of attrs.</p>
-<p><strong>Tried with:</strong> attrs 16.1.0, Python 3.5.2 and Ubuntu 16.04</p>
+<p>There is a lot more stuff in this awesome must-use package that can
+be read <a href="https://attrs.readthedocs.io/en/stable/">here</a></p>
+<p><strong>Update</strong>: <a
+href="https://docs.python.org/3.7/library/dataclasses.html"><strong>dataclasses</strong></a>
+were introduced in Python 3.7 and they seem to have a lot of features of
+attrs.</p>
+<p><strong>Tried with:</strong> attrs 16.1.0, Python 3.5.2 and Ubuntu
+16.04</p>
 </div>
 
 <br />
@@ -144,11 +167,13 @@ print(inspect.getsource(Creature.__gt__))</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

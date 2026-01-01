@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,25 @@
 <h1 class="title">cinttypes macros</h1>
 <p class="date">📅 2019-Dec-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Using fixed width integer types, such as <code>int32_t</code>, from the <code>cstdint</code> header file is important for writing portable C++ code. Once you are using such fixed width types, how do you print them using <code>printf</code> or read them in using <code>scanf</code>? This is the problem that the <strong>macros</strong> defined in the <code>cinttypes</code> header file were created to solve.</p>
-<p>The <a href="2018-08-22-how-to-get-the-cpp-standard.html">C++11 standard</a> succinctly lists the cinttypes macros as:</p>
+<p>Using fixed width integer types, such as <code>int32_t</code>, from
+the <code>cstdint</code> header file is important for writing portable
+C++ code. Once you are using such fixed width types, how do you print
+them using <code>printf</code> or read them in using <code>scanf</code>?
+This is the problem that the <strong>macros</strong> defined in the
+<code>cinttypes</code> header file were created to solve.</p>
+<p>The <a href="2018-08-22-how-to-get-the-cpp-standard.html">C++11
+standard</a> succinctly lists the cinttypes macros as:</p>
 <pre><code>PRI{d i o u x X}[FAST LEAST]{8 16 32 64}
 PRI{d i o u x X}{MAX PTR}
 SCN{d i o u x X}[FAST LEAST]{8 16 32 64}
 SCN{d i o u x X}{MAX PTR}</code></pre>
-<p>What this means is that you can use the macro <code>PRIi32</code> as the format specifier in printf for an <code>int32_t</code> variable. Or if you want to scan in an <code>uint8_t</code> variable, then use the <code>SCNu8</code> macro and so on.</p>
-<p>These macros define the correct format specifier character, so using them entails combining string literals. Their usage is illustrated by this code example:</p>
+<p>What this means is that you can use the macro <code>PRIi32</code> as
+the format specifier in printf for an <code>int32_t</code> variable. Or
+if you want to scan in an <code>uint8_t</code> variable, then use the
+<code>SCNu8</code> macro and so on.</p>
+<p>These macros define the correct format specifier character, so using
+them entails combining string literals. Their usage is illustrated by
+this code example:</p>
 <pre><code>// Classic types
 
 int i;
@@ -70,7 +67,9 @@ printf(&quot;%&quot; PRIx32 &quot;\n&quot;, i32);  // Print int value as hex
 uint8_t u8;
 scanf(&quot;%&quot; SCNu8 &quot;\n&quot;, &amp;u8);
 printf(&quot;%&quot; PRIu8 &quot;\n&quot;, u8);</code></pre>
-<p>Note that the C++ standard says that <code>cinttypes</code> will include <code>cstdint</code>, so the latter header does not need to be included if you are using these macros.</p>
+<p>Note that the C++ standard says that <code>cinttypes</code> will
+include <code>cstdint</code>, so the latter header does not need to be
+included if you are using these macros.</p>
 </div>
 
 <br />
@@ -78,11 +77,13 @@ printf(&quot;%&quot; PRIu8 &quot;\n&quot;, u8);</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

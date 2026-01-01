@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,25 @@
 <h1 class="title">The strange case of Xfinity login failure</h1>
 <p class="date">📅 2021-Feb-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#xfinity'>xfinity</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I recently moved and thus had to enable a new <strong>Xfinity</strong> broadband internet connection at my new place. The connection was enabled and I could access all websites on the web, except for Xfinity’s own <a href="https://login.xfinity.com/login">customer portal</a>!</p>
+<p>I recently moved and thus had to enable a new
+<strong>Xfinity</strong> broadband internet connection at my new place.
+The connection was enabled and I could access all websites on the web,
+except for Xfinity’s own <a
+href="https://login.xfinity.com/login">customer portal</a>!</p>
 <figure>
-<img src="2021-02-04-the-strange-case-of-xfinity-login-failure.png" alt="" /><figcaption>Cannot access Xfinity portal using a Xfinity broadband connection!</figcaption>
+<img src="2021-02-04-the-strange-case-of-xfinity-login-failure.png"
+alt="Cannot access Xfinity portal using a Xfinity broadband connection!" />
+<figcaption aria-hidden="true">Cannot access Xfinity portal using a
+Xfinity broadband connection!</figcaption>
 </figure>
-<p>Shockingly, this seems to be a <a href="https://forums.xfinity.com/t5/Xfinity-Stream-Website/Not-able-to-login-to-xfinity-stream-while-on-home-network/td-p/3265740">common problem</a> with Xfinity customers. I tried everything I could think of and was suggested online: restarting the broadband modem, restarting the wireless router and changing the DNS servers. No dice.</p>
-<p>By using rudimentary Linux network tools, it was obvious that when connected from inside Xfinity’s network, the DNS/IP/routing they were doing for customers was screwed up:</p>
+<p>Shockingly, this seems to be a <a
+href="https://forums.xfinity.com/t5/Xfinity-Stream-Website/Not-able-to-login-to-xfinity-stream-while-on-home-network/td-p/3265740">common
+problem</a> with Xfinity customers. I tried everything I could think of
+and was suggested online: restarting the broadband modem, restarting the
+wireless router and changing the DNS servers. No dice.</p>
+<p>By using rudimentary Linux network tools, it was obvious that when
+connected from inside Xfinity’s network, the DNS/IP/routing they were
+doing for customers was screwed up:</p>
 <pre><code>$ host oauth.xfinity.com
 oauth.xfinity.com is an alias for oauth.g.xfinity.com.
 oauth.g.xfinity.com has address 162.150.57.167
@@ -68,8 +67,15 @@ PING oauth.g.xfinity.com (68.87.29.197) 56(84) bytes of data.
 ^C
 --- oauth.g.xfinity.com ping statistics ---
 13 packets transmitted, 0 received, 100% packet loss, time 12036ms</code></pre>
-<p>Notice how <code>host</code> and <code>nslookup</code> returned different IP addresses. And <code>ping</code> used a third different IP address. And none of those IP addresses were pingable.</p>
-<p>In the end, I had to use my cellphone’s <strong>mobile data connection</strong> to access the customer portal of my home broadband internet provider! The portal opened up fine. Going by the complaints online, Xfinity just does not seem to care about this problem. I have been getting by accessing the portal through my cellphone or through a portable hotspot on my computer.</p>
+<p>Notice how <code>host</code> and <code>nslookup</code> returned
+different IP addresses. And <code>ping</code> used a third different IP
+address. And none of those IP addresses were pingable.</p>
+<p>In the end, I had to use my cellphone’s <strong>mobile data
+connection</strong> to access the customer portal of my home broadband
+internet provider! The portal opened up fine. Going by the complaints
+online, Xfinity just does not seem to care about this problem. I have
+been getting by accessing the portal through my cellphone or through a
+portable hotspot on my computer.</p>
 </div>
 
 <br />
@@ -77,11 +83,13 @@ PING oauth.g.xfinity.com (68.87.29.197) 56(84) bytes of data.
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

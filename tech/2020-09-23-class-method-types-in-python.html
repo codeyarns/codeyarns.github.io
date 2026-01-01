@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,95 +95,107 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Class method types in Python</h1>
 <p class="date">📅 2020-Sep-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>There are 3 types of methods that can be created in a class in <strong>Python</strong>: instance methods, class methods and static methods.</p>
+<p>There are 3 types of methods that can be created in a class in
+<strong>Python</strong>: instance methods, class methods and static
+methods.</p>
 <h2 id="static-method">Static method</h2>
 <ul>
 <li>This is created with the decorator <code>@staticmethod</code>.</li>
-<li>This is essentially a free function, except it is placed inside the scope or namespace of the class. So to call it you would need to invoke the class or an object of that class.</li>
+<li>This is essentially a free function, except it is placed inside the
+scope or namespace of the class. So to call it you would need to invoke
+the class or an object of that class.</li>
 </ul>
 <h2 id="class-method">Class method</h2>
 <ul>
 <li>This is created with the decorator <code>@classmethod</code>.</li>
-<li>This method needs at least one input and that first input (typically called <code>cls</code>) is the class.</li>
-<li>This method not only gets the namespace of the class (like the static method), but additionally also has access to everything about the class. For example, it can access all the attributes of the class.</li>
+<li>This method needs at least one input and that first input (typically
+called <code>cls</code>) is the class.</li>
+<li>This method not only gets the namespace of the class (like the
+static method), but additionally also has access to everything about the
+class. For example, it can access all the attributes of the class.</li>
 </ul>
 <h2 id="instance-method">Instance method</h2>
 <ul>
-<li>This does not have any decorator. This is the canonical method on an object or instance of the class.</li>
-<li>This method needs at least one input and that first input (typically named <code>self</code>) is an object or instance of the class.</li>
-<li>This method not only gets the namespace of the class and access to the attributes of the class, but additionally also has access to other instance members and methods of the class.</li>
+<li>This does not have any decorator. This is the canonical method on an
+object or instance of the class.</li>
+<li>This method needs at least one input and that first input (typically
+named <code>self</code>) is an object or instance of the class.</li>
+<li>This method not only gets the namespace of the class and access to
+the attributes of the class, but additionally also has access to other
+instance members and methods of the class.</li>
 </ul>
 <p>Here is sample code that uses all three types of methods:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">class</span> A:</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    X <span class="op">=</span> <span class="dv">23</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>        <span class="va">self</span>.y <span class="op">=</span> <span class="dv">46</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="kw">def</span> instance_foo(<span class="va">self</span>):</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>        <span class="co">&quot;&quot;&quot;Instance method.&quot;&quot;&quot;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="bu">dir</span>(<span class="va">self</span>))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>        <span class="co"># Member access</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="va">self</span>.X)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>        <span class="bu">print</span>(A.X)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="va">self</span>.y)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>        <span class="co"># Method access</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>        <span class="va">self</span>.instance_foo2()</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>        <span class="va">self</span>.class_foo()</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>        A.class_foo()</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>        <span class="va">self</span>.static_foo()</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>        A.static_foo()</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>    <span class="kw">def</span> instance_foo2(<span class="va">self</span>):</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>        <span class="cf">return</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    <span class="at">@classmethod</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>    <span class="kw">def</span> class_foo(cls):</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>        <span class="co">&quot;&quot;&quot;Class method.&quot;&quot;&quot;</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>        <span class="bu">print</span>(<span class="bu">dir</span>(cls))</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>        <span class="co"># Member access</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>        <span class="bu">print</span>(cls.X)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>        <span class="bu">print</span>(A.X)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true"></a>        <span class="co"># Method access</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true"></a>        A.class_foo2()</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true"></a>        A.static_foo()</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true"></a>    <span class="at">@classmethod</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true"></a>    <span class="kw">def</span> class_foo2(cls):</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true"></a>        <span class="cf">return</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true"></a>    <span class="at">@staticmethod</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true"></a>    <span class="kw">def</span> static_foo():</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true"></a>        <span class="co">&quot;&quot;&quot;Static method.&quot;&quot;&quot;</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true"></a>        <span class="co"># Member access</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true"></a>        <span class="bu">print</span>(A.X)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true"></a>        <span class="co"># Method access</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true"></a>        A.static_foo2()</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true"></a>        A.class_foo2()</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true"></a>    <span class="at">@staticmethod</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true"></a>    <span class="kw">def</span> static_foo2():</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true"></a>        <span class="cf">return</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true"></a></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true"></a><span class="co"># Calling instance method</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true"></a>a <span class="op">=</span> A()</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true"></a>a.instance_foo()</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true"></a><span class="co"># Calling class method</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true"></a>A.class_foo()</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true"></a>a.class_foo()</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true"></a><span class="co"># Calling static method</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true"></a>A.static_foo()</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true"></a>a.static_foo()</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> A:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> <span class="dv">23</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> <span class="dv">46</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> instance_foo(<span class="va">self</span>):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Instance method.&quot;&quot;&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">dir</span>(<span class="va">self</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Member access</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.X)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(A.X)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.y)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Method access</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.instance_foo2()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.class_foo()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        A.class_foo()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.static_foo()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        A.static_foo()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> instance_foo2(<span class="va">self</span>):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">@classmethod</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> class_foo(cls):</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Class method.&quot;&quot;&quot;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="bu">dir</span>(cls))</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Member access</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(cls.X)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(A.X)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Method access</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        A.class_foo2()</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        A.static_foo()</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">@classmethod</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> class_foo2(cls):</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> static_foo():</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="co">&quot;&quot;&quot;Static method.&quot;&quot;&quot;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Member access</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(A.X)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Method access</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        A.static_foo2()</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        A.class_foo2()</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> static_foo2():</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Calling instance method</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> A()</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>a.instance_foo()</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Calling class method</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>A.class_foo()</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>a.class_foo()</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Calling static method</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>A.static_foo()</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>a.static_foo()</span></code></pre></div>
 </div>
 
 <br />
@@ -204,11 +203,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

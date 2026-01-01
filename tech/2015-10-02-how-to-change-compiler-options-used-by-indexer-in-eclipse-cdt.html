@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,18 +27,32 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to change compiler options used by indexer in Eclipse CDT</h1>
+<h1 class="title">How to change compiler options used by indexer in
+Eclipse CDT</h1>
 <p class="date">📅 2015-Oct-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#cpp11'>cpp11</a>, <a href='index.html#eclipse'>eclipse</a>, <a href='index.html#eclipse-cdt'>eclipse cdt</a>, <a href='index.html#indexer'>indexer</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Eclipse CDT</strong> understands the <strong>C++</strong> code in a window by running it through an <strong>indexer</strong>. This indexer is nothing but an invocation of the GCC C++ compiler with certain compilation options. Sometimes, you might want to change the compiler options used by this indexer.</p>
-<p>For example, I recently found that C++11 containers and classes (like <code>future</code>) were not resolved by the indexer and were underlined with red squiggles. This is because the compiler options used by the indexer does not have <code>-std=c++11</code>.</p>
+<p><strong>Eclipse CDT</strong> understands the <strong>C++</strong>
+code in a window by running it through an <strong>indexer</strong>. This
+indexer is nothing but an invocation of the GCC C++ compiler with
+certain compilation options. Sometimes, you might want to change the
+compiler options used by this indexer.</p>
+<p>For example, I recently found that C++11 containers and classes (like
+<code>future</code>) were not resolved by the indexer and were
+underlined with red squiggles. This is because the compiler options used
+by the indexer does not have <code>-std=c++11</code>.</p>
 <p>To change the compiler options of the indexer:</p>
 <ol type="1">
-<li><p>Open <strong>Preferences</strong> and go to C/C++ -&gt; Build -&gt; Settings.</p></li>
-<li><p>Click the <strong>Discovery</strong> tab and choose <strong>CDT GCC Built-in Compiler Settings</strong>.</p></li>
-<li><p>Modify the command string shown below it as you wish. For example, here I added <code>-std=c++11</code>.</p></li>
-<li><p>Eclipse CDT will automatically re-index your C++ files after this is saved. However, I found that this did not remove the unresolved items.</p></li>
-<li><p>I manually re-indexed by right-clicking the project and choosing Index -&gt; Rebuild. This worked!</p></li>
+<li><p>Open <strong>Preferences</strong> and go to C/C++ -&gt; Build
+-&gt; Settings.</p></li>
+<li><p>Click the <strong>Discovery</strong> tab and choose <strong>CDT
+GCC Built-in Compiler Settings</strong>.</p></li>
+<li><p>Modify the command string shown below it as you wish. For
+example, here I added <code>-std=c++11</code>.</p></li>
+<li><p>Eclipse CDT will automatically re-index your C++ files after this
+is saved. However, I found that this did not remove the unresolved
+items.</p></li>
+<li><p>I manually re-indexed by right-clicking the project and choosing
+Index -&gt; Rebuild. This worked!</p></li>
 </ol>
 <p><strong>Tried with:</strong> Eclipse 4.5 (Mars) and Ubuntu 14.04</p>
 </div>
@@ -62,11 +62,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

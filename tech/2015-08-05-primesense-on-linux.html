@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,29 +31,64 @@
 <p class="date">📅 2015-Aug-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#linux'>linux</a>, <a href='index.html#openni'>openni</a>, <a href='index.html#primesense'>primesense</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/08/20150806_primesense.jpg" alt="" /><figcaption>My Primesense RD1.09 camera that causes many troubles</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/08/20150806_primesense.jpg"
+alt="My Primesense RD1.09 camera that causes many troubles" />
+<figcaption aria-hidden="true">My Primesense RD1.09 camera that causes
+many troubles</figcaption>
 </figure>
-<p>I have a <strong>Primesense RD1.09</strong> camera that works without any problem under <strong>Windows</strong> using <strong>OpenNI 2.2.0.33</strong>. Under Linux though, it is a world of pain!</p>
+<p>I have a <strong>Primesense RD1.09</strong> camera that works without
+any problem under <strong>Windows</strong> using <strong>OpenNI
+2.2.0.33</strong>. Under Linux though, it is a world of pain!</p>
 <h2 id="investigation">Investigation</h2>
-<p>After a lot of debugging, I have discovered that most of the problems arise if you have a computer which has USB 3.0 controllers or hubs. It does <strong>not</strong> matter if you plug in the Primesense into a USB 3.0 or USB 2.0 port. Just the existence of USB 3.0 on your computer means that the Linux kernel behaves differently.</p>
-<p>After endless hours of plugging and unplugging into USB ports and poring over the errors in <code>/var/log/syslog</code> and the behavior of <code>lsusb</code> on 3 different computers, I believe it is the USB subsystem of Linux that is causing the problem. Linux kernel uses the XHCI module and on computers which have USB 3.0 controllers, it seems to be causing problems. For an excellent example see <a href="http://askubuntu.com/questions/457901/usb-2-0-device-scanner-does-not-work-with-xhci-hcd-on-usb-3-0-system">this scanner problem</a>.</p>
-<p>Additionally, if you have played around with different versions of OpenNI, that can also add another layer of bugs. Make sure you <code>apt-get remove --purge</code> when you remove OpenNI 1.x. Also make sure you manually remove the files installed by OpenNI 2.x (which does not have an uninstaller).</p>
+<p>After a lot of debugging, I have discovered that most of the problems
+arise if you have a computer which has USB 3.0 controllers or hubs. It
+does <strong>not</strong> matter if you plug in the Primesense into a
+USB 3.0 or USB 2.0 port. Just the existence of USB 3.0 on your computer
+means that the Linux kernel behaves differently.</p>
+<p>After endless hours of plugging and unplugging into USB ports and
+poring over the errors in <code>/var/log/syslog</code> and the behavior
+of <code>lsusb</code> on 3 different computers, I believe it is the USB
+subsystem of Linux that is causing the problem. Linux kernel uses the
+XHCI module and on computers which have USB 3.0 controllers, it seems to
+be causing problems. For an excellent example see <a
+href="http://askubuntu.com/questions/457901/usb-2-0-device-scanner-does-not-work-with-xhci-hcd-on-usb-3-0-system">this
+scanner problem</a>.</p>
+<p>Additionally, if you have played around with different versions of
+OpenNI, that can also add another layer of bugs. Make sure you
+<code>apt-get remove --purge</code> when you remove OpenNI 1.x. Also
+make sure you manually remove the files installed by OpenNI 2.x (which
+does not have an uninstaller).</p>
 <h2 id="symptoms">Symptoms</h2>
-<p>Check if you see of these symptoms when using Primesense in Linux:</p>
+<p>Check if you see of these symptoms when using Primesense in
+Linux:</p>
 <ul>
-<li><p>You plug in Primesense and type <code>lsusb</code>. It should enumerate the USB devices in a second. If it takes longer, you have a computer with USB 3.0 ports and the buggy Linux kernel USB modules are having trouble with it.</p></li>
-<li><p>Primesense is detected in <code>lsusb</code> and it appears as <code>ASUS</code>. But, running any sample viewer program returns in error.</p></li>
-<li><p>Primesense is detected only half the times it is plugged in.</p></li>
-<li><p>When the camera is detected, I run a program to read depth and color streams. Half the time, the color stream does not provide any frames!</p></li>
-<li><p>Even when both depth and color frames are provided, the color frames have lower FPS and even freeze sometimes!</p></li>
+<li><p>You plug in Primesense and type <code>lsusb</code>. It should
+enumerate the USB devices in a second. If it takes longer, you have a
+computer with USB 3.0 ports and the buggy Linux kernel USB modules are
+having trouble with it.</p></li>
+<li><p>Primesense is detected in <code>lsusb</code> and it appears as
+<code>ASUS</code>. But, running any sample viewer program returns in
+error.</p></li>
+<li><p>Primesense is detected only half the times it is plugged
+in.</p></li>
+<li><p>When the camera is detected, I run a program to read depth and
+color streams. Half the time, the color stream does not provide any
+frames!</p></li>
+<li><p>Even when both depth and color frames are provided, the color
+frames have lower FPS and even freeze sometimes!</p></li>
 </ul>
 <h2 id="solution">Solution</h2>
 <p>Both of these solutions worked for me:</p>
 <ul>
-<li><p>On computer with USB 3.0, go to BIOS setup and disable <strong>Intel xHCI</strong> and <strong>EHCI</strong>. If your BIOS does not have these options, you are out of luck! ☹</p></li>
-<li><p>Switch to an older computer which has <strong>only</strong> USB 2.0 controllers and ports.</p></li>
+<li><p>On computer with USB 3.0, go to BIOS setup and disable
+<strong>Intel xHCI</strong> and <strong>EHCI</strong>. If your BIOS does
+not have these options, you are out of luck! ☹</p></li>
+<li><p>Switch to an older computer which has <strong>only</strong> USB
+2.0 controllers and ports.</p></li>
 </ul>
-<p>Primesense worked flawlessly with the OpenNI 1.x packages (from Ubuntu) on the computers after I tried the above solutions! 😊</p>
+<p>Primesense worked flawlessly with the OpenNI 1.x packages (from
+Ubuntu) on the computers after I tried the above solutions! 😊</p>
 </div>
 
 <br />
@@ -75,11 +96,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

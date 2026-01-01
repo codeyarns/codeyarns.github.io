@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,51 +95,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">CUDA: Structures as Kernel Parameters</h1>
 <p class="date">📅 2011-Mar-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#structures'>structures</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A common problem for beginners in CUDA programming is that the number of parameters passed to a kernel explodes very quickly. For example, a kernel that takes 2 arrays as input and writes the result to another array:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">// Kernel</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>__global__ <span class="dt">void</span> fooKernel</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="at">const</span> <span class="dt">int</span>* inArr0,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="at">const</span> <span class="dt">int</span>* inArr1,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="at">const</span> <span class="dt">int</span>* outArr,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="dt">int</span> inArr0Len,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="dt">int</span> inArr1Len,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="dt">int</span> outArrLen</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>{ <span class="co">/* ... */</span> }</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co">// Kernel call</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( inArr0, inArr1, outArr, inArr0Len, inArr1Len, outArrLen );</span></code></pre></div>
-<p>To handle this situation gracefully, related parameters can be grouped together into a <strong>structure</strong>.</p>
+<p>A common problem for beginners in CUDA programming is that the number
+of parameters passed to a kernel explodes very quickly. For example, a
+kernel that takes 2 arrays as input and writes the result to another
+array:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Kernel</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>__global__ <span class="dt">void</span> fooKernel</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">(</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span><span class="op">*</span> inArr0<span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span><span class="op">*</span> inArr1<span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span><span class="op">*</span> outArr<span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> inArr0Len<span class="op">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> inArr1Len<span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> outArrLen</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> <span class="co">/* ... */</span> <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Kernel call</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>fooKernel<span class="op">&lt;&lt;&lt;</span> x<span class="op">,</span> y <span class="op">&gt;&gt;&gt;(</span> inArr0<span class="op">,</span> inArr1<span class="op">,</span> outArr<span class="op">,</span> inArr0Len<span class="op">,</span> inArr1Len<span class="op">,</span> outArrLen <span class="op">);</span></span></code></pre></div>
+<p>To handle this situation gracefully, related parameters can be
+grouped together into a <strong>structure</strong>.</p>
 <p>Typically, there are 2 kinds of parameters passed to the kernel:</p>
 <ol type="1">
 <li><p>Data passed by value, like integers or floats.</p></li>
 <li><p>Pointers to device memory.</p></li>
 </ol>
-<p>Most of the time, the information in the above parameters are related. For example, an array in device memory and its length:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="at">const</span> <span class="dt">int</span> arrLen = <span class="dv">256</span>;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="dt">int</span>* dArray      = NULL;</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>cudaMalloc( &amp;dArray, arrLen * <span class="kw">sizeof</span>( *dArray ) );</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">// 2 related parameters to kernel</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( dArray, arrLen );</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>cudaFree( dArray );</span></code></pre></div>
-<p>In such cases, related parameters can be elegantly combined into a struct:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">struct</span> FooInfo</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>{</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="dt">int</span>* arr;</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="dt">int</span>  len;</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>};</span></code></pre></div>
-<p>Pointers to device memory inside the structure still need to be allocated and freed individually. Yet, using structures reduces the number of kernel parameters and eases the work of the programmer:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>FooInfo fooInfo;</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>fooInfo.len = <span class="dv">256</span>;</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>cudaMalloc( &amp;( fooInfo.arr ), fooInfo.len * <span class="kw">sizeof</span>( *dArray ) );</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">// 2 related parameters to kernel</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>fooKernel&lt;&lt;&lt; x, y &gt;&gt;&gt;( fooInfo );</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>cudaFree( fooInfo.arr );</span></code></pre></div>
+<p>Most of the time, the information in the above parameters are
+related. For example, an array in device memory and its length:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> arrLen <span class="op">=</span> <span class="dv">256</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span><span class="op">*</span> dArray      <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cudaMalloc<span class="op">(</span> <span class="op">&amp;</span>dArray<span class="op">,</span> arrLen <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span> <span class="op">*</span>dArray <span class="op">)</span> <span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">// 2 related parameters to kernel</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>fooKernel<span class="op">&lt;&lt;&lt;</span> x<span class="op">,</span> y <span class="op">&gt;&gt;&gt;(</span> dArray<span class="op">,</span> arrLen <span class="op">);</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>cudaFree<span class="op">(</span> dArray <span class="op">);</span></span></code></pre></div>
+<p>In such cases, related parameters can be elegantly combined into a
+struct:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> FooInfo</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> arr<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span>  len<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>Pointers to device memory inside the structure still need to be
+allocated and freed individually. Yet, using structures reduces the
+number of kernel parameters and eases the work of the programmer:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>FooInfo fooInfo<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fooInfo<span class="op">.</span>len <span class="op">=</span> <span class="dv">256</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cudaMalloc<span class="op">(</span> <span class="op">&amp;(</span> fooInfo<span class="op">.</span>arr <span class="op">),</span> fooInfo<span class="op">.</span>len <span class="op">*</span> <span class="kw">sizeof</span><span class="op">(</span> <span class="op">*</span>dArray <span class="op">)</span> <span class="op">);</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">// 2 related parameters to kernel</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>fooKernel<span class="op">&lt;&lt;&lt;</span> x<span class="op">,</span> y <span class="op">&gt;&gt;&gt;(</span> fooInfo <span class="op">);</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>cudaFree<span class="op">(</span> fooInfo<span class="op">.</span>arr <span class="op">);</span></span></code></pre></div>
 <p><strong>Tried with</strong>: CUDA 3.2</p>
 </div>
 
@@ -161,11 +160,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

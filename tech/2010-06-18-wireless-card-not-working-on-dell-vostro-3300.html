@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,8 +31,14 @@
 <p class="date">📅 2010-Jun-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dell'>dell</a>, <a href='index.html#laptop'>laptop</a>, <a href='index.html#wireless'>wireless</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I installed <strong>Ubuntu</strong> on a <strong>Dell Vostro 3300</strong> notebook. (Note that I faced the exact same problem with a <strong>Dell Inspiron 1320</strong> too and solution is same as below.) After installation, I find that <strong>wireless</strong> is not working. Even the wireless notification light above the keyboard is not turned on.</p>
-<p>I used <code>lspci</code> to check if the wireless card is detected:</p>
+<p>I installed <strong>Ubuntu</strong> on a <strong>Dell Vostro
+3300</strong> notebook. (Note that I faced the exact same problem with a
+<strong>Dell Inspiron 1320</strong> too and solution is same as below.)
+After installation, I find that <strong>wireless</strong> is not
+working. Even the wireless notification light above the keyboard is not
+turned on.</p>
+<p>I used <code>lspci</code> to check if the wireless card is
+detected:</p>
 <pre><code>$ sudo lspci -v
 
 12:00.0 Network controller: Broadcom Corporation BCM4312 802.11b/g LP-PHY (rev 01)
@@ -62,9 +54,13 @@
     Capabilities: [160] Device Serial Number xx-xx-xx-xx-xx-xx-xx-xx
     Capabilities: [16c] Power Budgeting &lt;?&gt;
     Kernel driver in use: b43-pci-bridge</code></pre>
-<p>I find that <strong>Broadcom BCM4312</strong> chip in the <strong>Dell Wireless 1397</strong> wireless card is detected and a <code>b43-pci-bridge</code> driver has been installed. This is not a WLAN driver.</p>
+<p>I find that <strong>Broadcom BCM4312</strong> chip in the
+<strong>Dell Wireless 1397</strong> wireless card is detected and a
+<code>b43-pci-bridge</code> driver has been installed. This is not a
+WLAN driver.</p>
 <h2 id="solution">Solution</h2>
-<p>Broadcom chips need the driver provided by Broadcom. This needs to be installed for the card to work.</p>
+<p>Broadcom chips need the driver provided by Broadcom. This needs to be
+installed for the card to work.</p>
 <h3 id="ubuntu-1404">Ubuntu 14.04</h3>
 <ul>
 <li><p>Connect to the internet using a LAN cable.</p></li>
@@ -75,8 +71,10 @@ $ sudo apt-get --reinstall install bcmwl-kernel-source</code></pre>
 <ul>
 <li>Restart Ubuntu.</li>
 </ul>
-<p>My wireless card worked after this. The wireless notification light above the keyboard too was lit up.</p>
-<p>I checked <code>lspci</code> again and found the correct driver now installed:</p>
+<p>My wireless card worked after this. The wireless notification light
+above the keyboard too was lit up.</p>
+<p>I checked <code>lspci</code> again and found the correct driver now
+installed:</p>
 <pre><code>$ sudo lspci -v
 
 12:00.0 Network controller: Broadcom Corporation BCM4312 802.11b/g LP-PHY (rev 01)
@@ -93,7 +91,11 @@ $ sudo apt-get --reinstall install bcmwl-kernel-source</code></pre>
     Capabilities: [16c] Power Budgeting &lt;?&gt;
     Kernel driver in use: wl</code></pre>
 <h3 id="ubuntu-1004">Ubuntu 10.04</h3>
-<p>To enable wireless, choose System → Administration → Hardware Drivers. The system will now search for required proprietary drivers. In the list it presents, choose the <strong>Broadcom STA Wireless Driver</strong>. After it is installed, reboot and your wireless card should now work.</p>
+<p>To enable wireless, choose System → Administration → Hardware
+Drivers. The system will now search for required proprietary drivers. In
+the list it presents, choose the <strong>Broadcom STA Wireless
+Driver</strong>. After it is installed, reboot and your wireless card
+should now work.</p>
 </div>
 
 <br />
@@ -101,11 +103,13 @@ $ sudo apt-get --reinstall install bcmwl-kernel-source</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

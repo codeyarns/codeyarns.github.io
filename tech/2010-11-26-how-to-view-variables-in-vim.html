@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,22 @@
 <h1 class="title">How to view variables in Vim</h1>
 <p class="date">📅 2010-Nov-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#variable'>variable</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>To view the list of all <strong>variables</strong> and their values in <strong>Vim</strong>:</p>
+<p>To view the list of all <strong>variables</strong> and their values
+in <strong>Vim</strong>:</p>
 <pre><code>:let</code></pre>
-<p>Note that this does not list environment variables, <a href="2012/06/26/how-to-view-environment-variables-in-vim/">this post</a> shows how to view those.</p>
-<p>If you find it hard to wade through the long list, you can <a href="http://stackoverflow.com/questions/2573021">redirect the output of this command</a> to a buffer for further analysis. For example, to load the output of <code>:let</code> into a buffer:</p>
+<p>Note that this does not list environment variables, <a
+href="2012/06/26/how-to-view-environment-variables-in-vim/">this
+post</a> shows how to view those.</p>
+<p>If you find it hard to wade through the long list, you can <a
+href="http://stackoverflow.com/questions/2573021">redirect the output of
+this command</a> to a buffer for further analysis. For example, to load
+the output of <code>:let</code> into a buffer:</p>
 <pre><code>:redir @a
 :let
 :redir END
 &quot;ap</code></pre>
-<p>There are many types of variables in Vim and each has a special name or prefix:</p>
+<p>There are many types of variables in Vim and each has a special name
+or prefix:</p>
 <pre><code>g:  global variables
 b:  local buffer variables
 w:  local window variables
@@ -60,7 +53,8 @@ t:  local tab page variables
 s:  script-local variables
 l:  local function variables
 v:  Vim variables.</code></pre>
-<p>To list the variables of a particular type, for example <strong>global variables</strong>, just use its prefix:</p>
+<p>To list the variables of a particular type, for example
+<strong>global variables</strong>, just use its prefix:</p>
 <pre><code>:let g:</code></pre>
 <p><strong>Tried with:</strong> Vim 7.3 and Ubuntu 12.04 LTS</p>
 </div>
@@ -70,11 +64,13 @@ v:  Vim variables.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,8 +30,19 @@
 <h1 class="title">errorformat in Vim</h1>
 <p class="date">📅 2015-Mar-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#errorformat'>errorformat</a>, <a href='index.html#make'>make</a>, <a href='index.html#quickfix'>quickfix</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Vim</strong> can parse compilation <strong>errors</strong> when it is passed as an error file using the argument <code>-q</code>. It can also parse the errors produced by running <code>:make</code>. In both these cases, the file path, line and column number of errors can be parsed and traversed using <code>:cnext</code> or displayed in the <a href="2015/03/21/how-to-use-quickfix-feature-of-vim/"><strong>QuickFix</strong></a> window.</p>
-<p>The <code>errorformat</code> is the list of error formats that Vim uses to parse and recognize errors from input text. The default error format in Vim can be seen by trying the command <code>:set errorformat?</code>. The items in the list of error formats are separated by a comma. When separated, these are the components of the list:</p>
+<p><strong>Vim</strong> can parse compilation <strong>errors</strong>
+when it is passed as an error file using the argument <code>-q</code>.
+It can also parse the errors produced by running <code>:make</code>. In
+both these cases, the file path, line and column number of errors can be
+parsed and traversed using <code>:cnext</code> or displayed in the <a
+href="2015/03/21/how-to-use-quickfix-feature-of-vim/"><strong>QuickFix</strong></a>
+window.</p>
+<p>The <code>errorformat</code> is the list of error formats that Vim
+uses to parse and recognize errors from input text. The default error
+format in Vim can be seen by trying the command
+<code>:set errorformat?</code>. The items in the list of error formats
+are separated by a comma. When separated, these are the components of
+the list:</p>
 <pre><code>%*[^&quot;]&quot;%f&quot;%*\D%l: %m
 &quot;%f&quot;%*\D%l: %m
 %-G%f:%l: (Each undeclared identifier is reported only once
@@ -68,8 +65,17 @@
 %X%*\a: Leaving directory `%f&#39;
 %DMaking %*\a in %f
 %f|%l| %m</code></pre>
-<p>This default error format is set in Vim as <code>DFLT_EFM</code> based on the platform as seen in the source code <a href="https://github.com/b4winckler/vim/blob/master/src/option.h">here</a>. Other error formats can be set at runtime based on the <code>compiler</code> flag. The different options for compiler and their corresponding error formats can be seen listed in the files in the directory <code>/usr/share/vim/vim74/compiler</code>. In fact, the default error format string set on Linux is the same as that in <code>/usr/share/vim/vim74/compiler/gcc.vim</code></p>
-<p>For more on error format see <code>:help errorformat</code> in Vim.</p>
+<p>This default error format is set in Vim as <code>DFLT_EFM</code>
+based on the platform as seen in the source code <a
+href="https://github.com/b4winckler/vim/blob/master/src/option.h">here</a>.
+Other error formats can be set at runtime based on the
+<code>compiler</code> flag. The different options for compiler and their
+corresponding error formats can be seen listed in the files in the
+directory <code>/usr/share/vim/vim74/compiler</code>. In fact, the
+default error format string set on Linux is the same as that in
+<code>/usr/share/vim/vim74/compiler/gcc.vim</code></p>
+<p>For more on error format see <code>:help errorformat</code> in
+Vim.</p>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
 </div>
 
@@ -78,11 +84,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

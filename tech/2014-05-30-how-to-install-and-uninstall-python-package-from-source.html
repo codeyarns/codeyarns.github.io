@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,26 +27,37 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to install and uninstall Python package from source</h1>
+<h1 class="title">How to install and uninstall Python package from
+source</h1>
 <p class="date">📅 2014-May-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#install'>install</a>, <a href='index.html#package'>package</a>, <a href='index.html#python'>python</a>, <a href='index.html#uninstall'>uninstall</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p>A lot of Python packages are only available as source code.</p>
 <h2 id="install">Install</h2>
-<p>To install such a Python package, use its <code>setup.py</code> file:</p>
+<p>To install such a Python package, use its <code>setup.py</code>
+file:</p>
 <pre><code>$ sudo python setup.py install</code></pre>
-<p>This will install the Python files to a central location such as <code>/usr/local/lib</code>. If you do not have such permissions or want to install to a user-local location then try this:</p>
+<p>This will install the Python files to a central location such as
+<code>/usr/local/lib</code>. If you do not have such permissions or want
+to install to a user-local location then try this:</p>
 <ul>
-<li><p>Create a directory, say <code>/home/joe/python_libs/lib/python</code> in your home directory to host local Python packages.</p></li>
-<li><p>Set the above path in the <code>PYTHONPATH</code> environment variable.</p></li>
-<li><p>Install the package by passing the above path to the <code>--home</code> parameter:</p></li>
+<li><p>Create a directory, say
+<code>/home/joe/python_libs/lib/python</code> in your home directory to
+host local Python packages.</p></li>
+<li><p>Set the above path in the <code>PYTHONPATH</code> environment
+variable.</p></li>
+<li><p>Install the package by passing the above path to the
+<code>--home</code> parameter:</p></li>
 </ul>
 <pre><code>$ python setup.py install --home /home/joe/python_libs</code></pre>
 <h2 id="uninstall">Uninstall</h2>
 <p>To uninstall a package is tricky.</p>
-<p>One solution is to find out where the files were installed and then use that list to remove those files:</p>
+<p>One solution is to find out where the files were installed and then
+use that list to remove those files:</p>
 <pre><code>$ sudo python setup.py install --record install-files.txt
 $ cat install-files.txt | sudo xargs rm -rf</code></pre>
-<p>Another solution is to just locate the installation directory, like <code>/usr/local/lib/python2.7/dist-packages</code> for example and delete the directory of the package.</p>
+<p>Another solution is to just locate the installation directory, like
+<code>/usr/local/lib/python2.7/dist-packages</code> for example and
+delete the directory of the package.</p>
 <p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
 </div>
 
@@ -69,11 +66,13 @@ $ cat install-files.txt | sudo xargs rm -rf</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,36 +27,64 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to change the date and time format of clock in panel of Ubuntu</h1>
+<h1 class="title">How to change the date and time format of clock in
+panel of Ubuntu</h1>
 <p class="date">📅 2010-Apr-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#clock'>clock</a>, <a href='index.html#date'>date</a>, <a href='index.html#dconf-editor'>dconf-editor</a>, <a href='index.html#gconf-editor'>gconf-editor</a>, <a href='index.html#time'>time</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>The <strong>Clock</strong> on the <strong>Panel</strong> in Ubuntu displays the time. You can enable it to display the date and day of the week by changing its settings. It displays this information in this format:</p>
+<p>The <strong>Clock</strong> on the <strong>Panel</strong> in Ubuntu
+displays the time. You can enable it to display the date and day of the
+week by changing its settings. It displays this information in this
+format:</p>
 <pre><code>Fri Apr 2 02:10 PM</code></pre>
 <p>I prefer the following format for date and time display:</p>
 <pre><code>2010-04-02 Fri 14:10</code></pre>
-<p>The date and time format can be changed to anything that you are comfortable with.</p>
+<p>The date and time format can be changed to anything that you are
+comfortable with.</p>
 <h2 id="ubuntu-1204-and-later">Ubuntu 12.04 and later</h2>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2010/04/20141224-datetime.png" alt="" /><figcaption>Changing date-time format in Ubuntu</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2010/04/20141224-datetime.png"
+alt="Changing date-time format in Ubuntu" />
+<figcaption aria-hidden="true">Changing date-time format in
+Ubuntu</figcaption>
 </figure>
-<p>Here is how to change the date and time format of the panel clock to your liking:</p>
+<p>Here is how to change the date and time format of the panel clock to
+your liking:</p>
 <ol type="1">
-<li><p><a href="2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">Install the package</a> <strong>dconf-tools</strong> from the Ubuntu repositories. This installs the dconf-editor which is needed for changing the configuration.</p></li>
-<li><p>Open <strong>dconf editor</strong> from the Dash or <strong>dconf-editor</strong> from the shell. In the editor, navigate to <strong>com.canonical.indicator.datetime</strong>.</p></li>
-<li><p>Change the <strong>time-format</strong> field to <strong>custom</strong>.</p></li>
-<li><p>In the <strong>custom-time-format</strong> field, change the value to the desired format. The format can include <em>both</em> the date and time specifiers. This format uses the same specifiers as that of the C standard library function <a href="http://msdn.microsoft.com/en-us/library/fe06s4ak%28VS.71%29.aspx"><code>strftime()</code></a>.</p></li>
+<li><p><a
+href="2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">Install
+the package</a> <strong>dconf-tools</strong> from the Ubuntu
+repositories. This installs the dconf-editor which is needed for
+changing the configuration.</p></li>
+<li><p>Open <strong>dconf editor</strong> from the Dash or
+<strong>dconf-editor</strong> from the shell. In the editor, navigate to
+<strong>com.canonical.indicator.datetime</strong>.</p></li>
+<li><p>Change the <strong>time-format</strong> field to
+<strong>custom</strong>.</p></li>
+<li><p>In the <strong>custom-time-format</strong> field, change the
+value to the desired format. The format can include <em>both</em> the
+date and time specifiers. This format uses the same specifiers as that
+of the C standard library function <a
+href="http://msdn.microsoft.com/en-us/library/fe06s4ak%28VS.71%29.aspx"><code>strftime()</code></a>.</p></li>
 </ol>
 <p>To change to my desired format, I use:</p>
 <pre><code>%Y-%m-%d %a %H:%M
 2010-04-02 Fri 14:10</code></pre>
-<p>The changes should take effect immediately and the date-time should change in the panel.</p>
+<p>The changes should take effect immediately and the date-time should
+change in the panel.</p>
 <p><strong>Tried with:</strong> Ubuntu 12.04 and Ubuntu 14.04</p>
 <h2 id="ubuntu-1004-and-older">Ubuntu 10.04 and older</h2>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/04/2010_04_02_panel_clock_preferences.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2010/04/2010_04_02_panel_clock_preferences.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>** Use <strong>gconf-editor</strong>. Navigate to <code>/apps/panel/applets/clock_screen0/prefs</code>. Change <strong>format</strong> field to the string <strong>custom</strong>. Change the <strong>custom_format</strong> field as described above.</p>
+<p>** Use <strong>gconf-editor</strong>. Navigate to
+<code>/apps/panel/applets/clock_screen0/prefs</code>. Change
+<strong>format</strong> field to the string <strong>custom</strong>.
+Change the <strong>custom_format</strong> field as described above.</p>
 </div>
 
 <br />
@@ -78,11 +92,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

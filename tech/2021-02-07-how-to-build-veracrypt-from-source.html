@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,30 @@
 <h1 class="title">How to build Veracrypt from source</h1>
 <p class="date">📅 2021-Feb-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#veracrypt'>veracrypt</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I recently <a href="2021-01-31-how-to-install-ubuntu-on-raspberry-pi.html">installed</a> the <code>arm64</code> version of Ubuntu on my <strong>Raspberry Pi 3 Model B+</strong> board. After that, I wanted to access one of my Veracrypt volumes, but could not find the <strong>Veracrypt</strong> tool for installation in the Ubuntu repository. The ARM packages of Veracrypt available for <a href="https://sourceforge.net/projects/veracrypt/files/">download</a> turned out to be built for <code>armhf</code> and not <code>arm64</code>.</p>
-<p>Building Veracrypt from source and using it turned out to be easy:</p>
+<p>I recently <a
+href="2021-01-31-how-to-install-ubuntu-on-raspberry-pi.html">installed</a>
+the <code>arm64</code> version of Ubuntu on my <strong>Raspberry Pi 3
+Model B+</strong> board. After that, I wanted to access one of my
+Veracrypt volumes, but could not find the <strong>Veracrypt</strong>
+tool for installation in the Ubuntu repository. The ARM packages of
+Veracrypt available for <a
+href="https://sourceforge.net/projects/veracrypt/files/">download</a>
+turned out to be built for <code>armhf</code> and not
+<code>arm64</code>.</p>
+<p>Building Veracrypt from source and using it turned out to be
+easy:</p>
 <ul>
 <li>Install the packages required for building Veracrypt:</li>
 </ul>
 <pre><code>$ sudo apt install g++ libfuse-dev pkg-config yasm libwxbase3.0-dev</code></pre>
 <ul>
-<li>Get the latest source release of Veracrypt from its Github <a href="https://github.com/veracrypt/VeraCrypt/releases">releases</a> page. For example, I downloaded <code>VeraCrypt-VeraCrypt_1.24-Update7.tar.gz</code>.</li>
+<li>Get the latest source release of Veracrypt from its Github <a
+href="https://github.com/veracrypt/VeraCrypt/releases">releases</a>
+page. For example, I downloaded
+<code>VeraCrypt-VeraCrypt_1.24-Update7.tar.gz</code>.</li>
 <li>Unzip the file and change to the <code>src</code> directory.</li>
-<li>By default, Veracrypt builds both the console and GUI versions of the tool. To build just the console version of Veracrypt:</li>
+<li>By default, Veracrypt builds both the console and GUI versions of
+the tool. To build just the console version of Veracrypt:</li>
 </ul>
 <pre><code>$ make NOGUI=1</code></pre>
 <ul>
@@ -68,11 +68,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

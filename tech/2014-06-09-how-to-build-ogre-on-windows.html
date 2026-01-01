@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,25 +30,43 @@
 <h1 class="title">How to build OGRE on Windows</h1>
 <p class="date">📅 2014-Jun-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#build'>build</a>, <a href='index.html#ogre'>ogre</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>OGRE is a bit difficult to compile on Windows because of the many libraries it depends on.</p>
+<p>OGRE is a bit difficult to compile on Windows because of the many
+libraries it depends on.</p>
 <h2 id="build-ogre-dependencies">Build OGRE dependencies</h2>
 <ul>
-<li><p>Clone the <a href="https://bitbucket.org/cabalistic/ogredeps">OGRE Dependencies repository</a>. This has the source code of all the OGRE dependent libraries.</p></li>
-<li><p><a href="2014/06/09/how-to-build-cmake-project-on-windows/">Build it using CMake</a>. Make sure you set <code>CMAKE_INSTALL_PREFIX</code> to a separate subdirectory since this path will be used while building OGRE.</p></li>
-<li><p>If you get error on <code>unistd.h</code>, comment that line. I found it could build without using it.</p></li>
+<li><p>Clone the <a
+href="https://bitbucket.org/cabalistic/ogredeps">OGRE Dependencies
+repository</a>. This has the source code of all the OGRE dependent
+libraries.</p></li>
+<li><p><a href="2014/06/09/how-to-build-cmake-project-on-windows/">Build
+it using CMake</a>. Make sure you set <code>CMAKE_INSTALL_PREFIX</code>
+to a separate subdirectory since this path will be used while building
+OGRE.</p></li>
+<li><p>If you get error on <code>unistd.h</code>, comment that line. I
+found it could build without using it.</p></li>
 </ul>
 <h2 id="build-ogre">Build OGRE</h2>
 <ul>
-<li><p>Download the source code of OGRE or clone from <a href="https://bitbucket.org/sinbad/ogre/">its repository</a>.</p></li>
-<li><p><a href="2014/06/09/how-to-build-cmake-project-on-windows/">Build it using CMake</a>. Set the variable OGRE_DEPENDENCIES_DIR to the install path you set while building the dependencies. Set the CMAKE_INSTALL_PREFIX variable to the place where you want the OGRE libraries and executables need to be placed after build.</p></li>
+<li><p>Download the source code of OGRE or clone from <a
+href="https://bitbucket.org/sinbad/ogre/">its repository</a>.</p></li>
+<li><p><a href="2014/06/09/how-to-build-cmake-project-on-windows/">Build
+it using CMake</a>. Set the variable OGRE_DEPENDENCIES_DIR to the
+install path you set while building the dependencies. Set the
+CMAKE_INSTALL_PREFIX variable to the place where you want the OGRE
+libraries and executables need to be placed after build.</p></li>
 </ul>
 <h2 id="pre-built">Pre-built</h2>
-<p>Pre-built libraries of OGRE for recent Visual Studio versions can be downloaded from <a href="http://www.ogre3d.org/forums/viewtopic.php?f=4&amp;t=69274">here</a>.</p>
+<p>Pre-built libraries of OGRE for recent Visual Studio versions can be
+downloaded from <a
+href="http://www.ogre3d.org/forums/viewtopic.php?f=4&amp;t=69274">here</a>.</p>
 <h2 id="reference">Reference</h2>
 <ul>
-<li><a href="http://techny.tumblr.com/post/39928642180/building-ogre-in-windows-7-8-using-visual-studio-2012">Building Ogre in Windows 7/8 using Visual Studio 2012</a></li>
+<li><a
+href="http://techny.tumblr.com/post/39928642180/building-ogre-in-windows-7-8-using-visual-studio-2012">Building
+Ogre in Windows 7/8 using Visual Studio 2012</a></li>
 </ul>
-<p><strong>Tried with:</strong> OGRE 1.8.1, Visual Studio 2013 and Windows 7 x64</p>
+<p><strong>Tried with:</strong> OGRE 1.8.1, Visual Studio 2013 and
+Windows 7 x64</p>
 </div>
 
 <br />
@@ -70,11 +74,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

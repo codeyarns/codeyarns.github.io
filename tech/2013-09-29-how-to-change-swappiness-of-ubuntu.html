@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,27 @@
 <h1 class="title">How to change swappiness of Ubuntu</h1>
 <p class="date">📅 2013-Sep-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#swappiness'>swappiness</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://help.ubuntu.com/community/SwapFaq"><strong>swappiness</strong></a> parameter of the Linux kernel controls how finicky it is about moving processes out of physical RAM to the swap space on your harddisk. Swappiness ranges from 0 to 100. A value of 0 means that the kernel tries to use the swap space as less as possible, that is it tries to keep processes in physical RAM as much as possible. On the other hand, a value of 100 makes the kernel move processes to swap space as early as possible.</p>
-<p>If you find your Ubuntu to be moving processes unnecessarily to disk and back, then you might want to play around with the swappiness parameter. Ubuntu sets this parameter to 60 by default, which seems pretty high.</p>
+<p>The <a
+href="https://help.ubuntu.com/community/SwapFaq"><strong>swappiness</strong></a>
+parameter of the Linux kernel controls how finicky it is about moving
+processes out of physical RAM to the swap space on your harddisk.
+Swappiness ranges from 0 to 100. A value of 0 means that the kernel
+tries to use the swap space as less as possible, that is it tries to
+keep processes in physical RAM as much as possible. On the other hand, a
+value of 100 makes the kernel move processes to swap space as early as
+possible.</p>
+<p>If you find your Ubuntu to be moving processes unnecessarily to disk
+and back, then you might want to play around with the swappiness
+parameter. Ubuntu sets this parameter to 60 by default, which seems
+pretty high.</p>
 <p>To check the current value of swappiness:</p>
 <pre><code>$ cat /proc/sys/vm/swappiness</code></pre>
-<p>To change the value of swappiness, to say 10, immediately for the current kernel session:</p>
+<p>To change the value of swappiness, to say 10, immediately for the
+current kernel session:</p>
 <pre><code>$ sudo sysctl vm.swappiness=10</code></pre>
-<p>To change the value permanently for all future kernel sessions, open the <code>/etc/sysctl.conf</code> file and edit or add <code>vm.swappiness=10</code></p>
+<p>To change the value permanently for all future kernel sessions, open
+the <code>/etc/sysctl.conf</code> file and edit or add
+<code>vm.swappiness=10</code></p>
 <p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
 </div>
 
@@ -59,11 +59,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

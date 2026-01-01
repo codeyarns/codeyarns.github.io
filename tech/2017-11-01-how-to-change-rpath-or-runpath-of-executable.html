@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,22 @@
 <h1 class="title">How to change RPATH or RUNPATH of executable</h1>
 <p class="date">📅 2017-Nov-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#chrpath'>chrpath</a>, <a href='index.html#rpath'>rpath</a>, <a href='index.html#runpath'>runpath</a>, <a href='index.html#shared-library'>shared library</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>RPATH</strong> or <strong>RUNPATH</strong> is a colon-separated list of directories embedded in an executable. This list of directories play an important role when shared library file locations are determined at the time when the executable is loaded for running. This process is described in <a href="2017-11-01-how-shared-library-locations-are-found-at-runtime.html">this post</a>. Note that RPATH has highest priority in the shared library search, compared to RUNPATH. We can change RPATH or RUNPATH of a binary file by using the <strong>chrpath</strong> tool.</p>
+<p><strong>RPATH</strong> or <strong>RUNPATH</strong> is a
+colon-separated list of directories embedded in an executable. This list
+of directories play an important role when shared library file locations
+are determined at the time when the executable is loaded for running.
+This process is described in <a
+href="2017-11-01-how-shared-library-locations-are-found-at-runtime.html">this
+post</a>. Note that RPATH has highest priority in the shared library
+search, compared to RUNPATH. We can change RPATH or RUNPATH of a binary
+file by using the <strong>chrpath</strong> tool.</p>
 <ul>
 <li>Installing this tool is easy:</li>
 </ul>
 <pre><code>$ sudo apt install chrpath</code></pre>
 <ul>
-<li>To view if the binary has RPATH or RUNPATH and to list its colon-separated list of directories:</li>
+<li>To view if the binary has RPATH or RUNPATH and to list its
+colon-separated list of directories:</li>
 </ul>
 <pre><code>$ chrpath ./some_binary</code></pre>
 <ul>
@@ -63,10 +58,12 @@
 <pre><code>$ chrpath -c ./some_binary</code></pre>
 <p>Note that you cannot convert a RUNPATH back to RPATH.</p>
 <ul>
-<li>To replace RPATH or RUNPATH paths with a different set of paths:</li>
+<li>To replace RPATH or RUNPATH paths with a different set of
+paths:</li>
 </ul>
 <pre><code>$ chrpath -r /home/joe:/home/foobar/lib64 ./some_binary</code></pre>
-<p>Note that the string of the new set of paths should be smaller or equal to the length of what was stored earlier in the binary.</p>
+<p>Note that the string of the new set of paths should be smaller or
+equal to the length of what was stored earlier in the binary.</p>
 <p><strong>Tried with:</strong> chrpath 0.14 and Ubuntu 16.04</p>
 </div>
 
@@ -75,11 +72,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,21 +30,34 @@
 <h1 class="title">How to install Byobu on Cygwin</h1>
 <p class="date">📅 2014-Jan-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#cygwin'>cygwin</a>, <a href='index.html#tmux'>tmux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Byobu</strong> is a user friendly terminal multiplexer built around <strong>tmux</strong>.</p>
-<p>There is no byobu package in Cygwin, but installing it from source is easy:</p>
+<p><strong>Byobu</strong> is a user friendly terminal multiplexer built
+around <strong>tmux</strong>.</p>
+<p>There is no byobu package in Cygwin, but installing it from source is
+easy:</p>
 <ul>
-<li><p>Install <code>tmux</code> and <code>make</code> using the Cygwin package installer.</p></li>
-<li><p>Download the latest release of Byobu from <a href="https://launchpad.net/byobu/+download">here</a> and unzip it.</p></li>
-<li><p>Configure by providing it the directory where you want it to be installed and then make install it:</p></li>
+<li><p>Install <code>tmux</code> and <code>make</code> using the Cygwin
+package installer.</p></li>
+<li><p>Download the latest release of Byobu from <a
+href="https://launchpad.net/byobu/+download">here</a> and unzip
+it.</p></li>
+<li><p>Configure by providing it the directory where you want it to be
+installed and then make install it:</p></li>
 </ul>
 <pre><code>$ ./configure --prefix=&quot;$HOME/installs/byobu&quot;
 $ make
 $ make install</code></pre>
 <ul>
-<li>Add the installed <code>bin</code> directory to your <code>PATH</code> environment variable at the shell or permanently in your bashrc:</li>
+<li>Add the installed <code>bin</code> directory to your
+<code>PATH</code> environment variable at the shell or permanently in
+your bashrc:</li>
 </ul>
 <pre><code>$ export PATH=&quot;$HOME/installs/byobu/bin:$PATH&quot;</code></pre>
-<p>You can now run <code>byobu</code> at the shell. You will notice that there will be some errors when it looks for Linux programs that are either not installed or not available on Cygwin. Also, the configuration user interface does not appear since that needs <code>python-newt</code> which is not available for Cygwin. Some of the function key combinations might also not work cause it is Windows.</p>
+<p>You can now run <code>byobu</code> at the shell. You will notice that
+there will be some errors when it looks for Linux programs that are
+either not installed or not available on Cygwin. Also, the configuration
+user interface does not appear since that needs <code>python-newt</code>
+which is not available for Cygwin. Some of the function key combinations
+might also not work cause it is Windows.</p>
 <p><strong>Tried with:</strong> Byobu 5.125 and Cygwin 2.10</p>
 </div>
 
@@ -67,11 +66,13 @@ $ make install</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

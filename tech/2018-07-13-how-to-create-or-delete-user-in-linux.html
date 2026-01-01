@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,20 @@
 <h1 class="title">How to create or delete user in Linux</h1>
 <p class="date">📅 2018-Jul-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#user'>user</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>There are 2 commands in a modern Ubuntu to create new users: adduser and useradd. Unless you know what you are doing, <strong>do not use useradd</strong>.</p>
+<p>There are 2 commands in a modern Ubuntu to create new users: adduser
+and useradd. Unless you know what you are doing, <strong>do not use
+useradd</strong>.</p>
 <h2 id="adduser-use-this">adduser (USE THIS)</h2>
 <ul>
 <li>To create a new user named joe:</li>
 </ul>
 <pre><code>$ sudo adduser joe</code></pre>
-<p>This creates a normal user, creates their home directory, copies over the dot files from <code>/etc/skel</code>, requests you to set the password for this user and generally sets up everything for the user to login and use the shell.</p>
-<p>In addition, if you also want the user directories like <code>Desktop</code>, <code>Downloads</code> and such to be created:</p>
+<p>This creates a normal user, creates their home directory, copies over
+the dot files from <code>/etc/skel</code>, requests you to set the
+password for this user and generally sets up everything for the user to
+login and use the shell.</p>
+<p>In addition, if you also want the user directories like
+<code>Desktop</code>, <code>Downloads</code> and such to be created:</p>
 <pre><code>&lt;login as joe&gt;
 
 $ xdg-user-dirs-update</code></pre>
@@ -60,9 +52,11 @@ $ xdg-user-dirs-update</code></pre>
 <li>To create a new user named joe:</li>
 </ul>
 <pre><code>$ sudo useradd joe</code></pre>
-<p>This command does not even create a home directory for the new user.</p>
+<p>This command does not even create a home directory for the new
+user.</p>
 <ul>
-<li>To create a new user named joe and create a home directory for him:</li>
+<li>To create a new user named joe and create a home directory for
+him:</li>
 </ul>
 <pre><code>$ sudo useradd -m joe</code></pre>
 <ul>
@@ -71,12 +65,14 @@ $ xdg-user-dirs-update</code></pre>
 <pre><code>$ sudo userdel joe</code></pre>
 <p>The above command does not remove the files owned by the user.</p>
 <ul>
-<li>To delete a user named joe and remove all the files owned by him:</li>
+<li>To delete a user named joe and remove all the files owned by
+him:</li>
 </ul>
 <pre><code>$ sudo userdel --remove-all-files joe</code></pre>
 <p><strong>References:</strong></p>
 <ul>
-<li><a href="https://wiki.archlinux.org/title/XDG_user_directories" class="uri">https://wiki.archlinux.org/title/XDG_user_directories</a></li>
+<li><a href="https://wiki.archlinux.org/title/XDG_user_directories"
+class="uri">https://wiki.archlinux.org/title/XDG_user_directories</a></li>
 </ul>
 <p><strong>Tried with:</strong> Ubuntu 22.04</p>
 </div>
@@ -86,11 +82,13 @@ $ xdg-user-dirs-update</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

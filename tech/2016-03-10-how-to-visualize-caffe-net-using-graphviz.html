@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,32 @@
 <h1 class="title">How to visualize Caffe Net using GraphViz</h1>
 <p class="date">📅 2016-Mar-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#caffe'>caffe</a>, <a href='index.html#dot'>dot</a>, <a href='index.html#graphviz'>graphviz</a>, <a href='index.html#protobuf'>protobuf</a>, <a href='index.html#xdot'>xdot</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The network architecture of <strong>Convolutional Neural Networks (CNN)</strong> can be heavily layered and complex. Viewing the network visually is a great way to get a sense of its architecture. Since the network is a graph, it is easy to visualize this using <strong>GraphViz</strong>.</p>
-<p><strong>Caffe</strong> requires its Net to be in the <strong>Google ProtoBuf</strong> format. It also provides a <code>draw_net.py</code> script that can be used to output the graph to all the formats supported by GraphViz.</p>
+<p>The network architecture of <strong>Convolutional Neural Networks
+(CNN)</strong> can be heavily layered and complex. Viewing the network
+visually is a great way to get a sense of its architecture. Since the
+network is a graph, it is easy to visualize this using
+<strong>GraphViz</strong>.</p>
+<p><strong>Caffe</strong> requires its Net to be in the <strong>Google
+ProtoBuf</strong> format. It also provides a <code>draw_net.py</code>
+script that can be used to output the graph to all the formats supported
+by GraphViz.</p>
 <ul>
-<li>From the Caffe root directory, you can export a <code>.prototxt</code> model file as a graph to a PNG image file:</li>
+<li>From the Caffe root directory, you can export a
+<code>.prototxt</code> model file as a graph to a PNG image file:</li>
 </ul>
 <pre><code>$ python/draw_net.py foo.prototxt foo.png</code></pre>
-<p>Possible output formats include PNG, PDF, DOT and others supported by GraphViz.</p>
+<p>Possible output formats include PNG, PDF, DOT and others supported by
+GraphViz.</p>
 <ul>
-<li>By default, the net layers are drawn from left-to-right. I prefer to visualize a CNN in top-to-bottom fashion:</li>
+<li>By default, the net layers are drawn from left-to-right. I prefer to
+visualize a CNN in top-to-bottom fashion:</li>
 </ul>
 <pre><code>$ python/draw_net.py --rankdir TB foo.prototxt foo.png</code></pre>
 <ul>
-<li>I prefer to interact with the graph visualization, which is a bit difficult with an image file. So, I prefer to export to DOT format file and play with it using <a href="2013-03-04-how-to-view-dot-file-using-xdot.html"><strong>XDot</strong></a>:</li>
+<li>I prefer to interact with the graph visualization, which is a bit
+difficult with an image file. So, I prefer to export to DOT format file
+and play with it using <a
+href="2013-03-04-how-to-view-dot-file-using-xdot.html"><strong>XDot</strong></a>:</li>
 </ul>
 <pre><code>$ python/draw_net.py foo.prototxt foo.dot
 $ xdot foo.dot</code></pre>
@@ -68,11 +67,13 @@ $ xdot foo.dot</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

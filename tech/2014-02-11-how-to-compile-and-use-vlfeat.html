@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,20 @@
 <h1 class="title">How to compile and use VLFeat</h1>
 <p class="date">📅 2014-Feb-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#vlfeat'>vlfeat</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://www.vlfeat.org/"><strong>VLFeat</strong></a> is an open source library that has implementations of computer vision algorithms such as HOG and SIFT. The source code is particularly well written and is easy to read and understand.</p>
+<p><a href="http://www.vlfeat.org/"><strong>VLFeat</strong></a> is an
+open source library that has implementations of computer vision
+algorithms such as HOG and SIFT. The source code is particularly well
+written and is easy to read and understand.</p>
 <h2 id="compile">Compile</h2>
 <ul>
-<li><p>Download a stable version of the source code from <a href="http://www.vlfeat.org/download.html">here</a> or get the latest source code from its Github repository <a href="https://github.com/vlfeat/vlfeat">here</a>.</p></li>
+<li><p>Download a stable version of the source code from <a
+href="http://www.vlfeat.org/download.html">here</a> or get the latest
+source code from its Github repository <a
+href="https://github.com/vlfeat/vlfeat">here</a>.</p></li>
 <li><p>To compile, just type <code>make</code>.</p></li>
-<li><p>For convenience, export an environment variable named <code>VLROOT</code> set to the directory of the VLFeat source code:</p></li>
+<li><p>For convenience, export an environment variable named
+<code>VLROOT</code> set to the directory of the VLFeat source
+code:</p></li>
 </ul>
 <pre><code>export VLROOT=/home/joe/vlfeat</code></pre>
 <h2 id="use">Use</h2>
@@ -61,9 +55,14 @@ int main()
     VL_PRINT(&quot;Hello world!&quot;);
     return 0;
 }</code></pre>
-<p>While compiling code that uses VLFeat, remember to pass its include directory, its library directory and the library itself:</p>
+<p>While compiling code that uses VLFeat, remember to pass its include
+directory, its library directory and the library itself:</p>
 <pre><code>$ g++ foobar.cpp -I$VLROOT -L$VLROOT/bin/glnxa64/ -lvl</code></pre>
-<p>Finally, add the <code>$VLROOT/bin/glnxa64</code> directory to the <code>ldconfig</code> cache as explained <a href="2014/01/14/how-to-add-library-directory-to-ldconfig-cache/">here</a>. This enables your program to find and load the <code>libvl.so</code> shared library when it is executed.</p>
+<p>Finally, add the <code>$VLROOT/bin/glnxa64</code> directory to the
+<code>ldconfig</code> cache as explained <a
+href="2014/01/14/how-to-add-library-directory-to-ldconfig-cache/">here</a>.
+This enables your program to find and load the <code>libvl.so</code>
+shared library when it is executed.</p>
 <p><strong>Tried with:</strong> VLFeat 0.9.18 and Ubuntu 12.04 LTS</p>
 </div>
 
@@ -72,11 +71,13 @@ int main()
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

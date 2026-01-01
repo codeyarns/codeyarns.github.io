@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,27 +27,51 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to visualize profiler output as graph using Gprof2Dot</h1>
+<h1 class="title">How to visualize profiler output as graph using
+Gprof2Dot</h1>
 <p class="date">📅 2013-Jun-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dot'>dot</a>, <a href='index.html#gprof'>gprof</a>, <a href='index.html#gprof2dot'>gprof2dot</a>, <a href='index.html#pstats'>pstats</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2013/06/20150213_gprof2dot.png" alt="" /><figcaption>Output of GProf2Dot</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2013/06/20150213_gprof2dot.png"
+alt="Output of GProf2Dot" />
+<figcaption aria-hidden="true">Output of GProf2Dot</figcaption>
 </figure>
-<p><strong>Profilers</strong> can be used to profile your code and dump the output to a file. Different profilers use different formats, like <code>gprof</code> used by GProf (used for C/C++ code) and <code>pstats</code> used by cProfile (used for Python code). <a href="https://code.google.com/p/jrfonseca/wiki/Gprof2Dot"><strong>GProf2Dot</strong></a> is a Python tool that can be used to visualize such profiler output as a colorful directed call graph that makes it easy to understand the statistics. The graph is produced in the DOT format, which can be <a href="2013/03/04/how-to-view-the-graph-of-a-dot-file-on-ubuntu/">viewed</a> or <a href="2013/06/24/how-to-convert-dot-file-to-image-format/">converted to an image file</a>.</p>
+<p><strong>Profilers</strong> can be used to profile your code and dump
+the output to a file. Different profilers use different formats, like
+<code>gprof</code> used by GProf (used for C/C++ code) and
+<code>pstats</code> used by cProfile (used for Python code). <a
+href="https://code.google.com/p/jrfonseca/wiki/Gprof2Dot"><strong>GProf2Dot</strong></a>
+is a Python tool that can be used to visualize such profiler output as a
+colorful directed call graph that makes it easy to understand the
+statistics. The graph is produced in the DOT format, which can be <a
+href="2013/03/04/how-to-view-the-graph-of-a-dot-file-on-ubuntu/">viewed</a>
+or <a
+href="2013/06/24/how-to-convert-dot-file-to-image-format/">converted to
+an image file</a>.</p>
 <h2 id="install">Install</h2>
-<p>The easiest way is to install from the Python Package Index (PyPI):</p>
+<p>The easiest way is to install from the Python Package Index
+(PyPI):</p>
 <pre><code>$ sudo pip install gprof2dot</code></pre>
-<p>Else, you can also download the <a href="http://gprof2dot.jrfonseca.googlecode.com/git/gprof2dot.py"><strong>gprof2dot.py</strong></a> file and place it in a directory which is on your path.</p>
+<p>Else, you can also download the <a
+href="http://gprof2dot.jrfonseca.googlecode.com/git/gprof2dot.py"><strong>gprof2dot.py</strong></a>
+file and place it in a directory which is on your path.</p>
 <h2 id="usage">Usage</h2>
-<p>For GProf, you can pipe the output to this tool. It will convert the call graph profiling data to a dot graph. You can redirect this output to a dot file.</p>
+<p>For GProf, you can pipe the output to this tool. It will convert the
+call graph profiling data to a dot graph. You can redirect this output
+to a dot file.</p>
 <pre><code>$ gprof foo | gprof2dot.py &gt; foo.dot</code></pre>
-<p>For cProfile, you can dump the output to a pstats file and read that into GProf2Dot:</p>
+<p>For cProfile, you can dump the output to a pstats file and read that
+into GProf2Dot:</p>
 <pre><code>$ python -m cProfile -o foo.stats foo.py
 $ gprof2dot foo.stats -f pstats &gt; foo.dot</code></pre>
-<p>By default, GProf2Dot assumes the profiling statistics are in the gprof format. If you pass any other format without indicating the format, you get this error:</p>
+<p>By default, GProf2Dot assumes the profiling statistics are in the
+gprof format. If you pass any other format without indicating the
+format, you get this error:</p>
 <pre><code>$ gprof2dot foo.stats  &gt; foo.dot
 error: unexpected end of file</code></pre>
-<p><strong>Tried with:</strong> GProf2Dot 2015.02.03 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> GProf2Dot 2015.02.03 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -69,11 +79,13 @@ error: unexpected end of file</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

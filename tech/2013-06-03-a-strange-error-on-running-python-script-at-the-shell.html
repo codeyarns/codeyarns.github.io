@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,24 +27,40 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">A strange error on running Python script at the shell</h1>
+<h1 class="title">A strange error on running Python script at the
+shell</h1>
 <p class="date">📅 2013-Jun-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#env'>env</a>, <a href='index.html#error'>error</a>, <a href='index.html#newline'>newline</a>, <a href='index.html#python'>python</a>, <a href='index.html#shell'>shell</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>I have a <strong>Python</strong> script named <strong>foo.py</strong>. Since, I would like to run it directly from the shell, I have added a <a href="http://en.wikipedia.org/wiki/Shebang_(Unix)"><strong>shebang</strong></a> to run it through Python:</p>
+<p>I have a <strong>Python</strong> script named
+<strong>foo.py</strong>. Since, I would like to run it directly from the
+shell, I have added a <a
+href="http://en.wikipedia.org/wiki/Shebang_(Unix)"><strong>shebang</strong></a>
+to run it through Python:</p>
 <pre><code>#!/usr/bin/env python
 print &quot;Hello world&quot;</code></pre>
-<p>If I run it directly at the shell, I get a strange <strong>error</strong>:</p>
+<p>If I run it directly at the shell, I get a strange
+<strong>error</strong>:</p>
 <pre><code>$ ./foo.py
 : No such file or directory</code></pre>
-<p>However, if I run it explicitly with the Python interpreter, it works fine:</p>
+<p>However, if I run it explicitly with the Python interpreter, it works
+fine:</p>
 <pre><code>$ python foo.py
 Hello world</code></pre>
 <p><strong>Solution</strong></p>
-<p>This strange error turned out to be due to the newline markers in the file. The file was created on Windows and had <strong>CR+LF</strong> as the newline marker. But, I was running the script on Linux, which only uses <strong>LF</strong> as the newline marker.</p>
-<p>So, this must have led the <strong>env</strong> program to run the character <strong>CR</strong> as a command. And obviously, it could not find any such file or directory.</p>
-<p>The solution is simple. Convert the newline markers in the file to that of the host system, in this case to Linux. This can be <a href="2013/06/03/how-to-view-and-change-the-newline-markers-of-a-file-in-vim/">done easily in Vim</a> by using the <strong>fileformat</strong> option.</p>
-<p><strong>Tried with:</strong> GNU CoreUtils 8.12.197, Python 2.7.3 and Ubuntu 12.04 LTS</p>
+<p>This strange error turned out to be due to the newline markers in the
+file. The file was created on Windows and had <strong>CR+LF</strong> as
+the newline marker. But, I was running the script on Linux, which only
+uses <strong>LF</strong> as the newline marker.</p>
+<p>So, this must have led the <strong>env</strong> program to run the
+character <strong>CR</strong> as a command. And obviously, it could not
+find any such file or directory.</p>
+<p>The solution is simple. Convert the newline markers in the file to
+that of the host system, in this case to Linux. This can be <a
+href="2013/06/03/how-to-view-and-change-the-newline-markers-of-a-file-in-vim/">done
+easily in Vim</a> by using the <strong>fileformat</strong> option.</p>
+<p><strong>Tried with:</strong> GNU CoreUtils 8.12.197, Python 2.7.3 and
+Ubuntu 12.04 LTS</p>
 </div>
 
 <br />
@@ -66,11 +68,13 @@ Hello world</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

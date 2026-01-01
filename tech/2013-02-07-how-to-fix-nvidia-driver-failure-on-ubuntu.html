@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -46,33 +32,56 @@
 </header>
 <p><strong>The Problems</strong></p>
 <ol type="1">
-<li>You installed Ubuntu on a computer with NVIDIA graphics card, but Compiz is not turned on in Unity.</li>
-<li>You installed NVIDIA drivers and now you have no desktop or X windows.</li>
-<li>You installed the drivers from NVIDIA’s website and you have no desktop or X windows.</li>
+<li>You installed Ubuntu on a computer with NVIDIA graphics card, but
+Compiz is not turned on in Unity.</li>
+<li>You installed NVIDIA drivers and now you have no desktop or X
+windows.</li>
+<li>You installed the drivers from NVIDIA’s website and you have no
+desktop or X windows.</li>
 </ol>
 <p><strong>Solution</strong></p>
-<p>Almost everyone who has a NVIDIA graphics card is afraid when Ubuntu updates or the driver updates. Because, you never know if the install or update will screw up your setup leaving you with no Compiz or even worse, no X windows!</p>
-<p>There are tons of solutions for these problems online. Below is the solution which works for me consistently.</p>
+<p>Almost everyone who has a NVIDIA graphics card is afraid when Ubuntu
+updates or the driver updates. Because, you never know if the install or
+update will screw up your setup leaving you with no Compiz or even
+worse, no X windows!</p>
+<p>There are tons of solutions for these problems online. Below is the
+solution which works for me consistently.</p>
 <p><strong>Step 1: Remove NVIDIA drivers</strong></p>
-<p>After booting, if you are seeing a blank display then try pressing Ctrl+Alt+F1, this should give you a terminal login.</p>
-<p>The first step is to remove any or all of the NVIDIA drivers installed on the computer. They should not just be uninstalled, but every shred of their prior existence must be eradicated.</p>
+<p>After booting, if you are seeing a blank display then try pressing
+Ctrl+Alt+F1, this should give you a terminal login.</p>
+<p>The first step is to remove any or all of the NVIDIA drivers
+installed on the computer. They should not just be uninstalled, but
+every shred of their prior existence must be eradicated.</p>
 <p>Purge, not just remove, all installed NVIDIA packages:</p>
 <pre><code>$ sudo apt-get purge nvidia-*</code></pre>
-<p>If you had installed a NVIDIA driver from their website, uninstall it using the shell script that it ships with. Already deleted that file? Too bad. Try with a newer version of driver that you can download.</p>
-<p>You may still have some NVIDIA modules stuck in the kernel. First list the kernel modules:</p>
+<p>If you had installed a NVIDIA driver from their website, uninstall it
+using the shell script that it ships with. Already deleted that file?
+Too bad. Try with a newer version of driver that you can download.</p>
+<p>You may still have some NVIDIA modules stuck in the kernel. First
+list the kernel modules:</p>
 <pre><code>$ dkms status</code></pre>
 <p>The output is of this form:</p>
 <pre><code>nvidia-current-updates, 304.64, 3.2.0-37-generic, x86_64: installed</code></pre>
-<p>Here nvidia-current-updates is the module name, 304.64 is the module version and 3.2.0-37-generic is the kernel version.</p>
+<p>Here nvidia-current-updates is the module name, 304.64 is the module
+version and 3.2.0-37-generic is the kernel version.</p>
 <p>Remove all the nvidia modules. For example, to remove the above:</p>
 <pre><code>$ sudo dkms remove nvidia-current-updates/304.64 -k 3.2.0-37-generic</code></pre>
 <p><strong>Step 2: Install NVIDIA drivers</strong></p>
-<p>Now install back the drivers. I highly recommend staying away from the drivers on NVIDIA’s website. For drivers that have been tested and packaged by Ubuntu volunteers, you have two options: current and current-updates.</p>
-<p><strong>current</strong> is what was well tested and shipped with the Ubuntu version you are using. It may be pretty old. <strong>current-updates</strong> is a package that is drawn from NVIDIA’s releases, but is tested and packaged by Ubuntu. This is pretty safe.</p>
+<p>Now install back the drivers. I highly recommend staying away from
+the drivers on NVIDIA’s website. For drivers that have been tested and
+packaged by Ubuntu volunteers, you have two options: current and
+current-updates.</p>
+<p><strong>current</strong> is what was well tested and shipped with the
+Ubuntu version you are using. It may be pretty old.
+<strong>current-updates</strong> is a package that is drawn from
+NVIDIA’s releases, but is tested and packaged by Ubuntu. This is pretty
+safe.</p>
 <p>Depending on what you pick, the install is familiar:</p>
 <pre><code>$ sudo apt-get install nvidia-current-updates nvidia-settings-updates</code></pre>
-<p>I hope your NVIDIA drivers are working with your Ubuntu now. If not, I hope the wide web holds a solution to your problem.</p>
-<p><strong>Tried with:</strong> NVIDIA GeForce 9600 GT and Ubuntu 12.04 LTS</p>
+<p>I hope your NVIDIA drivers are working with your Ubuntu now. If not,
+I hope the wide web holds a solution to your problem.</p>
+<p><strong>Tried with:</strong> NVIDIA GeForce 9600 GT and Ubuntu 12.04
+LTS</p>
 </div>
 
 <br />
@@ -80,11 +89,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

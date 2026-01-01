@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,9 +30,11 @@
 <h1 class="title">How to set time, timezone and date in Linux</h1>
 <p class="date">📅 2021-Feb-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#date'>date</a>, <a href='index.html#time'>time</a>, <a href='index.html#timezone'>timezone</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Time and date are usually set correctly on my Linux systems, but the timezone is set to UTC.</p>
+<p>Time and date are usually set correctly on my Linux systems, but the
+timezone is set to UTC.</p>
 <h2 id="set-timezone">Set timezone</h2>
-<p>We can use the <code>timedatectl</code> tool that ships with <code>systemd</code> to set the timezone.</p>
+<p>We can use the <code>timedatectl</code> tool that ships with
+<code>systemd</code> to set the timezone.</p>
 <ul>
 <li>To list all the timezone names:</li>
 </ul>
@@ -55,7 +43,10 @@
 <li>To set a timezone from the list:</li>
 </ul>
 <pre><code>$ sudo timedatectl set-timezone &quot;America/Los_Angeles&quot;</code></pre>
-<p>Note that the service that generates <code>/var/log/syslog</code> will continue to use your earlier timezone, until you restart it or restart the computer. Restart its service to make it start using your new timezone for its newer log entries:</p>
+<p>Note that the service that generates <code>/var/log/syslog</code>
+will continue to use your earlier timezone, until you restart it or
+restart the computer. Restart its service to make it start using your
+new timezone for its newer log entries:</p>
 <pre><code>$ sudo service rsyslog restart</code></pre>
 <p><strong>Tried with:</strong> systemd 245 and Ubuntu 20.04</p>
 </div>
@@ -65,11 +56,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

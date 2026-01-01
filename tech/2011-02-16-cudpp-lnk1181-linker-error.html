@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,15 +31,32 @@
 <p class="date">📅 2011-Feb-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#cudpp'>cudpp</a>, <a href='index.html#errors'>errors</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>** <strong>I got an error while building </strong>CUDPP 1.1.1** with <strong>CUDA 3.2</strong>. The linker error occurs on building <code>cudpp_vc90.sln</code>:</p>
+<p>** <strong>I got an error while building </strong>CUDPP 1.1.1** with
+<strong>CUDA 3.2</strong>. The linker error occurs on building
+<code>cudpp_vc90.sln</code>:</p>
 <pre><code>LINK : fatal error LNK1181: cannot open input file &#39;cudart.lib&#39;</code></pre>
 <p><strong>Reason</strong></p>
-<p>NVIDIA is notorious for frequently changing their environment variables and their paths. I have commented on this before <a href="https://codeyarns.com/tech/2009/12/01/cuda-environment-variables/">here</a> and <a href="https://codeyarns.com/tech/2010/04/13/cuda-3-0/">here</a>. They have done it again with CUDA 3.2! 😐 <code>cudpp_vc90.vcproj</code> looks for <code>cudart.lib</code> in the directory <code>$(CUDA_LIB_PATH)/../lib</code>. CUDA 3.2 has moved these files to <code>$(CUDA_LIB_PATH)</code>.</p>
+<p>NVIDIA is notorious for frequently changing their environment
+variables and their paths. I have commented on this before <a
+href="https://codeyarns.com/tech/2009/12/01/cuda-environment-variables/">here</a>
+and <a href="https://codeyarns.com/tech/2010/04/13/cuda-3-0/">here</a>.
+They have done it again with CUDA 3.2! 😐 <code>cudpp_vc90.vcproj</code>
+looks for <code>cudart.lib</code> in the directory
+<code>$(CUDA_LIB_PATH)/../lib</code>. CUDA 3.2 has moved these files to
+<code>$(CUDA_LIB_PATH)</code>.</p>
 <p><strong>Solution</strong></p>
-<p>In the CUDPP solution, Change the <strong>Additional library dependencies</strong> in the Visual Studio solution from <code>$(CUDA_LIB_PATH)/../lib</code> to <code>$(CUDA_LIB_PATH)</code>.</p>
+<p>In the CUDPP solution, Change the <strong>Additional library
+dependencies</strong> in the Visual Studio solution from
+<code>$(CUDA_LIB_PATH)/../lib</code> to
+<code>$(CUDA_LIB_PATH)</code>.</p>
 <p><strong>Note</strong></p>
-<p>I have reported this error to CUDPP <a href="http://code.google.com/p/cudpp/issues/detail?id=72">here</a>. A committer has merged the fix. But, given the fact that the last release was a year ago, it might be a while before this fix appears in a stable release.</p>
-<p><strong>Tried with</strong>: CUDPP 1.1.1, CUDA 3.2, Visual Studio 2008 and Windows 7 64-bit.</p>
+<p>I have reported this error to CUDPP <a
+href="http://code.google.com/p/cudpp/issues/detail?id=72">here</a>. A
+committer has merged the fix. But, given the fact that the last release
+was a year ago, it might be a while before this fix appears in a stable
+release.</p>
+<p><strong>Tried with</strong>: CUDPP 1.1.1, CUDA 3.2, Visual Studio
+2008 and Windows 7 64-bit.</p>
 </div>
 
 <br />
@@ -61,11 +64,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

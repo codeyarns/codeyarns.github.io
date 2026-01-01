@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,41 @@
 <h1 class="title">Unicode wxWidgets in a Non-Unicode World</h1>
 <p class="date">📅 2010-Jan-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#unicode'>unicode</a>, <a href='index.html#wxwidgets'>wxwidgets</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><em><a href="http://www.wxwidgets.org/">wxWidgets</a></em> can be compiled to pure Unicode mode by setting <code>wxUSE_UNICODE</code> to <code>1</code> in the header file <code>$(WX_WIDGETS_ROOT)\include\wx\msw\setup.h</code></p>
-<p>But what if the rest of your code that interfaces with Unicode wxWidgets is still not Unicode, but uses <code>char</code> and <code>STL std::string</code>? The changes needed at the interface are:</p>
+<p><em><a href="http://www.wxwidgets.org/">wxWidgets</a></em> can be
+compiled to pure Unicode mode by setting <code>wxUSE_UNICODE</code> to
+<code>1</code> in the header file
+<code>$(WX_WIDGETS_ROOT)\include\wx\msw\setup.h</code></p>
+<p>But what if the rest of your code that interfaces with Unicode
+wxWidgets is still not Unicode, but uses <code>char</code> and
+<code>STL std::string</code>? The changes needed at the interface
+are:</p>
 <ul>
-<li><p>Wrap all characters and string literals passed to wxWidgets in <a href="http://docs.wxwidgets.org/stable/wx_stringfunctions.html#wxt"><code>wxT()</code></a>. It converts them to Unicode. Ex: <code>wxT("Hell World!")</code></p></li>
-<li><p>wxWidget functions do not deal with <code>STL std::string</code> but with <a href="http://docs.wxwidgets.org/stable/wx_wxstring.html"><code>wxString</code></a>. Do the conversion using <code>wxConvUTF8</code>, which is an instance of the <a href="http://docs.wxwidgets.org/stable/wx_wxmbconv.html"><code>wxMBConv</code></a> class. <code>MBConv</code> stands for Multi-Byte Conversion, it helps to convert between Multi-Byte formats and Unicode. <code>wxConvUTF8</code> as you can guess converts multi-byte to the UTF-8 Unicode encoding. Ex:</p>
-<p>std::string stdStr(“Hell World!”); wxString wxStr(stdStr.c_str(), wxConvUTF8);</p></li>
-<li><p>When wxWidgets functions throw out a <code>wxString</code>, convert them back to <code>char</code> string using <a href="http://docs.wxwidgets.org/stable/wx_wxstring.html#wxstringmbstr"><code>wxString::mb_str()</code></a>. This returns the multi-byte representation of the internal Unicode text in <code>wxString</code>.</p></li>
+<li><p>Wrap all characters and string literals passed to wxWidgets in <a
+href="http://docs.wxwidgets.org/stable/wx_stringfunctions.html#wxt"><code>wxT()</code></a>.
+It converts them to Unicode. Ex:
+<code>wxT("Hell World!")</code></p></li>
+<li><p>wxWidget functions do not deal with <code>STL std::string</code>
+but with <a
+href="http://docs.wxwidgets.org/stable/wx_wxstring.html"><code>wxString</code></a>.
+Do the conversion using <code>wxConvUTF8</code>, which is an instance of
+the <a
+href="http://docs.wxwidgets.org/stable/wx_wxmbconv.html"><code>wxMBConv</code></a>
+class. <code>MBConv</code> stands for Multi-Byte Conversion, it helps to
+convert between Multi-Byte formats and Unicode. <code>wxConvUTF8</code>
+as you can guess converts multi-byte to the UTF-8 Unicode encoding.
+Ex:</p>
+<p>std::string stdStr(“Hell World!”); wxString wxStr(stdStr.c_str(),
+wxConvUTF8);</p></li>
+<li><p>When wxWidgets functions throw out a <code>wxString</code>,
+convert them back to <code>char</code> string using <a
+href="http://docs.wxwidgets.org/stable/wx_wxstring.html#wxstringmbstr"><code>wxString::mb_str()</code></a>.
+This returns the multi-byte representation of the internal Unicode text
+in <code>wxString</code>.</p></li>
 </ul>
-<p>If you are curious about this fishy Multi-Byte business, check out <em><a href="https://codeyarns.com/tech/2010/01/13/windows-multi-byte/">Windows: Multi-Byte</a></em>.</p>
+<p>If you are curious about this fishy Multi-Byte business, check out
+<em><a
+href="https://codeyarns.com/tech/2010/01/13/windows-multi-byte/">Windows:
+Multi-Byte</a></em>.</p>
 </div>
 
 <br />
@@ -60,11 +72,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

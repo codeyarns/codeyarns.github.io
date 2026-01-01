@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,29 +27,48 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Size of argument and environment lists exceeds limit</h1>
+<h1 class="title">Size of argument and environment lists exceeds
+limit</h1>
 <p class="date">📅 2017-Mar-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cp'>cp</a>, <a href='index.html#mv'>mv</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>If you try to <code>cp</code> or <code>mv</code> a large number of files or directories, you will encounter this error:</p>
+<p>If you try to <code>cp</code> or <code>mv</code> a large number of
+files or directories, you will encounter this error:</p>
 <pre><code>$ cd big_dir
 $ cp * ../../some_other_dir
 Failed to execute process &#39;/bin/cp&#39;. Reason:
 The total size of the argument and environment lists 3.2MB exceeds the operating system limit of 2MB.
 Try running the command again with fewer arguments.</code></pre>
-<p>Note that you can copy or move one directory that contains a million files or any number of files for that matter. This error happens only if the shell has to pass a large number of input arguments to the <code>cp</code> or <code>mv</code> programs. So, if you run the above command from inside a directory containing 100K files, you will surely get this error.</p>
-<p>This is because there is a limit to the size of the arguments and environment strings that can be passed to a program. That limit can be queried:</p>
+<p>Note that you can copy or move one directory that contains a million
+files or any number of files for that matter. This error happens only if
+the shell has to pass a large number of input arguments to the
+<code>cp</code> or <code>mv</code> programs. So, if you run the above
+command from inside a directory containing 100K files, you will surely
+get this error.</p>
+<p>This is because there is a limit to the size of the arguments and
+environment strings that can be passed to a program. That limit can be
+queried:</p>
 <pre><code>$ getconf ARG_MAX
 2097152</code></pre>
-<p>The result will vary on different computers. But they always have a limit and it is encoded in the Linux kernel. There does not seem to be an userspace method to increase this size.</p>
+<p>The result will vary on different computers. But they always have a
+limit and it is encoded in the Linux kernel. There does not seem to be
+an userspace method to increase this size.</p>
 <h2 id="solution">Solution</h2>
-<p>Instead of looking to increase the <code>ARG_MAX</code> size, examine the real problem. Why make the shell expand all the filenames and pass them as one gigantic list of strings to the programs? Instead these alternate solutions can be tried:</p>
+<p>Instead of looking to increase the <code>ARG_MAX</code> size, examine
+the real problem. Why make the shell expand all the filenames and pass
+them as one gigantic list of strings to the programs? Instead these
+alternate solutions can be tried:</p>
 <ul>
-<li><p>See if you can instead <code>cp</code> or <code>mv</code> a parent directory, instead of a million files.</p></li>
-<li><p>Move the files one by one by writing a <strong>loop</strong> in shell script or Python.</p></li>
-<li><p>Use other programs like <strong>rsync</strong> to copy a directory to the destination.</p></li>
+<li><p>See if you can instead <code>cp</code> or <code>mv</code> a
+parent directory, instead of a million files.</p></li>
+<li><p>Move the files one by one by writing a <strong>loop</strong> in
+shell script or Python.</p></li>
+<li><p>Use other programs like <strong>rsync</strong> to copy a
+directory to the destination.</p></li>
 </ul>
-<p><strong>Reference:</strong> Search for <code>ARG_MAX</code> in the <a href="http://man7.org/linux/man-pages/man2/execve.2.html">execve(2)</a> manpage</p>
+<p><strong>Reference:</strong> Search for <code>ARG_MAX</code> in the <a
+href="http://man7.org/linux/man-pages/man2/execve.2.html">execve(2)</a>
+manpage</p>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 </div>
 
@@ -72,11 +77,13 @@ Try running the command again with fewer arguments.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

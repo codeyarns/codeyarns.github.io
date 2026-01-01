@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,12 +31,33 @@
 <p class="date">📅 2013-Mar-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ctags'>ctags</a>, <a href='index.html#latex'>latex</a>, <a href='index.html#tagbar'>tagbar</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p><a href="2013/02/17/tagbar-plugin-for-vim/"><strong>Tagbar</strong></a> is a useful plugin for <strong>Vim</strong> that displays <strong>tags</strong> of a source file ordered by their <strong>scope</strong> in a split window. However, if you open a <strong>LaTeX</strong> file in Vim, the Tagbar shows its chapters, sections and paragraphs correctly but they are not ordered by scope. Instead, all the chapters appear together, all the sections together and so on.</p>
+<p><a
+href="2013/02/17/tagbar-plugin-for-vim/"><strong>Tagbar</strong></a> is
+a useful plugin for <strong>Vim</strong> that displays
+<strong>tags</strong> of a source file ordered by
+their <strong>scope</strong> in a split window. However, if you open a
+<strong>LaTeX</strong> file in Vim, the Tagbar shows its chapters,
+sections and paragraphs correctly but they are not ordered by scope.
+Instead, all the chapters appear together, all the sections together and
+so on.</p>
 <p><strong>Solution</strong></p>
-<p>This is not a problem with Tagbar, but with the <a href="2013/02/02/how-to-use-exuberant-ctags/"><strong>ctags</strong></a> program which is used by Tagbar to generate the tags. As of this writing, the ctags that ships with Ubuntu 12.04 LTS is a really old version that does not generate scope information for the tags of a LaTeX file. Thankfully, the tag scope feature for LaTeX files has been added to the main branch of ctags in 2012. Getting Tagbar to use the new version of ctags is easy:</p>
+<p>This is not a problem with Tagbar, but with the <a
+href="2013/02/02/how-to-use-exuberant-ctags/"><strong>ctags</strong></a>
+program which is used by Tagbar to generate the tags. As of this
+writing, the ctags that ships with Ubuntu 12.04 LTS is a really old
+version that does not generate scope information for the tags of a LaTeX
+file. Thankfully, the tag scope feature for LaTeX files has been added
+to the main branch of ctags in 2012. Getting Tagbar to use the new
+version of ctags is easy:</p>
 <ol type="1">
-<li><p>Uninstall the <strong>exuberant-ctags</strong> package from your Ubuntu system.</p></li>
-<li><p>Get the latest source code of ctags from either their <a href="http://sourceforge.net/scm/?type=svn&amp;group_id=6556">SVN repository</a> or this <a href="https://github.com/majutsushi/ctags">Github mirror</a>. (The other Github clones of ctags source code do not seem to have this LaTeX fix.)</p></li>
+<li><p>Uninstall the <strong>exuberant-ctags</strong> package from your
+Ubuntu system.</p></li>
+<li><p>Get the latest source code of ctags from either their <a
+href="http://sourceforge.net/scm/?type=svn&amp;group_id=6556">SVN
+repository</a> or this <a
+href="https://github.com/majutsushi/ctags">Github mirror</a>. (The other
+Github clones of ctags source code do not seem to have this LaTeX
+fix.)</p></li>
 <li><p>Compile ctags by using these commands:</p></li>
 </ol>
 <pre><code>$ autoheader
@@ -58,7 +65,8 @@ $ autoconf
 $ ./configure
 $ make
 $ sudo make install</code></pre>
-<p>Now open the LaTeX file in Ubuntu and its tags should be displayed with correct scoping in Tagbar.</p>
+<p>Now open the LaTeX file in Ubuntu and its tags should be displayed
+with correct scoping in Tagbar.</p>
 <p><strong>Tried with:</strong> Ubuntu 12.04 LTS</p>
 </div>
 
@@ -67,11 +75,13 @@ $ sudo make install</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,23 +31,42 @@
 <p class="date">📅 2013-Sep-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#eclipse'>eclipse</a>, <a href='index.html#error'>error</a>, <a href='index.html#heap-space'>heap space</a>, <a href='index.html#jvm'>jvm</a>, <a href='index.html#nsight'>nsight</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>You find that <strong>Eclipse</strong> (or NVIDIA Nsight) spends too much time on indexing your source files. Or it sometimes complains about not having enough heap space. Or it throws an error message that says:</p>
+<p>You find that <strong>Eclipse</strong> (or NVIDIA Nsight) spends too
+much time on indexing your source files. Or it sometimes complains about
+not having enough heap space. Or it throws an error message that
+says:</p>
 <pre><code>GC overhead limit exceeded</code></pre>
-<p>Eclipse (or Nsight) is a java program, so it runs on your <strong>Java Virtual Machine</strong> (JVM). These symptoms typically indicate that the JVM is not having enough heap space for its objects.</p>
+<p>Eclipse (or Nsight) is a java program, so it runs on your
+<strong>Java Virtual Machine</strong> (JVM). These symptoms typically
+indicate that the JVM is not having enough heap space for its
+objects.</p>
 <h2 id="solution">Solution</h2>
-<p>When Eclipse is invoked, it passes the parameters set in its <code>eclipse.ini</code> file to the JVM. So, you can speed up or improve the performance of Eclipse by changing these parameters passed to the JVM.</p>
-<p>First, find out where is the <code>eclipse.ini</code> file on your system. On my Ubuntu, I find that it is at <code>/usr/lib/eclipse/eclipse.ini</code>. For Nsight, the file is named <code>nsight.ini</code> and I found it at <code>/usr/local/cuda-5.5/libnsight</code>.</p>
-<p>I found that the default parameters for the heap space were set as this:</p>
+<p>When Eclipse is invoked, it passes the parameters set in its
+<code>eclipse.ini</code> file to the JVM. So, you can speed up or
+improve the performance of Eclipse by changing these parameters passed
+to the JVM.</p>
+<p>First, find out where is the <code>eclipse.ini</code> file on your
+system. On my Ubuntu, I find that it is at
+<code>/usr/lib/eclipse/eclipse.ini</code>. For Nsight, the file is named
+<code>nsight.ini</code> and I found it at
+<code>/usr/local/cuda-5.5/libnsight</code>.</p>
+<p>I found that the default parameters for the heap space were set as
+this:</p>
 <pre><code>-Xms40m
 -Xmx256m
 -XX:MaxPermSize=256m</code></pre>
-<p>That is, the heap begins with a size of 40MB initially and can reach a maximum of 256MB. And it can use a maximum of 256MB of space for storing objects that are permanent during runtime. These limits are ridiculously small for modern systems with 4-8GB of RAM!</p>
+<p>That is, the heap begins with a size of 40MB initially and can reach
+a maximum of 256MB. And it can use a maximum of 256MB of space for
+storing objects that are permanent during runtime. These limits are
+ridiculously small for modern systems with 4-8GB of RAM!</p>
 <p>I increased them to:</p>
 <pre><code>-Xms512m
 -Xmx2048m
 -XX:MaxPermSize=1024m</code></pre>
-<p>This starts the heap at 512MB and can increase upto 2GB and so on. I found that the heap space problems stopped after doing this.</p>
-<p><strong>Tried with:</strong> Eclipse 3.7.2, NVIDIA Nsight 5.5.0 and Ubuntu 12.04 LTS</p>
+<p>This starts the heap at 512MB and can increase upto 2GB and so on. I
+found that the heap space problems stopped after doing this.</p>
+<p><strong>Tried with:</strong> Eclipse 3.7.2, NVIDIA Nsight 5.5.0 and
+Ubuntu 12.04 LTS</p>
 </div>
 
 <br />
@@ -69,11 +74,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

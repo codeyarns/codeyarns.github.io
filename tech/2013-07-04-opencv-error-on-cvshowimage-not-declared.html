@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,13 +31,19 @@
 <p class="date">📅 2013-Jul-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#highgui'>highgui</a>, <a href='index.html#opencv'>opencv</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>I tried to compile some code that uses <strong>OpenCV</strong> and got this error:</p>
+<p>I tried to compile some code that uses <strong>OpenCV</strong> and
+got this error:</p>
 <pre><code>foo.cpp:275:25: error: ‘cvShowImage’ was not declared in this scope
 foo.cpp:532:29: error: ‘cvSaveImage’ was not declared in this scope
 foo.cpp:556:45: error: ‘cvLoadImage’ was not declared in this scope</code></pre>
-<p>That is, the compiler is not able to find the declarations of <strong>cvShowImage</strong>, <strong>cvSaveImage</strong> and <strong>cvLoadImage</strong>. This code used to compile without errors in older versions of OpenCV.</p>
+<p>That is, the compiler is not able to find the declarations of
+<strong>cvShowImage</strong>, <strong>cvSaveImage</strong> and
+<strong>cvLoadImage</strong>. This code used to compile without errors
+in older versions of OpenCV.</p>
 <p><strong>Solution</strong></p>
-<p>In newer versions of OpenCV, these declarations are in the <strong>highgui.h</strong> header file and it needs to be explicitly included:</p>
+<p>In newer versions of OpenCV, these declarations are in the
+<strong>highgui.h</strong> header file and it needs to be explicitly
+included:</p>
 <pre><code>#include &lt;opencv/highgui.h&gt;</code></pre>
 <p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 12.04 LTS</p>
 </div>
@@ -61,11 +53,13 @@ foo.cpp:556:45: error: ‘cvLoadImage’ was not declared in this scope</code></
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

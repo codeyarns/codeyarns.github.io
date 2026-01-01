@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,25 +30,33 @@
 <h1 class="title">How to build Caffe</h1>
 <p class="date">📅 2017-Feb-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#caffe'>caffe</a>, <a href='index.html#matcaffe'>matcaffe</a>, <a href='index.html#matlab'>matlab</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Building <strong>Caffe</strong> from source is easy. There are two options provided: using a Makefile or using CMake.</p>
+<p>Building <strong>Caffe</strong> from source is easy. There are two
+options provided: using a Makefile or using CMake.</p>
 <h2 id="required-packages">Required packages</h2>
 <ul>
-<li><p>Download or clone the source code of Caffe from <a href="https://github.com/BVLC/caffe">here</a>.</p></li>
-<li><p>Not surprisingly, you will need a GPU, a graphics driver that can work with that GPU and an installation of CUDA.</p></li>
-<li><p>Other than that, you will need to install these packages:</p></li>
+<li><p>Download or clone the source code of Caffe from <a
+href="https://github.com/BVLC/caffe">here</a>.</p></li>
+<li><p>Not surprisingly, you will need a GPU, a graphics driver that can
+work with that GPU and an installation of CUDA.</p></li>
+<li><p>Other than that, you will need to install these
+packages:</p></li>
 </ul>
 <pre><code>$ sudo apt install libboost-all-dev libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler libgflags-dev libgoogle-glog-dev liblmdb-dev</code></pre>
 <ul>
-<li>For BLAS on CPU, the best performance comes from installing Intel’s MKL libraries. If you do not have that, you can install either ATLAS or OpenBLAS:</li>
+<li>For BLAS on CPU, the best performance comes from installing Intel’s
+MKL libraries. If you do not have that, you can install either ATLAS or
+OpenBLAS:</li>
 </ul>
 <pre><code>$ sudo apt install libatlas-base-dev
 $ sudo apt install libopenblas-dev</code></pre>
 <ul>
-<li>To build the Python interface to Caffe, which is highly recommended, make sure these packages are installed:</li>
+<li>To build the Python interface to Caffe, which is highly recommended,
+make sure these packages are installed:</li>
 </ul>
 <pre><code>$ sudo apt install libboost-python-dev python-skimage python-protobuf</code></pre>
 <ul>
-<li>If you do not have one or more of the above Python-related packages, you might see these errors:</li>
+<li>If you do not have one or more of the above Python-related packages,
+you might see these errors:</li>
 </ul>
 <pre><code>The dependency target &quot;pycaffe&quot; of target &quot;pytest&quot; does not exist.
 
@@ -75,22 +69,36 @@ ImportError: No module named google.protobuf.internal</code></pre>
 $ cd build
 $ cmake ..
 $ make</code></pre>
-<p>To build and run the 2000+ unittests, which can take quite a while to finish:</p>
+<p>To build and run the 2000+ unittests, which can take quite a while to
+finish:</p>
 <pre><code>$ make runtest</code></pre>
 <p>Finally to build the Python interface to Caffe:</p>
 <pre><code>$ make pycaffe
 $ make install</code></pre>
-<p>By default, the install directory will be a subdirectory inside the <code>build</code> directory. Add this <code>build/install/python</code> path to <code>PYTHONPATH</code> environment variable before you import caffe in Python.</p>
+<p>By default, the install directory will be a subdirectory inside the
+<code>build</code> directory. Add this <code>build/install/python</code>
+path to <code>PYTHONPATH</code> environment variable before you import
+caffe in Python.</p>
 <h2 id="build-using-make">Build using Make</h2>
-<p>On one system, I found that using Makefile was easier, since CMake was erroneously complaining about <code>-lpthreads</code> (which is a Clang library, not a GCC library). Copy the Makefile config file, open it in an editor and check whether all the paths are set correctly:</p>
+<p>On one system, I found that using Makefile was easier, since CMake
+was erroneously complaining about <code>-lpthreads</code> (which is a
+Clang library, not a GCC library). Copy the Makefile config file, open
+it in an editor and check whether all the paths are set correctly:</p>
 <pre><code>$ cp Makefile.config.example Makefile.config
 $ vim Makefile.config
 $ make</code></pre>
 <h2 id="build-matcaffe">Build MatCaffe</h2>
-<p>Building support for <strong>MATLAB</strong> to use Caffe takes a few more steps:</p>
+<p>Building support for <strong>MATLAB</strong> to use Caffe takes a few
+more steps:</p>
 <ul>
-<li><p>In Makefile.config, set the <code>MATLAB_DIR</code> to the path that contains <code>bin/mex</code>. On my computer, this was the path <code>/usr/local/MATLAB/R2014a</code>.</p></li>
-<li><p>Compiling the MATLAB wrapper gave an error about C++11 on my Ubuntu 14.04 due to the older GCC compilers. So, I had to add <code>-std=c++11</code> to the <code>CXXFLAGS</code> variable in <code>Makefile</code> as shown <a href="https://github.com/Caffe-MPI/Caffe-MPI.github.io/pull/4/files">here</a>.</p></li>
+<li><p>In Makefile.config, set the <code>MATLAB_DIR</code> to the path
+that contains <code>bin/mex</code>. On my computer, this was the path
+<code>/usr/local/MATLAB/R2014a</code>.</p></li>
+<li><p>Compiling the MATLAB wrapper gave an error about C++11 on my
+Ubuntu 14.04 due to the older GCC compilers. So, I had to add
+<code>-std=c++11</code> to the <code>CXXFLAGS</code> variable in
+<code>Makefile</code> as shown <a
+href="https://github.com/Caffe-MPI/Caffe-MPI.github.io/pull/4/files">here</a>.</p></li>
 <li><p>Finally, compiling MatCaffe is easy:</p></li>
 </ul>
 <pre><code>$ make all matcaffe</code></pre>
@@ -101,11 +109,13 @@ $ make</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

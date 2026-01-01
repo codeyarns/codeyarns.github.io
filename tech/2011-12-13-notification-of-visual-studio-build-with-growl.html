@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,24 +31,54 @@
 <p class="date">📅 2011-Dec-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#notification'>notification</a>, <a href='index.html#visual-studio'>visual studio</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/12/20111213-growl-visualstudio.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/12/20111213-growl-visualstudio.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p><strong>Problem</strong></p>
-<p>Compiling C++ projects in <strong>Visual Studio</strong> can take quite a while. A programmer might switch to a different application to do something else (say browse) while the code compiles. It would be nice if the programmer can get a <strong>visual notification</strong> of the success or failure of the <strong>build</strong> happening in the background once it is done.</p>
+<p>Compiling C++ projects in <strong>Visual Studio</strong> can take
+quite a while. A programmer might switch to a different application to
+do something else (say browse) while the code compiles. It would be nice
+if the programmer can get a <strong>visual notification</strong> of the
+success or failure of the <strong>build</strong> happening in the
+background once it is done.</p>
 <p><strong>Solution</strong></p>
-<p><a href="http://www.growlforwindows.com/"><strong>Growl</strong></a> is a neat tool that can make this happen. Here is how to get notifications of your Visual Studio builds using Growl:</p>
+<p><a href="http://www.growlforwindows.com/"><strong>Growl</strong></a>
+is a neat tool that can make this happen. Here is how to get
+notifications of your Visual Studio builds using Growl:</p>
 <ol type="1">
-<li><p>Download and install <a href="http://www.growlforwindows.com/">Growl</a>.</p></li>
-<li><p>Download and install the <a href="http://www.growlforwindows.com/gfw/plugins/visualstudio">Visual Studio plugin for Growl</a>.</p></li>
-<li><p>Open Visual Studio and choose Tools → Growl. (If you do not see a Growl item in the Tools menu, see the end of this post for a fix.)</p></li>
-<li><p>In the Growl dialog, enable Notifications and choose whether you want to be notified on Project or Solution builds.</p></li>
-<li><p>Run Growl and compile something in Visual Studio. You should see a notification on your display when the build succeeds or fails.</p></li>
+<li><p>Download and install <a
+href="http://www.growlforwindows.com/">Growl</a>.</p></li>
+<li><p>Download and install the <a
+href="http://www.growlforwindows.com/gfw/plugins/visualstudio">Visual
+Studio plugin for Growl</a>.</p></li>
+<li><p>Open Visual Studio and choose Tools → Growl. (If you do not see a
+Growl item in the Tools menu, see the end of this post for a
+fix.)</p></li>
+<li><p>In the Growl dialog, enable Notifications and choose whether you
+want to be notified on Project or Solution builds.</p></li>
+<li><p>Run Growl and compile something in Visual Studio. You should see
+a notification on your display when the build succeeds or
+fails.</p></li>
 </ol>
-<p>The kind of display used for the notification can be configured in Growl. Enjoy your build notifications! 😊</p>
+<p>The kind of display used for the notification can be configured in
+Growl. Enjoy your build notifications! 😊</p>
 <p><strong>Fix</strong></p>
-<p>I could not get the Visual Studio plugin working on my computer, i.e., there was no Growl menu item in Visual Studio. Though I chose to install for Everyone, I found that the Visual Studio plugin was installing to <code>%APPDATA%\Microsoft\MSEnvShared\Addins\Growl Add-In</code> path of an administrator. It is actually supposed to install to <code>%ProgramFiles(x86)%\Growl Extras\Growl Add-In for Visual Studio\</code>.</p>
-<p>A quick fix worked for me. I copied the <code>Growl Add-in</code> folder to <code>%APPDATA%\Microsoft\MSEnvShared\Addins\Growl Add-In</code> path of my non-admin username. And when I opened Visual Studio as the user <code>Joe</code>, Growl worked! 😊</p>
-<p><strong>Tried with:</strong> Growl 2.0.8 and Visual Studio 2008 and 2010</p>
+<p>I could not get the Visual Studio plugin working on my computer,
+i.e., there was no Growl menu item in Visual Studio. Though I chose to
+install for Everyone, I found that the Visual Studio plugin was
+installing to
+<code>%APPDATA%\Microsoft\MSEnvShared\Addins\Growl Add-In</code> path of
+an administrator. It is actually supposed to install to
+<code>%ProgramFiles(x86)%\Growl Extras\Growl Add-In for Visual Studio\</code>.</p>
+<p>A quick fix worked for me. I copied the <code>Growl Add-in</code>
+folder to
+<code>%APPDATA%\Microsoft\MSEnvShared\Addins\Growl Add-In</code> path of
+my non-admin username. And when I opened Visual Studio as the user
+<code>Joe</code>, Growl worked! 😊</p>
+<p><strong>Tried with:</strong> Growl 2.0.8 and Visual Studio 2008 and
+2010</p>
 </div>
 
 <br />
@@ -70,11 +86,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

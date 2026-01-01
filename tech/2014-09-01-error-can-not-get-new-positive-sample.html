@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,9 @@
 <p class="date">📅 2014-Sep-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cascade-classifier'>cascade classifier</a>, <a href='index.html#error'>error</a>, <a href='index.html#opencv'>opencv</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was in the process of training a cascade classifier. I had exactly 354 positive samples and yet I got this error from <code>opencv_traincascade</code> when it entered stage 2:</p>
+<p>I was in the process of training a cascade classifier. I had exactly
+354 positive samples and yet I got this error from
+<code>opencv_traincascade</code> when it entered stage 2:</p>
 <pre><code>$ opencv_traincascade -data car-classifier -vec pos-samples.vec -bg neg-image-filepaths.txt -precalcValBufSize 256 -precalcIdxBufSize 256 -numPos 354 -numNeg 4000 -nstages 20 -minhitrate 0.999 -maxfalsealarm 0.5 -w 50 -h 50 -nonsym -baseFormatSave 
 PARAMETERS:
 numPos: 354
@@ -92,7 +80,12 @@ terminate called after throwing an instance of &#39;cv::Exception&#39;
   what():  opencv-2.4.9/apps/traincascade/imagestorage.cpp:162: error: (-5) Can not get new positive sample. The most possible reason is insufficient count of samples in given vec-file.
  in function get</code></pre>
 <h2 id="solution">Solution</h2>
-<p>This problem seems to be very common. One possible solution is here. I took the hint from that and reduced the number of positive samples I provided as input to the program. Note that you need more positive samples to be present in the <code>.vec</code> file, just pass a smaller number to the program so it has some left over when it starts stage 1.</p>
+<p>This problem seems to be very common. One possible solution is here.
+I took the hint from that and reduced the number of positive samples I
+provided as input to the program. Note that you need more positive
+samples to be present in the <code>.vec</code> file, just pass a smaller
+number to the program so it has some left over when it starts stage
+1.</p>
 <p>Here is the modified invocation I used:</p>
 <pre><code>$ opencv_traincascade -data car-classifier -vec pos-samples.vec -bg neg-image-filepaths.txt -precalcValBufSize 256 -precalcIdxBufSize 256 -numPos 200 -numNeg 2000 -nstages 20 -minhitrate 0.999 -maxfalsealarm 0.5 -w 50 -h 50 -nonsym -baseFormatSave</code></pre>
 <p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
@@ -103,11 +96,13 @@ terminate called after throwing an instance of &#39;cv::Exception&#39;
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

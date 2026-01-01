@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,18 +31,77 @@
 <p class="date">📅 2017-Jan-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#firefox-extension'>firefox extension</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2017/01/20171118_umatrix.png" alt="" /><figcaption>Switchboard of uMatrix</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2017/01/20171118_umatrix.png"
+alt="Switchboard of uMatrix" />
+<figcaption aria-hidden="true">Switchboard of uMatrix</figcaption>
 </figure>
-<p><strong>uMatrix</strong> is a Firefox extension that can be used to control exactly what network requests are made by the browser and thus what is loaded in the requested webpage. It is of similar use as ad-blockers (like AdBlock) or script blockers (NoScript) or other blockers like uBlock. But, uMatrix is more fine-grained and a bit more complicated but gives you a lot more idea of what a webpage is trying to load and if you would want to allow that. uMatrix is a fork and improvement over an earlier addon called <a href="https://github.com/gorhill/httpswitchboard/"><strong>HTTP Switchboard</strong></a>.</p>
+<p><strong>uMatrix</strong> is a Firefox extension that can be used to
+control exactly what network requests are made by the browser and thus
+what is loaded in the requested webpage. It is of similar use as
+ad-blockers (like AdBlock) or script blockers (NoScript) or other
+blockers like uBlock. But, uMatrix is more fine-grained and a bit more
+complicated but gives you a lot more idea of what a webpage is trying to
+load and if you would want to allow that. uMatrix is a fork and
+improvement over an earlier addon called <a
+href="https://github.com/gorhill/httpswitchboard/"><strong>HTTP
+Switchboard</strong></a>.</p>
 <ul>
-<li><p><strong>Install:</strong> It can be installed from <a href="https://addons.mozilla.org/en-us/firefox/addon/umatrix/">here</a>. No browser restart is required. You will find its icon added to the toolbar.</p></li>
-<li><p><strong>Settings:</strong> Before you try anything, head over to its <a href="//umatrix/content/dashboard.html">dashboard</a>. In the <strong>Privacy</strong> tab, you can turn off the feature of clearing browser cache every 60 minutes. The <strong>My rules</strong> tab is where you can find the list of rules that are applied by uMatrix to decide if a network request on a webpage should be allowed or not. You will find the default rules that uMatrix starts off with under <strong>Permanent Rules</strong> and the rules that you have set under <strong>Temporary Rules</strong>. Do not worry if it looks complicated cause you usually set these rules using the colorful 2D matrix (or switchboard) UI of uMatrix. In the <strong>Hosts files</strong> tab, click the Update Now button to update all the hostnames to block from the various popular lists maintained on the internet.</p></li>
-<li><p><strong>Content is blocked by default:</strong> By default, uMatrix blocks all types of content from the blocked hostnames (see above) and allows CSS and image content only from the domain you are visiting. Many websites may not render or work correctly due to this and you will need to step in to tell uMatrix to allow other content from other domains. This default behavior is called <strong>Block All / Allow Exceptionally</strong>. To allow everything by default is called <strong>Allow All / Block Exceptionally</strong>. You can find detailed information about these two modes <a href="https://github.com/gorhill/httpswitchboard/wiki/How-to-use-HTTP-Switchboard:-Two-opposing-views">here</a>.</p></li>
-<li><p><strong>Control content:</strong> On any webpage, click the uMatrix icon in the toolbar to reveal the 2D matrix where you can click to enable or disable loading from particular hostnames (the rows) or loading particular types of content (the columns). Red color means disabled and green means enabled. Clicking upper part of a cell enables and lower part disables. Clicking rows or columns should usually be enough, if you want finer control you can click the cells, that is controlling a particular content from a particular hostname. Click the Refresh icon to re-render the webpage with these changes. The rules you set here are the rules you can see in the Dashboard (see above).</p></li>
-<li><p><strong>Whitelist a domain:</strong> The top-left cell is the Z axis to this 2D matrix. Clicking it you can choose if you want to set rules for every page (asterisk) or this particular hostname. For example, if I enable instapaper.com in the every page (asterisk) section, then content coming from instapaper.com will be allowed no matter which website I visit.</p></li>
-<li><p><strong>Undo or Save:</strong> Click the Lock icon to save the rules for this webpage. Click the Eraser icon to revert back to last saved rules for this webpage.</p></li>
-<li><p><strong>Persist settings:</strong> By default, the rules you painstakingly set for websites will persist only in a Firefox session. They will be forgotten if you restart Firefox. To make them persist, go to the Dashboard → My Rules section and move the rules from Temporary Rules to Permanent Rules section.</p></li>
-<li><p><strong>Default rules:</strong> As a reference, when uMatrix is installed freshly, it starts off with these rules (<a href="https://github.com/gorhill/uMatrix/blob/0bcb7669e77adc958ee66a97fe9172898cb8131d/src/js/httpsb.js#L27">source</a>):</p></li>
+<li><p><strong>Install:</strong> It can be installed from <a
+href="https://addons.mozilla.org/en-us/firefox/addon/umatrix/">here</a>.
+No browser restart is required. You will find its icon added to the
+toolbar.</p></li>
+<li><p><strong>Settings:</strong> Before you try anything, head over to
+its <a href="//umatrix/content/dashboard.html">dashboard</a>. In the
+<strong>Privacy</strong> tab, you can turn off the feature of clearing
+browser cache every 60 minutes. The <strong>My rules</strong> tab is
+where you can find the list of rules that are applied by uMatrix to
+decide if a network request on a webpage should be allowed or not. You
+will find the default rules that uMatrix starts off with under
+<strong>Permanent Rules</strong> and the rules that you have set under
+<strong>Temporary Rules</strong>. Do not worry if it looks complicated
+cause you usually set these rules using the colorful 2D matrix (or
+switchboard) UI of uMatrix. In the <strong>Hosts files</strong> tab,
+click the Update Now button to update all the hostnames to block from
+the various popular lists maintained on the internet.</p></li>
+<li><p><strong>Content is blocked by default:</strong> By default,
+uMatrix blocks all types of content from the blocked hostnames (see
+above) and allows CSS and image content only from the domain you are
+visiting. Many websites may not render or work correctly due to this and
+you will need to step in to tell uMatrix to allow other content from
+other domains. This default behavior is called <strong>Block All / Allow
+Exceptionally</strong>. To allow everything by default is called
+<strong>Allow All / Block Exceptionally</strong>. You can find detailed
+information about these two modes <a
+href="https://github.com/gorhill/httpswitchboard/wiki/How-to-use-HTTP-Switchboard:-Two-opposing-views">here</a>.</p></li>
+<li><p><strong>Control content:</strong> On any webpage, click the
+uMatrix icon in the toolbar to reveal the 2D matrix where you can click
+to enable or disable loading from particular hostnames (the rows) or
+loading particular types of content (the columns). Red color means
+disabled and green means enabled. Clicking upper part of a cell enables
+and lower part disables. Clicking rows or columns should usually be
+enough, if you want finer control you can click the cells, that is
+controlling a particular content from a particular hostname. Click the
+Refresh icon to re-render the webpage with these changes. The rules you
+set here are the rules you can see in the Dashboard (see
+above).</p></li>
+<li><p><strong>Whitelist a domain:</strong> The top-left cell is the Z
+axis to this 2D matrix. Clicking it you can choose if you want to set
+rules for every page (asterisk) or this particular hostname. For
+example, if I enable instapaper.com in the every page (asterisk)
+section, then content coming from instapaper.com will be allowed no
+matter which website I visit.</p></li>
+<li><p><strong>Undo or Save:</strong> Click the Lock icon to save the
+rules for this webpage. Click the Eraser icon to revert back to last
+saved rules for this webpage.</p></li>
+<li><p><strong>Persist settings:</strong> By default, the rules you
+painstakingly set for websites will persist only in a Firefox session.
+They will be forgotten if you restart Firefox. To make them persist, go
+to the Dashboard → My Rules section and move the rules from Temporary
+Rules to Permanent Rules section.</p></li>
+<li><p><strong>Default rules:</strong> As a reference, when uMatrix is
+installed freshly, it starts off with these rules (<a
+href="https://github.com/gorhill/uMatrix/blob/0bcb7669e77adc958ee66a97fe9172898cb8131d/src/js/httpsb.js#L27">source</a>):</p></li>
 </ul>
 <pre><code>https-strict: behind-the-scene false
 matrix-off: about-scheme true
@@ -81,9 +126,15 @@ cname-reveal: * true
 * 1st-party frame allow</code></pre>
 <p><strong>Reference</strong>:</p>
 <ul>
-<li><a href="https://github.com/gorhill/httpswitchboard/wiki/How-to-use-HTTP-Switchboard:-Two-opposing-views">How to use HTTP Switchboard: Two opposing views</a></li>
-<li><a href="https://github.com/gorhill/uMatrix/wiki/Changes-from-HTTP-Switchboard">How uMatrix is different from HTTP Switchboard</a></li>
-<li><a href="https://github.com/gorhill/uMatrix/wiki/Very-bare-walkthrough-for-first-time-users">uMatrix walkthrough for first time users</a></li>
+<li><a
+href="https://github.com/gorhill/httpswitchboard/wiki/How-to-use-HTTP-Switchboard:-Two-opposing-views">How
+to use HTTP Switchboard: Two opposing views</a></li>
+<li><a
+href="https://github.com/gorhill/uMatrix/wiki/Changes-from-HTTP-Switchboard">How
+uMatrix is different from HTTP Switchboard</a></li>
+<li><a
+href="https://github.com/gorhill/uMatrix/wiki/Very-bare-walkthrough-for-first-time-users">uMatrix
+walkthrough for first time users</a></li>
 </ul>
 <p><strong>Tried with:</strong> Firefox 50.1.0 and Ubuntu 16.04</p>
 </div>
@@ -93,11 +144,13 @@ cname-reveal: * true
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

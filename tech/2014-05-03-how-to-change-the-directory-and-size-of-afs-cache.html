@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,10 +30,20 @@
 <h1 class="title">How to change the directory and size of AFS cache</h1>
 <p class="date">📅 2014-May-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#afs'>afs</a>, <a href='index.html#cache'>cache</a>, <a href='index.html#openafs'>openafs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A typical OpenAFS installation uses the <code>/var/cache/openafs</code> directory as a cache for the files and directories you access on the AFS distributed file system. It typically mounts the file system at the local directory named <code>/afs</code> where you can access it as if it existed on your local storage. The commonly used size of the cache is 50MB.</p>
-<p>To change any of these 3 parameters, edit the <code>/etc/openafs/cacheinfo</code> file. A typical line in this file is:</p>
+<p>A typical OpenAFS installation uses the
+<code>/var/cache/openafs</code> directory as a cache for the files and
+directories you access on the AFS distributed file system. It typically
+mounts the file system at the local directory named <code>/afs</code>
+where you can access it as if it existed on your local storage. The
+commonly used size of the cache is 50MB.</p>
+<p>To change any of these 3 parameters, edit the
+<code>/etc/openafs/cacheinfo</code> file. A typical line in this file
+is:</p>
 <pre><code>/afs:/var/cache/openafs:50000</code></pre>
-<p>The first item is the local directory where AFS is mounted, the second is the location of the cache and the third is the size in KB. Change these to any values you want and restart the OpenAFS client for it to take effect:</p>
+<p>The first item is the local directory where AFS is mounted, the
+second is the location of the cache and the third is the size in KB.
+Change these to any values you want and restart the OpenAFS client for
+it to take effect:</p>
 <pre><code>$ sudo /etc/init.d/openafs-client restart</code></pre>
 <p><strong>Tried with:</strong> OpenAFS 1.6.7 and Ubuntu 14.04</p>
 </div>
@@ -57,11 +53,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

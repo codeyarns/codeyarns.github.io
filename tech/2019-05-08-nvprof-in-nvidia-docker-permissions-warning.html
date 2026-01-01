@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,10 @@
 <p class="date">📅 2019-May-08 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#nvidia-docker'>nvidia docker</a>, <a href='index.html#nvprof'>nvprof</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was running a CUDA application inside a <strong>nvidia-docker</strong> container. Wanting to profile it, I ran the application with <strong>nvprof</strong> and got a permissions warning and no profile information was generated:</p>
+<p>I was running a CUDA application inside a
+<strong>nvidia-docker</strong> container. Wanting to profile it, I ran
+the application with <strong>nvprof</strong> and got a permissions
+warning and no profile information was generated:</p>
 <pre><code>==616== Warning: The user does not have permission to profile on the target device. See the following link for instructions to enable permissions and get more information: https://developer.nvidia.com/NVSOLN1000
 ==616== Warning: Some profiling data are not recorded. Make sure cudaProfilerStop() or cuProfilerStop() is called before application exit to flush profile data.</code></pre>
 <p>For another application, the error looked like this:</p>
@@ -56,7 +45,10 @@
 No kernels were profiled.                                                         
 No API activities were profiled.</code></pre>
 <h2 id="solution">Solution</h2>
-<p>The warning message has a link, but perusing that documentation is not relevant to this docker problem. Solution turned out to be that I needed to add the <code>--privileged</code> option to my nvidia-docker command invocation.</p>
+<p>The warning message has a link, but perusing that documentation is
+not relevant to this docker problem. Solution turned out to be that I
+needed to add the <code>--privileged</code> option to my nvidia-docker
+command invocation.</p>
 </div>
 
 <br />
@@ -64,11 +56,13 @@ No API activities were profiled.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,24 @@
 <h1 class="title">How to block domains using hosts file</h1>
 <p class="date">📅 2016-Aug-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#hosts'>hosts</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A popular method used to block ads or domains in browsers is to use <strong>adblocking</strong> addons. An alternate method is by using the <code>hosts</code> file of your operating system. This file has mappings of hostnames to IP addresses. By pointing domain names to the <code>0.0.0.0</code> IP address they cannot be resolved for access.</p>
+<p>A popular method used to block ads or domains in browsers is to use
+<strong>adblocking</strong> addons. An alternate method is by using the
+<code>hosts</code> file of your operating system. This file has mappings
+of hostnames to IP addresses. By pointing domain names to the
+<code>0.0.0.0</code> IP address they cannot be resolved for access.</p>
 <ul>
-<li>A popular source for hosts file is provided by Steven Black. Clone that repository to your computer:</li>
+<li>A popular source for hosts file is provided by Steven Black. Clone
+that repository to your computer:</li>
 </ul>
 <pre><code>$ git clone https://github.com/StevenBlack/hosts.git
 $ cd hosts</code></pre>
 <ul>
-<li><p>If you have any entries in your local <code>hosts</code> file, then add them to the <code>myhosts</code> file in this repository.</p></li>
-<li><p>To update the adblocking domain files to their latest versions and to add the <code>myhosts</code> entries to create a final <code>hosts</code> file run this command:</p></li>
+<li><p>If you have any entries in your local <code>hosts</code> file,
+then add them to the <code>myhosts</code> file in this
+repository.</p></li>
+<li><p>To update the adblocking domain files to their latest versions
+and to add the <code>myhosts</code> entries to create a final
+<code>hosts</code> file run this command:</p></li>
 </ul>
 <pre><code>$ ./makeHosts</code></pre>
 <ul>
@@ -61,10 +56,12 @@ $ cd hosts</code></pre>
 <pre><code>$ sudo cp /etc/hosts /etc/hosts.orig
 $ sudo cp hosts /etc/hosts</code></pre>
 <ul>
-<li>Optionally, you can also restart your name service cache daemon to flush its cache:</li>
+<li>Optionally, you can also restart your name service cache daemon to
+flush its cache:</li>
 </ul>
 <pre><code>$ sudo service nscd restart</code></pre>
-<p>That is it! You can use any browser or application and the domains in the hosts file will not be accessible from them.</p>
+<p>That is it! You can use any browser or application and the domains in
+the hosts file will not be accessible from them.</p>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 </div>
 
@@ -73,11 +70,13 @@ $ sudo cp hosts /etc/hosts</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

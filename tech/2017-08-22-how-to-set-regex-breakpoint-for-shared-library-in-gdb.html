@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,18 +27,37 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to set regex breakpoint for shared library in GDB</h1>
+<h1 class="title">How to set regex breakpoint for shared library in
+GDB</h1>
 <p class="date">📅 2017-Aug-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#breakpoint'>breakpoint</a>, <a href='index.html#gdb'>gdb</a>, <a href='index.html#regex'>regex</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>Assume you are running a program under <strong>GDB</strong> and it is linked to shared library files. Not all the shared libraries are loaded at the beginning when you start the program with GDB. They are loaded when needed. So, how to set a <strong>regex breakpoint</strong> in a source file that belongs to one of the shared library files?</p>
+<p>Assume you are running a program under <strong>GDB</strong> and it is
+linked to shared library files. Not all the shared libraries are loaded
+at the beginning when you start the program with GDB. They are loaded
+when needed. So, how to set a <strong>regex breakpoint</strong> in a
+source file that belongs to one of the shared library files?</p>
 <h2 id="solution">Solution</h2>
 <ul>
-<li><p>Setting a normal breakpoint will work if the shared library having that file has already been loaded. You can check the currently loaded shared libraries using the command: <code>info shared</code></p></li>
-<li><p>If you set a breakpoint for a file which belongs to a shared library that is not yet loaded, GDB will warn you that the breakpoint will only be set once the library is loaded. This is kinda okay.</p></li>
-<li><p>However, if you try to set regex breakpoints (<strong>rbreak</strong>) that will fail silently if the shared library is not yet loaded. So how to know when is the earliest point when you can set such breakpoints?</p></li>
-<li><p>I find it useful to configure GDB to stop whenever a shared library is loaded. This can be done by setting this option: <code>set stop-on-solib-events 1</code></p></li>
-<li><p>Now GDB stops every time at the point where one or more shared libraries need to be loaded. If I realize that the shared library I am interested in has now loaded, I run the regex breakpoint command at that point to set the breakpoints. Voila!</p></li>
+<li><p>Setting a normal breakpoint will work if the shared library
+having that file has already been loaded. You can check the currently
+loaded shared libraries using the command:
+<code>info shared</code></p></li>
+<li><p>If you set a breakpoint for a file which belongs to a shared
+library that is not yet loaded, GDB will warn you that the breakpoint
+will only be set once the library is loaded. This is kinda
+okay.</p></li>
+<li><p>However, if you try to set regex breakpoints
+(<strong>rbreak</strong>) that will fail silently if the shared library
+is not yet loaded. So how to know when is the earliest point when you
+can set such breakpoints?</p></li>
+<li><p>I find it useful to configure GDB to stop whenever a shared
+library is loaded. This can be done by setting this option:
+<code>set stop-on-solib-events 1</code></p></li>
+<li><p>Now GDB stops every time at the point where one or more shared
+libraries need to be loaded. If I realize that the shared library I am
+interested in has now loaded, I run the regex breakpoint command at that
+point to set the breakpoints. Voila!</p></li>
 </ul>
 <p><strong>Tried with:</strong> GDB 7.11.1 and Ubuntu 14.04</p>
 </div>
@@ -62,11 +67,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

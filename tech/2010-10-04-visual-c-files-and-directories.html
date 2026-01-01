@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,9 +95,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Visual C++: Files and Directories</h1>
 <p class="date">📅 2010-Oct-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Visual C++</strong> does not respect (or use) the underlying directory structure of your existing source code files. Some may find this to be a failing, but I personally think this is a feature. It allows you to organize your files in the way you want into one (or more) projects inside Solution Explorer.</p>
+<p><strong>Visual C++</strong> does not respect (or use) the underlying
+directory structure of your existing source code files. Some may find
+this to be a failing, but I personally think this is a feature. It
+allows you to organize your files in the way you want into one (or more)
+projects inside Solution Explorer.</p>
 <p><strong>Visual C++ Files</strong></p>
-<p>If a simple Visual C++ solution named <strong>Foobar</strong> is created with source files named <strong>Main.cpp</strong> and <strong>Main.h</strong>, it will have the following structure:</p>
+<p>If a simple Visual C++ solution named <strong>Foobar</strong> is
+created with source files named <strong>Main.cpp</strong> and
+<strong>Main.h</strong>, it will have the following structure:</p>
 <pre><code>Foobar
 |   Foobar.sln
 |
@@ -118,8 +111,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         Foobar.vcxproj
         Main.cpp
         Main.h</code></pre>
-<p><strong>Foobar.sln</strong> is the Visual C++ solution file and <strong>Foobar.vcxproj</strong> is the Visual C++ project file. A <strong>solution</strong> can contain one or more <strong>projects</strong>. By default, when a solution is created, one project is created in the same name as that of the solution.</p>
-<p>If another project named <strong>Foobar2</strong> is added to the Foobar solution, the directory structure would look like this:</p>
+<p><strong>Foobar.sln</strong> is the Visual C++ solution file and
+<strong>Foobar.vcxproj</strong> is the Visual C++ project file. A
+<strong>solution</strong> can contain one or more
+<strong>projects</strong>. By default, when a solution is created, one
+project is created in the same name as that of the solution.</p>
+<p>If another project named <strong>Foobar2</strong> is added to the
+Foobar solution, the directory structure would look like this:</p>
 <pre><code>Foobar
 |   Foobar.sln
 |
@@ -130,9 +128,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 +---Foobar2
         Foobar2.vcxproj
         Main2.cpp</code></pre>
-<p>The solution file (Foobar.sln) and the project files (Foobar.vcxproj and Foobar2.vcxproj) are the only non-source files that are needed. Visual C++ might create a few more files and directories, all of them are not essential. So, if you plan to use a version control system (like Subversion or Mercurial) on this solution, you only need to backup .sln, .vcxproj, .cpp and .h files. For the comprehensive list of Visual C++ files that need to be checkedin to version control see <a href="https://codeyarns.com/tech/2010/11/05/visual-c-files-for-version-control/">this post</a>.</p>
+<p>The solution file (Foobar.sln) and the project files (Foobar.vcxproj
+and Foobar2.vcxproj) are the only non-source files that are needed.
+Visual C++ might create a few more files and directories, all of them
+are not essential. So, if you plan to use a version control system (like
+Subversion or Mercurial) on this solution, you only need to backup .sln,
+.vcxproj, .cpp and .h files. For the comprehensive list of Visual C++
+files that need to be checkedin to version control see <a
+href="https://codeyarns.com/tech/2010/11/05/visual-c-files-for-version-control/">this
+post</a>.</p>
 <p><strong>Directory Structure</strong></p>
-<p>You can setup a convenient directory structure inside the directory that contains Main.cpp and Main.h. For example, creating a directory <strong>Foo</strong> with source files <strong>Foo.cpp</strong> and <strong>Foo.h</strong>:</p>
+<p>You can setup a convenient directory structure inside the directory
+that contains Main.cpp and Main.h. For example, creating a directory
+<strong>Foo</strong> with source files <strong>Foo.cpp</strong> and
+<strong>Foo.h</strong>:</p>
 <pre><code>Foobar
 |   Foobar.sln
 |
@@ -144,23 +153,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     +---Foo
             Foo.cpp
             Foo.h</code></pre>
-<p>No matter what is the directory structure, the source files can be imported into the Foobar Visual C++ solution and arranged in any fashion the user wants. The root directory of the Foobar project is <strong>Foobar/Foobar</strong>.</p>
+<p>No matter what is the directory structure, the source files can be
+imported into the Foobar Visual C++ solution and arranged in any fashion
+the user wants. The root directory of the Foobar project is
+<strong>Foobar/Foobar</strong>.</p>
 <p><strong>Including Directories </strong></p>
-<p>Header files at the root directory of the project can be directly included:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co">// Main.cpp</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></span></code></pre></div>
-<p>For the header files lying inside directories of the project root directory, there are 2 ways to include them:</p>
+<p>Header files at the root directory of the project can be directly
+included:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Main.cpp</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></span></code></pre></div>
+<p>For the header files lying inside directories of the project root
+directory, there are 2 ways to include them:</p>
 <ol type="1">
-<li><p>Include the header file providing the <strong>relative path</strong> from the source file to the header: <code>cpp // Main.cpp #include "Main.h" #include "Foo/Foo.h"</code></p></li>
-<li><p>Open <em>Project → Properties</em>. Choose <em>C/C++ → Additional Include Directories</em> and add <strong>Foo</strong>. To add more include directories to the project, separate them with semicolons. The header files in the Foo directory can now be included without specifying <strong>any</strong> path in <strong>any</strong> .cpp or .h file in the project:</p></li>
+<li><p>Include the header file providing the <strong>relative
+path</strong> from the source file to the header:
+<code>cpp // Main.cpp #include "Main.h" #include "Foo/Foo.h"</code></p></li>
+<li><p>Open <em>Project → Properties</em>. Choose <em>C/C++ → Additional
+Include Directories</em> and add <strong>Foo</strong>. To add more
+include directories to the project, separate them with semicolons. The
+header files in the Foo directory can now be included without specifying
+<strong>any</strong> path in <strong>any</strong> .cpp or .h file in the
+project:</p></li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co">// Main.cpp</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;Foo.h&quot;</span></span></code></pre></div>
-<p>As you might deduce, strategy 1 gets messy pretty quickly since each file that includes another header needs to know the path that leads to it. For example, to include Main.h in Foo.cpp:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co">// Foo.cpp</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&quot;../Main.h&quot;</span></span></code></pre></div>
-<p>Compared to this, using strategy 2 one can include any header file in any source file without worrying about the directory where it lies. This is much easier to apply across the directory structure of a project.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Main.cpp</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;Main.h&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;Foo.h&quot;</span></span></code></pre></div>
+<p>As you might deduce, strategy 1 gets messy pretty quickly since each
+file that includes another header needs to know the path that leads to
+it. For example, to include Main.h in Foo.cpp:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Foo.cpp</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&quot;../Main.h&quot;</span></span></code></pre></div>
+<p>Compared to this, using strategy 2 one can include any header file in
+any source file without worrying about the directory where it lies. This
+is much easier to apply across the directory structure of a project.</p>
 </div>
 
 <br />
@@ -168,11 +196,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

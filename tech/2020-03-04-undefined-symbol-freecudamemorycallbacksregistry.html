@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,8 @@
 <p class="date">📅 2020-Mar-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I installed <strong>PyTorch</strong> on my system and the very first import failed with this error:</p>
+<p>I installed <strong>PyTorch</strong> on my system and the very first
+import failed with this error:</p>
 <pre><code>&gt;&gt;&gt; import torch
 Traceback (most recent call last):
   File &quot;&lt;input&gt;&quot;, line 1, in &lt;module&gt;
@@ -58,10 +45,24 @@ Traceback (most recent call last):
     module = self.loader.load_module(name)
 ImportError: /home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so: undefined symbol: _ZN3c1031FreeCudaMemoryCallbacksRegistryEv</code></pre>
 <h2 id="solution">Solution</h2>
-<p>It was obvious that the problem was CUDA or PyTorch’s interface to CUDA.</p>
-<p>I checked that <code>/usr/local/cuda</code> symlink was pointing to my CUDA 10.1 installation. I also made sure that <code>/usr/local/cuda/lib64</code> was in my <code>LD_LIBRARY_PATH</code>. However, this did not fix the problem.</p>
-<p>I then started checking which libraries <code>/home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so</code> was dynamically loading at runtime using the <code>ldd</code> command. This investigation revealed that all the dependent libraries were in <code>/home/joe/.local/lib/python3.6/site-packages</code>, except for one: <code>/usr/local/lib/libc10_cuda.so</code>. Turns out that this is a library installed by PyTorch and I had no idea why there was an old copy of this file in <code>/usr/local/lib</code>. It was probably from an old Ubuntu installation of PyTorch that did not uninstall properly.</p>
-<p>I removed this file and PyTorch picked up its local <code>libc10_cuda.so</code> and everything was fine!</p>
+<p>It was obvious that the problem was CUDA or PyTorch’s interface to
+CUDA.</p>
+<p>I checked that <code>/usr/local/cuda</code> symlink was pointing to
+my CUDA 10.1 installation. I also made sure that
+<code>/usr/local/cuda/lib64</code> was in my
+<code>LD_LIBRARY_PATH</code>. However, this did not fix the problem.</p>
+<p>I then started checking which libraries
+<code>/home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_python.so</code>
+was dynamically loading at runtime using the <code>ldd</code> command.
+This investigation revealed that all the dependent libraries were in
+<code>/home/joe/.local/lib/python3.6/site-packages</code>, except for
+one: <code>/usr/local/lib/libc10_cuda.so</code>. Turns out that this is
+a library installed by PyTorch and I had no idea why there was an old
+copy of this file in <code>/usr/local/lib</code>. It was probably from
+an old Ubuntu installation of PyTorch that did not uninstall
+properly.</p>
+<p>I removed this file and PyTorch picked up its local
+<code>libc10_cuda.so</code> and everything was fine!</p>
 </div>
 
 <br />
@@ -69,11 +70,13 @@ ImportError: /home/joe/.local/lib/python3.6/site-packages/torch/lib/libtorch_pyt
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

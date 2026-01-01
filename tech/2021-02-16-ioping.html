@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,12 @@
 <h1 class="title">ioping</h1>
 <p class="date">📅 2021-Feb-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ioping'>ioping</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://github.com/koct9i/ioping"><strong>ioping</strong></a> is probably the easiest tool to investigate and obtain the <em>latency</em> and <em>speed</em> of storage devices. It is inspired by the class <strong>ping</strong> networking tool and offers a similar output at the shell.</p>
+<p><a
+href="https://github.com/koct9i/ioping"><strong>ioping</strong></a> is
+probably the easiest tool to investigate and obtain the <em>latency</em>
+and <em>speed</em> of storage devices. It is inspired by the class
+<strong>ping</strong> networking tool and offers a similar output at the
+shell.</p>
 <ul>
 <li>Installing it is easy:</li>
 </ul>
@@ -55,7 +46,9 @@
 <pre><code>$ ioping /home/joe/somefile
 $ ioping /home/joe
 $ sudo ioping /dev/sda1</code></pre>
-<p>If a file is specified, make sure the file exists and its filesize is greater or equal to the request size (default is 4KiB). If a device or partition is specified, you might need to provide root privileges.</p>
+<p>If a file is specified, make sure the file exists and its filesize is
+greater or equal to the request size (default is 4KiB). If a device or
+partition is specified, you might need to provide root privileges.</p>
 <p>Here is a sample output on a directory:</p>
 <pre><code>$ ioping /home/joe
 4 KiB &lt;&lt;&lt; /home/joe (ext4 /dev/mmcblk0p2): request=1 time=512.8 us (warmup)
@@ -67,13 +60,22 @@ $ sudo ioping /dev/sda1</code></pre>
 3 requests completed in 8.22 ms, 12 KiB read, 365 iops, 1.43 MiB/s
 generated 4 requests in 3.56 s, 16 KiB, 1 iops, 4.49 KiB/s
 min/avg/max/mdev = 2.73 ms / 2.74 ms / 2.74 ms / 6.21 us</code></pre>
-<p>Note that the tool prints stats for <strong>read</strong> operations by default. From the above output, we can see the device/partition that is being tested (<code>/dev/mmcblk0p2</code>) and its filesystem (<code>ext4</code>). There was 1 warmup request and 3 test requests before the program was stopped using <code>Ctrl+C</code>. The requests are each of size 4 KiB which can be deduced from the total <code>12 KiB read</code> in the output. The speed for requests of 4 KiB seems to be 1.43 MiB/s. Finally, the average latency for this device seems to be 2.74 ms.</p>
+<p>Note that the tool prints stats for <strong>read</strong> operations
+by default. From the above output, we can see the device/partition that
+is being tested (<code>/dev/mmcblk0p2</code>) and its filesystem
+(<code>ext4</code>). There was 1 warmup request and 3 test requests
+before the program was stopped using <code>Ctrl+C</code>. The requests
+are each of size 4 KiB which can be deduced from the total
+<code>12 KiB read</code> in the output. The speed for requests of 4 KiB
+seems to be 1.43 MiB/s. Finally, the average latency for this device
+seems to be 2.74 ms.</p>
 <ul>
 <li>To try a different request size (default is 4 KiB):</li>
 </ul>
 <pre><code>$ ioping -s 4M /home/joe</code></pre>
 <ul>
-<li>Instead of the default read requests, if we wish to try <strong>write</strong> requests:</li>
+<li>Instead of the default read requests, if we wish to try
+<strong>write</strong> requests:</li>
 </ul>
 <pre><code>$ ioping -W /home/joe</code></pre>
 <ul>
@@ -88,11 +90,13 @@ min/avg/max/mdev = 2.73 ms / 2.74 ms / 2.74 ms / 6.21 us</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

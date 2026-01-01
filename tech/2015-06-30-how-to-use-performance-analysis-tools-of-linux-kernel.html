@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,17 +27,24 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to use performance analysis tools of Linux kernel</h1>
+<h1 class="title">How to use performance analysis tools of Linux
+kernel</h1>
 <p class="date">📅 2015-Jun-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#kernel'>kernel</a>, <a href='index.html#linux'>linux</a>, <a href='index.html#perf'>perf</a>, <a href='index.html#performance-analysis'>performance analysis</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The performance counters available in modern processors can be easily accessed through the Linux kernel to analyze the performance of your programs. For example, you can find out how many branch misses occurred when your program executed.</p>
+<p>The performance counters available in modern processors can be easily
+accessed through the Linux kernel to analyze the performance of your
+programs. For example, you can find out how many branch misses occurred
+when your program executed.</p>
 <ul>
-<li>We first install the <strong>performance analysis</strong> tools for our specific Linux kernel version:</li>
+<li>We first install the <strong>performance analysis</strong> tools for
+our specific Linux kernel version:</li>
 </ul>
 <pre><code>$ sudo apt install linux-tools-(uname -r) linux-tools-common</code></pre>
 <ul>
-<li><p><code>perf</code> is the main command that we use for analysis.</p></li>
-<li><p>List the performance counters and events that you can measure:</p></li>
+<li><p><code>perf</code> is the main command that we use for
+analysis.</p></li>
+<li><p>List the performance counters and events that you can
+measure:</p></li>
 </ul>
 <pre><code>$ perf list
 
@@ -123,9 +116,13 @@ List of pre-defined events (to be used in -e):
   mem:&lt;addr&gt;[:access]                                [Hardware breakpoint]
 
   [ Tracepoints not available: Permission denied ]</code></pre>
-<p>We can see that a lot of counters and events are available for measurement. The tracepoints can be listed if the command is run as <code>sudo</code>.</p>
+<p>We can see that a lot of counters and events are available for
+measurement. The tracepoints can be listed if the command is run as
+<code>sudo</code>.</p>
 <ul>
-<li>We can query any of the above listed events. For example, to find out the number of branch misses in a program <code>foo</code> by repeatedly running the program 10 times:</li>
+<li>We can query any of the above listed events. For example, to find
+out the number of branch misses in a program <code>foo</code> by
+repeatedly running the program 10 times:</li>
 </ul>
 <pre><code>$ perf stat -r 10 -e branch-misses ./foo
 
@@ -134,9 +131,11 @@ List of pre-defined events (to be used in -e):
             42,683 branch-misses                                                 ( +-  0.55% )
 
        0.001782436 seconds time elapsed                                          ( +- 12.91% )</code></pre>
-<p>All values are the average of 10 executions, since that is what we specified.</p>
+<p>All values are the average of 10 executions, since that is what we
+specified.</p>
 <ul>
-<li>To print out other stats, just append with a comma. For example, to get both branch misses and memory stores:</li>
+<li>To print out other stats, just append with a comma. For example, to
+get both branch misses and memory stores:</li>
 </ul>
 <pre><code>$ perf stat -r 10 -e branch-misses,mem-stores ./foo
 
@@ -146,7 +145,8 @@ List of pre-defined events (to be used in -e):
            972,221 cpu/mem-stores/                                               ( +-  0.05% )
 
        0.001748714 seconds time elapsed                                          ( +-  0.39% )</code></pre>
-<p><strong>Tried with:</strong> Intel i7-4790, Linux 3.13.0-52-generic and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Intel i7-4790, Linux 3.13.0-52-generic
+and Ubuntu 14.04</p>
 </div>
 
 <br />
@@ -154,11 +154,13 @@ List of pre-defined events (to be used in -e):
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

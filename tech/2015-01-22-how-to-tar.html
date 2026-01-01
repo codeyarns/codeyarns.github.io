@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,10 +30,20 @@
 <h1 class="title">Tar cheatsheet</h1>
 <p class="date">📅 2015-Jan-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#tar'>tar</a>, <a href='index.html#untar'>untar</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Tape ARchive (TAR)</strong> is an classic file format that is used to archive files. Note that it does not compress the files to save space. Rather it is only for convenience of handling a single archive file instead of dealing with thousands of files. I typically use it to quickly move directories containing large number of small files.</p>
-<p>Note that tar is an incredibly old Unix tool and confusingly accepts arguments in 3 <strong>styles</strong>: traditional (without dashes), UNIX short-option (single dash) and GNU long-option (double dash). I abhor using the traditional style (which is quite popular online) since it is un-UNIX and instead use the short-option style for interactive use (and below) and use the long-option style in scripts.</p>
+<p><strong>Tape ARchive (TAR)</strong> is an classic file format that is
+used to archive files. Note that it does not compress the files to save
+space. Rather it is only for convenience of handling a single archive
+file instead of dealing with thousands of files. I typically use it to
+quickly move directories containing large number of small files.</p>
+<p>Note that tar is an incredibly old Unix tool and confusingly accepts
+arguments in 3 <strong>styles</strong>: traditional (without dashes),
+UNIX short-option (single dash) and GNU long-option (double dash). I
+abhor using the traditional style (which is quite popular online) since
+it is un-UNIX and instead use the short-option style for interactive use
+(and below) and use the long-option style in scripts.</p>
 <ul>
-<li>To archive some files into a tape archive file specify the archive name first and follow with the files to archive:</li>
+<li>To archive some files into a tape archive file specify the archive
+name first and follow with the files to archive:</li>
 </ul>
 <pre><code>$ tar -cf foobar.tar foobar1.txt foobar2.txt</code></pre>
 <ul>
@@ -55,7 +51,10 @@
 </ul>
 <pre><code>$ tar -cf foobar.tar foobar</code></pre>
 <ul>
-<li>To archive and output the tar contents to the terminal use <code>-</code> as the output filename. This is typically used to redirect the tar output or to process the tar output with other tools:</li>
+<li>To archive and output the tar contents to the terminal use
+<code>-</code> as the output filename. This is typically used to
+redirect the tar output or to process the tar output with other
+tools:</li>
 </ul>
 <pre><code>$ tar -cf - foobar1.txt foobar2.txt &gt; foobar.tar
 
@@ -64,27 +63,35 @@ $ tar -cf - foobar1.txt foobar2.txt | wc</code></pre>
 <li>To <strong>sort</strong> the files before tarring:</li>
 </ul>
 <pre><code>$ tar --sort=&quot;name&quot; -cf foobar.tar foobar</code></pre>
-<p>Apparently, this can sometimes result in <a href="https://superuser.com/questions/1633073">better compression</a>.</p>
+<p>Apparently, this can sometimes result in <a
+href="https://superuser.com/questions/1633073">better
+compression</a>.</p>
 <ul>
-<li>To view the list of files being archived specify the verbose option <code>-v</code>:</li>
+<li>To view the list of files being archived specify the verbose option
+<code>-v</code>:</li>
 </ul>
 <pre><code>$ tar -cvf foobar.tar foobar</code></pre>
 <ul>
-<li>To extract or <strong>untar</strong> an archive to the current directory:</li>
+<li>To extract or <strong>untar</strong> an archive to the current
+directory:</li>
 </ul>
 <pre><code>$ tar -xf foobar.tar</code></pre>
 <ul>
-<li>It is not possible to delete a file from a tarfile. But files can be skipped during extract:</li>
+<li>It is not possible to delete a file from a tarfile. But files can be
+skipped during extract:</li>
 </ul>
 <pre><code>$ tar -xf foobar.tar --exclude exclude1</code></pre>
 <ul>
-<li>To extract to a specific directory, create it first and then specify it:</li>
+<li>To extract to a specific directory, create it first and then specify
+it:</li>
 </ul>
 <pre><code>$ mkdir foobar
 $ tar -xf haha.tar --directory foobar
 $ tar -xf haha.tar -C foobar</code></pre>
 <ul>
-<li>To extract but chop off one or more base directories from the relative file paths being extracted, use the <code>--strip-components</code> option:</li>
+<li>To extract but chop off one or more base directories from the
+relative file paths being extracted, use the
+<code>--strip-components</code> option:</li>
 </ul>
 <pre><code>$ tar -xf haha.tar
 Writes out foo/bar/rocky/zoo.py
@@ -100,19 +107,24 @@ Writes out rocky/zoo.py</code></pre>
 </ul>
 <pre><code>$ tar -tvf foobar.tar</code></pre>
 <ul>
-<li>To archive and <strong>encrypt</strong> a tar file, we archive the contents and redirect the contents to openssl for encryption:</li>
+<li>To archive and <strong>encrypt</strong> a tar file, we archive the
+contents and redirect the contents to openssl for encryption:</li>
 </ul>
 <pre><code>$ tar -cf - foobar1.txt foobar2.txt | openssl enc -e -aes256 -out foobar.tar</code></pre>
-<p>You will be asked to enter the password to use to encrypt the contents.</p>
+<p>You will be asked to enter the password to use to encrypt the
+contents.</p>
 <ul>
-<li>To <strong>decrypt</strong> and untar the contents of an encrypted tar file to the current directory:</li>
+<li>To <strong>decrypt</strong> and untar the contents of an encrypted
+tar file to the current directory:</li>
 </ul>
 <pre><code>$ openssl enc -d -aes256 -in foobar.tar | tar -x</code></pre>
 <p>You will be asked to enter the password to decrypt the contents.</p>
 <p><strong>References</strong>:</p>
 <ul>
-<li><a href="https://man7.org/linux/man-pages/man1/tar.1.html">tar manpage</a></li>
-<li>openssl <a href="https://linux.die.net/man/1/enc">enc manpage</a></li>
+<li><a href="https://man7.org/linux/man-pages/man1/tar.1.html">tar
+manpage</a></li>
+<li>openssl <a href="https://linux.die.net/man/1/enc">enc
+manpage</a></li>
 </ul>
 <p><strong>Tried with:</strong> Tar 1.27.1 and Ubuntu 14.04</p>
 </div>
@@ -122,11 +134,13 @@ Writes out rocky/zoo.py</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

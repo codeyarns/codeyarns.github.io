@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,20 +30,48 @@
 <h1 class="title">How to access Windows shared folder from Raspbmc</h1>
 <p class="date">📅 2012-Aug-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#raspberry-pi'>raspberry pi</a>, <a href='index.html#smb'>smb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Raspberry Pi</strong> running <strong>Raspbmc</strong> is an awesome HTPC. If you have videos, music or photos on one of your home <strong>Windows computers</strong>, then it might be convenient to access or view the media right from your Raspbmc over the home network. The easiest way to do this is to share the media files in a Windows <strong>shared folder</strong> and access that from Raspbmc using SMB. I am assuming that the Windows computer and Raspbmc are connected to the same wireless router or the same home network.</p>
+<p><strong>Raspberry Pi</strong> running <strong>Raspbmc</strong> is an
+awesome HTPC. If you have videos, music or photos on one of your home
+<strong>Windows computers</strong>, then it might be convenient to
+access or view the media right from your Raspbmc over the home network.
+The easiest way to do this is to share the media files in a Windows
+<strong>shared folder</strong> and access that from Raspbmc using SMB. I
+am assuming that the Windows computer and Raspbmc are connected to the
+same wireless router or the same home network.</p>
 <p>First setup the Windows computer:</p>
 <ol type="1">
-<li><p>Your Raspbmc will access your Windows computer using its <strong>IP address</strong>. So, it might be convenient to configure a <strong>static IP address</strong> for the Windows computer. In any case, note down the IP address of the Windows computer.</p></li>
-<li><p>Create a folder and make sure the folder name has no spaces in it. Drop all the media files you want to share into this folder. Make it a shared folder. Add <code>Everyone</code> as a user who has read access to this folder.</p></li>
+<li><p>Your Raspbmc will access your Windows computer using its
+<strong>IP address</strong>. So, it might be convenient to configure a
+<strong>static IP address</strong> for the Windows computer. In any
+case, note down the IP address of the Windows computer.</p></li>
+<li><p>Create a folder and make sure the folder name has no spaces in
+it. Drop all the media files you want to share into this folder. Make it
+a shared folder. Add <code>Everyone</code> as a user who has read access
+to this folder.</p></li>
 </ol>
 <p>Next setup the Raspbmc to access the shared folder:</p>
 <ol type="1">
-<li><p>Make sure you can <code>ping</code> the Windows computer from the Raspbmc. You can do this by <strong>SSH</strong> to Raspbmc (<a href="2012-08-10-how-to-ssh-to-your-raspbmc-from-windows.html">here is how</a>) and pinging the IP address of the Windows computer.</p></li>
-<li><p>Assuming you want to access the video files in the shared folders. In XBMC, go to Videos &gt; Files &gt; Add videos &gt; Browse &gt; Add network location.</p></li>
-<li><p>In the Add network location dialog, choose <code>Protocol</code> as <code>Windows network (SMB)</code>. For <code>Server name</code> enter the IP address of the Windows computer. For <code>Shared folder</code> enter the name of the shared folder on the Windows computer. Fill the <code>Username</code> and <code>Password</code> fields with the credentials of a user on your Windows computer. Press OK.</p></li>
-<li><p>The Windows computer shared folder now appears in the listing, choose OK. Press OK in the next dialog. Now the shared folder is visible in the Files listing and you should be able to browse through the media files inside it and play them whenever needed.</p></li>
+<li><p>Make sure you can <code>ping</code> the Windows computer from the
+Raspbmc. You can do this by <strong>SSH</strong> to Raspbmc (<a
+href="2012-08-10-how-to-ssh-to-your-raspbmc-from-windows.html">here is
+how</a>) and pinging the IP address of the Windows computer.</p></li>
+<li><p>Assuming you want to access the video files in the shared
+folders. In XBMC, go to Videos &gt; Files &gt; Add videos &gt; Browse
+&gt; Add network location.</p></li>
+<li><p>In the Add network location dialog, choose <code>Protocol</code>
+as <code>Windows network (SMB)</code>. For <code>Server name</code>
+enter the IP address of the Windows computer. For
+<code>Shared folder</code> enter the name of the shared folder on the
+Windows computer. Fill the <code>Username</code> and
+<code>Password</code> fields with the credentials of a user on your
+Windows computer. Press OK.</p></li>
+<li><p>The Windows computer shared folder now appears in the listing,
+choose OK. Press OK in the next dialog. Now the shared folder is visible
+in the Files listing and you should be able to browse through the media
+files inside it and play them whenever needed.</p></li>
 </ol>
-<p>Have fun playing the content from your Windows computer on your Raspbmc 😊</p>
+<p>Have fun playing the content from your Windows computer on your
+Raspbmc 😊</p>
 <p><strong>Tried with:</strong> Windows 7 (64-bit) and Raspbmc RC4</p>
 </div>
 
@@ -66,11 +80,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

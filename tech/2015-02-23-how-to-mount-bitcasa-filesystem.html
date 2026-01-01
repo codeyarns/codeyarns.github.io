@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,26 @@
 <h1 class="title">How to mount Bitcasa filesystem</h1>
 <p class="date">📅 2015-Feb-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#filesystem'>filesystem</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="www.bitcasa.com"><strong>Bitcasa</strong></a> provides a cloud filesystem with 5GB free for any user who signs up. The only reason I tried them was because they claimed to have a Linux client.</p>
+<p><a href="www.bitcasa.com"><strong>Bitcasa</strong></a> provides a
+cloud filesystem with 5GB free for any user who signs up. The only
+reason I tried them was because they claimed to have a Linux client.</p>
 <p>The installation steps for their Linux client is:</p>
 <pre><code>$ sudo sh -c &#39;echo &quot;deb http://dist.bitcasa.com/release/apt debian main&quot; &gt; /etc/apt/sources.list.d/bitcasa-release.list&#39;
 $ wget -O- http://dist.bitcasa.com/release/bitcasa-releases.gpg.key | sudo apt-key add -
 $ sudo apt-get update
 $ sudo apt-get install bitcasa2</code></pre>
-<p>What is installed is a commandline tool named <code>mount.bitcasa</code>. It can be used to mount an existing directory on your computer as your Bitcasa filesystem. There are many ways to call this tool, which can be seen by using <code>man mount.bitcasa</code>. I used an existing <code>/media/foo</code> directory on my computer to mount like this:</p>
+<p>What is installed is a commandline tool named
+<code>mount.bitcasa</code>. It can be used to mount an existing
+directory on your computer as your Bitcasa filesystem. There are many
+ways to call this tool, which can be seen by using
+<code>man mount.bitcasa</code>. I used an existing
+<code>/media/foo</code> directory on my computer to mount like this:</p>
 <pre><code>$ mount.bitcasa foo@example.org /media/foo -o password=secret</code></pre>
-<p>This mounted and the files subsequently appeared in the online Bitcasa filesystem. However, deleting or modifying these files online did not reflect in the local filesystem. I guess it is an one-way sync only! That ended my Bitcasa experiment since I wanted two-way sync like Dropbox does.</p>
+<p>This mounted and the files subsequently appeared in the online
+Bitcasa filesystem. However, deleting or modifying these files online
+did not reflect in the local filesystem. I guess it is an one-way sync
+only! That ended my Bitcasa experiment since I wanted two-way sync like
+Dropbox does.</p>
 <p>To unmount this mounted directory:</p>
 <pre><code>$ fusermount -u /media/foo</code></pre>
 <p>To uninstall the Bitcasa client, reverse the installation steps:</p>
@@ -68,11 +65,13 @@ $ sudo apt-get update</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

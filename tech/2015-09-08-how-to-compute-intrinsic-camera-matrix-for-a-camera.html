@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,21 +27,42 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to compute intrinsic camera matrix for a camera</h1>
+<h1 class="title">How to compute intrinsic camera matrix for a
+camera</h1>
 <p class="date">📅 2015-Sep-08 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#camera-matrix'>camera matrix</a>, <a href='index.html#intrinsic-camera-matrix'>intrinsic camera matrix</a>, <a href='index.html#primesense'>primesense</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>intrinsic camera matrix</strong> is useful in depth cameras to obtain the 3D position of any given pixel in the camera coordinate system. The <strong>pinhole camera model</strong> used for the intrinsic camera matrix is explained beautifully <a href="http://ksimek.github.io/2013/08/13/intrinsic/">here</a>.</p>
+<p>The <strong>intrinsic camera matrix</strong> is useful in depth
+cameras to obtain the 3D position of any given pixel in the camera
+coordinate system. The <strong>pinhole camera model</strong> used for
+the intrinsic camera matrix is explained beautifully <a
+href="http://ksimek.github.io/2013/08/13/intrinsic/">here</a>.</p>
 <p>The intrinsic camera matrix is of the form:</p>
 <pre><code>f_x s   x
 0   f_y y
 0   0   1</code></pre>
-<p>Here, <code>f_x</code> and <code>f_y</code> are the <strong>focal lengths</strong> of the camera in the X and Y directions. <code>s</code> is the <strong>axis skew</strong> and is usually <code>0</code>. <code>x</code> and <code>y</code> are the X and Y dimensions of the image produced by the camera, measured from the center of the image. (So, they are half the length and width of the image.)</p>
-<p>We typically know the dimensions of the image produced by the camera. What is typically not provided are the focal lengths. Instead camera manufacturers provide the <strong>field of view (FOV)</strong> angle in the horizontal and vertical directions.</p>
-<p>Using the FOV angles, the focal lengths can be computed using trigonometry. For example, given the FOV <code>a_x</code> in the horizontal direction, the focal length <code>f_x</code> can be computed using:</p>
+<p>Here, <code>f_x</code> and <code>f_y</code> are the <strong>focal
+lengths</strong> of the camera in the X and Y directions. <code>s</code>
+is the <strong>axis skew</strong> and is usually <code>0</code>.
+<code>x</code> and <code>y</code> are the X and Y dimensions of the
+image produced by the camera, measured from the center of the image.
+(So, they are half the length and width of the image.)</p>
+<p>We typically know the dimensions of the image produced by the camera.
+What is typically not provided are the focal lengths. Instead camera
+manufacturers provide the <strong>field of view (FOV)</strong> angle in
+the horizontal and vertical directions.</p>
+<p>Using the FOV angles, the focal lengths can be computed using
+trigonometry. For example, given the FOV <code>a_x</code> in the
+horizontal direction, the focal length <code>f_x</code> can be computed
+using:</p>
 <pre><code>f_x = x / tan(a_x / 2)</code></pre>
-<p>We divide the FOV by 2 because this angle spans the entire horizontal or vertical view.</p>
-<p>As an example, consider the <strong>Primesense Carmine 1.09</strong> depth camera. It produces a VGA (640x480) image. Its specifications state a horizontal FOV of 57.5 degrees and vertical FOV of 45 degrees.</p>
-<p>Using the above information, we can compute its intrinsic camera matrix as:</p>
+<p>We divide the FOV by 2 because this angle spans the entire horizontal
+or vertical view.</p>
+<p>As an example, consider the <strong>Primesense Carmine 1.09</strong>
+depth camera. It produces a VGA (640x480) image. Its specifications
+state a horizontal FOV of 57.5 degrees and vertical FOV of 45
+degrees.</p>
+<p>Using the above information, we can compute its intrinsic camera
+matrix as:</p>
 <pre><code>583.2829786373293 0.0               320.0
 0.0               579.4112549695428 240.0
 0.0               0.0               1.0</code></pre>
@@ -66,11 +73,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

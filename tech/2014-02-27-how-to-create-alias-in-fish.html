@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,38 +31,51 @@
 <p class="date">📅 2014-Feb-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#alias'>alias</a>, <a href='index.html#fish'>fish</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <ul>
-<li>To create an alias in the fish shell, just create a function of that name:</li>
+<li>To create an alias in the fish shell, just create a function of that
+name:</li>
 </ul>
 <pre><code>function ll
     ls --human-readable -l
 end</code></pre>
-<p>You can place this function inside <code>~/.config/fish/config.fish</code> file. Or you can place it in a new file named <code>ll.fish</code> in the directory <code>~/.config/fish/functions/</code>.</p>
+<p>You can place this function inside
+<code>~/.config/fish/config.fish</code> file. Or you can place it in a
+new file named <code>ll.fish</code> in the directory
+<code>~/.config/fish/functions/</code>.</p>
 <ul>
-<li>To pass the arguments that come after the alias to the underlying command, use the <code>$argv</code> variable:</li>
+<li>To pass the arguments that come after the alias to the underlying
+command, use the <code>$argv</code> variable:</li>
 </ul>
 <pre><code>function ll
     ls --human-readable -l $argv
 end</code></pre>
 <ul>
-<li>If you name the alias with the same name as the command, then you get this error at the shell:</li>
+<li>If you name the alias with the same name as the command, then you
+get this error at the shell:</li>
 </ul>
 <pre><code>fish: The function calls itself immediately, which would result in an infinite loop.</code></pre>
 <ul>
-<li>So, if you want to reuse the name of a command for the alias, then invoke it using the <a href="http://fishshell.com/docs/2.0/commands.html#command">command</a>. In this example, the alias is named as <code>ls</code> and it invokes <code>ls</code>:</li>
+<li>So, if you want to reuse the name of a command for the alias, then
+invoke it using the <a
+href="http://fishshell.com/docs/2.0/commands.html#command">command</a>.
+In this example, the alias is named as <code>ls</code> and it invokes
+<code>ls</code>:</li>
 </ul>
 <pre><code>function ls
     command ls --human-readable -l $argv
 end</code></pre>
 <ul>
-<li>If you prefer to use the alias command of bash, you can use that instead:</li>
+<li>If you prefer to use the alias command of bash, you can use that
+instead:</li>
 </ul>
 <pre><code>alias ll=&quot;ls --human-readable -l&quot;</code></pre>
 <ul>
-<li>Since an alias is just a function in fish, you can view the list of aliases by listing the functions:</li>
+<li>Since an alias is just a function in fish, you can view the list of
+aliases by listing the functions:</li>
 </ul>
 <pre><code>$ functions</code></pre>
 <ul>
-<li>To see what a particular alias is defined as, list the code of that function:</li>
+<li>To see what a particular alias is defined as, list the code of that
+function:</li>
 </ul>
 <pre><code>$ functions ll</code></pre>
 <p><strong>Tried with:</strong> fish 2.1.0 and Ubuntu 12.04 LTS</p>
@@ -87,11 +86,13 @@ end</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

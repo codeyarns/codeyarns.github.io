@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,10 +30,19 @@
 <h1 class="title">How to find download size of URL</h1>
 <p class="date">📅 2020-May-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#curl'>curl</a>, <a href='index.html#wget'>wget</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Sometimes colleagues share a <strong>URL</strong> to me that points to a file that I need to download. Since these links can sometimes point to huge files, I like to know what is the <strong>file size</strong> beforehand.</p>
-<p>The file size information is in the header of the <strong>GET</strong> response from the web server when downloading a file. But how to get this information without downloading the file? Turns out you can use the <strong>HEAD</strong> command to get just the header information.</p>
+<p>Sometimes colleagues share a <strong>URL</strong> to me that points
+to a file that I need to download. Since these links can sometimes point
+to huge files, I like to know what is the <strong>file size</strong>
+beforehand.</p>
+<p>The file size information is in the header of the
+<strong>GET</strong> response from the web server when downloading a
+file. But how to get this information without downloading the file?
+Turns out you can use the <strong>HEAD</strong> command to get just the
+header information.</p>
 <h2 id="using-curl">Using CURL</h2>
-<p>The <code>--head</code> option of CURL can be used to get just the header, which should have the file size in the <code>Content-Length</code> field.</p>
+<p>The <code>--head</code> option of CURL can be used to get just the
+header, which should have the file size in the
+<code>Content-Length</code> field.</p>
 <p>Here is an example:</p>
 <pre><code>$ curl --head http://foobar.com/haha.zip
 HTTP/1.1 200 OK
@@ -56,9 +51,12 @@ Last-Modified: Thu, 30 Apr 2020 18:09:28 GMT
 Content-Disposition: attachment; filename=&quot;haha.zip&quot;; filename*=UTF-8&#39;&#39;haha.zip
 Content-Type: application/zip
 Content-Length: 754816341</code></pre>
-<p>Note that you can also find the last modified date-time of the file using this method.</p>
+<p>Note that you can also find the last modified date-time of the file
+using this method.</p>
 <h2 id="using-wget">Using WGET</h2>
-<p>The <code>--spider</code> option of WGET behaves similar to the above - just getting the header information without downloading the file contents. The file size is listed in the <code>Length</code> field.</p>
+<p>The <code>--spider</code> option of WGET behaves similar to the above
+- just getting the header information without downloading the file
+contents. The file size is listed in the <code>Length</code> field.</p>
 <p>Here is an example:</p>
 <pre><code>$ wget --spider http://foobar.com/haha.zip
 Spider mode enabled. Check if remote file exists.
@@ -75,11 +73,13 @@ Remote file exists.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

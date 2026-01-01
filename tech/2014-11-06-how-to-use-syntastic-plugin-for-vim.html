@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,33 +30,66 @@
 <h1 class="title">How to use Syntastic plugin for Vim</h1>
 <p class="date">📅 2014-Nov-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#vim-plugin'>vim plugin</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://github.com/scrooloose/syntastic"><strong>Syntastic</strong></a> is a plugin for <strong>Vim</strong> that can check the currently displayed code for <strong>syntax errors</strong> and mark those lines with the error messages. This is a type of feature that is typically available in an IDE. This is useful since compile or run-time errors in C++ (or any other language) can be discovered while writing the code without going outside Vim.</p>
+<p><a
+href="https://github.com/scrooloose/syntastic"><strong>Syntastic</strong></a>
+is a plugin for <strong>Vim</strong> that can check the currently
+displayed code for <strong>syntax errors</strong> and mark those lines
+with the error messages. This is a type of feature that is typically
+available in an IDE. This is useful since compile or run-time errors in
+C++ (or any other language) can be discovered while writing the code
+without going outside Vim.</p>
 <ul>
-<li><p>I use Pathogen to install Syntastic. This is as simple as cloning the <a href="https://github.com/scrooloose/syntastic">Syntastic Github repository</a> in my <code>.vim/bundle</code> directory.</p></li>
-<li><p>If you have GCC and G++ installed to their default directories, then Syntastic should work immediately in any C++ file. Detailed help is available for Syntastic by using the command <code>:help syntastic</code>.</p></li>
-<li><p>Open any C++ file and see what Syntastic knows about this file by using the command <code>:SyntasticInfo</code>.</p></li>
-<li><p>Create a few syntax errors in a C++ file and save the changes with <code>:w</code>. You should be able to see those lines marked with special characters in the left column of the editor window. Navigating the cursor to that line shows its error at the bottom of Vim, below the statusline.</p></li>
-<li><p>To jump between the lines with errors, the errors need to be first loaded into the Vim location list. To do that, use the command <code>:Errors</code>. A new subwindow appears at the bottom named <em>Location list</em> and you can see the errors listed there. Switch to that window, move to an error and press <code>Enter</code> to jump to that error line in your code.</p></li>
-<li><p>Once the errors are loaded into the Vim location list, you can directly jump between the lines with errors in your code using the Vim commands <code>:lnext</code> and <code>:lprev</code>.</p></li>
-<li><p>If you have installed Tim Pope’s unimpaired plugin, you can jump between errors using <code>]l</code> and <code>[l</code>.</p></li>
-<li><p>To setup Syntastic to automatically load errors into the location list, add this line to your <code>.vimrc</code>:</p></li>
+<li><p>I use Pathogen to install Syntastic. This is as simple as cloning
+the <a href="https://github.com/scrooloose/syntastic">Syntastic Github
+repository</a> in my <code>.vim/bundle</code> directory.</p></li>
+<li><p>If you have GCC and G++ installed to their default directories,
+then Syntastic should work immediately in any C++ file. Detailed help is
+available for Syntastic by using the command
+<code>:help syntastic</code>.</p></li>
+<li><p>Open any C++ file and see what Syntastic knows about this file by
+using the command <code>:SyntasticInfo</code>.</p></li>
+<li><p>Create a few syntax errors in a C++ file and save the changes
+with <code>:w</code>. You should be able to see those lines marked with
+special characters in the left column of the editor window. Navigating
+the cursor to that line shows its error at the bottom of Vim, below the
+statusline.</p></li>
+<li><p>To jump between the lines with errors, the errors need to be
+first loaded into the Vim location list. To do that, use the command
+<code>:Errors</code>. A new subwindow appears at the bottom named
+<em>Location list</em> and you can see the errors listed there. Switch
+to that window, move to an error and press <code>Enter</code> to jump to
+that error line in your code.</p></li>
+<li><p>Once the errors are loaded into the Vim location list, you can
+directly jump between the lines with errors in your code using the Vim
+commands <code>:lnext</code> and <code>:lprev</code>.</p></li>
+<li><p>If you have installed Tim Pope’s unimpaired plugin, you can jump
+between errors using <code>]l</code> and <code>[l</code>.</p></li>
+<li><p>To setup Syntastic to automatically load errors into the location
+list, add this line to your <code>.vimrc</code>:</p></li>
 </ul>
 <pre><code>let g:syntastic_always_populate_loc_list = 1</code></pre>
 <ul>
-<li>By default, Syntastic does not check for errors when a file is loaded into Vim. To enable that, add this line to your <code>.vimrc</code>:</li>
+<li>By default, Syntastic does not check for errors when a file is
+loaded into Vim. To enable that, add this line to your
+<code>.vimrc</code>:</li>
 </ul>
 <pre><code>let g:syntastic_check_on_open = 1</code></pre>
 <ul>
-<li>By default, Syntastic checks for errors whenever you save the file. To disable this, add this line to your <code>.vimrc</code>:</li>
+<li>By default, Syntastic checks for errors whenever you save the file.
+To disable this, add this line to your <code>.vimrc</code>:</li>
 </ul>
 <pre><code>let g:syntastic_check_on_wq = 0</code></pre>
 <ul>
-<li><p>To explicitly invoke syntax check on the current file, use the command <code>:SyntasticCheck</code>.</p></li>
-<li><p>By default, Syntastic uses arrow symbols to indicate line with error. To spice things up, you can specify any Unicode symbol as the symbol. For example:</p></li>
+<li><p>To explicitly invoke syntax check on the current file, use the
+command <code>:SyntasticCheck</code>.</p></li>
+<li><p>By default, Syntastic uses arrow symbols to indicate line with
+error. To spice things up, you can specify any Unicode symbol as the
+symbol. For example:</p></li>
 </ul>
 <pre><code>let g:syntastic_error_symbol = &quot;✗&quot;
 let g:syntastic_warning_symbol = &quot;⚠&quot;</code></pre>
-<p><strong>Tried with:</strong> Syntastic 3.5.0-72, Vim 7.4 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Syntastic 3.5.0-72, Vim 7.4 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -78,11 +97,13 @@ let g:syntastic_warning_symbol = &quot;⚠&quot;</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

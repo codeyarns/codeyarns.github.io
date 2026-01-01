@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,17 +30,42 @@
 <h1 class="title">How to use Armadillo on Windows</h1>
 <p class="date">📅 2013-Nov-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#armadillo'>armadillo</a>, <a href='index.html#blas'>blas</a>, <a href='index.html#cpp'>cpp</a>, <a href='index.html#lapack'>lapack</a>, <a href='index.html#linear-algebra'>linear algebra</a>, <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://arma.sourceforge.net/"><strong>Armadillo</strong></a> is a C++ template library for linear algebra. It is built upon <strong>LAPACK</strong> and <strong>BLAS</strong>. It offers a simple API that is similar to that of <strong>Matlab</strong>.</p>
+<p><a href="http://arma.sourceforge.net/"><strong>Armadillo</strong></a>
+is a C++ template library for linear algebra. It is built upon
+<strong>LAPACK</strong> and <strong>BLAS</strong>. It offers a simple
+API that is similar to that of <strong>Matlab</strong>.</p>
 <ol type="1">
-<li><p>Download the source code of Armadillo from <a href="http://arma.sourceforge.net/download.html">here</a>. Unzip the source code of Armadillo to a directory.</p></li>
-<li><p>Create an environment variable named <code>ARMADILLO_ROOT</code> with a value of the Armadillo directory.</p></li>
-<li><p>Armadillo requires LAPACK and BLAS libraries for any non-trivial matrix operation. To enable it to use these libraries, open <code>$(ARMADILLO_ROOT)/include/armadillo_bits/config.hpp</code> and uncomment the defines of <code>ARMA_USE_LAPACK</code> and <code>ARMA_USE_BLAS</code>.</p></li>
-<li><p>To use Armadillo in your Visual C++ project, add <code>$(ARMADILLO_ROOT)/include</code> as an Include directory.</p></li>
-<li><p>Since Armadillo source code uses LAPACK and BLAS, your project needs to link with these libraries. Armadillo ships with pre-built 32-bit <code>.lib</code> and <code>.dll</code> files for LAPACK and BLAS. Add <code>$(ARMADILLO_ROOT)/examples/lib_win32</code> as Library directory to your project. Add <code>blas_win32_MT.lib</code> and <code>lapack_win32_MT.lib</code> as additional dependencies to your project.</p></li>
-<li><p>Include the <code>armadillo</code> header file in your source code. Use the Armadillo classes and methods in your code. Remember to use the namespace <code>arma::</code> Your code should compile to an EXE file without any further problems.</p></li>
-<li><p>Copy the <code>blas_win32_MT.dll</code> and <code>lapack_win32_MT.dll</code> files from <code>$(ARMADILLO_ROOT)/examples/lib_win32</code> to the directory that contains your EXE file. Your program should execute successfully now.</p></li>
+<li><p>Download the source code of Armadillo from <a
+href="http://arma.sourceforge.net/download.html">here</a>. Unzip the
+source code of Armadillo to a directory.</p></li>
+<li><p>Create an environment variable named <code>ARMADILLO_ROOT</code>
+with a value of the Armadillo directory.</p></li>
+<li><p>Armadillo requires LAPACK and BLAS libraries for any non-trivial
+matrix operation. To enable it to use these libraries, open
+<code>$(ARMADILLO_ROOT)/include/armadillo_bits/config.hpp</code> and
+uncomment the defines of <code>ARMA_USE_LAPACK</code> and
+<code>ARMA_USE_BLAS</code>.</p></li>
+<li><p>To use Armadillo in your Visual C++ project, add
+<code>$(ARMADILLO_ROOT)/include</code> as an Include directory.</p></li>
+<li><p>Since Armadillo source code uses LAPACK and BLAS, your project
+needs to link with these libraries. Armadillo ships with pre-built
+32-bit <code>.lib</code> and <code>.dll</code> files for LAPACK and
+BLAS. Add <code>$(ARMADILLO_ROOT)/examples/lib_win32</code> as Library
+directory to your project. Add <code>blas_win32_MT.lib</code> and
+<code>lapack_win32_MT.lib</code> as additional dependencies to your
+project.</p></li>
+<li><p>Include the <code>armadillo</code> header file in your source
+code. Use the Armadillo classes and methods in your code. Remember to
+use the namespace <code>arma::</code> Your code should compile to an EXE
+file without any further problems.</p></li>
+<li><p>Copy the <code>blas_win32_MT.dll</code> and
+<code>lapack_win32_MT.dll</code> files from
+<code>$(ARMADILLO_ROOT)/examples/lib_win32</code> to the directory that
+contains your EXE file. Your program should execute successfully
+now.</p></li>
 </ol>
-<p><strong>Tried with:</strong> Armadillo 3.920.2 and Visual Studio 2010</p>
+<p><strong>Tried with:</strong> Armadillo 3.920.2 and Visual Studio
+2010</p>
 </div>
 
 <br />
@@ -62,11 +73,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,45 @@
 <h1 class="title">How to build CMake project on Windows</h1>
 <p class="date">📅 2014-Jun-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cmake'>cmake</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The typical method of building a project that uses CMake is a bit different on Windows.</p>
+<p>The typical method of building a project that uses CMake is a bit
+different on Windows.</p>
 <ol type="1">
-<li><p>Create a subdirectory in the project directory named <code>build</code>.</p></li>
-<li><p>Open a command prompt in the build directory and type <code>cmake-gui ..</code></p></li>
-<li><p>In the CMake GUI, click Configure. Choose the Visual Studio version you want to use and build for.</p></li>
-<li><p>Have a look at the CMake variables marked in red. Remember that many of these variables might be filled using your environment variables. If you find that something is not set or set incorrectly, it might be due to a wrong value in one of your environment variables. Sometimes, the build will not succeed if one of these variables is not set correctly.</p></li>
-<li><p>Take note of the variable <code>CMAKE_INSTALL_PREFIX</code>. On Linux, the build results are installed to standard locations like <code>/usr/include</code>. On Windows, the results of the build will be installed to the directory in <code>CMAKE_INSTALL_PREFIX</code>. If you do not like its default location, set it to something else.</p></li>
-<li><p>Click Configure again, to allow CMake get the right values. It typically needs two clicks of Configure.</p></li>
-<li><p>Click Generate to generate the Visual Studio solution file. It will be placed in the <code>build</code> directory.</p></li>
-<li><p>Open the generated Visual Studio solution file. If your <code>CMAKE_INSTALL_PREFIX</code> was a system directory, like <code>C:\Program Files</code>, you will need to open this solution file as Administrator.</p></li>
-<li><p>The solution file might have one or many projects. The two main projects that concern us is <code>ALL_BUILD</code> and <code>INSTALL</code>.</p></li>
-<li><p>Build <code>ALL_BUILD</code> project in both Release and Debug modes.</p></li>
-<li><p>To install the header files, libraries and executables generated to the location pointed to in <code>CMAKE_INSTALL_PREFIX</code>, build the <code>INSTALL</code> project in both Release and Debug mode. If you get an error here, it typically means that you are running Visual Studio as normal user, who does not have permissions to place these files in a directory that needs Administrator permissions.</p></li>
+<li><p>Create a subdirectory in the project directory named
+<code>build</code>.</p></li>
+<li><p>Open a command prompt in the build directory and type
+<code>cmake-gui ..</code></p></li>
+<li><p>In the CMake GUI, click Configure. Choose the Visual Studio
+version you want to use and build for.</p></li>
+<li><p>Have a look at the CMake variables marked in red. Remember that
+many of these variables might be filled using your environment
+variables. If you find that something is not set or set incorrectly, it
+might be due to a wrong value in one of your environment variables.
+Sometimes, the build will not succeed if one of these variables is not
+set correctly.</p></li>
+<li><p>Take note of the variable <code>CMAKE_INSTALL_PREFIX</code>. On
+Linux, the build results are installed to standard locations like
+<code>/usr/include</code>. On Windows, the results of the build will be
+installed to the directory in <code>CMAKE_INSTALL_PREFIX</code>. If you
+do not like its default location, set it to something else.</p></li>
+<li><p>Click Configure again, to allow CMake get the right values. It
+typically needs two clicks of Configure.</p></li>
+<li><p>Click Generate to generate the Visual Studio solution file. It
+will be placed in the <code>build</code> directory.</p></li>
+<li><p>Open the generated Visual Studio solution file. If your
+<code>CMAKE_INSTALL_PREFIX</code> was a system directory, like
+<code>C:\Program Files</code>, you will need to open this solution file
+as Administrator.</p></li>
+<li><p>The solution file might have one or many projects. The two main
+projects that concern us is <code>ALL_BUILD</code> and
+<code>INSTALL</code>.</p></li>
+<li><p>Build <code>ALL_BUILD</code> project in both Release and Debug
+modes.</p></li>
+<li><p>To install the header files, libraries and executables generated
+to the location pointed to in <code>CMAKE_INSTALL_PREFIX</code>, build
+the <code>INSTALL</code> project in both Release and Debug mode. If you
+get an error here, it typically means that you are running Visual Studio
+as normal user, who does not have permissions to place these files in a
+directory that needs Administrator permissions.</p></li>
 </ol>
 <p>That is it. You have built a CMake project on Windows :)</p>
 </div>
@@ -66,11 +78,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

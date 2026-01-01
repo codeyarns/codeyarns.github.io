@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,9 +31,23 @@
 <p class="date">📅 2011-Jun-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#errors'>errors</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>Your CUDA program is failing without giving any clue. You check the <a href="https://codeyarns.com/tech/2011/03/02/cuda-error-checking/">error value</a> returned by CUDA runtime calls. You discover that one of the first few CUDA runtime calls, probably a <code>cudaMalloc</code>, is failing with an <code>Initialization error</code>. There is no initialization required to start calling CUDA APIs or kernels, so you now wonder what is this error and how to fix it.</p>
+<p>Your CUDA program is failing without giving any clue. You check the
+<a
+href="https://codeyarns.com/tech/2011/03/02/cuda-error-checking/">error
+value</a> returned by CUDA runtime calls. You discover that one of the
+first few CUDA runtime calls, probably a <code>cudaMalloc</code>, is
+failing with an <code>Initialization error</code>. There is no
+initialization required to start calling CUDA APIs or kernels, so you
+now wonder what is this error and how to fix it.</p>
 <p><strong>Solution</strong></p>
-<p>NVIDIA could have been more informative with their error messages. The initialization error usually indicates that something went bad when the CUDA runtime communicated with the CUDA driver. One of the popular causes of this error is if the driver is older than the CUDA toolkit. Each release of CUDA toolkit ships with a driver. Note the version of this driver. Only drivers of the same or later version numbers will work well with that CUDA toolkit. Install the latest driver and this error should go away.</p>
+<p>NVIDIA could have been more informative with their error messages.
+The initialization error usually indicates that something went bad when
+the CUDA runtime communicated with the CUDA driver. One of the popular
+causes of this error is if the driver is older than the CUDA toolkit.
+Each release of CUDA toolkit ships with a driver. Note the version of
+this driver. Only drivers of the same or later version numbers will work
+well with that CUDA toolkit. Install the latest driver and this error
+should go away.</p>
 <p><strong>Tried with</strong>: CUDA 4.0</p>
 </div>
 
@@ -56,11 +56,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

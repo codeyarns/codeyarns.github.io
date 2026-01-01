@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,34 @@
 <h1 class="title">Build types in CMake</h1>
 <p class="date">📅 2015-May-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#assert'>assert</a>, <a href='index.html#build-type'>build type</a>, <a href='index.html#cmake'>cmake</a>, <a href='index.html#debug'>debug</a>, <a href='index.html#release'>release</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A <strong>build type</strong> indicates a set of compile-time decisions used while compiling your code. For example, whether or not to optimize or to include debug information. A build type or build mode or configuration is popular in Visual Studio, where C++ projects typically have at least two types: <strong>Release</strong> and <strong>Debug</strong>.</p>
-<p><strong>CMake</strong> has build types and follows similar rules. For compiling C++, there are at least 4 build types in CMake: <strong>Release</strong>, <strong>Debug</strong>, <strong>MinSizeRel</strong> and <strong>RelWithDebInfo</strong>.</p>
+<p>A <strong>build type</strong> indicates a set of compile-time
+decisions used while compiling your code. For example, whether or not to
+optimize or to include debug information. A build type or build mode or
+configuration is popular in Visual Studio, where C++ projects typically
+have at least two types: <strong>Release</strong> and
+<strong>Debug</strong>.</p>
+<p><strong>CMake</strong> has build types and follows similar rules. For
+compiling C++, there are at least 4 build types in CMake:
+<strong>Release</strong>, <strong>Debug</strong>,
+<strong>MinSizeRel</strong> and <strong>RelWithDebInfo</strong>.</p>
 <ul>
-<li><p>The compile options or rules associated with a build type for a source file of a particular language can be found in <code>/usr/share/cmake-2.8/Modules/Find*.cmake</code>. For compiled languages like C++, look for the matching compiler in <code>/usr/share/cmake-2.8/Modules/Compiler</code> directory.</p></li>
-<li><p>For C++ code compiled using GNU C++ compiler, see the files <code>/usr/share/cmake-2.8/Modules/Compiler/GNU.cmake</code> for the options used during compilation.</p></li>
-<li><p>When <strong>no build type</strong> is provided, I found the compilation string to be: <code>g++ /your/code.cpp</code></p></li>
-<li><p>For <strong>Release</strong> build type, I found the compilation string to be: <code>g++ -O3 -DNDEBUG /your/code.cpp</code>. Note that <strong>assert</strong> will be disabled with this build type.</p></li>
-<li><p>For <strong>Debug</strong> build type, I found the compilation string to be: <code>g++ -g /your/code.cpp</code></p></li>
-<li><p>You can specify a build type in the <code>CMakeLists.txt</code> file. For example:</p></li>
+<li><p>The compile options or rules associated with a build type for a
+source file of a particular language can be found in
+<code>/usr/share/cmake-2.8/Modules/Find*.cmake</code>. For compiled
+languages like C++, look for the matching compiler in
+<code>/usr/share/cmake-2.8/Modules/Compiler</code> directory.</p></li>
+<li><p>For C++ code compiled using GNU C++ compiler, see the files
+<code>/usr/share/cmake-2.8/Modules/Compiler/GNU.cmake</code> for the
+options used during compilation.</p></li>
+<li><p>When <strong>no build type</strong> is provided, I found the
+compilation string to be: <code>g++ /your/code.cpp</code></p></li>
+<li><p>For <strong>Release</strong> build type, I found the compilation
+string to be: <code>g++ -O3 -DNDEBUG /your/code.cpp</code>. Note that
+<strong>assert</strong> will be disabled with this build type.</p></li>
+<li><p>For <strong>Debug</strong> build type, I found the compilation
+string to be: <code>g++ -g /your/code.cpp</code></p></li>
+<li><p>You can specify a build type in the <code>CMakeLists.txt</code>
+file. For example:</p></li>
 </ul>
 <pre><code>set(CMAKE_BUILD_TYPE Release)</code></pre>
 <ul>
@@ -60,12 +65,17 @@
 </ul>
 <pre><code>$ cmake -D CMAKE_BUILD_TYPE=Debug ..</code></pre>
 <ul>
-<li>You can make one of the build types as <strong>default</strong>, when no build type is provided. For example, to make Release build type as default, add this to <code>CMakeLists.txt</code>:</li>
+<li>You can make one of the build types as <strong>default</strong>,
+when no build type is provided. For example, to make Release build type
+as default, add this to <code>CMakeLists.txt</code>:</li>
 </ul>
 <pre><code>if(NOT CMAKE_BUILD_TYPE) 
     set(CMAKE_BUILD_TYPE Release)
 endif(NOT CMAKE_BUILD_TYPE)</code></pre>
-<p><strong>Note:</strong> Build types for Visual Studio cannot be set in <code>CMakeLists.txt</code> using <code>CMAKE_BUILD_TYPE</code> or any other method. It can only be set when CMake is invoked or later in the Visual Studio solution.</p>
+<p><strong>Note:</strong> Build types for Visual Studio cannot be set in
+<code>CMakeLists.txt</code> using <code>CMAKE_BUILD_TYPE</code> or any
+other method. It can only be set when CMake is invoked or later in the
+Visual Studio solution.</p>
 <p><strong>Tried with:</strong> CMake 2.8.12.2 and Ubuntu 14.04</p>
 </div>
 
@@ -74,11 +84,13 @@ endif(NOT CMAKE_BUILD_TYPE)</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

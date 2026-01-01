@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,30 @@
 <h1 class="title">How to set static IP address in Ubuntu</h1>
 <p class="date">📅 2013-Mar-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ip-address'>ip address</a>, <a href='index.html#nm-tool'>nm-tool</a>, <a href='index.html#static'>static</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I like to have a <strong>static IP address</strong> for my <strong>Ubuntu</strong> notebook computer when it is connected to the home network. This is useful because with a static IP address other devices on the home network know how to talk to my notebook. Setting up a static IP address for a specific network is easy in Ubuntu.</p>
+<p>I like to have a <strong>static IP address</strong> for my
+<strong>Ubuntu</strong> notebook computer when it is connected to the
+home network. This is useful because with a static IP address other
+devices on the home network know how to talk to my notebook. Setting up
+a static IP address for a specific network is easy in Ubuntu.</p>
 <ol type="1">
-<li><p>By default, my notebook is connected to my home wireless router using DHCP. I would like to use the same settings but with a static IP address. First, I decide what static IP address to use. Then I note down the network mask (check <code>ifconfig</code> output), the network gateway (check <code>route -n</code> output) and DNS servers (<a href="https://developers.google.com/speed/public-dns/">Google</a> or <a href="https://www.opendns.com/setupguide/">OpenDNS</a>). One way to do this is by running <strong>nm-tool</strong>. You can see these details at the end of its output.</p></li>
-<li><p>Click the network icon in the Panel and choose <strong>Edit connections</strong>. Here pick the network connection you are using (wired or wireless) and click Edit. Under <strong>IPv4 settings</strong>, change Automatic (DHCP) to Manual and enter the static IP address you want, the netmask, gateway and DNS servers. If you want to provide two DNS server addresses, separate them with a comma.</p></li>
-<li><p>Disconnect from the network and connect back again. If everything is working fine, you have configured your static IP address.</p></li>
+<li><p>By default, my notebook is connected to my home wireless router
+using DHCP. I would like to use the same settings but with a static IP
+address. First, I decide what static IP address to use. Then I note down
+the network mask (check <code>ifconfig</code> output), the network
+gateway (check <code>route -n</code> output) and DNS servers (<a
+href="https://developers.google.com/speed/public-dns/">Google</a> or <a
+href="https://www.opendns.com/setupguide/">OpenDNS</a>). One way to do
+this is by running <strong>nm-tool</strong>. You can see these details
+at the end of its output.</p></li>
+<li><p>Click the network icon in the Panel and choose <strong>Edit
+connections</strong>. Here pick the network connection you are using
+(wired or wireless) and click Edit. Under <strong>IPv4
+settings</strong>, change Automatic (DHCP) to Manual and enter the
+static IP address you want, the netmask, gateway and DNS servers. If you
+want to provide two DNS server addresses, separate them with a
+comma.</p></li>
+<li><p>Disconnect from the network and connect back again. If everything
+is working fine, you have configured your static IP address.</p></li>
 </ol>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 </div>
@@ -58,11 +63,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

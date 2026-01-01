@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,10 +31,20 @@
 <p class="date">📅 2015-Oct-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#eclipse'>eclipse</a>, <a href='index.html#eclipse-cdt'>eclipse cdt</a>, <a href='index.html#opengl'>opengl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>In <strong>Eclipse</strong>, I am able to build and run C++ code that calls <strong>OpenGL</strong> functions. However, most of the OpenGL calls are marked as <strong>could not be resolved</strong> by the <strong>Indexer</strong> in Eclipse.</p>
+<p>In <strong>Eclipse</strong>, I am able to build and run C++ code that
+calls <strong>OpenGL</strong> functions. However, most of the OpenGL
+calls are marked as <strong>could not be resolved</strong> by the
+<strong>Indexer</strong> in Eclipse.</p>
 <h2 id="solution">Solution</h2>
-<p>Almost all of the modern OpenGL functions are defined behind the <code>GL_GLEXT_PROTOTYPES</code> symbol in header files such as <code>gl.h</code> and <code>glext.h</code>. We need to define this <strong>symbol</strong> for the Indexer.</p>
-<p>Go to project Properties -&gt; C/C++ General -&gt; Paths and Symbols. Under the Symbols tab, add a new symbol with the <strong>Name</strong> as <code>GL_GLEXT_PROTOTYPES</code>. No value needs to be provided. Rebuild the index for the project and the unresolved indications for OpenGL functions should be gone!</p>
+<p>Almost all of the modern OpenGL functions are defined behind the
+<code>GL_GLEXT_PROTOTYPES</code> symbol in header files such as
+<code>gl.h</code> and <code>glext.h</code>. We need to define this
+<strong>symbol</strong> for the Indexer.</p>
+<p>Go to project Properties -&gt; C/C++ General -&gt; Paths and Symbols.
+Under the Symbols tab, add a new symbol with the <strong>Name</strong>
+as <code>GL_GLEXT_PROTOTYPES</code>. No value needs to be provided.
+Rebuild the index for the project and the unresolved indications for
+OpenGL functions should be gone!</p>
 <p><strong>Tried with:</strong> Eclipse 4.5 and Ubuntu 14.04</p>
 </div>
 
@@ -57,11 +53,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

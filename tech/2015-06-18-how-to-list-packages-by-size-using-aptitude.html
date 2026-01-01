@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,23 +31,43 @@
 <p class="date">📅 2015-Jun-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#aptitude'>aptitude</a>, <a href='index.html#package'>package</a>, <a href='index.html#size'>size</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/06/20150619_aptitude_installsize.png" alt="" /><figcaption>Biggest packages installed on my Ubuntu according to Aptitude</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/06/20150619_aptitude_installsize.png"
+alt="Biggest packages installed on my Ubuntu according to Aptitude" />
+<figcaption aria-hidden="true">Biggest packages installed on my Ubuntu
+according to Aptitude</figcaption>
 </figure>
-<p>This is a query that I frequently have: how to list packages sorted by their <strong>size</strong>? I am especially interested in this about <strong>installed packages</strong>. There are other tools that can do this job, but I like to use <a href="https://en.wikipedia.org/wiki/Aptitude_(software)"><strong>Aptitude</strong></a> for this since I use it regularly anyway.</p>
+<p>This is a query that I frequently have: how to list packages sorted
+by their <strong>size</strong>? I am especially interested in this about
+<strong>installed packages</strong>. There are other tools that can do
+this job, but I like to use <a
+href="https://en.wikipedia.org/wiki/Aptitude_(software)"><strong>Aptitude</strong></a>
+for this since I use it regularly anyway.</p>
 <p>To list <strong>all</strong> available packages:</p>
 <pre><code>$ aptitude search &quot;.*&quot;</code></pre>
-<p>Aptitude understands the concept of the <strong>install size</strong> i.e., how much disk space the files of a package occupy after they are uncompressed and extracted from the package. So, sorting by this <code>installsize</code> is easy:</p>
+<p>Aptitude understands the concept of the <strong>install size</strong>
+i.e., how much disk space the files of a package occupy after they are
+uncompressed and extracted from the package. So, sorting by this
+<code>installsize</code> is easy:</p>
 <pre><code>$ aptitude search &quot;.*&quot; --sort installsize</code></pre>
-<p>Note that this listing is in ascending order of size. So, the largest packages are listed at the end.</p>
-<p>The problem with this listing is that Aptitude does not display the size, so we have no idea how big the install sizes are. To show that, we can tinker with the display format and get it to display the package name and install size:</p>
+<p>Note that this listing is in ascending order of size. So, the largest
+packages are listed at the end.</p>
+<p>The problem with this listing is that Aptitude does not display the
+size, so we have no idea how big the install sizes are. To show that, we
+can tinker with the display format and get it to display the package
+name and install size:</p>
 <pre><code>$ aptitude search &quot;.*&quot; --display-format &quot;%p %I&quot; --sort installsize</code></pre>
 <p>Using the shorter versions of the options, this command becomes:</p>
 <pre><code>$ aptitude search &quot;.*&quot; -F &quot;%p %I&quot; -O installsize</code></pre>
 <p>Now, to list all <strong>installed</strong> packages:</p>
 <pre><code>$ aptitude search &quot;~i&quot;</code></pre>
-<p>Finally, to show the install size of only installed packages and sort by it, we just apply the options shown above:</p>
+<p>Finally, to show the install size of only installed packages and sort
+by it, we just apply the options shown above:</p>
 <pre><code>$ aptitude search &quot;~i&quot; --display-format &quot;%p %I&quot; --sort installsize</code></pre>
-<p><strong>Reference:</strong> <a href="https://www.debian.org/doc/manuals/aptitude/">Aptitude user’s manual</a> (its man page is woefully short on details of its commands)</p>
+<p><strong>Reference:</strong> <a
+href="https://www.debian.org/doc/manuals/aptitude/">Aptitude user’s
+manual</a> (its man page is woefully short on details of its
+commands)</p>
 <p><strong>Tried with:</strong> Aptitude 0.6.8.2 and Ubuntu 14.04</p>
 </div>
 
@@ -70,11 +76,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

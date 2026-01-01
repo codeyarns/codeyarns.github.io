@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,35 @@
 <h1 class="title">How to make spellfile in Vim</h1>
 <p class="date">📅 2015-Sep-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#spellcheck'>spellcheck</a>, <a href='index.html#spellfile'>spellfile</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Vim</strong> can be used to perform a <strong>spellcheck</strong> of your document, as described <a href="/2014/06/02/how-to-spellcheck-in-vim/">here</a>. Vim can maintain a <strong>spellfile</strong> for you where you can add your <strong>good words</strong> that are not in the <strong>dictionary</strong> used by Vim for spellcheck.</p>
-<p>This spellfile by default is stored in the directory <code>~/.vim/spell</code> and its filename is of the format <code>lang.encoding.add</code>. <code>lang</code> is what you set in the <code>spelllang</code> variable. <code>encoding</code> is what you set in the <code>encoding</code> variable. For example, on my system this file is named <code>en.utf-8.add</code>.</p>
-<p>The spellfile described above is in plaintext format and has one word per line. You can back it up to version control, copy it to different computers and edit it yourself to add or remove words.</p>
-<p>However, to actually use the spellfile for spellcheck, Vim needs to convert this to an optimal lookup data structure and store it as a binary file in the same directory with a <code>.spl</code> suffix. For example, on my system this is the file: <code>~/.vim/spell/en.utf-8.add.spl</code>. The extremely confusing fact is that Vim refers to both types of these files as <strong>spellfile</strong> in its documentation!</p>
-<p>Vim automatically builds the binary spellfile when you add a word to the dictionary. However, if you had copied the text spellfile from another computer, you may need to manually generate the binary spellfile once.</p>
-<p>To make the <code>.spl</code> binary spellfile from the <code>.add</code> text spellfile, use the <code>mkspell</code> command:</p>
+<p><strong>Vim</strong> can be used to perform a
+<strong>spellcheck</strong> of your document, as described <a
+href="/2014/06/02/how-to-spellcheck-in-vim/">here</a>. Vim can maintain
+a <strong>spellfile</strong> for you where you can add your <strong>good
+words</strong> that are not in the <strong>dictionary</strong> used by
+Vim for spellcheck.</p>
+<p>This spellfile by default is stored in the directory
+<code>~/.vim/spell</code> and its filename is of the format
+<code>lang.encoding.add</code>. <code>lang</code> is what you set in the
+<code>spelllang</code> variable. <code>encoding</code> is what you set
+in the <code>encoding</code> variable. For example, on my system this
+file is named <code>en.utf-8.add</code>.</p>
+<p>The spellfile described above is in plaintext format and has one word
+per line. You can back it up to version control, copy it to different
+computers and edit it yourself to add or remove words.</p>
+<p>However, to actually use the spellfile for spellcheck, Vim needs to
+convert this to an optimal lookup data structure and store it as a
+binary file in the same directory with a <code>.spl</code> suffix. For
+example, on my system this is the file:
+<code>~/.vim/spell/en.utf-8.add.spl</code>. The extremely confusing fact
+is that Vim refers to both types of these files as
+<strong>spellfile</strong> in its documentation!</p>
+<p>Vim automatically builds the binary spellfile when you add a word to
+the dictionary. However, if you had copied the text spellfile from
+another computer, you may need to manually generate the binary spellfile
+once.</p>
+<p>To make the <code>.spl</code> binary spellfile from the
+<code>.add</code> text spellfile, use the <code>mkspell</code>
+command:</p>
 <pre><code>:mkspell! ~/.vim/spell/en.utf-8.add</code></pre>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
 </div>
@@ -59,11 +68,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

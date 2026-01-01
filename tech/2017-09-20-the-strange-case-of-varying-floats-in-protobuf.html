@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,13 +31,39 @@
 <p class="date">📅 2017-Sep-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#float'>float</a>, <a href='index.html#protobuf'>protobuf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was using <strong>Google Protobuf</strong> in a Python program to read some text format Protobuf messages, merge them and write them out. Surprisingly, for the same set of input text format message files, I was getting different outputs on two computers! The values that were different were float values. The float values were generally correct, but varied slightly in precision between the two computers.</p>
+<p>I was using <strong>Google Protobuf</strong> in a Python program to
+read some text format Protobuf messages, merge them and write them out.
+Surprisingly, for the same set of input text format message files, I was
+getting different outputs on two computers! The values that were
+different were float values. The float values were generally correct,
+but varied slightly in precision between the two computers.</p>
 <h2 id="solution">Solution</h2>
-<p>This strange observation took quite a long investigation. I initially assumed that maybe the Protobuf library (<code>libprotobuf.so</code>) or the Python Protobuf package were of different versions on these two computers. Surprisingly, they were exactly the same.</p>
-<p>The mystery finally turned out to be the Protobuf <strong>implementation type</strong>. There are currently two possible types: <strong>cpp</strong> and <strong>python</strong>. By default, the cpp implementation is used. However, on one of the computers, the python implementation had been chosen by an engineer during the PIP package installation. The way to pick the engine is by setting an environment variable named <code>PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION</code> to either <code>cpp</code> or <code>python</code>. The engineer had set this environment variable in his shell when playing around with Protobuf and had later installed the PIP package.</p>
-<p>Once I explicitly set the <code>PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION</code> environment variable manually in my Python code before importing protobuf, the float values were the same on both computers!</p>
-<p>Now why should the engine affect the float value? Because Python’s float is actually double precision. On the other hand, when a 32-bit float moved between Python code and the C++ engine and back to Python code, it was sometimes changing precision. By using the same engine on all computers, we ensured that at least the float values did not vary between machines.</p>
-<p><strong>Tried with:</strong> Python Protobuf 3.3.0 and Ubuntu 14.04</p>
+<p>This strange observation took quite a long investigation. I initially
+assumed that maybe the Protobuf library (<code>libprotobuf.so</code>) or
+the Python Protobuf package were of different versions on these two
+computers. Surprisingly, they were exactly the same.</p>
+<p>The mystery finally turned out to be the Protobuf
+<strong>implementation type</strong>. There are currently two possible
+types: <strong>cpp</strong> and <strong>python</strong>. By default, the
+cpp implementation is used. However, on one of the computers, the python
+implementation had been chosen by an engineer during the PIP package
+installation. The way to pick the engine is by setting an environment
+variable named <code>PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION</code> to
+either <code>cpp</code> or <code>python</code>. The engineer had set
+this environment variable in his shell when playing around with Protobuf
+and had later installed the PIP package.</p>
+<p>Once I explicitly set the
+<code>PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION</code> environment variable
+manually in my Python code before importing protobuf, the float values
+were the same on both computers!</p>
+<p>Now why should the engine affect the float value? Because Python’s
+float is actually double precision. On the other hand, when a 32-bit
+float moved between Python code and the C++ engine and back to Python
+code, it was sometimes changing precision. By using the same engine on
+all computers, we ensured that at least the float values did not vary
+between machines.</p>
+<p><strong>Tried with:</strong> Python Protobuf 3.3.0 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -59,11 +71,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

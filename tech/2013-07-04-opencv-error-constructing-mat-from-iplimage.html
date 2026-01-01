@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,9 +31,11 @@
 <p class="date">📅 2013-Jul-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#iplimage'>iplimage</a>, <a href='index.html#mat'>mat</a>, <a href='index.html#opencv'>opencv</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>Tried to compile some code that uses <strong>OpenCV</strong> and got this error:</p>
+<p>Tried to compile some code that uses <strong>OpenCV</strong> and got
+this error:</p>
 <pre><code>foo.cpp:268:27: error: no matching function for call to ‘cv::Mat::Mat(IplImage*&amp;)’</code></pre>
-<p>The code at that error line tries to construct a <strong>cv::Mat</strong> object from <strong>IplImage</strong>:</p>
+<p>The code at that error line tries to construct a
+<strong>cv::Mat</strong> object from <strong>IplImage</strong>:</p>
 <pre><code>void boohoo(IplImage* i)
 {
     // ...
@@ -55,8 +43,11 @@
     // ...
 }</code></pre>
 <p><strong>Solution</strong></p>
-<p>It turns out this code worked in older versions of OpenCV. But with recent versions of OpenCV, this <strong>cv::Mat</strong> constructor is no longer present.</p>
-<p>Instead, the conversion has to be performed using a <strong>cv::cvarrToMat</strong> function:</p>
+<p>It turns out this code worked in older versions of OpenCV. But with
+recent versions of OpenCV, this <strong>cv::Mat</strong> constructor is
+no longer present.</p>
+<p>Instead, the conversion has to be performed using a
+<strong>cv::cvarrToMat</strong> function:</p>
 <pre><code>void boohoo(IplImage* i)
 {
     // ...
@@ -71,11 +62,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

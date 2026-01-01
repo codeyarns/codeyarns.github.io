@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,26 @@
 <h1 class="title">Types of line endings</h1>
 <p class="date">📅 2020-Sep-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#newline'>newline</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A <a href="https://en.wikipedia.org/wiki/Newline"><strong>line ending</strong></a> is one or two characters used in text files to indicate the end of a line and thus the beginning of the next line.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Newline"><strong>line
+ending</strong></a> is one or two characters used in text files to
+indicate the end of a line and thus the beginning of the next line.</p>
 <ul>
-<li><p>Due to historical reasons involving printers, there are two characters involved in newlines on different platforms: <strong>line feed</strong> (LF) with ASCII code <code>0x0A</code> and <strong>carriage return</strong> (CR) with ASCII code <code>0x0D</code>. In C code, LF is <code>\n</code> and CR is <code>\r</code>. A trick to remembering this is that <code>\r</code> has the <em>r</em> from carriage <em>r</em>eturn.</p></li>
-<li><p>There are currently two types of line endings based on the two main operating systems. Linux and Mac OS X systems use the <strong>Unix</strong> line ending, which is <code>LF</code>. Windows systems use the <strong>DOS</strong> line ending, which is <code>CR+LF</code>. Classic Mac systems used to use the <strong>Mac</strong> line ending, which is <code>CR</code>.</p></li>
-<li><p>Text files with Unix newlines end up on Windows and files with DOS newlines end up on Linux. I like to use the <code>file</code> tool to check which type of text file I am dealing with:</p></li>
+<li><p>Due to historical reasons involving printers, there are two
+characters involved in newlines on different platforms: <strong>line
+feed</strong> (LF) with ASCII code <code>0x0A</code> and
+<strong>carriage return</strong> (CR) with ASCII code <code>0x0D</code>.
+In C code, LF is <code>\n</code> and CR is <code>\r</code>. A trick to
+remembering this is that <code>\r</code> has the <em>r</em> from
+carriage <em>r</em>eturn.</p></li>
+<li><p>There are currently two types of line endings based on the two
+main operating systems. Linux and Mac OS X systems use the
+<strong>Unix</strong> line ending, which is <code>LF</code>. Windows
+systems use the <strong>DOS</strong> line ending, which is
+<code>CR+LF</code>. Classic Mac systems used to use the
+<strong>Mac</strong> line ending, which is <code>CR</code>.</p></li>
+<li><p>Text files with Unix newlines end up on Windows and files with
+DOS newlines end up on Linux. I like to use the <code>file</code> tool
+to check which type of text file I am dealing with:</p></li>
 </ul>
 <pre><code>$ file windows.c
 windows.c: C source, ASCII text, with CRLF line terminators
@@ -56,24 +57,32 @@ windows.c: C source, ASCII text, with CRLF line terminators
 $ file linux.py
 linux.py: Python script, ASCII text executable</code></pre>
 <ul>
-<li>The <strong>dos2unix</strong> tool can be used to convert a file with DOS newlines to Unix newlines in place:</li>
+<li>The <strong>dos2unix</strong> tool can be used to convert a file
+with DOS newlines to Unix newlines in place:</li>
 </ul>
 <pre><code>$ dos2unix windows.c</code></pre>
 <ul>
-<li>The <strong>unix2dos</strong> tool can be used to convert a file with Unix newlines to DOS newlines in place:</li>
+<li>The <strong>unix2dos</strong> tool can be used to convert a file
+with Unix newlines to DOS newlines in place:</li>
 </ul>
 <pre><code>$ unix2dos linux.py</code></pre>
 <ul>
 <li>To check and list all the DOS files in a directory:</li>
 </ul>
 <pre><code>$ find . -type f | xargs dos2unix -ic</code></pre>
-<p>The CR character in DOS files is rendered as <code>^M</code> at the shell or in Vim, so looking for that character is another way to find DOS files.</p>
+<p>The CR character in DOS files is rendered as <code>^M</code> at the
+shell or in Vim, so looking for that character is another way to find
+DOS files.</p>
 <ul>
-<li>To convert all the DOS files in a directory to Unix, pipe the above list:</li>
+<li>To convert all the DOS files in a directory to Unix, pipe the above
+list:</li>
 </ul>
 <pre><code>$ find . -type f | xargs dos2unix -ic | xargs dos2unix</code></pre>
 <ul>
-<li>To check the type of line ending and convert the file in <strong>Vim</strong> see <a href="2013-06-03-how-to-view-and-change-the-newline-markers-of-a-file-in-vim.html">this post</a>.</li>
+<li>To check the type of line ending and convert the file in
+<strong>Vim</strong> see <a
+href="2013-06-03-how-to-view-and-change-the-newline-markers-of-a-file-in-vim.html">this
+post</a>.</li>
 </ul>
 </div>
 
@@ -82,11 +91,13 @@ linux.py: Python script, ASCII text executable</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

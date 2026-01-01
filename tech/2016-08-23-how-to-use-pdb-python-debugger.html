@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,9 +30,17 @@
 <h1 class="title">How to use PDB Python debugger</h1>
 <p class="date">📅 2016-Aug-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ipdb'>ipdb</a>, <a href='index.html#pdb'>pdb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>When the <strong>Python</strong> interpreter encounters an error or exceptional condition while running your code, it quits the program and prints a stack trace. I typically would like to inspect the stack at the point of error to figure out the cause of it. It would be nice to print out some of the local variables you suspect at that point, walk up the stack frames to the calling functions and inspect some of their variables too. All of this is easily possible in Python by using the <strong>Python debugger</strong> module!</p>
+<p>When the <strong>Python</strong> interpreter encounters an error or
+exceptional condition while running your code, it quits the program and
+prints a stack trace. I typically would like to inspect the stack at the
+point of error to figure out the cause of it. It would be nice to print
+out some of the local variables you suspect at that point, walk up the
+stack frames to the calling functions and inspect some of their
+variables too. All of this is easily possible in Python by using the
+<strong>Python debugger</strong> module!</p>
 <ul>
-<li>You can run your script with the <code>pdb</code> module using any one of these commands:</li>
+<li>You can run your script with the <code>pdb</code> module using any
+one of these commands:</li>
 </ul>
 <pre><code>$ pdb my_script.py
 
@@ -55,22 +49,40 @@ $ python -m pdb my_script.py
 $ pdb3 my_script.py
 
 $ python3 -m pdb my_script.py</code></pre>
-<p>When run explicitly like this, PDB will stop at the first function.</p>
+<p>When run explicitly like this, PDB will stop at the first
+function.</p>
 <ul>
-<li>Alternatively, you can make the Python interpreter to invoke the debugger and stop at a line by adding to the code and running that script:</li>
+<li>Alternatively, you can make the Python interpreter to invoke the
+debugger and stop at a line by adding to the code and running that
+script:</li>
 </ul>
 <pre><code>import pdb; pdb.set_trace()</code></pre>
 <ul>
-<li><p>Once your program has stopped, you can add more breakpoints, step through the code and inspect variables. For the entire list of commands available at the debugger, see <a href="https://docs.python.org/3/library/pdb.html">PDB documentation</a>. You will notice that they are similar (but not the same) as GDB commands.</p></li>
-<li><p>Some of the most common commands are: <code>b</code> to set breakpoints, <code>c</code> to continue execution, <code>w</code> to inspect the stack trace, <code>u</code> and <code>d</code> to move up and down the call stack.</p></li>
-<li><p>To move through code, <code>s</code> to step into functions, <code>n</code> to execute the next statement and <code>return</code> to return from methods.</p></li>
-<li><p>To print out variables or values, use the <code>p</code> command. For example:</p></li>
+<li><p>Once your program has stopped, you can add more breakpoints, step
+through the code and inspect variables. For the entire list of commands
+available at the debugger, see <a
+href="https://docs.python.org/3/library/pdb.html">PDB documentation</a>.
+You will notice that they are similar (but not the same) as GDB
+commands.</p></li>
+<li><p>Some of the most common commands are: <code>b</code> to set
+breakpoints, <code>c</code> to continue execution, <code>w</code> to
+inspect the stack trace, <code>u</code> and <code>d</code> to move up
+and down the call stack.</p></li>
+<li><p>To move through code, <code>s</code> to step into functions,
+<code>n</code> to execute the next statement and <code>return</code> to
+return from methods.</p></li>
+<li><p>To print out variables or values, use the <code>p</code> command.
+For example:</p></li>
 </ul>
 <pre><code>p foobar
 p type(foobar)</code></pre>
 <ul>
-<li><p>You can even execute statements that assign to new or existing variables and call methods at the debugger prompt.</p></li>
-<li><p>If you need tab completion, colorful syntax highlighting and other interactive features, then I recommend using <a href="https://pypi.python.org/pypi/ipdb"><strong>IPDB</strong></a>. It is a drop-in replacement for pdb.</p></li>
+<li><p>You can even execute statements that assign to new or existing
+variables and call methods at the debugger prompt.</p></li>
+<li><p>If you need tab completion, colorful syntax highlighting and
+other interactive features, then I recommend using <a
+href="https://pypi.python.org/pypi/ipdb"><strong>IPDB</strong></a>. It
+is a drop-in replacement for pdb.</p></li>
 </ul>
 <p>Installing it is easy:</p>
 <pre><code>$ sudo apt install python-ipdb
@@ -91,11 +103,13 @@ $ python3 -m ipdb my_script.py</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

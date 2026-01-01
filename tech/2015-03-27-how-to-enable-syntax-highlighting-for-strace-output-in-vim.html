@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,16 +27,37 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to enable syntax highlighting for Strace output in Vim</h1>
+<h1 class="title">How to enable syntax highlighting for Strace output in
+Vim</h1>
 <p class="date">📅 2015-Mar-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#strace'>strace</a>, <a href='index.html#syntax-highlighting'>syntax highlighting</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://codeyarns.files.wordpress.com/2015/03/20150327_strace_vim.png"><img src="https://codeyarns.files.wordpress.com/2015/03/20150327_strace_vim.png" alt="20150327_strace_vim" /></a></p>
-<p><strong>Strace</strong> output can be written to a log file by using the <code>-o</code> option. This output is typically verbose and I find it helpful if the editor can apply <strong>syntax highlighting</strong> on it. This gives the system call, its parameters and its output different colors and makes it easy to understand the log.</p>
-<p><strong>Vim</strong> has support for syntax highlighting of strace output. You can see this in the <code>/usr/share/vim/vim74/syntax/strace.vim</code> file. Vim tries to detect if the file is strace output by looking for an <code>execve</code> or <code>libc</code> pattern in the first line. This logic can be seen in its <code>/usr/share/vim/vim74/scripts.vim</code> file. I have never seen these patterns in the first line in my strace output.</p>
-<p>Since Vim does not automatically detect my strace output file, I enable it explicitly using the command: <code>:set filetype=strace</code></p>
-<p>Another trick is to output strace to a file of particular extension, say <code>.strace</code> and look for that file extension to set the <code>strace</code> filetype automatically. If you want this, then add this line to your <code>.vimrc</code>:</p>
+<p><a
+href="https://codeyarns.files.wordpress.com/2015/03/20150327_strace_vim.png"><img
+src="https://codeyarns.files.wordpress.com/2015/03/20150327_strace_vim.png"
+alt="20150327_strace_vim" /></a></p>
+<p><strong>Strace</strong> output can be written to a log file by using
+the <code>-o</code> option. This output is typically verbose and I find
+it helpful if the editor can apply <strong>syntax highlighting</strong>
+on it. This gives the system call, its parameters and its output
+different colors and makes it easy to understand the log.</p>
+<p><strong>Vim</strong> has support for syntax highlighting of strace
+output. You can see this in the
+<code>/usr/share/vim/vim74/syntax/strace.vim</code> file. Vim tries to
+detect if the file is strace output by looking for an
+<code>execve</code> or <code>libc</code> pattern in the first line. This
+logic can be seen in its <code>/usr/share/vim/vim74/scripts.vim</code>
+file. I have never seen these patterns in the first line in my strace
+output.</p>
+<p>Since Vim does not automatically detect my strace output file, I
+enable it explicitly using the command:
+<code>:set filetype=strace</code></p>
+<p>Another trick is to output strace to a file of particular extension,
+say <code>.strace</code> and look for that file extension to set the
+<code>strace</code> filetype automatically. If you want this, then add
+this line to your <code>.vimrc</code>:</p>
 <pre><code>autocmd BufRead,BufNewFile *.strace set filetype=strace</code></pre>
-<p><strong>Tried with:</strong> Vim 7.4, Strace 4.8-1 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Vim 7.4, Strace 4.8-1 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -58,11 +65,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,20 +31,37 @@
 <p class="date">📅 2011-May-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cgal'>cgal</a>, <a href='index.html#errors'>errors</a>, <a href='index.html#gmp'>gmp</a>, <a href='index.html#mpfr'>mpfr</a>, <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>Compiling any <strong>Visual C++</strong> solution that uses <strong>CGAL</strong> produces either or both of these errors:</p>
+<p>Compiling any <strong>Visual C++</strong> solution that uses
+<strong>CGAL</strong> produces either or both of these errors:</p>
 <pre><code>1&gt;LINK : fatal error LNK1104: cannot open file &#39;gmp-vc90-mt.lib&#39;
 1&gt;LINK : fatal error LNK1104: cannot open file &#39;mpfr-vc90-mt.lib&#39;</code></pre>
 <p><strong>Solution</strong></p>
-<p>CGAL seems to look for <strong>GMP</strong> and <strong>MPFR</strong> libraries, whose names are suffixed with the Visual C++ version (<code>vc90</code>) and the build type (<code>mt</code>). However, CGAL stopped shipping pre-built GMP and MPFR libraries in such a format a while ago. Instead it ships a single library file for each. For example, in CGAL 3.8, these files are <code>libgmp-10.lib</code> and <code>libmpfr-4.lib</code>.</p>
+<p>CGAL seems to look for <strong>GMP</strong> and <strong>MPFR</strong>
+libraries, whose names are suffixed with the Visual C++ version
+(<code>vc90</code>) and the build type (<code>mt</code>). However, CGAL
+stopped shipping pre-built GMP and MPFR libraries in such a format a
+while ago. Instead it ships a single library file for each. For example,
+in CGAL 3.8, these files are <code>libgmp-10.lib</code> and
+<code>libmpfr-4.lib</code>.</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/05/20110520_cgal_linker_errors.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/05/20110520_cgal_linker_errors.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>With this knowledge, this error can be fixed and the solution can be compiled like this:</p>
+<p>With this knowledge, this error can be fixed and the solution can be
+compiled like this:</p>
 <ol type="1">
-<li><p>Ignore the library dependencies that are indicated by CGAL. This can be done by going to Properties → Linker → Input → Ignore Specific Library and adding <code>gmp-vc90-mt.lib,mpfr-vc90-mt.lib</code></p></li>
-<li><p>Link with the available libraries instead. This can be done by going to Properties → Linker → Input → Additional Dependencies and adding <code>libgmp-10.lib libmpfr-4.lib</code></p></li>
+<li><p>Ignore the library dependencies that are indicated by CGAL. This
+can be done by going to Properties → Linker → Input → Ignore Specific
+Library and adding
+<code>gmp-vc90-mt.lib,mpfr-vc90-mt.lib</code></p></li>
+<li><p>Link with the available libraries instead. This can be done by
+going to Properties → Linker → Input → Additional Dependencies and
+adding <code>libgmp-10.lib libmpfr-4.lib</code></p></li>
 </ol>
-<p>The Visual C++ solution using CGAL should be able to build and execute without errors now.</p>
+<p>The Visual C++ solution using CGAL should be able to build and
+execute without errors now.</p>
 <p><strong>Tried with</strong>: Visual C++ 2008 and CGAL 3.8</p>
 </div>
 
@@ -67,11 +70,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

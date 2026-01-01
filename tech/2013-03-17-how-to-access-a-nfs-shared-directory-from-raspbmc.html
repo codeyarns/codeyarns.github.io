@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,21 +30,50 @@
 <h1 class="title">How to access a NFS shared directory from Raspbmc</h1>
 <p class="date">📅 2013-Mar-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#nfs'>nfs</a>, <a href='index.html#raspberry-pi'>raspberry pi</a>, <a href='index.html#raspbmc'>raspbmc</a>, <a href='index.html#shared-folder'>shared folder</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Raspberry Pi</strong> running <strong>Raspbmc</strong> functions as an excellent HTPC. If you have videos, music or photos on one of your home Ubuntu or Linux computers, then it might be convenient to access or view the media right from your Raspbmc over the home network. The easiest way to do this is to share the media files in a NFS <strong>shared directory</strong> and access that from Raspbmc as NFS client. I am assuming that the Ubuntu computer and Raspbmc are connected to the same wireless router or the same home network.</p>
+<p><strong>Raspberry Pi</strong> running <strong>Raspbmc</strong>
+functions as an excellent HTPC. If you have videos, music or photos on
+one of your home Ubuntu or Linux computers, then it might be convenient
+to access or view the media right from your Raspbmc over the home
+network. The easiest way to do this is to share the media files in a NFS
+<strong>shared directory</strong> and access that from Raspbmc as NFS
+client. I am assuming that the Ubuntu computer and Raspbmc are connected
+to the same wireless router or the same home network.</p>
 <p>First setup the Ubuntu computer:</p>
 <ul>
-<li><p>Your Raspbmc will access your Ubuntu computer using its <strong>IP address</strong>. So, it might be convenient to <a href="2013-03-17-how-to-set-static-ip-address-in-ubuntu.html">configure a <strong>static IP address</strong></a> for the Ubuntu computer. In any case, note down the IP address of the Ubuntu computer.</p></li>
-<li><p>Create a directory and make sure the directory name has no spaces in it. Drop all the media files you want to share into this directory. <a href="2013-03-17-how-to-setup-nfs-server-and-client.markdown.html">Share this directory using NFS</a>.</p></li>
+<li><p>Your Raspbmc will access your Ubuntu computer using its
+<strong>IP address</strong>. So, it might be convenient to <a
+href="2013-03-17-how-to-set-static-ip-address-in-ubuntu.html">configure
+a <strong>static IP address</strong></a> for the Ubuntu computer. In any
+case, note down the IP address of the Ubuntu computer.</p></li>
+<li><p>Create a directory and make sure the directory name has no spaces
+in it. Drop all the media files you want to share into this directory.
+<a
+href="2013-03-17-how-to-setup-nfs-server-and-client.markdown.html">Share
+this directory using NFS</a>.</p></li>
 </ul>
 <p>Next setup the Raspbmc to access the shared directory:</p>
 <ul>
-<li><p>Make sure you can <strong>ping</strong> the Ubuntu computer from the Raspbmc. You can do this by <strong>SSH</strong> to Raspbmc (here is <a href="2012-08-10-how-to-ssh-to-your-raspbmc-from-windows.html">how</a>) and pinging the IP address of the Ubuntu computer.</p></li>
-<li><p>Assuming you want to access the video files in the shared directory. (The steps for Audio is similar, just use the Audio menu in these steps). In XBMC, go to Videos → Files → Add videos → Browse</p></li>
-<li><p>In the Browse dialog, choose <strong>Network Filesystem (NFS)</strong>. The IP address of your Ubuntu computer must be listed here. Enter it and pick the shared directory and choose OK.</p></li>
-<li><p>The Ubuntu computer shared directory now appears in the listing, choose OK. Press OK in the next dialog. Now the shared directory is visible in the Files listing and you should be able to browse through the media files inside it and play them whenever needed.</p></li>
+<li><p>Make sure you can <strong>ping</strong> the Ubuntu computer from
+the Raspbmc. You can do this by <strong>SSH</strong> to Raspbmc (here is
+<a
+href="2012-08-10-how-to-ssh-to-your-raspbmc-from-windows.html">how</a>)
+and pinging the IP address of the Ubuntu computer.</p></li>
+<li><p>Assuming you want to access the video files in the shared
+directory. (The steps for Audio is similar, just use the Audio menu in
+these steps). In XBMC, go to Videos → Files → Add videos →
+Browse</p></li>
+<li><p>In the Browse dialog, choose <strong>Network Filesystem
+(NFS)</strong>. The IP address of your Ubuntu computer must be listed
+here. Enter it and pick the shared directory and choose OK.</p></li>
+<li><p>The Ubuntu computer shared directory now appears in the listing,
+choose OK. Press OK in the next dialog. Now the shared directory is
+visible in the Files listing and you should be able to browse through
+the media files inside it and play them whenever needed.</p></li>
 </ul>
-<p>Have fun playing the content from your Ubuntu computer on your Raspbmc!</p>
-<p><strong>Tried with:</strong> Ubuntu 12.04 LTS and Raspbmc Release 1.0</p>
+<p>Have fun playing the content from your Ubuntu computer on your
+Raspbmc!</p>
+<p><strong>Tried with:</strong> Ubuntu 12.04 LTS and Raspbmc Release
+1.0</p>
 </div>
 
 <br />
@@ -66,11 +81,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

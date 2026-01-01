@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,10 +31,15 @@
 <p class="date">📅 2012-Nov-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#hyper-v'>hyper-v</a>, <a href='index.html#virtualbox'>virtualbox</a>, <a href='index.html#vtx'>vtx</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2012/11/20121110-verr.png" alt="" /><figcaption>VirtualBox error</figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2012/11/20121110-verr.png"
+alt="VirtualBox error" />
+<figcaption aria-hidden="true">VirtualBox error</figcaption>
 </figure>
 <p><strong>Problem</strong></p>
-<p>A virtual machine running Ubuntu in <strong>VirtualBox</strong> which was working fine threw up an error when I tried to restore it. The error read:</p>
+<p>A virtual machine running Ubuntu in <strong>VirtualBox</strong> which
+was working fine threw up an error when I tried to restore it. The error
+read:</p>
 <pre><code>Failed to open a session for the virtual machine Ubuntu-12.04-LTS-x64.
 
 VT-x is not available. (VERR_VMX_NO_VMX).
@@ -56,11 +47,19 @@ VT-x is not available. (VERR_VMX_NO_VMX).
 Result Code: E_FAIL (0x80004005)
 Component: Console
 Interface: IConsole {db7ab4ca-2a3f-4183-9243-c1208da92392}</code></pre>
-<p>This happened even though I had not changed any settings in VirtualBox.</p>
+<p>This happened even though I had not changed any settings in
+VirtualBox.</p>
 <p><strong>Solution</strong></p>
-<p><strong>VT-x</strong> is <strong>hardware visualization</strong> which the Intel Core i3 M330 processor I have does support. It was strange that the hardware visualization feature suddenly was not available to VirtualBox.</p>
-<p>Then I remembered that I had enabled <strong>Hyper-V</strong> earlier in the day. Windows 8 ships with Hyper-V and I had turned it on to try it out. It turns out that Hyper-V grabs hardware visualization and VirtualBox is left stranded not being able to access it.</p>
-<p>I disabled Hyper-V and my VM in VirtualBox booted up without any errors.</p>
+<p><strong>VT-x</strong> is <strong>hardware visualization</strong>
+which the Intel Core i3 M330 processor I have does support. It was
+strange that the hardware visualization feature suddenly was not
+available to VirtualBox.</p>
+<p>Then I remembered that I had enabled <strong>Hyper-V</strong> earlier
+in the day. Windows 8 ships with Hyper-V and I had turned it on to try
+it out. It turns out that Hyper-V grabs hardware visualization and
+VirtualBox is left stranded not being able to access it.</p>
+<p>I disabled Hyper-V and my VM in VirtualBox booted up without any
+errors.</p>
 <p><strong>Tried with:</strong> VirtualBox 4.2.4 and Windows 8 Pro</p>
 </div>
 
@@ -69,11 +68,13 @@ Interface: IConsole {db7ab4ca-2a3f-4183-9243-c1208da92392}</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

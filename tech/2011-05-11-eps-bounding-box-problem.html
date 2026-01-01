@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,12 +31,25 @@
 <p class="date">📅 2011-May-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#eps'>eps</a>, <a href='index.html#errors'>errors</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/05/20100511_eps_boundingbox.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/05/20100511_eps_boundingbox.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p><strong>Problem</strong></p>
-<p>Some <strong>EPS</strong> file generators produce a <code>BoundingBox</code> attribute that is all zeroes. This can fail certain programs that depend on non-zero <code>BoundingBox</code> values in EPS files. (For an example of such a failure see <a href="https://codeyarns.com/tech/2011/05/11/dvipdfm-transformation-matrix-error/">here</a>).</p>
+<p>Some <strong>EPS</strong> file generators produce a
+<code>BoundingBox</code> attribute that is all zeroes. This can fail
+certain programs that depend on non-zero <code>BoundingBox</code> values
+in EPS files. (For an example of such a failure see <a
+href="https://codeyarns.com/tech/2011/05/11/dvipdfm-transformation-matrix-error/">here</a>).</p>
 <p><strong>Solution</strong></p>
-<p>Here is a quick hack that might work. EPS files are text files and can be opened and edited using any text editor. Open the EPS file in a text editor and check if it has a <code>HiResBoundingBox</code> attribute. If it does, you are in luck! 😊 Copy over its values to the <code>BoundingBox</code> attribute. If this does not work, copy over the <code>HiResBoundingBox</code> values and convert them to integers for <code>BoundingBox</code>.</p>
+<p>Here is a quick hack that might work. EPS files are text files and
+can be opened and edited using any text editor. Open the EPS file in a
+text editor and check if it has a <code>HiResBoundingBox</code>
+attribute. If it does, you are in luck! 😊 Copy over its values to the
+<code>BoundingBox</code> attribute. If this does not work, copy over the
+<code>HiResBoundingBox</code> values and convert them to integers for
+<code>BoundingBox</code>.</p>
 </div>
 
 <br />
@@ -58,11 +57,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

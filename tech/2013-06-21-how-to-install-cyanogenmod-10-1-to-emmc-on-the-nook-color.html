@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,32 +27,88 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to install CyanogenMod 10.1 to EMMC on the Nook Color</h1>
+<h1 class="title">How to install CyanogenMod 10.1 to EMMC on the Nook
+Color</h1>
 <p class="date">📅 2013-Jun-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#android'>android</a>, <a href='index.html#cyanogenmod'>cyanogenmod</a>, <a href='index.html#nook-color'>nook color</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2013/06/20130621-cm101-nookcolor.png" alt="" /><figcaption>CyanogenMod 10.1 running on Nook Color</figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2013/06/20130621-cm101-nookcolor.png"
+alt="CyanogenMod 10.1 running on Nook Color" />
+<figcaption aria-hidden="true">CyanogenMod 10.1 running on Nook
+Color</figcaption>
 </figure>
-<p>The <a href="http://en.wikipedia.org/wiki/Nook_Color"><strong>Nook Color</strong></a> is a 7-inch tablet that was created by <strong>Barnes and Noble</strong>. It runs a stock Nook OS, which is an old version of Android that is pretty much useless. Thankfully, the Nook Color has a bootloader that is not locked and so it is easy to boot and load other operating systems on it. This post shows you how to replace the stock Nook OS on the <strong>EMMC</strong> (internal memory card) with CyanogenMod 10.1.</p>
-<p><strong>CyanogenMod 10.1</strong> is based on <strong>Android 4.2 JellyBean</strong>. At the time of this writing, the Nook Color is officially supported and there are <strong>Release Candidate</strong> releases available for it. The Nook Color hardware is pretty old, so CM 10.1 is a bit laggy on it. If you need speed but don’t mind old software, install CM7 instead on the Nook Color.</p>
-<p>These are the steps I used to install CM10.1 to the EMMC on my Nook Color. These steps are based on the <a href="http://forum.xda-developers.com/showthread.php?t=1030227">detailed CM10.1 installation guide</a> written by <strong>eyeballer</strong>.</p>
+<p>The <a href="http://en.wikipedia.org/wiki/Nook_Color"><strong>Nook
+Color</strong></a> is a 7-inch tablet that was created by <strong>Barnes
+and Noble</strong>. It runs a stock Nook OS, which is an old version of
+Android that is pretty much useless. Thankfully, the Nook Color has a
+bootloader that is not locked and so it is easy to boot and load other
+operating systems on it. This post shows you how to replace the stock
+Nook OS on the <strong>EMMC</strong> (internal memory card) with
+CyanogenMod 10.1.</p>
+<p><strong>CyanogenMod 10.1</strong> is based on <strong>Android 4.2
+JellyBean</strong>. At the time of this writing, the Nook Color is
+officially supported and there are <strong>Release Candidate</strong>
+releases available for it. The Nook Color hardware is pretty old, so CM
+10.1 is a bit laggy on it. If you need speed but don’t mind old
+software, install CM7 instead on the Nook Color.</p>
+<p>These are the steps I used to install CM10.1 to the EMMC on my Nook
+Color. These steps are based on the <a
+href="http://forum.xda-developers.com/showthread.php?t=1030227">detailed
+CM10.1 installation guide</a> written by <strong>eyeballer</strong>.</p>
 <ol type="1">
-<li><p>First, we need software that can replace the internal <strong>ROM</strong> software with CyanogenMod. A popular choice for this is <a href="http://www.clockworkmod.com/"><strong>ClockworkMod</strong></a>. A version of ClockworkMod customized to boot on the Nook Color can be downloaded <a href="http://www.techerrata.com/file/teamwin/1gb_clockwork-3.2.0.1-eyeballer.zip">here</a>.</p></li>
-<li><p>Unzip the downloaded ClockworkMod disk image and write it to a micro-SD card. This can be done easily on either <a href="2013-06-21-how-to-write-a-disk-image-using-win32-disk-imager.html">Windows</a> or <a href="2013-06-21-how-to-write-a-disk-image-on-linux.html">Linux</a>. This creates a 1GB bootable storage device on the micro-SD card with ClockworkMod on it.</p></li>
-<li><p>Download the latest CyanogenMod 10.1 release for Nook Color from <a href="http://get.cm/?device=encore">here</a>.</p></li>
-<li><p>Android without the Google applications is pretty useless. At the very least, you need the Google Play Store to install other applications. Download the <strong>GApps</strong> release that matches the version of your CyanogenMod from <a href="http://goo.im/gapps">here</a>.</p></li>
-<li><p>Finally, we need a version of ClockworkMod that can be written to the EMMC. This can be downloaded <a href="http://techerrata.com/file/nook/update-encore-cwm.emmc-eyeballer.zip">here</a>.</p></li>
-<li><p>The 3 files you downloaded are zip files. <strong>Do not unzip them!</strong> Insert the micro-SD card back into your computer. It should be mounted. Copy these 3 zip files to it. Unmount and remove the micro-SD card.</p></li>
-<li><p>Power off your Nook Color. Insert the micro-SD card into it. Power it on.</p></li>
-<li><p>The Nook Color will boot from the micro-SD card into ClockworkMod. You can navigate in ClockworkMod by using the power button to go back, the Nook (N) button to select and the volume up-down keys to move up-down.</p></li>
-<li><p>Choose Install .zip from SD card &gt; Choose .zip. Install the 3 zip files you copied over in this order: CyanogenMod 10.1, GApps and finally ClockworkMod.</p></li>
+<li><p>First, we need software that can replace the internal
+<strong>ROM</strong> software with CyanogenMod. A popular choice for
+this is <a
+href="http://www.clockworkmod.com/"><strong>ClockworkMod</strong></a>. A
+version of ClockworkMod customized to boot on the Nook Color can be
+downloaded <a
+href="http://www.techerrata.com/file/teamwin/1gb_clockwork-3.2.0.1-eyeballer.zip">here</a>.</p></li>
+<li><p>Unzip the downloaded ClockworkMod disk image and write it to a
+micro-SD card. This can be done easily on either <a
+href="2013-06-21-how-to-write-a-disk-image-using-win32-disk-imager.html">Windows</a>
+or <a
+href="2013-06-21-how-to-write-a-disk-image-on-linux.html">Linux</a>.
+This creates a 1GB bootable storage device on the micro-SD card with
+ClockworkMod on it.</p></li>
+<li><p>Download the latest CyanogenMod 10.1 release for Nook Color from
+<a href="http://get.cm/?device=encore">here</a>.</p></li>
+<li><p>Android without the Google applications is pretty useless. At the
+very least, you need the Google Play Store to install other
+applications. Download the <strong>GApps</strong> release that matches
+the version of your CyanogenMod from <a
+href="http://goo.im/gapps">here</a>.</p></li>
+<li><p>Finally, we need a version of ClockworkMod that can be written to
+the EMMC. This can be downloaded <a
+href="http://techerrata.com/file/nook/update-encore-cwm.emmc-eyeballer.zip">here</a>.</p></li>
+<li><p>The 3 files you downloaded are zip files. <strong>Do not unzip
+them!</strong> Insert the micro-SD card back into your computer. It
+should be mounted. Copy these 3 zip files to it. Unmount and remove the
+micro-SD card.</p></li>
+<li><p>Power off your Nook Color. Insert the micro-SD card into it.
+Power it on.</p></li>
+<li><p>The Nook Color will boot from the micro-SD card into
+ClockworkMod. You can navigate in ClockworkMod by using the power button
+to go back, the Nook (N) button to select and the volume up-down keys to
+move up-down.</p></li>
+<li><p>Choose Install .zip from SD card &gt; Choose .zip. Install the 3
+zip files you copied over in this order: CyanogenMod 10.1, GApps and
+finally ClockworkMod.</p></li>
 <li><p>Choose Wipe data/factory reset.</p></li>
-<li><p>Remove the micro-SD card from the Nook Color and choose Restart.</p></li>
-<li><p>Your Nook Color should now reboot into CyanogenMod 10.1. You will need to provide a Google username and an application specific password to use the device and to use the Play Store.</p></li>
-<li><p>You can now reformat the micro-SD card as FAT32 and use it for storage with your Nook Color.</p></li>
+<li><p>Remove the micro-SD card from the Nook Color and choose
+Restart.</p></li>
+<li><p>Your Nook Color should now reboot into CyanogenMod 10.1. You will
+need to provide a Google username and an application specific password
+to use the device and to use the Play Store.</p></li>
+<li><p>You can now reformat the micro-SD card as FAT32 and use it for
+storage with your Nook Color.</p></li>
 </ol>
-<p><strong>Also see:</strong> <a href="2012-12-29-how-to-install-cyanogenmod-10-to-sd-card-on-the-nook-color.html">How to install CyanogenMod 10 to SD card on the Nook Color</a></p>
-<p><strong>Tried with:</strong> Nook Color 8GB, 1gb_clockwork-3.2.0.1-eyeballer, cm-10.1.0-RC5-encore, gapps-jb-20130301-signed and update-encore-cwm.emmc-eyeballer</p>
+<p><strong>Also see:</strong> <a
+href="2012-12-29-how-to-install-cyanogenmod-10-to-sd-card-on-the-nook-color.html">How
+to install CyanogenMod 10 to SD card on the Nook Color</a></p>
+<p><strong>Tried with:</strong> Nook Color
+8GB, 1gb_clockwork-3.2.0.1-eyeballer, cm-10.1.0-RC5-encore, gapps-jb-20130301-signed
+and update-encore-cwm.emmc-eyeballer</p>
 </div>
 
 <br />
@@ -74,11 +116,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

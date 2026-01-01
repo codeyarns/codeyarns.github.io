@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,25 @@
 <h1 class="title">How to disable Thinkpad back-forward keys</h1>
 <p class="date">📅 2013-Aug-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#thinkpad'>thinkpad</a>, <a href='index.html#xmodmap'>xmodmap</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Thinkpad</strong> keyboards have <strong>back</strong>-<strong>forward</strong> keys which activate the back-forward action in browsers. However, they are quite irritating because they are placed right above the right-left arrow keys. Pressing them by mistake could make you lose the text you had painstakingly typed into a web form.</p>
-<p>To <strong>disable</strong> these keys in the current session, type these commands at the shell:</p>
+<p><strong>Thinkpad</strong> keyboards have
+<strong>back</strong>-<strong>forward</strong> keys which activate the
+back-forward action in browsers. However, they are quite irritating
+because they are placed right above the right-left arrow keys. Pressing
+them by mistake could make you lose the text you had painstakingly typed
+into a web form.</p>
+<p>To <strong>disable</strong> these keys in the current session, type
+these commands at the shell:</p>
 <pre><code>$ xmodmap -e &quot;keycode 166=&quot;
 $ xmodmap -e &quot;keycode 167=&quot;</code></pre>
-<p>To permanently disable them, create a <strong>.Xmodmap</strong> file in your home directory and add these lines to it:</p>
+<p>To permanently disable them, create a <strong>.Xmodmap</strong> file
+in your home directory and add these lines to it:</p>
 <pre><code>! Create ~/.Xmodmap file
 ! Add these lines to the file
 keycode 166=
 keycode 167=</code></pre>
-<p>Note: This does not work in Ubuntu 14.04, where xmodmap has been replaced with xkb. I do not know of a solution to get this working on that version of Ubuntu.</p>
+<p>Note: This does not work in Ubuntu 14.04, where xmodmap has been
+replaced with xkb. I do not know of a solution to get this working on
+that version of Ubuntu.</p>
 <p><strong>Tried with:</strong> Thinkpad X201i and Ubuntu 12.04 LTS</p>
 </div>
 
@@ -62,11 +57,13 @@ keycode 167=</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

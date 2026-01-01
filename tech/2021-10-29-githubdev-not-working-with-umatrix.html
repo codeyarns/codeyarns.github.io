@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,17 +31,33 @@
 <p class="date">📅 2021-Oct-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#github'>github</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p><a href="https://github.dev/"><strong>Github.dev</strong></a> allows me to open any <strong>Github</strong> repo of mine in a <strong>VSCode</strong> IDE in my browser itself. For browsing I use the Firefox browser with the <a href="2017-01-30-umatrix-extension-for-firefox.html"><strong>uMatrix</strong></a> extension. When I opened my Github repo using github.dev, I noticed that several features, like the file <em>Explorer</em> on the left, were not working.</p>
+<p><a href="https://github.dev/"><strong>Github.dev</strong></a> allows
+me to open any <strong>Github</strong> repo of mine in a
+<strong>VSCode</strong> IDE in my browser itself. For browsing I use the
+Firefox browser with the <a
+href="2017-01-30-umatrix-extension-for-firefox.html"><strong>uMatrix</strong></a>
+extension. When I opened my Github repo using github.dev, I noticed that
+several features, like the file <em>Explorer</em> on the left, were not
+working.</p>
 <h2 id="solution">Solution</h2>
-<p>As my first step in the investigation, I disabled the uMatrix extension - the github.dev website was fully functional! So it was definitely uMatrix that was interfering with the operation of this website.</p>
-<p>I decided to disable the matrix for the entire github.dev website, since I do not really mind doing that for this URL:</p>
+<p>As my first step in the investigation, I disabled the uMatrix
+extension - the github.dev website was fully functional! So it was
+definitely uMatrix that was interfering with the operation of this
+website.</p>
+<p>I decided to disable the matrix for the entire github.dev website,
+since I do not really mind doing that for this URL:</p>
 <pre><code>matrix-off: github.dev true</code></pre>
 <p>The file Explorer still did not load after this.</p>
-<p>I decided to check the browser Console, by pressing <code>F12</code>. Here I saw that several external URLs that this website was trying to pull were being blocked and were highlighted in red. I noted down the base domain names of these URLs and disabled the matrix for all of them:</p>
+<p>I decided to check the browser Console, by pressing <code>F12</code>.
+Here I saw that several external URLs that this website was trying to
+pull were being blocked and were highlighted in red. I noted down the
+base domain names of these URLs and disabled the matrix for all of
+them:</p>
 <pre><code>matrix-off: azureedge.net true
 matrix-off: vscode-unpkg.net true
 matrix-off: vscode-webview.net true</code></pre>
-<p>After doing this and refreshing the webpage, github.dev was fully functional!</p>
+<p>After doing this and refreshing the webpage, github.dev was fully
+functional!</p>
 <p><strong>Tried with:</strong> uMatrix 1.4.4 and Firefox 92.0.1</p>
 </div>
 
@@ -64,11 +66,13 @@ matrix-off: vscode-webview.net true</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

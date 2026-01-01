@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,43 +30,85 @@
 <h1 class="title">How to specify architecture to compile CUDA code</h1>
 <p class="date">📅 2014-Mar-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#nvcc'>nvcc</a>, <a href='index.html#ptx'>ptx</a>, <a href='index.html#sass'>sass</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>To compile CUDA code, you need to tell <strong>NVCC</strong> what architecture you want to target and what kind of code you want to generate. Specifying this to NVCC can be confusing because there are up to three options that can be used: <code>-arch</code>, <code>-code</code> and <code>-gencode</code>.</p>
-<p>It does not have to be this complicated, but due to historical and practical reasons it just is. The best way to understand how to use these options is to recall the two-level hierarchy of CUDA architecture. First, is the high-level PTX architecture that acts as a virtual machine. Next, are the actual low-level GPU architectures that are designed to work with the features available in a particular PTX architecture.</p>
-<p>This is conceptually how a CUDA compiler works too. For the sake of these compiler options, we can break down the compilation phase into two stages. First, the compiler looks at high-level features that are supported by a particular virtual PTX architecture and creates high-level code for that architecture. Next, the compiler translates the PTX code to the SASS code that is optimized for a particular low-level GPU architecture.</p>
+<p>To compile CUDA code, you need to tell <strong>NVCC</strong> what
+architecture you want to target and what kind of code you want to
+generate. Specifying this to NVCC can be confusing because there are up
+to three options that can be used: <code>-arch</code>,
+<code>-code</code> and <code>-gencode</code>.</p>
+<p>It does not have to be this complicated, but due to historical and
+practical reasons it just is. The best way to understand how to use
+these options is to recall the two-level hierarchy of CUDA architecture.
+First, is the high-level PTX architecture that acts as a virtual
+machine. Next, are the actual low-level GPU architectures that are
+designed to work with the features available in a particular PTX
+architecture.</p>
+<p>This is conceptually how a CUDA compiler works too. For the sake of
+these compiler options, we can break down the compilation phase into two
+stages. First, the compiler looks at high-level features that are
+supported by a particular virtual PTX architecture and creates
+high-level code for that architecture. Next, the compiler translates the
+PTX code to the SASS code that is optimized for a particular low-level
+GPU architecture.</p>
 <h2 id="-arch">-arch</h2>
-<p>This compiler option is used to tell the compiler what PTX architecture to aim for in the first stage of compilation. PTX architectures are specified in the format of <code>compute_xy</code>, where <code>xy</code> is the version number of a particular architecture.</p>
+<p>This compiler option is used to tell the compiler what PTX
+architecture to aim for in the first stage of compilation. PTX
+architectures are specified in the format of <code>compute_xy</code>,
+where <code>xy</code> is the version number of a particular
+architecture.</p>
 <p>For example:</p>
 <pre><code>-arch=compute_21</code></pre>
-<p>This makes the compiler produce PTX code that the CUDA driver will JIT-compile at runtime to SASS code that will work on all <code>sm_21</code> and future GPU architectures.</p>
+<p>This makes the compiler produce PTX code that the CUDA driver will
+JIT-compile at runtime to SASS code that will work on all
+<code>sm_21</code> and future GPU architectures.</p>
 <p>You can also specify a low-level GPU architecture to this option:</p>
 <pre><code>-arch=sm_21</code></pre>
-<p>This makes the compiler produce SASS code that will work correctly only on <code>sm_21</code> GPUs. The compiler will pick the PTX architecture that is suitable for <code>sm_21</code> in the first stage, even though you have not indicated that to it.</p>
-<p>Note that only one PTX architecture can be specified using <code>-arch</code> option.</p>
+<p>This makes the compiler produce SASS code that will work correctly
+only on <code>sm_21</code> GPUs. The compiler will pick the PTX
+architecture that is suitable for <code>sm_21</code> in the first stage,
+even though you have not indicated that to it.</p>
+<p>Note that only one PTX architecture can be specified using
+<code>-arch</code> option.</p>
 <h2 id="-code">-code</h2>
-<p>This compiler option is used to tell the compiler what SASS architecture to aim for in the second stage of compilation. It will pick the PTX architecture that is suitable for the SASS architecture you specified.</p>
+<p>This compiler option is used to tell the compiler what SASS
+architecture to aim for in the second stage of compilation. It will pick
+the PTX architecture that is suitable for the SASS architecture you
+specified.</p>
 <p>For example:</p>
 <pre><code>-code=sm_21</code></pre>
-<p>This makes the compiler produce SASS code that will work correctly only on <code>sm_21</code> GPU.</p>
-<p>You can specify many SASS architectures, but they should all belong to the same class of PTX architecture.</p>
+<p>This makes the compiler produce SASS code that will work correctly
+only on <code>sm_21</code> GPU.</p>
+<p>You can specify many SASS architectures, but they should all belong
+to the same class of PTX architecture.</p>
 <p>For example:</p>
 <pre><code>-code=sm_20,sm_21</code></pre>
 <h2 id="-arch--code">-arch -code</h2>
-<p>These two options can be combined to be more specific (and also confusing). Let us see some examples.</p>
+<p>These two options can be combined to be more specific (and also
+confusing). Let us see some examples.</p>
 <p>Produces SASS code for <code>sm_20</code>:</p>
 <pre><code>-arch=compute_20 -code=sm_20</code></pre>
-<p>Produces PTX code for <code>compute_20</code> and SASS code for both <code>sm_20</code> and <code>sm_21</code> GPUs:</p>
+<p>Produces PTX code for <code>compute_20</code> and SASS code for both
+<code>sm_20</code> and <code>sm_21</code> GPUs:</p>
 <pre><code>-arch=compute_20 -code=compute_20,sm_20,sm_21</code></pre>
 <h2 id="-gencode">-gencode</h2>
-<p>What if you want to produce PTX or SASS code for many PTX architectures? That is what this option is useful for:</p>
+<p>What if you want to produce PTX or SASS code for many PTX
+architectures? That is what this option is useful for:</p>
 <pre><code>-gencode arch=compute_20,code=sm_20</code></pre>
-<p>This usage is similar to earlier. But, the real use is to produce for many PTX architectures, like this:</p>
+<p>This usage is similar to earlier. But, the real use is to produce for
+many PTX architectures, like this:</p>
 <pre><code>-gencode arch=compute_20,code=compute_20 -gencode arch=compute_35,code=sm_35</code></pre>
 <h2 id="compute_xy">Compute_XY</h2>
-<p>For the full list of <em>virtual</em> architectures supported by NVCC, see the <a href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architecture-feature-list">Virtual Architecture Feature List</a>.</p>
+<p>For the full list of <em>virtual</em> architectures supported by
+NVCC, see the <a
+href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#virtual-architecture-feature-list">Virtual
+Architecture Feature List</a>.</p>
 <h2 id="sm_xy">SM_XY</h2>
-<p>For the full list of <em>real</em> architectures supported by NVCC, see the <a href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list">GPU Feature List</a>.</p>
+<p>For the full list of <em>real</em> architectures supported by NVCC,
+see the <a
+href="https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#gpu-feature-list">GPU
+Feature List</a>.</p>
 <h2 id="cheatsheet">Cheatsheet</h2>
-<p>A handy list of how to and how not to specify the above compiler options:</p>
+<p>A handy list of how to and how not to specify the above compiler
+options:</p>
 <pre><code># Generate only PTX
 -arch compute_35
 -arch compute_35 -code compute_35
@@ -107,11 +135,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,10 @@
 <h1 class="title">How to use MIG</h1>
 <p class="date">📅 2020-Dec-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#docker'>docker</a>, <a href='index.html#mig'>mig</a>, <a href='index.html#nvidia-smi'>nvidia-smi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Multi-Instance GPU</strong> (MIG) is a feature on the A100 GPU to slice it into GPU instances and GPU instances into compute instances. Note that many of the commands listed below might need to be run as <code>sudo</code>.</p>
+<p><strong>Multi-Instance GPU</strong> (MIG) is a feature on the A100
+GPU to slice it into GPU instances and GPU instances into compute
+instances. Note that many of the commands listed below might need to be
+run as <code>sudo</code>.</p>
 <h2 id="nvidia-smi">nvidia-smi</h2>
 <ul>
 <li>To enable or disable MIG mode on all GPUs or a certain GPU:</li>
@@ -258,8 +247,11 @@ Successfully destroyed GPU instance ID 13 from GPU  0</code></pre>
                                        to restrict the command to run on a specific GPU or GPU
                                        instance.</code></pre>
 <h2 id="docker-container">Docker container</h2>
-<p>To expose a MIG instance to a Docker container, add <code>--gpus='"device=MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/7/0"'</code> to your <code>docker --runtime=nvidia ...</code> command.</p>
-<p>Multiple MIG instances can be specified by separating with commas, like <code>--gpus='"device=0:0,0:1"'</code> for example.</p>
+<p>To expose a MIG instance to a Docker container, add
+<code>--gpus='"device=MIG-GPU-0069414c-9f30-41f9-d5d8-87890423f0c4/7/0"'</code>
+to your <code>docker --runtime=nvidia ...</code> command.</p>
+<p>Multiple MIG instances can be specified by separating with commas,
+like <code>--gpus='"device=0:0,0:1"'</code> for example.</p>
 </div>
 
 <br />
@@ -267,11 +259,13 @@ Successfully destroyed GPU instance ID 13 from GPU  0</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

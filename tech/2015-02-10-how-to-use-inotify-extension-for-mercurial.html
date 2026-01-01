@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,34 @@
 <h1 class="title">How to use inotify extension for Mercurial</h1>
 <p class="date">📅 2015-Feb-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#hgwatchman'>hgwatchman</a>, <a href='index.html#inotify'>inotify</a>, <a href='index.html#mercurial'>mercurial</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><code>hg status</code> is the slowest command in <strong>Mercurial</strong> and can take several seconds on repositories with thousands of files. This is because it needs to check every single file and directory in your repository to see if it has changed. One method to speed up this command is to use the <a href="http://mercurial.selenic.com/wiki/InotifyExtension"><strong>inotify</strong></a> extension for Mercurial.</p>
-<p><strong>Note:</strong> This extension is reported to be buggy and using the alternate <strong>hgwatchman</strong> extension is recommended. <strong>Note:</strong> This extension only works in Mercurial 2.x. It has been explicitly <a href="http://www.selenic.com/repo/hg/rev/352abbb0be88">disabled</a> in Mercurial 3.x and will not work.</p>
-<p>This extension ships with the <code>mercurial-common</code> package and so it will already be installed on your system if you have Mercurial. It relies on the <code>inotify</code> subsystem of the Linux kernel and any kernel later than 2.6.13 will have it. It uses the filesystem to watch for changes and reports these to applications. Using this Mercurial can check the status of gigantic repositories quickly.</p>
-<p>To enable this extension, just add these lines to your <code>hgrc</code>:</p>
+<p><code>hg status</code> is the slowest command in
+<strong>Mercurial</strong> and can take several seconds on repositories
+with thousands of files. This is because it needs to check every single
+file and directory in your repository to see if it has changed. One
+method to speed up this command is to use the <a
+href="http://mercurial.selenic.com/wiki/InotifyExtension"><strong>inotify</strong></a>
+extension for Mercurial.</p>
+<p><strong>Note:</strong> This extension is reported to be buggy and
+using the alternate <strong>hgwatchman</strong> extension is
+recommended. <strong>Note:</strong> This extension only works in
+Mercurial 2.x. It has been explicitly <a
+href="http://www.selenic.com/repo/hg/rev/352abbb0be88">disabled</a> in
+Mercurial 3.x and will not work.</p>
+<p>This extension ships with the <code>mercurial-common</code> package
+and so it will already be installed on your system if you have
+Mercurial. It relies on the <code>inotify</code> subsystem of the Linux
+kernel and any kernel later than 2.6.13 will have it. It uses the
+filesystem to watch for changes and reports these to applications. Using
+this Mercurial can check the status of gigantic repositories
+quickly.</p>
+<p>To enable this extension, just add these lines to your
+<code>hgrc</code>:</p>
 <pre><code>[extensions]
 inotify =</code></pre>
-<p>That is it! I noticed a speedup on a large repository with 500K files, but it was not as much as I wanted.</p>
-<p><strong>Tried with:</strong> Mercurial 2.8.2, Linux 3.13.0 and Ubuntu 14.04</p>
+<p>That is it! I noticed a speedup on a large repository with 500K
+files, but it was not as much as I wanted.</p>
+<p><strong>Tried with:</strong> Mercurial 2.8.2, Linux 3.13.0 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -59,11 +65,13 @@ inotify =</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

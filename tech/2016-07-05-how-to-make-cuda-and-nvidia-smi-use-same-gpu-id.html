@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,10 +30,28 @@
 <h1 class="title">How to make CUDA and nvidia-smi use same GPU ID</h1>
 <p class="date">📅 2016-Jul-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#nvidia-smi'>nvidia-smi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>One of the irritating problems I encounter while working with <strong>CUDA</strong> programs is the GPU ID. This is the identifier used to associate an integer with a GPU on the system. This is just 0 if you have one GPU in the computer. But when dealing with a system having multiple GPUs, the GPU ID that is used by CUDA and GPU ID used by non-CUDA programs like <strong>nvidia-smi</strong> are different! CUDA tries to associate the fastest GPU with the lowest ID. Non-CUDA tools use the PCI Bus ID of the GPUs to give them a GPU ID.</p>
-<p>One solution that I was using was to use <a href="https://github.com/al42and/cuda-smi"><strong>cuda-smi</strong></a> that shows GPU information using CUDA GPU IDs.</p>
-<p>There is a better solution: requesting CUDA to use the same PCI Bus ID enumeration order as used by non-CUDA programs. To do this set the <code>CUDA_​DEVICE_​ORDER</code> environment variable to <code>PCI_BUS_ID</code> in your shell. The default value of this variable is <code>FASTEST_FIRST</code>. More info on this can be found <a href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars">here</a>. Note that this is available only in CUDA 7 and later.</p>
-<p><strong>Reference</strong>: <a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars">CUDA Environment Variables</a></p>
+<p>One of the irritating problems I encounter while working with
+<strong>CUDA</strong> programs is the GPU ID. This is the identifier
+used to associate an integer with a GPU on the system. This is just 0 if
+you have one GPU in the computer. But when dealing with a system having
+multiple GPUs, the GPU ID that is used by CUDA and GPU ID used by
+non-CUDA programs like <strong>nvidia-smi</strong> are different! CUDA
+tries to associate the fastest GPU with the lowest ID. Non-CUDA tools
+use the PCI Bus ID of the GPUs to give them a GPU ID.</p>
+<p>One solution that I was using was to use <a
+href="https://github.com/al42and/cuda-smi"><strong>cuda-smi</strong></a>
+that shows GPU information using CUDA GPU IDs.</p>
+<p>There is a better solution: requesting CUDA to use the same PCI Bus
+ID enumeration order as used by non-CUDA programs. To do this set the
+<code>CUDA_​DEVICE_​ORDER</code> environment variable to
+<code>PCI_BUS_ID</code> in your shell. The default value of this
+variable is <code>FASTEST_FIRST</code>. More info on this can be found
+<a
+href="http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars">here</a>.
+Note that this is available only in CUDA 7 and later.</p>
+<p><strong>Reference</strong>: <a
+href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars">CUDA
+Environment Variables</a></p>
 </div>
 
 <br />
@@ -55,11 +59,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

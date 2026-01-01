@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,10 +31,15 @@
 <p class="date">📅 2015-May-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#gdb'>gdb</a>, <a href='index.html#signal'>signal</a>, <a href='index.html#sigtstp'>sigtstp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I use <code>Ctrl+Z</code> regularly at the shell to temporarily stop a program and then continue its running using the <code>fg</code> command. However, doing the same in GDB does not work as expected:</p>
+<p>I use <code>Ctrl+Z</code> regularly at the shell to temporarily stop
+a program and then continue its running using the <code>fg</code>
+command. However, doing the same in GDB does not work as expected:</p>
 <ul>
-<li><p>I press <code>Ctrl+Z</code>. GDB catches it and prints out a message saying <code>SIGTSTP</code> has been received.</p></li>
-<li><p>Typing <code>continue</code> does not continue the execution of the program. The program keeps getting stopped again and prints this message:</p></li>
+<li><p>I press <code>Ctrl+Z</code>. GDB catches it and prints out a
+message saying <code>SIGTSTP</code> has been received.</p></li>
+<li><p>Typing <code>continue</code> does not continue the execution of
+the program. The program keeps getting stopped again and prints this
+message:</p></li>
 </ul>
 <pre><code>(gdb) c
 Continuing.
@@ -61,17 +52,21 @@ Program received signal SIGTSTP, Stopped (user).
 <p>To view the signals handled by GDB and how they are handled:</p>
 <pre><code>(gdb) info signals</code></pre>
 <ul>
-<li>To view how a specific signal, say <code>SIGTSTP</code> is handled:</li>
+<li>To view how a specific signal, say <code>SIGTSTP</code> is
+handled:</li>
 </ul>
 <pre><code>(gdb) info signal SIGTSTP
 Signal        Stop  Print   Pass to program Description
 SIGTSTP       Yes   Yes Yes     Stopped (user)</code></pre>
 <ul>
-<li>We can see that by default, this signal is passed to the program. By not passing it to the program, just like what a shell does, our problem is solved. To do this, use the <code>handle</code> command:</li>
+<li>We can see that by default, this signal is passed to the program. By
+not passing it to the program, just like what a shell does, our problem
+is solved. To do this, use the <code>handle</code> command:</li>
 </ul>
 <pre><code>(gdb) handle SIGTSTP nopass</code></pre>
 <ul>
-<li>Type <code>continue</code> now and the program continues from where it was stopped.</li>
+<li>Type <code>continue</code> now and the program continues from where
+it was stopped.</li>
 </ul>
 <p><strong>Tried with:</strong> GDB 7.7.1 and Ubuntu 14.04</p>
 </div>
@@ -81,11 +76,13 @@ SIGTSTP       Yes   Yes Yes     Stopped (user)</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

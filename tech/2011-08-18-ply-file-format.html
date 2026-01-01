@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,9 +31,16 @@
 <p class="date">📅 2011-Aug-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ply'>ply</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/08/20110818-ply.png" alt="" /><figcaption> </figcaption>
+<img src="http://codeyarns.files.wordpress.com/2011/08/20110818-ply.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>The <a href="http://en.wikipedia.org/wiki/PLY_%28file_format%29"><strong>Polygon File Format (PLY)</strong></a> is one of the simplest formats to read or write a 3D mesh. It has both <strong>ASCII</strong> and <strong>binary</strong> formats, but we look at only the human-readable ASCII format here.</p>
+<p>The <a
+href="http://en.wikipedia.org/wiki/PLY_%28file_format%29"><strong>Polygon
+File Format (PLY)</strong></a> is one of the simplest formats to read or
+write a 3D mesh. It has both <strong>ASCII</strong> and
+<strong>binary</strong> formats, but we look at only the human-readable
+ASCII format here.</p>
 <p>Consider a tetrahedron composed of these 4 points:</p>
 <pre><code>1.2 2.9 15.7
 132.4 239.4 139.9
@@ -71,16 +64,33 @@ end_header
 3 0 1 3
 3 0 2 3
 3 1 2 3</code></pre>
-<p>It is easy to deduce the file format from the above representation:</p>
+<p>It is easy to deduce the file format from the above
+representation:</p>
 <ul>
-<li><p>The <code>element vertex VERTEXNUM</code> is used to indicate the number of points.</p></li>
-<li><p>The number type used for the point coordinates is indicated using the <code>property float x</code> lines.</p></li>
-<li><p>The <code>element face FACENUM</code>is used to indicate the number of polygon faces in the mesh.</p></li>
-<li><p>The number type used for the number of points in each face and the vertex indices of those points is indicated using <code>property list uchar int vertex_index</code>. This means that the number of points in each face is of type <code>uchar</code> and the vertex indices themselves are of type <code>int</code>.</p></li>
-<li><p>After the header, are a list of points, much like in the <a href="https://codeyarns.com/tech/2011/08/17/asc-file-format-for-3d-points/">ASC file format</a>.</p></li>
-<li><p>After the points, are a list of the polygon faces. A line like <code>3 0 1 2</code> means that this face has 3 points (hence a triangle) and is composed of the vertices 0, 1 and 2. Note that PLY deals only with polygons (like triangles) and cannot deal with polyhedrons (like tetrahedrons).</p></li>
+<li><p>The <code>element vertex VERTEXNUM</code> is used to indicate the
+number of points.</p></li>
+<li><p>The number type used for the point coordinates is indicated using
+the <code>property float x</code> lines.</p></li>
+<li><p>The <code>element face FACENUM</code>is used to indicate the
+number of polygon faces in the mesh.</p></li>
+<li><p>The number type used for the number of points in each face and
+the vertex indices of those points is indicated using
+<code>property list uchar int vertex_index</code>. This means that the
+number of points in each face is of type <code>uchar</code> and the
+vertex indices themselves are of type <code>int</code>.</p></li>
+<li><p>After the header, are a list of points, much like in the <a
+href="https://codeyarns.com/tech/2011/08/17/asc-file-format-for-3d-points/">ASC
+file format</a>.</p></li>
+<li><p>After the points, are a list of the polygon faces. A line like
+<code>3 0 1 2</code> means that this face has 3 points (hence a
+triangle) and is composed of the vertices 0, 1 and 2. Note that PLY
+deals only with polygons (like triangles) and cannot deal with
+polyhedrons (like tetrahedrons).</p></li>
 </ul>
-<p>PLY files can be opened and rendered in applications like <a href="http://meshlab.sourceforge.net/"><strong>MeshLab</strong></a>. PLY files can have many other features, please refer to the Wikipedia page for those details.</p>
+<p>PLY files can be opened and rendered in applications like <a
+href="http://meshlab.sourceforge.net/"><strong>MeshLab</strong></a>. PLY
+files can have many other features, please refer to the Wikipedia page
+for those details.</p>
 </div>
 
 <br />
@@ -88,11 +98,13 @@ end_header
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

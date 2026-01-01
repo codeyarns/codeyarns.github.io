@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,42 +30,75 @@
 <h1 class="title">GDB Cheatsheet</h1>
 <p class="date">📅 2017-Aug-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#gdb'>gdb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>GDB</strong> is the GNU debugger which can be used to debug C and C++ programs at the commandline.</p>
+<p><strong>GDB</strong> is the GNU debugger which can be used to debug C
+and C++ programs at the commandline.</p>
 <h2 id="compilation">Compilation</h2>
 <ul>
-<li>Compile your code with debugging information to be able to use it with GDB. For GCC, this is the <code>-g</code> option.</li>
+<li>Compile your code with debugging information to be able to use it
+with GDB. For GCC, this is the <code>-g</code> option.</li>
 </ul>
 <h2 id="invocation">Invocation</h2>
 <ul>
 <li><p>To open a program with GDB: <code>gdb a.out</code></p></li>
-<li><p>To open a program which has commandline arguments with GDB: <code>gdb --args a.out --infile /home/joe/zoo.json</code></p></li>
-<li><p>To load a core dump file, see <a href="2015-09-06-how-to-load-core-dump-in-gdb.html">my post</a>.</p></li>
-<li><p>To debug a running process, use its PID. For example, to connect and debug a process with PID 945: <code>gdb -p 945</code></p></li>
+<li><p>To open a program which has commandline arguments with GDB:
+<code>gdb --args a.out --infile /home/joe/zoo.json</code></p></li>
+<li><p>To load a core dump file, see <a
+href="2015-09-06-how-to-load-core-dump-in-gdb.html">my
+post</a>.</p></li>
+<li><p>To debug a running process, use its PID. For example, to connect
+and debug a process with PID 945: <code>gdb -p 945</code></p></li>
 </ul>
 <h2 id="movement">Movement</h2>
 <ul>
-<li><p>To start the program: <code>r</code> which is an alias for <strong>run</strong>.</p></li>
-<li><p>To continue from the current stopped location: <code>c</code> which is an alias for <strong>continue</strong>.</p></li>
-<li><p>To execute next instruction <code>n</code>, step into the next instruction <code>s</code> and step out from a function <code>finish</code>.</p></li>
-<li><p>To execute until a specified line number: <code>until 420</code>.</p></li>
+<li><p>To start the program: <code>r</code> which is an alias for
+<strong>run</strong>.</p></li>
+<li><p>To continue from the current stopped location: <code>c</code>
+which is an alias for <strong>continue</strong>.</p></li>
+<li><p>To execute next instruction <code>n</code>, step into the next
+instruction <code>s</code> and step out from a function
+<code>finish</code>.</p></li>
+<li><p>To execute until a specified line number:
+<code>until 420</code>.</p></li>
 </ul>
 <h2 id="information">Information</h2>
 <ul>
-<li><p>To list source code around the current statement: <code>l</code></p></li>
-<li><p>To print the current method, line number and filename: <code>frame</code></p></li>
-<li><p>To see list of shared library files that are loaded right now: <code>info shared</code>. Note that more shared libraries might be loaded during execution later.</p></li>
-<li><p>To print value of a variable in the code right now: <code>p foobar.</code> To print value in hex: <code>p/x foobar</code>. To print value in binary: <code>p/t foobar</code>. To print value in float: <code>p/f foobar</code>.</p></li>
-<li><p>To print the data type of a variable or type in the code: <code>ptype foo_type</code></p></li>
+<li><p>To list source code around the current statement:
+<code>l</code></p></li>
+<li><p>To print the current method, line number and filename:
+<code>frame</code></p></li>
+<li><p>To see list of shared library files that are loaded right now:
+<code>info shared</code>. Note that more shared libraries might be
+loaded during execution later.</p></li>
+<li><p>To print value of a variable in the code right now:
+<code>p foobar.</code> To print value in hex: <code>p/x foobar</code>.
+To print value in binary: <code>p/t foobar</code>. To print value in
+float: <code>p/f foobar</code>.</p></li>
+<li><p>To print the data type of a variable or type in the code:
+<code>ptype foo_type</code></p></li>
 </ul>
 <h2 id="breakpoints-and-catchpoints">Breakpoints and catchpoints</h2>
 <ul>
-<li><p>To set a breakpoint: <code>b</code> which is an alias for <strong>breakpoint</strong>. Breakpoint can be set by specifying a line number (in the current file where the debugger has stopped) or function name or file path (partial or full) combined with line number or function name. For more info on locations that can be used with breakpoint command see <a href="https://sourceware.org/gdb/onlinedocs/gdb/Specify-Location.html">here</a>.</p></li>
-<li><p>To see list of breakpoints: <code>info breakpoint</code> or <code>i b</code></p></li>
-<li><p>To disable a breakpoint, use its listed number: <code>disable 99</code></p></li>
-<li><p>To set a conditional breakpoint: <code>b foobar.cpp:35 if x &gt; 5</code></p></li>
-<li><p>To set a breakpoint at every function in a given file: <code>rbreak src/core/foo.cpp:.</code> I find this incredibly useful when I start debugging a strange problem and I just to want to stop at every function in a file I suspect.</p></li>
-<li><p>To stop when an exception is thrown or caught, set a catchpoint: <code>catch throw</code> and <code>catch catch</code>.</p></li>
-<li><p>To stop when a library is loaded, set a catchpoint: <code>catch load</code></p></li>
+<li><p>To set a breakpoint: <code>b</code> which is an alias for
+<strong>breakpoint</strong>. Breakpoint can be set by specifying a line
+number (in the current file where the debugger has stopped) or function
+name or file path (partial or full) combined with line number or
+function name. For more info on locations that can be used with
+breakpoint command see <a
+href="https://sourceware.org/gdb/onlinedocs/gdb/Specify-Location.html">here</a>.</p></li>
+<li><p>To see list of breakpoints: <code>info breakpoint</code> or
+<code>i b</code></p></li>
+<li><p>To disable a breakpoint, use its listed number:
+<code>disable 99</code></p></li>
+<li><p>To set a conditional breakpoint:
+<code>b foobar.cpp:35 if x &gt; 5</code></p></li>
+<li><p>To set a breakpoint at every function in a given file:
+<code>rbreak src/core/foo.cpp:.</code> I find this incredibly useful
+when I start debugging a strange problem and I just to want to stop at
+every function in a file I suspect.</p></li>
+<li><p>To stop when an exception is thrown or caught, set a catchpoint:
+<code>catch throw</code> and <code>catch catch</code>.</p></li>
+<li><p>To stop when a library is loaded, set a catchpoint:
+<code>catch load</code></p></li>
 </ul>
 <p><strong>Tried with:</strong> GDB 8.1 and Ubuntu 18.04</p>
 </div>
@@ -89,11 +108,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

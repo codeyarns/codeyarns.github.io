@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,17 +31,30 @@
 <p class="date">📅 2017-Oct-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#clock'>clock</a>, <a href='index.html#make'>make</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I was trying to build source files on a remote server using <strong>make</strong>. The make command would sometimes throw up a <strong>clock skew</strong> warning like this:</p>
+<p>I was trying to build source files on a remote server using
+<strong>make</strong>. The make command would sometimes throw up a
+<strong>clock skew</strong> warning like this:</p>
 <pre><code>make[2]: Warning: File `foobar.cpp&#39; has modification time 36 s in the future
 make[2]: warning:  Clock skew detected.  Your build may be incomplete</code></pre>
 <h2 id="solution">Solution</h2>
-<p>It turns out that these source files were actually shared from another computer to this remote server using <strong>NFS</strong>. Using the <strong>date</strong> command at the local computer and the remote server, I found that there was a difference of a few seconds between the two.</p>
-<p>More investigation showed that only the local computer was using <strong>NTP</strong> and so its time was correct. The remote server was not using NTP and so its time was wrong.</p>
-<p>To install and enable NTP on the remote server, I used these commands:</p>
+<p>It turns out that these source files were actually shared from
+another computer to this remote server using <strong>NFS</strong>. Using
+the <strong>date</strong> command at the local computer and the remote
+server, I found that there was a difference of a few seconds between the
+two.</p>
+<p>More investigation showed that only the local computer was using
+<strong>NTP</strong> and so its time was correct. The remote server was
+not using NTP and so its time was wrong.</p>
+<p>To install and enable NTP on the remote server, I used these
+commands:</p>
 <pre><code>$ sudo apt install ntp
 $ sudo service ntp reload</code></pre>
-<p>Note that it takes a few minutes for the synchronized correct time to show up on the computer after these commands. After the sync, I no longer get the clock skew warnings from make.</p>
-<p><strong>Reference:</strong> <a href="https://help.ubuntu.com/14.04/serverguide/NTP.html">Time Synchronisation with NTP</a></p>
+<p>Note that it takes a few minutes for the synchronized correct time to
+show up on the computer after these commands. After the sync, I no
+longer get the clock skew warnings from make.</p>
+<p><strong>Reference:</strong> <a
+href="https://help.ubuntu.com/14.04/serverguide/NTP.html">Time
+Synchronisation with NTP</a></p>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 </div>
 
@@ -64,11 +63,13 @@ $ sudo service ntp reload</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

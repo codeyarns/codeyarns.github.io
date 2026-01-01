@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,14 +31,19 @@
 <p class="date">📅 2019-May-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#avx'>avx</a>, <a href='index.html#avx2'>avx2</a>, <a href='index.html#caffe2'>caffe2</a>, <a href='index.html#fma'>fma</a>, <a href='index.html#warning'>warning</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>Running a <strong>Caffe2</strong> C++ application produces these messages:</p>
+<p>Running a <strong>Caffe2</strong> C++ application produces these
+messages:</p>
 <pre><code>$ ./foobar
 E0514 20:37:31.503541 26925 init_intrinsics_check.cc:43] CPU feature avx is present on your machine, but the Caffe2 binary is not compiled with it. It means you may not get the full speed of your CPU.
 E0514 20:37:31.504768 26925 init_intrinsics_check.cc:43] CPU feature avx2 is present on your machine, but the Caffe2 binary is not compiled with it. It means you may not get the full speed of your CPU.
 E0514 20:37:31.504787 26925 init_intrinsics_check.cc:43] CPU feature fma is present on your machine, but the Caffe2 binary is not compiled with it. It means you may not get the full speed of your CPU.</code></pre>
 <h2 id="solution">Solution</h2>
-<p>Caffe2 is informing that the Intel CPU being used has AVX, AVX2 and FMA acceleration features. However, Caffe2 has not been compiled with support for these features. Compiling Caffe2 with support to use these features would speedup training and inference using Caffe2.</p>
-<p>To enable use of these features when compiling Caffe2, enable the <code>USE_NATIVE_ARCH</code> option like this:</p>
+<p>Caffe2 is informing that the Intel CPU being used has AVX, AVX2 and
+FMA acceleration features. However, Caffe2 has not been compiled with
+support for these features. Compiling Caffe2 with support to use these
+features would speedup training and inference using Caffe2.</p>
+<p>To enable use of these features when compiling Caffe2, enable the
+<code>USE_NATIVE_ARCH</code> option like this:</p>
 <pre><code>$ cmake -DUSE_NATIVE_ARCH ..</code></pre>
 </div>
 
@@ -61,11 +52,13 @@ E0514 20:37:31.504787 26925 init_intrinsics_check.cc:43] CPU feature fma is pres
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

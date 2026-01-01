@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,15 +27,22 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to make Vim jump to last position on reopening file</h1>
+<h1 class="title">How to make Vim jump to last position on reopening
+file</h1>
 <p class="date">📅 2013-Jan-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#jump'>jump</a>, <a href='index.html#remember'>remember</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>It is bit frustrating when you <strong>reopen</strong> a file and <strong>Vim</strong> positions itself at the top of the file again. It would be nice if Vim <strong>remembered</strong> where you were the last time you opened this file and jumped to that position right away.</p>
-<p>This functionality can be enabled in Vim by placing these lines in your <a href="2010/04/21/vim-vimrc/"><strong>vimrc</strong></a> file:</p>
+<p>It is bit frustrating when you <strong>reopen</strong> a file and
+<strong>Vim</strong> positions itself at the top of the file again. It
+would be nice if Vim <strong>remembered</strong> where you were the last
+time you opened this file and jumped to that position right away.</p>
+<p>This functionality can be enabled in Vim by placing these lines in
+your <a href="2010/04/21/vim-vimrc/"><strong>vimrc</strong></a>
+file:</p>
 <pre><code>if has(&quot;autocmd&quot;)
   au BufReadPost * if line(&quot;&#39;\&quot;&quot;) &gt; 1 &amp;&amp; line(&quot;&#39;\&quot;&quot;) &lt;= line(&quot;$&quot;) | exe &quot;normal! g&#39;\&quot;&quot; | endif
 endif</code></pre>
-<p>This and many other such tricks can be found in <code>/etc/vim/vimrc</code></p>
+<p>This and many other such tricks can be found in
+<code>/etc/vim/vimrc</code></p>
 <p><strong>Tried with:</strong> Vim 7.3 and Ubuntu 12.04.1 LTS</p>
 </div>
 
@@ -58,11 +51,13 @@ endif</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

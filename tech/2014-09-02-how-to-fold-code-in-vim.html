@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,20 +30,35 @@
 <h1 class="title">How to fold code in Vim</h1>
 <p class="date">📅 2014-Sep-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#code-folding'>code folding</a>, <a href='index.html#folding'>folding</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Vim</strong> ships with support to perform <strong>code folding</strong>. It supports many methods of code folding.</p>
+<p><strong>Vim</strong> ships with support to perform <strong>code
+folding</strong>. It supports many methods of code folding.</p>
 <h2 id="manual-code-folding">Manual code folding</h2>
-<p>By default, Vim will be in the <strong>manual</strong> code folding method. So, when you open a file you will find that no code is folded. In the manual code folding methd, you specify which lines form a fold and then you open or close that fold. I find this a tedious exercise and never use it.</p>
+<p>By default, Vim will be in the <strong>manual</strong> code folding
+method. So, when you open a file you will find that no code is folded.
+In the manual code folding methd, you specify which lines form a fold
+and then you open or close that fold. I find this a tedious exercise and
+never use it.</p>
 <h2 id="indent-code-folding">Indent code folding</h2>
-<p>The code folding method that I find most useful is <strong>indent</strong>. When this method is enabled, Vim uses the indentation of the code to figure out automatically the block of code that needs to be folded.</p>
-<p>To have code folding by indent by default, add this to your vimrc:</p>
+<p>The code folding method that I find most useful is
+<strong>indent</strong>. When this method is enabled, Vim uses the
+indentation of the code to figure out automatically the block of code
+that needs to be folded.</p>
+<p>To have code folding by indent by default, add this to your
+vimrc:</p>
 <pre><code>set foldmethod=indent</code></pre>
 <h2 id="enable-code-folding">Enable code folding</h2>
-<p>When you have chosen a code folding method and open a file, code folding is already enabled. What this means is that all the folds will be closed, because by default the <code>foldenable</code> option is enabled.</p>
+<p>When you have chosen a code folding method and open a file, code
+folding is already enabled. What this means is that all the folds will
+be closed, because by default the <code>foldenable</code> option is
+enabled.</p>
 <p>If you wish to keep code folding disabled by default:</p>
 <pre><code>set nofoldenable</code></pre>
-<p>Note that the <em>first code folding command</em> you use will enable this option and also close all the folds.</p>
+<p>Note that the <em>first code folding command</em> you use will enable
+this option and also close all the folds.</p>
 <h2 id="folding-commands">Folding commands</h2>
-<p>There are many commands to open and close folds. These commands can be invoked at any line and it affects the fold that the line belongs to.</p>
+<p>There are many commands to open and close folds. These commands can
+be invoked at any line and it affects the fold that the line belongs
+to.</p>
 <p>The commands I commonly use are:</p>
 <ul>
 <li><code>za</code>: Toggle code folding.</li>
@@ -66,9 +67,13 @@
 <li><code>zo</code>: Open current fold.</li>
 <li><code>zc</code>: Close current fold.</li>
 </ul>
-<p>Like I mentioned above, if you had <code>foldenable</code> disabled, then the first use of any of these commands will enable that and close all folds. This is why I choose to keep <code>foldenable</code> enabled (its default option).</p>
+<p>Like I mentioned above, if you had <code>foldenable</code> disabled,
+then the first use of any of these commands will enable that and close
+all folds. This is why I choose to keep <code>foldenable</code> enabled
+(its default option).</p>
 <h2 id="keep-folds-open-by-default">Keep folds open by default</h2>
-<p>With code folding enabled, when I open a file, all the code is folded up. I would rather have all folds be open when I open a file.</p>
+<p>With code folding enabled, when I open a file, all the code is folded
+up. I would rather have all folds be open when I open a file.</p>
 <p>To do this, I added these lines to my vimrc:</p>
 <pre><code>&quot; Keep all folds open when a file is opened
 augroup OpenAllFoldsOnFileOpen
@@ -83,11 +88,13 @@ augroup END</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

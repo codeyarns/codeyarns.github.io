@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,45 @@
 <h1 class="title">Visual Studio: Adding CUDA Build Rule</h1>
 <p class="date">📅 2011-Jan-31 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#build-rules'>build rules</a>, <a href='index.html#cuda'>cuda</a>, <a href='index.html#visual-studio'>visual studio</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>To compile <strong>CUDA</strong> source files (<code>*.cu</code>) in Visual Studio, a <strong>custom build rule</strong> is necessary. The following CUDA build rules are provided by NVIDIA:</p>
+<p>To compile <strong>CUDA</strong> source files (<code>*.cu</code>) in
+Visual Studio, a <strong>custom build rule</strong> is necessary. The
+following CUDA build rules are provided by NVIDIA:</p>
 <ul>
-<li><p><strong>Cuda.rules</strong>: This file is installed by the <strong>GPU Computing SDK</strong> (<em>not</em> the CUDA Toolkit). This is a general build rule that is applicable to all CUDA source files.</p></li>
-<li><p><strong>NvCudaRuntimeApi.rules</strong> and <strong>NvCudaRuntimeApi.vX.Y.rules</strong>: These files are installed by the <strong>CUDA Toolkit</strong>. This is a build rule applicable to CUDA source files that use the <strong>CUDA Runtime API</strong>. <code>NvCudaRuntimeApi.rules</code> is applicable to any version of the Runtime API, while <code>NvCudaRuntimeApi.vX.Y.rules</code> is specific to a version. For example, <code>NvCudaRuntimeApi.v3.2.rules</code> is specific to CUDA 3.2.</p></li>
-<li><p><strong>NvCudaDriverApi.rules</strong> and <strong>NvCudaDriverApi.vX.Y.rules</strong>: These files are installed by the <strong>CUDA Toolkit</strong>. This is a build rule applicable to CUDA source files that use the <strong>CUDA Driver API</strong>. <code>NvCudaDriverApi.rules</code> is applicable to any version of the Driver API, while <code>NvCudaDriverApi.vX.Y.rules</code> is specific to a version. For example, <code>NvCudaDriverApi.v3.2.rules</code> is specific to CUDA v3.2.</p></li>
+<li><p><strong>Cuda.rules</strong>: This file is installed by the
+<strong>GPU Computing SDK</strong> (<em>not</em> the CUDA Toolkit). This
+is a general build rule that is applicable to all CUDA source
+files.</p></li>
+<li><p><strong>NvCudaRuntimeApi.rules</strong> and
+<strong>NvCudaRuntimeApi.vX.Y.rules</strong>: These files are installed
+by the <strong>CUDA Toolkit</strong>. This is a build rule applicable to
+CUDA source files that use the <strong>CUDA Runtime API</strong>.
+<code>NvCudaRuntimeApi.rules</code> is applicable to any version of the
+Runtime API, while <code>NvCudaRuntimeApi.vX.Y.rules</code> is specific
+to a version. For example, <code>NvCudaRuntimeApi.v3.2.rules</code> is
+specific to CUDA 3.2.</p></li>
+<li><p><strong>NvCudaDriverApi.rules</strong> and
+<strong>NvCudaDriverApi.vX.Y.rules</strong>: These files are installed
+by the <strong>CUDA Toolkit</strong>. This is a build rule applicable to
+CUDA source files that use the <strong>CUDA Driver API</strong>.
+<code>NvCudaDriverApi.rules</code> is applicable to any version of the
+Driver API, while <code>NvCudaDriverApi.vX.Y.rules</code> is specific to
+a version. For example, <code>NvCudaDriverApi.v3.2.rules</code> is
+specific to CUDA v3.2.</p></li>
 </ul>
-<p>All these build rule files are installed into the <code>C:\Program Files\Microsoft Visual Studio 9.0\VC\VCProjectDefaults</code> directory by the CUDA Toolkit or the GPU Computing SDK. In Visual Studio language, this is the <code>$(VCInstallDir)\VCProjectDefaults</code> directory.</p>
-<p>To add a CUDA build rule, right-click on the <strong>Project</strong> name in the Solution Explorer pane and choose <strong>Custom Build Rules</strong>. The above build rules should be visible in the <strong>Visual C++ Custom Build Rules Files</strong> dialog that pops up. Choose the build rule you want and compile the CUDA files.</p>
-<p><strong>Note:</strong> It is recommended to choose <code>NvCudaRuntimeApi.rules</code> or <code>NvCudaDriverApi.rules</code> over the generic <code>Cuda.rules</code>.</p>
+<p>All these build rule files are installed into the
+<code>C:\Program Files\Microsoft Visual Studio 9.0\VC\VCProjectDefaults</code>
+directory by the CUDA Toolkit or the GPU Computing SDK. In Visual Studio
+language, this is the <code>$(VCInstallDir)\VCProjectDefaults</code>
+directory.</p>
+<p>To add a CUDA build rule, right-click on the <strong>Project</strong>
+name in the Solution Explorer pane and choose <strong>Custom Build
+Rules</strong>. The above build rules should be visible in the
+<strong>Visual C++ Custom Build Rules Files</strong> dialog that pops
+up. Choose the build rule you want and compile the CUDA files.</p>
+<p><strong>Note:</strong> It is recommended to choose
+<code>NvCudaRuntimeApi.rules</code> or
+<code>NvCudaDriverApi.rules</code> over the generic
+<code>Cuda.rules</code>.</p>
 <p><strong>Tried with:</strong> CUDA 3.2 and Visual Studio 2008.</p>
 </div>
 
@@ -61,11 +77,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

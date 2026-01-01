@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,22 +31,41 @@
 <p class="date">📅 2015-Nov-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#print'>print</a>, <a href='index.html#vim'>vim</a>, <a href='index.html#wrap'>wrap</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p><strong>Vim</strong> can be used to <strong>print</strong> a text file using your printer. The font and font size used for printing can be configured in Vim. Depending on the font and font size used you may find that the width of the paper is not enough to accommodate the width of the text. Parts of the lines longer than the paper width are simply not printed!</p>
+<p><strong>Vim</strong> can be used to <strong>print</strong> a text
+file using your printer. The font and font size used for printing can be
+configured in Vim. Depending on the font and font size used you may find
+that the width of the paper is not enough to accommodate the width of
+the text. Parts of the lines longer than the paper width are simply not
+printed!</p>
 <h2 id="solution">Solution</h2>
-<p>Vim can be requested to <strong>wrap</strong> the text using <code>:set wrap</code> command. However, this is only for display and the text width used for wrapping is the width of the terminal or window that Vim is using. This has no effect on printing.</p>
-<p>What we need to do is to set a <strong>text width</strong> and <strong>reformat</strong> the text by enforcing this text width. Note that you will need to check how many columns of text width will fit into the printed page for your font, font size and paper size.</p>
+<p>Vim can be requested to <strong>wrap</strong> the text using
+<code>:set wrap</code> command. However, this is only for display and
+the text width used for wrapping is the width of the terminal or window
+that Vim is using. This has no effect on printing.</p>
+<p>What we need to do is to set a <strong>text width</strong> and
+<strong>reformat</strong> the text by enforcing this text width. Note
+that you will need to check how many columns of text width will fit into
+the printed page for your font, font size and paper size.</p>
 <ul>
-<li>First, we set the text width. Let me assume that 80 columns works for my setup:</li>
+<li>First, we set the text width. Let me assume that 80 columns works
+for my setup:</li>
 </ul>
 <pre><code>:set textwidth=80</code></pre>
 <ul>
-<li>Next, we ask Vim to reformat the entire text file by enforcing this text width:</li>
+<li>Next, we ask Vim to reformat the entire text file by enforcing this
+text width:</li>
 </ul>
 <pre><code>gg
 gq
 G</code></pre>
-<p>The breakdown of this command is: <code>gg</code> moves cursor to first line of file. <code>gq</code> is the command to reformat all text from current position to the position specified after this. <code>G</code> is the command to move to last line of file. When applied after <code>gq</code>, this reformats the entire file from first line to last line, enforcing the text width we specified earlier.</p>
-<p>The formatted file can now be printed. After printing, you can undo this reformatting if it is not needed.</p>
+<p>The breakdown of this command is: <code>gg</code> moves cursor to
+first line of file. <code>gq</code> is the command to reformat all text
+from current position to the position specified after this.
+<code>G</code> is the command to move to last line of file. When applied
+after <code>gq</code>, this reformats the entire file from first line to
+last line, enforcing the text width we specified earlier.</p>
+<p>The formatted file can now be printed. After printing, you can undo
+this reformatting if it is not needed.</p>
 <p>For more details about these commands:</p>
 <pre><code>:help textwidth
 :help gq
@@ -73,11 +78,13 @@ G</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

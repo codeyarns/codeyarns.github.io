@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -55,9 +41,18 @@ The following information may help to resolve the situation:
 The following packages have unmet dependencies:
  cuda : Depends: cuda-6-5 (= 6.5-14) but it is not going to be installed
 E: Unable to correct problems, you have held broken packages.</code></pre>
-<p>On searching, a lot of folks had this error. Their errors were solved when they removed old NVIDIA packages they had installed. But, I did not have any NVIDIA package installed!</p>
-<p>What were these <strong>broken packages</strong> I had on the system, I didn’t know! I followed the dependency chain by trying to install <code>cuda-6-5</code>, which complained on another package and so on. In the end, I found that I had a lot of unnecessary packages, all of which had <code>:i386</code> at the end of their name.</p>
-<p>The strangest part was that running <code>sudo apt-get autoremove</code> had no effect on these packages, they were not removed. So, I manually removed all of them using <code>sudo apt-get remove</code>.</p>
+<p>On searching, a lot of folks had this error. Their errors were solved
+when they removed old NVIDIA packages they had installed. But, I did not
+have any NVIDIA package installed!</p>
+<p>What were these <strong>broken packages</strong> I had on the system,
+I didn’t know! I followed the dependency chain by trying to install
+<code>cuda-6-5</code>, which complained on another package and so on. In
+the end, I found that I had a lot of unnecessary packages, all of which
+had <code>:i386</code> at the end of their name.</p>
+<p>The strangest part was that running
+<code>sudo apt-get autoremove</code> had no effect on these packages,
+they were not removed. So, I manually removed all of them using
+<code>sudo apt-get remove</code>.</p>
 <p>When I tried to install CUDA after this, it worked fine! 😊</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
@@ -67,11 +62,13 @@ E: Unable to correct problems, you have held broken packages.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

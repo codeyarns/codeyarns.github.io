@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,32 @@
 <h1 class="title">Unused parameter warning of GCC</h1>
 <p class="date">📅 2014-Sep-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#gcc'>gcc</a>, <a href='index.html#warning'>warning</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>GCC throws a <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">unused parameter warning</a> if you are compiling your code with one of these options: <code>-Wunused-parameter</code>, <code>-Wunused</code> or <code>-Wextra</code>.</p>
+<p>GCC throws a <a
+href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">unused
+parameter warning</a> if you are compiling your code with one of these
+options: <code>-Wunused-parameter</code>, <code>-Wunused</code> or
+<code>-Wextra</code>.</p>
 <p>The warning message looks like this:</p>
 <pre><code>foo.cpp:43:40: warning: unused parameter ‘off’ [-Wunused-parameter]
  string IntToString(int num, int off)
                                  ^</code></pre>
-<p>In most scenarios, this warning is good since you find out that maybe this parameter is not being used currently, so it can be removed from the definition, declaration and the calls.</p>
-<p>However, sometimes the function definition cannot be changed. For example, if the function is a callback that is required by a library. In such a case, the function signature cannot be changed even if you are not using that parameter inside your callback.</p>
-<p>There is a simple solution for this scenario: remove the parameter name, just keep the parameter type. For example, to fix the function shown above, you could change its definition to:</p>
+<p>In most scenarios, this warning is good since you find out that maybe
+this parameter is not being used currently, so it can be removed from
+the definition, declaration and the calls.</p>
+<p>However, sometimes the function definition cannot be changed. For
+example, if the function is a callback that is required by a library. In
+such a case, the function signature cannot be changed even if you are
+not using that parameter inside your callback.</p>
+<p>There is a simple solution for this scenario: remove the parameter
+name, just keep the parameter type. For example, to fix the function
+shown above, you could change its definition to:</p>
 <pre><code>string IntToString(int num, int)
 {
     // Code of function here
 }</code></pre>
-<p>This keeps the function signature, so it still works with the library. But since the parameter name is gone, you no longer get the warning. 😊</p>
+<p>This keeps the function signature, so it still works with the
+library. But since the parameter name is gone, you no longer get the
+warning. 😊</p>
 <p><strong>Tried with:</strong> GCC 4.9 and Ubuntu 14.04</p>
 </div>
 
@@ -65,11 +64,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

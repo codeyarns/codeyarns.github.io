@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,45 +30,85 @@
 <h1 class="title">How to work with Git submodules</h1>
 <p class="date">📅 2016-Feb-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#submodule'>submodule</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Submodules</strong> in Git enable you add and manage external Git repos into an existing Git repo. This is useful for example, if the current Git repo depends on or requires the source code in other Git repo.</p>
-<p>The presence of a <code>.gitmodules</code> file at the root of the repo indicates that this repo uses submodules. This file lists out the external Git repo URLs, the local path inside the repo where they will exist and their given name.</p>
-<p>Working with <strong>submodules</strong> in Git can be a bit confusing and painful, especially when there is a hierarchy of submodules in the main module. However, organization of submodules in this manner are found in many <strong>Github</strong> repositories. So, you will need to know how to work with this setup. Many folks use Git clients like <strong>SmartGit</strong> that make it easy to work with submodules. However, sooner or later the complexity that Git exposes will bite back requiring one to revert back to the shell to operate.</p>
-<p>Here are the Git practices and incantations I have found useful to work with submodules:</p>
+<p><strong>Submodules</strong> in Git enable you add and manage external
+Git repos into an existing Git repo. This is useful for example, if the
+current Git repo depends on or requires the source code in other Git
+repo.</p>
+<p>The presence of a <code>.gitmodules</code> file at the root of the
+repo indicates that this repo uses submodules. This file lists out the
+external Git repo URLs, the local path inside the repo where they will
+exist and their given name.</p>
+<p>Working with <strong>submodules</strong> in Git can be a bit
+confusing and painful, especially when there is a hierarchy of
+submodules in the main module. However, organization of submodules in
+this manner are found in many <strong>Github</strong> repositories. So,
+you will need to know how to work with this setup. Many folks use Git
+clients like <strong>SmartGit</strong> that make it easy to work with
+submodules. However, sooner or later the complexity that Git exposes
+will bite back requiring one to revert back to the shell to operate.</p>
+<p>Here are the Git practices and incantations I have found useful to
+work with submodules:</p>
 <h2 id="clone">Clone</h2>
-<p>When you clone a Git repository that has submodules, the submodules are not cloned.</p>
+<p>When you clone a Git repository that has submodules, the submodules
+are not cloned.</p>
 <p>To clone the main module and all its submodules:</p>
 <pre><code>$ git clone --recursive git@github.com:jpe/some_repo.git</code></pre>
-<p>I prefer to use the normal clone, followed by initializing and updating all submodules:</p>
+<p>I prefer to use the normal clone, followed by initializing and
+updating all submodules:</p>
 <pre><code>$ git clone git@github.com:jpe/some_repo.git
 $ git submodule update --init --recursive</code></pre>
 <h2 id="fetch">Fetch</h2>
-<p>Each of the submodules are usually linked to remote repositories (like Github or NFS). To fetch changes for remotes of the main module and all remotes of the submodules:</p>
+<p>Each of the submodules are usually linked to remote repositories
+(like Github or NFS). To fetch changes for remotes of the main module
+and all remotes of the submodules:</p>
 <pre><code>$ git fetch --all --recurse-submodules</code></pre>
 <h2 id="update">Update</h2>
-<p>After checking out a branch (or revision) on the main module, you need to update the submodules too:</p>
+<p>After checking out a branch (or revision) on the main module, you
+need to update the submodules too:</p>
 <pre><code>$ git checkout foo_local_branch
 $ git submodule update --recursive --force</code></pre>
-<p>Note that this is similar to the command used in clone above, except we do not use <code>--init</code>. The <code>--force</code> is optional, but I like to use since if some files or directories were removed or added between checkouts. If you do not use <code>--force</code>, then the update will not finish and quit with a warning like this:</p>
+<p>Note that this is similar to the command used in clone above, except
+we do not use <code>--init</code>. The <code>--force</code> is optional,
+but I like to use since if some files or directories were removed or
+added between checkouts. If you do not use <code>--force</code>, then
+the update will not finish and quit with a warning like this:</p>
 <pre><code>warning: unable to rmdir foobar: Directory not empty</code></pre>
 <h2 id="status">Status</h2>
 <p>To list all the submodules and their revisions:</p>
 <pre><code>$ git submodule status --recursive</code></pre>
 <h2 id="remotes">Remotes</h2>
-<p>If you will be changing any of the submodules, then remember to fork those repositories (on Github) and add those remotes. Note that you will need to do this even if you have forked the main module and cloned from that forked repo.</p>
-<p>For <code>fruit</code> and <code>fruit/apple</code> directories that are nested submodules under the main module:</p>
+<p>If you will be changing any of the submodules, then remember to fork
+those repositories (on Github) and add those remotes. Note that you will
+need to do this even if you have forked the main module and cloned from
+that forked repo.</p>
+<p>For <code>fruit</code> and <code>fruit/apple</code> directories that
+are nested submodules under the main module:</p>
 <pre><code>$ cd fruit
 $ git remote add joe_fruit_remote git@github.com:joe/fruit_repo.git
 
 $ cd apple
 $ git remote add joe_apple_remote git@github.com:joe/apple_repo.git</code></pre>
 <h2 id="commit">Commit</h2>
-<p>A revision or branch of the main module will be tied to particular revisions of its submodules. That is, the submodules appear as <strong>detached HEAD</strong> revisions. Also, it is the revision of a submodule that is committed to a parent module. All of this gets messy when you have a hierarchy of submodules.</p>
-<p>So, when you checkout a local branch on the main module <strong>and</strong> you need to modify files in a hierarchy of submodules, the typical workflow is to:</p>
+<p>A revision or branch of the main module will be tied to particular
+revisions of its submodules. That is, the submodules appear as
+<strong>detached HEAD</strong> revisions. Also, it is the revision of a
+submodule that is committed to a parent module. All of this gets messy
+when you have a hierarchy of submodules.</p>
+<p>So, when you checkout a local branch on the main module
+<strong>and</strong> you need to modify files in a hierarchy of
+submodules, the typical workflow is to:</p>
 <ul>
-<li>Create local branches from the detached HEAD in the submodules you will change.</li>
-<li>Commit in a <strong>bottom-up</strong> fashion: start from the leaf submodules that you changed and work your way up to the root module. All the modules on the path from changed submodule to root module need to be committed. This is because the parent module commit needs the revision of the child module commit.</li>
+<li>Create local branches from the detached HEAD in the submodules you
+will change.</li>
+<li>Commit in a <strong>bottom-up</strong> fashion: start from the leaf
+submodules that you changed and work your way up to the root module. All
+the modules on the path from changed submodule to root module need to be
+committed. This is because the parent module commit needs the revision
+of the child module commit.</li>
 </ul>
-<p>Here is a sample workflow where the <code>fruit</code> and <code>fruit/apple</code> directories are nested submodules under the main module:</p>
+<p>Here is a sample workflow where the <code>fruit</code> and
+<code>fruit/apple</code> directories are nested submodules under the
+main module:</p>
 <pre><code>$ git checkout -b foo_local_branch origin/foo_remote_branch
 $ git submodule update --recursive
 
@@ -105,7 +131,11 @@ $ cd ..
 $ git add -u
 $ git commit -m &quot;Commit new fruit submodule revision to main module&quot;</code></pre>
 <h2 id="push">Push</h2>
-<p>Each of the submodules are usually linked to remote repositories (like Github or NFS). It is a good idea to push the local branches you created in submodules (see above) to remote branches in your fork on your remote. This makes it easy to give <strong>pull request</strong> later (see next section below).</p>
+<p>Each of the submodules are usually linked to remote repositories
+(like Github or NFS). It is a good idea to push the local branches you
+created in submodules (see above) to remote branches in your fork on
+your remote. This makes it easy to give <strong>pull request</strong>
+later (see next section below).</p>
 <p>Continuing from our example above:</p>
 <pre><code>$ cd fruit
 $ cd apple
@@ -118,10 +148,14 @@ $ git push joe_fruit_remote fruit_remote_branch
 $ cd ..
 $ git push origin foo_remote_branch</code></pre>
 <h2 id="pull-request">Pull request</h2>
-<p>After your changes are done, you typically need to give a pull request (on Github) from your branch to a master branch which is typically owned by someone else. To do this:</p>
+<p>After your changes are done, you typically need to give a pull
+request (on Github) from your branch to a master branch which is
+typically owned by someone else. To do this:</p>
 <ul>
-<li>Push the local branches of all changed submodules to their remotes. (See Push section above).</li>
-<li>Give multiple pull requests, one from each submodule repository that has changed.</li>
+<li>Push the local branches of all changed submodules to their remotes.
+(See Push section above).</li>
+<li>Give multiple pull requests, one from each submodule repository that
+has changed.</li>
 </ul>
 </div>
 
@@ -130,11 +164,13 @@ $ git push origin foo_remote_branch</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

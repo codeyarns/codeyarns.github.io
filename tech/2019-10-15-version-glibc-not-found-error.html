@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,15 +31,25 @@
 <p class="date">📅 2019-Oct-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#glibc'>glibc</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I built an application on my computer and tried to run it on another computer and got this error:</p>
+<p>I built an application on my computer and tried to run it on another
+computer and got this error:</p>
 <pre><code>$ ./foobar
 ./foobar: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27&#39; not found (required by ./libfoobar.so.6)
 ./foobar: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `CXXABI_1.3.11&#39; not found (required by ./libfoobar.so.6)
 ./foobar: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.22&#39; not found (required by ./libfoobar.so.6)
 ./foobar: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.27&#39; not found (required by ./libfoobar.so.6)</code></pre>
 <h2 id="solution">Solution</h2>
-<p>The error messages complain that the <code>GLIBC</code> and <code>CXXABI</code> versions from the binary I was running was not found on the destination computer. This error is typically caused when the glibc, compiler and linker versions differ widely between the source and destination system. Especially if the source system is newer than the destination system.</p>
-<p>In my case, I found that my source computer was running Ubuntu 18.04 and the destination was using Ubuntu 16.04. Since installing an older compiler and library toolchain is not ideal, I instead compiled the application inside a Ubuntu 16.04 container and used those binaries on the destination computer. That worked without any further errors.</p>
+<p>The error messages complain that the <code>GLIBC</code> and
+<code>CXXABI</code> versions from the binary I was running was not found
+on the destination computer. This error is typically caused when the
+glibc, compiler and linker versions differ widely between the source and
+destination system. Especially if the source system is newer than the
+destination system.</p>
+<p>In my case, I found that my source computer was running Ubuntu 18.04
+and the destination was using Ubuntu 16.04. Since installing an older
+compiler and library toolchain is not ideal, I instead compiled the
+application inside a Ubuntu 16.04 container and used those binaries on
+the destination computer. That worked without any further errors.</p>
 </div>
 
 <br />
@@ -61,11 +57,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

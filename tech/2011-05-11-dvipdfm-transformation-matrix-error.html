@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,10 @@
 <p class="date">📅 2011-May-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dvi'>dvi</a>, <a href='index.html#errors'>errors</a>, <a href='index.html#miktex'>miktex</a>, <a href='index.html#pdf'>pdf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>The <code>dvipdfm</code> program is used to convert a <strong>DVI</strong> file to a <strong>PDF</strong> file. For a DVI file which has <strong>EPS</strong> image files inside, this conversion might sometimes fail with the error shown below:</p>
+<p>The <code>dvipdfm</code> program is used to convert a
+<strong>DVI</strong> file to a <strong>PDF</strong> file. For a DVI file
+which has <strong>EPS</strong> image files inside, this conversion might
+sometimes fail with the error shown below:</p>
 <pre><code>C:\Users\joe&gt;dvipdfm foo.dvi
 foo.dvi -&gt; foo.pdf
 [1
@@ -55,9 +44,16 @@ foo.dvi -&gt; foo.pdf
 ** WARNING ** --- M = [0 0 0 0 233.624 -249.417]
 ]</code></pre>
 <p><strong>Solution</strong></p>
-<p>This error indicates that one or more of the EPS image files included in the DVI file have no width and height information. This is typically caused by EPS files whose <code>BoundingBox</code> parameters are all zero. You can check this by opening the EPS file in a text editor and look for a line that resembles this:</p>
+<p>This error indicates that one or more of the EPS image files included
+in the DVI file have no width and height information. This is typically
+caused by EPS files whose <code>BoundingBox</code> parameters are all
+zero. You can check this by opening the EPS file in a text editor and
+look for a line that resembles this:</p>
 <pre><code>%%BoundingBox: 0 0 0 0</code></pre>
-<p>If you can generate EPS files that have non-zero bounding box values, this conversion error should be gone. For a quick hack to fix an existing EPS file with these values see <a href="https://codeyarns.com/tech/2011/05/11/eps-bounding-box-problem/">here</a>.</p>
+<p>If you can generate EPS files that have non-zero bounding box values,
+this conversion error should be gone. For a quick hack to fix an
+existing EPS file with these values see <a
+href="https://codeyarns.com/tech/2011/05/11/eps-bounding-box-problem/">here</a>.</p>
 <p><strong>Tried with</strong>: MiKTeX 2.9</p>
 </div>
 
@@ -66,11 +62,13 @@ foo.dvi -&gt; foo.pdf
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

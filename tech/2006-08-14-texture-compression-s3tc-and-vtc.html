@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,21 @@
 <h1 class="title">Texture Compression (S3TC and VTC)</h1>
 <p class="date">📅 2006-Aug-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#compression'>compression</a>, <a href='index.html#textures'>textures</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>One of the most popular texture compression algorithms used in OpenGL are the DXTn series which were introduced by S3 Graphics. Hence, they are known as S3TC. The working of this algorithm can be found in the Appendix of <a href="http://oss.sgi.com/projects/ogl-sample/registry/EXT/texture_compression_s3tc.txt">GL_EXT_texture_compression_s3tc</a>.</p>
-<p>There are 5 versions available ranging from DXT1 to DXT5. DXT1 is briefly explained below:</p>
+<p>One of the most popular texture compression algorithms used in OpenGL
+are the DXTn series which were introduced by S3 Graphics. Hence, they
+are known as S3TC. The working of this algorithm can be found in the
+Appendix of <a
+href="http://oss.sgi.com/projects/ogl-sample/registry/EXT/texture_compression_s3tc.txt">GL_EXT_texture_compression_s3tc</a>.</p>
+<p>There are 5 versions available ranging from DXT1 to DXT5. DXT1 is
+briefly explained below:</p>
 <h2 id="compression">Compression</h2>
-<p>A 4x4 texel block (48 bytes if texel is RGB) is compressed into 2 16-bit color values (c0 and c1) and a 4x4 2-bit lookup block.</p>
+<p>A 4x4 texel block (48 bytes if texel is RGB) is compressed into 2
+16-bit color values (c0 and c1) and a 4x4 2-bit lookup block.</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_texture_compression.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2010/01/2010_01_14_texture_compression.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p>c2 and c3 are calculated from c0 and c1 as follows:</p>
 <pre><code>If c0 &lt;= c1,
@@ -59,10 +54,15 @@ else
   c2 = (2 * c0 + c1) / 3;
   c3 = (c0 + 2 * c1) / 3;</code></pre>
 <h2 id="decompression">Decompression</h2>
-<p>Decompression is extremely fast. It is just a lookup of 2-4 precomputed values.</p>
-<p>Read the 2-bit value of each compressed pixel. If 00 then read RGB of c0, if 01 then read RGB of c1 and so on.</p>
+<p>Decompression is extremely fast. It is just a lookup of 2-4
+precomputed values.</p>
+<p>Read the 2-bit value of each compressed pixel. If 00 then read RGB of
+c0, if 01 then read RGB of c1 and so on.</p>
 <h2 id="vtc">VTC</h2>
-<p>VTC (<a href="http://oss.sgi.com/projects/ogl-sample/registry/NV/texture_compression_vtc.txt">GL_NV_texture_compression_vtc</a>) is also based on the above ideas, just extend the texel blocks in the z direction.</p>
+<p>VTC (<a
+href="http://oss.sgi.com/projects/ogl-sample/registry/NV/texture_compression_vtc.txt">GL_NV_texture_compression_vtc</a>)
+is also based on the above ideas, just extend the texel blocks in the z
+direction.</p>
 </div>
 
 <br />
@@ -70,11 +70,13 @@ else
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

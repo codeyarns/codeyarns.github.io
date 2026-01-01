@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,19 +31,30 @@
 <p class="date">📅 2017-Feb-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#kubuntu'>kubuntu</a>, <a href='index.html#telepathy'>telepathy</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I had a computer with <strong>Ubuntu 16.04</strong> running the <strong>Unity</strong> desktop. I wanted to switch to <strong>Kubuntu</strong>, so I installed it using this command:</p>
+<p>I had a computer with <strong>Ubuntu 16.04</strong> running the
+<strong>Unity</strong> desktop. I wanted to switch to
+<strong>Kubuntu</strong>, so I installed it using this command:</p>
 <pre><code>$ sudo apt install kubuntu-desktop</code></pre>
 <p>Everything installed fine, except this error at the end:</p>
 <pre><code>kde-telepathy-minimal : Depends: kde-config-telepathy-accounts (&gt;= 0.9.0) but it is not installed</code></pre>
-<p>After this, there is an error about <code>kaccounts-provider</code> whenever I login into Unity. If I try to login into the KDE desktop, I get a blank display!</p>
+<p>After this, there is an error about <code>kaccounts-provider</code>
+whenever I login into Unity. If I try to login into the KDE desktop, I
+get a blank display!</p>
 <h2 id="solution">Solution</h2>
-<p>This error seems to be hitting lots of people as seen <a href="https://bugs.launchpad.net/kubuntu-ppa/+bug/1451728">here</a>. This seems to be caused by a conflict between packages required by Unity and KDE. Apparently, Unity (Ubuntu) and KDE (Kubuntu) cannot be installed on the same computer!</p>
-<p>Following some clues given by other users, I forcefully removed <strong>Telepathy</strong> since I did not need it anyway:</p>
+<p>This error seems to be hitting lots of people as seen <a
+href="https://bugs.launchpad.net/kubuntu-ppa/+bug/1451728">here</a>.
+This seems to be caused by a conflict between packages required by Unity
+and KDE. Apparently, Unity (Ubuntu) and KDE (Kubuntu) cannot be
+installed on the same computer!</p>
+<p>Following some clues given by other users, I forcefully removed
+<strong>Telepathy</strong> since I did not need it anyway:</p>
 <pre><code>$ sudo dpkg --remove kde-telepathy
 $ sudo apt update
 $ sudo apt dist-upgrade</code></pre>
-<p>After this the Unity error on login and the black display in KDE went away. I was able to switch to using KDE as my primary desktop.</p>
-<p>So, if you intend to use Kubuntu, you are better off installing a Kubuntu ISO directly instead of installing it from inside Ubuntu.</p>
+<p>After this the Unity error on login and the black display in KDE went
+away. I was able to switch to using KDE as my primary desktop.</p>
+<p>So, if you intend to use Kubuntu, you are better off installing a
+Kubuntu ISO directly instead of installing it from inside Ubuntu.</p>
 </div>
 
 <br />
@@ -65,11 +62,13 @@ $ sudo apt dist-upgrade</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

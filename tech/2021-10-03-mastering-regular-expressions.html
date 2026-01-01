@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,73 @@
 <h1 class="title">Mastering Regular Expressions</h1>
 <p class="date">📅 2021-Oct-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#book'>book</a>, <a href='index.html#regex'>regex</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>An interesting <a href="https://stackoverflow.com/questions/1748853">question</a> about whether the Python regex engine uses a DFA or a NFA led me to finally read the classic <a href="https://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124/"><strong>Mastering Regular Expressions</strong></a> book by <a href="http://regex.info/">Jeffrey Friedl</a>. I knew Friedl earlier from his <a href="http://regex.info/blog/">blog</a> where he has been sharing posts from his travels across Japan for years now. Turns out that he is also the author of the best known book on regex. The 3rd (and latest) edition of the book is from 2006, so a bit long in the tooth, but then regex has not really changed much (I guess).</p>
-<p>I have been using regex since forever, regularly in grep and Vim, and rarely when I need to add a regex pattern in Python or C++. And in all these years, it has always seemed like a mystery. I am always wondering if the regex I wrote is minimal, optimal, would it pick what I wanted and not pick what I don’t want. I think what I really should have done years ago was to look at the regex language comprehensively and know the lay of the land, know the boundaries and know what is or is not possible by regex. And that is precisely what this book fulfilled beautifully.</p>
-<p>Friedl uses a lot of examples all through the book to teach the regex language, its internal implementation, optimizations and regex use in languages like Perl, Java and PHP. First comes the basic literals, metacharacters (like <code>^</code> and <code>$</code>), quantifiers (<code>?</code>, <code>*</code>, <code>+</code>) and character class <code>[]</code> of the regex language. He shows how the character class and its metacharacters form a sub-language of their own in regex. It was nice to learn features I was not fully aware of like interval quantifiers (<code>{min, max}</code>) and backreferencing. Finally, I had no idea regex could have non-capturing parenthesis (<code>(?:)</code>) and capture positions in the text using the lookahead and lookbehind metasequences.</p>
-<p>The book also gets into the DFA, NFA (and the confusing POSIX NFA) implementations of regex. Essentially, DFA cannot be used to implement the more modern features of regex, takes more time and memory to compile, but is fast during runtime. NFA can do all features of regex, is fast to compile, but slower during runtime. I felt that this particular chapter was the weakest in the book, was extremely verbose and use of DFA/NFA figures (like from the <a href="2019-10-17-compilers-principles-techniques-and-tools.html">Dragon Book</a>) instead of text would have helped a lot.</p>
-<p>My favorite chapter was on optimizations. It was interesting to see how regex has pretty much the same traditional optimizations you see in compilers like constant folding, loop unrolling and such. This chapter had lots of examples and guidelines on how to speed up your regex patterns.</p>
-<p>The last few chapters focus on the origin of regex and regex in the Perl, Java, .Net and PHP languages. Though regex owes its name and syntax to Kleene’s <a href="https://en.wikipedia.org/wiki/Kleene_algebra">regular sets</a>, it was practically applied for text pattern searching by Ken Thompson in 1968 and then down through his <strong>ed</strong> editor to <strong>grep</strong> (global regular expression print), awk, sed and then Perl. Perl seems to be the language that loves regex the most - it is the only one where regex is a core part of the language itself, right from version 1. The rest of the languages have regex support through their standard library. I mostly skipped these chapters since I don’t use these languages. I would have loved it if there had been chapters on grep or Python.</p>
-<p>All in all, this book was a gem. Friedl is not only a regex guru, he is a funny guy too, and so the book was a lot of fun to read. I think it gave me enough knowledge to know what is and is not possible with regex. I learnt a lot of new features in the regex language and discovered a lot of mistakes I typically make. Minor quibbles are that the book could have been less verbose and addition of DFA/NFA diagrams and Python would be a good update for the next edition, if that ever happens.</p>
+<p>An interesting <a
+href="https://stackoverflow.com/questions/1748853">question</a> about
+whether the Python regex engine uses a DFA or a NFA led me to finally
+read the classic <a
+href="https://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124/"><strong>Mastering
+Regular Expressions</strong></a> book by <a
+href="http://regex.info/">Jeffrey Friedl</a>. I knew Friedl earlier from
+his <a href="http://regex.info/blog/">blog</a> where he has been sharing
+posts from his travels across Japan for years now. Turns out that he is
+also the author of the best known book on regex. The 3rd (and latest)
+edition of the book is from 2006, so a bit long in the tooth, but then
+regex has not really changed much (I guess).</p>
+<p>I have been using regex since forever, regularly in grep and Vim, and
+rarely when I need to add a regex pattern in Python or C++. And in all
+these years, it has always seemed like a mystery. I am always wondering
+if the regex I wrote is minimal, optimal, would it pick what I wanted
+and not pick what I don’t want. I think what I really should have done
+years ago was to look at the regex language comprehensively and know the
+lay of the land, know the boundaries and know what is or is not possible
+by regex. And that is precisely what this book fulfilled
+beautifully.</p>
+<p>Friedl uses a lot of examples all through the book to teach the regex
+language, its internal implementation, optimizations and regex use in
+languages like Perl, Java and PHP. First comes the basic literals,
+metacharacters (like <code>^</code> and <code>$</code>), quantifiers
+(<code>?</code>, <code>*</code>, <code>+</code>) and character class
+<code>[]</code> of the regex language. He shows how the character class
+and its metacharacters form a sub-language of their own in regex. It was
+nice to learn features I was not fully aware of like interval
+quantifiers (<code>{min, max}</code>) and backreferencing. Finally, I
+had no idea regex could have non-capturing parenthesis
+(<code>(?:)</code>) and capture positions in the text using the
+lookahead and lookbehind metasequences.</p>
+<p>The book also gets into the DFA, NFA (and the confusing POSIX NFA)
+implementations of regex. Essentially, DFA cannot be used to implement
+the more modern features of regex, takes more time and memory to
+compile, but is fast during runtime. NFA can do all features of regex,
+is fast to compile, but slower during runtime. I felt that this
+particular chapter was the weakest in the book, was extremely verbose
+and use of DFA/NFA figures (like from the <a
+href="2019-10-17-compilers-principles-techniques-and-tools.html">Dragon
+Book</a>) instead of text would have helped a lot.</p>
+<p>My favorite chapter was on optimizations. It was interesting to see
+how regex has pretty much the same traditional optimizations you see in
+compilers like constant folding, loop unrolling and such. This chapter
+had lots of examples and guidelines on how to speed up your regex
+patterns.</p>
+<p>The last few chapters focus on the origin of regex and regex in the
+Perl, Java, .Net and PHP languages. Though regex owes its name and
+syntax to Kleene’s <a
+href="https://en.wikipedia.org/wiki/Kleene_algebra">regular sets</a>, it
+was practically applied for text pattern searching by Ken Thompson in
+1968 and then down through his <strong>ed</strong> editor to
+<strong>grep</strong> (global regular expression print), awk, sed and
+then Perl. Perl seems to be the language that loves regex the most - it
+is the only one where regex is a core part of the language itself, right
+from version 1. The rest of the languages have regex support through
+their standard library. I mostly skipped these chapters since I don’t
+use these languages. I would have loved it if there had been chapters on
+grep or Python.</p>
+<p>All in all, this book was a gem. Friedl is not only a regex guru, he
+is a funny guy too, and so the book was a lot of fun to read. I think it
+gave me enough knowledge to know what is and is not possible with regex.
+I learnt a lot of new features in the regex language and discovered a
+lot of mistakes I typically make. Minor quibbles are that the book could
+have been less verbose and addition of DFA/NFA diagrams and Python would
+be a good update for the next edition, if that ever happens.</p>
 <p><strong>Rating:</strong> 4/4</p>
 </div>
 
@@ -59,11 +105,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,22 +30,33 @@
 <h1 class="title">How to use strace</h1>
 <p class="date">📅 2017-Oct-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#strace'>strace</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>strace</strong> is a tool that shows you the system calls and signals called by a program. It is a very useful tool, especially to check what files and libraries are opened, read or written by a program.</p>
+<p><strong>strace</strong> is a tool that shows you the system calls and
+signals called by a program. It is a very useful tool, especially to
+check what files and libraries are opened, read or written by a
+program.</p>
 <ul>
 <li><strong>Installing</strong> strace is easy:</li>
 </ul>
 <pre><code>$ sudo apt install strace</code></pre>
 <ul>
-<li>To <strong>view</strong> the system calls made by the execution of a program named foobar:</li>
+<li>To <strong>view</strong> the system calls made by the execution of a
+program named foobar:</li>
 </ul>
 <pre><code>$ strace ./foobar</code></pre>
-<p>You will see that strace prints out every system call made by the program, with its input arguments and its output. However, since this verbose listing is printed to the console, you will find it difficult to view the actual output of the program or to interact with it.</p>
+<p>You will see that strace prints out every system call made by the
+program, with its input arguments and its output. However, since this
+verbose listing is printed to the console, you will find it difficult to
+view the actual output of the program or to interact with it.</p>
 <ul>
-<li>Usually, strace is asked to write its output to a <strong>log file</strong>:</li>
+<li>Usually, strace is asked to write its output to a <strong>log
+file</strong>:</li>
 </ul>
 <pre><code>$ strace -o strace.log ./foobar</code></pre>
 <ul>
-<li>Anything but the simplest program will usually fork itself into child processes. By default, strace only traces the parent process launched initially. To request it to trace all <strong>child processes</strong>, use the <code>-f</code> option:</li>
+<li>Anything but the simplest program will usually fork itself into
+child processes. By default, strace only traces the parent process
+launched initially. To request it to trace all <strong>child
+processes</strong>, use the <code>-f</code> option:</li>
 </ul>
 <pre><code>$ strace -f -o strace.log ./foobar</code></pre>
 <ul>
@@ -68,34 +65,49 @@
 <pre><code>$ strace -e trace=open -o strace.log ./foobar
 $ strace -e trace=open,close -o strace.log ./foobar</code></pre>
 <ul>
-<li>To trace only system calls from a specific <strong>category</strong>, say those calls that take filename as argument:</li>
+<li>To trace only system calls from a specific
+<strong>category</strong>, say those calls that take filename as
+argument:</li>
 </ul>
 <pre><code>$ strace -e trace=file -o strace.log ./foobar</code></pre>
-<p>The other categories include process, network, signal, ipc, desc and memory. See the strace manpage for more details on these categories.</p>
+<p>The other categories include process, network, signal, ipc, desc and
+memory. See the strace manpage for more details on these categories.</p>
 <ul>
 <li>To trace only specific <strong>signals</strong>:</li>
 </ul>
 <pre><code>$ strace -e signal=sigkill,sigint -o strace.log ./foobar</code></pre>
-<p>The full list of signals can be seen in <code>man 7 signal</code>.</p>
+<p>The full list of signals can be seen in
+<code>man 7 signal</code>.</p>
 <ul>
-<li>A very useful option is to trace calls that access a particular <strong>path</strong>. This can be done using the <code>-P</code> option:</li>
+<li>A very useful option is to trace calls that access a particular
+<strong>path</strong>. This can be done using the <code>-P</code>
+option:</li>
 </ul>
 <pre><code>$ strace -P /home/joe/somefile -o strace.log ./foobar</code></pre>
-<p>Note that strace is clever enough to show all calls related to the file descriptor produced by the particular path too.</p>
+<p>Note that strace is clever enough to show all calls related to the
+file descriptor produced by the particular path too.</p>
 <ul>
-<li>By default, the input argument structures to the calls are abbreviated. To view the full structures, use the <strong>verbose</strong> option:</li>
+<li>By default, the input argument structures to the calls are
+abbreviated. To view the full structures, use the
+<strong>verbose</strong> option:</li>
 </ul>
 <pre><code>$ strace -v -o strace.log ./foobar</code></pre>
 <ul>
-<li>By default, all strings that are read or written are displayed, but only the first 32 characters. To view more of the strings, specify how many characters you want to see to the <code>-s</code> option:</li>
+<li>By default, all strings that are read or written are displayed, but
+only the first 32 characters. To view more of the strings, specify how
+many characters you want to see to the <code>-s</code> option:</li>
 </ul>
 <pre><code>$ strace -s 100 -o strace.log ./foobar</code></pre>
 <ul>
-<li>Another formatting option that I find useful is to align the output values of all calls to a particular column, say 100:</li>
+<li>Another formatting option that I find useful is to align the output
+values of all calls to a particular column, say 100:</li>
 </ul>
 <pre><code>$ strace -a 100 -o strace.log ./foobar</code></pre>
 <ul>
-<li>Looking at file descriptors in strace output can be confusing. To ask strace to show the path associated with each file descriptor whenever it prints a file descriptor, use the <code>-y</code> option:</li>
+<li>Looking at file descriptors in strace output can be confusing. To
+ask strace to show the path associated with each file descriptor
+whenever it prints a file descriptor, use the <code>-y</code>
+option:</li>
 </ul>
 <pre><code>$ strace -y -o strace.log ./foobar</code></pre>
 <p><strong>Tried with:</strong> strace 4.11 and Ubuntu 16.04</p>
@@ -106,11 +118,13 @@ $ strace -e trace=open,close -o strace.log ./foobar</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

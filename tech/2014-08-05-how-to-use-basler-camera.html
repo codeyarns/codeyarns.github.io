@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,34 +30,47 @@
 <h1 class="title">How to use Basler camera</h1>
 <p class="date">📅 2014-Aug-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#basler'>basler</a>, <a href='index.html#pylon'>pylon</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Basler makes industrial cameras. Setting up and using this camera with your own code is quite easy:</p>
+<p>Basler makes industrial cameras. Setting up and using this camera
+with your own code is quite easy:</p>
 <ul>
-<li><p>Download the Pylon 4 camera software for Linux that matches the CPU architecture of your computer from <a href="http://www.baslerweb.com/Downloads-Software-43868.html?language=en">here</a>.</p></li>
+<li><p>Download the Pylon 4 camera software for Linux that matches the
+CPU architecture of your computer from <a
+href="http://www.baslerweb.com/Downloads-Software-43868.html?language=en">here</a>.</p></li>
 <li><p>Unzip the tar.gz file you downloaded.</p></li>
 <li><p>Install the software:</p></li>
 </ul>
 <pre><code>$ sudo tar -C /opt -xzf pylonSDK*.tar.gz</code></pre>
 <p>It was installed to <code>/opt/pylon4</code> on my computer.</p>
 <ul>
-<li>Setup permissions for the cameras so that they can be detected by the Linux kernel:</li>
+<li>Setup permissions for the cameras so that they can be detected by
+the Linux kernel:</li>
 </ul>
 <pre><code>$ sudo ./setup-usb.sh</code></pre>
 <ul>
-<li><p>Screw the lens on to the camera body. Connect the camera using its USB 3.0 cable to a USB 3.0 port on your computer.</p></li>
-<li><p>To test whether the camera is working, try the Pylon Viewer application:</p></li>
+<li><p>Screw the lens on to the camera body. Connect the camera using
+its USB 3.0 cable to a USB 3.0 port on your computer.</p></li>
+<li><p>To test whether the camera is working, try the Pylon Viewer
+application:</p></li>
 </ul>
 <pre><code>$ /opt/pylon4/bin/PylonViewerApp</code></pre>
-<p>You should be able to capture images from your camera using this app and also configure its various settings.</p>
+<p>You should be able to capture images from your camera using this app
+and also configure its various settings.</p>
 <ul>
-<li>Pylon 4 ships with a lot of sample code that shows how to use its cameras with your own code. Build these samples by setting the appropriate environment variables and try them out:</li>
+<li>Pylon 4 ships with a lot of sample code that shows how to use its
+cameras with your own code. Build these samples by setting the
+appropriate environment variables and try them out:</li>
 </ul>
 <pre><code>$ cd Samples
 $ source /opt/pylon4/bin/pylon-setup-env.sh /opt/pylon4
 $ make
 $ cd Grab
 $ ./Grab</code></pre>
-<p>The shell script to set environment variables did not work under the Fish shell, so I used a Bash shell for this purpose.</p>
-<p><strong>Tried with:</strong> <a href="http://www.baslerweb.com/products/ace.html?model=386">Basler acA1600-20uc camera</a>, Pylon 4 for Linux x86 64-bit and Ubuntu 14.04</p>
+<p>The shell script to set environment variables did not work under the
+Fish shell, so I used a Bash shell for this purpose.</p>
+<p><strong>Tried with:</strong> <a
+href="http://www.baslerweb.com/products/ace.html?model=386">Basler
+acA1600-20uc camera</a>, Pylon 4 for Linux x86 64-bit and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -79,11 +78,13 @@ $ ./Grab</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

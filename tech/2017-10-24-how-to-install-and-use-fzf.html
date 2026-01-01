@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,20 +31,56 @@
 <p class="date">📅 2017-Oct-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fzf'>fzf</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="2017-10-24-how-to-install-and-use-fzf.png" alt="" /><figcaption>FZF</figcaption>
+<img src="2017-10-24-how-to-install-and-use-fzf.png" alt="FZF" />
+<figcaption aria-hidden="true">FZF</figcaption>
 </figure>
-<p><a href="https://github.com/junegunn/fzf"><strong>FZF</strong></a> is a fuzzy finder that can be used to quickly find and autocomplete file/directory paths, items from shell history and processes at the shell. It has a beautiful ncurses interface, sensible keybindings and is blazing fast. It truly supercharges your shell usage and you will not be able to live without it after.</p>
+<p><a href="https://github.com/junegunn/fzf"><strong>FZF</strong></a> is
+a fuzzy finder that can be used to quickly find and autocomplete
+file/directory paths, items from shell history and processes at the
+shell. It has a beautiful ncurses interface, sensible keybindings and is
+blazing fast. It truly supercharges your shell usage and you will not be
+able to live without it after.</p>
 <ul>
-<li>To install FZF and install its hooks into Bash, Zsh and Fish shells:</li>
+<li>To install FZF and install its hooks into Bash, Zsh and Fish
+shells:</li>
 </ul>
 <pre><code>$ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 $ ~/.fzf/install</code></pre>
 <ul>
-<li><p><strong>Find files and directories:</strong> At the shell prompt, press <code>Ctrl+T</code> and FZF scans the files and directories inside your current directory and starts filling up its list. Type a few characters of the file or directory you want to autocomplete. The characters do not need to be an exact substring. That is the <strong>fuzzy</strong> feature of this finder. Use <code>↑</code> and <code>↓</code> keys (or the Vim <code>Ctrl+J</code> and <code>Ctrl+K</code> keys) to navigate the list. You can even use the <strong>mouse</strong> to pick items from the list by clicking and Ctrl-clicking. Press <code>Enter</code> to pick the entry you want. Press <code>Esc</code> to dismiss FZF any point.</p></li>
-<li><p><strong>Find directories:</strong> At the shell prompt, press <code>Alt+C</code> to autocomplete and find only directories. The rest of the interaction is same as that for <code>Ctrl+T</code> shown above.</p></li>
-<li><p><strong>Find from history:</strong> <code>Ctrl+R</code> does the fuzzy finding for commands from your shell history. This works in Bash, but seems to be disabled in Fish. No worries cause Fish already has powerful history search.</p></li>
-<li><p><strong>Find process to kill:</strong> Figuring out the PID of a process you want to kill is painful. With FZF, all you need to do is type <code>kill</code>, press TAB and you get a list of processes with full details. You can type some characters to find the process you want or scroll the list. For each item, it also shows the full command line at the bottom, enabling you choose the right program to kill. Press <code>Enter</code> to choose the process. Its PID will be added to your kill command.</p></li>
-<li><p><strong>UI decorations</strong>: A border can be added to the results list using the option <code>--border</code>. The search term can be inline in the results list using the option <code>--info=inline</code>. These and other commandline options to fzf can be set to the <code>FZF_CTRL_T_OPTS</code> shell variable. For the Fish shell for example, I set this in <code>~/.config/fish/config.fish</code>.</p></li>
+<li><p><strong>Find files and directories:</strong> At the shell prompt,
+press <code>Ctrl+T</code> and FZF scans the files and directories inside
+your current directory and starts filling up its list. Type a few
+characters of the file or directory you want to autocomplete. The
+characters do not need to be an exact substring. That is the
+<strong>fuzzy</strong> feature of this finder. Use <code>↑</code> and
+<code>↓</code> keys (or the Vim <code>Ctrl+J</code> and
+<code>Ctrl+K</code> keys) to navigate the list. You can even use the
+<strong>mouse</strong> to pick items from the list by clicking and
+Ctrl-clicking. Press <code>Enter</code> to pick the entry you want.
+Press <code>Esc</code> to dismiss FZF any point.</p></li>
+<li><p><strong>Find directories:</strong> At the shell prompt, press
+<code>Alt+C</code> to autocomplete and find only directories. The rest
+of the interaction is same as that for <code>Ctrl+T</code> shown
+above.</p></li>
+<li><p><strong>Find from history:</strong> <code>Ctrl+R</code> does the
+fuzzy finding for commands from your shell history. This works in Bash,
+but seems to be disabled in Fish. No worries cause Fish already has
+powerful history search.</p></li>
+<li><p><strong>Find process to kill:</strong> Figuring out the PID of a
+process you want to kill is painful. With FZF, all you need to do is
+type <code>kill</code>, press TAB and you get a list of processes with
+full details. You can type some characters to find the process you want
+or scroll the list. For each item, it also shows the full command line
+at the bottom, enabling you choose the right program to kill. Press
+<code>Enter</code> to choose the process. Its PID will be added to your
+kill command.</p></li>
+<li><p><strong>UI decorations</strong>: A border can be added to the
+results list using the option <code>--border</code>. The search term can
+be inline in the results list using the option
+<code>--info=inline</code>. These and other commandline options to fzf
+can be set to the <code>FZF_CTRL_T_OPTS</code> shell variable. For the
+Fish shell for example, I set this in
+<code>~/.config/fish/config.fish</code>.</p></li>
 </ul>
 <p><strong>Tried with:</strong> FZF 0.17.1 and Ubuntu 16.04</p>
 </div>
@@ -68,11 +90,13 @@ $ ~/.fzf/install</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

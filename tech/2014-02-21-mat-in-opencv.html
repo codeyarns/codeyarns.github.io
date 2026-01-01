@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,9 +30,20 @@
 <h1 class="title">Mat in OpenCV</h1>
 <p class="date">📅 2014-Feb-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#iplimage'>iplimage</a>, <a href='index.html#mat'>mat</a>, <a href='index.html#opencv'>opencv</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Mat</strong> is the basic C++ structure used in <strong>OpenCV</strong> to hold two and higher dimensional data. <a href="2014/02/21/iplimage-in-opencv/">IplImage</a> is the deprecated older C structure that was used for the same purpose earlier in OpenCV. The advantage of using Mat over IplImage is that it behaves like a proper C++ object, so it is easier to construct and is automatically destroyed at end of its scope.</p>
+<p><strong>Mat</strong> is the basic C++ structure used in
+<strong>OpenCV</strong> to hold two and higher dimensional data. <a
+href="2014/02/21/iplimage-in-opencv/">IplImage</a> is the deprecated
+older C structure that was used for the same purpose earlier in OpenCV.
+The advantage of using Mat over IplImage is that it behaves like a
+proper C++ object, so it is easier to construct and is automatically
+destroyed at end of its scope.</p>
 <ul>
-<li><p>Documentation about the Mat class can be found <a href="http://docs.opencv.org/modules/core/doc/basic_structures.html#Mat">here</a>. The declaration of the Mat class is in the <code>modules/core/include/opencv2/core/mat.hpp</code> file, as can be seen <a href="https://github.com/Itseez/opencv/blob/master/modules/core/include/opencv2/core/mat.hpp">here</a>.</p></li>
+<li><p>Documentation about the Mat class can be found <a
+href="http://docs.opencv.org/modules/core/doc/basic_structures.html#Mat">here</a>.
+The declaration of the Mat class is in the
+<code>modules/core/include/opencv2/core/mat.hpp</code> file, as can be
+seen <a
+href="https://github.com/Itseez/opencv/blob/master/modules/core/include/opencv2/core/mat.hpp">here</a>.</p></li>
 <li><p>The basic structure of Mat is simple:</p></li>
 </ul>
 <pre><code>class Mat
@@ -65,19 +62,22 @@ public:
     uchar* data;
 };</code></pre>
 <ul>
-<li>To construct a Mat from existing array of data, without allocating its own buffer:</li>
+<li>To construct a Mat from existing array of data, without allocating
+its own buffer:</li>
 </ul>
 <pre><code>double darr[640*480];
 cv::Mat dmat(480, 640, CV_64F, darr);</code></pre>
 <ul>
-<li>To construct a Mat from existing array of data, by making a copy to its own buffer:</li>
+<li>To construct a Mat from existing array of data, by making a copy to
+its own buffer:</li>
 </ul>
 <pre><code>double darr[640*480];
 cv::Mat dmat(480, 640, CV_64F, darr);
 cv::Mat cmat;
 dmat.clone(cmat); // cmat has a separate copy of data now</code></pre>
 <ul>
-<li>To construct a Mat of a certain size and initialize each of its channels to a specific value:</li>
+<li>To construct a Mat of a certain size and initialize each of its
+channels to a specific value:</li>
 </ul>
 <pre><code>const int frows = 480;
 const int fcols = 640;
@@ -87,7 +87,9 @@ const cv::Scalar init_vals(10, 50, 255);
 // G channel pixels to 50 and R pixels to 255
 cv::Mat fmat(frows, fcols, CV_8UC3, init_vals);</code></pre>
 <ul>
-<li><p>The data type of the elements of the image and the number of channels can be found using the depth and type methods as described <a href="/2015/08/27/depth-and-type-of-matrix-in-opencv/">here</a>.</p></li>
+<li><p>The data type of the elements of the image and the number of
+channels can be found using the depth and type methods as described <a
+href="/2015/08/27/depth-and-type-of-matrix-in-opencv/">here</a>.</p></li>
 <li><p>To set or get directly from the buffer of Mat:</p></li>
 </ul>
 <pre><code>// Set pixel 10 of CV_8UC3 mat to grey
@@ -110,11 +112,13 @@ IplImage* img = new IplImage(mat);</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

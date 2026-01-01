@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,37 @@
 <h1 class="title">How to use mouse in Byobu</h1>
 <p class="date">📅 2016-Jan-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#mouse'>mouse</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>In <strong>Byobu</strong>, you will find that many mouse operations work just like in a raw terminal emulator. For example, you can select content by holding down the left-button and moving the mouse. And pasting by pressing the middle-button. However, you will find that the mouse operations are not Byobu-aware or Tmux-aware. For example, you can select text that spans across two split views.</p>
-<p>Byobu/Tmux has support for mouse operations. When enabled, the mouse operations seem more natural and aware of the split views and windows of Byobu/Tmux. For example, it can be useful to use the mouse for operations such as selecting a split, resizing a split and for scrolling the console content to view history. However, note that such mouse support is turned off by default.</p>
+<p>In <strong>Byobu</strong>, you will find that many mouse operations
+work just like in a raw terminal emulator. For example, you can select
+content by holding down the left-button and moving the mouse. And
+pasting by pressing the middle-button. However, you will find that the
+mouse operations are not Byobu-aware or Tmux-aware. For example, you can
+select text that spans across two split views.</p>
+<p>Byobu/Tmux has support for mouse operations. When enabled, the mouse
+operations seem more natural and aware of the split views and windows of
+Byobu/Tmux. For example, it can be useful to use the mouse for
+operations such as selecting a split, resizing a split and for scrolling
+the console content to view history. However, note that such mouse
+support is turned off by default.</p>
 <ul>
-<li><p>To <strong>toggle mouse support</strong>, press <code>Alt+F12</code>. (If it does not work, check if the keyboard shortcut is set for something else by your window manager.) When mouse support is on, the mouse cursor turns into an arrow. When it is off, the mouse cursor is an I-beam. When you toggle, you can see that <code>Mouse: ON</code> or <code>Mouse: OFF</code> is displayed at the bottom of Byobu.</p></li>
-<li><p>To <strong>select a split window</strong>, just click anywhere inside it using the mouse.</p></li>
-<li><p>To <strong>resize a split window</strong>, select the split and then drag its thick orange borders.</p></li>
-<li><p>To <strong>scroll the content of a window</strong>, select the window and use the mouse scroller to scroll up and down. You will notice that the scrolling is split-aware. Only the console output inside a split will scroll, not the entire terminal contents.</p></li>
-<li><p>To <strong>enable mouse support by default</strong> for all these operations, add these lines to your <code>~/.byobu/profile.tmux</code>:</p></li>
+<li><p>To <strong>toggle mouse support</strong>, press
+<code>Alt+F12</code>. (If it does not work, check if the keyboard
+shortcut is set for something else by your window manager.) When mouse
+support is on, the mouse cursor turns into an arrow. When it is off, the
+mouse cursor is an I-beam. When you toggle, you can see that
+<code>Mouse: ON</code> or <code>Mouse: OFF</code> is displayed at the
+bottom of Byobu.</p></li>
+<li><p>To <strong>select a split window</strong>, just click anywhere
+inside it using the mouse.</p></li>
+<li><p>To <strong>resize a split window</strong>, select the split and
+then drag its thick orange borders.</p></li>
+<li><p>To <strong>scroll the content of a window</strong>, select the
+window and use the mouse scroller to scroll up and down. You will notice
+that the scrolling is split-aware. Only the console output inside a
+split will scroll, not the entire terminal contents.</p></li>
+<li><p>To <strong>enable mouse support by default</strong> for all these
+operations, add these lines to your
+<code>~/.byobu/profile.tmux</code>:</p></li>
 </ul>
 <pre><code># Enable mouse support including scrolling
 set -g mouse on 
@@ -59,7 +68,10 @@ set -g mouse on
 set -g mouse-utf8 on</code></pre>
 <p>Restart Byobu to see the effect.</p>
 <ul>
-<li>One side-effect of enabling mouse in Byobu is that you might find that the middle-click to paste might not work in some terminal emulators like XTerm. You can toggle the mouse support to paste in such situation.</li>
+<li>One side-effect of enabling mouse in Byobu is that you might find
+that the middle-click to paste might not work in some terminal emulators
+like XTerm. You can toggle the mouse support to paste in such
+situation.</li>
 </ul>
 <p><strong>Tried with:</strong> Byobu 5.77 and Ubuntu 14.04</p>
 </div>
@@ -69,11 +81,13 @@ set -g mouse-utf8 on</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

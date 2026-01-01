@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,34 +30,63 @@
 <h1 class="title">How to set font and colors of Eclipse UI</h1>
 <p class="date">📅 2014-Nov-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#eclipse'>eclipse</a>, <a href='index.html#fonts'>fonts</a>, <a href='index.html#fonts-size'>fonts size</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>font</strong>, <strong>font size</strong> and <strong>colors</strong> of most of the UI elements of <strong>Eclipse</strong> can be changed. Some of them can be set from inside Eclipse, others can be set in the <strong>CSS</strong> files used by the current Eclipse theme. There are other elements which can be changed only by modifying the settings of the current GTK or GNOME theme.</p>
+<p>The <strong>font</strong>, <strong>font size</strong> and
+<strong>colors</strong> of most of the UI elements of
+<strong>Eclipse</strong> can be changed. Some of them can be set from
+inside Eclipse, others can be set in the <strong>CSS</strong> files used
+by the current Eclipse theme. There are other elements which can be
+changed only by modifying the settings of the current GTK or GNOME
+theme.</p>
 <h2 id="inside-eclipse">Inside Eclipse</h2>
-<p>Based on the current theme that Eclipse is using, many of the settings are in <strong>CSS</strong> files.</p>
+<p>Based on the current theme that Eclipse is using, many of the
+settings are in <strong>CSS</strong> files.</p>
 <ul>
-<li>Font and fonts sizes of editor, console, dialog and other UI elements can be changed from Window -&gt; Preferences -&gt; General -&gt; Appearance -&gt; Colors and Fonts.</li>
+<li>Font and fonts sizes of editor, console, dialog and other UI
+elements can be changed from Window -&gt; Preferences -&gt; General
+-&gt; Appearance -&gt; Colors and Fonts.</li>
 </ul>
-<p>However, you will find that the font and font sizes of <strong>Project Explorer</strong>, <strong>Outline</strong>, <strong>Problems</strong>, Make and many other UI windows which hold tree-like elements cannot be changed from here. To do that you need to modify the CSS file of the theme you are current using. Here is how to do that:</p>
+<p>However, you will find that the font and font sizes of
+<strong>Project Explorer</strong>, <strong>Outline</strong>,
+<strong>Problems</strong>, Make and many other UI windows which hold
+tree-like elements cannot be changed from here. To do that you need to
+modify the CSS file of the theme you are current using. Here is how to
+do that:</p>
 <ul>
-<li><p>Find out what is the current theme that Eclipse is using. You can see that in Window -&gt; Preferences -&gt; General -&gt; Appearance. For example, I found that mine was using the theme <strong>GTK</strong> and the Color and Font theme was <strong>Default</strong>.</p></li>
-<li><p>Go to the install directory of Eclipse and go to the themes CSS directory. For example, on my system this was <code>plugins/org.eclipse.ui.themes_1.0.1.v20140819-1717/css</code>.</p></li>
-<li><p>Open the CSS file that corresponds to the theme that Eclipse is currently using. For example, for my theme I found the file <code>e4_default_gtk.css</code>.</p></li>
-<li><p>Add this CSS style to change the font and font size. For example, to set to font Arial with size 8, I would add:</p></li>
+<li><p>Find out what is the current theme that Eclipse is using. You can
+see that in Window -&gt; Preferences -&gt; General -&gt; Appearance. For
+example, I found that mine was using the theme <strong>GTK</strong> and
+the Color and Font theme was <strong>Default</strong>.</p></li>
+<li><p>Go to the install directory of Eclipse and go to the themes CSS
+directory. For example, on my system this was
+<code>plugins/org.eclipse.ui.themes_1.0.1.v20140819-1717/css</code>.</p></li>
+<li><p>Open the CSS file that corresponds to the theme that Eclipse is
+currently using. For example, for my theme I found the file
+<code>e4_default_gtk.css</code>.</p></li>
+<li><p>Add this CSS style to change the font and font size. For example,
+to set to font Arial with size 8, I would add:</p></li>
 </ul>
 <pre><code>.MPart Tree {
     font-family: Consolas;
     font-size: 8;
 }</code></pre>
 <ul>
-<li>Close the file. Close Eclipse and open it back again. You should be able to see the change in Project Explorer, Outline, and other windows that have tree-like UI elements.</li>
+<li>Close the file. Close Eclipse and open it back again. You should be
+able to see the change in Project Explorer, Outline, and other windows
+that have tree-like UI elements.</li>
 </ul>
 <h2 id="outside-eclipse">Outside Eclipse</h2>
 <ul>
-<li><p>Use the <a href="2015/01/30/gnome-tweak-tool/"><strong>GNOME Tweak Tool</strong></a> to set the font and font sizes.</p></li>
-<li><p>Use the <a href="2015/01/30/gnome-color-chooser/"><strong>GNOME Color Chooser</strong></a> to set the foreground and background colors of these UI elements.</p></li>
+<li><p>Use the <a href="2015/01/30/gnome-tweak-tool/"><strong>GNOME
+Tweak Tool</strong></a> to set the font and font sizes.</p></li>
+<li><p>Use the <a href="2015/01/30/gnome-color-chooser/"><strong>GNOME
+Color Chooser</strong></a> to set the foreground and background colors
+of these UI elements.</p></li>
 </ul>
 <p><strong>Related links:</strong></p>
 <ul>
-<li><a href="http://weblog.avp-ptr.de/20120728/how-to-fix-eclipse-colors-for-autocompletion-and-tooltips/" class="uri">http://weblog.avp-ptr.de/20120728/how-to-fix-eclipse-colors-for-autocompletion-and-tooltips/</a></li>
+<li><a
+href="http://weblog.avp-ptr.de/20120728/how-to-fix-eclipse-colors-for-autocompletion-and-tooltips/"
+class="uri">http://weblog.avp-ptr.de/20120728/how-to-fix-eclipse-colors-for-autocompletion-and-tooltips/</a></li>
 </ul>
 <p><strong>Tried with:</strong> Eclipse Luna 4.4.1 and Ubuntu 14.04</p>
 </div>
@@ -81,11 +96,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

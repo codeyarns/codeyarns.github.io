@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,28 @@
 <h1 class="title">How to edit remote files using Remote VSCode</h1>
 <p class="date">📅 2018-May-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ssh'>ssh</a>, <a href='index.html#vscode'>vscode</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Visual Studio Code</strong> is a great editor for local files. <a href="https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode"><strong>Remote VSCode</strong></a> is an extension that enables editing files on remote systems in your local VSCode. Note that you will need to specify individual files on the remote computer and they will appear in your local VSCode. You cannot open a remote folder and expect all of the code there to be indexed for code browsing with this method.</p>
+<p><strong>Visual Studio Code</strong> is a great editor for local
+files. <a
+href="https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode"><strong>Remote
+VSCode</strong></a> is an extension that enables editing files on remote
+systems in your local VSCode. Note that you will need to specify
+individual files on the remote computer and they will appear in your
+local VSCode. You cannot open a remote folder and expect all of the code
+there to be indexed for code browsing with this method.</p>
 <ul>
-<li>Install <strong>rmate</strong> on the remote computer. rmate has been ported from its original Ruby implementation to Python, Bash and other languages. I like to use <a href="https://github.com/sclukey/rmate-python"><strong>rmate-python</strong></a>. Installing it is easy:</li>
+<li>Install <strong>rmate</strong> on the remote computer. rmate has
+been ported from its original Ruby implementation to Python, Bash and
+other languages. I like to use <a
+href="https://github.com/sclukey/rmate-python"><strong>rmate-python</strong></a>.
+Installing it is easy:</li>
 </ul>
 <pre><code>$ sudo pip3 install rmate</code></pre>
 <ul>
-<li><p>On your local VSCode, install the <strong>Remote VSCode</strong> extension from <a href="https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode">here</a>.</p></li>
-<li><p>Open Preferences → Settings and in the User Settings window, add the following settings:</p></li>
+<li><p>On your local VSCode, install the <strong>Remote VSCode</strong>
+extension from <a
+href="https://marketplace.visualstudio.com/items?itemName=rafaelmaiolla.remote-vscode">here</a>.</p></li>
+<li><p>Open Preferences → Settings and in the User Settings window, add
+the following settings:</p></li>
 </ul>
 <pre><code>//-------- Remote VSCode configuration --------
 
@@ -67,16 +67,21 @@
 // If set to true, error for remote.port already in use won&#39;t be shown anymore.
 &quot;remote.dontShowPortAlreadyInUseError&quot;: false</code></pre>
 <ul>
-<li><p>Restart VSCode and run the command <strong>Remote: Start server</strong> by pressing F1.</p></li>
+<li><p>Restart VSCode and run the command <strong>Remote: Start
+server</strong> by pressing F1.</p></li>
 <li><p>SSH to your remote machine with port tunneling:</p></li>
 </ul>
 <pre><code>$ ssh -R 52698:127.0.0.1:52698 yourlogin@remotecomputer</code></pre>
 <ul>
-<li>Once you are SSHed into the remote computer, run this command there:</li>
+<li>Once you are SSHed into the remote computer, run this command
+there:</li>
 </ul>
 <pre><code>$ rmate -p 52698 file/you/want/to/edit</code></pre>
-<p>The file will appear in your local VSCode for editing. The remote file will be updated with any changes you make locally after you save the file.</p>
-<p><strong>Tried with:</strong> Visual Studio Code 1.22.2 and Remote VSCode 1.1.0</p>
+<p>The file will appear in your local VSCode for editing. The remote
+file will be updated with any changes you make locally after you save
+the file.</p>
+<p><strong>Tried with:</strong> Visual Studio Code 1.22.2 and Remote
+VSCode 1.1.0</p>
 </div>
 
 <br />
@@ -84,11 +89,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

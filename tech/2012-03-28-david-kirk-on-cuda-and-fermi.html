@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,17 +31,39 @@
 <p class="date">📅 2012-Mar-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#david-kirk'>david kirk</a>, <a href='index.html#fermi'>fermi</a>, <a href='index.html#nvidia'>nvidia</a>, <a href='index.html#talk'>talk</a>, <a href='index.html#youtube'>youtube</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2012/03/20120328-fermi.jpg" alt="" /><figcaption> </figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2012/03/20120328-fermi.jpg"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>There is a good <a href="https://www.youtube.com/watch?v=za8_KNN2-fQ">talk</a> by <strong>David Kirk</strong> up on Youtube about <strong>Fermi</strong>. I found the talk quite useful, with Kirk explaining various concepts in CUDA and Fermi with better abstractions than what I had in my mind.</p>
+<p>There is a good <a
+href="https://www.youtube.com/watch?v=za8_KNN2-fQ">talk</a> by
+<strong>David Kirk</strong> up on Youtube about <strong>Fermi</strong>.
+I found the talk quite useful, with Kirk explaining various concepts in
+CUDA and Fermi with better abstractions than what I had in my mind.</p>
 <p>A few notes from the talk:</p>
 <ol type="1">
-<li><p>The CPU die area is mostly cache, with a bit of execution-control logic. The GPU die is the other way around. This is because the CPU is built for a cache hit, while the GPU is built for a cache miss.</p></li>
-<li><p>L1 or shared memory latency: ~10 cycles Global memory latency: ~200-400 cycles</p></li>
-<li><p>Even though a Fermi SM has 32K registers in its register file, the maximum number of registers allowed per thread is a mere 63. This constraint is due to the number of bits NVIDIA used for the addressing from a thread to its registers in the register file.</p></li>
-<li><p>Core clock speeds remain around 1GHz, which is significantly lesser than CPU speeds. This is intentional, because power consumption increases super-linearly with clock speed. GPUs are already consuming a lot of power, it would not be good to see this increase further.</p></li>
-<li><p>The minimum size of a global memory read is 128 bytes. This minimum is dictated by DRAM technology or manufacturers and will only get larger every year due to the way the DRAM technology is progressing.</p></li>
-<li><p>The reason the CUDA profiler needs to run the application multiple times is that there are a limited number of counters per SM. (Kirk says 4, but CUDA programming guide says 8 counters.)</p></li>
+<li><p>The CPU die area is mostly cache, with a bit of execution-control
+logic. The GPU die is the other way around. This is because the CPU is
+built for a cache hit, while the GPU is built for a cache miss.</p></li>
+<li><p>L1 or shared memory latency: ~10 cycles Global memory latency:
+~200-400 cycles</p></li>
+<li><p>Even though a Fermi SM has 32K registers in its register file,
+the maximum number of registers allowed per thread is a mere 63. This
+constraint is due to the number of bits NVIDIA used for the addressing
+from a thread to its registers in the register file.</p></li>
+<li><p>Core clock speeds remain around 1GHz, which is significantly
+lesser than CPU speeds. This is intentional, because power consumption
+increases super-linearly with clock speed. GPUs are already consuming a
+lot of power, it would not be good to see this increase
+further.</p></li>
+<li><p>The minimum size of a global memory read is 128 bytes. This
+minimum is dictated by DRAM technology or manufacturers and will only
+get larger every year due to the way the DRAM technology is
+progressing.</p></li>
+<li><p>The reason the CUDA profiler needs to run the application
+multiple times is that there are a limited number of counters per SM.
+(Kirk says 4, but CUDA programming guide says 8 counters.)</p></li>
 </ol>
 </div>
 
@@ -64,11 +72,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

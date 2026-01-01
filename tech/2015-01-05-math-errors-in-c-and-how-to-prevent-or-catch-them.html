@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -105,32 +92,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="contentbox">
 <header>
-<h1 class="title">Math errors in C++ and how to prevent or catch them</h1>
+<h1 class="title">Math errors in C++ and how to prevent or catch
+them</h1>
 <p class="date">📅 2015-Jan-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#error'>error</a>, <a href='index.html#math'>math</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Math functions provided by the standard C++ library are defined in the <code>cmath</code> header file. Many of these functions require their input values to be in a specific domain. For example, the <code>log</code> function requires its input to be greater than zero. <code>log(-3.14)</code> or <code>log(0)</code> is not defined mathematically. The result of such a call is set to a special <code>NaN</code>, <code>inf</code> or <code>-inf</code> value. However, no exception is thrown and the call has actually <strong>failed silently</strong>. Note that this does not affect the correctness of future math function calls.</p>
+<p>Math functions provided by the standard C++ library are defined in
+the <code>cmath</code> header file. Many of these functions require
+their input values to be in a specific domain. For example, the
+<code>log</code> function requires its input to be greater than zero.
+<code>log(-3.14)</code> or <code>log(0)</code> is not defined
+mathematically. The result of such a call is set to a special
+<code>NaN</code>, <code>inf</code> or <code>-inf</code> value. However,
+no exception is thrown and the call has actually <strong>failed
+silently</strong>. Note that this does not affect the correctness of
+future math function calls.</p>
 <h2 id="preventing-math-error">Preventing math error</h2>
-<p>There is no warning option provided by GCC that can be enabled to detect such errors in the code. Nor is there any compiler option to enable the standard C++ library to thrown an exception, say <code>std::domain_error</code>, when such an error occurs. Other libraries, like Boost, do throw such exceptions.</p>
-<p>The only way to prevent these math errors is to <a href="https://www.securecoding.cert.org/confluence/display/cplusplus/VOID+Prevent+domain+errors+in+math+functions">check the bounds</a> of the inputs passed to these functions. For example, you can write a wrapper function for each of such math functions that does the bounds checking and throws error or exception when the input is wrong. You can change your code to explicitly use only these math wrapper functions instead of those from <code>cmath</code>.</p>
-<p>If the performance of this math code is important to you, then inline this function and enable the bounds checking only in Debug mode or when you want to check the correctness of some inputs. Disable the checking for Release mode.</p>
+<p>There is no warning option provided by GCC that can be enabled to
+detect such errors in the code. Nor is there any compiler option to
+enable the standard C++ library to thrown an exception, say
+<code>std::domain_error</code>, when such an error occurs. Other
+libraries, like Boost, do throw such exceptions.</p>
+<p>The only way to prevent these math errors is to <a
+href="https://www.securecoding.cert.org/confluence/display/cplusplus/VOID+Prevent+domain+errors+in+math+functions">check
+the bounds</a> of the inputs passed to these functions. For example, you
+can write a wrapper function for each of such math functions that does
+the bounds checking and throws error or exception when the input is
+wrong. You can change your code to explicitly use only these math
+wrapper functions instead of those from <code>cmath</code>.</p>
+<p>If the performance of this math code is important to you, then inline
+this function and enable the bounds checking only in Debug mode or when
+you want to check the correctness of some inputs. Disable the checking
+for Release mode.</p>
 <h2 id="catching-math-error">Catching math error</h2>
-<p>When a math function is executed with wrong input, the <code>errno</code> variable from the <code>cerrno</code> header file is set to non-zero value. The list of error values can be seen <a href="http://en.cppreference.com/w/cpp/error/errno_macros">here</a>. Specifically, for math errors, it might be set to either <code>ERANGE</code> or <code>EDOM</code>. This refers to a range or domain error respectively. To get the error string explaining the error, use the <code>std::strerror</code> function.</p>
+<p>When a math function is executed with wrong input, the
+<code>errno</code> variable from the <code>cerrno</code> header file is
+set to non-zero value. The list of error values can be seen <a
+href="http://en.cppreference.com/w/cpp/error/errno_macros">here</a>.
+Specifically, for math errors, it might be set to either
+<code>ERANGE</code> or <code>EDOM</code>. This refers to a range or
+domain error respectively. To get the error string explaining the error,
+use the <code>std::strerror</code> function.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">// Checking for math error in C++</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;cerrno&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;cmath&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;cstring&gt;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="bu">std::</span>cout &lt;&lt; log(<span class="dv">0</span>) &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="cf">if</span> (errno)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="bu">std::</span>strerror(errno) &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="cf">if</span> (errno == EDOM)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Domain error</span><span class="sc">\n</span><span class="st">&quot;</span>;</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="cf">if</span> (errno == ERANGE)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>    <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;Range error</span><span class="sc">\n</span><span class="st">&quot;</span>;</span></code></pre></div>
-<p><strong>Reference:</strong> Section 40.3, The C++ Programming Language (4 Ed) by Stroustrup</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Checking for math error in C++</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cerrno&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cmath&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cstring&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> log<span class="op">(</span><span class="dv">0</span><span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>errno<span class="op">)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="bu">std::</span>strerror<span class="op">(</span>errno<span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>errno <span class="op">==</span> EDOM<span class="op">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Domain error</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>errno <span class="op">==</span> ERANGE<span class="op">)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Range error</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">;</span></span></code></pre></div>
+<p><strong>Reference:</strong> Section 40.3, The C++ Programming
+Language (4 Ed) by Stroustrup</p>
 <p><strong>Tried with:</strong> GCC 4.9.2 and Ubuntu 14.04</p>
 </div>
 
@@ -139,11 +158,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

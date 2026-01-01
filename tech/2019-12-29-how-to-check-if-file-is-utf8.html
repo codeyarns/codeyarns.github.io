@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,9 +30,13 @@
 <h1 class="title">How to check if file is UTF-8</h1>
 <p class="date">📅 2019-Dec-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#unicode'>unicode</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The war of the character encodings for text files is over and <a href="https://en.wikipedia.org/wiki/UTF-8"><strong>UTF-8</strong></a> has won. Occasionally, I need to check if a text file is UTF-8 or some other encoding like ASCII or UTF-16.</p>
+<p>The war of the character encodings for text files is over and <a
+href="https://en.wikipedia.org/wiki/UTF-8"><strong>UTF-8</strong></a>
+has won. Occasionally, I need to check if a text file is UTF-8 or some
+other encoding like ASCII or UTF-16.</p>
 <ul>
-<li><strong>Do not</strong> use the <code>file</code> command for this! It is not reliable and might detect a UTF-8 file as ASCII:</li>
+<li><strong>Do not</strong> use the <code>file</code> command for this!
+It is not reliable and might detect a UTF-8 file as ASCII:</li>
 </ul>
 <pre><code>$ file foobar.json
 foobar.json: ASCII text</code></pre>
@@ -57,7 +47,9 @@ foobar.json: ASCII text</code></pre>
 
 $ isutf8 /bin/ls
 /bin/ls: line 1, char 1, byte offset 25: invalid UTF-8 code</code></pre>
-<p>Notice how it is a quiet tool that returns exit code 0 if the file is UTF-8 and prints nothing. If the file is not UTF-8, then it prints some details.</p>
+<p>Notice how it is a quiet tool that returns exit code 0 if the file is
+UTF-8 and prints nothing. If the file is not UTF-8, then it prints some
+details.</p>
 <ul>
 <li>If you do not have this tool, installing it is easy:</li>
 </ul>
@@ -69,11 +61,13 @@ $ isutf8 /bin/ls
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

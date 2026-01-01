@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,26 @@
 <h1 class="title">How to lock using mutex in C++</h1>
 <p class="date">📅 2015-Sep-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#cpp11'>cpp11</a>, <a href='index.html#lock'>lock</a>, <a href='index.html#lock_guard'>lock_guard</a>, <a href='index.html#mutex'>mutex</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Launching <strong>asynchronous threads</strong> is super easy in C++11 as described <a href="/2015/04/24/asynchronous-threads-in-c/">here</a>. Once you have multi-threading, you might also need <strong>locking</strong> to handle concurrent access to shared data. Thankfully, locking using <strong>mutex</strong> is also super easy in C++11!</p>
+<p>Launching <strong>asynchronous threads</strong> is super easy in
+C++11 as described <a
+href="/2015/04/24/asynchronous-threads-in-c/">here</a>. Once you have
+multi-threading, you might also need <strong>locking</strong> to handle
+concurrent access to shared data. Thankfully, locking using
+<strong>mutex</strong> is also super easy in C++11!</p>
 <ul>
-<li><p>A <code>std::mutex</code> object is required to act as the mutex.</p></li>
-<li><p>The simplest way to lock a section of code is to create a <code>std::lock_guard</code> object. It takes a mutex as input. This not only creates the lock object but starts the locked section of the code.</p></li>
-<li><p>At the end of the scope of the <code>std::lock_guard</code> object, it is unlocked and destroyed. This is thanks due to the RAII design of the lock.</p></li>
+<li><p>A <code>std::mutex</code> object is required to act as the
+mutex.</p></li>
+<li><p>The simplest way to lock a section of code is to create a
+<code>std::lock_guard</code> object. It takes a mutex as input. This not
+only creates the lock object but starts the locked section of the
+code.</p></li>
+<li><p>At the end of the scope of the <code>std::lock_guard</code>
+object, it is unlocked and destroyed. This is thanks due to the RAII
+design of the lock.</p></li>
 </ul>
-<p>Using these constructs, we can now handle concurrent access to a queue from multiple threads for both adding and removing items from it:</p>
+<p>Using these constructs, we can now handle concurrent access to a
+queue from multiple threads for both adding and removing items from
+it:</p>
 <pre><code>class SharedQueue
 {
 public:
@@ -84,11 +83,13 @@ private:
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

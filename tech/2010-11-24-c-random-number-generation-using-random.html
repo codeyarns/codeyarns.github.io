@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,68 +95,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">C++: Random Number Generation Using <random></h1>
 <p class="date">📅 2010-Nov-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#random'>random</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Note:</strong> Please note that the random header has undergone substantial change for C++11 and later. This post is outdated and only meant for older versions of C++. For the latest, please refer to <a href="https://msdn.microsoft.com/en-us/library/bb982398.aspx">this page</a>.</p>
-<p><strong>C++</strong> can get very irritating if all you want is a simple solution. Take <strong>random number generation</strong> for example. The <strong><a href="http://msdn.microsoft.com/en-us/library/bb982398.aspx"><random></a></strong> header was added to C++ to provide all kinds of random number generation. While it does cover any kind of random generation you can dream of, it makes writing a simple random generator super-hard! Unlike C or C#, where you can quickly generate random numbers with little code, in C++ it takes a lot of reading, pondering and lots of ugly-looking code.</p>
+<p><strong>Note:</strong> Please note that the random header has
+undergone substantial change for C++11 and later. This post is outdated
+and only meant for older versions of C++. For the latest, please refer
+to <a href="https://msdn.microsoft.com/en-us/library/bb982398.aspx">this
+page</a>.</p>
+<p><strong>C++</strong> can get very irritating if all you want is a
+simple solution. Take <strong>random number generation</strong> for
+example. The <strong><a
+href="http://msdn.microsoft.com/en-us/library/bb982398.aspx"><random></a></strong>
+header was added to C++ to provide all kinds of random number
+generation. While it does cover any kind of random generation you can
+dream of, it makes writing a simple random generator super-hard! Unlike
+C or C#, where you can quickly generate random numbers with little code,
+in C++ it takes a lot of reading, pondering and lots of ugly-looking
+code.</p>
 <p><strong><random></strong></p>
 <p>The <random> header file provides many kinds of classes:</p>
 <ul>
-<li><p><strong>Engine</strong>: It generates random numbers based on a certain algorithm. There are many engines defined in <random>. One example is <strong><a href="http://msdn.microsoft.com/en-us/library/ee462284.aspx">linear_congruential_engine</a></strong>, which uses the algorithm that is typically used in the C rand() random number generator. A engine cannot be used alone, it should be attached to a distribution (see below).</p></li>
-<li><p><strong>Predefined Engine</strong>: It is an engine created with some good-quality initial values. This saves a lot of the pain of coming up with values to initialize the engine. There are many predefined engines in <random>. For example, <strong><a href="http://msdn.microsoft.com/en-us/library/bb983077.aspx">minstd_rand</a></strong> is pre-defined on the linear_congruential_engine.</p></li>
-<li><p><strong>Distribution</strong>: It takes the output of an engine and shapes it to fit a certain distribution. An example is <strong><a href="http://msdn.microsoft.com/en-us/library/ee462299.aspx">uniform_real_distribution</a></strong>, which creates an uniform distribution of real numbers. A distribution needs an engine to provide it with random number input.</p></li>
-<li><p><strong>Variate Generator</strong>: <strong><a href="http://msdn.microsoft.com/en-us/library/bb982404.aspx">variate_generator</a></strong> is a wrapper to combine an engine (or predefined engine) with a distribution, to create a custom random number generator.</p></li>
+<li><p><strong>Engine</strong>: It generates random numbers based on a
+certain algorithm. There are many engines defined in <random>. One
+example is <strong><a
+href="http://msdn.microsoft.com/en-us/library/ee462284.aspx">linear_congruential_engine</a></strong>,
+which uses the algorithm that is typically used in the C rand() random
+number generator. A engine cannot be used alone, it should be attached
+to a distribution (see below).</p></li>
+<li><p><strong>Predefined Engine</strong>: It is an engine created with
+some good-quality initial values. This saves a lot of the pain of coming
+up with values to initialize the engine. There are many predefined
+engines in <random>. For example, <strong><a
+href="http://msdn.microsoft.com/en-us/library/bb983077.aspx">minstd_rand</a></strong>
+is pre-defined on the linear_congruential_engine.</p></li>
+<li><p><strong>Distribution</strong>: It takes the output of an engine
+and shapes it to fit a certain distribution. An example is <strong><a
+href="http://msdn.microsoft.com/en-us/library/ee462299.aspx">uniform_real_distribution</a></strong>,
+which creates an uniform distribution of real numbers. A distribution
+needs an engine to provide it with random number input.</p></li>
+<li><p><strong>Variate Generator</strong>: <strong><a
+href="http://msdn.microsoft.com/en-us/library/bb982404.aspx">variate_generator</a></strong>
+is a wrapper to combine an engine (or predefined engine) with a
+distribution, to create a custom random number generator.</p></li>
 </ul>
 <p><strong>Simple Random Number Generation</strong></p>
-<p>Here is a simple random number generator that produces random float values. It uses the variate_generator to wrap a minstd_rand engine and uniform_real_distribution.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">typedef</span> minstd_rand                             Engine;</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">typedef</span> uniform_real_distribution&lt;<span class="dt">float</span>&gt;        Distribution;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">typedef</span> variate_generator&lt;Engine, Distribution&gt; Generator;</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>Generator gen( Engine(<span class="dv">9999</span>), Distribution( <span class="dv">10</span>, <span class="dv">100</span> ) );</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>cout &lt;&lt; <span class="st">&quot;Random value: &quot;</span> &lt;&lt; gen() &lt;&lt; endl;</span></code></pre></div>
-<p>The minstd_rand engine requires a seed, here we seed it with 9999. We also provide the uniform_real_distribution an output range of [10.0,100.0).</p>
+<p>Here is a simple random number generator that produces random float
+values. It uses the variate_generator to wrap a minstd_rand engine and
+uniform_real_distribution.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> minstd_rand                             Engine<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> uniform_real_distribution<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;</span>        Distribution<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> variate_generator<span class="op">&lt;</span>Engine<span class="op">,</span> Distribution<span class="op">&gt;</span> Generator<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Generator gen<span class="op">(</span> Engine<span class="op">(</span><span class="dv">9999</span><span class="op">),</span> Distribution<span class="op">(</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">100</span> <span class="op">)</span> <span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Random value: &quot;</span> <span class="op">&lt;&lt;</span> gen<span class="op">()</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span></code></pre></div>
+<p>The minstd_rand engine requires a seed, here we seed it with 9999. We
+also provide the uniform_real_distribution an output range of
+[10.0,100.0).</p>
 <p><strong>Simple Random Generator Class</strong></p>
-<p>If all I want is to generate some random number simply and quickly, the C++ <random> looks truly foreboding! ☹</p>
-<p>Here is a simple random number generator class that wraps up the complexity to provide a simple interface:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">class</span> MyRandom</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>{</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">private</span>:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    <span class="co">// Types</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="kw">typedef</span> minstd_rand                             Engine;</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    <span class="kw">typedef</span> uniform_real_distribution&lt;<span class="dt">float</span>&gt;        Distribution;</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    <span class="kw">typedef</span> variate_generator&lt;Engine, Distribution&gt; Generator;</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    <span class="co">// To hold the generator</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    Generator* _gen;</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a><span class="kw">public</span>:</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    MyRandom( <span class="dt">int</span> seed, <span class="dt">float</span> minVal, <span class="dt">float</span> maxVal )</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>    {</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>        _gen = <span class="kw">new</span> Generator( Engine( seed ), Distribution( minVal, maxVal ) );</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>    }</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a>    ~MyRandom()</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>    {</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>        <span class="kw">delete</span> _gen;</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>    }</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a>    <span class="dt">float</span> next()</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>    {</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>        <span class="cf">return</span> (*_gen)();</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>    }</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>};</span></code></pre></div>
-<p>The above class interface is influenced by C# Random, which is how simple and accessible C++ should have been! Writing code using the above class is easy:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="at">const</span> <span class="dt">int</span> seed      = <span class="dv">9999</span>;</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="at">const</span> <span class="dt">float</span> minVal  = <span class="dv">10</span>;</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="at">const</span> <span class="dt">float</span> maxVal  = <span class="dv">100</span>;</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>MyRandom myRand( seed, minVal, maxVal );</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>cout &lt;&lt; <span class="st">&quot;Random value: &quot;</span> &lt;&lt; myRand.next() &lt;&lt; endl;</span></code></pre></div>
+<p>If all I want is to generate some random number simply and quickly,
+the C++ <random> looks truly foreboding! ☹</p>
+<p>Here is a simple random number generator class that wraps up the
+complexity to provide a simple interface:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;random&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyRandom</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">private</span><span class="op">:</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Types</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">typedef</span> minstd_rand                             Engine<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">typedef</span> uniform_real_distribution<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;</span>        Distribution<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">typedef</span> variate_generator<span class="op">&lt;</span>Engine<span class="op">,</span> Distribution<span class="op">&gt;</span> Generator<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// To hold the generator</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    Generator<span class="op">*</span> _gen<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    MyRandom<span class="op">(</span> <span class="dt">int</span> seed<span class="op">,</span> <span class="dt">float</span> minVal<span class="op">,</span> <span class="dt">float</span> maxVal <span class="op">)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        _gen <span class="op">=</span> <span class="kw">new</span> Generator<span class="op">(</span> Engine<span class="op">(</span> seed <span class="op">),</span> Distribution<span class="op">(</span> minVal<span class="op">,</span> maxVal <span class="op">)</span> <span class="op">);</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">~</span>MyRandom<span class="op">()</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="kw">delete</span> _gen<span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">float</span> next<span class="op">()</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">(*</span>_gen<span class="op">)();</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p>The above class interface is influenced by C# Random, which is how
+simple and accessible C++ should have been! Writing code using the above
+class is easy:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">int</span> seed      <span class="op">=</span> <span class="dv">9999</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">float</span> minVal  <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> <span class="dt">float</span> maxVal  <span class="op">=</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>MyRandom myRand<span class="op">(</span> seed<span class="op">,</span> minVal<span class="op">,</span> maxVal <span class="op">);</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;Random value: &quot;</span> <span class="op">&lt;&lt;</span> myRand<span class="op">.</span>next<span class="op">()</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span></code></pre></div>
 <p>I hope this post made digesting <random> a wee bit easier! 😊</p>
 </div>
 
@@ -178,11 +207,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,9 @@
 <p class="date">📅 2020-Aug-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cifs'>cifs</a>, <a href='index.html#git'>git</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I tried to clone a <strong>Git</strong> repository to a directory on a <strong>CIFS</strong> share and got this <code>Interrupted system call</code> error:</p>
+<p>I tried to clone a <strong>Git</strong> repository to a directory on
+a <strong>CIFS</strong> share and got this
+<code>Interrupted system call</code> error:</p>
 <pre><code>$ git clone ssh://git@github.com/foobar.git
 Cloning into &#39;foobar&#39;...
 remote: Enumerating objects: 5191, done.
@@ -58,16 +46,28 @@ fatal: cannot create directory at &#39;src/models/&#39;: Interrupted system call
 warning: Clone succeeded, but checkout failed.
 You can inspect what was checked out with &#39;git status&#39;
 and retry the checkout with &#39;git checkout -f HEAD&#39;</code></pre>
-<p>Git indicated that the cloning succeeded, but when checking out a copy of the files to the filesytem the checkout failed. You can see that it recommends I do an explicit checkout, but that command too fails with the same error.</p>
+<p>Git indicated that the cloning succeeded, but when checking out a
+copy of the files to the filesytem the checkout failed. You can see that
+it recommends I do an explicit checkout, but that command too fails with
+the same error.</p>
 <h2 id="solution">Solution</h2>
-<p>Diagnosing the problem, I observed that the same clone command works fine on a local filesystem, so CIFS played a role in the error. Also, the failing directory had a large binary file that was checked in using <strong>LFS</strong>.</p>
-<p>Googling I found that the case sensitivity of the CIFS share might have played a role in the error. Older Windows filesystems were case-insensitive, so I checked whether Git was automatically switching to <strong>ignore case</strong> for the clone:</p>
+<p>Diagnosing the problem, I observed that the same clone command works
+fine on a local filesystem, so CIFS played a role in the error. Also,
+the failing directory had a large binary file that was checked in using
+<strong>LFS</strong>.</p>
+<p>Googling I found that the case sensitivity of the CIFS share might
+have played a role in the error. Older Windows filesystems were
+case-insensitive, so I checked whether Git was automatically switching
+to <strong>ignore case</strong> for the clone:</p>
 <pre><code>$ git config --get core.ignorecase
 true</code></pre>
 <p>I decided to flip this config:</p>
 <pre><code>$ git config core.ignorecase false</code></pre>
-<p>I was comfortable doing this because I knew that my repository did not have directories or files at the same level which only differed in case.</p>
-<p>After doing the flip, I was able to successfully do the explicit checkout:</p>
+<p>I was comfortable doing this because I knew that my repository did
+not have directories or files at the same level which only differed in
+case.</p>
+<p>After doing the flip, I was able to successfully do the explicit
+checkout:</p>
 <pre><code>$ git checkout -f HEAD</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 18.04</p>
 </div>
@@ -77,11 +77,13 @@ true</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

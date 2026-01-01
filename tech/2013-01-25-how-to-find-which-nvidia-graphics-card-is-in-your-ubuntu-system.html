@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,18 +27,35 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to find which NVIDIA graphics card is in your Ubuntu system</h1>
+<h1 class="title">How to find which NVIDIA graphics card is in your
+Ubuntu system</h1>
 <p class="date">📅 2013-Jan-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#nvidia'>nvidia</a>, <a href='index.html#pci'>pci</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="nvidia-smi">nvidia-smi</h2>
-<p>If you have installed a NVIDIA graphics driver, it ships with the <strong>nvidia-smi</strong> tool that can be used to list the GPUs on your system. More information can be found in my <a href="2019-04-26-nvidia-smi-cheatsheet.html">nvidia-smi cheatsheet</a>.</p>
+<p>If you have installed a NVIDIA graphics driver, it ships with the
+<strong>nvidia-smi</strong> tool that can be used to list the GPUs on
+your system. More information can be found in my <a
+href="2019-04-26-nvidia-smi-cheatsheet.html">nvidia-smi
+cheatsheet</a>.</p>
 <h2 id="lspci">lspci</h2>
-<p>If you do not have a NVIDIA graphics driver or for some reason it is not showing the GPU name correctly (for example it is older than your GPU), then the <strong>lspci</strong> tool can be used instead:</p>
+<p>If you do not have a NVIDIA graphics driver or for some reason it is
+not showing the GPU name correctly (for example it is older than your
+GPU), then the <strong>lspci</strong> tool can be used instead:</p>
 <pre><code>$ lspci | grep -i nvidia</code></pre>
-<p>The <strong>lspci</strong> program lists all the <strong>PCI devices</strong> on the system. If there is a NVIDIA graphics card, it should be listed as a <strong>VGA compatible controller</strong> along with its model name.</p>
-<p>Instead of a model name, if you only see <strong>NVIDIA Corporation Device</strong>, then maybe you are using a card released recently. <a href="2013-01-25-how-to-update-pci-id-information-on-ubuntu.html">Update the PCI ID information</a> on your computer and try the command again.</p>
-<p>You can also lookup the Device ID directly in the <a href="https://pci-ids.ucw.cz/read/PC/10de">NVIDIA device ID list</a>.</p>
-<p>More information can be found in my <a href="2020-11-02-lspci-cheatsheet.html">lspci cheatsheet</a>.</p>
+<p>The <strong>lspci</strong> program lists all the <strong>PCI
+devices</strong> on the system. If there is a NVIDIA graphics card, it
+should be listed as a <strong>VGA compatible controller</strong> along
+with its model name.</p>
+<p>Instead of a model name, if you only see <strong>NVIDIA Corporation
+Device</strong>, then maybe you are using a card released recently. <a
+href="2013-01-25-how-to-update-pci-id-information-on-ubuntu.html">Update
+the PCI ID information</a> on your computer and try the command
+again.</p>
+<p>You can also lookup the Device ID directly in the <a
+href="https://pci-ids.ucw.cz/read/PC/10de">NVIDIA device ID
+list</a>.</p>
+<p>More information can be found in my <a
+href="2020-11-02-lspci-cheatsheet.html">lspci cheatsheet</a>.</p>
 <p><strong>Tried with:</strong> lspci 3.1.8 and Ubuntu 12.04.1 LTS</p>
 </div>
 
@@ -61,11 +64,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

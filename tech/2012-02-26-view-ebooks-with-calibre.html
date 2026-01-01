@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,64 +30,158 @@
 <h1 class="title">View Ebooks with Calibre</h1>
 <p class="date">📅 2012-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ebook-reader'>ebook reader</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://calibre-ebook.com/"><strong>Calibre</strong></a> is a versatile GUI program and set of commandline tools which can be used to manage your local ebook library and to view, manipulate, convert and share ebook files.</p>
+<p><a href="http://calibre-ebook.com/"><strong>Calibre</strong></a> is a
+versatile GUI program and set of commandline tools which can be used to
+manage your local ebook library and to view, manipulate, convert and
+share ebook files.</p>
 <h2 id="install">Install</h2>
 <ul>
-<li><p><strong>Windows</strong>: <a href="https://calibre-ebook.com/download_windows">Download</a> the most recent installer and run it. Calibre will notify you when a newer version is available for installation (usually every 2 weeks).</p></li>
-<li><p><strong>Linux</strong>: DO NOT install the Calibre package available from your Linux distribution! Calibre is updated every 2 weeks and you really want to get the most recent fixes and recipe updates. <a href="https://calibre-ebook.com/download_linux">Install</a> the most recent Calibre on Linux by running this command:</p></li>
+<li><p><strong>Windows</strong>: <a
+href="https://calibre-ebook.com/download_windows">Download</a> the most
+recent installer and run it. Calibre will notify you when a newer
+version is available for installation (usually every 2 weeks).</p></li>
+<li><p><strong>Linux</strong>: DO NOT install the Calibre package
+available from your Linux distribution! Calibre is updated every 2 weeks
+and you really want to get the most recent fixes and recipe updates. <a
+href="https://calibre-ebook.com/download_linux">Install</a> the most
+recent Calibre on Linux by running this command:</p></li>
 </ul>
 <pre><code>$ sudo -v &amp;&amp; wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin</code></pre>
-<p>This installs the calibre tools and files under <code>/opt/calibre</code>.</p>
-<p>Calibre 7.0 and later might require the installation of an extra package before Calibre installation:</p>
+<p>This installs the calibre tools and files under
+<code>/opt/calibre</code>.</p>
+<p>Calibre 7.0 and later might require the installation of an extra
+package before Calibre installation:</p>
 <pre><code>$ sudo apt install libxcb-cursor0</code></pre>
 <h2 id="gui-usage">GUI Usage</h2>
-<p>The GUI of Calibre is where I perform most of the configuration and operations on my ebook library:</p>
+<p>The GUI of Calibre is where I perform most of the configuration and
+operations on my ebook library:</p>
 <ul>
-<li><p><strong>Library</strong>: When Calibre is started for the first time, it asks you to specify a directory under which to maintain your ebook library. By default, Calibre displays the ebooks in your library. All the ebooks you import will also be stored at this location. If you choose the default option, this location is typically <code>%USERPROFILE%\Calibre Library\</code> on Windows or <code>~/CalibreLibrary</code> on Linux.</p></li>
-<li><p><strong>View ebooks</strong>: Any ebook displayed in your library can be viewed by double-clicking it or choosing <em>View</em> in the toolbar. This opens the ebook with Calibre’s <strong>E-Book Viewer</strong>, which can also be opened independently outside Calibre by executing <code>ebook-viewer.exe</code>. The ebook viewer seems to have a minimal UI by default. You can enable all sorts of features (search, TOC, lookup, highlights, font size, colors) by right-clicking anywhere inside the ebook viewer.</p></li>
-<li><p><strong>Add ebooks</strong>: To add ebook files, use the <em>Add books</em> option in the toolbar. This imports the ebook file into your Calibre library and adds it to the your library directory.</p></li>
-<li><p><strong>Convert ebooks</strong>: To convert an ebook file, right-click on the file in the library list and choose <em>Convert books</em> -&gt; <em>Convert individually</em>. See my post on <a href="2020-01-07-how-to-convert-ebook-to-pdf.html">converting ebook to PDF</a> for more info.</p></li>
-<li><p><strong>Fetch news</strong>: A fantastic feature of Calibre is the ability to download blogs, magazines and newspapers from their websites and create ebooks from them. Use the <em>Fetch news</em> option from the toolbar to choose from hundreds of sources whose <strong>recipes</strong> have been contributed by Calibre users. You can either <em>Download now</em> or schedule when you want to fetch regularly. (The latter needs you to keep Calibre running in the background.)</p>
+<li><p><strong>Library</strong>: When Calibre is started for the first
+time, it asks you to specify a directory under which to maintain your
+ebook library. By default, Calibre displays the ebooks in your library.
+All the ebooks you import will also be stored at this location. If you
+choose the default option, this location is typically
+<code>%USERPROFILE%\Calibre Library\</code> on Windows or
+<code>~/CalibreLibrary</code> on Linux.</p></li>
+<li><p><strong>View ebooks</strong>: Any ebook displayed in your library
+can be viewed by double-clicking it or choosing <em>View</em> in the
+toolbar. This opens the ebook with Calibre’s <strong>E-Book
+Viewer</strong>, which can also be opened independently outside Calibre
+by executing <code>ebook-viewer.exe</code>. The ebook viewer seems to
+have a minimal UI by default. You can enable all sorts of features
+(search, TOC, lookup, highlights, font size, colors) by right-clicking
+anywhere inside the ebook viewer.</p></li>
+<li><p><strong>Add ebooks</strong>: To add ebook files, use the <em>Add
+books</em> option in the toolbar. This imports the ebook file into your
+Calibre library and adds it to the your library directory.</p></li>
+<li><p><strong>Convert ebooks</strong>: To convert an ebook file,
+right-click on the file in the library list and choose <em>Convert
+books</em> -&gt; <em>Convert individually</em>. See my post on <a
+href="2020-01-07-how-to-convert-ebook-to-pdf.html">converting ebook to
+PDF</a> for more info.</p></li>
+<li><p><strong>Fetch news</strong>: A fantastic feature of Calibre is
+the ability to download blogs, magazines and newspapers from their
+websites and create ebooks from them. Use the <em>Fetch news</em> option
+from the toolbar to choose from hundreds of sources whose
+<strong>recipes</strong> have been contributed by Calibre users. You can
+either <em>Download now</em> or schedule when you want to fetch
+regularly. (The latter needs you to keep Calibre running in the
+background.)</p>
 <ul>
-<li>Builtin recipes are stored inside a <code>resources/builtin_recipes.zip</code> file inside the Calibre installation.</li>
-<li>You can even create your own recipes to pull down your favorite news sources or blogs by adding their RSS feeds or write your Python code to fetch.</li>
-<li>Recipes you create are stored as <code>*.recipe</code> files in <code>%USERPROFILE%\AppData\Roaming\calibre\custom_recipes</code> on Windows or in <code>~/.config/calibre/custom_recipes</code> on Linux.</li>
+<li>Builtin recipes are stored inside a
+<code>resources/builtin_recipes.zip</code> file inside the Calibre
+installation.</li>
+<li>You can even create your own recipes to pull down your favorite news
+sources or blogs by adding their RSS feeds or write your Python code to
+fetch.</li>
+<li>Recipes you create are stored as <code>*.recipe</code> files in
+<code>%USERPROFILE%\AppData\Roaming\calibre\custom_recipes</code> on
+Windows or in <code>~/.config/calibre/custom_recipes</code> on
+Linux.</li>
 </ul></li>
-<li><p><strong>Ebook readers</strong>: The <em>Device</em> option appears in the toolbar when you connect any ebook reader (like Kobo) or mass storage device to the computer. Drag ebooks from the library list to the Device toolbar button to add them to the device. Or click the <em>Device</em> button to see which ebooks are on it. What is amazing is that even a directory on your own computer can be a pseudo device by choosing <em>Connect/Share -&gt; Connect to folder</em> in the toolbar.</p></li>
-<li><p><strong>Content server</strong>: Your Calibre can even run a web server serving all the ebooks from your libary to any device on your network. From the top toolbar choose <em>Connect/Share -&gt; Start content server</em> option to start this server. The library can be accessed from the browser on any device on the network at the URL: <code>https://&lt;IP-address-of-calibre-computer&gt;:8080</code>. 8080 is the default port, but can be configured to something else. To configure other settings related to this feature go to Preferences -&gt; Sharing -&gt; Sharing over the net.</p></li>
-<li><p><a href="https://manual.calibre-ebook.com/faq.html#how-do-i-move-my-calibre-data-from-one-computer-to-another"><strong>Export/Import</strong></a>: You can export your complete library (books, recipes and all settings) by clicking the Calibre icon in the top toolbar (usually named <em>Calibre Library</em>) and choosing <em>Export/Import all Calibre data</em>. You will need to specify a directory and Calibre writes SQLite files named like <code>part-0001.calibre-data</code>. To import this exported data on another computer, copy these files over and choose the same options as above. Note that you will need to specify a new library folder on importing and Calibre will switch to using this new folder. Your old library folder can be deleted after this operation.</p></li>
-<li><p><strong>Plugins</strong>: Calibre is so deeply modularized that most of its default functionality is implemented through plugins that are installed by default. These installed plugins can be found under Preferences -&gt; Advanced -&gt; Plugins. Double-click on the plugin name to view/change its settings. To install other plugins, use the <em>Get new plugins</em> option in that plugins dialog.</p></li>
+<li><p><strong>Ebook readers</strong>: The <em>Device</em> option
+appears in the toolbar when you connect any ebook reader (like Kobo) or
+mass storage device to the computer. Drag ebooks from the library list
+to the Device toolbar button to add them to the device. Or click the
+<em>Device</em> button to see which ebooks are on it. What is amazing is
+that even a directory on your own computer can be a pseudo device by
+choosing <em>Connect/Share -&gt; Connect to folder</em> in the
+toolbar.</p></li>
+<li><p><strong>Content server</strong>: Your Calibre can even run a web
+server serving all the ebooks from your libary to any device on your
+network. From the top toolbar choose <em>Connect/Share -&gt; Start
+content server</em> option to start this server. The library can be
+accessed from the browser on any device on the network at the URL:
+<code>https://&lt;IP-address-of-calibre-computer&gt;:8080</code>. 8080
+is the default port, but can be configured to something else. To
+configure other settings related to this feature go to Preferences -&gt;
+Sharing -&gt; Sharing over the net.</p></li>
+<li><p><a
+href="https://manual.calibre-ebook.com/faq.html#how-do-i-move-my-calibre-data-from-one-computer-to-another"><strong>Export/Import</strong></a>:
+You can export your complete library (books, recipes and all settings)
+by clicking the Calibre icon in the top toolbar (usually named
+<em>Calibre Library</em>) and choosing <em>Export/Import all Calibre
+data</em>. You will need to specify a directory and Calibre writes
+SQLite files named like <code>part-0001.calibre-data</code>. To import
+this exported data on another computer, copy these files over and choose
+the same options as above. Note that you will need to specify a new
+library folder on importing and Calibre will switch to using this new
+folder. Your old library folder can be deleted after this
+operation.</p></li>
+<li><p><strong>Plugins</strong>: Calibre is so deeply modularized that
+most of its default functionality is implemented through plugins that
+are installed by default. These installed plugins can be found under
+Preferences -&gt; Advanced -&gt; Plugins. Double-click on the plugin
+name to view/change its settings. To install other plugins, use the
+<em>Get new plugins</em> option in that plugins dialog.</p></li>
 </ul>
 <h2 id="calibredb-usage">calibredb Usage</h2>
-<p><a href="https://manual.calibre-ebook.com/generated/en/calibredb.html"><strong>calibredb</strong></a> is the commandline tool to query and modify the Calibre database which is the ebook library directory on the disk. Note that all the calibredb commands require the <code>--library-path</code> option to work.</p>
+<p><a
+href="https://manual.calibre-ebook.com/generated/en/calibredb.html"><strong>calibredb</strong></a>
+is the commandline tool to query and modify the Calibre database which
+is the ebook library directory on the disk. Note that all the calibredb
+commands require the <code>--library-path</code> option to work.</p>
 <ul>
-<li><strong>List books in local directory:</strong> Use the <code>list</code> command to list the books in the library:</li>
+<li><strong>List books in local directory:</strong> Use the
+<code>list</code> command to list the books in the library:</li>
 </ul>
 <pre><code>$ calibredb list --library-path=/path/to/your/library/</code></pre>
-<p>None of the calibredb commands (like the one above) will not work if you have the GUI program running in the background or if the content server is running. Stop the GUI program and content server to run the above command.</p>
+<p>None of the calibredb commands (like the one above) will not work if
+you have the GUI program running in the background or if the content
+server is running. Stop the GUI program and content server to run the
+above command.</p>
 <ul>
 <li><strong>List books through content server:</strong></li>
 </ul>
-<p>If you are running a Calibre content server, it can be disruptive to stop it just to access the library from the commandline. Instead connect to the content server and access the library through that:</p>
+<p>If you are running a Calibre content server, it can be disruptive to
+stop it just to access the library from the commandline. Instead connect
+to the content server and access the library through that:</p>
 <pre><code>$ calibredb --library-path=&quot;http://localhost:8080/&quot; list</code></pre>
 <ul>
 <li><strong>List libraries in content server:</strong></li>
 </ul>
-<p>To get a list of all the unique IDs of the libraries being shared by the content server:</p>
+<p>To get a list of all the unique IDs of the libraries being shared by
+the content server:</p>
 <pre><code>$ calibredb --library-path=&quot;http://localhost:8080/#-&quot; list</code></pre>
 <p>To use a specific library in the calibredb commands use its ID:</p>
 <pre><code>$ calibredb --library-path=&quot;http://localhost:8080/#foobarlibraryid&quot; list</code></pre>
 <ul>
-<li><strong>List books with different fields:</strong> By default, the <code>title,authors</code> fields of the books are listed (along with the unique book <code>id</code> - which is always listed). To list books with a different set of fields:</li>
+<li><strong>List books with different fields:</strong> By default, the
+<code>title,authors</code> fields of the books are listed (along with
+the unique book <code>id</code> - which is always listed). To list books
+with a different set of fields:</li>
 </ul>
 <pre><code>$ calibredb list --library-path=/path/to/your/library/ --fields=&quot;title,pubdate&quot;</code></pre>
 <ul>
 <li><strong>Remove books from library:</strong></li>
 </ul>
-<p>Provide a comma separated list of book IDs to the <code>remove</code> command to remove those books from the library:</p>
+<p>Provide a comma separated list of book IDs to the <code>remove</code>
+command to remove those books from the library:</p>
 <pre><code>$ calibredb --library-path=/path/to/your/library/ remove 10,20,32-35</code></pre>
 <p>This command will not work on a content server.</p>
-<p>To enable removal of books through content server, go to Preferences -&gt; Sharing over the net -&gt; Advanced and enable the <em>Allow un-authenticated local connections to make changes</em> option.</p>
+<p>To enable removal of books through content server, go to Preferences
+-&gt; Sharing over the net -&gt; Advanced and enable the <em>Allow
+un-authenticated local connections to make changes</em> option.</p>
 <p><strong>Tried with:</strong> Calibre 6.10</p>
 </div>
 
@@ -110,11 +190,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

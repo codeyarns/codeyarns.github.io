@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,23 +30,39 @@
 <h1 class="title">p4 changelist cheatsheet</h1>
 <p class="date">📅 2018-Jun-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#changelist'>changelist</a>, <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#p4'>p4</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A <strong>changelist</strong> in <strong>Perforce</strong> is identified by an unique number and contains a list of modified files and a description (among other things). When you inform Perforce that you have created a file, deleted a file or modified a file, such changed files are by default added to a <strong>default changelist</strong> that has no changelist number.</p>
+<p>A <strong>changelist</strong> in <strong>Perforce</strong> is
+identified by an unique number and contains a list of modified files and
+a description (among other things). When you inform Perforce that you
+have created a file, deleted a file or modified a file, such changed
+files are by default added to a <strong>default changelist</strong> that
+has no changelist number.</p>
 <ul>
-<li>To create a changelist by grabbing the files in the current default changelist:</li>
+<li>To create a changelist by grabbing the files in the current default
+changelist:</li>
 </ul>
 <pre><code>$ p4 change</code></pre>
-<p>This opens your default editor to a temporary text file showing an empty description and the list of files from the default changelist. You have to use the editor and provide a description. If you do not want some of the files to be in the changelist you are creating, you can delete those lines in the editor. Once you save the file, the changelist is created with a unique number identifying it. After this command ends, p4 prints out its changelist number, say 123456.</p>
-<p>Note that this command moves all the files in the default changelist to the new changelist you created. That is, unless you removed a few of them while creating the changelist.</p>
+<p>This opens your default editor to a temporary text file showing an
+empty description and the list of files from the default changelist. You
+have to use the editor and provide a description. If you do not want
+some of the files to be in the changelist you are creating, you can
+delete those lines in the editor. Once you save the file, the changelist
+is created with a unique number identifying it. After this command ends,
+p4 prints out its changelist number, say 123456.</p>
+<p>Note that this command moves all the files in the default changelist
+to the new changelist you created. That is, unless you removed a few of
+them while creating the changelist.</p>
 <ul>
 <li>To view all the details of an existing changelist 123456:</li>
 </ul>
 <pre><code>$ p4 change -o 123456</code></pre>
 <ul>
-<li>To move a file on the filesystem to an existing changelist 123456:</li>
+<li>To move a file on the filesystem to an existing changelist
+123456:</li>
 </ul>
 <pre><code>$ p4 reopen -c 123456 joe/foobar.cpp</code></pre>
 <ul>
-<li>To move a file from an existing changelist 123456 to the default changelist:</li>
+<li>To move a file from an existing changelist 123456 to the default
+changelist:</li>
 </ul>
 <pre><code>$ p4 reopen -c default joe/foobar.cpp</code></pre>
 <h2 id="description">Description</h2>
@@ -82,17 +84,27 @@
 </ul>
 <pre><code>$ p4 describe -s -S 123456</code></pre>
 <ul>
-<li>To update a shelved changelist 123456 with newly updated files from disk:</li>
+<li>To update a shelved changelist 123456 with newly updated files from
+disk:</li>
 </ul>
 <pre><code>$ p4 shelve -f -c 123456</code></pre>
-<p>Note that there might be files that are present in the shelve but not present in the pending changelist. This operation will not touch those file in the shelve and those files will continue to exist in the shelve.</p>
+<p>Note that there might be files that are present in the shelve but not
+present in the pending changelist. This operation will not touch those
+file in the shelve and those files will continue to exist in the
+shelve.</p>
 <ul>
-<li>To replace a shelved changelist 123456 from the pending changelist:</li>
+<li>To replace a shelved changelist 123456 from the pending
+changelist:</li>
 </ul>
 <pre><code>$ p4 shelve -r -c 123456</code></pre>
-<p>Note how this is different from the <code>-f</code> option. This operation completely replaces the current shelve with the pending changelist. After this operation the shelve and the pending changelist will be perfect replicas of each other. Files that were present in the shelve and not in the pending changelist will be lost.</p>
+<p>Note how this is different from the <code>-f</code> option. This
+operation completely replaces the current shelve with the pending
+changelist. After this operation the shelve and the pending changelist
+will be perfect replicas of each other. Files that were present in the
+shelve and not in the pending changelist will be lost.</p>
 <ul>
-<li>To update a shelved file with a particular changed file from disk:</li>
+<li>To update a shelved file with a particular changed file from
+disk:</li>
 </ul>
 <pre><code>$ p4 shelve -f -c 123456 foobar.cpp</code></pre>
 <ul>
@@ -105,20 +117,24 @@
 <pre><code>$ p4 shelve -d -c 123456 joe/foo.cpp joe/foo.h</code></pre>
 <h2 id="unshelve">Unshelve</h2>
 <ul>
-<li>To unshelve the files that were shelved from a changelist 123456 back to the same changelist:</li>
+<li>To unshelve the files that were shelved from a changelist 123456
+back to the same changelist:</li>
 </ul>
 <pre><code>$ p4 unshelve -s 123456 -c 123456</code></pre>
 <ul>
-<li>To unshelve the files that were shelved from a changelist 123456 back to a different changelist 789012:</li>
+<li>To unshelve the files that were shelved from a changelist 123456
+back to a different changelist 789012:</li>
 </ul>
 <pre><code>$ p4 unshelve -s 123456 -c 789012</code></pre>
 <ul>
-<li>To unshelve the files that were shelved from a changelist 123456 back to the default changelist:</li>
+<li>To unshelve the files that were shelved from a changelist 123456
+back to the default changelist:</li>
 </ul>
 <pre><code>$ p4 unshelve -s 123456</code></pre>
 <h2 id="submit">Submit</h2>
 <ul>
-<li>To create a changelist from the default changelist and submit it to your branch in the depot:</li>
+<li>To create a changelist from the default changelist and submit it to
+your branch in the depot:</li>
 </ul>
 <pre><code>$ p4 submit</code></pre>
 <ul>
@@ -132,11 +148,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

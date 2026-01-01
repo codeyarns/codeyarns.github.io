@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,17 +31,33 @@
 <p class="date">📅 2014-Nov-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#calibri'>calibri</a>, <a href='index.html#chrome'>chrome</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>A few weeks ago I started noticing that the text of certain emails in GMail was not rendering correctly in Chrome. I ruled out GMail as the problem since these emails rendered fine on Firefox. On investigating further, I noticed that this happened only if the sender had set the font for the email text as Calibri. Since this happened mostly on work emails, I guessed that these emails were being sent from Outlook and that it used Calibri as a default font for emails.</p>
+<p>A few weeks ago I started noticing that the text of certain emails in
+GMail was not rendering correctly in Chrome. I ruled out GMail as the
+problem since these emails rendered fine on Firefox. On investigating
+further, I noticed that this happened only if the sender had set the
+font for the email text as Calibri. Since this happened mostly on work
+emails, I guessed that these emails were being sent from Outlook and
+that it used Calibri as a default font for emails.</p>
 <h2 id="solution">Solution</h2>
-<p>It turns out that this indeed is a bug in Chrome, as reported <a href="https://code.google.com/p/chromium/issues/detail?id=374818">here</a>. Thankfully, some kind souls have <a href="http://askubuntu.com/questions/520044">shared a solution</a> to get around it by turning off Microsoft’s embedded anti-aliasing in this font. Their solution edits the file <code>~/.config/fontconfig/fonts.conf</code>. However, this is an auto-generated file and should not be modified.</p>
-<p>Instead, create or edit this file <code>~/.config/font-manager/local.conf</code> and add these lines:</p>
+<p>It turns out that this indeed is a bug in Chrome, as reported <a
+href="https://code.google.com/p/chromium/issues/detail?id=374818">here</a>.
+Thankfully, some kind souls have <a
+href="http://askubuntu.com/questions/520044">shared a solution</a> to
+get around it by turning off Microsoft’s embedded anti-aliasing in this
+font. Their solution edits the file
+<code>~/.config/fontconfig/fonts.conf</code>. However, this is an
+auto-generated file and should not be modified.</p>
+<p>Instead, create or edit this file
+<code>~/.config/font-manager/local.conf</code> and add these lines:</p>
 <pre><code>&lt;match target=&quot;font&quot;&gt;
     &lt;edit name=&quot;embeddedbitmap&quot; mode=&quot;assign&quot;&gt;
         &lt;bool&gt;false&lt;/bool&gt;
     &lt;/edit&gt;
 &lt;/match&gt;</code></pre>
-<p>Restart Ubuntu and emails using Calibri should render fine now! 😊</p>
-<p><strong>Tried with:</strong> Chrome 38.0.2125.111 (64-bit) and Ubuntu 14.04</p>
+<p>Restart Ubuntu and emails using Calibri should render fine now!
+😊</p>
+<p><strong>Tried with:</strong> Chrome 38.0.2125.111 (64-bit) and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -63,11 +65,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

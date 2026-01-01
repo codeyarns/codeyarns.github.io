@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,15 +27,31 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to create a confusion matrix plot using Matplotlib</h1>
+<h1 class="title">How to create a confusion matrix plot using
+Matplotlib</h1>
 <p class="date">📅 2014-Oct-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#confusion-matrix'>confusion matrix</a>, <a href='index.html#matplotlib'>matplotlib</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2014/10/20141024-confusion-matrix.png" alt="" /><figcaption>Confusion matrix plot generated using Matplotlib</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2014/10/20141024-confusion-matrix.png"
+alt="Confusion matrix plot generated using Matplotlib" />
+<figcaption aria-hidden="true">Confusion matrix plot generated using
+Matplotlib</figcaption>
 </figure>
-<p>Confusion matrix is an excellent method to illustrate the results of multi-class classification. It takes a single function call in Matplotlib to generate a colorful confusion matrix plot. However, you have to first have your results in the form of a confusion matrix.</p>
-<p>Let me illustrate with an example. Assume, you have 4 classes: A, B, C and D. Your classifier does great on A, C and D with fully accurate results. However, for results that should be class B, it classifies them as A 10% of the time and as C 20% of the time. You should be able to extract such classification results from your classifier easily.</p>
-<p>You just need to put these results in a 2D float Numpy array in the form of a confusion matrix. In this type of matrix, typically the true classes are listed on the Y axis, top to bottom. The predicted classes are listed on X axis, from left to right. For our example, the confusion matrix would look like this:</p>
+<p>Confusion matrix is an excellent method to illustrate the results of
+multi-class classification. It takes a single function call in
+Matplotlib to generate a colorful confusion matrix plot. However, you
+have to first have your results in the form of a confusion matrix.</p>
+<p>Let me illustrate with an example. Assume, you have 4 classes: A, B,
+C and D. Your classifier does great on A, C and D with fully accurate
+results. However, for results that should be class B, it classifies them
+as A 10% of the time and as C 20% of the time. You should be able to
+extract such classification results from your classifier easily.</p>
+<p>You just need to put these results in a 2D float Numpy array in the
+form of a confusion matrix. In this type of matrix, typically the true
+classes are listed on the Y axis, top to bottom. The predicted classes
+are listed on X axis, from left to right. For our example, the confusion
+matrix would look like this:</p>
 <pre><code>[[100 0  0   0  ]
  [10  70 20  0  ]
  [0   0  100 0  ]
@@ -59,7 +61,12 @@
  [0.1 0.7 0.2 0  ]
  [0   0   1.0 0  ]
  [0   0   0   1.0]]</code></pre>
-<p>Once you have this as a 2D float Numpy array, just pass it to the <a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.matshow">matshow</a> method of Matplotlib to generate the confusion matrix plot. To get a temperature scale of the colors used in the plot, call the <a href="http://matplotlib.org/api/colorbar_api.html#module-matplotlib.colorbar">colorbar</a> method:</p>
+<p>Once you have this as a 2D float Numpy array, just pass it to the <a
+href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.matshow">matshow</a>
+method of Matplotlib to generate the confusion matrix plot. To get a
+temperature scale of the colors used in the plot, call the <a
+href="http://matplotlib.org/api/colorbar_api.html#module-matplotlib.colorbar">colorbar</a>
+method:</p>
 <pre><code>import matplotlib.pyplot as plt
 
 # Assume m is 2D Numpy array with these values
@@ -70,7 +77,8 @@
 
 plt.matshow(m)
 plt.colorbar()</code></pre>
-<p>To add X-axis, Y-axis labels, and other modifications, use the typical calls you use in Matplotlib for other types of plots.</p>
+<p>To add X-axis, Y-axis labels, and other modifications, use the
+typical calls you use in Matplotlib for other types of plots.</p>
 <p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
 </div>
 
@@ -79,11 +87,13 @@ plt.colorbar()</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

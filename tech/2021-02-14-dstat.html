@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,15 @@
 <h1 class="title">dstat</h1>
 <p class="date">📅 2021-Feb-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dstat'>dstat</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>dstat</strong> is a good utility to get a runtime view of statistics of system resources like CPU, disk and network.</p>
+<p><strong>dstat</strong> is a good utility to get a runtime view of
+statistics of system resources like CPU, disk and network.</p>
 <ul>
 <li>To install this tool:</li>
 </ul>
 <pre><code>$ sudo apt install dstat</code></pre>
 <ul>
-<li>The default command print out many system statistics at a 1 second interval until you exit with <code>Ctrl+C</code>:</li>
+<li>The default command print out many system statistics at a 1 second
+interval until you exit with <code>Ctrl+C</code>:</li>
 </ul>
 <pre><code>$ dstat
 
@@ -60,25 +48,36 @@ usr sys idl wai stl| read  writ| recv  send|  in   out | int   csw
   3   4  81  12   0|  16k 1135k|   0     0 |   0     0 |9497  1088
   1   1   0  98   0|   0   364k| 218B 1428B|   0     0 |  10k 2520
   3  10   0  87   0|   0   880k| 367B  338B|   0     0 |  10k 2805</code></pre>
-<p>We can see that by default, it prints out CPU (<code>-c</code>), disk (<code>-d</code>), network (<code>-n</code>), page (<code>-g</code>) and system (<code>-y</code>) stats. Individual stats of each of these can obtained by using those commandline options. For example, <code>dstat -d</code> to view disk statistics only.</p>
-<p>Also, note that the first report (i.e., the first line) is the total or average of that stat from the time the system was booted.</p>
+<p>We can see that by default, it prints out CPU (<code>-c</code>), disk
+(<code>-d</code>), network (<code>-n</code>), page (<code>-g</code>) and
+system (<code>-y</code>) stats. Individual stats of each of these can
+obtained by using those commandline options. For example,
+<code>dstat -d</code> to view disk statistics only.</p>
+<p>Also, note that the first report (i.e., the first line) is the total
+or average of that stat from the time the system was booted.</p>
 <ul>
-<li>To view statistics with a different delay (instead of the default 1-second interval):</li>
+<li>To view statistics with a different delay (instead of the default
+1-second interval):</li>
 </ul>
 <pre><code>$ dstat 9</code></pre>
-<p>The delay argument can be used to the right of other commandline options, like <code>dstat -d 9</code> for example.</p>
+<p>The delay argument can be used to the right of other commandline
+options, like <code>dstat -d 9</code> for example.</p>
 <ul>
-<li>To set the number of reports (say <code>20</code>), provide the count to the right of the delay argument:</li>
+<li>To set the number of reports (say <code>20</code>), provide the
+count to the right of the delay argument:</li>
 </ul>
 <pre><code>$ dstat 9 20</code></pre>
 <ul>
 <li>To output the stats to a CSV file:</li>
 </ul>
 <pre><code>$ dstat --output joe.csv 1 3</code></pre>
-<p>Note that the <code>--output</code> and other options have to be placed before the delay and count arguments.</p>
+<p>Note that the <code>--output</code> and other options have to be
+placed before the delay and count arguments.</p>
 <p><strong>References</strong>:</p>
 <ul>
-<li><a href="https://www.networkworld.com/article/3291616/examining-linux-system-performance-with-dstat.html">Article on dstat at NetworkWorld</a></li>
+<li><a
+href="https://www.networkworld.com/article/3291616/examining-linux-system-performance-with-dstat.html">Article
+on dstat at NetworkWorld</a></li>
 <li><a href="https://linux.die.net/man/1/dstat">dstat man page</a></li>
 </ul>
 </div>
@@ -88,11 +87,13 @@ usr sys idl wai stl| read  writ| recv  send|  in   out | int   csw
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

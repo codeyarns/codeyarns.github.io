@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,16 +31,27 @@
 <p class="date">📅 2016-Jul-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dolphin'>dolphin</a>, <a href='index.html#kde'>kde</a>, <a href='index.html#kubuntu'>kubuntu</a>, <a href='index.html#single-click'>single-click</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I recently upgraded a <strong>Kubuntu 15.10</strong> operating system to <strong>Kubuntu 16.04</strong>. I used to use <strong>single-click</strong> to open files and directories in the Dolphin file manager. This stopped working after the upgrade. Only double-click would open files and directories.</p>
+<p>I recently upgraded a <strong>Kubuntu 15.10</strong> operating system
+to <strong>Kubuntu 16.04</strong>. I used to use
+<strong>single-click</strong> to open files and directories in the
+Dolphin file manager. This stopped working after the upgrade. Only
+double-click would open files and directories.</p>
 <h2 id="solution">Solution</h2>
 <ul>
-<li>The option to choose between single-click or double-click can be set in System Settings → Input Devices → Mouse. However, this had no effect in Dolphin. I even checked that it was set:</li>
+<li>The option to choose between single-click or double-click can be set
+in System Settings → Input Devices → Mouse. However, this had no effect
+in Dolphin. I even checked that it was set:</li>
 </ul>
 <pre><code>$ cat ~/.config/kdeglobals | grep SingleClick
 SingleClick=true</code></pre>
 <ul>
-<li><p>Further investigation showed that this was a <a href="https://bugs.kde.org/show_bug.cgi?id=343418">known bug</a>. It is fixed, but I guess it will be a while before that flows downstream to Kubuntu.</p></li>
-<li><p>The only solution that worked for me was to install the older Dolphin from KDE 4 and running it instead of the default Dolphin from KDE 5:</p></li>
+<li><p>Further investigation showed that this was a <a
+href="https://bugs.kde.org/show_bug.cgi?id=343418">known bug</a>. It is
+fixed, but I guess it will be a while before that flows downstream to
+Kubuntu.</p></li>
+<li><p>The only solution that worked for me was to install the older
+Dolphin from KDE 4 and running it instead of the default Dolphin from
+KDE 5:</p></li>
 </ul>
 <pre><code>$ sudo apt install dolphin4
 $ dolphin4</code></pre>
@@ -65,11 +62,13 @@ $ dolphin4</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

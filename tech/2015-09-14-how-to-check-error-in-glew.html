@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,25 @@
 <h1 class="title">How to check error in GLEW</h1>
 <p class="date">📅 2015-Sep-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#glew'>glew</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You typically check for error after initializing <strong>GLEW</strong> by calling <code>glewInit()</code>. It returns an error value of type <code>GLenum</code>. Note that GLEW merely uses this data type, it has defined its own error values based on it.</p>
-<p>By looking at GLEW header files, I find that the <strong>error values</strong> currently supported are:</p>
+<p>You typically check for error after initializing
+<strong>GLEW</strong> by calling <code>glewInit()</code>. It returns an
+error value of type <code>GLenum</code>. Note that GLEW merely uses this
+data type, it has defined its own error values based on it.</p>
+<p>By looking at GLEW header files, I find that the <strong>error
+values</strong> currently supported are:</p>
 <pre><code>#define GLEW_OK 0
 #define GLEW_NO_ERROR 0
 #define GLEW_ERROR_NO_GL_VERSION 1  /* missing GL version */
 #define GLEW_ERROR_GL_VERSION_10_ONLY 2  /* Need at least OpenGL 1.1 */
 #define GLEW_ERROR_GLX_VERSION_11_ONLY 3  /* Need at least GLX 1.2 */</code></pre>
-<p>So, you typically first check if the value returned from <code>glewInit()</code> is <code>GLEW_OK</code>. If not, you further investigate what the error might be.</p>
-<p>GLEW provides an utility function <code>glewGetErrorString()</code> that provides an <strong>error string</strong> given the error value.</p>
-<p>Putting all the above together, this is how we could check for error in GLEW:</p>
+<p>So, you typically first check if the value returned from
+<code>glewInit()</code> is <code>GLEW_OK</code>. If not, you further
+investigate what the error might be.</p>
+<p>GLEW provides an utility function <code>glewGetErrorString()</code>
+that provides an <strong>error string</strong> given the error
+value.</p>
+<p>Putting all the above together, this is how we could check for error
+in GLEW:</p>
 <pre><code>const GLenum err = glewInit();
 
 if (GLEW_OK != err)
@@ -69,11 +64,13 @@ if (GLEW_OK != err)
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

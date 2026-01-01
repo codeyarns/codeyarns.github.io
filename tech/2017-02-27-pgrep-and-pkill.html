@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,13 @@
 <h1 class="title">pgrep and pkill</h1>
 <p class="date">📅 2017-Feb-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#kill'>kill</a>, <a href='index.html#pgrep'>pgrep</a>, <a href='index.html#pkill'>pkill</a>, <a href='index.html#ps'>ps</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>pgrep</strong> and <strong>pkill</strong> are two useful commands that go well together. You can list processes using <a href="2016-09-27-ps-cheatsheet.html"><strong>ps</strong></a> and kill them using <a href="2016-05-31-how-to-kill-a-process.html"><strong>kill</strong></a>. However, I find it easier to use pgrep and pkill when I want to find and kill a process.</p>
+<p><strong>pgrep</strong> and <strong>pkill</strong> are two useful
+commands that go well together. You can list processes using <a
+href="2016-09-27-ps-cheatsheet.html"><strong>ps</strong></a> and kill
+them using <a
+href="2016-05-31-how-to-kill-a-process.html"><strong>kill</strong></a>.
+However, I find it easier to use pgrep and pkill when I want to find and
+kill a process.</p>
 <h2 id="pgrep">pgrep</h2>
 <ul>
 <li>To list all the PIDs of a user:</li>
@@ -57,11 +49,13 @@ $ pgrep -u joe</code></pre>
 <pre><code>$ pgrep --uid joe --list-name
 $ pgrep -u joe -l</code></pre>
 <ul>
-<li>To list the PID and the corresponding full command line for a user:</li>
+<li>To list the PID and the corresponding full command line for a
+user:</li>
 </ul>
 <pre><code>$ pgrep --uid joe --list-full
 $ pgrep -u joe -a</code></pre>
-<p>This is extremely useful because to find Python scripts or commandline arguments to a program that is running as a process.</p>
+<p>This is extremely useful because to find Python scripts or
+commandline arguments to a program that is running as a process.</p>
 <ul>
 <li>To list the PID whose process name matches input pattern:</li>
 </ul>
@@ -71,17 +65,22 @@ $ pgrep -u joe -a</code></pre>
 </ul>
 <pre><code>$ pgrep -l foobar</code></pre>
 <ul>
-<li>To list the PID and command line of processes that match input pattern:</li>
+<li>To list the PID and command line of processes that match input
+pattern:</li>
 </ul>
 <pre><code>$ pgrep -a foobar</code></pre>
 <h2 id="pkill">pkill</h2>
-<p>pkill is used to send a signal to or kill processes by using a pattern that matches a process name or its command line. pkill takes many arguments that are similar to pgrep.</p>
+<p>pkill is used to send a signal to or kill processes by using a
+pattern that matches a process name or its command line. pkill takes
+many arguments that are similar to pgrep.</p>
 <ul>
-<li>To kill all processes of current user that matches input pattern:</li>
+<li>To kill all processes of current user that matches input
+pattern:</li>
 </ul>
 <pre><code>$ pkill foobar</code></pre>
 <ul>
-<li>To kill all processes of current user that matches input pattern in its command line:</li>
+<li>To kill all processes of current user that matches input pattern in
+its command line:</li>
 </ul>
 <pre><code>$ pkill -f foobar</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
@@ -92,11 +91,13 @@ $ pgrep -u joe -a</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

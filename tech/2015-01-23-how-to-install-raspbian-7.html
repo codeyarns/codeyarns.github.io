@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,22 +30,39 @@
 <h1 class="title">How to install Raspbian 7</h1>
 <p class="date">📅 2015-Jan-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#raspberry-pi'>raspberry pi</a>, <a href='index.html#raspbian'>raspbian</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://codeyarns.files.wordpress.com/2015/01/20150123_raspbian.png"><img src="https://codeyarns.files.wordpress.com/2015/01/20150123_raspbian.png" alt="20150123_raspbian" /></a></p>
-<p><strong>Raspbian</strong> is a Debian distribution for the <strong>Raspberry Pi</strong>.</p>
+<p><a
+href="https://codeyarns.files.wordpress.com/2015/01/20150123_raspbian.png"><img
+src="https://codeyarns.files.wordpress.com/2015/01/20150123_raspbian.png"
+alt="20150123_raspbian" /></a></p>
+<p><strong>Raspbian</strong> is a Debian distribution for the
+<strong>Raspberry Pi</strong>.</p>
 <p>Installing it to the Pi is easy:</p>
 <ul>
-<li>Download the latest Raspbian disk image from <a href="http://www.raspberrypi.org/downloads/">here</a>. Unzip the <code>.img</code> file from the downloaded zip file.</li>
-<li>Insert a <strong>SD card</strong> of at least 4GB capacity into your computer. Write the downloaded disk image to it, as described <a href="2013/06/21/how-to-write-a-disk-image-on-linux/">here</a>.</li>
-<li>Insert this SD card into the Pi board. Connect your Pi and your home wireless router with a Ethernet cable. Power on the Pi.</li>
-<li>Go to the Admin webpage of your wireless router and figure out what IP address has been assigned to your Pi. Let us assume it is assigned <code>192.168.0.99</code>.</li>
-<li>SSH into your Pi using the command <code>ssh pi@192.168.0.99</code>. The default password is <code>raspberry</code>.</li>
-<li>Run <code>sudo raspi-config</code> and choose to <code>Expand filesystem</code>. This expands Raspbian to make full use of the space on your SD card. Exit the config tool and choose to reboot when it requests so.</li>
-<li>Once your Pi restarts back and is connected to the home network, SSH into it again. Update the packages to the latest versions:</li>
+<li>Download the latest Raspbian disk image from <a
+href="http://www.raspberrypi.org/downloads/">here</a>. Unzip the
+<code>.img</code> file from the downloaded zip file.</li>
+<li>Insert a <strong>SD card</strong> of at least 4GB capacity into your
+computer. Write the downloaded disk image to it, as described <a
+href="2013/06/21/how-to-write-a-disk-image-on-linux/">here</a>.</li>
+<li>Insert this SD card into the Pi board. Connect your Pi and your home
+wireless router with a Ethernet cable. Power on the Pi.</li>
+<li>Go to the Admin webpage of your wireless router and figure out what
+IP address has been assigned to your Pi. Let us assume it is assigned
+<code>192.168.0.99</code>.</li>
+<li>SSH into your Pi using the command <code>ssh pi@192.168.0.99</code>.
+The default password is <code>raspberry</code>.</li>
+<li>Run <code>sudo raspi-config</code> and choose to
+<code>Expand filesystem</code>. This expands Raspbian to make full use
+of the space on your SD card. Exit the config tool and choose to reboot
+when it requests so.</li>
+<li>Once your Pi restarts back and is connected to the home network, SSH
+into it again. Update the packages to the latest versions:</li>
 </ul>
 <pre><code>$ sudo apt-get update
 $ sudo apt-get upgrade</code></pre>
 <ul>
-<li>If you want Raspbian to auto-mount USB storage devices (thumbdrives and harddisks) and NTFS partitions, then install these tools:</li>
+<li>If you want Raspbian to auto-mount USB storage devices (thumbdrives
+and harddisks) and NTFS partitions, then install these tools:</li>
 </ul>
 <pre><code>$ sudo apt-get install usbmount
 $ sudo apt-get install ntfs-3g</code></pre>
@@ -75,11 +78,13 @@ $ sudo apt-get install ntfs-3g</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

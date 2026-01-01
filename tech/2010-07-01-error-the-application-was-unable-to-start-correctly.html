@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,22 +27,39 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Error: The application was unable to start correctly</h1>
+<h1 class="title">Error: The application was unable to start
+correctly</h1>
 <p class="date">📅 2010-Jul-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dependency-walker'>dependency walker</a>, <a href='index.html#dll'>dll</a>, <a href='index.html#errors'>errors</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>Executing some programs of your own creation can sometimes result in the craziest <strong>errors</strong>. Here is an error that I face sometimes:</p>
+<p>Executing some programs of your own creation can sometimes result in
+the craziest <strong>errors</strong>. Here is an error that I face
+sometimes:</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_application_error.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2010/07/2010_07_01_application_error.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p>The error message:</p>
 <blockquote>
-The application was unable to start correctly (0xc0000013). Click OK to close the application.
+The application was unable to start correctly (0xc0000013). Click OK to
+close the application.
 </blockquote>
-<p>Showing no clues to solve it and throwing a random error number (or is it an address) like <code>0xc0000013</code> this one is a real mystery!</p>
+<p>Showing no clues to solve it and throwing a random error number (or
+is it an address) like <code>0xc0000013</code> this one is a real
+mystery!</p>
 <h2 id="solution">Solution</h2>
-<p>I have found that this error message typically occurs when something is wrong with the DLL files being loaded by the executable at runtime. I use the awesome <strong><a href="https://codeyarns.com/tech/2010/07/01/dependency-walker/">Dependency Walker</a></strong> to load the program and find the underlying cause.</p>
-<p>For example, I found that I had placed x64 DLL files in the directory of a x86 executable. On running this executable, I was getting this error. On replacing those files with x86 DLL files, the executable loaded fine.</p>
+<p>I have found that this error message typically occurs when something
+is wrong with the DLL files being loaded by the executable at runtime. I
+use the awesome <strong><a
+href="https://codeyarns.com/tech/2010/07/01/dependency-walker/">Dependency
+Walker</a></strong> to load the program and find the underlying
+cause.</p>
+<p>For example, I found that I had placed x64 DLL files in the directory
+of a x86 executable. On running this executable, I was getting this
+error. On replacing those files with x86 DLL files, the executable
+loaded fine.</p>
 </div>
 
 <br />
@@ -64,11 +67,13 @@ The application was unable to start correctly (0xc0000013). Click OK to close th
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

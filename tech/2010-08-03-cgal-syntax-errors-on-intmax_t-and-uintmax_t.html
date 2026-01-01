@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,24 @@
 <h1 class="title">CGAL: Syntax Errors on intmax_t and uintmax_t</h1>
 <p class="date">📅 2010-Aug-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#boost'>boost</a>, <a href='index.html#cgal'>cgal</a>, <a href='index.html#errors'>errors</a>, <a href='index.html#mpfr'>mpfr</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Trying to compile <strong><a href="http://www.cgal.org/">CGAL</a></strong> 3.6.1 with <strong><a href="http://www.boost.org/">Boost</a></strong> 1.42 on Windows generated a lot of errors of this form:</p>
+<p>Trying to compile <strong><a
+href="http://www.cgal.org/">CGAL</a></strong> 3.6.1 with <strong><a
+href="http://www.boost.org/">Boost</a></strong> 1.42 on Windows
+generated a lot of errors of this form:</p>
 <blockquote>
 CGAL-3.6.1
 .h(280) : error C2061: syntax error : identifier ‘intmax_t’ CGAL-3.6.1
 .h(283) : error C2061: syntax error : identifier ‘uintmax_t’
 </blockquote>
-<p>The errors are related to the (missing) declaration of <code>intmax_t</code> and <code>uintmax_t</code>. According to <a href="http://comments.gmane.org/gmane.comp.lib.mpfr.general/669">this thread</a> on the <strong><a href="http://www.mpfr.org/">MPFR</a></strong> mailing list, these errors are caused due to changes in Boost 1.42 and later. So, until MPFR is updated to handle these Boost versions, the solution is to use older versions of Boost. I used Boost 1.41 and CGAL compiled successfully! 😊</p>
+<p>The errors are related to the (missing) declaration of
+<code>intmax_t</code> and <code>uintmax_t</code>. According to <a
+href="http://comments.gmane.org/gmane.comp.lib.mpfr.general/669">this
+thread</a> on the <strong><a
+href="http://www.mpfr.org/">MPFR</a></strong> mailing list, these errors
+are caused due to changes in Boost 1.42 and later. So, until MPFR is
+updated to handle these Boost versions, the solution is to use older
+versions of Boost. I used Boost 1.41 and CGAL compiled successfully!
+😊</p>
 </div>
 
 <br />
@@ -58,11 +55,13 @@ CGAL-3.6.1
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

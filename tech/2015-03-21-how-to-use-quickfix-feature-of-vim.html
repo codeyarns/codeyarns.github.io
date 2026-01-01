@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,27 +27,59 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to use Quickfix feature of Vim for compilation</h1>
+<h1 class="title">How to use Quickfix feature of Vim for
+compilation</h1>
 <p class="date">📅 2015-Mar-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cmake'>cmake</a>, <a href='index.html#make'>make</a>, <a href='index.html#quickfix'>quickfix</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/03/20150321_quickfix.png" alt="" /><figcaption>Compile, view errors and fix them from inside Vim using Quickfix</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/03/20150321_quickfix.png"
+alt="Compile, view errors and fix them from inside Vim using Quickfix" />
+<figcaption aria-hidden="true">Compile, view errors and fix them from
+inside Vim using Quickfix</figcaption>
 </figure>
-<p>The <strong>Quickfix</strong> feature of <strong>Vim</strong> is great if you work regularly with source code of languages which need to be compiled, like <strong>C</strong> or <strong>C++</strong>. If you are coming from <strong>Visual Studio</strong> or <strong>Eclipse CDT</strong>, the Quickfix feature basically gives an IDE-like feel of the edit-compile-fix cycle. (The only missing piece is a visual debugger inside Vim.) For example, you can view the errors and warnings produced on compiling your code in the Quickfix window, jump to the location of the error or warning, fix them and compile the code again. All from within Vim! 😊</p>
+<p>The <strong>Quickfix</strong> feature of <strong>Vim</strong> is
+great if you work regularly with source code of languages which need to
+be compiled, like <strong>C</strong> or <strong>C++</strong>. If you are
+coming from <strong>Visual Studio</strong> or <strong>Eclipse
+CDT</strong>, the Quickfix feature basically gives an IDE-like feel of
+the edit-compile-fix cycle. (The only missing piece is a visual debugger
+inside Vim.) For example, you can view the errors and warnings produced
+on compiling your code in the Quickfix window, jump to the location of
+the error or warning, fix them and compile the code again. All from
+within Vim! 😊</p>
 <p>Here are some pointers on how I use Quickfix:</p>
 <ul>
-<li><p>Quickfix is a plugin that ships with Vim. So, there is nothing to install!</p></li>
-<li><p>If you have a compile command, then redirect its output to a file. Use the <code>-q</code> option of Vim to open this file and you can navigate the errors from there (as described later below). For example:</p></li>
+<li><p>Quickfix is a plugin that ships with Vim. So, there is nothing to
+install!</p></li>
+<li><p>If you have a compile command, then redirect its output to a
+file. Use the <code>-q</code> option of Vim to open this file and you
+can navigate the errors from there (as described later below). For
+example:</p></li>
 </ul>
 <pre><code>$ g++ main.cpp 2&gt; errors.txt
 $ vim -q errors.txt</code></pre>
 <ul>
-<li><p>If you are using CMake or Make, then life is much easier for you. Open Vim in <code>build</code> directory and invoke make from within it using the command <code>:make</code>. This runs Make and fills up the Quickfix buffer with the error output.</p></li>
-<li><p>To open the Quickfix window, use the command <code>:copen</code>. In the screenshot above, the Quickfix window is visible at the bottom.</p></li>
-<li><p>Navigate the Quickfix window as usual and press <code>Enter</code> on any error or warning line. That file, which may not even be in the same directory, is opened in the top window and the cursor is placed at the line and column of the error. Now, is that not like an IDE! 😊</p></li>
-<li><p>Now you can jump between the editor window and Quickfix window, using the usual <code>Ctrl + w + w</code> command and fix all the errors.</p></li>
-<li><p>Once done, you can compile again right from inside Vim using <code>:make</code>. More errors? Fix them. And the edit-compile-edit cycle continues 😊</p></li>
-<li><p>For more help on Quickfix, see <code>:help quickfix</code></p></li>
+<li><p>If you are using CMake or Make, then life is much easier for you.
+Open Vim in <code>build</code> directory and invoke make from within it
+using the command <code>:make</code>. This runs Make and fills up the
+Quickfix buffer with the error output.</p></li>
+<li><p>To open the Quickfix window, use the command <code>:copen</code>.
+In the screenshot above, the Quickfix window is visible at the
+bottom.</p></li>
+<li><p>Navigate the Quickfix window as usual and press
+<code>Enter</code> on any error or warning line. That file, which may
+not even be in the same directory, is opened in the top window and the
+cursor is placed at the line and column of the error. Now, is that not
+like an IDE! 😊</p></li>
+<li><p>Now you can jump between the editor window and Quickfix window,
+using the usual <code>Ctrl + w + w</code> command and fix all the
+errors.</p></li>
+<li><p>Once done, you can compile again right from inside Vim using
+<code>:make</code>. More errors? Fix them. And the edit-compile-edit
+cycle continues 😊</p></li>
+<li><p>For more help on Quickfix, see
+<code>:help quickfix</code></p></li>
 </ul>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
 </div>
@@ -71,11 +89,13 @@ $ vim -q errors.txt</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

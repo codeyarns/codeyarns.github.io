@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,11 @@
 <h1 class="title">Constructor delegation in C++11</h1>
 <p class="date">📅 2015-Sep-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#constructor'>constructor</a>, <a href='index.html#constructor-delegation'>constructor delegation</a>, <a href='index.html#cpp'>cpp</a>, <a href='index.html#cpp11'>cpp11</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>C++11</strong> added a feature that I personally find extremely useful. It is called <strong>constructor delegation</strong>. It is a natural addition to the language to reduce duplicated code in constructors of different signatures in a class. It can be understood easily with an example.</p>
+<p><strong>C++11</strong> added a feature that I personally find
+extremely useful. It is called <strong>constructor delegation</strong>.
+It is a natural addition to the language to reduce duplicated code in
+constructors of different signatures in a class. It can be understood
+easily with an example.</p>
 <p>Consider a class with two constructors:</p>
 <pre><code>class Point
 {
@@ -68,8 +58,13 @@ private:
     int y_;
     int z_;
 };</code></pre>
-<p>How to avoid the duplicated initialization statements in both constructors? You <strong>should not</strong> call one constructor in the other constructor of the same class! That is a very common bug in C++, since that only creates a temporary object and <strong>does not</strong> actually call the constructor of the same object.</p>
-<p>The common solution to this is to create an <strong>init</strong> function that is called from both constructors:</p>
+<p>How to avoid the duplicated initialization statements in both
+constructors? You <strong>should not</strong> call one constructor in
+the other constructor of the same class! That is a very common bug in
+C++, since that only creates a temporary object and <strong>does
+not</strong> actually call the constructor of the same object.</p>
+<p>The common solution to this is to create an <strong>init</strong>
+function that is called from both constructors:</p>
 <pre><code>class Point
 {
 public:
@@ -96,7 +91,10 @@ private:
     int y_;
     int z_;
 };</code></pre>
-<p>C++11 constructor delegation provides an elegant solution that should have been there in C++ since the beginning: you can call a constructor by placing it in the initializer list of constructors. The above code with constructor delegation:</p>
+<p>C++11 constructor delegation provides an elegant solution that should
+have been there in C++ since the beginning: you can call a constructor
+by placing it in the initializer list of constructors. The above code
+with constructor delegation:</p>
 <pre><code>class Point
 {
 public:
@@ -117,8 +115,11 @@ private:
     int y_;
     int z_;
 };</code></pre>
-<p>If you are going to use constructor delegation, please remember to use a compiler version that supports it (I used GCC 5.1.0) and you may need to specify a C++11 flag (I used <code>-std=c++11</code>).</p>
-<p><strong>Reference:</strong> Sec 17.4.3 Delegating Constructors from <strong>The C++ Programming Language</strong> (4th Ed) by Stroustrup</p>
+<p>If you are going to use constructor delegation, please remember to
+use a compiler version that supports it (I used GCC 5.1.0) and you may
+need to specify a C++11 flag (I used <code>-std=c++11</code>).</p>
+<p><strong>Reference:</strong> Sec 17.4.3 Delegating Constructors from
+<strong>The C++ Programming Language</strong> (4th Ed) by Stroustrup</p>
 </div>
 
 <br />
@@ -126,11 +127,13 @@ private:
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

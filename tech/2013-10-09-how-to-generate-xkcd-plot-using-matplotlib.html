@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,35 +31,62 @@
 <p class="date">📅 2013-Oct-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#matplotlib'>matplotlib</a>, <a href='index.html#plot'>plot</a>, <a href='index.html#python'>python</a>, <a href='index.html#xkcd'>xkcd</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2013/10/201310009-xkcd.png" alt="" /><figcaption>Generate XKCD plot like this by adding a single function call!</figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2013/10/201310009-xkcd.png"
+alt="Generate XKCD plot like this by adding a single function call!" />
+<figcaption aria-hidden="true">Generate XKCD plot like this by adding a
+single function call!</figcaption>
 </figure>
-<p>Don’t you think those plots, charts and graphs used in <strong>XKCD</strong> comic strips look really cool? I also think that by mimicking handwriting, these plots actually make the data more understandable. But, that’s just me.</p>
-<p><strong>Matplotlib</strong> now includes support for XKCD plots! And it is really easy to use. If you are already using Matplotlib to generate plots for your data, then you can generate XKCD plots for those easily:</p>
+<p>Don’t you think those plots, charts and graphs used in
+<strong>XKCD</strong> comic strips look really cool? I also think that
+by mimicking handwriting, these plots actually make the data more
+understandable. But, that’s just me.</p>
+<p><strong>Matplotlib</strong> now includes support for XKCD plots! And
+it is really easy to use. If you are already using Matplotlib to
+generate plots for your data, then you can generate XKCD plots for those
+easily:</p>
 <ol type="1">
-<li>Check if the version of Matplotlib on your computer supports XKCD plots. You can do this with the Python interpreter:</li>
+<li>Check if the version of Matplotlib on your computer supports XKCD
+plots. You can do this with the Python interpreter:</li>
 </ol>
 <pre><code>$ python
 &gt;&gt;&gt; import matplotlib.pyplot
 &gt;&gt;&gt; matplotlib.pyplot.xkcd()
 &lt;matplotlib.rc_context object at 0x1ff9950&gt;</code></pre>
-<p>If you see the above object being created then your Matplotlib supports XKCD plots. Jump to step 4. If you get a <code>AttributeError: 'module' object has no attribute 'xkcd'</code> error, then you need to build the latest version of Matplotlib from source. See the next two steps.</p>
+<p>If you see the above object being created then your Matplotlib
+supports XKCD plots. Jump to step 4. If you get a
+<code>AttributeError: 'module' object has no attribute 'xkcd'</code>
+error, then you need to build the latest version of Matplotlib from
+source. See the next two steps.</p>
 <ol type="1">
-<li>Before I built Matplotlib, I needed to install the following packages:</li>
+<li>Before I built Matplotlib, I needed to install the following
+packages:</li>
 </ol>
 <pre><code>$ sudo apt-get install tcl-dev tk-dev
 $ sudo pip install --upgrade distribute</code></pre>
-<p>I did these because building Matplotlib needs TCL and TK libraries for displaying plots and it needs a recent version of <code>distribute</code>.</p>
+<p>I did these because building Matplotlib needs TCL and TK libraries
+for displaying plots and it needs a recent version of
+<code>distribute</code>.</p>
 <ol type="1">
-<li>Uninstall your existing Matplotlib and use <code>pip</code> to build and install the latest version for you:</li>
+<li>Uninstall your existing Matplotlib and use <code>pip</code> to build
+and install the latest version for you:</li>
 </ol>
 <pre><code>$ sudo apt-get remove python-matplotlib
 $ sudo pip install matplotlib</code></pre>
-<p>Hopefully, that installation should work. If it fails during building then check what libraries its missing and install those packages.</p>
+<p>Hopefully, that installation should work. If it fails during building
+then check what libraries its missing and install those packages.</p>
 <ol type="1">
-<li><p>XKCD plots use a font named <strong>Humor Sans</strong>. Download it from <a href="http://antiyawn.com/uploads/humorsans.html">here</a>. To install it follow the steps described <a href="2013/03/18/how-to-install-fonts-in-ubuntu/">here</a>.</p></li>
-<li><p>You are ready to generate XKCD plots. Just add the call <code>matplotlib.pyplot.xkcd()</code> before the other plotting calls in plot generating Python code. The generated plots will now be like in XKCD! :)</p></li>
+<li><p>XKCD plots use a font named <strong>Humor Sans</strong>. Download
+it from <a href="http://antiyawn.com/uploads/humorsans.html">here</a>.
+To install it follow the steps described <a
+href="2013/03/18/how-to-install-fonts-in-ubuntu/">here</a>.</p></li>
+<li><p>You are ready to generate XKCD plots. Just add the call
+<code>matplotlib.pyplot.xkcd()</code> before the other plotting calls in
+plot generating Python code. The generated plots will now be like in
+XKCD! :)</p></li>
 </ol>
-<p><strong>Tried with:</strong> Matplotlib 1.3.0 and Ubuntu 12.04 LTS</p>
+<p><strong>Tried with:</strong> Matplotlib 1.3.0 and Ubuntu 12.04
+LTS</p>
 </div>
 
 <br />
@@ -81,11 +94,13 @@ $ sudo pip install matplotlib</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

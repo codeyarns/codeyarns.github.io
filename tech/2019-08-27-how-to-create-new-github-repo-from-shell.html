@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,26 @@
 <h1 class="title">How to create new Github repo from shell</h1>
 <p class="date">📅 2019-Aug-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#github'>github</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://github.com/"><strong>Github</strong></a> is a popular destination to host <strong>Git</strong> repositories. New repositories can be created easily using its web interface.</p>
-<p>The web interface is not practical if you are automating the creation of a large number of new Github repositories from the shell or from a program. The Github REST API is useful to solve this problem.</p>
-<p>To create a new Github repository from the shell, you need this information:</p>
+<p><a href="https://github.com/"><strong>Github</strong></a> is a
+popular destination to host <strong>Git</strong> repositories. New
+repositories can be created easily using its web interface.</p>
+<p>The web interface is not practical if you are automating the creation
+of a large number of new Github repositories from the shell or from a
+program. The Github REST API is useful to solve this problem.</p>
+<p>To create a new Github repository from the shell, you need this
+information:</p>
 <ul>
 <li>Login name. Example: <code>joe</code></li>
 <li>Password. Example: <code>secret_password</code></li>
-<li>OTP generated from your authenticator application. Example: <code>123456</code></li>
+<li>OTP generated from your authenticator application. Example:
+<code>123456</code></li>
 <li>Name of new repository. Example: <code>foobar_repo</code></li>
 </ul>
-<p>We can use <code>curl</code> to make a Github REST API call to create a new repository using this invocation:</p>
+<p>We can use <code>curl</code> to make a Github REST API call to create
+a new repository using this invocation:</p>
 <pre><code>$ curl -u &#39;joe:secret_password&#39; --header &#39;x-github-otp: 123456&#39; https://api.github.com/user/repos -d &quot;{\&quot;name\&quot;:\&quot;foobar_repo\&quot;}&quot;</code></pre>
-<p>The above invocation can be easily turned into a shell script to automate creation of many new Github repositories.</p>
+<p>The above invocation can be easily turned into a shell script to
+automate creation of many new Github repositories.</p>
 </div>
 
 <br />
@@ -63,11 +57,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

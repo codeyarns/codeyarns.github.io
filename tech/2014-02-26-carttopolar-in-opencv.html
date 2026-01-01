@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,30 @@
 <h1 class="title">cartToPolar in OpenCV</h1>
 <p class="date">📅 2014-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#atan2'>atan2</a>, <a href='index.html#carttopolar'>carttopolar</a>, <a href='index.html#opencv'>opencv</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>cartToPolar</strong> is a function in <strong>OpenCV</strong> that can be used to compute the magnitude and angle of 2D vectors. You provide a matrix of 2D vectors as two Mat structures, one holding the X component of the vectors and the other for the Y component. cartToPolar returns two Mat structures, one holding the magnitude and the other the angle of the vectors.</p>
-<p>Note that the angle returned is in the range 0 to 360 degrees. This is different from the typical output of the <a href="http://en.wikipedia.org/wiki/Atan2">atan2</a> function, which is in the range of -180 to +180 degrees. To match the result of atan2 to the angle output of cartToPolar, you would need to do this:</p>
+<p><strong>cartToPolar</strong> is a function in <strong>OpenCV</strong>
+that can be used to compute the magnitude and angle of 2D vectors. You
+provide a matrix of 2D vectors as two Mat structures, one holding the X
+component of the vectors and the other for the Y component. cartToPolar
+returns two Mat structures, one holding the magnitude and the other the
+angle of the vectors.</p>
+<p>Note that the angle returned is in the range 0 to 360 degrees. This
+is different from the typical output of the <a
+href="http://en.wikipedia.org/wiki/Atan2">atan2</a> function, which is
+in the range of -180 to +180 degrees. To match the result of atan2 to
+the angle output of cartToPolar, you would need to do this:</p>
 <pre><code>float ang = atan2(y, x) * 180 / PI;
 if (ang &lt; 0)
     ang = 360 + ang;</code></pre>
 <ul>
-<li><p>The documentation of cartToPolar is <a href="http://docs.opencv.org/modules/core/doc/operations_on_arrays.html#carttopolar">here</a>.</p></li>
-<li><p>The source code of cartToPolar can be seen in <code>modules/core/src/mathfuncs.cpp</code>, which can be seen <a href="https://github.com/Itseez/opencv/blob/master/modules/core/src/mathfuncs.cpp">here</a>.</p></li>
-<li><p>The computation of the angle can be seen in the FastAtan2_32f function in <code>modules/core/src/mathfuncs.cpp</code>, which can be seen <a href="https://github.com/Itseez/opencv/blob/master/modules/core/src/mathfuncs.cpp">here</a>.</p></li>
+<li><p>The documentation of cartToPolar is <a
+href="http://docs.opencv.org/modules/core/doc/operations_on_arrays.html#carttopolar">here</a>.</p></li>
+<li><p>The source code of cartToPolar can be seen in
+<code>modules/core/src/mathfuncs.cpp</code>, which can be seen <a
+href="https://github.com/Itseez/opencv/blob/master/modules/core/src/mathfuncs.cpp">here</a>.</p></li>
+<li><p>The computation of the angle can be seen in the FastAtan2_32f
+function in <code>modules/core/src/mathfuncs.cpp</code>, which can be
+seen <a
+href="https://github.com/Itseez/opencv/blob/master/modules/core/src/mathfuncs.cpp">here</a>.</p></li>
 </ul>
 </div>
 
@@ -61,11 +62,13 @@ if (ang &lt; 0)
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

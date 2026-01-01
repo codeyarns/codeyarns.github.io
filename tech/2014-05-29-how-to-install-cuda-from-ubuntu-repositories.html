@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,21 +30,34 @@
 <h1 class="title">How to install CUDA from Ubuntu repositories</h1>
 <p class="date">📅 2014-May-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#driver'>driver</a>, <a href='index.html#nvidia'>nvidia</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>Ubuntu</strong> repositories now host <strong>CUDA</strong> packages. These may not be latest and greatest, but I find them to work well with the <strong>NVIDIA</strong> drivers from the same place. Also, they are very easy to install compared to the packages from the NVIDIA website.</p>
+<p>The <strong>Ubuntu</strong> repositories now host
+<strong>CUDA</strong> packages. These may not be latest and greatest,
+but I find them to work well with the <strong>NVIDIA</strong> drivers
+from the same place. Also, they are very easy to install compared to the
+packages from the NVIDIA website.</p>
 <ul>
-<li>First, install the latest NVIDIA driver available from the repositories. NVIDIA driver package is named as <code>nvidia-xyz</code>, where <code>xyz</code> is the version. Pick the largest number version that is available from the repositories. For example:</li>
+<li>First, install the latest NVIDIA driver available from the
+repositories. NVIDIA driver package is named as <code>nvidia-xyz</code>,
+where <code>xyz</code> is the version. Pick the largest number version
+that is available from the repositories. For example:</li>
 </ul>
 <pre><code>$ sudo apt install nvidia-331</code></pre>
-<p>The installation process compiles the driver for your particular Linux kernel and deploys that module. Restart the computer once the install is done.</p>
-<p>You must be able to see a NVIDIA module when you list the kernel modules. For example, on my computer:</p>
+<p>The installation process compiles the driver for your particular
+Linux kernel and deploys that module. Restart the computer once the
+install is done.</p>
+<p>You must be able to see a NVIDIA module when you list the kernel
+modules. For example, on my computer:</p>
 <pre><code>$ dkms status
 nvidia-331, 331.38, 3.13.0-24-generic, x86_64: installed</code></pre>
 <ul>
-<li>Now you are ready to install CUDA. This is really easy since installing the package <code>nvidia-cuda-toolkit</code> will pull in all the hundred other CUDA packages and tools that are needed:</li>
+<li>Now you are ready to install CUDA. This is really easy since
+installing the package <code>nvidia-cuda-toolkit</code> will pull in all
+the hundred other CUDA packages and tools that are needed:</li>
 </ul>
 <pre><code>$ sudo apt install nvidia-cuda-toolkit</code></pre>
 <p>That is it, enjoy your CUDA programming! :)</p>
-<p><strong>Tried with:</strong> Linux kernel 3.13.0-24-generic, CUDA 5.5, NVIDIA driver 331, NVIDIA GTX Titan and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Linux kernel 3.13.0-24-generic, CUDA
+5.5, NVIDIA driver 331, NVIDIA GTX Titan and Ubuntu 14.04</p>
 </div>
 
 <br />
@@ -66,11 +65,13 @@ nvidia-331, 331.38, 3.13.0-24-generic, x86_64: installed</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

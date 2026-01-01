@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,18 +27,29 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to install CUDA for NVIDIA GTX 1050 (Notebook)</h1>
+<h1 class="title">How to install CUDA for NVIDIA GTX 1050
+(Notebook)</h1>
 <p class="date">📅 2017-May-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#gtx-1050'>gtx 1050</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Installing NVIDIA graphics drivers on Linux has never been easy for me! I bought a notebook with <strong>NVIDIA GTX 1050</strong> GPU recently and installed Kubuntu 16.04. I had to wait for more than a month for NVIDIA to release drivers that supported the notebook 1050 variant.</p>
+<p>Installing NVIDIA graphics drivers on Linux has never been easy for
+me! I bought a notebook with <strong>NVIDIA GTX 1050</strong> GPU
+recently and installed Kubuntu 16.04. I had to wait for more than a
+month for NVIDIA to release drivers that supported the notebook 1050
+variant.</p>
 <ul>
-<li>Once the driver was released, I downloaded the <code>.run</code> file directly from NVIDIA’s website <a href="http://www.nvidia.com/object/unix.html">here</a>. I ran the installation:</li>
+<li>Once the driver was released, I downloaded the <code>.run</code>
+file directly from NVIDIA’s website <a
+href="http://www.nvidia.com/object/unix.html">here</a>. I ran the
+installation:</li>
 </ul>
 <pre><code>$ sudo sh NVIDIA-Linux-x86_64-381.22.run</code></pre>
-<p>When I rebooted, I got a black screen! Not surprising with NVIDIA and Linux! I had to uninstall it to get back to work:</p>
+<p>When I rebooted, I got a black screen! Not surprising with NVIDIA and
+Linux! I had to uninstall it to get back to work:</p>
 <pre><code>$ sudo sh NVIDIA-Linux-x86_64-381.22.run --uninstall</code></pre>
 <ul>
-<li>After another month, I found that the latest NVIDIA driver supporting the notebook 1050 was available from Ubuntu. So, I tried installing that:</li>
+<li>After another month, I found that the latest NVIDIA driver
+supporting the notebook 1050 was available from Ubuntu. So, I tried
+installing that:</li>
 </ul>
 <pre><code>$ sudo apt install nvidia-381</code></pre>
 <p>Reboot and I got a new error message in a GUI dialog box:</p>
@@ -62,12 +59,19 @@ You will need to configure these yourself.</code></pre>
 <p>I had to uninstall it to get back to work:</p>
 <pre><code>$ sudo apt purge nvidia-381</code></pre>
 <ul>
-<li>It finally dawned on me that what I really wanted was to be able to run CUDA programs on the GPU. I did not really care about X or games being able to use the GPU. So, I went back to the <code>.run</code> driver and installed it without OpenGL:</li>
+<li>It finally dawned on me that what I really wanted was to be able to
+run CUDA programs on the GPU. I did not really care about X or games
+being able to use the GPU. So, I went back to the <code>.run</code>
+driver and installed it without OpenGL:</li>
 </ul>
 <pre><code>$ sudo sh NVIDIA-Linux-x86_64-381.22.run --no-opengl-files</code></pre>
-<p>After rebooting, I found that I still had a desktop. That was a big relief! I proceeded to download and install CUDA:</p>
+<p>After rebooting, I found that I still had a desktop. That was a big
+relief! I proceeded to download and install CUDA:</p>
 <pre><code>$ sudo sh cuda_8.0.61_375.26_linux.run</code></pre>
-<p>I took care to <strong>not</strong> install the graphics driver that comes along with the CUDA installer. That is it! I was able to compile and run the CUDA samples. Running <code>./deviceQuery</code> from the samples showed the GTX 1050 and that is all I wanted! :)</p>
+<p>I took care to <strong>not</strong> install the graphics driver that
+comes along with the CUDA installer. That is it! I was able to compile
+and run the CUDA samples. Running <code>./deviceQuery</code> from the
+samples showed the GTX 1050 and that is all I wanted! :)</p>
 </div>
 
 <br />
@@ -75,11 +79,13 @@ You will need to configure these yourself.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

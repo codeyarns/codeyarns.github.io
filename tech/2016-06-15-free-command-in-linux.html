@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,18 @@
 <h1 class="title">Free command in Linux</h1>
 <p class="date">📅 2016-Jun-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#free'>free</a>, <a href='index.html#memory'>memory</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A common question that occurs to any user of an operating system is how much <strong>memory</strong> is being used and how much is free. The command to check this in Linux is <code>free</code>.</p>
+<p>A common question that occurs to any user of an operating system is
+how much <strong>memory</strong> is being used and how much is free. The
+command to check this in Linux is <code>free</code>.</p>
 <p>You run it and it throws up some head-scratching output:</p>
 <pre><code>$ free
              total       used       free     shared    buffers     cached
 Mem:       5971016    4376120    1594896     210616     237260    2398084
 -/+ buffers/cache:    1740776    4230240
 Swap:      7885820        304    7885516</code></pre>
-<p>Right off the bat you can see that it is showing values in bytes. While this might have been fine back when Unix was invented, it is utterly unreadable with the GBs of RAM we have in today’s computers.</p>
+<p>Right off the bat you can see that it is showing values in bytes.
+While this might have been fine back when Unix was invented, it is
+utterly unreadable with the GBs of RAM we have in today’s computers.</p>
 <p>We first fix that by asking it to show human readable output:</p>
 <pre><code>$ free --human
              total       used       free     shared    buffers     cached
@@ -61,13 +51,39 @@ Swap:         7.5G       304K       7.5G</code></pre>
 <p>Now we can read the value in GBs and MBs easily.</p>
 <p>Some notes about interpreting the output:</p>
 <ul>
-<li><p>The first two lines of numbers are concerned about <strong>RAM</strong>. The final line of numbers is about your <strong>swap</strong> space.</p></li>
-<li><p>The first three columns seem straightforward: the <strong>total</strong> capacity, how much of the total is <strong>used</strong> by processes and how much of the total is <strong>free</strong>.</p></li>
-<li><p>The next three columns are a bit more complicated. These are the memory <strong>shared</strong> among processes, memory that is being used as <strong>buffers</strong> (temporary storage) by the kernel and as <strong>cached</strong> for pages.</p></li>
-<li><p>The used and free entries in the first line show you how much RAM is being used and is free. You should not get worried if you see the free number being low. Memory lying unused is useless, so kernel tries to use it as buffers and for caching. How much of the used memory has been put up to use as buffers and cache is also shown in the first line.</p></li>
-<li><p>Concerned about how much memory is truly being used by processes you are running? That is why the confusing second line exists! <code>used-in-second-line = used-in-first-line - buffers - cached</code> and <code>free-in-second-line = free-in-first-line + buffers + cached</code>. Take a moment on these values. These calculations make sense since if your processes ask for more memory, the kernel will happily free its buffers and cached resources and hand it over!</p></li>
-<li><p>Finally, the shared is not factored into the second line computation because it is memory that is already shared among the processes. It is already a part of the used memory. Now if you start asking how much memory is being used by a single process then the computation factoring in shared memory gets harder.</p></li>
-<li><p>Please ignore the <code>-/+ buffers/cache</code> text. It is completely confusing to the average user. To make any sense it should have been <code>-/+ buffers+cached</code>.</p></li>
+<li><p>The first two lines of numbers are concerned about
+<strong>RAM</strong>. The final line of numbers is about your
+<strong>swap</strong> space.</p></li>
+<li><p>The first three columns seem straightforward: the
+<strong>total</strong> capacity, how much of the total is
+<strong>used</strong> by processes and how much of the total is
+<strong>free</strong>.</p></li>
+<li><p>The next three columns are a bit more complicated. These are the
+memory <strong>shared</strong> among processes, memory that is being
+used as <strong>buffers</strong> (temporary storage) by the kernel and
+as <strong>cached</strong> for pages.</p></li>
+<li><p>The used and free entries in the first line show you how much RAM
+is being used and is free. You should not get worried if you see the
+free number being low. Memory lying unused is useless, so kernel tries
+to use it as buffers and for caching. How much of the used memory has
+been put up to use as buffers and cache is also shown in the first
+line.</p></li>
+<li><p>Concerned about how much memory is truly being used by processes
+you are running? That is why the confusing second line exists!
+<code>used-in-second-line = used-in-first-line - buffers - cached</code>
+and
+<code>free-in-second-line = free-in-first-line + buffers + cached</code>.
+Take a moment on these values. These calculations make sense since if
+your processes ask for more memory, the kernel will happily free its
+buffers and cached resources and hand it over!</p></li>
+<li><p>Finally, the shared is not factored into the second line
+computation because it is memory that is already shared among the
+processes. It is already a part of the used memory. Now if you start
+asking how much memory is being used by a single process then the
+computation factoring in shared memory gets harder.</p></li>
+<li><p>Please ignore the <code>-/+ buffers/cache</code> text. It is
+completely confusing to the average user. To make any sense it should
+have been <code>-/+ buffers+cached</code>.</p></li>
 </ul>
 <p><strong>Tried with:</strong> Ubuntu 15.10</p>
 </div>
@@ -77,11 +93,13 @@ Swap:         7.5G       304K       7.5G</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

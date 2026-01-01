@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,19 @@
 <h1 class="title">How to get tab completion in PDB</h1>
 <p class="date">📅 2016-Aug-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#pdb'>pdb</a>, <a href='index.html#tab-completion'>tab completion</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A common technique to debug in <strong>Python</strong> is to add this line at a place which you want to observe:</p>
+<p>A common technique to debug in <strong>Python</strong> is to add this
+line at a place which you want to observe:</p>
 <pre><code>import pdb; pdb.set_trace();</code></pre>
-<p>When you run the Python code and the interpreter hits this line, it drops you into a Python debugger prompt. You can inspect local variables and step through code from here.</p>
-<p>An irritating problem here is that this PDB prompt does not offer <strong>tab completion</strong>. So, you have to type out entire variable, class and method names by yourself without any aid. Thankfully, here is a method to add tab completion feature to this PDB prompt.</p>
-<p>Create a <code>.pdbrc</code> in your home directory and add these lines to it:</p>
+<p>When you run the Python code and the interpreter hits this line, it
+drops you into a Python debugger prompt. You can inspect local variables
+and step through code from here.</p>
+<p>An irritating problem here is that this PDB prompt does not offer
+<strong>tab completion</strong>. So, you have to type out entire
+variable, class and method names by yourself without any aid.
+Thankfully, here is a method to add tab completion feature to this PDB
+prompt.</p>
+<p>Create a <code>.pdbrc</code> in your home directory and add these
+lines to it:</p>
 <pre><code># Enable tab completion                                                         
 import rlcompleter                                                              
 import pdb                                                                      
@@ -61,11 +55,13 @@ pdb.Pdb.complete = rlcompleter.Completer(locals()).complete</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

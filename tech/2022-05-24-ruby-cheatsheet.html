@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,8 @@
 <h1 class="title">Ruby Cheatsheet</h1>
 <p class="date">📅 2022-May-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#ruby'>ruby</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Below are notes I took while learning <strong>Ruby</strong>, written from the point of view of a <strong>Python</strong> programmer.</p>
+<p>Below are notes I took while learning <strong>Ruby</strong>, written
+from the point of view of a <strong>Python</strong> programmer.</p>
 <ul>
 <li>To play with the interactive Ruby shell:</li>
 </ul>
@@ -68,14 +55,19 @@ $ ri print</code></pre>
 </ul>
 <pre><code>print(&quot;Hello!\n&quot;)
 print(&quot;Value of x is: &quot;, x)</code></pre>
-<p>Note that unlike Python, print does not add spaces or newlines automatically. Spaces and newlines have to be explicitly specified. WYSIWYG strictly.</p>
+<p>Note that unlike Python, print does not add spaces or newlines
+automatically. Spaces and newlines have to be explicitly specified.
+WYSIWYG strictly.</p>
 <ul>
-<li>To import a module, provide its path, but drop the file extension:</li>
+<li>To import a module, provide its path, but drop the file
+extension:</li>
 </ul>
 <pre><code>require &quot;foo/bar&quot;
 require_relative &quot;where/is/it&quot;</code></pre>
 <ul>
-<li>A <strong>module</strong> is a <code>.rb</code> Ruby file with its own named <code>module</code> block inside it, inside whose namespace we can have variables, methods or classes.</li>
+<li>A <strong>module</strong> is a <code>.rb</code> Ruby file with its
+own named <code>module</code> block inside it, inside whose namespace we
+can have variables, methods or classes.</li>
 </ul>
 <pre><code># foobar.rb
 module FooBar
@@ -88,7 +80,9 @@ end
 require_relative &quot;foobar&quot;
 FooBar.foobar(10, 20)</code></pre>
 <ul>
-<li>Classes are defined similar to Python and <code>initialize</code> is the ctor. Instance variables have the <code>@</code> prefix and cannot be accessed outside the class.</li>
+<li>Classes are defined similar to Python and <code>initialize</code> is
+the ctor. Instance variables have the <code>@</code> prefix and cannot
+be accessed outside the class.</li>
 </ul>
 <pre><code>class Foobar
   def initialize(x, y)
@@ -100,7 +94,8 @@ FooBar.foobar(10, 20)</code></pre>
   end
 end</code></pre>
 <ul>
-<li>Create getter for class instance variables using <code>attr_reader</code> definitions in the class:</li>
+<li>Create getter for class instance variables using
+<code>attr_reader</code> definitions in the class:</li>
 </ul>
 <pre><code>class Foobar
   attr_reader :x
@@ -124,7 +119,8 @@ f.x  # Works!</code></pre>
   end
 end</code></pre>
 <ul>
-<li>List is called <strong>Array</strong>, but rest of usage is similar to Python:</li>
+<li>List is called <strong>Array</strong>, but rest of usage is similar
+to Python:</li>
 </ul>
 <pre><code>x = []
 y = [&quot;foo&quot;, 1, nil]
@@ -172,20 +168,27 @@ end</code></pre>
 &gt; x.round
 =&gt; 4</code></pre>
 <ul>
-<li>Difference between comparing by value and checking if they are the same object:</li>
+<li>Difference between comparing by value and checking if they are the
+same object:</li>
 </ul>
 <pre><code>&quot;x&quot; == &quot;x&quot;       # Always true
 &quot;x&quot;.equal?(&quot;x&quot;)  # false</code></pre>
 <ul>
-<li>Use the <code>:</code> colon operator to create a <strong>symbol</strong>, a trick to have a single copy of literal strings:</li>
+<li>Use the <code>:</code> colon operator to create a
+<strong>symbol</strong>, a trick to have a single copy of literal
+strings:</li>
 </ul>
 <pre><code>:foo.equal?(:foo)  # true</code></pre>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://docs.ruby-lang.org/en/master/">Ruby API Documentation</a>
+<li><a href="https://docs.ruby-lang.org/en/master/">Ruby API
+Documentation</a>
 <ul>
-<li><a href="https://docs.ruby-lang.org/en/master/keywords_rdoc.html">Keywords</a></li>
-<li><a href="https://docs.ruby-lang.org/en/master/Kernel.html">Kernel module</a>: Its methods are included by <code>Object</code>, so available in every Ruby object.</li>
+<li><a
+href="https://docs.ruby-lang.org/en/master/keywords_rdoc.html">Keywords</a></li>
+<li><a href="https://docs.ruby-lang.org/en/master/Kernel.html">Kernel
+module</a>: Its methods are included by <code>Object</code>, so
+available in every Ruby object.</li>
 </ul></li>
 <li><a href="http://www.ruby-doc.org/core">Ruby Core Reference</a></li>
 </ul>
@@ -196,11 +199,13 @@ end</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

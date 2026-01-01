@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,23 @@
 <h1 class="title">How to skip stepping into files in GDB</h1>
 <p class="date">📅 2018-Jul-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#gdb'>gdb</a>, <a href='index.html#just-my-code'>just my code</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Visual Studio</strong> C++ debugger has a feature called <a href="https://blogs.msdn.microsoft.com/vcblog/2018/06/29/announcing-jmc-stepping-in-visual-studio/"><strong>Just My Code</strong></a> which helps you to step over external code, like that in STL, and only step through the code of your own project. GDB does not have this feature at the time of this writing.</p>
-<p>However, GDB has a <strong>skip -gfile</strong> feature that can be used in a similar way. You pass this command a <strong>glob pattern</strong> of files to ignore during stepping.</p>
-<p>For example, to skip stepping into the source files of STL implementations on my system I use:</p>
+<p><strong>Visual Studio</strong> C++ debugger has a feature called <a
+href="https://blogs.msdn.microsoft.com/vcblog/2018/06/29/announcing-jmc-stepping-in-visual-studio/"><strong>Just
+My Code</strong></a> which helps you to step over external code, like
+that in STL, and only step through the code of your own project. GDB
+does not have this feature at the time of this writing.</p>
+<p>However, GDB has a <strong>skip -gfile</strong> feature that can be
+used in a similar way. You pass this command a <strong>glob
+pattern</strong> of files to ignore during stepping.</p>
+<p>For example, to skip stepping into the source files of STL
+implementations on my system I use:</p>
 <pre><code>skip -gfile /usr/include/c++/5/bits/*</code></pre>
-<p>This works because the STL implementation files on my system are located at the above path.</p>
+<p>This works because the STL implementation files on my system are
+located at the above path.</p>
 <p>Note that this feature requires GDB 7.12 or later.</p>
-<p><strong>Reference:</strong> <a href="https://sourceware.org/gdb/onlinedocs/gdb/Skipping-Over-Functions-and-Files.html">GDB Skipping over files and functions</a></p>
+<p><strong>Reference:</strong> <a
+href="https://sourceware.org/gdb/onlinedocs/gdb/Skipping-Over-Functions-and-Files.html">GDB
+Skipping over files and functions</a></p>
 <p><strong>Tried with:</strong> GDB 8.1 and Ubuntu 16.04</p>
 </div>
 
@@ -59,11 +55,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

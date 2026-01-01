@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,24 @@
 <h1 class="title">Warning options of GCC</h1>
 <p class="date">📅 2014-Oct-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#gcc'>gcc</a>, <a href='index.html#warning'>warning</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The GCC and G++ compilers have many warning options that can be useful to improve the quality of your code. All the warning options are listed and described <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">here</a>.</p>
-<p>Since the list of warnings is very long, GCC provides a few warning options that are a shortcut for enabling a larger bunch of warnings. These warning options are <code>-Wall</code>, <code>-Wextra</code> and <code>-Wpedantic</code>.</p>
+<p>The GCC and G++ compilers have many warning options that can be
+useful to improve the quality of your code. All the warning options are
+listed and described <a
+href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">here</a>.</p>
+<p>Since the list of warnings is very long, GCC provides a few warning
+options that are a shortcut for enabling a larger bunch of warnings.
+These warning options are <code>-Wall</code>, <code>-Wextra</code> and
+<code>-Wpedantic</code>.</p>
 <h2 id="-wall-and--wextra">-Wall and -Wextra</h2>
-<p>The warnings enabled by <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wall">-Wall</a> and <a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wextra">-Wextra</a> is listed along with their description.</p>
+<p>The warnings enabled by <a
+href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wall">-Wall</a>
+and <a
+href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wextra">-Wextra</a>
+is listed along with their description.</p>
 <h2 id="-wpedantic">-Wpedantic</h2>
-<p>A list of warnings enabled by <code>-Wpedantic</code> is not provided in the documentation. I went through the individual warning descriptions and found the warning options enabled by <code>-Wpedantic</code>:</p>
+<p>A list of warnings enabled by <code>-Wpedantic</code> is not provided
+in the documentation. I went through the individual warning descriptions
+and found the warning options enabled by <code>-Wpedantic</code>:</p>
 <pre><code>Warning options enabled by -Wpedantic:
 
 -Wexpansion-to-defined
@@ -60,8 +58,13 @@
 -Wpointer-sign
 -Wvariadic-macros
 -Wvla</code></pre>
-<h2 id="warnings-not-in--wall--wextra-or--wpedantic">Warnings not in -Wall, -Wextra or -Wpedantic</h2>
-<p>It can very useful to know which of the warning options are not enabled by <code>-Wall</code>, <code>-Wextra</code> and <code>-Wpedantic</code>. These are the options that might be useful for debugging or improving particular problems with your code. Again, I went through the individual warning descriptions and here they are:</p>
+<h2 id="warnings-not-in--wall--wextra-or--wpedantic">Warnings not in
+-Wall, -Wextra or -Wpedantic</h2>
+<p>It can very useful to know which of the warning options are not
+enabled by <code>-Wall</code>, <code>-Wextra</code> and
+<code>-Wpedantic</code>. These are the options that might be useful for
+debugging or improving particular problems with your code. Again, I went
+through the individual warning descriptions and here they are:</p>
 <pre><code>Warning options not included by -Wall, -Wextra and -Wpedantic:
 
 -Waggregate-return
@@ -118,9 +121,11 @@
 -Wvector-operation-performance
 -Wwrite-strings
 -Wzero-as-null-pointer-constant</code></pre>
-<p>Note that I have not included the warning options that disable certain types of warning messages.</p>
+<p>Note that I have not included the warning options that disable
+certain types of warning messages.</p>
 <h2 id="warnings-i-use">Warnings I use</h2>
-<p>Finally, here is the list of warnings that I like to compile with:</p>
+<p>Finally, here is the list of warnings that I like to compile
+with:</p>
 <pre><code>-Wall
 -Wextra
 -Wpedantic
@@ -128,8 +133,12 @@
 -Wmissing-include-dirs</code></pre>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">GCC warnings documentation</a></li>
-<li>For comparison, also see <a href="https://clang.llvm.org/docs/DiagnosticsReference.html">Clang warnings documentation</a></li>
+<li><a
+href="https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html">GCC
+warnings documentation</a></li>
+<li>For comparison, also see <a
+href="https://clang.llvm.org/docs/DiagnosticsReference.html">Clang
+warnings documentation</a></li>
 </ul>
 </div>
 
@@ -138,11 +147,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

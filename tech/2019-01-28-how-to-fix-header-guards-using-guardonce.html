@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,34 +30,56 @@
 <h1 class="title">How to fix header guards using guardonce</h1>
 <p class="date">📅 2019-Jan-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#guardonce'>guardonce</a>, <a href='index.html#header-guard'>header guard</a>, <a href='index.html#include-guard'>include guard</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://en.wikipedia.org/wiki/Include_guard"><strong>Header guards</strong></a> are used in C and C++ header files to avoid them being included more than once during the compilation of a compilation unit. There are generally two techniques: using an include guard and using a pragma once directive. <a href="https://github.com/cgmb/guardonce"><strong>guardonce</strong></a> provides a set of Python tools that can be used to diagnose the state of header guards, convert between the two types of guards and to fix guards in your codebase.</p>
+<p><a href="https://en.wikipedia.org/wiki/Include_guard"><strong>Header
+guards</strong></a> are used in C and C++ header files to avoid them
+being included more than once during the compilation of a compilation
+unit. There are generally two techniques: using an include guard and
+using a pragma once directive. <a
+href="https://github.com/cgmb/guardonce"><strong>guardonce</strong></a>
+provides a set of Python tools that can be used to diagnose the state of
+header guards, convert between the two types of guards and to fix guards
+in your codebase.</p>
 <ul>
 <li>Installing guardonce using pip is easy:</li>
 </ul>
 <pre><code>$ sudo pip3 install guardonce</code></pre>
 <ul>
-<li>To convert include guards to pragma onces for all header files in the current directory:</li>
+<li>To convert include guards to pragma onces for all header files in
+the current directory:</li>
 </ul>
 <pre><code>$ guard2once *.h</code></pre>
 <ul>
-<li>To convert pragma onces to include guards for all header files in the current directory:</li>
+<li>To convert pragma onces to include guards for all header files in
+the current directory:</li>
 </ul>
 <pre><code>$ once2guard *.h</code></pre>
 <ul>
-<li>The tools support a <a href="https://github.com/cgmb/guardonce/blob/master/docs/PatternLanguage.md"><strong>pattern language</strong></a> that can be used to specify include guard name of a specific pattern. The pattern is built like a Unix pipeline. For example, to convert pragma once to include guard names with a default prefix (say <code>FOOBAR_</code>) followed by filename in snake form and uppercase:</li>
+<li>The tools support a <a
+href="https://github.com/cgmb/guardonce/blob/master/docs/PatternLanguage.md"><strong>pattern
+language</strong></a> that can be used to specify include guard name of
+a specific pattern. The pattern is built like a Unix pipeline. For
+example, to convert pragma once to include guard names with a default
+prefix (say <code>FOOBAR_</code>) followed by filename in snake form and
+uppercase:</li>
 </ul>
 <pre><code>$ once2guard -p &quot;name | snake | upper | prepend FOOBAR_&quot; *.h</code></pre>
-<p>For a filename <code>linkedList.h</code> the above command would generate an include guard name <code>FOOBAR_LINKED_LIST_H</code>.</p>
+<p>For a filename <code>linkedList.h</code> the above command would
+generate an include guard name <code>FOOBAR_LINKED_LIST_H</code>.</p>
 <ul>
-<li>For include guards it is convenient to have the guard name to appear in comments near the <strong>endif</strong>. To do that:</li>
+<li>For include guards it is convenient to have the guard name to appear
+in comments near the <strong>endif</strong>. To do that:</li>
 </ul>
 <pre><code>$ once2guard -s &quot;#endif // %&quot; *.h</code></pre>
 <ul>
-<li>It is a good convenience to have a newline before the <strong>endif</strong>. To do that:</li>
+<li>It is a good convenience to have a newline before the
+<strong>endif</strong>. To do that:</li>
 </ul>
 <pre><code>$ once2guard -l *.h</code></pre>
 <ul>
-<li>There is no straightforward option to fix or modify the include guards to a certain pattern. Instead I found that I could achieve this by first converting the file to pragma once and then converting back to include guards. This can be done like this:</li>
+<li>There is no straightforward option to fix or modify the include
+guards to a certain pattern. Instead I found that I could achieve this
+by first converting the file to pragma once and then converting back to
+include guards. This can be done like this:</li>
 </ul>
 <pre><code>$ guard2once *.h ; once2guard *.h</code></pre>
 <p><strong>Tried with:</strong> guardonce 2.4.0 and Ubuntu 18.04</p>
@@ -82,11 +90,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

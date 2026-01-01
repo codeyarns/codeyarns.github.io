@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,28 @@
 <h1 class="title">GiTk</h1>
 <p class="date">📅 2016-Mar-15 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#gitk'>gitk</a>, <a href='index.html#log'>log</a>, <a href='index.html#tk'>tk</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>GiTk</strong> is a GUI tool written in Tcl/Tk for viewing the <strong>Git</strong> log as a directed acyclic graph (DAG) and has many features to browse and explore the DAG. This is a tool that ships along with Git, so it should be present wherever Git is there. It accepts many of the options that can be passed to <code>git log</code>.</p>
+<p><strong>GiTk</strong> is a GUI tool written in Tcl/Tk for viewing the
+<strong>Git</strong> log as a directed acyclic graph (DAG) and has many
+features to browse and explore the DAG. This is a tool that ships along
+with Git, so it should be present wherever Git is there. It accepts many
+of the options that can be passed to <code>git log</code>.</p>
 <ul>
 <li>By default, it shows only history of the current branch:</li>
 </ul>
 <pre><code>$ gitk</code></pre>
 <ul>
-<li><p><strong>Colors</strong>: It is important to understand the various colors used in GiTk. Commit with <strong>yellow</strong> circle is the HEAD. When GiTk is opened, it always jumps to this commit. Commit with <strong>red</strong> circle is your uncommitted changes. All other commits are shown in <strong>blue</strong> circle. Local branche names are shown in <strong>green</strong>, while remote branch names are shown in combination of <strong>orange and green</strong> with the orange section being the remote name and the green section being the branch name.</p></li>
-<li><p><strong>Configuration file</strong>: Configuration settings of this tool can be changed or set in <code>~/.config/gitk/gitk</code></p></li>
+<li><p><strong>Colors</strong>: It is important to understand the
+various colors used in GiTk. Commit with <strong>yellow</strong> circle
+is the HEAD. When GiTk is opened, it always jumps to this commit. Commit
+with <strong>red</strong> circle is your uncommitted changes. All other
+commits are shown in <strong>blue</strong> circle. Local branche names
+are shown in <strong>green</strong>, while remote branch names are shown
+in combination of <strong>orange and green</strong> with the orange
+section being the remote name and the green section being the branch
+name.</p></li>
+<li><p><strong>Configuration file</strong>: Configuration settings of
+this tool can be changed or set in
+<code>~/.config/gitk/gitk</code></p></li>
 <li><p>To view history of another branch:</p></li>
 </ul>
 <pre><code>$ gitk some_other_branch</code></pre>
@@ -64,19 +64,64 @@
 </ul>
 <pre><code>$ gitk /path/to/file</code></pre>
 <ul>
-<li><p><code>--date-order</code>: Show commits in reverse chronological order of their dates. I use this when I want to get a sense of the progress of the team working on the repository. You might think this is very useful and may wonder why this is not turned on by default. Note that this makes the chain of development harder to visualize. The default view is <code>--topo-order</code> which tries to show as many commits of a branch together as possible. See the man page for an example scenario.</p></li>
-<li><p><code>--merges</code>: View only the pieces of the DAG with merges.</p></li>
-<li><p><code>--no-merges</code>: View the disconnected pieces of the DAG with the merge commits removed.</p></li>
-<li><p><code>--first-parent</code>: Show only the first parent in merges. This greatly simplifies the visual complexity of the DAG. This is especially useful when viewing the DAG of a repository that follows the GitFlow branching model. Note that the first parent of a merge is the branch to which the other branch was merged.</p></li>
-<li><p><code>-n</code>: Provide a number to this option to limit loading only that many commits. This is useful when viewing a repository with a large number of commits. For example: <code>gitk -n 1000</code></p></li>
-<li><p>To search and view all the commits with a certain string, type it in the Find box and press Enter. You will see that all the commits with that string are highlighted in bold. You can jump up and down between these commits using the Up and Down arrow buttons at the left.</p></li>
-<li><p>To diff two commits: Click the first commit to highlight it. Next right-click on the second commit to get the context menu and in that menu choose <strong>Diff this and selected</strong>.</p></li>
-<li><p><code>F2</code>: To view all the branches and tags in a dialog. Clicking on one of them takes you to that tag or branch. This is useful to navigate a complex DAG.</p></li>
-<li><p>Right-click on any line in the diff shown below and choose <strong>Show origin of this line</strong> to jump to the commit that added this line. You typically check this on line that are modified or removed in the current commit of course.</p></li>
-<li><p>For complex DAGs, edges are broken into dangling arrowheads. Clicking on the arrow tip jumps you to the other end of the edge.</p></li>
-<li><p>Click on any edge and all the edges that for that segment of the graph are shown in bold. The bottom pane changes to show the parents and children of that piece of the graph.</p></li>
-<li><p><strong>Mark</strong>: To <strong>bookmark</strong> a commit, right-click and choose <strong>Mark this commit</strong>. The commit will be shown in a box. Marking is useful to bookmark a commit and later return to it. For example, mark a commit, navigate to another part of the DAG and then right-click anywhere and choose <strong>Return to mark</strong> to go back to the marked commit. It is also useful for diff of two commits. For example, after marking a commit, right-click on another commit and you can choose to diff the two. Only one mark can be set. Setting a new mark, removes the previous one.</p></li>
-<li><p><strong>External Diff</strong>: No matter what you are doing in GitK, viewing a commit or comparing two commits, the lower-left box always shows the diffs and the lower-right box the files which are different. However, you may prefer to see diffs side-by-side or using a different external diff viewer, like <strong>Meld</strong>. This can be done easily. Just right-click any of the filepaths shown in the lower-right box and choose External Diff to view in your favorite diff viewer. The diff program it will use is the one you have set using the <code>diff.tool</code> configuration option in Git.</p></li>
+<li><p><code>--date-order</code>: Show commits in reverse chronological
+order of their dates. I use this when I want to get a sense of the
+progress of the team working on the repository. You might think this is
+very useful and may wonder why this is not turned on by default. Note
+that this makes the chain of development harder to visualize. The
+default view is <code>--topo-order</code> which tries to show as many
+commits of a branch together as possible. See the man page for an
+example scenario.</p></li>
+<li><p><code>--merges</code>: View only the pieces of the DAG with
+merges.</p></li>
+<li><p><code>--no-merges</code>: View the disconnected pieces of the DAG
+with the merge commits removed.</p></li>
+<li><p><code>--first-parent</code>: Show only the first parent in
+merges. This greatly simplifies the visual complexity of the DAG. This
+is especially useful when viewing the DAG of a repository that follows
+the GitFlow branching model. Note that the first parent of a merge is
+the branch to which the other branch was merged.</p></li>
+<li><p><code>-n</code>: Provide a number to this option to limit loading
+only that many commits. This is useful when viewing a repository with a
+large number of commits. For example: <code>gitk -n 1000</code></p></li>
+<li><p>To search and view all the commits with a certain string, type it
+in the Find box and press Enter. You will see that all the commits with
+that string are highlighted in bold. You can jump up and down between
+these commits using the Up and Down arrow buttons at the left.</p></li>
+<li><p>To diff two commits: Click the first commit to highlight it. Next
+right-click on the second commit to get the context menu and in that
+menu choose <strong>Diff this and selected</strong>.</p></li>
+<li><p><code>F2</code>: To view all the branches and tags in a dialog.
+Clicking on one of them takes you to that tag or branch. This is useful
+to navigate a complex DAG.</p></li>
+<li><p>Right-click on any line in the diff shown below and choose
+<strong>Show origin of this line</strong> to jump to the commit that
+added this line. You typically check this on line that are modified or
+removed in the current commit of course.</p></li>
+<li><p>For complex DAGs, edges are broken into dangling arrowheads.
+Clicking on the arrow tip jumps you to the other end of the
+edge.</p></li>
+<li><p>Click on any edge and all the edges that for that segment of the
+graph are shown in bold. The bottom pane changes to show the parents and
+children of that piece of the graph.</p></li>
+<li><p><strong>Mark</strong>: To <strong>bookmark</strong> a commit,
+right-click and choose <strong>Mark this commit</strong>. The commit
+will be shown in a box. Marking is useful to bookmark a commit and later
+return to it. For example, mark a commit, navigate to another part of
+the DAG and then right-click anywhere and choose <strong>Return to
+mark</strong> to go back to the marked commit. It is also useful for
+diff of two commits. For example, after marking a commit, right-click on
+another commit and you can choose to diff the two. Only one mark can be
+set. Setting a new mark, removes the previous one.</p></li>
+<li><p><strong>External Diff</strong>: No matter what you are doing in
+GitK, viewing a commit or comparing two commits, the lower-left box
+always shows the diffs and the lower-right box the files which are
+different. However, you may prefer to see diffs side-by-side or using a
+different external diff viewer, like <strong>Meld</strong>. This can be
+done easily. Just right-click any of the filepaths shown in the
+lower-right box and choose External Diff to view in your favorite diff
+viewer. The diff program it will use is the one you have set using the
+<code>diff.tool</code> configuration option in Git.</p></li>
 </ul>
 <p><strong>Tried with:</strong> Git 2.4.1 and Ubuntu 14.04</p>
 </div>
@@ -86,11 +131,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

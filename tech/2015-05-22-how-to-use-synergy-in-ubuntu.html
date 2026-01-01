@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,34 +30,73 @@
 <h1 class="title">How to use Synergy in Ubuntu</h1>
 <p class="date">📅 2015-May-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#synergy'>synergy</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://codeyarns.files.wordpress.com/2015/05/20150522_synergy.png"><img src="https://codeyarns.files.wordpress.com/2015/05/20150522_synergy.png?w=660" alt="20150522_synergy" /></a></p>
-<p><a href="http://synergy-project.org/"><strong>Synergy</strong></a> is a tool that can be used to share a <strong>keyboard</strong> and <strong>mouse</strong> across multiple computers. In this post, I will describe how I used Synergy to share a keyboard and mouse between two computers running <strong>Ubuntu</strong>.</p>
+<p><a
+href="https://codeyarns.files.wordpress.com/2015/05/20150522_synergy.png"><img
+src="https://codeyarns.files.wordpress.com/2015/05/20150522_synergy.png?w=660"
+alt="20150522_synergy" /></a></p>
+<p><a href="http://synergy-project.org/"><strong>Synergy</strong></a> is
+a tool that can be used to share a <strong>keyboard</strong> and
+<strong>mouse</strong> across multiple computers. In this post, I will
+describe how I used Synergy to share a keyboard and mouse between two
+computers running <strong>Ubuntu</strong>.</p>
 <h2 id="install">Install</h2>
 <ul>
-<li><p><strong>Server</strong> is the computer whose keyboard and mouse you want to always use.</p></li>
-<li><p><strong>Client</strong> is the computer whose display you want to control using the server’s keyboard and mouse.</p></li>
-<li><p>Make sure the server and client are connected on the same wireless network or LAN. Make sure you can ping the server from the client and the client from the server.</p></li>
-<li><p>Install Synergy on both the server and the client computers:</p></li>
+<li><p><strong>Server</strong> is the computer whose keyboard and mouse
+you want to always use.</p></li>
+<li><p><strong>Client</strong> is the computer whose display you want to
+control using the server’s keyboard and mouse.</p></li>
+<li><p>Make sure the server and client are connected on the same
+wireless network or LAN. Make sure you can ping the server from the
+client and the client from the server.</p></li>
+<li><p>Install Synergy on both the server and the client
+computers:</p></li>
 </ul>
 <pre><code>$ sudo apt install synergy</code></pre>
 <h2 id="setup-the-server">Setup the server</h2>
 <ul>
-<li><p>Type <strong>Synergy</strong> in the Dash or <code>synergy</code> at the shell to open the GUI of Synergy.</p></li>
-<li><p>Choose the <strong>Server</strong> option. Choose an <strong>encryption</strong> method from the dropdown and provide a <strong>password</strong>.</p></li>
-<li><p>In the main dialog, make sure <strong>Configure interactively</strong> is chosen.</p></li>
-<li><p>Click on <strong>Configure server</strong>. In the <strong>Screens and links</strong> tab, you should be able to see a blue display, which represents the server. Drag down the blue display (in the top-right corner) to a box neighboring the server display. This new display you added represents the client. My client display on my desk is to the left of my server, so I dragged the blue display and placed it to the left of the server display.</p></li>
-<li><p>Double-click on the display you added. In the <strong>Screen Settings</strong> dialog, provide a <strong>Screen name</strong> to the client. This can be anything, it is just used in the grid of displays. Add an <strong>alias</strong>: you have to give the <strong>hostname</strong> or <strong>IP address</strong> of the client here.</p></li>
-<li><p>Click <strong>Start</strong> to start the server. It will minimize to the system tray at the top.</p></li>
+<li><p>Type <strong>Synergy</strong> in the Dash or <code>synergy</code>
+at the shell to open the GUI of Synergy.</p></li>
+<li><p>Choose the <strong>Server</strong> option. Choose an
+<strong>encryption</strong> method from the dropdown and provide a
+<strong>password</strong>.</p></li>
+<li><p>In the main dialog, make sure <strong>Configure
+interactively</strong> is chosen.</p></li>
+<li><p>Click on <strong>Configure server</strong>. In the
+<strong>Screens and links</strong> tab, you should be able to see a blue
+display, which represents the server. Drag down the blue display (in the
+top-right corner) to a box neighboring the server display. This new
+display you added represents the client. My client display on my desk is
+to the left of my server, so I dragged the blue display and placed it to
+the left of the server display.</p></li>
+<li><p>Double-click on the display you added. In the <strong>Screen
+Settings</strong> dialog, provide a <strong>Screen name</strong> to the
+client. This can be anything, it is just used in the grid of displays.
+Add an <strong>alias</strong>: you have to give the
+<strong>hostname</strong> or <strong>IP address</strong> of the client
+here.</p></li>
+<li><p>Click <strong>Start</strong> to start the server. It will
+minimize to the system tray at the top.</p></li>
 </ul>
 <h2 id="setup-the-client">Setup the client</h2>
 <ul>
-<li><p>Type <strong>Synergy</strong> in the Dash or <code>synergy</code> at the shell to open the GUI of Synergy.</p></li>
-<li><p>Choose the <strong>Client</strong> option. Choose the <strong>encryption</strong> method from the dropdown and <strong>password</strong> that you had used on the server. They have to be the same!</p></li>
-<li><p>In the main dialog, type in the IP address of the server and press <strong>Start</strong>. Your client is now connected to the server! 😊</p></li>
+<li><p>Type <strong>Synergy</strong> in the Dash or <code>synergy</code>
+at the shell to open the GUI of Synergy.</p></li>
+<li><p>Choose the <strong>Client</strong> option. Choose the
+<strong>encryption</strong> method from the dropdown and
+<strong>password</strong> that you had used on the server. They have to
+be the same!</p></li>
+<li><p>In the main dialog, type in the IP address of the server and
+press <strong>Start</strong>. Your client is now connected to the
+server! 😊</p></li>
 </ul>
 <h2 id="usage">Usage</h2>
 <ul>
-<li>Remember that I have placed my client to the left of the server in the grid. So, when I want to switch to my client display, I <strong>hit</strong> the mouse to the <strong>left side</strong> of the display on my server. It will appear in the client! All the keys I type on the server keyboard now appear in the client. To switch back, hit the mouse to the <strong>right side</strong> of the client display.</li>
+<li>Remember that I have placed my client to the left of the server in
+the grid. So, when I want to switch to my client display, I
+<strong>hit</strong> the mouse to the <strong>left side</strong> of the
+display on my server. It will appear in the client! All the keys I type
+on the server keyboard now appear in the client. To switch back, hit the
+mouse to the <strong>right side</strong> of the client display.</li>
 </ul>
 <p><strong>Tried with:</strong> Synergy 1.4.12 and Ubuntu 14.04</p>
 </div>
@@ -81,11 +106,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

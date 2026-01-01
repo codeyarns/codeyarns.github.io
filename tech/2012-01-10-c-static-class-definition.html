@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,22 @@
 <h1 class="title">C++: Static Class Definition</h1>
 <p class="date">📅 2012-Jan-10 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#static'>static</a>, <a href='index.html#visual'>visual</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>In <strong>C++</strong>, the <code>static</code> specifier is only meaningful when applied on functions and variables. But surprisingly, C++ allows <code>static</code> to be used on a class definition:</p>
+<p>In <strong>C++</strong>, the <code>static</code> specifier is only
+meaningful when applied on functions and variables. But surprisingly,
+C++ allows <code>static</code> to be used on a class definition:</p>
 <pre><code>static class Car
 {
     int _speed;
 };</code></pre>
-<p>This specifier is useless on the class definition since it does not mean anything! This compiles successfully with with Visual C++, only generating a <a href="http://msdn.microsoft.com/en-us/library/eehkcz60.aspx">C4091</a> warning:</p>
+<p>This specifier is useless on the class definition since it does not
+mean anything! This compiles successfully with with Visual C++, only
+generating a <a
+href="http://msdn.microsoft.com/en-us/library/eehkcz60.aspx">C4091</a>
+warning:</p>
 <pre><code>warning C4091: &#39;static &#39; : ignored on left of &#39;Car&#39; when no variable is declared</code></pre>
-<p>This hints at the reason why C++ allows <code>static</code> on a class definition. It is to support the definition of a class and the creation of a static object of that class in a single statement:</p>
+<p>This hints at the reason why C++ allows <code>static</code> on a
+class definition. It is to support the definition of a class and the
+creation of a static object of that class in a single statement:</p>
 <pre><code>static class Car { int _speed } fooCar;</code></pre>
 <p>The above is equivalent to:</p>
 <pre><code>class Car
@@ -67,11 +61,13 @@ static Car fooCar;</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

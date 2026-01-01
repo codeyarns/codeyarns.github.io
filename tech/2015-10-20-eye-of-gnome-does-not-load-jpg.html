@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,19 +31,34 @@
 <p class="date">📅 2015-Oct-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#image-viewer'>image viewer</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I tried to open a <strong>JPG</strong> image file using <strong>Eye of GNOME</strong>. It failed with this error:</p>
+<p>I tried to open a <strong>JPG</strong> image file using <strong>Eye
+of GNOME</strong>. It failed with this error:</p>
 <pre><code>Could not load image &#39;foo.jpg&#39;
 Error interpreting JPEG image file (Not a JPEG file: starts with 0x89 0x50)</code></pre>
-<p>When I opened the same file using another image viewer, it opened without any problem!</p>
-<p>Another symptom of this problem is that the <strong>thumbnail</strong> of the image file is not displayed in <strong>Nautilus</strong> or in <strong>Nemo</strong> file explorers. All of these programs use the same backend for image display.</p>
+<p>When I opened the same file using another image viewer, it opened
+without any problem!</p>
+<p>Another symptom of this problem is that the
+<strong>thumbnail</strong> of the image file is not displayed in
+<strong>Nautilus</strong> or in <strong>Nemo</strong> file explorers.
+All of these programs use the same backend for image display.</p>
 <h2 id="solution">Solution</h2>
-<p>This problem is typically caused when the image is actually a <strong>PNG</strong> file. Some apps on Android are notorious for saving all image formats as JPG.</p>
-<p>As noted by EOG, the file starts with the <strong>magic</strong> identifier <code>0x89 0x50</code>, which is for PNG format. You can also check the same by using the <code>file</code> command:</p>
+<p>This problem is typically caused when the image is actually a
+<strong>PNG</strong> file. Some apps on Android are notorious for saving
+all image formats as JPG.</p>
+<p>As noted by EOG, the file starts with the <strong>magic</strong>
+identifier <code>0x89 0x50</code>, which is for PNG format. You can also
+check the same by using the <code>file</code> command:</p>
 <pre><code>$ file foo.jpg
 foo.jpg: PNG image data, 716 x 960, 8-bit/color RGB, non-interlaced</code></pre>
-<p>We can see that <code>file</code> reports this JPG file as containing PNG image data.</p>
-<p>Just rename the JPG file with the correct <code>.png</code> file extension and EOG will open it correctly. You will also see that thumbnails are now rendered correctly.</p>
-<p>Admittedly, EOG could have detected the format correctly and shown a more informative error message. I have seen other image viewers do that. This has been filed as a bug <a href="https://bugs.launchpad.net/ubuntu/+source/eog/+bug/174188">here</a>.</p>
+<p>We can see that <code>file</code> reports this JPG file as containing
+PNG image data.</p>
+<p>Just rename the JPG file with the correct <code>.png</code> file
+extension and EOG will open it correctly. You will also see that
+thumbnails are now rendered correctly.</p>
+<p>Admittedly, EOG could have detected the format correctly and shown a
+more informative error message. I have seen other image viewers do that.
+This has been filed as a bug <a
+href="https://bugs.launchpad.net/ubuntu/+source/eog/+bug/174188">here</a>.</p>
 <p><strong>Tried with:</strong> Eye of GNOME 3.10.2 and Ubuntu 14.04</p>
 </div>
 
@@ -66,11 +67,13 @@ foo.jpg: PNG image data, 716 x 960, 8-bit/color RGB, non-interlaced</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

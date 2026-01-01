@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,9 @@
 <p class="date">📅 2015-Oct-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#afs'>afs</a>, <a href='index.html#openafs'>openafs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I tried to install the <strong>OpenAFS</strong> client. The package installation failed, complaining that the AFS kernel module could not be built for my Linux kernel:</p>
+<p>I tried to install the <strong>OpenAFS</strong> client. The package
+installation failed, complaining that the AFS kernel module could not be
+built for my Linux kernel:</p>
 <pre><code>$ sudo apt install openafs-client
 AFS module /lib/modules/3.19.0-28-generic/fs/openafs.ko does not exist.
 Not starting AFS.  Please consider building kernel modules using
@@ -62,25 +50,35 @@ AttributeError: &#39;module&#39; object has no attribute &#39;make_report_path&#
 Error! Bad return status for module build on kernel: 3.19.0-28-generic (x86_64)
 Consult /var/lib/dkms/openafs/1.6.7/build/make.log for more information.
 Processing triggers for ureadahead (0.100.0-16) ...</code></pre>
-<p>Restarting the OpenAFS service, complained about the missing kernel module:</p>
+<p>Restarting the OpenAFS service, complained about the missing kernel
+module:</p>
 <pre><code>$ sudo /etc/init.d/openafs-client restart
 Stopping AFS services:.
 Starting AFS services:
 AFS module /lib/modules/3.19.0-28-generic/fs/openafs.ko does not exist.
 Not starting AFS.  Please consider building kernel modules using
 instructions in /usr/share/doc/openafs-client/README.modules</code></pre>
-<p>Running any OpenAFS program, like <code>klog</code> for example, gave a strange error:</p>
+<p>Running any OpenAFS program, like <code>klog</code> for example, gave
+a strange error:</p>
 <pre><code>$ klog
 Unable to authenticate to AFS because a pioctl failed.</code></pre>
 <h2 id="solution">Solution</h2>
-<p>The AFS kernel module did not compile because of changes in recent kernel source code. The bug is reported <a href="https://bugs.launchpad.net/ubuntu/+source/openafs/+bug/1433411">here</a>. It can be fixed if you can install patches and recompile the kernel or pull a modified kernel from Ubuntu servers.</p>
-<p>An easier solution is to get the updated OpenAFS package from their PPA <a href="https://launchpad.net/~openafs/+archive/ubuntu/stable">here</a>:</p>
+<p>The AFS kernel module did not compile because of changes in recent
+kernel source code. The bug is reported <a
+href="https://bugs.launchpad.net/ubuntu/+source/openafs/+bug/1433411">here</a>.
+It can be fixed if you can install patches and recompile the kernel or
+pull a modified kernel from Ubuntu servers.</p>
+<p>An easier solution is to get the updated OpenAFS package from their
+PPA <a
+href="https://launchpad.net/~openafs/+archive/ubuntu/stable">here</a>:</p>
 <pre><code>$ sudo apt-get purge openafs-client
 $ sudo add-apt-repository ppa:openafs/stable
 $ sudo apt-get update
 $ sudo apt install openafs-client</code></pre>
-<p>The AFS kernel module was compiled successfully when I tried this and everything worked fine!</p>
-<p><strong>Tried with:</strong> Ubuntu 14.04 and Linux kernel 3.19.0-28</p>
+<p>The AFS kernel module was compiled successfully when I tried this and
+everything worked fine!</p>
+<p><strong>Tried with:</strong> Ubuntu 14.04 and Linux kernel
+3.19.0-28</p>
 </div>
 
 <br />
@@ -88,11 +86,13 @@ $ sudo apt install openafs-client</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,20 +27,43 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to share directory over SMB using Samba Server Configuration</h1>
+<h1 class="title">How to share directory over SMB using Samba Server
+Configuration</h1>
 <p class="date">📅 2014-Apr-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#nfs'>nfs</a>, <a href='index.html#smb'>smb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2014/04/20140413-samba-config.png" alt="" /><figcaption>Share a directory over SMB</figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2014/04/20140413-samba-config.png"
+alt="Share a directory over SMB" />
+<figcaption aria-hidden="true">Share a directory over SMB</figcaption>
 </figure>
-<p>You can share a directory on your computer using NFS, as described in <a href="2013-03-17-how-to-setup-nfs-server-and-client.html">this post</a>. Another alternative is to share it over SMB using Samba, especially if you have Windows computers on your network. This can be a great way to share your family photos, music and video files to all the notebooks, phones and tablets connected on your home network.</p>
-<p><strong>Samba Server Configuration</strong> is a simple GUI utility that makes configuration and sharing directories over SMB extremely easy. For every directory you share using this utility, it adds the relevant section to your <code>/etc/samba/smb.conf</code> file.</p>
+<p>You can share a directory on your computer using NFS, as described in
+<a href="2013-03-17-how-to-setup-nfs-server-and-client.html">this
+post</a>. Another alternative is to share it over SMB using Samba,
+especially if you have Windows computers on your network. This can be a
+great way to share your family photos, music and video files to all the
+notebooks, phones and tablets connected on your home network.</p>
+<p><strong>Samba Server Configuration</strong> is a simple GUI utility
+that makes configuration and sharing directories over SMB extremely
+easy. For every directory you share using this utility, it adds the
+relevant section to your <code>/etc/samba/smb.conf</code> file.</p>
 <p>Installing this utility is easy:</p>
 <pre><code>$ sudo apt-get install system-config-samba</code></pre>
-<p>To run the utility type <strong>Samba</strong> in the Dash or <code>sudo system-config-samba</code> at the shell.</p>
-<p>Adding a directory to share is easy. Choose File &gt; Add Share and provide the directory path, the name it should appear as in SMB, choose whether it should be writeable and visible.</p>
-<p>In the Access tab, choose whether you want everyone to access the directory or just some specific users. If you choose everyone then no login or password is required by SMB clients to access this shared directory. If you pick some users, then the SMB clients need to provide one of those user and password to access this shared directory. Choose Add and you are done.</p>
-<p>For sharing with everyone, you need an extra customization. Find the section in /etc/samba/smb.conf that refers to the shared directory and provide an username that should be forcefully used when anyone accesses this share:</p>
+<p>To run the utility type <strong>Samba</strong> in the Dash or
+<code>sudo system-config-samba</code> at the shell.</p>
+<p>Adding a directory to share is easy. Choose File &gt; Add Share and
+provide the directory path, the name it should appear as in SMB, choose
+whether it should be writeable and visible.</p>
+<p>In the Access tab, choose whether you want everyone to access the
+directory or just some specific users. If you choose everyone then no
+login or password is required by SMB clients to access this shared
+directory. If you pick some users, then the SMB clients need to provide
+one of those user and password to access this shared directory. Choose
+Add and you are done.</p>
+<p>For sharing with everyone, you need an extra customization. Find the
+section in /etc/samba/smb.conf that refers to the shared directory and
+provide an username that should be forcefully used when anyone accesses
+this share:</p>
 <pre><code>[joe-pics]
     path = /home/joe/pics
     guest ok = yes
@@ -62,7 +71,8 @@
     force user = joe</code></pre>
 <p>To restart the Samba server after making these changes:</p>
 <pre><code>$ sudo service smbd restart</code></pre>
-<p><strong>Tried with:</strong> system-config-samba 1.2.63 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> system-config-samba 1.2.63 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -70,11 +80,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

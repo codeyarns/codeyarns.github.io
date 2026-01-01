@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,18 +31,36 @@
 <p class="date">📅 2016-Feb-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#keyboard-shortcuts'>keyboard shortcuts</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p><a href="2013-01-21-byobu.html"><strong>Byobu</strong></a> has support for a long list of <strong>keyboard shortcuts</strong>. The full list of keybindings can be found listed in <code>/usr/share/byobu/keybindings/f-keys.tmux</code>. However, you may find that one or more of those do not work. For example, I found that pressing <code>Shift+F1</code> to view help and pressing <code>Ctrl+F2</code> to do a horizontal split did not work.</p>
+<p><a href="2013-01-21-byobu.html"><strong>Byobu</strong></a> has
+support for a long list of <strong>keyboard shortcuts</strong>. The full
+list of keybindings can be found listed in
+<code>/usr/share/byobu/keybindings/f-keys.tmux</code>. However, you may
+find that one or more of those do not work. For example, I found that
+pressing <code>Shift+F1</code> to view help and pressing
+<code>Ctrl+F2</code> to do a horizontal split did not work.</p>
 <h2 id="solution">Solution</h2>
-<p>There are many reasons why Byobu is not receiving or failing on executing the hotkey you are pressing.</p>
-<p>One possibility is that your desktop environment, window manager or terminal program is already using that keyboard shortcut. You will need to disable those keyboard shortcuts for it to work in Byobu. This was how I got <code>Ctrl+F2</code> working in Byobu.</p>
+<p>There are many reasons why Byobu is not receiving or failing on
+executing the hotkey you are pressing.</p>
+<p>One possibility is that your desktop environment, window manager or
+terminal program is already using that keyboard shortcut. You will need
+to disable those keyboard shortcuts for it to work in Byobu. This was
+how I got <code>Ctrl+F2</code> working in Byobu.</p>
 <p>Here are some places where you can check:</p>
 <ul>
-<li><p><strong>XFCE</strong>: Check in Keyboard -&gt; Application Shortcuts. Also check in Window Manager -&gt; Keyboard.</p></li>
-<li><p><strong>KDE</strong>: Check in Global Keyboard Shortcuts.</p></li>
+<li><p><strong>XFCE</strong>: Check in Keyboard -&gt; Application
+Shortcuts. Also check in Window Manager -&gt; Keyboard.</p></li>
+<li><p><strong>KDE</strong>: Check in Global Keyboard
+Shortcuts.</p></li>
 </ul>
-<p>Another possibility is that Byobu is receiving the keybinding you pressed, but it is executing a shell command that is failing.</p>
-<p>This was the case for <code>Shift-F1</code> to fail, the culprit was my Fish shell. The command executed by this hotkey can be seen in <code>/usr/share/byobu/keybindings/f-keys.tmux</code>. It is executing a command that will work only in Sh or Bash.</p>
-<p>To override this, I created a <code>~/.byobu/keybindings.tmux</code>, copied the line and edited to add a <code>sh -c</code> prefix to it so that it used the correct shell.</p>
+<p>Another possibility is that Byobu is receiving the keybinding you
+pressed, but it is executing a shell command that is failing.</p>
+<p>This was the case for <code>Shift-F1</code> to fail, the culprit was
+my Fish shell. The command executed by this hotkey can be seen in
+<code>/usr/share/byobu/keybindings/f-keys.tmux</code>. It is executing a
+command that will work only in Sh or Bash.</p>
+<p>To override this, I created a <code>~/.byobu/keybindings.tmux</code>,
+copied the line and edited to add a <code>sh -c</code> prefix to it so
+that it used the correct shell.</p>
 <p><strong>Tried with:</strong> Byobu 5.74 and Ubuntu 14.04</p>
 </div>
 
@@ -65,11 +69,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

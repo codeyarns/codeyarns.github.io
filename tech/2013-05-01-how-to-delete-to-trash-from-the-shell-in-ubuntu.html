@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,30 +30,57 @@
 <h1 class="title">How to delete to trash from the shell in Ubuntu</h1>
 <p class="date">📅 2013-May-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#rm'>rm</a>, <a href='index.html#trash-cli'>trash-cli</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>rm</strong> command is probably the most dangerous command to use from the shell in Linux. Deleting files and directories at the shell is a common task we do all day. But, one small mistake with rm can lead to disaster since it is hard to recover those deleted files. The question that begs then is: why not safely delete to the trash can, just like we do on the desktop?</p>
-<p>Thankfully, that is possible thanks to <a href="https://github.com/andreafrancia/trash-cli"><strong>trash-cli</strong></a>. It has commands to move files and directories to the trash can on your Ubuntu desktop.</p>
-<p>Here is how I have set up my system to delete files to trash from the shell:</p>
+<p>The <strong>rm</strong> command is probably the most dangerous
+command to use from the shell in Linux. Deleting files and directories
+at the shell is a common task we do all day. But, one small mistake with
+rm can lead to disaster since it is hard to recover those deleted files.
+The question that begs then is: why not safely delete to the trash can,
+just like we do on the desktop?</p>
+<p>Thankfully, that is possible thanks to <a
+href="https://github.com/andreafrancia/trash-cli"><strong>trash-cli</strong></a>.
+It has commands to move files and directories to the trash can on your
+Ubuntu desktop.</p>
+<p>Here is how I have set up my system to delete files to trash from the
+shell:</p>
 <ul>
 <li>First, install trash-cli from Ubuntu repositories:</li>
 </ul>
 <pre><code>$ sudo apt install trash-cli</code></pre>
 <ul>
-<li>trash-cli has many <strong>commands</strong>: to trash, to empty the trash can, to list contents of the trash can and to restore. The only command I really need is <strong>trash-put</strong>, which moves files and directories to the trash can.</li>
+<li>trash-cli has many <strong>commands</strong>: to trash, to empty the
+trash can, to list contents of the trash can and to restore. The only
+command I really need is <strong>trash-put</strong>, which moves files
+and directories to the trash can.</li>
 </ul>
 <pre><code>$ trash-put foobar.txt *.doc</code></pre>
 <ul>
-<li><p>Since <code>trash-put</code> is a long command name, I have added an alias to my <strong>~/.bash_aliases</strong> file that maps this command to a shorter name: <strong>can</strong>.</p></li>
-<li><p>Finally, you need to protect yourself from accidentally typing <code>rm</code> and losing files. And you need to be reminded to use <code>trash-put</code> whenever your finger memory types <code>rm</code>. To do this, create an alias in <strong>~/.bash_aliases</strong> named <code>rm</code> that reminds you not to use it:</p></li>
+<li><p>Since <code>trash-put</code> is a long command name, I have added
+an alias to my <strong>~/.bash_aliases</strong> file that maps this
+command to a shorter name: <strong>can</strong>.</p></li>
+<li><p>Finally, you need to protect yourself from accidentally typing
+<code>rm</code> and losing files. And you need to be reminded to use
+<code>trash-put</code> whenever your finger memory types
+<code>rm</code>. To do this, create an alias in
+<strong>~/.bash_aliases</strong> named <code>rm</code> that reminds you
+not to use it:</p></li>
 </ul>
 <pre><code>alias rm=&quot;echo Use trash-put or /bin/rm&quot;</code></pre>
 <ul>
-<li>For the rare cases where you actually need <code>rm</code>, it is still around. Use its full path to invoke it: <code>/bin/rm</code>. For example:</li>
+<li>For the rare cases where you actually need <code>rm</code>, it is
+still around. Use its full path to invoke it: <code>/bin/rm</code>. For
+example:</li>
 </ul>
 <pre><code>$ /bin/rm -rf dir_that_i_want_nuked</code></pre>
 <ul>
-<li><strong>DO NOT</strong> make an alias named <code>rm</code> that maps to <code>trash-put</code>. I have been burnt by this mistake! What happens is that you might need to switch to a new computer or a colleague’s computer for a short task and your finger memory types <code>rm</code> there thinking the files are going into the trash can.</li>
+<li><strong>DO NOT</strong> make an alias named <code>rm</code> that
+maps to <code>trash-put</code>. I have been burnt by this mistake! What
+happens is that you might need to switch to a new computer or a
+colleague’s computer for a short task and your finger memory types
+<code>rm</code> there thinking the files are going into the trash
+can.</li>
 </ul>
-<p><strong>Tried with:</strong> trash-cli 0.12.10.3 and Ubuntu 12.04 LTS</p>
+<p><strong>Tried with:</strong> trash-cli 0.12.10.3 and Ubuntu 12.04
+LTS</p>
 </div>
 
 <br />
@@ -75,11 +88,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

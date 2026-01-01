@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,30 +30,61 @@
 <h1 class="title">How shared library locations are found at runtime</h1>
 <p class="date">📅 2017-Nov-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ld_library_path'>ld_library_path</a>, <a href='index.html#ldconfig'>ldconfig</a>, <a href='index.html#ldd'>ldd</a>, <a href='index.html#rpath'>rpath</a>, <a href='index.html#runpath'>runpath</a>, <a href='index.html#shared-library'>shared library</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You have successfully compiled an executable that is linked with one or more external shared libraries. You can view the shared libraries that the executable is dependent on by using the <strong>ldd</strong> tool. When you actually run the executable, the dynamic linker-loader <strong>ld-linux</strong> looks for each dependent shared library in the following locations, in order:</p>
+<p>You have successfully compiled an executable that is linked with one
+or more external shared libraries. You can view the shared libraries
+that the executable is dependent on by using the <strong>ldd</strong>
+tool. When you actually run the executable, the dynamic linker-loader
+<strong>ld-linux</strong> looks for each dependent shared library in the
+following locations, in order:</p>
 <ul>
-<li><p>Using <strong>RPATH</strong>, if it exists, that is hard-coded in the executable. This is a colon-separated list of directories from where the shared libraries were linked into the executable by the linker during the linking stage of compilation. If this exists, you can view it using this command: <code>readelf -d ./your_binary | grep RPATH</code></p></li>
-<li><p>Using <code>LD_LIBRARY_PATH</code>, if it is set. This is a colon-separated list of directories set as an environment variable by the user.</p></li>
-<li><p>Using <strong>RUNPATH</strong>, it is exists, that is hard-coded in the executable. This is a colon-separated list of directories, just like RPATH. If this exists, you can view it using this command: <code>readelf -d ./your_binary | grep RUNPATH</code></p></li>
-<li><p>Checks the <code>/etc/ld.so.cache</code>. This cache is populated by running the <strong>ldconfig</strong> program. This program is usually run when libraries are installed. You can view the shared libraries in the cache using this command: <code>ldconfig -p</code></p></li>
+<li><p>Using <strong>RPATH</strong>, if it exists, that is hard-coded in
+the executable. This is a colon-separated list of directories from where
+the shared libraries were linked into the executable by the linker
+during the linking stage of compilation. If this exists, you can view it
+using this command:
+<code>readelf -d ./your_binary | grep RPATH</code></p></li>
+<li><p>Using <code>LD_LIBRARY_PATH</code>, if it is set. This is a
+colon-separated list of directories set as an environment variable by
+the user.</p></li>
+<li><p>Using <strong>RUNPATH</strong>, it is exists, that is hard-coded
+in the executable. This is a colon-separated list of directories, just
+like RPATH. If this exists, you can view it using this command:
+<code>readelf -d ./your_binary | grep RUNPATH</code></p></li>
+<li><p>Checks the <code>/etc/ld.so.cache</code>. This cache is populated
+by running the <strong>ldconfig</strong> program. This program is
+usually run when libraries are installed. You can view the shared
+libraries in the cache using this command:
+<code>ldconfig -p</code></p></li>
 <li><p>Check in <code>/lib</code></p></li>
 <li><p>Check in <code>/usr/lib</code></p></li>
 </ul>
 <h2 id="see-it-in-action">See it in action</h2>
-<p>You can actually witness the loader searching directories to find the location of each shared library. To see this in action, try this command:</p>
+<p>You can actually witness the loader searching directories to find the
+location of each shared library. To see this in action, try this
+command:</p>
 <pre><code>$ LD_DEBUG=libs ldd ./some_executable</code></pre>
 <p>In the output of this command, you will see that:</p>
 <ul>
-<li><p>Each shared library listed in the executable is picked up in order.</p></li>
-<li><p>For each shared library, the locations listed above (RPATH, LD_LIBRARY_PATH, RUNPATH, cache, lib and user lib) are tried in order.</p></li>
-<li><p>For each directory listed in the above colon-separated list, the shared library filename is appended and tried to see if the file path exists.</p></li>
-<li><p>The first instance where such a file path exists, that is noted as the location of the shared library.</p></li>
+<li><p>Each shared library listed in the executable is picked up in
+order.</p></li>
+<li><p>For each shared library, the locations listed above (RPATH,
+LD_LIBRARY_PATH, RUNPATH, cache, lib and user lib) are tried in
+order.</p></li>
+<li><p>For each directory listed in the above colon-separated list, the
+shared library filename is appended and tried to see if the file path
+exists.</p></li>
+<li><p>The first instance where such a file path exists, that is noted
+as the location of the shared library.</p></li>
 </ul>
 <p><strong>References:</strong></p>
 <ul>
-<li><a href="http://man7.org/conf/lca2006/shared_libraries/index.html">An introduction to building and using shared libraries</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Rpath">Wikipedia entry on rpath</a></li>
-<li><a href="https://stackoverflow.com/questions/2836330/">How to inspect rpath in Linux</a></li>
+<li><a
+href="http://man7.org/conf/lca2006/shared_libraries/index.html">An
+introduction to building and using shared libraries</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rpath">Wikipedia entry on
+rpath</a></li>
+<li><a href="https://stackoverflow.com/questions/2836330/">How to
+inspect rpath in Linux</a></li>
 </ul>
 </div>
 
@@ -76,11 +93,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,44 @@
 <h1 class="title">C++: abs() and its quirk with INT_MIN</h1>
 <p class="date">📅 2012-Feb-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#abs'>abs</a>, <a href='index.html#cmath'>cmath</a>, <a href='index.html#cpp'>cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>If you use the <code>abs()</code> function from <code>cmath</code>, then you need to be aware of one little quirk. The <code>abs()</code> function returns the absolute value of the signed integer passed as input. It is declared as:</p>
+<p>If you use the <code>abs()</code> function from <code>cmath</code>,
+then you need to be aware of one little quirk. The <code>abs()</code>
+function returns the absolute value of the signed integer passed as
+input. It is declared as:</p>
 <pre><code>int abs( int );</code></pre>
-<p><code>abs()</code> works as defined for all input integers, except for one integer: the <code>INT_MIN</code>. For 32-bit integers, the value of <code>INT_MIN</code> is <code>-2147483648</code>. <code>abs( INT_MIN )</code> returns <code>INT_MIN</code> back!</p>
-<p>To see why, consider the binary representation of any signed integral type (<code>char</code>, <code>short</code>, <code>int</code> and <code>long</code>). The range of the positive integer values that can be represented is one <em>less</em> than that of negative integer values.</p>
-<p>For 32-bit integers, the largest representable integer (<code>INT_MAX</code>) is <code>2147483647</code>, whereas the smallest representable integer (<code>INT_MIN</code>) is not <code>-2147483647</code>, but it is <code>-2147483648</code>. Though the number of values that can be represented by an integral type is even, integer value 0 steals one space and thus the positive integer values lose one space in their range.</p>
-<p>Coming back to <code>abs()</code>, since its return type is the same as the input type it simply cannot represent the positive value (<code>-INT_MIN</code>) in an <code>int</code>. Thus, it returns back <code>INT_MIN</code>.</p>
-<p>The binary representation of <code>0</code> is <code>00000000000000000000000000000000</code> and the binary representation of <code>INT_MIN</code> is <code>10000000000000000000000000000000</code>. That is, <code>INT_MIN</code> is same as 0, with MSB set to 1. Quirks of integers, such as with abs(), could have been avoided if the int format had been defined with two zero values: a positive zero (<code>00000000000000000000000000000000</code>) and a negative zero (<code>10000000000000000000000000000000</code>).</p>
-<p>Anyway, the reason you need to be careful about <code>abs()</code> is because you might be using its return value to index into an array. Indexing an array using a negative value can be disastrous or result in a hard-to-replicate bug.</p>
+<p><code>abs()</code> works as defined for all input integers, except
+for one integer: the <code>INT_MIN</code>. For 32-bit integers, the
+value of <code>INT_MIN</code> is <code>-2147483648</code>.
+<code>abs( INT_MIN )</code> returns <code>INT_MIN</code> back!</p>
+<p>To see why, consider the binary representation of any signed integral
+type (<code>char</code>, <code>short</code>, <code>int</code> and
+<code>long</code>). The range of the positive integer values that can be
+represented is one <em>less</em> than that of negative integer
+values.</p>
+<p>For 32-bit integers, the largest representable integer
+(<code>INT_MAX</code>) is <code>2147483647</code>, whereas the smallest
+representable integer (<code>INT_MIN</code>) is not
+<code>-2147483647</code>, but it is <code>-2147483648</code>. Though the
+number of values that can be represented by an integral type is even,
+integer value 0 steals one space and thus the positive integer values
+lose one space in their range.</p>
+<p>Coming back to <code>abs()</code>, since its return type is the same
+as the input type it simply cannot represent the positive value
+(<code>-INT_MIN</code>) in an <code>int</code>. Thus, it returns back
+<code>INT_MIN</code>.</p>
+<p>The binary representation of <code>0</code> is
+<code>00000000000000000000000000000000</code> and the binary
+representation of <code>INT_MIN</code> is
+<code>10000000000000000000000000000000</code>. That is,
+<code>INT_MIN</code> is same as 0, with MSB set to 1. Quirks of
+integers, such as with abs(), could have been avoided if the int format
+had been defined with two zero values: a positive zero
+(<code>00000000000000000000000000000000</code>) and a negative zero
+(<code>10000000000000000000000000000000</code>).</p>
+<p>Anyway, the reason you need to be careful about <code>abs()</code> is
+because you might be using its return value to index into an array.
+Indexing an array using a negative value can be disastrous or result in
+a hard-to-replicate bug.</p>
 </div>
 
 <br />
@@ -59,11 +75,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

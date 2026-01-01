@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,14 +31,21 @@
 <p class="date">📅 2019-Jan-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#copy'>copy</a>, <a href='index.html#rsync'>rsync</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>From a certain directory I wanted to copy a file <code>a/b/c.txt</code> to a destination. But I wanted the relative path <code>a/b</code> to be retained at the destination. A normal copy would just copy <code>c.txt</code> to the destination.</p>
+<p>From a certain directory I wanted to copy a file
+<code>a/b/c.txt</code> to a destination. But I wanted the relative path
+<code>a/b</code> to be retained at the destination. A normal copy would
+just copy <code>c.txt</code> to the destination.</p>
 <h2 id="solution">Solution</h2>
-<p>There is no way to do this using the <code>cp</code> command. One solution is to use <strong>rsync</strong> which supports maintaining the relative file path.</p>
+<p>There is no way to do this using the <code>cp</code> command. One
+solution is to use <strong>rsync</strong> which supports maintaining the
+relative file path.</p>
 <p>For example:</p>
 <pre><code>$ pwd
 /home/joe/workspace/foobar
 $ rsync -R a/b/c.txt /home/joe/destination</code></pre>
-<p>This copies <code>c.txt</code> to <code>/home/joe/destination/a/b</code> automatically creating <code>a/b</code> if they do not exist in the destination.</p>
+<p>This copies <code>c.txt</code> to
+<code>/home/joe/destination/a/b</code> automatically creating
+<code>a/b</code> if they do not exist in the destination.</p>
 </div>
 
 <br />
@@ -60,11 +53,13 @@ $ rsync -R a/b/c.txt /home/joe/destination</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

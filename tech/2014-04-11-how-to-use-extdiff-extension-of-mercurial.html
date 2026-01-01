@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,23 +30,33 @@
 <h1 class="title">How to use ExtDiff extension of Mercurial</h1>
 <p class="date">📅 2014-Apr-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#diff'>diff</a>, <a href='index.html#mercurial-extension'>mercurial extension</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Mercurial is very convenient to use at the commandline. However, there are certain operations that are better with the GUI. For example, I prefer to use a GUI to go through the diff of uncommitted changes. The <a href="http://mercurial.selenic.com/wiki/ExtdiffExtension">ExtDiff</a> extension can be used to launch a GUI Diff tool to view the diff of a single file or across the entire repository.</p>
+<p>Mercurial is very convenient to use at the commandline. However,
+there are certain operations that are better with the GUI. For example,
+I prefer to use a GUI to go through the diff of uncommitted changes. The
+<a href="http://mercurial.selenic.com/wiki/ExtdiffExtension">ExtDiff</a>
+extension can be used to launch a GUI Diff tool to view the diff of a
+single file or across the entire repository.</p>
 <ul>
 <li>To enable the ExtDiff extension, add this line to your hgrc:</li>
 </ul>
 <pre><code>[extensions]
 hgext.extdiff =</code></pre>
 <ul>
-<li>To view the diff of a particular file using a GUI diff program, for example meld:</li>
+<li>To view the diff of a particular file using a GUI diff program, for
+example meld:</li>
 </ul>
 <pre><code>$ hg extdiff -p meld src/bar/foo.cpp</code></pre>
 <ul>
-<li>To view the diff of all uncommitted files using a GUI diff program, for example meld:</li>
+<li>To view the diff of all uncommitted files using a GUI diff program,
+for example meld:</li>
 </ul>
 <pre><code>$ hg extdiff -p meld</code></pre>
-<p>Make sure that the GUI diff program you use has the ability to show the diff of multiple files in a directory hierarchy.</p>
+<p>Make sure that the GUI diff program you use has the ability to show
+the diff of multiple files in a directory hierarchy.</p>
 <ul>
-<li>If you want to always launch a particular GUI diff program, then it is better to add a custom command for it. For example, to launch meld using a new command named vdiff, add this line to your hgrc:</li>
+<li>If you want to always launch a particular GUI diff program, then it
+is better to add a custom command for it. For example, to launch meld
+using a new command named vdiff, add this line to your hgrc:</li>
 </ul>
 <pre><code>[extdiff]
 cmd.vdiff = meld</code></pre>
@@ -75,11 +71,13 @@ $ hg vdiff</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

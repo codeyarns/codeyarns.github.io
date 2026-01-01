@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,21 +30,49 @@
 <h1 class="title">How to use PhysX on Linux</h1>
 <p class="date">📅 2015-Dec-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#physx'>physx</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>PhysX</strong> is a 3D game physics engine provided by <strong>NVIDIA</strong>. They have released the source code of the engine on <strong>Github</strong>, though with restricted access. This library and its sample programs can be compiled from source easily.</p>
-<p>Here are my notes on how to compile this library, run its sample tools and get started:</p>
+<p><strong>PhysX</strong> is a 3D game physics engine provided by
+<strong>NVIDIA</strong>. They have released the source code of the
+engine on <strong>Github</strong>, though with restricted access. This
+library and its sample programs can be compiled from source easily.</p>
+<p>Here are my notes on how to compile this library, run its sample
+tools and get started:</p>
 <ul>
-<li><p>You need a Linux computer (I use Ubuntu), with a fairly modern NVIDIA graphics card.</p></li>
-<li><p>Make sure you have installed recent NVIDIA graphics drivers and a recent version of CUDA on it. Ensure that these are working correctly before trying PhysX.</p></li>
-<li><p>Go to <a href="https://developer.nvidia.com/physx-source-github">this webpage</a> and jump through their hoops to get access to the PhysX Github page. Essentially, NVIDIA requires you to create a login with them and after that they give your Github login the access to their PhysX source code.</p></li>
-<li><p>Once you have access to PhysX source code, clone its repository to your computer:</p></li>
+<li><p>You need a Linux computer (I use Ubuntu), with a fairly modern
+NVIDIA graphics card.</p></li>
+<li><p>Make sure you have installed recent NVIDIA graphics drivers and a
+recent version of CUDA on it. Ensure that these are working correctly
+before trying PhysX.</p></li>
+<li><p>Go to <a
+href="https://developer.nvidia.com/physx-source-github">this webpage</a>
+and jump through their hoops to get access to the PhysX Github page.
+Essentially, NVIDIA requires you to create a login with them and after
+that they give your Github login the access to their PhysX source
+code.</p></li>
+<li><p>Once you have access to PhysX source code, clone its repository
+to your computer:</p></li>
 </ul>
 <pre><code>$ git clone https://github.com/NVIDIAGameWorks/PhysX-3.3.git</code></pre>
 <ul>
-<li><p>The documentation in the source code is outdated and is misleading. This is how the source code is laid out: <code>Source</code> for source code, <code>Snippets</code> and <code>Samples</code> have small programs to try PhysX. Once you have compiled these Snippets and Samples, their binaries will be placed in <code>Bin/linux64</code>.</p></li>
-<li><p>Each of the above three code directories has a <code>compiler/linux64</code> directory which holds the Makefiles to build them. There are four build profiles available: <code>release</code>, <code>profile</code>, <code>checked</code> and <code>debug</code>. Just invoking <code>make</code> builds all four versions. To build just the release versions, I did <code>make release</code> in all the three code directories.</p></li>
-<li><p>Once the library and its snippets and samples are built, you can try these programs from <code>Bin/linux64</code>. For example, the <code>samples</code> program allows you try many of the features of the engine in an interactive GUI.</p></li>
+<li><p>The documentation in the source code is outdated and is
+misleading. This is how the source code is laid out: <code>Source</code>
+for source code, <code>Snippets</code> and <code>Samples</code> have
+small programs to try PhysX. Once you have compiled these Snippets and
+Samples, their binaries will be placed in
+<code>Bin/linux64</code>.</p></li>
+<li><p>Each of the above three code directories has a
+<code>compiler/linux64</code> directory which holds the Makefiles to
+build them. There are four build profiles available:
+<code>release</code>, <code>profile</code>, <code>checked</code> and
+<code>debug</code>. Just invoking <code>make</code> builds all four
+versions. To build just the release versions, I did
+<code>make release</code> in all the three code directories.</p></li>
+<li><p>Once the library and its snippets and samples are built, you can
+try these programs from <code>Bin/linux64</code>. For example, the
+<code>samples</code> program allows you try many of the features of the
+engine in an interactive GUI.</p></li>
 </ul>
-<p><strong>Tried with:</strong> PhysX 3.3.4, NVIDIA GeForce GTX 750 Ti and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> PhysX 3.3.4, NVIDIA GeForce GTX 750 Ti
+and Ubuntu 14.04</p>
 </div>
 
 <br />
@@ -66,11 +80,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

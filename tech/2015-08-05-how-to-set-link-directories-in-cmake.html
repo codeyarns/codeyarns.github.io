@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,14 +30,22 @@
 <h1 class="title">How to set link directories in CMake</h1>
 <p class="date">📅 2015-Aug-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cmake'>cmake</a>, <a href='index.html#library'>library</a>, <a href='index.html#linker'>linker</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>For most common libraries, <strong>CMake</strong> has inbuilt modules which find and include them for compilation and linking. But, there are situations where you need to use library files (say <code>*.so</code>) that are in a custom directory somewhere that need to be linked with the code you are building.</p>
-<p>One or more of such paths which should be requested to search for library files while linking can be specified like this:</p>
+<p>For most common libraries, <strong>CMake</strong> has inbuilt modules
+which find and include them for compilation and linking. But, there are
+situations where you need to use library files (say <code>*.so</code>)
+that are in a custom directory somewhere that need to be linked with the
+code you are building.</p>
+<p>One or more of such paths which should be requested to search for
+library files while linking can be specified like this:</p>
 <pre><code>link_directories(
     /home/joe/bellringer/lib64
     /home/joe/globespin/libs
 )</code></pre>
-<p>The library files in these directories can now be specified in <code>link_libraries</code> or <code>target_link_libraries</code> using the usual <code>-l</code> syntax.</p>
-<p><strong>Reference:</strong> <a href="http://www.cmake.org/cmake/help/v3.0/command/link_directories.html">link_directories</a></p>
+<p>The library files in these directories can now be specified in
+<code>link_libraries</code> or <code>target_link_libraries</code> using
+the usual <code>-l</code> syntax.</p>
+<p><strong>Reference:</strong> <a
+href="http://www.cmake.org/cmake/help/v3.0/command/link_directories.html">link_directories</a></p>
 <p><strong>Tried with:</strong> CMake 2.8.12.2 and Ubuntu 14.04</p>
 </div>
 
@@ -60,11 +54,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

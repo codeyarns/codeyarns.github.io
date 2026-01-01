@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,17 +27,26 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to open Quickfix window automatically after make</h1>
+<h1 class="title">How to open Quickfix window automatically after
+make</h1>
 <p class="date">📅 2015-Mar-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#make'>make</a>, <a href='index.html#quickfix'>quickfix</a>, <a href='index.html#vim'>vim</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="2015/03/21/how-to-use-quickfix-feature-of-vim/"><strong>Quickfix</strong></a> feature of <strong>Vim</strong> can be used to view errors or warnings produced by a compilation in a window and jump to those locations in source files. The Quickfix window has to be manually opened using <code>:copen</code>. Instead, I like the Quickfix window to be automatically opened after running a <code>:make</code>.</p>
+<p>The <a
+href="2015/03/21/how-to-use-quickfix-feature-of-vim/"><strong>Quickfix</strong></a>
+feature of <strong>Vim</strong> can be used to view errors or warnings
+produced by a compilation in a window and jump to those locations in
+source files. The Quickfix window has to be manually opened using
+<code>:copen</code>. Instead, I like the Quickfix window to be
+automatically opened after running a <code>:make</code>.</p>
 <p>This can be done by adding these line to <code>.vimrc</code>:</p>
 <pre><code>&quot; Open Quickfix window automatically after running :make
 augroup OpenQuickfixWindowAfterMake
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
 augroup END</code></pre>
-<p>For more info, see <a href="http://vim.wikia.com/wiki/Automatically_open_the_quickfix_window_on_:make">this Vim Wiki entry</a>.</p>
+<p>For more info, see <a
+href="http://vim.wikia.com/wiki/Automatically_open_the_quickfix_window_on_:make">this
+Vim Wiki entry</a>.</p>
 <p><strong>Tried with:</strong> Vim 7.4 and Ubuntu 14.04</p>
 </div>
 
@@ -60,11 +55,13 @@ augroup END</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

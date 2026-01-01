@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,34 @@
 <h1 class="title">How to set cache configuration in CUDA</h1>
 <p class="date">📅 2011-Jun-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#l1-cache'>l1 cache</a>, <a href='index.html#shared-memory'>shared memory</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>On CUDA devices of compute capability <code>1.x</code>, the amount of <strong>shared memory</strong> and <strong>L1 cache</strong> for each multiprocessor was fixed.</p>
-<p>In devices of compute capability <code>2.0</code> and later, there is 64 KB of memory for each multiprocessor. This per-multiprocessor on-chip memory is split and used for both shared memory and L1 cache. By default, 48 KB is used as shared memory and 16 KB as L1 cache.</p>
-<p>As CUDA kernels get more complex, they start to behave like CPU programs. There is lesser need to share data between kernels and more pressure for L1 caching. So, depending on the kind of kernels you are writing or using, you may want to change how the on-chip memory is allocated for them.</p>
+<p>On CUDA devices of compute capability <code>1.x</code>, the amount of
+<strong>shared memory</strong> and <strong>L1 cache</strong> for each
+multiprocessor was fixed.</p>
+<p>In devices of compute capability <code>2.0</code> and later, there is
+64 KB of memory for each multiprocessor. This per-multiprocessor on-chip
+memory is split and used for both shared memory and L1 cache. By
+default, 48 KB is used as shared memory and 16 KB as L1 cache.</p>
+<p>As CUDA kernels get more complex, they start to behave like CPU
+programs. There is lesser need to share data between kernels and more
+pressure for L1 caching. So, depending on the kind of kernels you are
+writing or using, you may want to change how the on-chip memory is
+allocated for them.</p>
 <p><strong>Set globally</strong></p>
-<p>The <code>cudaDeviceSetCacheConfig</code> function can be used to set preference for shared memory or L1 cache globally for all CUDA kernels in your code and even those used by Thrust. The option <code>cudaFuncCachePreferShared</code> prefers shared memory, that is, it sets 48 KB for shared memory and 16 KB for L1 cache. <code>cudaFuncCachePreferL1</code> prefers L1, that is, it sets 16 KB for shared memory and 48 KB for L1 cache. <code>cudaFuncCachePreferNone</code> uses the preference set for the device or thread.</p>
+<p>The <code>cudaDeviceSetCacheConfig</code> function can be used to set
+preference for shared memory or L1 cache globally for all CUDA kernels
+in your code and even those used by Thrust. The option
+<code>cudaFuncCachePreferShared</code> prefers shared memory, that is,
+it sets 48 KB for shared memory and 16 KB for L1 cache.
+<code>cudaFuncCachePreferL1</code> prefers L1, that is, it sets 16 KB
+for shared memory and 48 KB for L1 cache.
+<code>cudaFuncCachePreferNone</code> uses the preference set for the
+device or thread.</p>
 <p>For example, to prefer L1 cache for all your kernels:</p>
 <pre><code>cudaDeviceSetCacheConfig(cudaFuncCachePreferL1);</code></pre>
 <p><strong>Set per kernel</strong></p>
-<p>The <code>cudaFuncSetCacheConfig</code> runtime function can be used to set a specific kernel to prefer the usage of the per-multiprocessor memory for either shared memory or L1 cache.</p>
+<p>The <code>cudaFuncSetCacheConfig</code> runtime function can be used
+to set a specific kernel to prefer the usage of the per-multiprocessor
+memory for either shared memory or L1 cache.</p>
 <p>For example, to prefer L1 cache for a kernel:</p>
 <pre><code>// Kernel
 __global__ void fooKernel(int* inArr, int* outArr)
@@ -77,11 +82,13 @@ int main()
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,19 @@
 <h1 class="title">iostat</h1>
 <p class="date">📅 2021-Feb-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#iostat'>iostat</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>iostat</strong> is one of the many useful <strong>sysstat</strong> tools available on Linux that print out reports and statistics about the system. This tool in particular gives detailed stats about storage devices and partitions. It also provides some brief stats about the CPU.</p>
+<p><strong>iostat</strong> is one of the many useful
+<strong>sysstat</strong> tools available on Linux that print out reports
+and statistics about the system. This tool in particular gives detailed
+stats about storage devices and partitions. It also provides some brief
+stats about the CPU.</p>
 <ul>
 <li>Installing the tool is easy:</li>
 </ul>
 <pre><code>$ sudo apt install sysstat</code></pre>
 <ul>
-<li>When run without any arguments, it summarizes the cumulative utilization of CPU and storage devices since the system was last booted:</li>
+<li>When run without any arguments, it summarizes the cumulative
+utilization of CPU and storage devices since the system was last
+booted:</li>
 </ul>
 <pre><code>$ iostat
 Linux 5.4.0-1028-raspi (joe-rpi)      02/15/21        _aarch64_       (4 CPU)
@@ -73,7 +65,9 @@ sda              28.69         0.02       855.15         0.00      11137  474249
 </ul>
 <pre><code>$ iostat -d</code></pre>
 <ul>
-<li>If your storage devices have more than one partition, it is useful to get a breakdown of the storage device utilization across device partitions:</li>
+<li>If your storage devices have more than one partition, it is useful
+to get a breakdown of the storage device utilization across device
+partitions:</li>
 </ul>
 <pre><code>$ iostat -p
 $ iostat -dp</code></pre>
@@ -83,14 +77,18 @@ $ iostat -dp</code></pre>
 <pre><code>$ iostat 2</code></pre>
 <p>You need to use <code>Ctrl+C</code> to exit.</p>
 <ul>
-<li>To get a running report with a 2-second interval and stop after 5 reports:</li>
+<li>To get a running report with a 2-second interval and stop after 5
+reports:</li>
 </ul>
 <pre><code>$ iostat 2 5</code></pre>
 <ul>
-<li>To get a running report with a 2-second interval, but skip the stats-since-boot first report:</li>
+<li>To get a running report with a 2-second interval, but skip the
+stats-since-boot first report:</li>
 </ul>
 <pre><code>$ iostat -y 2</code></pre>
-<p>Note that <code>iostat -y</code> will not give you the <em>current</em> stats report. It will just behave like <code>iostat</code> and print the cumulative stats-since-boot.</p>
+<p>Note that <code>iostat -y</code> will not give you the
+<em>current</em> stats report. It will just behave like
+<code>iostat</code> and print the cumulative stats-since-boot.</p>
 <p><strong>Tried with:</strong> sysstat 12.2.0 and Ubuntu 20.04</p>
 </div>
 
@@ -99,11 +97,13 @@ $ iostat -dp</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

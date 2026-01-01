@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,17 +31,27 @@
 <p class="date">📅 2017-Sep-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#boost'>boost</a>, <a href='index.html#error'>error</a>, <a href='index.html#filesystem'>filesystem</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>C++ code that uses <strong>Boost Filesystem</strong> was compiling fine with <strong>Boost 1.49</strong>. However, when I switched to <strong>Boost 1.55</strong>, the same code gave this error:</p>
+<p>C++ code that uses <strong>Boost Filesystem</strong> was compiling
+fine with <strong>Boost 1.49</strong>. However, when I switched to
+<strong>Boost 1.55</strong>, the same code gave this error:</p>
 <pre><code>foobar.cpp.o: In function `do_something()&#39;:
 foobar.cpp:(.text+0xb78): undefined reference to `boost::filesystem::detail::copy_file(boost::filesystem::path const&amp;, boost::filesystem::path const&amp;, boost::filesystem::copy_option, boost::system::error_code*)&#39;</code></pre>
-<p>This was surprising since the declaration of the <code>copy_file</code> method was present in <code>filesystem.hpp</code> and <code>libboost_filesystem.so</code> was linked during compilation.</p>
+<p>This was surprising since the declaration of the
+<code>copy_file</code> method was present in <code>filesystem.hpp</code>
+and <code>libboost_filesystem.so</code> was linked during
+compilation.</p>
 <h2 id="solution">Solution</h2>
-<p>Turns out this is a known bug with Boost Filesystem as described <a href="https://svn.boost.org/trac10/ticket/10038">here</a>. Apparently, this happens only if the C++ code is compiled with the <code>-std=c++11</code> option. I was indeed using that option.</p>
-<p>The current fix for this bug is to temporarily disable the C++ scoped enums when the Boost Filesystem header file is included, like this:</p>
+<p>Turns out this is a known bug with Boost Filesystem as described <a
+href="https://svn.boost.org/trac10/ticket/10038">here</a>. Apparently,
+this happens only if the C++ code is compiled with the
+<code>-std=c++11</code> option. I was indeed using that option.</p>
+<p>The current fix for this bug is to temporarily disable the C++ scoped
+enums when the Boost Filesystem header file is included, like this:</p>
 <pre><code>#define BOOST_NO_CXX11_SCOPED_ENUMS
 #include &lt;boost/filesystem.hpp&gt;
 #undef BOOST_NO_CXX11_SCOPED_ENUMS</code></pre>
-<p><strong>Tried with:</strong> Boost 1.55, GCC 4.8.4 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Boost 1.55, GCC 4.8.4 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -63,11 +59,13 @@ foobar.cpp:(.text+0xb78): undefined reference to `boost::filesystem::detail::cop
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

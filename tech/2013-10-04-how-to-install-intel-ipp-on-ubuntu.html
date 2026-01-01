@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,23 +30,45 @@
 <h1 class="title">How to install Intel IPP on Ubuntu</h1>
 <p class="date">📅 2013-Oct-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#intel-ipp'>intel ipp</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I wanted to try <strong>Intel Integrated Performance Primitives (IPP)</strong> with OpenCV. I installed IPP with these steps:</p>
+<p>I wanted to try <strong>Intel Integrated Performance Primitives
+(IPP)</strong> with OpenCV. I installed IPP with these steps:</p>
 <ol type="1">
-<li><p>Intel IPP can be downloaded from <a href="http://software.intel.com/en-us/intel-ipp">here</a>. If you are using it for non-commercial purposes, you can get it for free through Intel’s <a href="http://software.intel.com/en-us/non-commercial-software-development">Non-Commercial Software Development</a> webpage. You need to register with an email address. You will be sent an email with the download link and a registration key.</p></li>
-<li><p>Download the Intel IPP version you want, beware that its a huge download. I downloaded Intel IPP 7.1, which ships as a 777MB <code>.tgz</code> file.</p></li>
-<li><p>Unzip the downloaded <code>.tgz</code> file. Run the <code>install.sh</code> file. You will be asked to enter your registration key.</p></li>
-<li><p>The installer walks you through the steps of installing IPP. I was asked to install the <code>gcc-multilib</code> package, before I could proceed. So, I did:</p></li>
+<li><p>Intel IPP can be downloaded from <a
+href="http://software.intel.com/en-us/intel-ipp">here</a>. If you are
+using it for non-commercial purposes, you can get it for free through
+Intel’s <a
+href="http://software.intel.com/en-us/non-commercial-software-development">Non-Commercial
+Software Development</a> webpage. You need to register with an email
+address. You will be sent an email with the download link and a
+registration key.</p></li>
+<li><p>Download the Intel IPP version you want, beware that its a huge
+download. I downloaded Intel IPP 7.1, which ships as a 777MB
+<code>.tgz</code> file.</p></li>
+<li><p>Unzip the downloaded <code>.tgz</code> file. Run the
+<code>install.sh</code> file. You will be asked to enter your
+registration key.</p></li>
+<li><p>The installer walks you through the steps of installing IPP. I
+was asked to install the <code>gcc-multilib</code> package, before I
+could proceed. So, I did:</p></li>
 </ol>
 <pre><code>$ sudo apt-get install gcc-multilib</code></pre>
-<p>By default, the IPP files are installed to <code>/opt/intel/</code></p>
+<p>By default, the IPP files are installed to
+<code>/opt/intel/</code></p>
 <ol type="1">
-<li>Going by the steps given on the Intel website, you are supposed to run the <code>ippvars.sh</code> script, which is in the <code>/opt/intel/ipp/bin</code> directory. It sets the following environment variables: <code>IPPROOT</code>, <code>LIBRARY_PATH</code> and <code>LD_LIBRARY_PATH</code>. This script failed to work for me. So, I set those manually in my <code>.bashrc</code>:</li>
+<li>Going by the steps given on the Intel website, you are supposed to
+run the <code>ippvars.sh</code> script, which is in the
+<code>/opt/intel/ipp/bin</code> directory. It sets the following
+environment variables: <code>IPPROOT</code>, <code>LIBRARY_PATH</code>
+and <code>LD_LIBRARY_PATH</code>. This script failed to work for me. So,
+I set those manually in my <code>.bashrc</code>:</li>
 </ol>
 <pre><code># My .bashrc
 export IPPROOT=/opt/intel/composer_xe_2013.1.117/ipp
 export LIBRARY_PATH=$LIBRARY_PATH:/opt/intel/composer_xe_2013.1.117/ipp/lib/intel64:/opt/intel/composer_xe_2013.1.117/compiler/lib/intel64
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/composer_xe_2013.1.117/ipp/lib/intel64:/opt/intel/composer_xe_2013.1.117/compiler/lib/intel64</code></pre>
-<p>After this, I was able to use Intel IPP to compile OpenCV successfully as explained <a href="2013/10/04/how-to-compile-opencv-with-ipp-support/">here</a>.</p>
+<p>After this, I was able to use Intel IPP to compile OpenCV
+successfully as explained <a
+href="2013/10/04/how-to-compile-opencv-with-ipp-support/">here</a>.</p>
 <p><strong>Tried with:</strong> Intel IPP 7.1 and Ubuntu 12.04 LTS</p>
 </div>
 
@@ -69,11 +77,13 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/composer_xe_2013.1.117/ipp/li
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

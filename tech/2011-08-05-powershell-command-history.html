@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,22 +30,44 @@
 <h1 class="title">PowerShell: Command History</h1>
 <p class="date">📅 2011-Aug-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#powershell'>powershell</a>, <a href='index.html#powertab'>powertab</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The Windows command prompt (<code>cmd.exe</code>) has simple <strong>command history</strong>. You can press the Up/Down arrow keys to cycle through the previous commands. If you want a visual display of previous commands, you can press <strong>F7</strong> and use the Up/Down keys to navigate the list and Enter to execute a command.</p>
+<p>The Windows command prompt (<code>cmd.exe</code>) has simple
+<strong>command history</strong>. You can press the Up/Down arrow keys
+to cycle through the previous commands. If you want a visual display of
+previous commands, you can press <strong>F7</strong> and use the Up/Down
+keys to navigate the list and Enter to execute a command.</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/08/20110812-command-history.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/08/20110812-command-history.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>PowerShell has powerful command history features. To see the list of all available commands from history:</p>
+<p>PowerShell has powerful command history features. To see the list of
+all available commands from history:</p>
 <pre><code>PS&gt; Get-History</code></pre>
-<p>To cycle through previous commands from history, press <code>#</code> followed by <code>Tab</code> key presses. Each press of the Tab key, displays one older command from the history stack.</p>
+<p>To cycle through previous commands from history, press <code>#</code>
+followed by <code>Tab</code> key presses. Each press of the Tab key,
+displays one older command from the history stack.</p>
 <pre><code>PS&gt; #[Tab]</code></pre>
-<p>To switch to a specific command from the stack displayed by <code>Get-History</code>, press #, the number of that command in the stack and Tab. For example, to get the command numbered 9 in the <code>Get-History</code> stack:</p>
+<p>To switch to a specific command from the stack displayed by
+<code>Get-History</code>, press #, the number of that command in the
+stack and Tab. For example, to get the command numbered 9 in the
+<code>Get-History</code> stack:</p>
 <pre><code>PS&gt; #9[Tab]</code></pre>
-<p>PowerShell can also find a previous command if you can provide the starting few letters. For example, this will bring up all the commands where I invoked <code>vim</code>:</p>
+<p>PowerShell can also find a previous command if you can provide the
+starting few letters. For example, this will bring up all the commands
+where I invoked <code>vim</code>:</p>
 <pre><code>PS&gt; #vim[Tab]</code></pre>
-<p>PowerShell can also understand the <code>*</code> wildcard. For example, this will bring up all the commands where I edited a log file using <code>vim</code>:</p>
+<p>PowerShell can also understand the <code>*</code> wildcard. For
+example, this will bring up all the commands where I edited a log file
+using <code>vim</code>:</p>
 <pre><code>PS&gt; #vim log*.txt[Tab]
 PS&gt; #vim log*[Tab]</code></pre>
-<p>The module that will hook you to command history is <strong>PowerTab</strong>. Install it (for instructions see <a href="https://codeyarns.com/tech/2011/07/30/powertab-installation/">here</a>) and press # and Tab to get a visual list of all commands in the history stack! 😊 Note that PowerTab does not provide a few of the above features like the wildcards for example.</p>
+<p>The module that will hook you to command history is
+<strong>PowerTab</strong>. Install it (for instructions see <a
+href="https://codeyarns.com/tech/2011/07/30/powertab-installation/">here</a>)
+and press # and Tab to get a visual list of all commands in the history
+stack! 😊 Note that PowerTab does not provide a few of the above
+features like the wildcards for example.</p>
 <p><strong>Tried with:</strong> PowerShell 2 and PowerTab 0.99.6</p>
 </div>
 
@@ -68,11 +76,13 @@ PS&gt; #vim log*[Tab]</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

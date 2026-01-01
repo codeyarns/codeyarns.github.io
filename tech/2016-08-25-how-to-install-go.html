@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,23 +30,44 @@
 <h1 class="title">How to install Go</h1>
 <p class="date">📅 2016-Aug-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#go'>go</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>Go</strong> programming language has been getting popular for certain types of server-side programming. Installing the compiler and its tools and using them is not as straightforward as you might assume. Here are the steps I use:</p>
+<p>The <strong>Go</strong> programming language has been getting popular
+for certain types of server-side programming. Installing the compiler
+and its tools and using them is not as straightforward as you might
+assume. Here are the steps I use:</p>
 <ul>
-<li><p>Go to the <a href="https://golang.org/">Go language website</a> and download the package.</p></li>
-<li><p>Unzip the downloaded file and move it to <code>/usr/local/go</code>:</p></li>
+<li><p>Go to the <a href="https://golang.org/">Go language website</a>
+and download the package.</p></li>
+<li><p>Unzip the downloaded file and move it to
+<code>/usr/local/go</code>:</p></li>
 </ul>
 <pre><code>$ tar xvf go-package-you-downloaded.tar.gz
 $ sudo mv go /usr/local</code></pre>
 <ul>
-<li><p>Add <code>/usr/local/go/bin</code> to the <code>PATH</code> variable of your shell.</p></li>
-<li><p>Your Go source code and compiled binaries will reside inside a specific directory. Create it and set an environment variable named <code>GOPATH</code> to it:</p></li>
-<li><p>Your source code has to be put under <code>GOPATH</code> in this directory hierarchy: <code>$GOPATH/src/github.com/someuser/someproject</code>. For example, add the <code>hello.go</code> from <a href="https://golang.org/">this page</a> to <code>$GOPATH/src/github.com/joe/hello/main.go</code>. You will need to create that directory hierarchy. If you are getting some Go code from Github, remember to clone it within that <code>$GOPATH/src/github.com</code> directory.</p></li>
-<li><p>The above source code can be compiled from anywhere using this command:</p></li>
+<li><p>Add <code>/usr/local/go/bin</code> to the <code>PATH</code>
+variable of your shell.</p></li>
+<li><p>Your Go source code and compiled binaries will reside inside a
+specific directory. Create it and set an environment variable named
+<code>GOPATH</code> to it:</p></li>
+<li><p>Your source code has to be put under <code>GOPATH</code> in this
+directory hierarchy:
+<code>$GOPATH/src/github.com/someuser/someproject</code>. For example,
+add the <code>hello.go</code> from <a href="https://golang.org/">this
+page</a> to <code>$GOPATH/src/github.com/joe/hello/main.go</code>. You
+will need to create that directory hierarchy. If you are getting some Go
+code from Github, remember to clone it within that
+<code>$GOPATH/src/github.com</code> directory.</p></li>
+<li><p>The above source code can be compiled from anywhere using this
+command:</p></li>
 </ul>
 <pre><code>$ go install github.com/joe/hello</code></pre>
-<p>Note how the Go compiler will always look under the <code>$GOPATH/src</code> for the above compilation.</p>
+<p>Note how the Go compiler will always look under the
+<code>$GOPATH/src</code> for the above compilation.</p>
 <ul>
-<li><p>After compilation, the binary will be placed at <code>$GOPATH/bin</code>. This directory also needs to be added to the <code>PATH</code> variable. Remember to do this cause when you start using Go code that calls other Go libraries, this is essential for that to work.</p></li>
+<li><p>After compilation, the binary will be placed at
+<code>$GOPATH/bin</code>. This directory also needs to be added to the
+<code>PATH</code> variable. Remember to do this cause when you start
+using Go code that calls other Go libraries, this is essential for that
+to work.</p></li>
 <li><p>To run the program you compiled:</p></li>
 </ul>
 <pre><code>$ $GOPATH/bin/hello</code></pre>
@@ -72,11 +79,13 @@ $ sudo mv go /usr/local</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

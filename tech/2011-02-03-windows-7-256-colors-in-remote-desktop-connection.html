@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,22 +27,43 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Windows 7: 256 Colors in Remote Desktop Connection</h1>
+<h1 class="title">Windows 7: 256 Colors in Remote Desktop
+Connection</h1>
 <p class="date">📅 2011-Feb-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#rdp'>rdp</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2011/02/20110203_remote_desktop_colors.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2011/02/20110203_remote_desktop_colors.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p><strong>Why?</strong></p>
-<p>Reducing the <strong>color depth</strong> used for a remote session is one way to speed up the <strong>Remote Desktop (RDP)</strong> session on a slow network connection. 15-bit is the lowest color depth allowed in the <strong>Remote Desktop Connection</strong> client (<code>mstsc.exe</code>) of Windows 7. But, the Remote Desktop client of Windows XP had allowed a lower color depth of <strong>8-bit</strong> (<strong>256 colors</strong>). The remote session surely looks crappy with 256 colors, but it can be a lifesaver on a slow connection! 😊</p>
+<p>Reducing the <strong>color depth</strong> used for a remote session
+is one way to speed up the <strong>Remote Desktop (RDP)</strong> session
+on a slow network connection. 15-bit is the lowest color depth allowed
+in the <strong>Remote Desktop Connection</strong> client
+(<code>mstsc.exe</code>) of Windows 7. But, the Remote Desktop client of
+Windows XP had allowed a lower color depth of <strong>8-bit</strong>
+(<strong>256 colors</strong>). The remote session surely looks crappy
+with 256 colors, but it can be a lifesaver on a slow connection! 😊</p>
 <p><strong>How?</strong></p>
-<p>There is no direct way to choose 256 colors in the Remote Desktop of Windows 7. But, a remote session can be invoked with 256 colors:</p>
+<p>There is no direct way to choose 256 colors in the Remote Desktop of
+Windows 7. But, a remote session can be invoked with 256 colors:</p>
 <ol type="1">
-<li><p>Set all the remote desktop settings for the connection and save it to a RDP (<code>.rdp</code>) file by choosing <strong>Save As</strong> in the <strong>General</strong> tab.</p></li>
-<li><p>Open this <code>.rdp</code> file in a text editor. Find the line that reads <code>session bpp:i:16</code>. The value here will read 15, 16, 24 or 32, depending on the color depth you had chosen while saving the file. Change this line to <code>session bpp:i:8</code></p></li>
-<li><p>Use this <code>.rdp</code> file to open a RDP session to the remote computer. This can be done by either opening this file in the Remote Desktop Connection client or by double-clicking this file. The remote session will now use a 8-bit color depth.</p></li>
+<li><p>Set all the remote desktop settings for the connection and save
+it to a RDP (<code>.rdp</code>) file by choosing <strong>Save
+As</strong> in the <strong>General</strong> tab.</p></li>
+<li><p>Open this <code>.rdp</code> file in a text editor. Find the line
+that reads <code>session bpp:i:16</code>. The value here will read 15,
+16, 24 or 32, depending on the color depth you had chosen while saving
+the file. Change this line to <code>session bpp:i:8</code></p></li>
+<li><p>Use this <code>.rdp</code> file to open a RDP session to the
+remote computer. This can be done by either opening this file in the
+Remote Desktop Connection client or by double-clicking this file. The
+remote session will now use a 8-bit color depth.</p></li>
 </ol>
-<p><strong>Tried with</strong>: Remote Desktop Connection client (mstsc.exe) 6.1.7600.16385 on Windows 7</p>
+<p><strong>Tried with</strong>: Remote Desktop Connection client
+(mstsc.exe) 6.1.7600.16385 on Windows 7</p>
 </div>
 
 <br />
@@ -64,11 +71,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

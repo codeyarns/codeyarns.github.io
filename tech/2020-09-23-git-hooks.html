@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,38 @@
 <h1 class="title">Git Hooks</h1>
 <p class="date">📅 2020-Sep-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#hooks'>hooks</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>In Git, <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks"><strong>hooks</strong></a> are scripts that it will run for you automatically before or after certain actions.</p>
+<p>In Git, <a
+href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks"><strong>hooks</strong></a>
+are scripts that it will run for you automatically before or after
+certain actions.</p>
 <ul>
-<li><p>A set of sample hook scripts are placed for your reference in the <code>.git/hooks</code> directory of every Git repository. These files have a <code>.sample</code> suffix and are ignored by Git. If you remove the suffix, they become active hooks that Git will invoke. The names of these scripts explain when they are run.</p></li>
-<li><p>You can also write your own scripts, rename them appropriately and place in <code>.git/hooks</code> directory. They are used by Git as soon as you place the files there.</p></li>
-<li><p>Most of the hooks are client-side, while a few are server-side. You typically cannot run the server-side hooks since servers are typically Github or Gitlab these days.</p></li>
-<li><p><strong>pre-commit</strong>: This hook is executed by Git before every one of your commits. If the hook script returns a non-zero value, your commit will fail. Only if the hook script return a zero value will Git allow you to proceed and enter a commit message. This hook is a great place to run code checkers and code formatters on the changes or files being committed.</p></li>
-<li><p>Probably the biggest irritation of hooks is that they <em>cannot</em> be checked into your repository, since contents of the <code>.git</code> directory cannot be checked in. So you cannot maintain the hooks in version control of the repository or push the hooks to all users of the repository. This also means that the hooks cannot be enforced automatically on your team or collaborators. One (imperfect) solution is to checkin the hook scripts as normal files in the repository and have the <code>.git/hooks</code> files be symlinks to the normal files. Note that users still need to create the symlinks manually:</p></li>
+<li><p>A set of sample hook scripts are placed for your reference in the
+<code>.git/hooks</code> directory of every Git repository. These files
+have a <code>.sample</code> suffix and are ignored by Git. If you remove
+the suffix, they become active hooks that Git will invoke. The names of
+these scripts explain when they are run.</p></li>
+<li><p>You can also write your own scripts, rename them appropriately
+and place in <code>.git/hooks</code> directory. They are used by Git as
+soon as you place the files there.</p></li>
+<li><p>Most of the hooks are client-side, while a few are server-side.
+You typically cannot run the server-side hooks since servers are
+typically Github or Gitlab these days.</p></li>
+<li><p><strong>pre-commit</strong>: This hook is executed by Git before
+every one of your commits. If the hook script returns a non-zero value,
+your commit will fail. Only if the hook script return a zero value will
+Git allow you to proceed and enter a commit message. This hook is a
+great place to run code checkers and code formatters on the changes or
+files being committed.</p></li>
+<li><p>Probably the biggest irritation of hooks is that they
+<em>cannot</em> be checked into your repository, since contents of the
+<code>.git</code> directory cannot be checked in. So you cannot maintain
+the hooks in version control of the repository or push the hooks to all
+users of the repository. This also means that the hooks cannot be
+enforced automatically on your team or collaborators. One (imperfect)
+solution is to checkin the hook scripts as normal files in the
+repository and have the <code>.git/hooks</code> files be symlinks to the
+normal files. Note that users still need to create the symlinks
+manually:</p></li>
 </ul>
 <pre><code>$ ln -s ../../some/path/in/repo/pre-commit .git/hooks/pre-commit</code></pre>
 </div>
@@ -60,11 +71,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

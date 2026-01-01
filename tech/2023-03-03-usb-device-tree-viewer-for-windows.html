@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,32 +30,64 @@
 <h1 class="title">USB Device Tree Viewer for Windows</h1>
 <p class="date">📅 2023-Mar-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#usb'>usb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://www.uwe-sieber.de/usbtreeview_e.html"><strong>USB Device Tree Viewer</strong></a>, also called <strong>USBTreeView</strong>, is a Windows tool created by <a href="https://www.uwe-sieber.de/">Uwe Sieber</a>. It can be used to view the tree of USB controllers, hubs, ports and devices connected to those ports. Detailed information of each node in the tree is shown in the right pane.</p>
-<p>This tool has all the features of the <a href="2011-12-21-usb-view-on-windows.html"><strong>USBView</strong></a> tool, since it is based on that source code, with extra features added on top.</p>
+<p>The <a
+href="https://www.uwe-sieber.de/usbtreeview_e.html"><strong>USB Device
+Tree Viewer</strong></a>, also called <strong>USBTreeView</strong>, is a
+Windows tool created by <a href="https://www.uwe-sieber.de/">Uwe
+Sieber</a>. It can be used to view the tree of USB controllers, hubs,
+ports and devices connected to those ports. Detailed information of each
+node in the tree is shown in the right pane.</p>
+<p>This tool has all the features of the <a
+href="2011-12-21-usb-view-on-windows.html"><strong>USBView</strong></a>
+tool, since it is based on that source code, with extra features added
+on top.</p>
 <p>Some of the nice features in this tool that I like:</p>
 <ul>
-<li>Shows the high-speed (H), full-speed (F) and super-speed (S) designation on the tree icons itself.</li>
-<li>Shows the actual name of the device (and not just the device type) in the tree view itself.</li>
+<li>Shows the high-speed (H), full-speed (F) and super-speed (S)
+designation on the tree icons itself.</li>
+<li>Shows the actual name of the device (and not just the device type)
+in the tree view itself.</li>
 <li>Highlights newly added devices in green.</li>
 <li>Highlights newly removed devices in red.</li>
 <li>Shows the drive letter for USB storage devices.</li>
-<li>Show yellow circle with exclamation (!) or error number when the device has an error. Look in the right pane for the error name associated with the error number.</li>
-<li>If a device is not working correctly, right-click it and choose <strong>Restart Device</strong>. You may need to open this application as Administrator to do that.</li>
+<li>Show yellow circle with exclamation (!) or error number when the
+device has an error. Look in the right pane for the error name
+associated with the error number.</li>
+<li>If a device is not working correctly, right-click it and choose
+<strong>Restart Device</strong>. You may need to open this application
+as Administrator to do that.</li>
 </ul>
-<p>Some of the information for a port in the right pane that I find useful:</p>
+<p>Some of the information for a port in the right pane that I find
+useful:</p>
 <ul>
-<li><code>Port Chain</code> is the unique path from the root hub down to a particular device. For example: <code>1-4-2-1</code> means ports 1, 4, 2 have hubs and the final port 1 is where the device is connected. This port chain identifies a connected device and can be used with the other tools by this author to restart a USB port.</li>
+<li><code>Port Chain</code> is the unique path from the root hub down to
+a particular device. For example: <code>1-4-2-1</code> means ports 1, 4,
+2 have hubs and the final port 1 is where the device is connected. This
+port chain identifies a connected device and can be used with the other
+tools by this author to restart a USB port.</li>
 <li><code>ConnectionIndex</code> is the port number.</li>
-<li><code>CompanionPortNumber</code> is the companion port of this port in the companion hub (there are usually two hubs with the same ports, but different speeds).</li>
-<li><code>CompanionPortChain</code> is a port chain of the companion port of this port.</li>
-<li><code>Vendor ID</code> shows the hex ID of the vendor and their name.</li>
-<li><code>Product ID</code> shows the hex ID of the product connected at that port.</li>
-<li><code>Port maximum Speed</code> is the maximum speed supported by the port.</li>
-<li><code>Device maximum Speed</code> is the maximum speed of the connected device.</li>
-<li><code>Device Connection Speed</code> is the actual speed of the connected device.</li>
-<li><code>Demanded Current</code> is the current (in amps) that the device demanded.</li>
+<li><code>CompanionPortNumber</code> is the companion port of this port
+in the companion hub (there are usually two hubs with the same ports,
+but different speeds).</li>
+<li><code>CompanionPortChain</code> is a port chain of the companion
+port of this port.</li>
+<li><code>Vendor ID</code> shows the hex ID of the vendor and their
+name.</li>
+<li><code>Product ID</code> shows the hex ID of the product connected at
+that port.</li>
+<li><code>Port maximum Speed</code> is the maximum speed supported by
+the port.</li>
+<li><code>Device maximum Speed</code> is the maximum speed of the
+connected device.</li>
+<li><code>Device Connection Speed</code> is the actual speed of the
+connected device.</li>
+<li><code>Demanded Current</code> is the current (in amps) that the
+device demanded.</li>
 </ul>
-<p><strong>Note:</strong> The author has some great practical info about USB controllers/hubs/devices on the tool’s page. He is also the author of several other useful Windows commandline and GUI tools related to USB, COM ports, flash drives and devices.</p>
+<p><strong>Note:</strong> The author has some great practical info about
+USB controllers/hubs/devices on the tool’s page. He is also the author
+of several other useful Windows commandline and GUI tools related to
+USB, COM ports, flash drives and devices.</p>
 <p><strong>Tried with:</strong> USBTreeView 3.8.4</p>
 </div>
 
@@ -78,11 +96,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

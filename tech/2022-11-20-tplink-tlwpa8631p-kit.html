@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,36 +30,74 @@
 <h1 class="title">TP-Link TL-WPA8631P Kit</h1>
 <p class="date">📅 2022-Nov-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#powerline'>powerline</a>, <a href='index.html#wifi'>wifi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://www.tp-link.com/us/home-networking/powerline/tl-wpa8631p-kit/"><strong>TP-Link TL-WPA8631P kit</strong></a> is called a AV1300 Gigabit passthrough powerline AC Wifi kit. What this means is that I can use its powerline technology to bring wifi to a far corner of the home where my normal wifi router may not reach.</p>
-<p>The <em>kit</em> consists of a normal powerline adapter (<strong>TL-PA8010P</strong>) and a powerline adapter with wifi extender (<strong>TL-WPA8631P</strong>). The idea is that the wifi extender adapter transmits its own 2G and 5G wifi networks with unique SSID names or can take on the same SSID name as the main wifi router. For powerline, these use the <em>HomePlug AV2</em> standard and theoretically can handle speeds up to 1300 Mbps.</p>
+<p>The <a
+href="https://www.tp-link.com/us/home-networking/powerline/tl-wpa8631p-kit/"><strong>TP-Link
+TL-WPA8631P kit</strong></a> is called a AV1300 Gigabit passthrough
+powerline AC Wifi kit. What this means is that I can use its powerline
+technology to bring wifi to a far corner of the home where my normal
+wifi router may not reach.</p>
+<p>The <em>kit</em> consists of a normal powerline adapter
+(<strong>TL-PA8010P</strong>) and a powerline adapter with wifi extender
+(<strong>TL-WPA8631P</strong>). The idea is that the wifi extender
+adapter transmits its own 2G and 5G wifi networks with unique SSID names
+or can take on the same SSID name as the main wifi router. For
+powerline, these use the <em>HomePlug AV2</em> standard and
+theoretically can handle speeds up to 1300 Mbps.</p>
 <h2 id="old-setup">Old setup</h2>
 <p>My current setup at home was something like this:</p>
 <pre><code>x---------&gt;x~~~~~~~~~~~~&gt;x---------&gt;x
 Broadband  Powerline     Powerline  WIFI
 modem      adapter       adapter    router
 [  Living room     ]     [     Bedroom    ]</code></pre>
-<p>Since the wifi router was in the bedroom, the wifi in the living room was pretty weak.</p>
+<p>Since the wifi router was in the bedroom, the wifi in the living room
+was pretty weak.</p>
 <h2 id="setup-i-wanted">Setup I wanted</h2>
-<p>I thought that by getting this powerline wifi kit, I could get strong wifi in both the living room and the bedroom like this:</p>
+<p>I thought that by getting this powerline wifi kit, I could get strong
+wifi in both the living room and the bedroom like this:</p>
 <pre><code>x---------&gt;x~~~~~~~~~~~~~&gt;x---------&gt;x
 Broadband  WIFI powerline Powerline  WIFI
 modem      adapter        adapter    router
 [  Living room        ]   [     Bedroom    ]</code></pre>
-<p>This above setup did not work: there would be no internet in the wifi router in the bedroom, but mysteriously no internet in the wifi networks of the powerline wifi extender.</p>
+<p>This above setup did not work: there would be no internet in the wifi
+router in the bedroom, but mysteriously no internet in the wifi networks
+of the powerline wifi extender.</p>
 <h2 id="setup-that-worked">Setup that worked</h2>
-<p>Finally I gave in and connected the components in the exact same as shown in their guide:</p>
+<p>Finally I gave in and connected the components in the exact same as
+shown in their guide:</p>
 <pre><code>x---------&gt;x------&gt;x~~~~~~~~~~~~~&gt;x
 Broadband  WIFI    Powerline      WIFI powerline
 modem      router  adapter        adapter
 [      Living room         ]      [   Bedroom   ]</code></pre>
-<p>Now I had internet from my old wifi router in the living room and internet from the wifi powerline adapter’s unique SSID network in the bedroom. Once I noticed the IP address I was getting in the bedroom and the gateway IP (which were same as in the wifi router), it was clear that this wifi powerline adapter works purely as a <strong>wifi extender</strong>.</p>
+<p>Now I had internet from my old wifi router in the living room and
+internet from the wifi powerline adapter’s unique SSID network in the
+bedroom. Once I noticed the IP address I was getting in the bedroom and
+the gateway IP (which were same as in the wifi router), it was clear
+that this wifi powerline adapter works purely as a <strong>wifi
+extender</strong>.</p>
 <h2 id="usage">Usage</h2>
-<p>The powerline wifi extender too had its own webpage for configuration that could only be reached by accessing <a href="http://tplinkplc.net/" class="uri">http://tplinkplc.net/</a> This had the same TP-Link web interface and settings as my wifi router - so I could set the SSID names, passwords and such.</p>
-<p>I could also use the standard <a href="https://www.tp-link.com/us/support/download/"><strong>tpPLC</strong></a> software to check the powerline adapters at my home and their status.</p>
-<p>I found that I could even pair powerline adapters from my other <a href="2022-01-04-tplink-powerline-adapter-tlpa9020p.html"><strong>TP-Link TL-PA9020P kit</strong></a>, just that the adapters would settle on the slowest speed unit between them.</p>
+<p>The powerline wifi extender too had its own webpage for configuration
+that could only be reached by accessing <a href="http://tplinkplc.net/"
+class="uri">http://tplinkplc.net/</a> This had the same TP-Link web
+interface and settings as my wifi router - so I could set the SSID
+names, passwords and such.</p>
+<p>I could also use the standard <a
+href="https://www.tp-link.com/us/support/download/"><strong>tpPLC</strong></a>
+software to check the powerline adapters at my home and their
+status.</p>
+<p>I found that I could even pair powerline adapters from my other <a
+href="2022-01-04-tplink-powerline-adapter-tlpa9020p.html"><strong>TP-Link
+TL-PA9020P kit</strong></a>, just that the adapters would settle on the
+slowest speed unit between them.</p>
 <h2 id="problems">Problems</h2>
-<p>Over a period of few days I noticed several problems that were worrying. The 2G/5G wifi extender network would just disappear and my computer would be left hanging in the middle of an important video meeting. Especially worrying was that the 2G/5G wifi lights on the powerline wifi extender would still be green even in this situation! The 5G wifi extender network sometimes had no internet.</p>
-<p>I could bear such unreliability in the living room where I use wifi for TV streaming and phone calls, but having a reliable connection was crucial in the bedroom where I take work video calls.</p>
+<p>Over a period of few days I noticed several problems that were
+worrying. The 2G/5G wifi extender network would just disappear and my
+computer would be left hanging in the middle of an important video
+meeting. Especially worrying was that the 2G/5G wifi lights on the
+powerline wifi extender would still be green even in this situation! The
+5G wifi extender network sometimes had no internet.</p>
+<p>I could bear such unreliability in the living room where I use wifi
+for TV streaming and phone calls, but having a reliable connection was
+crucial in the bedroom where I take work video calls.</p>
 </div>
 
 <br />
@@ -81,11 +105,13 @@ modem      router  adapter        adapter
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

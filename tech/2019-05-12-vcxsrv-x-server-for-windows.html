@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,34 @@
 <h1 class="title">VcXsrv X server for Windows</h1>
 <p class="date">📅 2019-May-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#windows'>windows</a>, <a href='index.html#wsl'>wsl</a>, <a href='index.html#x-server'>x server</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A <strong>X server</strong> is needed on Windows if you SSH to remote Linux computers and wish to start X or GUI applications from there. It is also necessary if you are working with a Linux distribution running inside <strong>Windows Subsystem for Linux (WSL)</strong>. <strong>VcXsrv</strong> is a free open-source X server that can be used for all these purposes.</p>
+<p>A <strong>X server</strong> is needed on Windows if you SSH to remote
+Linux computers and wish to start X or GUI applications from there. It
+is also necessary if you are working with a Linux distribution running
+inside <strong>Windows Subsystem for Linux (WSL)</strong>.
+<strong>VcXsrv</strong> is a free open-source X server that can be used
+for all these purposes.</p>
 <ul>
-<li>To install VcXsrv, download its installer from <a href="http://sourceforge.net/projects/vcxsrv/">here</a> and install it.</li>
-<li>Launch <strong>XLaunch</strong> from the Windows start menu. This brings up a wizard to pick the X server configuration options. I choose <strong>Multiple Windows</strong> and go with the default options for the rest. Now the X server is running in the background.</li>
-<li><strong>Local</strong>: Go to your WSL shell (say Ubuntu) and set the <code>DISPLAY</code> environment variable:</li>
+<li>To install VcXsrv, download its installer from <a
+href="http://sourceforge.net/projects/vcxsrv/">here</a> and install
+it.</li>
+<li>Launch <strong>XLaunch</strong> from the Windows start menu. This
+brings up a wizard to pick the X server configuration options. I choose
+<strong>Multiple Windows</strong> and go with the default options for
+the rest. Now the X server is running in the background.</li>
+<li><strong>Local</strong>: Go to your WSL shell (say Ubuntu) and set
+the <code>DISPLAY</code> environment variable:</li>
 </ul>
 <pre><code>$ export DISPLAY=localhost:0.0</code></pre>
-<p>Launch any X or GUI app and its window should now be displayed in its own individual Windows window.</p>
+<p>Launch any X or GUI app and its window should now be displayed in its
+own individual Windows window.</p>
 <ul>
-<li><strong>Remote</strong>: Remember to SSH to the remote system with <strong>trusted X11 forwarding</strong> using option <code>-Y</code>. On the remote system, set the <code>DISPLAY</code> variable:</li>
+<li><strong>Remote</strong>: Remember to SSH to the remote system with
+<strong>trusted X11 forwarding</strong> using option <code>-Y</code>. On
+the remote system, set the <code>DISPLAY</code> variable:</li>
 </ul>
 <pre><code>$ export DISPLAY=your-windows-ip:0.0</code></pre>
-<p>When you start XLaunch you may want to choose to <strong>Disable access control</strong>. Otherwise you may get errors like this:</p>
+<p>When you start XLaunch you may want to choose to <strong>Disable
+access control</strong>. Otherwise you may get errors like this:</p>
 <pre><code>$ xeyes
 Authorization required, but no authorization protocol specified
 Error: Can&#39;t open display: 10.0.0.99:0.0</code></pre>
@@ -68,11 +69,13 @@ Error: Can&#39;t open display: 10.0.0.99:0.0</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

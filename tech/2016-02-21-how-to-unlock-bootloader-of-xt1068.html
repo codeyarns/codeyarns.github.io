@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,21 +30,58 @@
 <h1 class="title">How to unlock bootloader of XT1068</h1>
 <p class="date">📅 2016-Feb-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#motorola'>motorola</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Motorola</strong> officially supports <strong>unlocking</strong> the <strong>bootloader</strong> of the <strong>Moto G2 (XT1068)</strong> smartphone. (You will lose your warranty though.) The best guide I found to unlocking the bootloader of the XT1068 is <a href="http://forum.xda-developers.com/moto-g-2014/general/wip-unlock-bootloader-moto-g-2nd-gen-t2875728">here</a>.</p>
-<p>(Note that my phone is the dual-SIM XT1068, not the single-SIM XT1064. It was running Android 5.0.2 (Lollipop) when I tried this. You will need a Windows computer to perform the following steps.)</p>
-<p>Since the forum posts keep changing, here are the steps that worked for my phone at this time:</p>
+<p><strong>Motorola</strong> officially supports
+<strong>unlocking</strong> the <strong>bootloader</strong> of the
+<strong>Moto G2 (XT1068)</strong> smartphone. (You will lose your
+warranty though.) The best guide I found to unlocking the bootloader of
+the XT1068 is <a
+href="http://forum.xda-developers.com/moto-g-2014/general/wip-unlock-bootloader-moto-g-2nd-gen-t2875728">here</a>.</p>
+<p>(Note that my phone is the dual-SIM XT1068, not the single-SIM
+XT1064. It was running Android 5.0.2 (Lollipop) when I tried this. You
+will need a Windows computer to perform the following steps.)</p>
+<p>Since the forum posts keep changing, here are the steps that worked
+for my phone at this time:</p>
 <ul>
-<li><p>The unlocking process will wipe your data and apps. So if you need any of the data, back it up to the cloud.</p></li>
-<li><p>Download the <strong>Minimal ADB and Fastboot</strong> tools installer from <a href="http://forum.xda-developers.com/showthread.php?t=2317790">here</a> and install it. After installation, you will be able to invoke it from the Start menu by using its name: Minimal ADB and Fastboot. It will open a command prompt with the current directory as <code>C:/Program Files (x86)/Minimal ADB and Fastboot/</code></p></li>
-<li><p>Download and install the <strong>Motorola Device Manager</strong> from <a href="https://motorola-global-portal.custhelp.com/app/answers/detail/a_id/88481">here</a>. This will install the <strong>Motorola drivers</strong> needed for this operation.</p></li>
-<li><p><strong>Fastboot</strong> the phone: first, power it off. Next, press the power and volume-down for 5 seconds and let them go. You will be dropped into a boot menu.</p></li>
-<li><p>Connect phone to your computer using a USB cable. The USB status on the phone boot menu should change to connected after you do this.</p></li>
-<li><p>Open the <strong>Minimal ADB and Fastboot</strong> prompt. To get the data required to unlock, try this: <code>fastboot oem get_unlock_data</code></p></li>
-<li><p>This will print the data string required to obtain the unlock key for your phone. Concatenate the multi-line output together, this is the data string you will need to provide to Motorola to get the unlock key.</p></li>
-<li><p>Go to the <strong>Motorola bootloader unlock website</strong> <a href="https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-b">here</a>. You may need to create a login. Follow the instructions, paste the unlock data string and click to get the <strong>unlock key</strong>. It will be immediately emailed to the address you provided.</p></li>
-<li><p>In the ADB prompt, check if your device is connected: <code>fastboot devices</code></p></li>
-<li><p>Now unlock the bootloader using the unlock key you got: <code>fastboot oem unlock type_your_unlock_key_here</code></p></li>
-<li><p>Your bootloader is unlocked! XT1068 will display a <strong>Bootloader unlocked</strong> warning screen. From now on, you will see this display whenever you power down or power up the phone. You will be able to boot back into Lollipop now.</p></li>
+<li><p>The unlocking process will wipe your data and apps. So if you
+need any of the data, back it up to the cloud.</p></li>
+<li><p>Download the <strong>Minimal ADB and Fastboot</strong> tools
+installer from <a
+href="http://forum.xda-developers.com/showthread.php?t=2317790">here</a>
+and install it. After installation, you will be able to invoke it from
+the Start menu by using its name: Minimal ADB and Fastboot. It will open
+a command prompt with the current directory as
+<code>C:/Program Files (x86)/Minimal ADB and Fastboot/</code></p></li>
+<li><p>Download and install the <strong>Motorola Device Manager</strong>
+from <a
+href="https://motorola-global-portal.custhelp.com/app/answers/detail/a_id/88481">here</a>.
+This will install the <strong>Motorola drivers</strong> needed for this
+operation.</p></li>
+<li><p><strong>Fastboot</strong> the phone: first, power it off. Next,
+press the power and volume-down for 5 seconds and let them go. You will
+be dropped into a boot menu.</p></li>
+<li><p>Connect phone to your computer using a USB cable. The USB status
+on the phone boot menu should change to connected after you do
+this.</p></li>
+<li><p>Open the <strong>Minimal ADB and Fastboot</strong> prompt. To get
+the data required to unlock, try this:
+<code>fastboot oem get_unlock_data</code></p></li>
+<li><p>This will print the data string required to obtain the unlock key
+for your phone. Concatenate the multi-line output together, this is the
+data string you will need to provide to Motorola to get the unlock
+key.</p></li>
+<li><p>Go to the <strong>Motorola bootloader unlock website</strong> <a
+href="https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-b">here</a>.
+You may need to create a login. Follow the instructions, paste the
+unlock data string and click to get the <strong>unlock key</strong>. It
+will be immediately emailed to the address you provided.</p></li>
+<li><p>In the ADB prompt, check if your device is connected:
+<code>fastboot devices</code></p></li>
+<li><p>Now unlock the bootloader using the unlock key you got:
+<code>fastboot oem unlock type_your_unlock_key_here</code></p></li>
+<li><p>Your bootloader is unlocked! XT1068 will display a
+<strong>Bootloader unlocked</strong> warning screen. From now on, you
+will see this display whenever you power down or power up the phone. You
+will be able to boot back into Lollipop now.</p></li>
 </ul>
 <p><strong>Tried with:</strong> Windows 10 x64</p>
 </div>
@@ -68,11 +91,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

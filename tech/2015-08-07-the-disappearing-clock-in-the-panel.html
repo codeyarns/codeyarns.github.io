@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,10 +31,19 @@
 <p class="date">📅 2015-Aug-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#clock'>clock</a>, <a href='index.html#indicator'>indicator</a>, <a href='index.html#panel'>panel</a>, <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#unity'>unity</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I restarted Ubuntu. After the restart and logging in I discover that the <strong>Clock</strong> in the <strong>Panel</strong> is missing! I check and see that the package <code>indicator-datetime</code> is still installed. I open <strong>System Settings</strong> and go to <strong>Time and Date</strong> and see that everything in the <strong>Clock</strong> tab is disabled, so I cannot change it.</p>
+<p>I restarted Ubuntu. After the restart and logging in I discover that
+the <strong>Clock</strong> in the <strong>Panel</strong> is missing! I
+check and see that the package <code>indicator-datetime</code> is still
+installed. I open <strong>System Settings</strong> and go to
+<strong>Time and Date</strong> and see that everything in the
+<strong>Clock</strong> tab is disabled, so I cannot change it.</p>
 <h2 id="solution">Solution</h2>
-<p>This is a bug in Unity as described <a href="https://bugs.launchpad.net/ubuntu/+source/indicator-datetime/+bug/1228360">here</a>. It is supposedly happening due to a configuration value being reset after packages are upgraded.</p>
-<p>Anyway, the only solution that works right now is to kill and restart the Panel service:</p>
+<p>This is a bug in Unity as described <a
+href="https://bugs.launchpad.net/ubuntu/+source/indicator-datetime/+bug/1228360">here</a>.
+It is supposedly happening due to a configuration value being reset
+after packages are upgraded.</p>
+<p>Anyway, the only solution that works right now is to kill and restart
+the Panel service:</p>
 <pre><code>$ killall unity-panel-service</code></pre>
 <p>This worked for me and my clock was back in the Panel! 😊</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
@@ -59,11 +54,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

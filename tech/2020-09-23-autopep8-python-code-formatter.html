@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,8 +30,19 @@
 <h1 class="title">autopep8 Python code formatter</h1>
 <p class="date">📅 2020-Sep-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#autopep8'>autopep8</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://pypi.org/project/autopep8/"><strong>autopep8</strong></a> is an automatic Python code formatting tool to make code comply with the <a href="https://www.python.org/dev/peps/pep-0008/"><strong>PEP8</strong></a> style guidelines. It is called <em>automatic</em> because it not only checks the code for PEP8, but can go ahead and format it to comply with the guidelines.</p>
-<p>autopep8 is built using <a href="https://pypi.org/project/pycodestyle/"><strong>pycodestyle</strong></a> which is a PEP8 style checker. pycodestyle used to be called <em>pep8</em> earlier, making it hard for users to distinguish between the guidelines and the tool, so it was later renamed.</p>
+<p><a
+href="https://pypi.org/project/autopep8/"><strong>autopep8</strong></a>
+is an automatic Python code formatting tool to make code comply with the
+<a
+href="https://www.python.org/dev/peps/pep-0008/"><strong>PEP8</strong></a>
+style guidelines. It is called <em>automatic</em> because it not only
+checks the code for PEP8, but can go ahead and format it to comply with
+the guidelines.</p>
+<p>autopep8 is built using <a
+href="https://pypi.org/project/pycodestyle/"><strong>pycodestyle</strong></a>
+which is a PEP8 style checker. pycodestyle used to be called
+<em>pep8</em> earlier, making it hard for users to distinguish between
+the guidelines and the tool, so it was later renamed.</p>
 <ul>
 <li>Installing the latest version is easy with pip:</li>
 </ul>
@@ -55,16 +52,22 @@
 </ul>
 <pre><code>$ python3 -m pip uninstall autopep8</code></pre>
 <ul>
-<li>To format a Python file and write the formatted output to stdout:</li>
+<li>To format a Python file and write the formatted output to
+stdout:</li>
 </ul>
 <pre><code>$ autopep8 in.py</code></pre>
 <ul>
-<li>There does not seem to an option to format a file inplace. So, formatting a file inplace requires a couple of commands:</li>
+<li>There does not seem to an option to format a file inplace. So,
+formatting a file inplace requires a couple of commands:</li>
 </ul>
 <pre><code>$ autopep8 in.py &gt; tmp.py
 $ mv tmp.py in.py</code></pre>
 <ul>
-<li><strong>Config file</strong>: The tool can read its configuration options from a file that you create. It first looks for this file in the home directory of the user. If not found there, it starts from the current directory and walks back until it reaches the user’s home directory.</li>
+<li><strong>Config file</strong>: The tool can read its configuration
+options from a file that you create. It first looks for this file in the
+home directory of the user. If not found there, it starts from the
+current directory and walks back until it reaches the user’s home
+directory.</li>
 </ul>
 <pre><code># First, autopep8 looks for one of these paths in home directory:
 ~/.config/pep8
@@ -76,7 +79,8 @@ $ mv tmp.py in.py</code></pre>
 setup.cfg
 tox.ini</code></pre>
 <ul>
-<li><strong>Config options</strong>: Some of the configuration options that I like to set in the config file:</li>
+<li><strong>Config options</strong>: Some of the configuration options
+that I like to set in the config file:</li>
 </ul>
 <pre><code>[pycodestyle]
 max_line_length = 200
@@ -84,7 +88,10 @@ max_line_length = 200
 # errors: autopep8 disables some PEP8 rules by default. This enables all.
 # E226: By explicitly specifying this, we tell autopep8 to not check it.
 ignore = errors,E226</code></pre>
-<p>Note that autopep8 does not in fact enforce all PEP8 rules by default. These are the ones marked with * in its <a href="https://pep8.readthedocs.io/en/release-1.7.x/intro.html#error-codes">error list</a>.</p>
+<p>Note that autopep8 does not in fact enforce all PEP8 rules by
+default. These are the ones marked with * in its <a
+href="https://pep8.readthedocs.io/en/release-1.7.x/intro.html#error-codes">error
+list</a>.</p>
 <p><strong>Tried with:</strong> autopep8 1.5.4 and Ubuntu 18.04</p>
 </div>
 
@@ -93,11 +100,13 @@ ignore = errors,E226</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

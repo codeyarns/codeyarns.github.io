@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,19 @@
 <h1 class="title">Read and write same file using sponge</h1>
 <p class="date">📅 2017-Feb-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#moreutils'>moreutils</a>, <a href='index.html#sponge'>sponge</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A common operation I end up doing is reading a text file, processing it using Unix tools and writing back the result to the same filename. However, if you do this you will find that you end up with an empty file! This is because the file is first opened for writing, thus clearing its contents.</p>
-<p><strong>sponge</strong> is a tiny tool created specially for this common operation. It can be installed easily:</p>
+<p>A common operation I end up doing is reading a text file, processing
+it using Unix tools and writing back the result to the same filename.
+However, if you do this you will find that you end up with an empty
+file! This is because the file is first opened for writing, thus
+clearing its contents.</p>
+<p><strong>sponge</strong> is a tiny tool created specially for this
+common operation. It can be installed easily:</p>
 <pre><code>$ sudo apt install moreutils</code></pre>
-<p>Here is an example that is wrong and ends up creating an empty file:</p>
+<p>Here is an example that is wrong and ends up creating an empty
+file:</p>
 <pre><code>$ cat foobar.txt | uniq &gt; foobar.txt</code></pre>
-<p>To fix this, add sponge to <em>soak</em> up all the output first and only write to the file at the end:</p>
+<p>To fix this, add sponge to <em>soak</em> up all the output first and
+only write to the file at the end:</p>
 <pre><code>$ cat foobar.txt | uniq | sponge foobar.txt</code></pre>
 <p><strong>Tried with:</strong> moreutils 0.57 and Ubuntu 16.04</p>
 </div>
@@ -59,11 +52,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

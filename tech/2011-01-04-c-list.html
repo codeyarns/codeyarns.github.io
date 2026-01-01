@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,38 +95,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">C++: List</h1>
 <p class="date">📅 2011-Jan-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#lists'>lists</a>, <a href='index.html#stl'>stl</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>A STL <strong>list</strong> in C++ provides the features of a <strong>doubly-linked list</strong>. Using the list is similar to using any other STL container, with iterators. Here is a simple example that illustrates the common list operations:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;list&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="kw">typedef</span> list&lt;<span class="dt">int</span>&gt;               IntList;</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="kw">typedef</span> IntList::iterator       IListIter;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="kw">typedef</span> IntList::const_iterator IListCIter;</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="dt">int</span> main()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>{</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    IntList ilist;                                  <span class="co">// Empty list</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    IntList ilist1( <span class="dv">100</span> );                          <span class="co">// List with 100 elements of 0</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    IntList ilist2( <span class="dv">100</span>, <span class="dv">3</span> );                       <span class="co">// List with 100 elements of 3</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    IntList ilist3( ilist2.begin(), ilist2.end() ); <span class="co">// List copied from previous list</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    <span class="co">// Create list: 10-&gt;20-&gt;30</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>    ilist.push_back( <span class="dv">10</span> );</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    ilist.push_back( <span class="dv">20</span> );</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>    ilist.push_back( <span class="dv">30</span> );</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>    ilist.size();  <span class="co">// 3</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a>    ilist.empty(); <span class="co">// false</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>    ilist.front(); <span class="co">// 10</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>    ilist.back();  <span class="co">// 30</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>    ilist.insert( ilist.begin(), <span class="dv">99</span> );          <span class="co">// 99 added, 99-&gt;10-&gt;20-&gt;30</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>    ilist.erase( ilist.begin() );               <span class="co">// 99 erased, 10-&gt;20-&gt;30</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>    ilist.erase( ilist.begin(), ilist.end() );  <span class="co">// Entire list erased</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a>}</span></code></pre></div>
+<p>A STL <strong>list</strong> in C++ provides the features of a
+<strong>doubly-linked list</strong>. Using the list is similar to using
+any other STL container, with iterators. Here is a simple example that
+illustrates the common list operations:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;list&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> list<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span>               IntList<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> IntList<span class="op">::</span>iterator       IListIter<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> IntList<span class="op">::</span>const_iterator IListCIter<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    IntList ilist<span class="op">;</span>                                  <span class="co">// Empty list</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    IntList ilist1<span class="op">(</span> <span class="dv">100</span> <span class="op">);</span>                          <span class="co">// List with 100 elements of 0</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    IntList ilist2<span class="op">(</span> <span class="dv">100</span><span class="op">,</span> <span class="dv">3</span> <span class="op">);</span>                       <span class="co">// List with 100 elements of 3</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    IntList ilist3<span class="op">(</span> ilist2<span class="op">.</span>begin<span class="op">(),</span> ilist2<span class="op">.</span>end<span class="op">()</span> <span class="op">);</span> <span class="co">// List copied from previous list</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Create list: 10-&gt;20-&gt;30</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>push_back<span class="op">(</span> <span class="dv">10</span> <span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>push_back<span class="op">(</span> <span class="dv">20</span> <span class="op">);</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>push_back<span class="op">(</span> <span class="dv">30</span> <span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>size<span class="op">();</span>  <span class="co">// 3</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>empty<span class="op">();</span> <span class="co">// false</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>front<span class="op">();</span> <span class="co">// 10</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>back<span class="op">();</span>  <span class="co">// 30</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>insert<span class="op">(</span> ilist<span class="op">.</span>begin<span class="op">(),</span> <span class="dv">99</span> <span class="op">);</span>          <span class="co">// 99 added, 99-&gt;10-&gt;20-&gt;30</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>erase<span class="op">(</span> ilist<span class="op">.</span>begin<span class="op">()</span> <span class="op">);</span>               <span class="co">// 99 erased, 10-&gt;20-&gt;30</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ilist<span class="op">.</span>erase<span class="op">(</span> ilist<span class="op">.</span>begin<span class="op">(),</span> ilist<span class="op">.</span>end<span class="op">()</span> <span class="op">);</span>  <span class="co">// Entire list erased</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </div>
 
 <br />
@@ -147,11 +138,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,33 +27,65 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Mercurial: Collaborating on a Windows Network Using Shares</h1>
+<h1 class="title">Mercurial: Collaborating on a Windows Network Using
+Shares</h1>
 <p class="date">📅 2010-Aug-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#mercurial'>mercurial</a>, <a href='index.html#repository'>repository</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You might feel the need to publish <strong>Mercurial</strong> repositories in a central location and collaborate using that. This is really useful when:</p>
+<p>You might feel the need to publish <strong>Mercurial</strong>
+repositories in a central location and collaborate using that. This is
+really useful when:</p>
 <ul>
 <li><p>You are working from 2 or more workstations or laptops.</p></li>
-<li><p>You are in a small team and there are 2 or more people working on the project.</p></li>
+<li><p>You are in a small team and there are 2 or more people working on
+the project.</p></li>
 </ul>
-<p>Publishing a Mercurial repository in a central location enables different people or computers to push and pull from it. There are a few common ways to do this:</p>
+<p>Publishing a Mercurial repository in a central location enables
+different people or computers to push and pull from it. There are a few
+common ways to do this:</p>
 <ul>
-<li><p><strong>hg serve</strong>: Real easy and quick to setup with simple features.</p></li>
-<li><p><strong>SSH</strong>: Not as easy on Windows as on Linux. OpenSSH server is the most common option, but it comes with Cygwin and all its problems.</p></li>
-<li><p><strong>HTTP</strong>: Requires quite a lot of configuration on Windows.</p></li>
-<li><p><strong>SMB</strong>: If you are on a Windows network, your computers or team is small in number and your needs are simple, then using a Windows share is very compelling!</p></li>
+<li><p><strong>hg serve</strong>: Real easy and quick to setup with
+simple features.</p></li>
+<li><p><strong>SSH</strong>: Not as easy on Windows as on Linux. OpenSSH
+server is the most common option, but it comes with Cygwin and all its
+problems.</p></li>
+<li><p><strong>HTTP</strong>: Requires quite a lot of configuration on
+Windows.</p></li>
+<li><p><strong>SMB</strong>: If you are on a Windows network, your
+computers or team is small in number and your needs are simple, then
+using a Windows share is very compelling!</p></li>
 </ul>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/08/2010_08_06_mercurial_windows.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2010/08/2010_08_06_mercurial_windows.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <ol type="1">
-<li><p>Designate one computer as the central repository server. Let us call it A. It can be the workstation of the one of the team members, it does not really matter. Other computers, B and C, should be in the same Windows network as A.</p></li>
-<li><p>Create a directory on A, say <code>D:\HgReps</code> and move all your current repositories to it. New repositories in the future should also be created here.</p></li>
-<li><p>Share the directory on A, so it becomes <code>\\A\HgReps</code>. Give only the team members who use A, B and C access to <strong>read and write</strong> to this share. You could also give <strong>read access</strong> to other users who you wish only pull from A. These access permissions should be very easy to configure if you are in a well set up Windows domain.</p></li>
-<li><p>Point all the current working directories on A, B and C to push and pull from <code>\\A\HgReps</code>. To do this, open the <code>.hg/hgrc</code> file in each working directory and edit it so it points to A. For a project named Foobar, the <code>.hg/hgrc</code> file looks like:</p></li>
+<li><p>Designate one computer as the central repository server. Let us
+call it A. It can be the workstation of the one of the team members, it
+does not really matter. Other computers, B and C, should be in the same
+Windows network as A.</p></li>
+<li><p>Create a directory on A, say <code>D:\HgReps</code> and move all
+your current repositories to it. New repositories in the future should
+also be created here.</p></li>
+<li><p>Share the directory on A, so it becomes <code>\\A\HgReps</code>.
+Give only the team members who use A, B and C access to <strong>read and
+write</strong> to this share. You could also give <strong>read
+access</strong> to other users who you wish only pull from A. These
+access permissions should be very easy to configure if you are in a well
+set up Windows domain.</p></li>
+<li><p>Point all the current working directories on A, B and C to push
+and pull from <code>\\A\HgReps</code>. To do this, open the
+<code>.hg/hgrc</code> file in each working directory and edit it so it
+points to A. For a project named Foobar, the <code>.hg/hgrc</code> file
+looks like:</p></li>
 </ol>
 <pre><code>[paths]
 default = \\A\HgReps\Foobar</code></pre>
-<p>All this setup is ridiculously easy to do for a small team and everything just works without much configuration. Another nice side-effect is that you can backup the <code>D:\HgReps</code> on computer A easily and grab all the team’s commits.</p>
+<p>All this setup is ridiculously easy to do for a small team and
+everything just works without much configuration. Another nice
+side-effect is that you can backup the <code>D:\HgReps</code> on
+computer A easily and grab all the team’s commits.</p>
 </div>
 
 <br />
@@ -75,11 +93,13 @@ default = \\A\HgReps\Foobar</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

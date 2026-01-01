@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,29 +31,83 @@
 <p class="date">📅 2012-Aug-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#htpc'>htpc</a>, <a href='index.html#raspberry-pi'>raspberry pi</a>, <a href='index.html#raspbmc'>raspbmc</a>, <a href='index.html#xbmc'>xbmc</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2012/08/20120810-raspbmc.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2012/08/20120810-raspbmc.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p>The <a href="http://en.wikipedia.org/wiki/Raspberry_Pi"><strong>Raspberry Pi</strong></a> can be turned into a <strong>Home Theater PC (HTPC)</strong> by installing <a href="http://www.raspbmc.com/"><strong>Raspbmc</strong></a> on it. <strong>XBMC</strong> is a popular open-source media player application that runs on many operating systems. The Raspbmc is a Linux distribution for the Raspberry Pi that has XBMC baked in and turns your Raspberry Pi into a HTPC. Installing Raspbmc on the Raspberry Pi is easy and is performed in two stages.</p>
+<p>The <a
+href="http://en.wikipedia.org/wiki/Raspberry_Pi"><strong>Raspberry
+Pi</strong></a> can be turned into a <strong>Home Theater PC
+(HTPC)</strong> by installing <a
+href="http://www.raspbmc.com/"><strong>Raspbmc</strong></a> on it.
+<strong>XBMC</strong> is a popular open-source media player application
+that runs on many operating systems. The Raspbmc is a Linux distribution
+for the Raspberry Pi that has XBMC baked in and turns your Raspberry Pi
+into a HTPC. Installing Raspbmc on the Raspberry Pi is easy and is
+performed in two stages.</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2012/08/20120810-pi.jpg" alt="" /><figcaption>The Raspberry Pi, all wired up.</figcaption>
+<img src="http://codeyarns.files.wordpress.com/2012/08/20120810-pi.jpg"
+alt="The Raspberry Pi, all wired up." />
+<figcaption aria-hidden="true">The Raspberry Pi, all wired
+up.</figcaption>
 </figure>
-<p>The first stage of the installation can be done on Windows. Download the Raspbmc Windows <strong>installer</strong> from <a href="http://www.raspbmc.com/wiki/user/windows-installation/">here</a>. Raspberry Pi boots from a <strong>SD card</strong>, so you need a SD card to install an operating system, which is Linux in this case. I used a 4GB Kingston SD card that I was using in a camera. Plug in the SD card into your Windows computer, run the downloaded Raspbmc Windows installer, choose the SD card from the displayed list and click Install. This stage of the installation happens in a couple of minutes.</p>
+<p>The first stage of the installation can be done on Windows. Download
+the Raspbmc Windows <strong>installer</strong> from <a
+href="http://www.raspbmc.com/wiki/user/windows-installation/">here</a>.
+Raspberry Pi boots from a <strong>SD card</strong>, so you need a SD
+card to install an operating system, which is Linux in this case. I used
+a 4GB Kingston SD card that I was using in a camera. Plug in the SD card
+into your Windows computer, run the downloaded Raspbmc Windows
+installer, choose the SD card from the displayed list and click Install.
+This stage of the installation happens in a couple of minutes.</p>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2012/08/20120810-coffee.jpg" alt="" /><figcaption>Raspbmc installation takes a while. Take a break!</figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2012/08/20120810-coffee.jpg"
+alt="Raspbmc installation takes a while. Take a break!" />
+<figcaption aria-hidden="true">Raspbmc installation takes a while. Take
+a break!</figcaption>
 </figure>
-<p>The second stage of the Raspbmc installation is done from the Raspberry Pi itself using an internet connection.</p>
+<p>The second stage of the Raspbmc installation is done from the
+Raspberry Pi itself using an internet connection.</p>
 <ol type="1">
-<li><p>Pull out the SD card from the Windows computer and plug it into your Raspberry Pi.</p></li>
-<li><p>Connect the Pi with an <strong>Ethernet LAN</strong> cable to the internet. I did this by connecting it to the wireless router of my internet provider.</p></li>
-<li><p>Connect the Pi to a TV. I did this by plugging a <strong>HDMI</strong> cable into the back of the TV, turning it on, choosing HDMI input and plugging the other end of the cable into the Pi.</p></li>
-<li><p>Connect the Pi to a <strong>micro-USB</strong> power source. I did by plugging in the micro-USB travel charger that came with a <strong>Samsung Galaxy Gio</strong> cellphone. The Pi needs a power source of at least 700mA at 5V. Make sure that the micro-USB adapter you are using provides this much power.</p></li>
-<li><p>Turn on the power to the Pi. Raspbmc boots up, connects to the internet and over the next 20 minutes proceeds to download and install the root filesystem, kernel, bootloader, kernel modules and libraries. It does all this automatically, reboots and installs XBMC.</p></li>
-<li><p>If all went well, you should now have XBMC displayed on the TV in front of you! 😊</p></li>
-<li><p>Plug in a <strong>USB mouse</strong> or keyboard to interact with XBMC. I plugged in the USB adapter of my <strong>Logitech M310</strong> wireless mouse. This was not detected automatically, but was detected once I rebooted Raspbmc.</p></li>
-<li><p>An easy way to play videos, music and photos from the Pi is to plug in a <strong>USB thumbdrive</strong> that has this content. I plugged in a Sandisk USB thumbdrive with a <strong>FAT32</strong> partition on it. Raspbmc mounted the USB thumbdrive automatically and its contents were found under the Files section of Videos, Music or Pictures menu.</p></li>
+<li><p>Pull out the SD card from the Windows computer and plug it into
+your Raspberry Pi.</p></li>
+<li><p>Connect the Pi with an <strong>Ethernet LAN</strong> cable to the
+internet. I did this by connecting it to the wireless router of my
+internet provider.</p></li>
+<li><p>Connect the Pi to a TV. I did this by plugging a
+<strong>HDMI</strong> cable into the back of the TV, turning it on,
+choosing HDMI input and plugging the other end of the cable into the
+Pi.</p></li>
+<li><p>Connect the Pi to a <strong>micro-USB</strong> power source. I
+did by plugging in the micro-USB travel charger that came with a
+<strong>Samsung Galaxy Gio</strong> cellphone. The Pi needs a power
+source of at least 700mA at 5V. Make sure that the micro-USB adapter you
+are using provides this much power.</p></li>
+<li><p>Turn on the power to the Pi. Raspbmc boots up, connects to the
+internet and over the next 20 minutes proceeds to download and install
+the root filesystem, kernel, bootloader, kernel modules and libraries.
+It does all this automatically, reboots and installs XBMC.</p></li>
+<li><p>If all went well, you should now have XBMC displayed on the TV in
+front of you! 😊</p></li>
+<li><p>Plug in a <strong>USB mouse</strong> or keyboard to interact with
+XBMC. I plugged in the USB adapter of my <strong>Logitech M310</strong>
+wireless mouse. This was not detected automatically, but was detected
+once I rebooted Raspbmc.</p></li>
+<li><p>An easy way to play videos, music and photos from the Pi is to
+plug in a <strong>USB thumbdrive</strong> that has this content. I
+plugged in a Sandisk USB thumbdrive with a <strong>FAT32</strong>
+partition on it. Raspbmc mounted the USB thumbdrive automatically and
+its contents were found under the Files section of Videos, Music or
+Pictures menu.</p></li>
 </ol>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2012/08/20120810-raspbmc-tv.jpg" alt="" /><figcaption>Raspbmc booting up on the Raspberry Pi.</figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2012/08/20120810-raspbmc-tv.jpg"
+alt="Raspbmc booting up on the Raspberry Pi." />
+<figcaption aria-hidden="true">Raspbmc booting up on the Raspberry
+Pi.</figcaption>
 </figure>
 <p>Have fun with your new HTPC 😊</p>
 <p><strong>Tried with:</strong> Raspberry Pi Model B and Raspbmc RC3</p>
@@ -78,11 +118,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

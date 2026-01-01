@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,31 @@
 <h1 class="title">How to set environment variable in gdb</h1>
 <p class="date">📅 2019-Apr-22 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#environment-variables'>environment variables</a>, <a href='index.html#gdb'>gdb</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>GDB</strong> inherits the environment variables from your shell. Some environment variables, like <code>LD_LIBRARY_PATH</code>, might not be inherited for safety reasons. This can cause errors like this when you try to debug:</p>
+<p><strong>GDB</strong> inherits the environment variables from your
+shell. Some environment variables, like <code>LD_LIBRARY_PATH</code>,
+might not be inherited for safety reasons. This can cause errors like
+this when you try to debug:</p>
 <pre><code>$ gdb --args ./a.out
 (gdb) r
 /path/to/a.out: error while loading shared libraries: libfoobar.so.5: cannot open shared object file: No such file or directory</code></pre>
-<p>You can set the <code>LD_LIBRARY_PATH</code> environment variable at the gdb shell using the <strong>set env</strong> command like this:</p>
+<p>You can set the <code>LD_LIBRARY_PATH</code> environment variable at
+the gdb shell using the <strong>set env</strong> command like this:</p>
 <pre><code>(gdb) set env LD_LIBRARY_PATH /path/to/1:/path/to/2</code></pre>
-<p>However, if you use a shell like <strong>Fish</strong>, you will notice that this will silently not work and you still get the <strong>cannot open shared object file</strong> error.</p>
-<p>This is because under the covers, gdb is reading the <code>SHELL</code> environment variable to understand what is the shell and doing what is right for that shell. It might not understand how to work with the Fish, which is a relatively new shell.</p>
-<p>The solution that works for me, is to set the <code>SHELL</code> variable at the Fish shell to the Bash path:</p>
+<p>However, if you use a shell like <strong>Fish</strong>, you will
+notice that this will silently not work and you still get the
+<strong>cannot open shared object file</strong> error.</p>
+<p>This is because under the covers, gdb is reading the
+<code>SHELL</code> environment variable to understand what is the shell
+and doing what is right for that shell. It might not understand how to
+work with the Fish, which is a relatively new shell.</p>
+<p>The solution that works for me, is to set the <code>SHELL</code>
+variable at the Fish shell to the Bash path:</p>
 <pre><code>$ set SHELL (which bash)</code></pre>
-<p>And then launch gdb and set the environment variable as shown above. It works after that.</p>
-<p><strong>Reference</strong>: <a href="ftp://ftp.gnu.org/old-gnu/Manuals/gdb/html_node/gdb_19.html">Your program’s environment</a> (GDB Manual)</p>
+<p>And then launch gdb and set the environment variable as shown above.
+It works after that.</p>
+<p><strong>Reference</strong>: <a
+href="ftp://ftp.gnu.org/old-gnu/Manuals/gdb/html_node/gdb_19.html">Your
+program’s environment</a> (GDB Manual)</p>
 </div>
 
 <br />
@@ -63,11 +62,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

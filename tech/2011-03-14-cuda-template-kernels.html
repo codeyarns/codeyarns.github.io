@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,43 +95,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">CUDA: Template Kernels</h1>
 <p class="date">📅 2011-Mar-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#template'>template</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>CUDA kernel functions can be made generic by writing them as <strong>template kernel functions</strong>. Doing this is almost similar to writing template functions in C++.</p>
-<p>Consider this kernel that merely writes the input integer array to the output integer array:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">//////////////////////////////////////////</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="co">// FooDevice.cu</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>* inArr, <span class="dt">int</span>* outArr, <span class="dt">int</span> num )</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>{</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> curThreadIndex = ( blockIdx.x * blockDim.x ) + threadIdx.x;</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> threadNum      = gridDim.x * blockDim.x;</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="cf">for</span> ( <span class="dt">int</span> index = curThreadIndex; index &lt; num; index += threadNum )</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>        outArr[ index ] = inArr[ index ];</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>}</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="co">//////////////////////////////////////////</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co">//////////////////////////////////////////</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co">// FooDevice.h</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> <span class="dt">int</span>*, <span class="dt">int</span>*, <span class="dt">int</span> );</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="co">//////////////////////////////////////////</span></span></code></pre></div>
-<p>Template kernels are a good solution to enable this kernel to deal with arrays of any type. Just like in C++, CUDA template kernels need to be defined in a header file. This is because the compiler generates the code for a function that is specialized for a given type. To be able to do this at compile time inside a compilation unit, the function definition needs to be completely visible.</p>
-<p>Rewriting the above kernel as a template kernel in the header file:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">//////////////////////////////////////////</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">// FooDevice.cu</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co">// Nothing here</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">//////////////////////////////////////////</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">//////////////////////////////////////////</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">// FooDevice.h</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="kw">template</span>&lt; <span class="kw">typename</span> T &gt;</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>__global__ <span class="dt">void</span> fooKernel( <span class="at">const</span> T* inArr, T* outArr, <span class="dt">int</span> num )</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>{</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> curThreadIndex = ( blockIdx.x * blockDim.x ) + threadIdx.x;</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> threadNum      = gridDim.x * blockDim.x;</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>    <span class="cf">for</span> ( <span class="dt">int</span> index = curThreadIndex; index &lt; num; index += threadNum )</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>        outArr[ index ] = inArr[ index ];</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a>    <span class="cf">return</span>;</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>}</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a><span class="co">//////////////////////////////////////////</span></span></code></pre></div>
+<p>CUDA kernel functions can be made generic by writing them as
+<strong>template kernel functions</strong>. Doing this is almost similar
+to writing template functions in C++.</p>
+<p>Consider this kernel that merely writes the input integer array to
+the output integer array:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">//////////////////////////////////////////</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// FooDevice.cu</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>__global__ <span class="dt">void</span> fooKernel<span class="op">(</span> <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> inArr<span class="op">,</span> <span class="dt">int</span><span class="op">*</span> outArr<span class="op">,</span> <span class="dt">int</span> num <span class="op">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> curThreadIndex <span class="op">=</span> <span class="op">(</span> blockIdx<span class="op">.</span>x <span class="op">*</span> blockDim<span class="op">.</span>x <span class="op">)</span> <span class="op">+</span> threadIdx<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> threadNum      <span class="op">=</span> gridDim<span class="op">.</span>x <span class="op">*</span> blockDim<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span> <span class="dt">int</span> index <span class="op">=</span> curThreadIndex<span class="op">;</span> index <span class="op">&lt;</span> num<span class="op">;</span> index <span class="op">+=</span> threadNum <span class="op">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        outArr<span class="op">[</span> index <span class="op">]</span> <span class="op">=</span> inArr<span class="op">[</span> index <span class="op">];</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">//////////////////////////////////////////</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">//////////////////////////////////////////</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">// FooDevice.h</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>__global__ <span class="dt">void</span> fooKernel<span class="op">(</span> <span class="at">const</span> <span class="dt">int</span><span class="op">*,</span> <span class="dt">int</span><span class="op">*,</span> <span class="dt">int</span> <span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">//////////////////////////////////////////</span></span></code></pre></div>
+<p>Template kernels are a good solution to enable this kernel to deal
+with arrays of any type. Just like in C++, CUDA template kernels need to
+be defined in a header file. This is because the compiler generates the
+code for a function that is specialized for a given type. To be able to
+do this at compile time inside a compilation unit, the function
+definition needs to be completely visible.</p>
+<p>Rewriting the above kernel as a template kernel in the header
+file:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">//////////////////////////////////////////</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">// FooDevice.cu</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Nothing here</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">//////////////////////////////////////////</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">//////////////////////////////////////////</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">// FooDevice.h</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">template</span><span class="op">&lt;</span> <span class="kw">typename</span> T <span class="op">&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>__global__ <span class="dt">void</span> fooKernel<span class="op">(</span> <span class="at">const</span> T<span class="op">*</span> inArr<span class="op">,</span> T<span class="op">*</span> outArr<span class="op">,</span> <span class="dt">int</span> num <span class="op">)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> curThreadIndex <span class="op">=</span> <span class="op">(</span> blockIdx<span class="op">.</span>x <span class="op">*</span> blockDim<span class="op">.</span>x <span class="op">)</span> <span class="op">+</span> threadIdx<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> threadNum      <span class="op">=</span> gridDim<span class="op">.</span>x <span class="op">*</span> blockDim<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span> <span class="dt">int</span> index <span class="op">=</span> curThreadIndex<span class="op">;</span> index <span class="op">&lt;</span> num<span class="op">;</span> index <span class="op">+=</span> threadNum <span class="op">)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        outArr<span class="op">[</span> index <span class="op">]</span> <span class="op">=</span> inArr<span class="op">[</span> index <span class="op">];</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">//////////////////////////////////////////</span></span></code></pre></div>
 <p><strong>Tried with</strong>: CUDA 3.2</p>
 </div>
 
@@ -153,11 +151,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

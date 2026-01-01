@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,12 +31,31 @@
 <p class="date">📅 2012-May-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#fmad'>fmad</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png" alt="" /><figcaption>PTX instructions produced with FMAD off (left) and FMAD on (right)</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2012/05/20120512-fmad.png"
+alt="PTX instructions produced with FMAD off (left) and FMAD on (right)" />
+<figcaption aria-hidden="true">PTX instructions produced with FMAD off
+(left) and FMAD on (right)</figcaption>
 </figure>
-<p>If you are using <strong>CUDA</strong> to perform any sort of non-graphics <strong>floating-point computation</strong>, be aware of the <strong>FMAD</strong> (floating-point multiply-add) instruction. Since CUDA hardware needs to straddle not only the world of computation, but also graphics and gaming, it has lots of FMAD units. So, by default the CUDA compiler will try to replace as much of your floating-point computation code with FMAD instructions.</p>
-<p>This is fine if you do not rely on the precision of your results. However, this can lead to hard-to-find bugs if you do rely on the precision. If you need the CUDA computation to mimic the floating-point computation on the CPU, then you are better off without the FMAD instructions.</p>
-<p>The CUDA compiler (<code>nvcc</code>) is configured to produce FMAD instructions by default. To request it to stop producing FMAD instructions and use the normal floating-point instructions use the compiler directive <code>--fmad=false</code></p>
-<p>Note that turning off FMAD can hurt performance quite a bit. I found that the time spent on my computations increased by about 20% with FMAD turned off.</p>
+<p>If you are using <strong>CUDA</strong> to perform any sort of
+non-graphics <strong>floating-point computation</strong>, be aware of
+the <strong>FMAD</strong> (floating-point multiply-add) instruction.
+Since CUDA hardware needs to straddle not only the world of computation,
+but also graphics and gaming, it has lots of FMAD units. So, by default
+the CUDA compiler will try to replace as much of your floating-point
+computation code with FMAD instructions.</p>
+<p>This is fine if you do not rely on the precision of your results.
+However, this can lead to hard-to-find bugs if you do rely on the
+precision. If you need the CUDA computation to mimic the floating-point
+computation on the CPU, then you are better off without the FMAD
+instructions.</p>
+<p>The CUDA compiler (<code>nvcc</code>) is configured to produce FMAD
+instructions by default. To request it to stop producing FMAD
+instructions and use the normal floating-point instructions use the
+compiler directive <code>--fmad=false</code></p>
+<p>Note that turning off FMAD can hurt performance quite a bit. I found
+that the time spent on my computations increased by about 20% with FMAD
+turned off.</p>
 <p><strong>Tried with:</strong> CUDA 4.1</p>
 </div>
 
@@ -59,11 +64,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

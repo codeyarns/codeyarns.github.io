@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,22 +31,41 @@
 <p class="date">📅 2016-Jun-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#partial_sort'>partial_sort</a>, <a href='index.html#priority-queue'>priority queue</a>, <a href='index.html#puzzle'>puzzle</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>Recently I actually faced a problem, the likes of which you see being asked in interviews. Input is a array of N values that is not sorted. We want this array to be untouched, since it is required in the given order for later use. What we want to find out is the indices of the smallest K values in this unsorted array. The K in this case is very small compared to N.</p>
+<p>Recently I actually faced a problem, the likes of which you see being
+asked in interviews. Input is a array of N values that is not sorted. We
+want this array to be untouched, since it is required in the given order
+for later use. What we want to find out is the indices of the smallest K
+values in this unsorted array. The K in this case is very small compared
+to N.</p>
 <h2 id="solution-1">Solution 1</h2>
 <p>The straightforward solution is:</p>
 <ul>
 <li><p>Make a copy of the array (or vector)</p></li>
 <li><p>Create another vector of indices</p></li>
-<li><p>Apply a <code>std::partial_sort</code> on this pair of vectors with a custom comparison method that only compares the values vector</p></li>
-<li><p>The smallest K values and their indices in the original order will be output in the first K locations of the vectors</p></li>
+<li><p>Apply a <code>std::partial_sort</code> on this pair of vectors
+with a custom comparison method that only compares the values
+vector</p></li>
+<li><p>The smallest K values and their indices in the original order
+will be output in the first K locations of the vectors</p></li>
 </ul>
-<p>The computational complexity of this solution can probably not be beaten. However, the problems with this solution for my particular application were:</p>
+<p>The computational complexity of this solution can probably not be
+beaten. However, the problems with this solution for my particular
+application were:</p>
 <ul>
-<li><p>A copy of the input vector needs to be made since our input vector needs to be unmodified. The input vector can be very large, so this copy is wasteful. Especially since K is known to be very small (assume 3 or 5).</p></li>
-<li><p>Since we require the indices of the smallest K values, an additional vector of same length of input vector needs to be created.</p></li>
+<li><p>A copy of the input vector needs to be made since our input
+vector needs to be unmodified. The input vector can be very large, so
+this copy is wasteful. Especially since K is known to be very small
+(assume 3 or 5).</p></li>
+<li><p>Since we require the indices of the smallest K values, an
+additional vector of same length of input vector needs to be
+created.</p></li>
 </ul>
 <h2 id="solution-2">Solution 2</h2>
-<p>As you can imagine, the ideal solution would have complexity similar to the above solution. But practically it should not require N new storage, but K size storage. In fact, this can be solved using a <code>std::priority_queue</code>. Here is the pseudocode of my solution:</p>
+<p>As you can imagine, the ideal solution would have complexity similar
+to the above solution. But practically it should not require N new
+storage, but K size storage. In fact, this can be solved using a
+<code>std::priority_queue</code>. Here is the pseudocode of my
+solution:</p>
 <pre><code>GetSmallestKIndices(input_array, K):
     Create priority queue pq
 
@@ -76,7 +81,8 @@
         Insert pair of current item and its index
 
     What we have left in pq is smallest K values and their indices</code></pre>
-<p>It goes without saying that this solution is only ideal for this particular setup where K is very small compared to N.</p>
+<p>It goes without saying that this solution is only ideal for this
+particular setup where K is very small compared to N.</p>
 </div>
 
 <br />
@@ -84,11 +90,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,13 +30,23 @@
 <h1 class="title">How to count files at commandline in Ubuntu</h1>
 <p class="date">📅 2013-Jan-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#count'>count</a>, <a href='index.html#ls'>ls</a>, <a href='index.html#ubuntu'>ubuntu</a>, <a href='index.html#wc'>wc</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Is there a way to easily <strong>count</strong> how many files and directories match a given pattern? Thankfully, this is easy to do at the commandline with the <strong>ls</strong> and <strong>wc</strong> programs. ls can be used to list files that match the pattern you want and wc can be used to count them.</p>
-<p>Assume we want to count how many files or directories have prefix <strong>Foo</strong>.</p>
+<p>Is there a way to easily <strong>count</strong> how many files and
+directories match a given pattern? Thankfully, this is easy to do at the
+commandline with the <strong>ls</strong> and <strong>wc</strong>
+programs. ls can be used to list files that match the pattern you want
+and wc can be used to count them.</p>
+<p>Assume we want to count how many files or directories have prefix
+<strong>Foo</strong>.</p>
 <p>First, let us see what does not work:</p>
 <pre><code>$ ls -l Foo* | wc -l</code></pre>
-<p>This is ls with its <code>-l</code> (EL, not ONE) parameter. It lists the files that match and you pipe it to wc to count the number of lines it receives.</p>
-<p>This almost works, except that <code>ls -l</code> puts an extra line at the beginning that shows the number of blocks used by that directory.</p>
-<p>Instead, use <code>ls -1</code> (that is ONE, not EL) parameter which gives exactly what you want:</p>
+<p>This is ls with its <code>-l</code> (EL, not ONE) parameter. It lists
+the files that match and you pipe it to wc to count the number of lines
+it receives.</p>
+<p>This almost works, except that <code>ls -l</code> puts an extra line
+at the beginning that shows the number of blocks used by that
+directory.</p>
+<p>Instead, use <code>ls -1</code> (that is ONE, not EL) parameter which
+gives exactly what you want:</p>
 <pre><code>$ ls -1 Foo* | wc -l</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 12.04.1 LTS</p>
 </div>
@@ -60,11 +56,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

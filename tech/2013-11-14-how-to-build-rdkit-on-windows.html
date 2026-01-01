@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,20 +30,43 @@
 <h1 class="title">How to build RDKit on Windows</h1>
 <p class="date">📅 2013-Nov-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#rdkit'>rdkit</a>, <a href='index.html#visual-cpp'>visual cpp</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://www.rdkit.org/"><strong>RDKit</strong></a> is a cheminformatics library with a C++ and Python API. You typically need to build it only if you need to use the C++ API on Windows. Here are the steps that worked for me:</p>
+<p><a href="http://www.rdkit.org/"><strong>RDKit</strong></a> is a
+cheminformatics library with a C++ and Python API. You typically need to
+build it only if you need to use the C++ API on Windows. Here are the
+steps that worked for me:</p>
 <ol type="1">
-<li><p>Install <strong>Python</strong> and <strong>Numpy</strong>.</p></li>
+<li><p>Install <strong>Python</strong> and
+<strong>Numpy</strong>.</p></li>
 <li><p>Install <strong>Boost</strong>.</p></li>
 <li><p>Install <strong>CMake</strong>.</p></li>
-<li><p>Download the latest RDKit source code from Github <a href="https://github.com/rdkit/rdkit">here</a>. I have found that their Sourceforge releases do not include the C++ libraries.</p></li>
-<li><p>Create a <code>build</code> directory in RDKit directory and open a command-prompt there and type <code>cmake-gui ..</code></p></li>
-<li><p>In the CMake GUI, pick the version of Visual Studio. Click <code>Configure</code>, click <code>Configure</code> again and then click <code>Generate</code>. CMake generates the Visual Studio solution for RDKit.</p></li>
-<li><p>Open the generated <code>RDKit.sln</code> solution file. Choose a build type (<code>Release</code> or <code>Debug</code>) that matches that of the cheminformatics project you are working on. Choose Build &gt; Build Solution. RDKit should build successfully.</p></li>
-<li><p>Add an environment variable named <code>RDBASE</code> with a value of the RDKit base directory.</p></li>
-<li><p>Open the cheminformatics C++ project you are working on. Add <code>$(RDBASE)/Code</code> as an Include directory. Add <code>$(RDBASE)/Build/lib/Debug</code> or <code>$(RDBASE)/Build/lib/Release</code> as a Library directory. Add all the <code>.lib</code> files in the library directory for linking.</p></li>
-<li><p>To use a RDKit class in your C++ source file, find the header file that contains it. You can do this by looking at C++ documentation of RDKit. You may need to add the header file path relative to <code>$(RDBASE)/Code</code></p></li>
+<li><p>Download the latest RDKit source code from Github <a
+href="https://github.com/rdkit/rdkit">here</a>. I have found that their
+Sourceforge releases do not include the C++ libraries.</p></li>
+<li><p>Create a <code>build</code> directory in RDKit directory and open
+a command-prompt there and type <code>cmake-gui ..</code></p></li>
+<li><p>In the CMake GUI, pick the version of Visual Studio. Click
+<code>Configure</code>, click <code>Configure</code> again and then
+click <code>Generate</code>. CMake generates the Visual Studio solution
+for RDKit.</p></li>
+<li><p>Open the generated <code>RDKit.sln</code> solution file. Choose a
+build type (<code>Release</code> or <code>Debug</code>) that matches
+that of the cheminformatics project you are working on. Choose Build
+&gt; Build Solution. RDKit should build successfully.</p></li>
+<li><p>Add an environment variable named <code>RDBASE</code> with a
+value of the RDKit base directory.</p></li>
+<li><p>Open the cheminformatics C++ project you are working on. Add
+<code>$(RDBASE)/Code</code> as an Include directory. Add
+<code>$(RDBASE)/Build/lib/Debug</code> or
+<code>$(RDBASE)/Build/lib/Release</code> as a Library directory. Add all
+the <code>.lib</code> files in the library directory for
+linking.</p></li>
+<li><p>To use a RDKit class in your C++ source file, find the header
+file that contains it. You can do this by looking at C++ documentation
+of RDKit. You may need to add the header file path relative to
+<code>$(RDBASE)/Code</code></p></li>
 </ol>
-<p><strong>Tried with:</strong> Visual Studio 2010, Boost 1.51 and Windows 7 x64</p>
+<p><strong>Tried with:</strong> Visual Studio 2010, Boost 1.51 and
+Windows 7 x64</p>
 </div>
 
 <br />
@@ -65,11 +74,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

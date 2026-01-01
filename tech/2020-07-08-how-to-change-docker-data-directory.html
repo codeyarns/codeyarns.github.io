@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,17 +31,27 @@
 <p class="date">📅 2020-Jul-08 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#docker'>docker</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>By default, <strong>Docker</strong> stores the data of its images, containers and volumes in the <code>/var/lib/docker</code> directory. Sometimes, you may want to request Docker to store its data in a different directory or partition.</p>
-<p>For example, on my computers I keep separate partitions for root <code>/</code> and home <code>/home</code> and the latter is much bigger than the former. So, I prefer that Docker use a directory in my <code>/home</code> partition to store its data.</p>
+<p>By default, <strong>Docker</strong> stores the data of its images,
+containers and volumes in the <code>/var/lib/docker</code> directory.
+Sometimes, you may want to request Docker to store its data in a
+different directory or partition.</p>
+<p>For example, on my computers I keep separate partitions for root
+<code>/</code> and home <code>/home</code> and the latter is much bigger
+than the former. So, I prefer that Docker use a directory in my
+<code>/home</code> partition to store its data.</p>
 <h2 id="solution">Solution</h2>
 <p>To change the data directory used by Docker:</p>
 <ul>
-<li>Clean up <code>/var/lib/docker</code> by removing all the images currently used by Docker:</li>
+<li>Clean up <code>/var/lib/docker</code> by removing all the images
+currently used by Docker:</li>
 </ul>
 <pre><code>$ docker system prune -a</code></pre>
 <ul>
-<li><p>Create a directory for Docker’s data whereever you want. I created one in my home partition: <code>/home/joe/docker_data</code>.</p></li>
-<li><p>Add the following lines to the <code>/etc/docker/daemon.json</code> file:</p></li>
+<li><p>Create a directory for Docker’s data whereever you want. I
+created one in my home partition:
+<code>/home/joe/docker_data</code>.</p></li>
+<li><p>Add the following lines to the
+<code>/etc/docker/daemon.json</code> file:</p></li>
 </ul>
 <pre><code>&quot;data-root&quot;: &quot;/home/joe/docker_data&quot;,
 &quot;storage-driver&quot;: &quot;overlay2&quot;</code></pre>
@@ -63,7 +59,8 @@
 <li>Restart Docker daemon:</li>
 </ul>
 <pre><code>$ sudo systemctl restart docker</code></pre>
-<p>When you pull down images, you will now see the new data directory getting populated.</p>
+<p>When you pull down images, you will now see the new data directory
+getting populated.</p>
 </div>
 
 <br />
@@ -71,11 +68,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

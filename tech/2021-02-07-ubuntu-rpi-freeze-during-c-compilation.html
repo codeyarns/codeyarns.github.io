@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,12 @@
 <h1 class="title">Ubuntu RPi freeze during C++ compilation</h1>
 <p class="date">📅 2021-Feb-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#raspberry-pi'>raspberry pi</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I was <a href="2021-02-07-how-to-build-veracrypt-from-source.html">compiling</a> the Veracrypt C++ source code when the system froze up completely. This was on my <strong>Raspberry Pi 3 Model B+</strong> board which was running Ubuntu 20.04. The system was unfrozen only after about 30 minutes and I saw this error at the shell:</p>
+<p>I was <a
+href="2021-02-07-how-to-build-veracrypt-from-source.html">compiling</a>
+the Veracrypt C++ source code when the system froze up completely. This
+was on my <strong>Raspberry Pi 3 Model B+</strong> board which was
+running Ubuntu 20.04. The system was unfrozen only after about 30
+minutes and I saw this error at the shell:</p>
 <pre><code>$ make
 ...
 g++: fatal error: Killed signal terminated program cc1plus
@@ -55,12 +46,28 @@ g++: fatal error: Killed signal terminated program cc1plus
 compilation terminated.
 make[1]: *** [/home/ashwin/VeraCrypt-VeraCrypt_1.24-Update7/src/Build/Include/Makefile.inc:28: FavoriteVolume.o] Error 1
 make: *** [Makefile:424: all] Error 2</code></pre>
-<p>Looking up <code>/var/log/syslog</code> I noticed that the kernel had detected that the system was hung. It would wait for 120 seconds, the time specified in <code>/proc/sys/kernel/hung_task_timeout_secs</code>, and then try again. It did this for about 20 minutes and about 10 minutes after that the C++ compiler invoked the <strong>OOM killer</strong>: <code>cc1plus invoked oom-killer</code>. The killer killed the C++ compiler and the system was unfrozen.</p>
+<p>Looking up <code>/var/log/syslog</code> I noticed that the kernel had
+detected that the system was hung. It would wait for 120 seconds, the
+time specified in <code>/proc/sys/kernel/hung_task_timeout_secs</code>,
+and then try again. It did this for about 20 minutes and about 10
+minutes after that the C++ compiler invoked the <strong>OOM
+killer</strong>: <code>cc1plus invoked oom-killer</code>. The killer
+killed the C++ compiler and the system was unfrozen.</p>
 <h2 id="solution">Solution</h2>
-<p>It looked like the C++ compiler was running out of RAM. I had seen <a href="2019-05-12-out-of-memory-error-on-raspbian.html">this problem earlier</a> on Raspbian, where the solution had been to increase the size of its <strong>swap file</strong>.</p>
-<p>But Ubuntu seemed to neither use a swap file nor a swap partition on the Raspberry Pi. So I looked for other solutions.</p>
-<p>On my computers, I set <code>MAKEFLAGS</code> to use all the available CPU cores for faster builds. Since the <a href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2837b0/README.md">BCM2837B0</a> chip used in my RPi has a quad-core ARM CPU, I had set the flag to <code>--jobs=4</code>. This meant that 4 instances of the C++ compiler were running in parallel when the system ran out of memory.</p>
-<p>I reduced the 4 to 1 and I was able to compile without any further hiccups.</p>
+<p>It looked like the C++ compiler was running out of RAM. I had seen <a
+href="2019-05-12-out-of-memory-error-on-raspbian.html">this problem
+earlier</a> on Raspbian, where the solution had been to increase the
+size of its <strong>swap file</strong>.</p>
+<p>But Ubuntu seemed to neither use a swap file nor a swap partition on
+the Raspberry Pi. So I looked for other solutions.</p>
+<p>On my computers, I set <code>MAKEFLAGS</code> to use all the
+available CPU cores for faster builds. Since the <a
+href="https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2837b0/README.md">BCM2837B0</a>
+chip used in my RPi has a quad-core ARM CPU, I had set the flag to
+<code>--jobs=4</code>. This meant that 4 instances of the C++ compiler
+were running in parallel when the system ran out of memory.</p>
+<p>I reduced the 4 to 1 and I was able to compile without any further
+hiccups.</p>
 </div>
 
 <br />
@@ -68,11 +75,13 @@ make: *** [Makefile:424: all] Error 2</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

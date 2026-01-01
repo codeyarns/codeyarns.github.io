@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -105,24 +92,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to convert datetime to and from ISO 8601 string</h1>
+<h1 class="title">How to convert datetime to and from ISO 8601
+string</h1>
 <p class="date">📅 2017-Oct-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#datetime'>datetime</a>, <a href='index.html#dateutil'>dateutil</a>, <a href='index.html#iso-8601'>iso 8601</a>, <a href='index.html#python'>python</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://en.wikipedia.org/wiki/ISO_8601"><strong>ISO 8601</strong></a> is a standardized format for representing date and time that is popular. Python has built-in support to convert to and from this format. But confusingly, those methods are distributed across two different modules!</p>
+<p><a href="https://en.wikipedia.org/wiki/ISO_8601"><strong>ISO
+8601</strong></a> is a standardized format for representing date and
+time that is popular. Python has built-in support to convert to and from
+this format. But confusingly, those methods are distributed across two
+different modules!</p>
 <ul>
-<li>Convert a <code>datetime</code> object to string in ISO 8601 format:</li>
+<li>Convert a <code>datetime</code> object to string in ISO 8601
+format:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> datetime</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>some_datetime_obj <span class="op">=</span> datetime.datetime.now()  <span class="co"># Store current datetime</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>datetime_str <span class="op">=</span> some_datetime_obj.isoformat()  <span class="co"># Convert to ISO 8601 string</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="bu">print</span>(datetime_str)  <span class="co"># Print the string</span></span></code></pre></div>
-<p>This prints a date string in ISO 8601 format. For example: <code>2019-01-23T06:17:59.273519</code>.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>some_datetime_obj <span class="op">=</span> datetime.datetime.now()  <span class="co"># Store current datetime</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>datetime_str <span class="op">=</span> some_datetime_obj.isoformat()  <span class="co"># Convert to ISO 8601 string</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(datetime_str)  <span class="co"># Print the string</span></span></code></pre></div>
+<p>This prints a date string in ISO 8601 format. For example:
+<code>2019-01-23T06:17:59.273519</code>.</p>
 <ul>
-<li>To convert a ISO 8601 format string to <code>datetime</code> object we need a package named <code>dateutil</code>. This is available as <code>python-dateutil</code> and <code>python3-dateutil</code> in Ubuntu or <code>dateutil</code> as PIP package. Once this package is installed, you can do:</li>
+<li>To convert a ISO 8601 format string to <code>datetime</code> object
+we need a package named <code>dateutil</code>. This is available as
+<code>python-dateutil</code> and <code>python3-dateutil</code> in Ubuntu
+or <code>dateutil</code> as PIP package. Once this package is installed,
+you can do:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="im">import</span> dateutil.parser</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>datetime_str <span class="op">=</span> <span class="st">&quot;2019-01-23T06:17:59.273519&quot;</span>  <span class="co"># Datestring in ISO 8601 format</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>some_datetime_obj <span class="op">=</span> dateutil.parser.parse(datetime_str)  <span class="co"># Convert to datetime object</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dateutil.parser</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>datetime_str <span class="op">=</span> <span class="st">&quot;2019-01-23T06:17:59.273519&quot;</span>  <span class="co"># Datestring in ISO 8601 format</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>some_datetime_obj <span class="op">=</span> dateutil.parser.parse(datetime_str)  <span class="co"># Convert to datetime object</span></span></code></pre></div>
 </div>
 
 <br />
@@ -130,11 +130,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

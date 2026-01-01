@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,38 @@
 <h1 class="title">How to list symbols in object file</h1>
 <p class="date">📅 2014-Aug-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#nm'>nm</a>, <a href='index.html#object-file'>object file</a>, <a href='index.html#symbols'>symbols</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><code>nm</code> is a very useful command for programmers. It can be used to list the symbols defined in an executable, object file (<code>.o</code>) or shared object library file (<code>.so</code>).</p>
-<p>I typically need this command when the compiler throws me a <strong>undefined reference</strong> error. By searching for the reference symbol among the symbols exported by a library file, I can figure out if that is the one that needs to be linked into the target executable.</p>
+<p><code>nm</code> is a very useful command for programmers. It can be
+used to list the symbols defined in an executable, object file
+(<code>.o</code>) or shared object library file (<code>.so</code>).</p>
+<p>I typically need this command when the compiler throws me a
+<strong>undefined reference</strong> error. By searching for the
+reference symbol among the symbols exported by a library file, I can
+figure out if that is the one that needs to be linked into the target
+executable.</p>
 <ul>
-<li>To list all symbols <strong>exported</strong> by an object file, use the <code>-g</code> option:</li>
+<li>To list all symbols <strong>exported</strong> by an object file, use
+the <code>-g</code> option:</li>
 </ul>
 <pre><code>$ nm -g foo.so</code></pre>
 <p>Other options that I find useful:</p>
 <ul>
-<li><p><code>-C</code>: This option <strong>demangles</strong> symbol names to the names used in C or C++ code. By default, symbol names are mangled. The C symbols have extra underscores and the C++ symbols are completely mangled to encode the namespace, class and type information.</p></li>
-<li><p><code>-A</code>: Prepend each line with path of object file. This is useful when you pipe this output through other programs, like grep.</p></li>
-<li><p><code>-D</code>: Display <strong>dynamic symbols</strong>, rather than <strong>normal symbols</strong>. By default, the symbols in the <code>.symtab</code> and <code>.strtab</code> sections are shown. By specifying this option, the symbols in <code>.dynsym</code> and <code>.dynstr</code> sections are shown.</p></li>
-<li><p><code>--defined-only</code>: Use this option to get only the symbols <strong>defined</strong> in the object file. By default, all the symbols in the object file are shown. I typically use this when I am solving an undefined reference problem.</p></li>
+<li><p><code>-C</code>: This option <strong>demangles</strong> symbol
+names to the names used in C or C++ code. By default, symbol names are
+mangled. The C symbols have extra underscores and the C++ symbols are
+completely mangled to encode the namespace, class and type
+information.</p></li>
+<li><p><code>-A</code>: Prepend each line with path of object file. This
+is useful when you pipe this output through other programs, like
+grep.</p></li>
+<li><p><code>-D</code>: Display <strong>dynamic symbols</strong>, rather
+than <strong>normal symbols</strong>. By default, the symbols in the
+<code>.symtab</code> and <code>.strtab</code> sections are shown. By
+specifying this option, the symbols in <code>.dynsym</code> and
+<code>.dynstr</code> sections are shown.</p></li>
+<li><p><code>--defined-only</code>: Use this option to get only the
+symbols <strong>defined</strong> in the object file. By default, all the
+symbols in the object file are shown. I typically use this when I am
+solving an undefined reference problem.</p></li>
 </ul>
 <p><strong>Tried with:</strong> binutils 2.24 and Ubuntu 14.04</p>
 </div>
@@ -65,11 +71,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

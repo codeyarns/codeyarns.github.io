@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -109,22 +96,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="date">📅 2015-Mar-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fonts'>fonts</a>, <a href='index.html#opencv'>opencv</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/03/20150311_opencv_fonts.png" alt="" /><figcaption> </figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/03/20150311_opencv_fonts.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
-<p><strong>OpenCV</strong> can be used to render text on an image buffer using the <code>putText</code> function. Several simple <strong>fonts</strong> are available in OpenCV which can be used to write text.</p>
-<p>The available fonts can be seen defined in <a href="https://github.com/opencv/opencv/blob/95fd61c9b4c2cbe099f84740c35587e53d55b6bb/modules/imgproc/include/opencv2/imgproc.hpp#L817"><code>modules/imgproc/include/opencv2/imgproc.hpp</code></a> header file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">enum</span> HersheyFonts {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    FONT_HERSHEY_SIMPLEX        = <span class="dv">0</span>, <span class="co">//!&lt; normal size sans-serif font</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    FONT_HERSHEY_PLAIN          = <span class="dv">1</span>, <span class="co">//!&lt; small size sans-serif font</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    FONT_HERSHEY_DUPLEX         = <span class="dv">2</span>, <span class="co">//!&lt; normal size sans-serif font (more complex than FONT_HERSHEY_SIMPLEX)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    FONT_HERSHEY_COMPLEX        = <span class="dv">3</span>, <span class="co">//!&lt; normal size serif font</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    FONT_HERSHEY_TRIPLEX        = <span class="dv">4</span>, <span class="co">//!&lt; normal size serif font (more complex than FONT_HERSHEY_COMPLEX)</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    FONT_HERSHEY_COMPLEX_SMALL  = <span class="dv">5</span>, <span class="co">//!&lt; smaller version of FONT_HERSHEY_COMPLEX</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    FONT_HERSHEY_SCRIPT_SIMPLEX = <span class="dv">6</span>, <span class="co">//!&lt; hand-writing style font</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    FONT_HERSHEY_SCRIPT_COMPLEX = <span class="dv">7</span>, <span class="co">//!&lt; more complex variant of FONT_HERSHEY_SCRIPT_SIMPLEX</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>    FONT_ITALIC                 = <span class="dv">16</span> <span class="co">//!&lt; flag for italic font</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>};</span></code></pre></div>
-<p><code>FONT_ITALIC</code> is not a font, but is a flag that can be combined with the other fonts to get italic text.</p>
+<p><strong>OpenCV</strong> can be used to render text on an image buffer
+using the <code>putText</code> function. Several simple
+<strong>fonts</strong> are available in OpenCV which can be used to
+write text.</p>
+<p>The available fonts can be seen defined in <a
+href="https://github.com/opencv/opencv/blob/95fd61c9b4c2cbe099f84740c35587e53d55b6bb/modules/imgproc/include/opencv2/imgproc.hpp#L817"><code>modules/imgproc/include/opencv2/imgproc.hpp</code></a>
+header file:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> HersheyFonts <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    FONT_HERSHEY_SIMPLEX        <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> <span class="co">//!&lt; normal size sans-serif font</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    FONT_HERSHEY_PLAIN          <span class="op">=</span> <span class="dv">1</span><span class="op">,</span> <span class="co">//!&lt; small size sans-serif font</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    FONT_HERSHEY_DUPLEX         <span class="op">=</span> <span class="dv">2</span><span class="op">,</span> <span class="co">//!&lt; normal size sans-serif font (more complex than FONT_HERSHEY_SIMPLEX)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    FONT_HERSHEY_COMPLEX        <span class="op">=</span> <span class="dv">3</span><span class="op">,</span> <span class="co">//!&lt; normal size serif font</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    FONT_HERSHEY_TRIPLEX        <span class="op">=</span> <span class="dv">4</span><span class="op">,</span> <span class="co">//!&lt; normal size serif font (more complex than FONT_HERSHEY_COMPLEX)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    FONT_HERSHEY_COMPLEX_SMALL  <span class="op">=</span> <span class="dv">5</span><span class="op">,</span> <span class="co">//!&lt; smaller version of FONT_HERSHEY_COMPLEX</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    FONT_HERSHEY_SCRIPT_SIMPLEX <span class="op">=</span> <span class="dv">6</span><span class="op">,</span> <span class="co">//!&lt; hand-writing style font</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    FONT_HERSHEY_SCRIPT_COMPLEX <span class="op">=</span> <span class="dv">7</span><span class="op">,</span> <span class="co">//!&lt; more complex variant of FONT_HERSHEY_SCRIPT_SIMPLEX</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    FONT_ITALIC                 <span class="op">=</span> <span class="dv">16</span> <span class="co">//!&lt; flag for italic font</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p><code>FONT_ITALIC</code> is not a font, but is a flag that can be
+combined with the other fonts to get italic text.</p>
 <p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
 </div>
 
@@ -133,11 +130,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,25 +31,64 @@
 <p class="date">📅 2016-Sep-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#py-faster-rcnn'>py-faster-rcnn</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>When training a <strong>Faster-RCNN</strong> model using <a href="https://github.com/rbgirshick/py-faster-rcnn"><strong>py-faster-rcnn</strong></a> I noticed that it would randomly crash with this error:</p>
+<p>When training a <strong>Faster-RCNN</strong> model using <a
+href="https://github.com/rbgirshick/py-faster-rcnn"><strong>py-faster-rcnn</strong></a>
+I noticed that it would randomly crash with this error:</p>
 <pre><code>out of memory
 invalid argument
 an illegal memory access was encountered
 F0919 18:01:51.657281 21310 math_functions.cu:81] Check failed: error == cudaSuccess (77 vs. 0)  an illegal memory access was encountered
 *** Check failure stack trace: ***</code></pre>
 <h2 id="investigation">Investigation</h2>
-<p>On closer investigation, I found that a training process would crash when I ran a second or third training on the same GPU. How can running a second training kill the first training? The only scenario I could think of, based on the above error message, was that a <code>cudaMalloc</code> to get more memory was failing. But why was Caffe trying to get more memory in the middle of training. Should not the reshape all be done and finished in the beginning of training?</p>
-<p>Anyway, the first problem was to reliably reproduce the error, since it did not always crash on running a second training. It only crashed once in a few times in these scenarios. Since I suspected <code>cudaMalloc</code>, I wrote a small adversary CUDA program that would try to grab as much GPU memory as possible. I ran this program a while after training had started and it reliably crashed the training everytime!</p>
-<p>A core dump file was being generated on crash, but it was at first useless since I was running Caffe compiled in release mode with no debugging symbols. I recompiled Caffe in debug mode with debugging symbols and used that to open in GDB:</p>
+<p>On closer investigation, I found that a training process would crash
+when I ran a second or third training on the same GPU. How can running a
+second training kill the first training? The only scenario I could think
+of, based on the above error message, was that a <code>cudaMalloc</code>
+to get more memory was failing. But why was Caffe trying to get more
+memory in the middle of training. Should not the reshape all be done and
+finished in the beginning of training?</p>
+<p>Anyway, the first problem was to reliably reproduce the error, since
+it did not always crash on running a second training. It only crashed
+once in a few times in these scenarios. Since I suspected
+<code>cudaMalloc</code>, I wrote a small adversary CUDA program that
+would try to grab as much GPU memory as possible. I ran this program a
+while after training had started and it reliably crashed the training
+everytime!</p>
+<p>A core dump file was being generated on crash, but it was at first
+useless since I was running Caffe compiled in release mode with no
+debugging symbols. I recompiled Caffe in debug mode with debugging
+symbols and used that to open in GDB:</p>
 <pre><code>$ gdb /usr/bin/python core</code></pre>
-<p>After the core dump was loaded in GDB, I got its backtrace using <code>bt</code>. It was interesting, but did not point to anything suspicious.</p>
-<p>I next monitored GPU memory occupied by the training continuously, using this watch and nvidia-smi:</p>
+<p>After the core dump was loaded in GDB, I got its backtrace using
+<code>bt</code>. It was interesting, but did not point to anything
+suspicious.</p>
+<p>I next monitored GPU memory occupied by the training continuously,
+using this watch and nvidia-smi:</p>
 <pre><code>$ watch -n 0.1 nvidia-smi</code></pre>
-<p>I noticed that the GPU memory used by training incremented and decremented by around 18MB consistently all the time. If my adversary CUDA program went and grabbed the 18MB that was released, then the training would crash when it tried to alloc that same memory next time.</p>
-<p>So, who is allocating and releasing memory all the time in py-faster-rcnn? Since I had ported the proposal layer recently from Python to C++, I remembered NMS. There is both a CPU and GPU version of NMS in py-faster-rcnn. The GPU NMS is used by default, though this can be changed in <code>config.py</code>. By switching it to CPU, I found that the crash no longer happened.</p>
-<p>But the problem is that CPU NMS at 0.2s was 10 times slower than the GPU NMS at 0.02s for my setup.</p>
+<p>I noticed that the GPU memory used by training incremented and
+decremented by around 18MB consistently all the time. If my adversary
+CUDA program went and grabbed the 18MB that was released, then the
+training would crash when it tried to alloc that same memory next
+time.</p>
+<p>So, who is allocating and releasing memory all the time in
+py-faster-rcnn? Since I had ported the proposal layer recently from
+Python to C++, I remembered NMS. There is both a CPU and GPU version of
+NMS in py-faster-rcnn. The GPU NMS is used by default, though this can
+be changed in <code>config.py</code>. By switching it to CPU, I found
+that the crash no longer happened.</p>
+<p>But the problem is that CPU NMS at 0.2s was 10 times slower than the
+GPU NMS at 0.02s for my setup.</p>
 <h2 id="solution">Solution</h2>
-<p>Once I saw that the GPU NMS code in <code>lib/nms/nms_kernel.cu</code> was doing the <code>cudaMalloc</code> and <code>cudaFree</code> continuously, fixing it was easy. I changed the allocated memory pointers to <code>static</code> and changed the code to hold on to the memory allocated last time. Only if more memory was required then the old one would be freed and new larger one allocated. I basically used the same strategy used by <code>std:vector</code>, that is doubling of memory. A better solution would be to allocate the maximum required memory, based on the box numbers set in <code>config.py</code>, and use it during training.</p>
+<p>Once I saw that the GPU NMS code in
+<code>lib/nms/nms_kernel.cu</code> was doing the <code>cudaMalloc</code>
+and <code>cudaFree</code> continuously, fixing it was easy. I changed
+the allocated memory pointers to <code>static</code> and changed the
+code to hold on to the memory allocated last time. Only if more memory
+was required then the old one would be freed and new larger one
+allocated. I basically used the same strategy used by
+<code>std:vector</code>, that is doubling of memory. A better solution
+would be to allocate the maximum required memory, based on the box
+numbers set in <code>config.py</code>, and use it during training.</p>
 <p><strong>Tried with:</strong> CUDA 7.5 and Ubuntu 14.04</p>
 </div>
 
@@ -72,11 +97,13 @@ F0919 18:01:51.657281 21310 math_functions.cu:81] Check failed: error == cudaSuc
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

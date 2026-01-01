@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,28 @@
 <h1 class="title">lstopo</h1>
 <p class="date">📅 2016-Mar-09 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#lstopo'>lstopo</a>, <a href='index.html#numa'>numa</a>, <a href='index.html#pcie'>pcie</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://codeyarns.com/?attachment_id=8484"><img src="https://codeyarns.files.wordpress.com/2016/03/20160309_lstopo.png" alt="20160309_lstopo" /></a></p>
-<p><strong>lstopo</strong> is a tool provided by the <a href="https://www.open-mpi.org/projects/hwloc/"><strong>Portable Hardware Locality (HWLOC)</strong></a> project. It is a great tool to get a graphical view of the architecture <strong>topology</strong> of a computer. Primarily it shows the CPUs, the cores and caches of the CPUs, NUMA nodes, PCIe buses and how devices like GPUs are connected to the buses.</p>
+<p><a href="https://codeyarns.com/?attachment_id=8484"><img
+src="https://codeyarns.files.wordpress.com/2016/03/20160309_lstopo.png"
+alt="20160309_lstopo" /></a></p>
+<p><strong>lstopo</strong> is a tool provided by the <a
+href="https://www.open-mpi.org/projects/hwloc/"><strong>Portable
+Hardware Locality (HWLOC)</strong></a> project. It is a great tool to
+get a graphical view of the architecture <strong>topology</strong> of a
+computer. Primarily it shows the CPUs, the cores and caches of the CPUs,
+NUMA nodes, PCIe buses and how devices like GPUs are connected to the
+buses.</p>
 <h2 id="commands">Commands</h2>
 <ul>
 <li>Installing this is easy:</li>
 </ul>
 <pre><code>$ sudo apt install hwloc</code></pre>
 <ul>
-<li>To view the topology of your system’s architecture in the tool’s default format:</li>
+<li>To view the topology of your system’s architecture in the tool’s
+default format:</li>
 </ul>
 <pre><code>$ lstopo</code></pre>
-<p>The default format might be a GUI window or a text output or ASCII graphics or something else dependent on your system.</p>
+<p>The default format might be a GUI window or a text output or ASCII
+graphics or something else dependent on your system.</p>
 <ul>
 <li>To view topology details in console format:</li>
 </ul>
@@ -65,25 +61,54 @@
 <li>To view it as colorful ASCII art at the shell:</li>
 </ul>
 <pre><code>$ lstopo --of txt</code></pre>
-<p>On my system, this showed a colorful and pretty block diagram of the CPU, NUMA nodes and the dies inside it. It is ironic that the <code>txt</code> format actually shows the topology graphically!</p>
-<p>Other formats that can be used include <code>svg</code> and <code>pdf</code>:</p>
+<p>On my system, this showed a colorful and pretty block diagram of the
+CPU, NUMA nodes and the dies inside it. It is ironic that the
+<code>txt</code> format actually shows the topology graphically!</p>
+<p>Other formats that can be used include <code>svg</code> and
+<code>pdf</code>:</p>
 <pre><code>$ lstopo --of svg &gt; out.svg
 
 $ lstopo --of pdf &gt; out.pdf</code></pre>
 <ul>
-<li>By default, some of the I/O components might not be displayed. To get the whole topology:</li>
+<li>By default, some of the I/O components might not be displayed. To
+get the whole topology:</li>
 </ul>
 <pre><code>$ lstopo --whole-io</code></pre>
 <h2 id="topology">Topology</h2>
-<p>A brief introduction to the various components that are drawn by the tool:</p>
+<p>A brief introduction to the various components that are drawn by the
+tool:</p>
 <ul>
-<li>Machine: This is the outermost or top-most component. It also lists the total amount of RAM. Example: <code>Machine (31GB)</code></li>
-<li>Package: The chip package that goes into a socket. On a multi-socket system, there will be multiple packages. Example: <code>Package L#1</code></li>
-<li>Group / NUMANode: This appears only if you have enabled NUMA and represents a NUMA node. On a multi-NUMA-node system, there will be multiple of these groups or NUMA nodes. Example: <code>NUMANode L#0 P#0 (32GB)</code></li>
-<li>Caches: Depending on what caches the CPU has the components might be L3, L2, L1d and L1i, each with corresponding cache size listed. In the graphical output, note the span of the cache rectangle - it spans over the CPU cores that it belongs to. Example: <code>L1i (32KB)</code></li>
-<li>Core and PU: Physical CPU cores are shown as <code>Core</code> and if they have multiple hyper-threaded cores inside them they are shown as <code>PU</code>. If hyper-threading has been disabled on a system, then a single PU is shown inside each core. Example: <code>Core P#4, PU P#4, PU P#10</code></li>
-<li>PCIe trees: There will be one or more PCIe trees associated with a CPU or a NUMA node is displayed inside the box of that particular CPU or NUMA node. Each tree shows the PCIe device IDs or PCI bus IDs. If there is a number on the PCIe bus, that is its bandwidth. The PCIe generation can be guessed from the bandwidth - <code>32</code> means 32 GB/s which is only possible with PCIe Gen 4.</li>
-<li>GPUs and devices: Hanging off a PCIe bus tree are the GPUs and other I/O devices. The CPU affinity for a GPU or device can be seen by noting the CPU cores or NUMA node inside which the GPU or device is listed. If two device are hanging off the same PCIe tree then they are sharing the same PCIe root - this can degrade their bandwidth. This can be fixed by physically moving the devices to a different PCIe slot so that it is associated with its own PCIe tree or root.</li>
+<li>Machine: This is the outermost or top-most component. It also lists
+the total amount of RAM. Example: <code>Machine (31GB)</code></li>
+<li>Package: The chip package that goes into a socket. On a multi-socket
+system, there will be multiple packages. Example:
+<code>Package L#1</code></li>
+<li>Group / NUMANode: This appears only if you have enabled NUMA and
+represents a NUMA node. On a multi-NUMA-node system, there will be
+multiple of these groups or NUMA nodes. Example:
+<code>NUMANode L#0 P#0 (32GB)</code></li>
+<li>Caches: Depending on what caches the CPU has the components might be
+L3, L2, L1d and L1i, each with corresponding cache size listed. In the
+graphical output, note the span of the cache rectangle - it spans over
+the CPU cores that it belongs to. Example: <code>L1i (32KB)</code></li>
+<li>Core and PU: Physical CPU cores are shown as <code>Core</code> and
+if they have multiple hyper-threaded cores inside them they are shown as
+<code>PU</code>. If hyper-threading has been disabled on a system, then
+a single PU is shown inside each core. Example:
+<code>Core P#4, PU P#4, PU P#10</code></li>
+<li>PCIe trees: There will be one or more PCIe trees associated with a
+CPU or a NUMA node is displayed inside the box of that particular CPU or
+NUMA node. Each tree shows the PCIe device IDs or PCI bus IDs. If there
+is a number on the PCIe bus, that is its bandwidth. The PCIe generation
+can be guessed from the bandwidth - <code>32</code> means 32 GB/s which
+is only possible with PCIe Gen 4.</li>
+<li>GPUs and devices: Hanging off a PCIe bus tree are the GPUs and other
+I/O devices. The CPU affinity for a GPU or device can be seen by noting
+the CPU cores or NUMA node inside which the GPU or device is listed. If
+two device are hanging off the same PCIe tree then they are sharing the
+same PCIe root - this can degrade their bandwidth. This can be fixed by
+physically moving the devices to a different PCIe slot so that it is
+associated with its own PCIe tree or root.</li>
 </ul>
 <p><strong>Tried with:</strong> lstopo 2.1.0 and Ubuntu 20.04</p>
 </div>
@@ -93,11 +118,13 @@ $ lstopo --of pdf &gt; out.pdf</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,30 @@
 <h1 class="title">How to create wireless hotspot on Windows 8</h1>
 <p class="date">📅 2014-Jan-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#hosted-network'>hosted network</a>, <a href='index.html#windows'>windows</a>, <a href='index.html#wireless'>wireless</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>There are some situations where you may have to create a <strong>wireless hotspot</strong> from your <strong>Windows 8 notebook</strong>. For example, you have only a wired LAN connection to the Internet, but have wireless-only devices like smartphones or tablets. In these situations, your Windows 8 notebook can be configured to act as a wireless router offering wireless access to internet to your other gadgets.</p>
+<p>There are some situations where you may have to create a
+<strong>wireless hotspot</strong> from your <strong>Windows 8
+notebook</strong>. For example, you have only a wired LAN connection to
+the Internet, but have wireless-only devices like smartphones or
+tablets. In these situations, your Windows 8 notebook can be configured
+to act as a wireless router offering wireless access to internet to your
+other gadgets.</p>
 <p>This can be done on Windows 8 in a few steps:</p>
 <ul>
-<li><p>Open a command prompt with Administrator privileges. Use this command prompt for all the commands given below.</p></li>
-<li><p>Check if the wireless adapter has support for <strong>Hosted Network</strong>. This is needed to make it work as a wireless hotspot. This can be checked by using this command:</p></li>
+<li><p>Open a command prompt with Administrator privileges. Use this
+command prompt for all the commands given below.</p></li>
+<li><p>Check if the wireless adapter has support for <strong>Hosted
+Network</strong>. This is needed to make it work as a wireless hotspot.
+This can be checked by using this command:</p></li>
 </ul>
 <pre><code>netsh show wlan drivers</code></pre>
-<p>This prints out all the properties of the wireless adapters on your notebook. Look for the property named <code>Hosted network supported</code> and it should be say <code>Yes</code>. If it says <code>No</code>, you are out of luck ☹</p>
+<p>This prints out all the properties of the wireless adapters on your
+notebook. Look for the property named
+<code>Hosted network supported</code> and it should be say
+<code>Yes</code>. If it says <code>No</code>, you are out of luck ☹</p>
 <ul>
-<li>Create a hosted network with a name and a key. Lets assume the network is named <code>foobarwifi</code> and key is <code>foobarkey</code>. The command to create such a network is:</li>
+<li>Create a hosted network with a name and a key. Lets assume the
+network is named <code>foobarwifi</code> and key is
+<code>foobarkey</code>. The command to create such a network is:</li>
 </ul>
 <pre><code>netsh wlan set hostednetwork mode=allow ssid=foobarwifi key=foobarkey</code></pre>
 <ul>
@@ -61,10 +61,26 @@
 </ul>
 <pre><code>netsh wlan start hostednetwork</code></pre>
 <ul>
-<li><p>Next, we need to link the network connection that has internet access to this wireless hosted network. To do this, open the <strong>Network and Sharing Center</strong> and go to <strong>Change adapter settings</strong>. You should be able to see the connection that has internet access. You will also see a Local Area Connection with the name <code>foobarwifi</code>. It will have a * (asterisk) in its name.</p></li>
-<li><p>Right-click on the connection with internet access and choose Properties. Switch to the Sharing tab and enable the option: Allow other network users to connect through this computers internet connection. In the dropdown, pick the Local Area Connection that is <code>foobarwifi</code>.</p></li>
-<li><p>That is it! Your Windows 8 notebook is now available as a wireless hotspot named <code>foobarwifi</code> to which other devices can connect wirelessly using the key <code>foobarkey</code>.</p></li>
-<li><p>This wireless hotspot is temporary and is removed when Windows is rebooted. If you need this hotspot frequently, then create a <code>.bat</code> file on the desktop with the above two command lines in it. Shift + right click on the file and choose Run as Administrator whenever you want the wifi hotspot to be created.</p></li>
+<li><p>Next, we need to link the network connection that has internet
+access to this wireless hosted network. To do this, open the
+<strong>Network and Sharing Center</strong> and go to <strong>Change
+adapter settings</strong>. You should be able to see the connection that
+has internet access. You will also see a Local Area Connection with the
+name <code>foobarwifi</code>. It will have a * (asterisk) in its
+name.</p></li>
+<li><p>Right-click on the connection with internet access and choose
+Properties. Switch to the Sharing tab and enable the option: Allow other
+network users to connect through this computers internet connection. In
+the dropdown, pick the Local Area Connection that is
+<code>foobarwifi</code>.</p></li>
+<li><p>That is it! Your Windows 8 notebook is now available as a
+wireless hotspot named <code>foobarwifi</code> to which other devices
+can connect wirelessly using the key <code>foobarkey</code>.</p></li>
+<li><p>This wireless hotspot is temporary and is removed when Windows is
+rebooted. If you need this hotspot frequently, then create a
+<code>.bat</code> file on the desktop with the above two command lines
+in it. Shift + right click on the file and choose Run as Administrator
+whenever you want the wifi hotspot to be created.</p></li>
 </ul>
 <p><strong>Tried with:</strong> Windows 8 x64</p>
 </div>
@@ -74,11 +90,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

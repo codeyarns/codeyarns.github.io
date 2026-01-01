@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,27 +30,48 @@
 <h1 class="title">How to export from Anobii and import to Goodreads</h1>
 <p class="date">📅 2015-Jul-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#anobii'>anobii</a>, <a href='index.html#book'>book</a>, <a href='index.html#csv'>csv</a>, <a href='index.html#export'>export</a>, <a href='index.html#goodreads'>goodreads</a>, <a href='index.html#import'>import</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://www.anobii.com/"><strong>Anobii</strong></a> is a fairly popular book community, that sadly is losing out to <a href="http://www.goodreads.com"><strong>Goodreads</strong></a>. When most of your bookworm friends are on Goodreads, you might want to move your book shelf, ratings, reviews and other info to Goodreads. This is fairly easy to achieve.</p>
+<p><a href="http://www.anobii.com/"><strong>Anobii</strong></a> is a
+fairly popular book community, that sadly is losing out to <a
+href="http://www.goodreads.com"><strong>Goodreads</strong></a>. When
+most of your bookworm friends are on Goodreads, you might want to move
+your book shelf, ratings, reviews and other info to Goodreads. This is
+fairly easy to achieve.</p>
 <h2 id="export-from-anobii">Export from Anobii</h2>
 <ul>
-<li><p>Login to Anobii. Go to Settings -&gt; Export Data. Select the <strong>format</strong> as CSV and Submit.</p></li>
-<li><p>You will receive an email in a few minutes with a CSV file attached. Download this file and rename it as <code>anobii.csv</code>.</p></li>
+<li><p>Login to Anobii. Go to Settings -&gt; Export Data. Select the
+<strong>format</strong> as CSV and Submit.</p></li>
+<li><p>You will receive an email in a few minutes with a CSV file
+attached. Download this file and rename it as
+<code>anobii.csv</code>.</p></li>
 </ul>
-<h2 id="convert-from-anobii-to-goodreads">Convert from Anobii to Goodreads</h2>
+<h2 id="convert-from-anobii-to-goodreads">Convert from Anobii to
+Goodreads</h2>
 <ul>
-<li>To convert between the export format of Anobii and import format of Goodreads, we use the <a href="https://github.com/tijs/Anobii2Goodreads"><strong>Anobii2Goodreads</strong></a> script. Git clone it or download the code:</li>
+<li>To convert between the export format of Anobii and import format of
+Goodreads, we use the <a
+href="https://github.com/tijs/Anobii2Goodreads"><strong>Anobii2Goodreads</strong></a>
+script. Git clone it or download the code:</li>
 </ul>
 <pre><code>$ git clone https://github.com/tijs/Anobii2Goodreads</code></pre>
 <ul>
-<li><p>Place the <code>anobii.csv</code> in the directory containing the <code>anobii-to-goodreads.py</code> script.</p></li>
-<li><p>Perform the conversion, the output is written to <code>import_to_goodreads.csv</code> file:</p></li>
+<li><p>Place the <code>anobii.csv</code> in the directory containing the
+<code>anobii-to-goodreads.py</code> script.</p></li>
+<li><p>Perform the conversion, the output is written to
+<code>import_to_goodreads.csv</code> file:</p></li>
 </ul>
 <pre><code>$ python anobii-to-goodreads.py</code></pre>
 <h2 id="import-to-goodreads">Import to Goodreads</h2>
 <ul>
-<li><p>Login to Goodreads. Go to its <a href="https://www.goodreads.com/review/import/">import page</a> and import the <code>import_to_goodreads.csv</code> file.</p></li>
-<li><p>Refresh this page to see the import progress. I found that a few books from India, which had ISBN, could not be imported.</p></li>
-<li><p>Go to your own update stream, you should be able to see all the imports. Do not worry, Goodreads only shows a few of these updates on your friends’ stream. I also found that the book <strong>status</strong> (unfinished or reading) was not entered correctly. This I had to <strong>batch edit</strong> to fix them.</p></li>
+<li><p>Login to Goodreads. Go to its <a
+href="https://www.goodreads.com/review/import/">import page</a> and
+import the <code>import_to_goodreads.csv</code> file.</p></li>
+<li><p>Refresh this page to see the import progress. I found that a few
+books from India, which had ISBN, could not be imported.</p></li>
+<li><p>Go to your own update stream, you should be able to see all the
+imports. Do not worry, Goodreads only shows a few of these updates on
+your friends’ stream. I also found that the book <strong>status</strong>
+(unfinished or reading) was not entered correctly. This I had to
+<strong>batch edit</strong> to fix them.</p></li>
 </ul>
 <p><strong>Tried with:</strong> Python 2.7.6 and Ubuntu 14.04</p>
 </div>
@@ -74,11 +81,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

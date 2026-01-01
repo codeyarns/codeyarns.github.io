@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,29 +30,64 @@
 <h1 class="title">Merge with squash in Git</h1>
 <p class="date">📅 2016-Aug-11 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#merge'>merge</a>, <a href='index.html#squash'>squash</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Merge</strong> is a common operation in <strong>Git</strong> to merge the changes in another branch to the current branch.</p>
-<p>Here is an example, where we checkout the <code>master</code> branch and merge a <code>feature_branch</code> to it:</p>
+<p><strong>Merge</strong> is a common operation in <strong>Git</strong>
+to merge the changes in another branch to the current branch.</p>
+<p>Here is an example, where we checkout the <code>master</code> branch
+and merge a <code>feature_branch</code> to it:</p>
 <pre><code>$ git checkout master
 $ git merge feature_branch
 $ git commit</code></pre>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2016/08/20160811_before_merge.png" alt="" /><figcaption>Before merge of feature_branch to master</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2016/08/20160811_before_merge.png"
+alt="Before merge of feature_branch to master" />
+<figcaption aria-hidden="true">Before merge of feature_branch to
+master</figcaption>
 </figure>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2016/08/20160811_after_merge.png" alt="" /><figcaption>After merge of feature_branch to master</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2016/08/20160811_after_merge.png"
+alt="After merge of feature_branch to master" />
+<figcaption aria-hidden="true">After merge of feature_branch to
+master</figcaption>
 </figure>
-<p>In the images above we can see that the two branches are actually merged together in the directed acyclic graph (DAG) with an edge. After this, the <code>git log</code> for <code>master</code> will show all the commits that are in <code>feature_branch</code> too in addition to the commits in <code>master</code>.</p>
-<p>There might be cases where you do not want to actually merge the two branches. Maybe you just want a single commit on <code>master</code> that has all the changes that would have been merged from <code>feature_branch</code>. Note that this is different from <code>git rebase</code> since that replays all the multiple commits of <code>feature_branch</code> on <code>master</code>.</p>
-<p>The answer to this is <code>git merge --squash</code>. This command effectively changes the files such that they would be after a <code>git merge</code>. However, there would be no link between <code>master</code> and <code>feature_branch</code> after this commit is committed.</p>
+<p>In the images above we can see that the two branches are actually
+merged together in the directed acyclic graph (DAG) with an edge. After
+this, the <code>git log</code> for <code>master</code> will show all the
+commits that are in <code>feature_branch</code> too in addition to the
+commits in <code>master</code>.</p>
+<p>There might be cases where you do not want to actually merge the two
+branches. Maybe you just want a single commit on <code>master</code>
+that has all the changes that would have been merged from
+<code>feature_branch</code>. Note that this is different from
+<code>git rebase</code> since that replays all the multiple commits of
+<code>feature_branch</code> on <code>master</code>.</p>
+<p>The answer to this is <code>git merge --squash</code>. This command
+effectively changes the files such that they would be after a
+<code>git merge</code>. However, there would be no link between
+<code>master</code> and <code>feature_branch</code> after this commit is
+committed.</p>
 <p>To merge with squash in the above scenario:</p>
 <pre><code>$ git checkout master
 $ git merge --squash feature_branch
 $ git commit</code></pre>
-<p>When you commit you will see that Git inserts a default commit message that says <code>Squashed commit of the following</code> and lists all the commits from <code>feature_branch</code> that are squashed into this commit. You can delete this commit message and create your own of course.</p>
+<p>When you commit you will see that Git inserts a default commit
+message that says <code>Squashed commit of the following</code> and
+lists all the commits from <code>feature_branch</code> that are squashed
+into this commit. You can delete this commit message and create your own
+of course.</p>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2016/08/20160811_after_merge_squash.png" alt="" /><figcaption>After merge –squash of feature_branch to master</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2016/08/20160811_after_merge_squash.png"
+alt="After merge –squash of feature_branch to master" />
+<figcaption aria-hidden="true">After merge –squash of feature_branch to
+master</figcaption>
 </figure>
-<p>The pictorial depiction of this operation above shows that there is no link between the two branches after this merge. When you do <code>git log</code> no one can see the multiple commits of <code>feature_branch</code>. You can even safely delete <code>feature_branch</code> if you want to after this operation.</p>
+<p>The pictorial depiction of this operation above shows that there is
+no link between the two branches after this merge. When you do
+<code>git log</code> no one can see the multiple commits of
+<code>feature_branch</code>. You can even safely delete
+<code>feature_branch</code> if you want to after this operation.</p>
 <p><strong>Tried with:</strong> Git 2.9.0 and Ubuntu 16.04</p>
 </div>
 
@@ -75,11 +96,13 @@ $ git commit</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

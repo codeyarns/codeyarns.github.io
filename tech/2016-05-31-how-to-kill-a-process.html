@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,9 @@
 <h1 class="title">How to kill a process</h1>
 <p class="date">📅 2016-May-31 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#kill'>kill</a>, <a href='index.html#killall'>killall</a>, <a href='index.html#sigkill'>sigkill</a>, <a href='index.html#signal'>signal</a>, <a href='index.html#sigterm'>sigterm</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Sooner or later you will find that an errant process is running amok or in the background and it needs to be stopped. This is called <strong>killing</strong> a process in Linux.</p>
+<p>Sooner or later you will find that an errant process is running amok
+or in the background and it needs to be stopped. This is called
+<strong>killing</strong> a process in Linux.</p>
 <h2 id="kill">kill</h2>
 <p>The most common command to kill a process is <code>kill</code>.</p>
 <ul>
@@ -57,7 +45,9 @@
 </ul>
 <pre><code>$ kill 1234 5678 9999</code></pre>
 <ul>
-<li>Many other signals other than <code>TERM</code> can be sent to processes. To list all the available signal numbers and their corresponding signal names:</li>
+<li>Many other signals other than <code>TERM</code> can be sent to
+processes. To list all the available signal numbers and their
+corresponding signal names:</li>
 </ul>
 <pre><code>$ kill -L</code></pre>
 <ul>
@@ -65,7 +55,8 @@
 </ul>
 <pre><code>$ kill -KILL 1234</code></pre>
 <ul>
-<li>The signal name can also be specified by appending a <code>SIG</code> as prefix:</li>
+<li>The signal name can also be specified by appending a
+<code>SIG</code> as prefix:</li>
 </ul>
 <pre><code>$ kill -SIGKILL 1234</code></pre>
 <ul>
@@ -73,10 +64,17 @@
 </ul>
 <pre><code>$ kill -9 1234</code></pre>
 <ul>
-<li>For most processes, sending the default <code>TERM</code> is enough. Most processes receive this signal, clean up their work and exit. For errant processes which do not respond to <code>TERM</code>, the final deathblow is sending a <code>KILL</code>. On sending this signal, the kernel steps in and it directly murders the process giving it no chance to clean up.</li>
+<li>For most processes, sending the default <code>TERM</code> is enough.
+Most processes receive this signal, clean up their work and exit. For
+errant processes which do not respond to <code>TERM</code>, the final
+deathblow is sending a <code>KILL</code>. On sending this signal, the
+kernel steps in and it directly murders the process giving it no chance
+to clean up.</li>
 </ul>
 <h2 id="killall">killall</h2>
-<p>Looking up the PID of a process and then killing it is usually cumbersome. What you usually want to do is to kill based on the process name. This can be done using the <code>killall</code> command.</p>
+<p>Looking up the PID of a process and then killing it is usually
+cumbersome. What you usually want to do is to kill based on the process
+name. This can be done using the <code>killall</code> command.</p>
 <ul>
 <li>To kill all Vim processes:</li>
 </ul>
@@ -86,14 +84,22 @@
 </ul>
 <pre><code>$ killall -r &quot;*abcd*&quot;</code></pre>
 <ul>
-<li><p>By default, <code>killall</code> sends the <code>TERM</code> signal. Other signals can be sent using signal number or signal name using the same command syntax as the <code>kill</code> command shown above.</p></li>
-<li><p>By default, <code>killall</code> only prints out the processes that it could not kill. It might be better to also see output from the command when it succeeds. The verbose option can be used for this:</p></li>
+<li><p>By default, <code>killall</code> sends the <code>TERM</code>
+signal. Other signals can be sent using signal number or signal name
+using the same command syntax as the <code>kill</code> command shown
+above.</p></li>
+<li><p>By default, <code>killall</code> only prints out the processes
+that it could not kill. It might be better to also see output from the
+command when it succeeds. The verbose option can be used for
+this:</p></li>
 </ul>
 <pre><code>$ killall -v vim
 Killed vim(28952) with signal 15
 Killed vim(28347) with signal 15</code></pre>
 <ul>
-<li>You might be afraid that you might kill processes by mistake with this command. If so use the interactive option to pick and choose which process to kill:</li>
+<li>You might be afraid that you might kill processes by mistake with
+this command. If so use the interactive option to pick and choose which
+process to kill:</li>
 </ul>
 <pre><code>$ kill -i vim
 Kill vim(1067) ? (y/N)</code></pre>
@@ -105,11 +111,13 @@ Kill vim(1067) ? (y/N)</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

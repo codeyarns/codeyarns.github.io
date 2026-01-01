@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,30 @@
 <h1 class="title">PATH environment variable in sudo</h1>
 <p class="date">📅 2015-Jul-31 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#environment-variables'>environment variables</a>, <a href='index.html#sudo'>sudo</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Using <code>sudo</code> is a common, safe and recommended method to execute commands that require superuser privileges. However, this command resets the <code>PATH</code> environment variable. So, some badly written installation scripts that require a particular <code>PATH</code> will fail in strange ways when run as <code>sudo</code>.</p>
-<p>Here is some useful information about <code>sudo</code> and the <code>PATH</code> environment variable:</p>
+<p>Using <code>sudo</code> is a common, safe and recommended method to
+execute commands that require superuser privileges. However, this
+command resets the <code>PATH</code> environment variable. So, some
+badly written installation scripts that require a particular
+<code>PATH</code> will fail in strange ways when run as
+<code>sudo</code>.</p>
+<p>Here is some useful information about <code>sudo</code> and the
+<code>PATH</code> environment variable:</p>
 <ul>
-<li><p>To ensure safety, <code>sudo</code> by default does not use the <code>PATH</code> environment variable of the user or that of <code>root</code>.</p></li>
-<li><p><code>sudo</code> also ignores the system-wide environment variables set in <code>/etc/environment</code> or in <code>/etc/profile.d/*.sh</code>.</p></li>
-<li><p>The <code>PATH</code> variable for <code>sudo</code> is hardcoded to <code>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games</code></p></li>
-<li><p>If you really want <code>sudo</code> to pick up the system-wide <code>PATH</code> or other environment variables, then try this:</p>
+<li><p>To ensure safety, <code>sudo</code> by default does not use the
+<code>PATH</code> environment variable of the user or that of
+<code>root</code>.</p></li>
+<li><p><code>sudo</code> also ignores the system-wide environment
+variables set in <code>/etc/environment</code> or in
+<code>/etc/profile.d/*.sh</code>.</p></li>
+<li><p>The <code>PATH</code> variable for <code>sudo</code> is hardcoded
+to
+<code>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games</code></p></li>
+<li><p>If you really want <code>sudo</code> to pick up the system-wide
+<code>PATH</code> or other environment variables, then try this:</p>
 <ol type="1">
-<li>Set the <code>PATH</code> or environment variable in a new file named <code>/etc/profile.d/name_anything.sh</code> using <code>export</code></li>
+<li>Set the <code>PATH</code> or environment variable in a new file
+named <code>/etc/profile.d/name_anything.sh</code> using
+<code>export</code></li>
 <li>Start root shell using <code>sudo su -</code></li>
 <li>Check if your path is correct: <code>echo $PATH</code></li>
 <li>Run the command that requires superuser privilege.</li>
@@ -60,7 +61,9 @@
 </ul>
 <h2 id="reference">Reference:</h2>
 <ul>
-<li><a href="https://help.ubuntu.com/community/EnvironmentVariables">Environment variables</a> documentation for Ubuntu</li>
+<li><a
+href="https://help.ubuntu.com/community/EnvironmentVariables">Environment
+variables</a> documentation for Ubuntu</li>
 <li><code>sudoers</code> man page, look for <code>env_reset</code></li>
 </ul>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
@@ -71,11 +74,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,21 +27,40 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">Tool cannot execute from Developer Command Prompt for VS2013</h1>
+<h1 class="title">Tool cannot execute from Developer Command Prompt for
+VS2013</h1>
 <p class="date">📅 2015-Jan-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#visual-studio'>visual studio</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/01/20150112-dumpbin.png" alt="" /><figcaption>Developer command prompt for Visual Studio 2013</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/01/20150112-dumpbin.png"
+alt="Developer command prompt for Visual Studio 2013" />
+<figcaption aria-hidden="true">Developer command prompt for Visual
+Studio 2013</figcaption>
 </figure>
 <h2 id="problem">Problem</h2>
-<p>I opened the <strong>Developer Command Prompt for VS2013</strong> to run the <code>dumpbin.exe</code> tool. I can see that this tool is present in my <code>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\</code> directory. The command prompt opens with an error:</p>
+<p>I opened the <strong>Developer Command Prompt for VS2013</strong> to
+run the <code>dumpbin.exe</code> tool. I can see that this tool is
+present in my
+<code>C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\</code>
+directory. The command prompt opens with an error:</p>
 <pre><code>The system cannot find the path specified.
 ERROR: Cannot determine the location of the VS installation.</code></pre>
-<p>Not surprisingly, trying to run this tool fails with it not being found. The same happens for the other <a href="http://msdn.microsoft.com/en-us/library/6dt9w0ss.aspx"><strong>C/C++ Build Tools</strong></a> that ship with Visual Studio 2013.</p>
+<p>Not surprisingly, trying to run this tool fails with it not being
+found. The same happens for the other <a
+href="http://msdn.microsoft.com/en-us/library/6dt9w0ss.aspx"><strong>C/C++
+Build Tools</strong></a> that ship with Visual Studio 2013.</p>
 <h2 id="solution">Solution</h2>
-<p>The Developer Command Prompt is nothing but the execution of <code>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\VsDevCmd.bat</code>. This batch file sets up the paths so that the various Visual Studio tools can be executed correctly. Something must have been going wrong in the execution of this file, I could not figure it out.</p>
-<p>I had a Visual Studio 2012 installation on the same computer. I just opened its Developer Command Prompt and got the job done. It worked without any error.</p>
-<p><strong>Tried with:</strong> Visual Studio 2013 and Windows 7 Professional 64-bit</p>
+<p>The Developer Command Prompt is nothing but the execution of
+<code>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\VsDevCmd.bat</code>.
+This batch file sets up the paths so that the various Visual Studio
+tools can be executed correctly. Something must have been going wrong in
+the execution of this file, I could not figure it out.</p>
+<p>I had a Visual Studio 2012 installation on the same computer. I just
+opened its Developer Command Prompt and got the job done. It worked
+without any error.</p>
+<p><strong>Tried with:</strong> Visual Studio 2013 and Windows 7
+Professional 64-bit</p>
 </div>
 
 <br />
@@ -63,11 +68,13 @@ ERROR: Cannot determine the location of the VS installation.</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,16 +31,30 @@
 <p class="date">📅 2014-Apr-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#mercurial-extension'>mercurial extension</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2014/04/20140414-hgactivity.png" alt="" /><figcaption>Display of activities on a Mercurial repository</figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2014/04/20140414-hgactivity.png"
+alt="Display of activities on a Mercurial repository" />
+<figcaption aria-hidden="true">Display of activities on a Mercurial
+repository</figcaption>
 </figure>
-<p>The <strong>Punchcard</strong> extension of <strong>Mercurial</strong> can be used to obtain a calendar chart of your contributions to a repository, as shown in <a href="2014-04-11-how-to-use-punchcard-extension-of-mercurial.html">here</a>. If you need to view the classic line graph of <strong>activities</strong> in a Mercurial repository, then the <a href="http://mercurial.selenic.com/wiki/ActivityExtension"><strong>Activity</strong></a> extension is a great solution.</p>
+<p>The <strong>Punchcard</strong> extension of
+<strong>Mercurial</strong> can be used to obtain a calendar chart of
+your contributions to a repository, as shown in <a
+href="2014-04-11-how-to-use-punchcard-extension-of-mercurial.html">here</a>.
+If you need to view the classic line graph of
+<strong>activities</strong> in a Mercurial repository, then the <a
+href="http://mercurial.selenic.com/wiki/ActivityExtension"><strong>Activity</strong></a>
+extension is a great solution.</p>
 <ul>
-<li>This extension uses <strong>Matplotlib</strong> and requires a recent version. Matplotlib that ships with Ubuntu is typically ancient, so uninstall that and install the latest using <code>pip</code>:</li>
+<li>This extension uses <strong>Matplotlib</strong> and requires a
+recent version. Matplotlib that ships with Ubuntu is typically ancient,
+so uninstall that and install the latest using <code>pip</code>:</li>
 </ul>
 <pre><code>$ sudo apt-get purge python-matplotlib python-matplotlib-data
 $ sudo pip install --upgrade matplotlib</code></pre>
 <ul>
-<li>Clone the repository of the Activity extension to get the latest source code:</li>
+<li>Clone the repository of the Activity extension to get the latest
+source code:</li>
 </ul>
 <pre><code>$ hg clone http://sources.freehackers.org/Hgactivity/</code></pre>
 <ul>
@@ -63,22 +63,30 @@ $ sudo pip install --upgrade matplotlib</code></pre>
 <pre><code>[extensions]
 activity=/path/to/Hgactivity/activity</code></pre>
 <ul>
-<li>To view line graph of activities on your repository in an interactive GUI:</li>
+<li>To view line graph of activities on your repository in an
+interactive GUI:</li>
 </ul>
 <pre><code>$ hg activity --mode=gui</code></pre>
-<p>You can view commits, branches, tags and users. Activities across different files and directories can be viewed by choosing options in the GUI.</p>
+<p>You can view commits, branches, tags and users. Activities across
+different files and directories can be viewed by choosing options in the
+GUI.</p>
 <ul>
-<li>To generate an image file named activity.png of this line graph:</li>
+<li>To generate an image file named activity.png of this line
+graph:</li>
 </ul>
 <pre><code>$ hg activity --mode=file</code></pre>
 <ul>
-<li>If you find yourself using one of these activity options a lot, you could create an <strong>alias</strong> for it by adding these lines to your <code>hgrc</code>:</li>
+<li>If you find yourself using one of these activity options a lot, you
+could create an <strong>alias</strong> for it by adding these lines to
+your <code>hgrc</code>:</li>
 </ul>
 <pre><code>[alias]
 gact = activity --mode=gui</code></pre>
-<p>After this, you can use the alias instead of the more verbose form:</p>
+<p>After this, you can use the alias instead of the more verbose
+form:</p>
 <pre><code>$ hg gact</code></pre>
-<p><strong>Tried with:</strong> Mercurial 2.8.2, Matplotlib 1.5.0 and Ubuntu 14.04</p>
+<p><strong>Tried with:</strong> Mercurial 2.8.2, Matplotlib 1.5.0 and
+Ubuntu 14.04</p>
 </div>
 
 <br />
@@ -86,11 +94,13 @@ gact = activity --mode=gui</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

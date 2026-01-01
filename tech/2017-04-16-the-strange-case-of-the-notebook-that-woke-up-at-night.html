@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,43 +27,71 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">The strange case of the notebook that woke up at night</h1>
+<h1 class="title">The strange case of the notebook that woke up at
+night</h1>
 <p class="date">📅 2017-Apr-16 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#acpi'>acpi</a>, <a href='index.html#suspend'>suspend</a>, <a href='index.html#wake'>wake</a>, <a href='index.html#wakeup'>wakeup</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>In the last week, I started noticing that my notebook, that I had suspended before going to sleep would have woken up during the night! This notebook was running <strong>Ubuntu 16.04</strong>. It took a bit of investigation to realize that the notebook was being woken up by my new <strong>Targus AMW071</strong> wireless mouse. Some slight vibration to the desk during the night would move the mouse and it would wake up Linux from its sleep!</p>
+<p>In the last week, I started noticing that my notebook, that I had
+suspended before going to sleep would have woken up during the night!
+This notebook was running <strong>Ubuntu 16.04</strong>. It took a bit
+of investigation to realize that the notebook was being woken up by my
+new <strong>Targus AMW071</strong> wireless mouse. Some slight vibration
+to the desk during the night would move the mouse and it would wake up
+Linux from its sleep!</p>
 <h2 id="solution">Solution</h2>
-<p>The list of devices that can wake up Linux from sleep is listed in the file <code>/proc/acpi/wakeup</code>. Each line of that file has a four-letter device code, obtained from BIOS, and whether that device is enabled (can wakeup from sleep) or disabled.</p>
+<p>The list of devices that can wake up Linux from sleep is listed in
+the file <code>/proc/acpi/wakeup</code>. Each line of that file has a
+four-letter device code, obtained from BIOS, and whether that device is
+enabled (can wakeup from sleep) or disabled.</p>
 <p>I checked which devices could wakeup my Linux:</p>
 <pre><code>$ cat /proc/acpi/wakeup | grep enabled
 XHC   S3    *enabled   pci:0000:00:14.0
 PWRB      S3    *enabled   platform:PNP0C0C:00
 SLPB      S3    *enabled   platform:PNP0C0E:00
 LID0      S3    *enabled   platform:PNP0C0D:00</code></pre>
-<p>The culprit here was <code>XHC</code>, the USB 3.0 hub to which the mouse was connected. <code>PWRB</code> and <code>SLPB</code> are Power buttons and <code>LID0</code> is the notebook lid. So, I had to disable the <code>XHC</code> device in this file. Now, if the device name is written to this file, that operation toggles the enabled or disabled state for that device.</p>
-<p>So, to disable my mouse from waking up my notebook, I created this shell script:</p>
+<p>The culprit here was <code>XHC</code>, the USB 3.0 hub to which the
+mouse was connected. <code>PWRB</code> and <code>SLPB</code> are Power
+buttons and <code>LID0</code> is the notebook lid. So, I had to disable
+the <code>XHC</code> device in this file. Now, if the device name is
+written to this file, that operation toggles the enabled or disabled
+state for that device.</p>
+<p>So, to disable my mouse from waking up my notebook, I created this
+shell script:</p>
 <pre><code>#!/bin/bash
 # disable_wakeup.sh
 echo &quot;XHC&quot; &gt; /proc/acpi/wakeup</code></pre>
 <p>And I executed that file with superuser privileges:</p>
 <pre><code>$ sudo ./disable_wakeup.sh</code></pre>
-<p>I could see that this had disabled the mouse from waking up my notebook:</p>
+<p>I could see that this had disabled the mouse from waking up my
+notebook:</p>
 <pre><code>$ cat /proc/acpi/wakeup | grep enabled
 PWRB      S3    *enabled   platform:PNP0C0C:00
 SLPB      S3    *enabled   platform:PNP0C0E:00
 LID0      S3    *enabled   platform:PNP0C0D:00</code></pre>
-<p>I suspended the notebook and also verified that indeed the mouse could not wake it up.</p>
-<p>The only problem left now was that this toggle would apply only for this Linux session. A system reboot would put back the <code>XHC</code> device in enabled state. To run this toggle script on every system reboot:</p>
+<p>I suspended the notebook and also verified that indeed the mouse
+could not wake it up.</p>
+<p>The only problem left now was that this toggle would apply only for
+this Linux session. A system reboot would put back the <code>XHC</code>
+device in enabled state. To run this toggle script on every system
+reboot:</p>
 <pre><code>$ sudo crontab -e
 @reboot /home/joe/scripts/disable_wakeup.sh</code></pre>
-<p>Now I had a permanent solution that makes sure that the mouse can never wake up my Ubuntu from sleep! 😊</p>
+<p>Now I had a permanent solution that makes sure that the mouse can
+never wake up my Ubuntu from sleep! 😊</p>
 <p><strong>Reference:</strong></p>
 <ul>
-<li><p><a href="https://askubuntu.com/questions/252743">How to disable mouse movement waking up computer</a></p></li>
-<li><p><a href="https://unix.stackexchange.com/questions/236127">ACPI wakeup codes</a></p></li>
-<li><p><a href="https://www.cyberciti.biz/faq/linux-execute-cron-job-after-system-reboot/">How to execute cron command at reboot</a></p></li>
-<li><p><a href="https://askubuntu.com/questions/216692">Where is the user crontab stored?</a></p></li>
-<li><p><a href="http://stackoverflow.com/questions/12973777">How to run shell script at startup?</a></p></li>
+<li><p><a href="https://askubuntu.com/questions/252743">How to disable
+mouse movement waking up computer</a></p></li>
+<li><p><a href="https://unix.stackexchange.com/questions/236127">ACPI
+wakeup codes</a></p></li>
+<li><p><a
+href="https://www.cyberciti.biz/faq/linux-execute-cron-job-after-system-reboot/">How
+to execute cron command at reboot</a></p></li>
+<li><p><a href="https://askubuntu.com/questions/216692">Where is the
+user crontab stored?</a></p></li>
+<li><p><a href="http://stackoverflow.com/questions/12973777">How to run
+shell script at startup?</a></p></li>
 </ul>
 </div>
 
@@ -86,11 +100,13 @@ LID0      S3    *enabled   platform:PNP0C0D:00</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

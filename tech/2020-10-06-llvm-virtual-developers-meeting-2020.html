@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,133 +30,282 @@
 <h1 class="title">LLVM Virtual Developers’ Meeting 2020</h1>
 <p class="date">📅 2020-Oct-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#conference'>conference</a>, <a href='index.html#llvm'>llvm</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>I had been meaning to attend the <a href="https://llvm.org/devmtg/"><strong>LLVM Developers’ Meeting</strong></a> for a couple of years now, mostly because it happens right next door in San Jose. <a href="https://llvm.org/devmtg/2020-09/">This year</a> the conference went virtual and actually made it easy for me to finally attend all 3 days <strong>(Oct 6-8)</strong>. Below are my notes from the talks I attended from their multiple-track agenda. This being the first time I am attending a compiler conference, let alone a LLVM one, I focused on gaining basic knowledge of the software architecture of compilers, usage of common tools and techniques in the field.</p>
-<h2 id="overall-review-of-the-conference">Overall review of the conference</h2>
-<p>This was my first virtual conference and I was highly skeptical if it would work out. But I was pleasantly surprised how well the conference was!</p>
+<p>I had been meaning to attend the <a
+href="https://llvm.org/devmtg/"><strong>LLVM Developers’
+Meeting</strong></a> for a couple of years now, mostly because it
+happens right next door in San Jose. <a
+href="https://llvm.org/devmtg/2020-09/">This year</a> the conference
+went virtual and actually made it easy for me to finally attend all 3
+days <strong>(Oct 6-8)</strong>. Below are my notes from the talks I
+attended from their multiple-track agenda. This being the first time I
+am attending a compiler conference, let alone a LLVM one, I focused on
+gaining basic knowledge of the software architecture of compilers, usage
+of common tools and techniques in the field.</p>
+<h2 id="overall-review-of-the-conference">Overall review of the
+conference</h2>
+<p>This was my first virtual conference and I was highly skeptical if it
+would work out. But I was pleasantly surprised how well the conference
+was!</p>
 <ul>
-<li>There is a <strong>good mix</strong> of talks about introductory topics, useful tools, and usage tutorials. I had never been to a compiler conference and I learnt so much practical information about LLVM and GCC compilers and associated tools. I will be sure to attend this conference every year.</li>
-<li>The organizers used a service called <a href="https://whova.com/"><strong>Whova</strong></a> to organize and host the entire conference. Whova made it easy to look at the agenda, choose talks, attend talks, switch between talks and it has a good Android app too.</li>
-<li>The <strong>talks</strong> are pre-recorded, so they all finished on time, with a good pace and had 5-10 minutes of Q&amp;A. You have no idea how fantastic the pre-recorded on-time talks mean to me. This is because my biggest gripe in conferences is that many speakers spend their entire time on 2 starting slides, and then ram through 30 slides in the last 5 minutes and then go and eat up the Q&amp;A time too. That sucks. For this conference, I saw that for a few speakers, who might have taken longer time, the organizers had edited their talks down to the designated time.</li>
-<li>The Whova interface allowed attendees to ask questions and vote on them. After each pre-recorded talk was played out, there was a live <strong>Q&amp;A</strong> session with the speaker and a chair. The chair would ask the speaker the questions we had typed in during the talk. There was a <strong>chat</strong> section in each talk for the attendees to chat amongst us too.</li>
-<li>After the talk is over, it is uploaded to and available on <strong>Youtube</strong>. Sadly, only the pre-recorded part of the talk is uploaded, not the live Q&amp;A at the end.</li>
-<li>There were <strong>coffee breaks</strong> in a virtual room where you could gather around virtual tables and talk with the other attendee avatars. I did not try this since the schedule was too packed that I need the break time for myself.</li>
+<li>There is a <strong>good mix</strong> of talks about introductory
+topics, useful tools, and usage tutorials. I had never been to a
+compiler conference and I learnt so much practical information about
+LLVM and GCC compilers and associated tools. I will be sure to attend
+this conference every year.</li>
+<li>The organizers used a service called <a
+href="https://whova.com/"><strong>Whova</strong></a> to organize and
+host the entire conference. Whova made it easy to look at the agenda,
+choose talks, attend talks, switch between talks and it has a good
+Android app too.</li>
+<li>The <strong>talks</strong> are pre-recorded, so they all finished on
+time, with a good pace and had 5-10 minutes of Q&amp;A. You have no idea
+how fantastic the pre-recorded on-time talks mean to me. This is because
+my biggest gripe in conferences is that many speakers spend their entire
+time on 2 starting slides, and then ram through 30 slides in the last 5
+minutes and then go and eat up the Q&amp;A time too. That sucks. For
+this conference, I saw that for a few speakers, who might have taken
+longer time, the organizers had edited their talks down to the
+designated time.</li>
+<li>The Whova interface allowed attendees to ask questions and vote on
+them. After each pre-recorded talk was played out, there was a live
+<strong>Q&amp;A</strong> session with the speaker and a chair. The chair
+would ask the speaker the questions we had typed in during the talk.
+There was a <strong>chat</strong> section in each talk for the attendees
+to chat amongst us too.</li>
+<li>After the talk is over, it is uploaded to and available on
+<strong>Youtube</strong>. Sadly, only the pre-recorded part of the talk
+is uploaded, not the live Q&amp;A at the end.</li>
+<li>There were <strong>coffee breaks</strong> in a virtual room where
+you could gather around virtual tables and talk with the other attendee
+avatars. I did not try this since the schedule was too packed that I
+need the break time for myself.</li>
 </ul>
 <h2 id="day-1">Day 1</h2>
-<h3 id="everything-i-know-about-debugging-llvm"><a href="https://www.youtube.com/watch?v=5vmJuLfIpY4">Everything I know about debugging LLVM</a></h3>
+<h3 id="everything-i-know-about-debugging-llvm"><a
+href="https://www.youtube.com/watch?v=5vmJuLfIpY4">Everything I know
+about debugging LLVM</a></h3>
 <ul>
-<li>Talk by Nick Desaulniers, who works on compiling the Linux kernel with LLVM at Google. (<a href="https://clangbuiltlinux.github.io/llvm-dev-conf-2020/nick/debugging_llvm.html#/">Slides</a>)</li>
-<li>Begins with a brief introduction to stages of C++ code compilation with clang and the LLVM source code paths of those modules.</li>
-<li>The clang driver converts C++ code to LLVM IR. Stages in it are preprocessor, lexer, parser (generates AST), SEMA (Semantic Analysis and Template Instantiation) and LLVM IR emission (CodeGen).</li>
-<li>Abstractions of input code in LLVM are llvm::module (translation unit), llvm::function, llvm::basicBlock and llvm::Instruction.</li>
-<li>IR has 3 representations: in-memory during runtime, textual for read/write by humans and binary serialized for files.</li>
-<li>CodeGen: General code generation happens in llvm/lib/CodeGen and machine specific code generation happens in llvm/lib/target/XYZ</li>
+<li>Talk by Nick Desaulniers, who works on compiling the Linux kernel
+with LLVM at Google. (<a
+href="https://clangbuiltlinux.github.io/llvm-dev-conf-2020/nick/debugging_llvm.html#/">Slides</a>)</li>
+<li>Begins with a brief introduction to stages of C++ code compilation
+with clang and the LLVM source code paths of those modules.</li>
+<li>The clang driver converts C++ code to LLVM IR. Stages in it are
+preprocessor, lexer, parser (generates AST), SEMA (Semantic Analysis and
+Template Instantiation) and LLVM IR emission (CodeGen).</li>
+<li>Abstractions of input code in LLVM are llvm::module (translation
+unit), llvm::function, llvm::basicBlock and llvm::Instruction.</li>
+<li>IR has 3 representations: in-memory during runtime, textual for
+read/write by humans and binary serialized for files.</li>
+<li>CodeGen: General code generation happens in llvm/lib/CodeGen and
+machine specific code generation happens in llvm/lib/target/XYZ</li>
 <li>There are four types of register allocators.</li>
 <li>ASM streamer writes the different types of object files.</li>
-<li>Building LLVM: cmake to generate build files, ninja to invoke build.</li>
+<li>Building LLVM: cmake to generate build files, ninja to invoke
+build.</li>
 <li>LLD is faster than BFD. BFD is the default linker on Linux.</li>
-<li>llvm-readelf tool can be used to check if a library file was built using LLVM.</li>
-<li>opt tool can be used to run different optimizations on IR files.</li>
+<li>llvm-readelf tool can be used to check if a library file was built
+using LLVM.</li>
+<li>opt tool can be used to run different optimizations on IR
+files.</li>
 <li>creduce and cvise can be used to do test case reduction.</li>
 <li>LLVM weekly and blog are good resources.</li>
-<li>“The master has failed more times than the disciple has even tried.”</li>
+<li>“The master has failed more times than the disciple has even
+tried.”</li>
 </ul>
-<h3 id="llvm-in-a-bare-metal-environment"><a href="https://www.youtube.com/watch?v=o5GA8ZGZyrk">LLVM in a Bare Metal Environment</a></h3>
+<h3 id="llvm-in-a-bare-metal-environment"><a
+href="https://www.youtube.com/watch?v=o5GA8ZGZyrk">LLVM in a Bare Metal
+Environment</a></h3>
 <ul>
 <li>Talk by Hafiz Abid Qadeer.</li>
-<li>A typical compiled binary or library runs atop of the OS and with the support of dynamically linked libraries. This talk was about how to compile a binary that can run baremetal on hardware with no OS in between using the LLVM toolchain.</li>
-<li>I dropped out halfway from this talk because this was a topic which was not relevant to me.</li>
+<li>A typical compiled binary or library runs atop of the OS and with
+the support of dynamically linked libraries. This talk was about how to
+compile a binary that can run baremetal on hardware with no OS in
+between using the LLVM toolchain.</li>
+<li>I dropped out halfway from this talk because this was a topic which
+was not relevant to me.</li>
 </ul>
-<h3 id="branch-coverage-squeezing-more-out-of-llvm-source-based-code-coverage"><a href="https://www.youtube.com/watch?v=NbcZeodxvgc">Branch Coverage: Squeezing more out of LLVM Source-based Code Coverage</a></h3>
+<h3
+id="branch-coverage-squeezing-more-out-of-llvm-source-based-code-coverage"><a
+href="https://www.youtube.com/watch?v=NbcZeodxvgc">Branch Coverage:
+Squeezing more out of LLVM Source-based Code Coverage</a></h3>
 <ul>
 <li>Talk by Alan Phipps.</li>
-<li>LLVM’s coverage tool has support for function, line and region coverage. But it does not have branch coverage, which the speaker added.</li>
-<li>Counters are used at function, statement and condition and incremented when they are executed.</li>
-<li>Using simple if conditions, the speaker explained how he added counters to add branch coverage.</li>
-<li>MC/DC is a future work once branch coverage is checked into LLVM.</li>
-<li>GCC gcov (console output) and lcov (HTML output) are the competitors which already have branch coverage, with some caveats.</li>
+<li>LLVM’s coverage tool has support for function, line and region
+coverage. But it does not have branch coverage, which the speaker
+added.</li>
+<li>Counters are used at function, statement and condition and
+incremented when they are executed.</li>
+<li>Using simple if conditions, the speaker explained how he added
+counters to add branch coverage.</li>
+<li>MC/DC is a future work once branch coverage is checked into
+LLVM.</li>
+<li>GCC gcov (console output) and lcov (HTML output) are the competitors
+which already have branch coverage, with some caveats.</li>
 </ul>
-<h3 id="checked-c-adding-memory-safety-support-to-llvm"><a href="https://www.youtube.com/watch?v=AIlBWIiV68U">Checked C: Adding memory safety support to LLVM</a></h3>
+<h3 id="checked-c-adding-memory-safety-support-to-llvm"><a
+href="https://www.youtube.com/watch?v=AIlBWIiV68U">Checked C: Adding
+memory safety support to LLVM</a></h3>
 <ul>
 <li>Talk by Mandeep Singh Grang and Katherine Kjeer.</li>
-<li>Checked C adds 3 new pointer types to C to handle buffer overflow and null pointer dereference.</li>
-<li>New pointer types are <code>_Ptr&lt;T&gt;</code>, <code>_Array_ptr&lt;T&gt;</code> and <code>_Nt_array_ptr&lt;T&gt;</code>.</li>
-<li>There exists a Checked C tool that can convert C code to Checked C code.</li>
+<li>Checked C adds 3 new pointer types to C to handle buffer overflow
+and null pointer dereference.</li>
+<li>New pointer types are <code>_Ptr&lt;T&gt;</code>,
+<code>_Array_ptr&lt;T&gt;</code> and
+<code>_Nt_array_ptr&lt;T&gt;</code>.</li>
+<li>There exists a Checked C tool that can convert C code to Checked C
+code.</li>
 </ul>
 <h2 id="day-2">Day 2</h2>
-<h3 id="using-clang-tidy-for-customized-checkers-and-large-scale-source-tree-refactoring"><a href="https://www.youtube.com/watch?v=GCJxnApRJM4">Using clang-tidy for customized checkers and large scale source tree refactoring</a></h3>
+<h3
+id="using-clang-tidy-for-customized-checkers-and-large-scale-source-tree-refactoring"><a
+href="https://www.youtube.com/watch?v=GCJxnApRJM4">Using clang-tidy for
+customized checkers and large scale source tree refactoring</a></h3>
 <ul>
 <li>Talk by Vince Bridgers.</li>
-<li>Most bugs are introduced early in the development process, but discovered and fixed late. Thus the cost of having a bug in the code is pretty high. Weeding out bugs as early as possible reduces software cost.</li>
+<li>Most bugs are introduced early in the development process, but
+discovered and fixed late. Thus the cost of having a bug in the code is
+pretty high. Weeding out bugs as early as possible reduces software
+cost.</li>
 <li>Types of program analysis tools:
 <ul>
-<li>Compiler diagnostics: Warnings from GCC and Clang. Part of compilation.</li>
-<li>Linters and style checkers: Use text/AST matching. An extra step after compilation.</li>
-<li>Static analysis: cppcheck, GCC 10+, clang. These use symbolic execution. An extra step after compilation.</li>
-<li>Dynamic analysis: valgrind, gcc, clang. Injection of runtime checks or library. Long runtimes due to running extra code. An extra step after compilation.</li>
+<li>Compiler diagnostics: Warnings from GCC and Clang. Part of
+compilation.</li>
+<li>Linters and style checkers: Use text/AST matching. An extra step
+after compilation.</li>
+<li>Static analysis: cppcheck, GCC 10+, clang. These use symbolic
+execution. An extra step after compilation.</li>
+<li>Dynamic analysis: valgrind, gcc, clang. Injection of runtime checks
+or library. Long runtimes due to running extra code. An extra step after
+compilation.</li>
 </ul></li>
 <li>LLVM compiler flow is: Frontend -&gt; Optimizer -&gt; CodeGen</li>
-<li>clang-tidy: Uses AST matchers to find and replace patterns. It has full access to AST and preprocessor. There are 200+ existing checks. It is extensible to add custom checks.</li>
-<li><code>clang-tidy --list-checks</code>: To list all currently active checks. This is <em>not</em> the full list of available checks.</li>
-<li><code>clang-tidy --list-checks -checks=*</code>: Lists all available checks.</li>
-<li><code>clang-tidy ... -checks=-*,&lt;your specific check&gt;</code>: To pick out a specific check to apply.</li>
-<li><code>clang-tidy ... --fix</code>: Not just check, but also fix the errors found.</li>
-<li><a href="https://clang.llvm.org/extra/clang-tidy/checks/list.html">Full list</a> of available checks. Checks with fixes are indicated in the second column.</li>
-<li><code>clang-query</code> is an interactive tool to play around with clang C++ API to query AST and figure out the calls to match a pattern.</li>
-<li>Write the new custom check (and fix) in C++ code and add to clang-tidy using <code>add_new_check.py &lt;category&gt; &lt;check name&gt;</code></li>
-<li>There are clang-tidy tools to apply checks across an entire codebase in parallel without the fixes overwriting on each other.</li>
+<li>clang-tidy: Uses AST matchers to find and replace patterns. It has
+full access to AST and preprocessor. There are 200+ existing checks. It
+is extensible to add custom checks.</li>
+<li><code>clang-tidy --list-checks</code>: To list all currently active
+checks. This is <em>not</em> the full list of available checks.</li>
+<li><code>clang-tidy --list-checks -checks=*</code>: Lists all available
+checks.</li>
+<li><code>clang-tidy ... -checks=-*,&lt;your specific check&gt;</code>:
+To pick out a specific check to apply.</li>
+<li><code>clang-tidy ... --fix</code>: Not just check, but also fix the
+errors found.</li>
+<li><a
+href="https://clang.llvm.org/extra/clang-tidy/checks/list.html">Full
+list</a> of available checks. Checks with fixes are indicated in the
+second column.</li>
+<li><code>clang-query</code> is an interactive tool to play around with
+clang C++ API to query AST and figure out the calls to match a
+pattern.</li>
+<li>Write the new custom check (and fix) in C++ code and add to
+clang-tidy using
+<code>add_new_check.py &lt;category&gt; &lt;check name&gt;</code></li>
+<li>There are clang-tidy tools to apply checks across an entire codebase
+in parallel without the fixes overwriting on each other.</li>
 </ul>
-<h3 id="llvm-libc-current-status-challenges-and-future-plans"><a href="https://www.youtube.com/watch?v=Ae8WdR_1z_4">LLVM Libc: Current Status, Challenges and Future Plans</a></h3>
+<h3 id="llvm-libc-current-status-challenges-and-future-plans"><a
+href="https://www.youtube.com/watch?v=Ae8WdR_1z_4">LLVM Libc: Current
+Status, Challenges and Future Plans</a></h3>
 <ul>
 <li>Talk by Siva Chandra Reddy.</li>
-<li>Motivations to create a new cleanroom implementation of libc: sanitizer friendly, use standard C/C++ and no assembly and to make it modular so that users can mix libc pieces from different libc implementations (like GNU libc and MUSL).</li>
-<li>LLVM libc uses C++ templates internally to reduce code for different variants of math functions.</li>
-<li>threads.h (mutex and thread functions) and signal.h will be platform specific code.</li>
-<li>mmap, munmap: Used for creation and destruction of thread stacks for threads.</li>
-<li>Loader: It starts the user application calling main at the end and also cleans up after the application has ended.</li>
+<li>Motivations to create a new cleanroom implementation of libc:
+sanitizer friendly, use standard C/C++ and no assembly and to make it
+modular so that users can mix libc pieces from different libc
+implementations (like GNU libc and MUSL).</li>
+<li>LLVM libc uses C++ templates internally to reduce code for different
+variants of math functions.</li>
+<li>threads.h (mutex and thread functions) and signal.h will be platform
+specific code.</li>
+<li>mmap, munmap: Used for creation and destruction of thread stacks for
+threads.</li>
+<li>Loader: It starts the user application calling main at the end and
+also cleans up after the application has ended.</li>
 <li>Static-PIE ELF loader is in the works.</li>
-<li>It will be a few years before this has all the libc functions and can fully replace GNU libc on just Linux. Other platforms are more years away.</li>
+<li>It will be a few years before this has all the libc functions and
+can fully replace GNU libc on just Linux. Other platforms are more years
+away.</li>
 </ul>
-<h3 id="code-size-compiler-optimizations-and-techniques"><a href="https://www.youtube.com/watch?v=R_m4AY-MXD8">Code Size Compiler Optimizations and Techniques</a></h3>
+<h3 id="code-size-compiler-optimizations-and-techniques"><a
+href="https://www.youtube.com/watch?v=R_m4AY-MXD8">Code Size Compiler
+Optimizations and Techniques</a></h3>
 <ul>
 <li>By Aditya Kumar.</li>
-<li>Explicit template instantiations reduce code size and compilation time.</li>
-<li>Move function definitions from headers to source files. Especially with C++, which adds ctors, dtors, operator overloading and explicit template instantiations.</li>
-<li>Use <code>__attribute__((noinline))</code> and <code>__attribute__((cold))</code>.</li>
-<li>list and array are cheaper than vector and deque. map and set are cheaper than unordered_map and unordered_set.</li>
-<li>Avoid sorting if possible. Bubble sort is cheaper than quick sort. And linear search is cheaper than binary search.</li>
-<li>Move rarely used functions to shared library to reduce program launch time.</li>
+<li>Explicit template instantiations reduce code size and compilation
+time.</li>
+<li>Move function definitions from headers to source files. Especially
+with C++, which adds ctors, dtors, operator overloading and explicit
+template instantiations.</li>
+<li>Use <code>__attribute__((noinline))</code> and
+<code>__attribute__((cold))</code>.</li>
+<li>list and array are cheaper than vector and deque. map and set are
+cheaper than unordered_map and unordered_set.</li>
+<li>Avoid sorting if possible. Bubble sort is cheaper than quick sort.
+And linear search is cheaper than binary search.</li>
+<li>Move rarely used functions to shared library to reduce program
+launch time.</li>
 <li>elfcompress can compress sections.</li>
 <li>llvm-strip can strip symbols.</li>
 </ul>
-<h3 id="accelerate-matrix-multiplication-using-the-new-power-outer-product-instructions"><a href="https://www.youtube.com/watch?v=qG9NbJnEXaQ">Accelerate Matrix Multiplication Using the New POWER Outer Product Instructions</a></h3>
+<h3
+id="accelerate-matrix-multiplication-using-the-new-power-outer-product-instructions"><a
+href="https://www.youtube.com/watch?v=qG9NbJnEXaQ">Accelerate Matrix
+Multiplication Using the New POWER Outer Product Instructions</a></h3>
 <ul>
 <li>Talk by Baptiste Saleil and João Carvalho.</li>
-<li>MMA instructions have been added to PowerISA 3.1. So they will be available in POWER10 and later CPUs.</li>
-<li>The motivation is to speedup kernels of matrix multiplication and convolutions used in deep learning.</li>
-<li>8 new accumulators which are 512-bit registers. Each accumulator is associated with 4 existing 128-bit VSR registers.</li>
+<li>MMA instructions have been added to PowerISA 3.1. So they will be
+available in POWER10 and later CPUs.</li>
+<li>The motivation is to speedup kernels of matrix multiplication and
+convolutions used in deep learning.</li>
+<li>8 new accumulators which are 512-bit registers. Each accumulator is
+associated with 4 existing 128-bit VSR registers.</li>
 <li>3 types of instructions have been added:
 <ul>
-<li>Move data to and from MMA accumulators: To move data to accumulator or set to zero use primed instructions (VSR-&gt;acc). To move data from accumulator use unprimed instruction (acc-&gt;VSR).</li>
-<li>Integer MMA instructions: Multiply two 4x2 inputs to produce 4x4 output. Inputs are typically lower precision (Ex: INT16) than outputs (Ex: INT32). Available for all INT types like INT16, INT32, INT8, INT4.</li>
-<li>Floating point MMA instructions: Multiply two 4x2 inputs to produce 4x4 output. Same as INT above. Available for all supported float types: FP64, FP32, FP16 and Bfloat16.</li>
+<li>Move data to and from MMA accumulators: To move data to accumulator
+or set to zero use primed instructions (VSR-&gt;acc). To move data from
+accumulator use unprimed instruction (acc-&gt;VSR).</li>
+<li>Integer MMA instructions: Multiply two 4x2 inputs to produce 4x4
+output. Inputs are typically lower precision (Ex: INT16) than outputs
+(Ex: INT32). Available for all INT types like INT16, INT32, INT8,
+INT4.</li>
+<li>Floating point MMA instructions: Multiply two 4x2 inputs to produce
+4x4 output. Same as INT above. Available for all supported float types:
+FP64, FP32, FP16 and Bfloat16.</li>
 </ul></li>
 <li>New API has been added based on LLVM compiler intrinsics.</li>
-<li>New optimization pass has been added to LLVM to identify GEMM variants in IR to map to MMA instructions.</li>
-<li>LLVM recently added <code>llvm.matrix.*</code> instructions that can be used for this mapping. <code>llvm.matrix.column.major.load()</code> to load matrix for MMA and <code>llvm.matrix.multiply()</code> to do MMA.</li>
+<li>New optimization pass has been added to LLVM to identify GEMM
+variants in IR to map to MMA instructions.</li>
+<li>LLVM recently added <code>llvm.matrix.*</code> instructions that can
+be used for this mapping. <code>llvm.matrix.column.major.load()</code>
+to load matrix for MMA and <code>llvm.matrix.multiply()</code> to do
+MMA.</li>
 </ul>
-<h3 id="matrix-support-in-clang-and-llvm"><a href="https://www.youtube.com/watch?v=cPFZFSROxLk">Matrix Support in Clang and LLVM</a></h3>
+<h3 id="matrix-support-in-clang-and-llvm"><a
+href="https://www.youtube.com/watch?v=cPFZFSROxLk">Matrix Support in
+Clang and LLVM</a></h3>
 <ul>
 <li>Talk by Florian Hahn.</li>
-<li>Support for multiplication of <em>small</em> matrices is now added. This is for matrices of sizes ranging from 2x2 to 16x16. These matrices are small enough to fit in the vector registers of common CPUs.</li>
+<li>Support for multiplication of <em>small</em> matrices is now added.
+This is for matrices of sizes ranging from 2x2 to 16x16. These matrices
+are small enough to fit in the vector registers of common CPUs.</li>
 <li>The matrices are column major by default.</li>
-<li>Supporting matrix types in LLVM/Clang guarantees vector code generation for this code and also removes unnecessary memory access.</li>
+<li>Supporting matrix types in LLVM/Clang guarantees vector code
+generation for this code and also removes unnecessary memory
+access.</li>
 <li>For C/C++ code Clang supports:
 <ul>
-<li>New matrix type with number of columns and rows specified at compile time.</li>
-<li>Operation <code>*</code> defined for multiplication of matrices and <code>+</code> and <code>-</code> defined for elementwise addition and subtraction of matrices.</li>
-<li><code>[][]</code> defined as element subscript operator for matrices.</li>
-<li>New builtins for transpose, store to memory (with user strides) and load from memory (with user strides).</li>
-<li>More details at <a href="https://clang.llvm.org/docs/MatrixTypes.html">Matrix types</a>.</li>
+<li>New matrix type with number of columns and rows specified at compile
+time.</li>
+<li>Operation <code>*</code> defined for multiplication of matrices and
+<code>+</code> and <code>-</code> defined for elementwise addition and
+subtraction of matrices.</li>
+<li><code>[][]</code> defined as element subscript operator for
+matrices.</li>
+<li>New builtins for transpose, store to memory (with user strides) and
+load from memory (with user strides).</li>
+<li>More details at <a
+href="https://clang.llvm.org/docs/MatrixTypes.html">Matrix
+types</a>.</li>
 </ul></li>
 <li>In LLVM IR:
 <ul>
@@ -178,32 +313,52 @@
 <li>The matrix is embedded in flat vectors.</li>
 </ul></li>
 </ul>
-<h3 id="lightning-talks"><a href="https://www.youtube.com/watch?v=TSMputNvHlk">Lightning Talks</a></h3>
+<h3 id="lightning-talks"><a
+href="https://www.youtube.com/watch?v=TSMputNvHlk">Lightning
+Talks</a></h3>
 <p>I noted the following from the talks which were 5-minutes each:</p>
 <ul>
-<li>NVIDIA has contributed <strong>Flang</strong>, Fortran compiler frontend to LLVM.</li>
+<li>NVIDIA has contributed <strong>Flang</strong>, Fortran compiler
+frontend to LLVM.</li>
 <li>There was a person who had written a CUDA backend for SyCL</li>
-<li>LLDB debugger supports scripting using Python (<code>import lldb</code>) and other languages like Lua using SWIG.</li>
+<li>LLDB debugger supports scripting using Python
+(<code>import lldb</code>) and other languages like Lua using SWIG.</li>
 </ul>
 <h2 id="day-3">Day 3</h2>
-<h3 id="mlir-tutorial"><a href="https://www.youtube.com/watch?v=uhXT4RXjzLI">MLIR Tutorial</a></h3>
+<h3 id="mlir-tutorial"><a
+href="https://www.youtube.com/watch?v=uhXT4RXjzLI">MLIR
+Tutorial</a></h3>
 <ul>
 <li>By Mehdi Amini and River Riddle.</li>
-<li>MLIR is a framework to build a compiler IR. We can define type systems, operations in it.</li>
-<li>Uses could be for various code generation strategies and to support accelerators.</li>
-<li>MLIR is being used to process graphs in TensorFlow/XLA/ONNX and for Flang IR.</li>
-<li>The rest of the tutorial shows how to use MLIR for a Toy language. The content of this tutorial is <a href="https://mlir.llvm.org/docs/Tutorials/Toy/">online</a>.</li>
-<li>Operations are the most basic component of MLIR. Everything is an operation in MLIR. MLIR operation is different from LLVM instruction.</li>
-<li>All operations share the same structure. Operations can have regions, blocks and other operations.</li>
-<li>Dialect defines the rules and semantics of an IR. It has namespace, operations, types and passes.</li>
+<li>MLIR is a framework to build a compiler IR. We can define type
+systems, operations in it.</li>
+<li>Uses could be for various code generation strategies and to support
+accelerators.</li>
+<li>MLIR is being used to process graphs in TensorFlow/XLA/ONNX and for
+Flang IR.</li>
+<li>The rest of the tutorial shows how to use MLIR for a Toy language.
+The content of this tutorial is <a
+href="https://mlir.llvm.org/docs/Tutorials/Toy/">online</a>.</li>
+<li>Operations are the most basic component of MLIR. Everything is an
+operation in MLIR. MLIR operation is different from LLVM
+instruction.</li>
+<li>All operations share the same structure. Operations can have
+regions, blocks and other operations.</li>
+<li>Dialect defines the rules and semantics of an IR. It has namespace,
+operations, types and passes.</li>
 </ul>
-<h3 id="cil--common-mlir-dialect-for-cc-and-fortran"><a href="https://www.youtube.com/watch?v=mNA5bwsKepQ">CIL : Common MLIR Dialect for C/C++ and Fortran</a></h3>
+<h3 id="cil--common-mlir-dialect-for-cc-and-fortran"><a
+href="https://www.youtube.com/watch?v=mNA5bwsKepQ">CIL : Common MLIR
+Dialect for C/C++ and Fortran</a></h3>
 <ul>
 <li>By Prashantha NR, Vinay Madhusudan and Ranjith Kumar.</li>
 <li>Motivation for CIL:
 <ul>
-<li>C/C++ does not have a middle level IR. LLVM IR is too low level for some optimizations. C/C++ STL constructs need a high level IR for high level optimizations.</li>
-<li>Fortran defined its own IR, it could have reused C++ IR instead.</li>
+<li>C/C++ does not have a middle level IR. LLVM IR is too low level for
+some optimizations. C/C++ STL constructs need a high level IR for high
+level optimizations.</li>
+<li>Fortran defined its own IR, it could have reused C++ IR
+instead.</li>
 </ul></li>
 <li>Uses:
 <ul>
@@ -211,46 +366,84 @@
 <li>To handle multi-dimensional arrays.</li>
 <li>To handle heterogenous computing.</li>
 </ul></li>
-<li>CIL is implemented as a MLIR dialect to handle C/C++ and Fortran. After CIL-level of optimizations, it can then be lowered to LLVM IR for low level optimizations.</li>
-<li>CIL-LTO: Combines multiple MLIR modules into a single MLIR module. Useful to do LTO like function inlining, etc.</li>
+<li>CIL is implemented as a MLIR dialect to handle C/C++ and Fortran.
+After CIL-level of optimizations, it can then be lowered to LLVM IR for
+low level optimizations.</li>
+<li>CIL-LTO: Combines multiple MLIR modules into a single MLIR module.
+Useful to do LTO like function inlining, etc.</li>
 </ul>
-<h3 id="llvm-based-mutation-testing-for-c-and-c"><a href="https://www.youtube.com/watch?v=HGM1AocRUQw">LLVM-based mutation testing for C and C++</a></h3>
+<h3 id="llvm-based-mutation-testing-for-c-and-c"><a
+href="https://www.youtube.com/watch?v=HGM1AocRUQw">LLVM-based mutation
+testing for C and C++</a></h3>
 <ul>
 <li>By Alex Denisov</li>
-<li>Mutation testing shows the semantic gaps between test suite and the software. It finds out incorrect tests, potential vulnerabilities and dead code.</li>
-<li>The idea is to mutate code, compile, link, run tests and repeat. So mutation testing is very costly.</li>
-<li>Example of mutation: Replace <code>*</code> with <code>+</code> and check if unit tests fail or not.</li>
-<li>Mull is a mutation testing tool for C/C++. Mull makes it performant to do mutation testing. It relies on bitcode generated by LLVM and works by forking processes and switching function pointers to different mutants and testing them. This avoids a whole compilation loop for each mutant.</li>
+<li>Mutation testing shows the semantic gaps between test suite and the
+software. It finds out incorrect tests, potential vulnerabilities and
+dead code.</li>
+<li>The idea is to mutate code, compile, link, run tests and repeat. So
+mutation testing is very costly.</li>
+<li>Example of mutation: Replace <code>*</code> with <code>+</code> and
+check if unit tests fail or not.</li>
+<li>Mull is a mutation testing tool for C/C++. Mull makes it performant
+to do mutation testing. It relies on bitcode generated by LLVM and works
+by forking processes and switching function pointers to different
+mutants and testing them. This avoids a whole compilation loop for each
+mutant.</li>
 </ul>
-<h3 id="adding-cuda-support-to-cling-jit-compile-to-gpus"><a href="https://www.youtube.com/watch?v=D93sTPMAoQw">Adding CUDA Support to Cling: JIT Compile to GPUs</a></h3>
+<h3 id="adding-cuda-support-to-cling-jit-compile-to-gpus"><a
+href="https://www.youtube.com/watch?v=D93sTPMAoQw">Adding CUDA Support
+to Cling: JIT Compile to GPUs</a></h3>
 <ul>
 <li>By Simeon Ehrig.</li>
-<li>Cling is a JIT compiler for C++ code. Can be used at the terminal like a REPL interpreter or in Jupyter notebook.</li>
-<li>For each new statement, Cling creates a new transaction object. Execution statement-by-statement creates a DAG of transaction nodes. This is how Cling allows undoing a previous statement and replacing with a modified statement instead.</li>
-<li>Speaker added CUDA kernel compilation and calling support to Cling. Used Google’s GPUCC compiler for some of the work.</li>
+<li>Cling is a JIT compiler for C++ code. Can be used at the terminal
+like a REPL interpreter or in Jupyter notebook.</li>
+<li>For each new statement, Cling creates a new transaction object.
+Execution statement-by-statement creates a DAG of transaction nodes.
+This is how Cling allows undoing a previous statement and replacing with
+a modified statement instead.</li>
+<li>Speaker added CUDA kernel compilation and calling support to Cling.
+Used Google’s GPUCC compiler for some of the work.</li>
 </ul>
-<h3 id="extending-clang-for-checking-compliance-with-automotive-coding-standards"><a href="https://www.youtube.com/watch?v=pXEzGh66lOU">Extending Clang for checking compliance with automotive coding standards</a></h3>
+<h3
+id="extending-clang-for-checking-compliance-with-automotive-coding-standards"><a
+href="https://www.youtube.com/watch?v=pXEzGh66lOU">Extending Clang for
+checking compliance with automotive coding standards</a></h3>
 <ul>
 <li>By Milena Vujosevic Janicic.</li>
-<li>AUTOSAR has 402 rules. 150 directly from MISRA C++. 200 from other C++ standards. 60 based on papers etc.</li>
-<li>Speaker focused on required/advisory rules that are implementation based and can be automated.</li>
+<li>AUTOSAR has 402 rules. 150 directly from MISRA C++. 200 from other
+C++ standards. 60 based on papers etc.</li>
+<li>Speaker focused on required/advisory rules that are implementation
+based and can be automated.</li>
 <li>Some of the rules can be enforced using Clang warnings.</li>
-<li>For rules that need semantic analysis, AST matchers and AST visitors of Clang can be used.
+<li>For rules that need semantic analysis, AST matchers and AST visitors
+of Clang can be used.
 <ul>
-<li>AST matchers provide a simple way to describe patterns in AST. Can be specified in clang-tidy checks.</li>
+<li>AST matchers provide a simple way to describe patterns in AST. Can
+be specified in clang-tidy checks.</li>
 <li>AST visitors provide the full power of Clang AST.</li>
 </ul></li>
-<li>For some rules, static analyzer was used. It is a source code analysis tool that uses both AST and CFG. But it is slower than using AST matchers or visitors.</li>
-<li>190 AUTOSAR rules have been implemented in the above way into a tool called autocheck.</li>
+<li>For some rules, static analyzer was used. It is a source code
+analysis tool that uses both AST and CFG. But it is slower than using
+AST matchers or visitors.</li>
+<li>190 AUTOSAR rules have been implemented in the above way into a tool
+called autocheck.</li>
 </ul>
-<h3 id="using-the-clang-static-analyzer-to-find-bugs"><a href="https://www.youtube.com/watch?v=M4iUfJx8Mn0">Using the Clang static analyzer to find bugs</a></h3>
+<h3 id="using-the-clang-static-analyzer-to-find-bugs"><a
+href="https://www.youtube.com/watch?v=M4iUfJx8Mn0">Using the Clang
+static analyzer to find bugs</a></h3>
 <ul>
 <li>By Vince Bridgers.</li>
-<li>Static analysis: Execute code symbolically through simulation. Errors it finds are memory leaks, buffer overruns and logic errors.</li>
-<li>Dynamic analysis: Instrument code and run the code on real target. Examples: UBSAN, TSAN, ASAN.</li>
-<li>Program analysis can exhaustively explore all execution paths in program’s state space.</li>
-<li><code>clang --analyze foobar.cpp</code>. Can also dump to a HTML report with other options.</li>
-<li>Incorporated into Ericsson’s <a href="https://github.com/Ericsson/codechecker">CodeChecker tool</a>.</li>
+<li>Static analysis: Execute code symbolically through simulation.
+Errors it finds are memory leaks, buffer overruns and logic errors.</li>
+<li>Dynamic analysis: Instrument code and run the code on real target.
+Examples: UBSAN, TSAN, ASAN.</li>
+<li>Program analysis can exhaustively explore all execution paths in
+program’s state space.</li>
+<li><code>clang --analyze foobar.cpp</code>. Can also dump to a HTML
+report with other options.</li>
+<li>Incorporated into Ericsson’s <a
+href="https://github.com/Ericsson/codechecker">CodeChecker
+tool</a>.</li>
 </ul>
 </div>
 
@@ -259,11 +452,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

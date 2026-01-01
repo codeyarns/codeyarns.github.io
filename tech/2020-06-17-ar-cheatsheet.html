@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,24 +30,34 @@
 <h1 class="title">ar Cheatsheet</h1>
 <p class="date">📅 2020-Jun-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ar'>ar</a>, <a href='index.html#cheatsheet'>cheatsheet</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>ar</strong> is the classic Unix/Linux tool used to work with <strong>archive</strong> files. An archive file is typically used for a static library, holding a collection of <code>.o</code> object files and typically has the file extension <code>.a</code>. The files inside an archive are called its <strong>members</strong>.</p>
+<p><strong>ar</strong> is the classic Unix/Linux tool used to work with
+<strong>archive</strong> files. An archive file is typically used for a
+static library, holding a collection of <code>.o</code> object files and
+typically has the file extension <code>.a</code>. The files inside an
+archive are called its <strong>members</strong>.</p>
 <p>On Linux, it ships as part of the <strong>GNU Binutils</strong>.</p>
 <ul>
 <li>To <strong>create</strong> an empty archive:</li>
 </ul>
 <pre><code>$ ar -cr foobar.a</code></pre>
-<p>Note that providing just <code>-c</code> does not work: it has to be used along with a member operation like <code>-r</code>.</p>
+<p>Note that providing just <code>-c</code> does not work: it has to be
+used along with a member operation like <code>-r</code>.</p>
 <ul>
-<li>To <strong>add</strong> members to an archive, replacing members if they already exist in the archive:</li>
+<li>To <strong>add</strong> members to an archive, replacing members if
+they already exist in the archive:</li>
 </ul>
 <pre><code>$ ar -cr foobar.a member1.o member2.o member3.o</code></pre>
-<p>The comparison for replacement is done based on member filename only, not on the size or contents of the members. The archive will store the members in the order they are inserted.</p>
+<p>The comparison for replacement is done based on member filename only,
+not on the size or contents of the members. The archive will store the
+members in the order they are inserted.</p>
 <ul>
 <li>To <strong>extract</strong> all the members inside an archive:</li>
 </ul>
 <pre><code>$ ar -x foobar.a</code></pre>
 <ul>
-<li>By default, extracting does not print the names of members extracted. To extract all the members inside an archive and also print their names:</li>
+<li>By default, extracting does not print the names of members
+extracted. To extract all the members inside an archive and also print
+their names:</li>
 </ul>
 <pre><code>$ ar -xv foobar.a</code></pre>
 <ul>
@@ -72,13 +68,17 @@
 <li>To <strong>list</strong> the members of an archive:</li>
 </ul>
 <pre><code>$ ar -t foobar.a</code></pre>
-<p>This option is confusingly named <code>-t</code> instead of <code>-l</code> (for list). An easy way to remember this option is to think about it as printing a <strong>table</strong> of members.</p>
+<p>This option is confusingly named <code>-t</code> instead of
+<code>-l</code> (for list). An easy way to remember this option is to
+think about it as printing a <strong>table</strong> of members.</p>
 <ul>
-<li>To list the members of an archive, along with their permissions, size and date:</li>
+<li>To list the members of an archive, along with their permissions,
+size and date:</li>
 </ul>
 <pre><code>$ ar -tv foobar.a</code></pre>
 <ul>
-<li>Note that a <code>.deb</code> file is also actually an archive file. So all the actions above can be used on these files too.</li>
+<li>Note that a <code>.deb</code> file is also actually an archive file.
+So all the actions above can be used on these files too.</li>
 </ul>
 <p><strong>Tried with:</strong> Binutils 2.30 and Ubuntu 18.04</p>
 </div>
@@ -88,11 +88,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

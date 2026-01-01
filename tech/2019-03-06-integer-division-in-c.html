@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,38 @@
 <h1 class="title">Integer division in C</h1>
 <p class="date">📅 2019-Mar-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Integer division</strong> in modern C always rounds towards zero. For example:</p>
+<p><strong>Integer division</strong> in modern C always rounds towards
+zero. For example:</p>
 <pre><code>9/2  =&gt;  4
 -9/2 =&gt; -4 (not -5)</code></pre>
-<p>This was was not always so. In early C versions and in the C89 standard, positive integer division rounded to zero, but result of negative integer division was implementation dependent!</p>
-<p>From <strong>§3.3.5 Multiplicative operators</strong> of the <a href="http://port70.net/~nsz/c/c89/c89-draft.txt"><strong>C89 standard</strong></a>:</p>
+<p>This was was not always so. In early C versions and in the C89
+standard, positive integer division rounded to zero, but result of
+negative integer division was implementation dependent!</p>
+<p>From <strong>§3.3.5 Multiplicative operators</strong> of the <a
+href="http://port70.net/~nsz/c/c89/c89-draft.txt"><strong>C89
+standard</strong></a>:</p>
 <blockquote>
-<p>When integers are divided and the division is inexact, if both operands are positive the result of the <code>/</code> operator is the largest integer less than the algebraic quotient and the result of the <code>%</code> operator is positive. If either operand is negative, whether the result of the <code>/</code> operator is the largest integer less than the algebraic quotient or the smallest integer greater than the algebraic quotient is implementation-defined, as is the sign of the result of the <code>%</code> operator. If the quotient <code>a/b</code> is representable, the expression <code>(a/b)*b + a%b</code> shall equal <code>a</code>.</p>
+<p>When integers are divided and the division is inexact, if both
+operands are positive the result of the <code>/</code> operator is the
+largest integer less than the algebraic quotient and the result of the
+<code>%</code> operator is positive. If either operand is negative,
+whether the result of the <code>/</code> operator is the largest integer
+less than the algebraic quotient or the smallest integer greater than
+the algebraic quotient is implementation-defined, as is the sign of the
+result of the <code>%</code> operator. If the quotient <code>a/b</code>
+is representable, the expression <code>(a/b)*b + a%b</code> shall equal
+<code>a</code>.</p>
 </blockquote>
-<p>The same appears in the first edition of <strong>The C Programming Language</strong> book by Kernighan and Ritchie.</p>
-<p>This implementation-defined behavior was fixed by the C99 standard which defined that integer division always rounds towards zero.</p>
-<p>From <strong>§6.5.5 Multiplicative operators</strong> of the <a href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf"><strong>C99 standard</strong></a>:</p>
+<p>The same appears in the first edition of <strong>The C Programming
+Language</strong> book by Kernighan and Ritchie.</p>
+<p>This implementation-defined behavior was fixed by the C99 standard
+which defined that integer division always rounds towards zero.</p>
+<p>From <strong>§6.5.5 Multiplicative operators</strong> of the <a
+href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf"><strong>C99
+standard</strong></a>:</p>
 <blockquote>
-<p>When integers are divided, the result of the <code>/</code> operator is the algebraic quotient with any fractional part discarded.</p>
+<p>When integers are divided, the result of the <code>/</code> operator
+is the algebraic quotient with any fractional part discarded.</p>
 </blockquote>
 <p>Thanks to Arch for pointing this out.</p>
 </div>
@@ -66,11 +71,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

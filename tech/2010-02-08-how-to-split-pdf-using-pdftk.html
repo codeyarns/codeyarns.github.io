@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,17 +30,29 @@
 <h1 class="title">How to split PDF using PDFTK</h1>
 <p class="date">📅 2010-Feb-08 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#batch-files'>batch files</a>, <a href='index.html#pdf'>pdf</a>, <a href='index.html#pdftk'>pdftk</a>, <a href='index.html#split'>split</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://www.accesspdf.com/pdftk/"><strong>PDFTK</strong></a> can be used to easily split out pages of a PDF file into separate PDF files at the shell. It is available for both Linux and Windows.</p>
-<p>To install PDFTK, please follow the instructions <a href="2019-02-10-how-to-install-pdftk.html">here</a>. To split a PDF file into multiple PDF files, one per page of the original PDF file, invoke:</p>
+<p><a href="http://www.accesspdf.com/pdftk/"><strong>PDFTK</strong></a>
+can be used to easily split out pages of a PDF file into separate PDF
+files at the shell. It is available for both Linux and Windows.</p>
+<p>To install PDFTK, please follow the instructions <a
+href="2019-02-10-how-to-install-pdftk.html">here</a>. To split a PDF
+file into multiple PDF files, one per page of the original PDF file,
+invoke:</p>
 <pre><code>$ pdftk foobar.pdf burst output foobar-%d.pdf</code></pre>
-<p>If <code>foobar.pdf</code> is a 2 page PDF, this splits it into <code>foobar-1.pdf</code> and <code>foobar-2.pdf</code>.</p>
-<p>If you split often, it would be much nicer to invoke the above simply as:</p>
+<p>If <code>foobar.pdf</code> is a 2 page PDF, this splits it into
+<code>foobar-1.pdf</code> and <code>foobar-2.pdf</code>.</p>
+<p>If you split often, it would be much nicer to invoke the above simply
+as:</p>
 <pre><code>$ splitpdf foobar</code></pre>
-<p>To be able to do that on Windows, you can turn the above invocation into a batch file:</p>
+<p>To be able to do that on Windows, you can turn the above invocation
+into a batch file:</p>
 <pre><code>REM splitpdf.bat
 pdftk %1.pdf burst output %1-%%d.pdf</code></pre>
-<p>The <code>%1</code> is the first input argument to the batch file invocation. And <code>%%</code> is the way to escape <code>%</code>, which is a special character in a batch file.</p>
-<p><strong>Reference:</strong> <a href="http://geomblog.blogspot.com/2009/09/beamer-ipe-views.html">Beamer + Ipe + views</a></p>
+<p>The <code>%1</code> is the first input argument to the batch file
+invocation. And <code>%%</code> is the way to escape <code>%</code>,
+which is a special character in a batch file.</p>
+<p><strong>Reference:</strong> <a
+href="http://geomblog.blogspot.com/2009/09/beamer-ipe-views.html">Beamer
++ Ipe + views</a></p>
 </div>
 
 <br />
@@ -62,11 +60,13 @@ pdftk %1.pdf burst output %1-%%d.pdf</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

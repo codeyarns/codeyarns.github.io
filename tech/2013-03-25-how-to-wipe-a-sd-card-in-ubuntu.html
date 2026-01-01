@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,19 +30,37 @@
 <h1 class="title">How to wipe a SD card in Ubuntu</h1>
 <p class="date">📅 2013-Mar-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Note:</strong> Unlike hard disks, SD cards cannot actually be securely wiped such that data is fully unrecoverable. The only way to do that would be using an erase functionality of its firmware, if it has one. Else physical destruction of the SD card! 😊</p>
-<p><strong>SD cards</strong> are commonly used in cameras and smartphones to store photos and other personal content. Even after these files are deleted they can be easily <a href="2010-04-02-ubuntu-recovering-photos-from-memory-cards.html">recovered from the SD card</a>. So, it may be essential to completely erase the SD card such that data recovery is very difficult (but not impossible).</p>
+<p><strong>Note:</strong> Unlike hard disks, SD cards cannot actually be
+securely wiped such that data is fully unrecoverable. The only way to do
+that would be using an erase functionality of its firmware, if it has
+one. Else physical destruction of the SD card! 😊</p>
+<p><strong>SD cards</strong> are commonly used in cameras and
+smartphones to store photos and other personal content. Even after these
+files are deleted they can be easily <a
+href="2010-04-02-ubuntu-recovering-photos-from-memory-cards.html">recovered
+from the SD card</a>. So, it may be essential to completely erase the SD
+card such that data recovery is very difficult (but not impossible).</p>
 <ul>
-<li>Find out the <strong>partition</strong> the SD card is mounted as. For example, a SD card I use in my camera is formatted as a FAT32 partition. I plug it into my Ubuntu computer and it is mounted automatically. I can find out its partition by either of these commands:</li>
+<li>Find out the <strong>partition</strong> the SD card is mounted as.
+For example, a SD card I use in my camera is formatted as a FAT32
+partition. I plug it into my Ubuntu computer and it is mounted
+automatically. I can find out its partition by either of these
+commands:</li>
 </ul>
 <pre><code>$ sudo fdisk -l
 $ sudo blkid</code></pre>
 <ul>
-<li><p><strong>Unmount</strong> the SD card. (Note: Do not <strong>eject</strong> it.) If you do not unmount it you might get this error while wiping it: <code>failed to open for writing: Read-only file system</code></p></li>
-<li><p>Use the <strong>shred</strong> program to erase the SD card partition. For example, I find that the FAT32 partition on my SD card is at <code>/dev/sdb1</code>. I wipe the SD card partition using:</p></li>
+<li><p><strong>Unmount</strong> the SD card. (Note: Do not
+<strong>eject</strong> it.) If you do not unmount it you might get this
+error while wiping it:
+<code>failed to open for writing: Read-only file system</code></p></li>
+<li><p>Use the <strong>shred</strong> program to erase the SD card
+partition. For example, I find that the FAT32 partition on my SD card is
+at <code>/dev/sdb1</code>. I wipe the SD card partition using:</p></li>
 </ul>
 <pre><code>$ sudo shred -v /dev/sdb1</code></pre>
-<p>By default, shred will overwrite the entire partition 3 times, making it really difficult to recover any old content from it.</p>
+<p>By default, shred will overwrite the entire partition 3 times, making
+it really difficult to recover any old content from it.</p>
 <p><strong>Tried with:</strong> CoreUtils 8.23 and Ubuntu 15.10</p>
 </div>
 
@@ -65,11 +69,13 @@ $ sudo blkid</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

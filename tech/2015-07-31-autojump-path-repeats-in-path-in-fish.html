@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,15 +31,26 @@
 <p class="date">📅 2015-Jul-31 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fish'>fish</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p><strong>Autojump</strong> can be installed and used with <strong>Fish</strong> shell as described <a href="2014-02-27-how-to-install-autojump-for-fish.html">here</a>. However, if you source your Fish config file repeatedly, then the autojump path appears repeated in your <code>PATH</code> environment variable:</p>
+<p><strong>Autojump</strong> can be installed and used with
+<strong>Fish</strong> shell as described <a
+href="2014-02-27-how-to-install-autojump-for-fish.html">here</a>.
+However, if you source your Fish config file repeatedly, then the
+autojump path appears repeated in your <code>PATH</code> environment
+variable:</p>
 <pre><code>$ echo $PATH
 /home/joe/.autojump/bin /home/joe/bin /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 $ source ~/.config/fish/config.fish
 $ echo $PATH
 /home/joe/.autojump/bin /home/joe/.autojump/bin /home/joe/bin /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin</code></pre>
 <h2 id="solution">Solution</h2>
-<p>I have a commit <a href="https://github.com/ashwin/autojump/commit/10027b98ab7a2039d84eaf83148772fd2d8f2f68">here</a> that fixes this behavior. This <a href="https://github.com/wting/autojump/pull/376">pull request</a> hopefully be merged into Autojump and if you get the latest version of Autojump you should no longer face this problem.</p>
-<p><strong>Tried with:</strong> Autojump 22.2.4, Fish 2.2 and Ubuntu 14.04</p>
+<p>I have a commit <a
+href="https://github.com/ashwin/autojump/commit/10027b98ab7a2039d84eaf83148772fd2d8f2f68">here</a>
+that fixes this behavior. This <a
+href="https://github.com/wting/autojump/pull/376">pull request</a>
+hopefully be merged into Autojump and if you get the latest version of
+Autojump you should no longer face this problem.</p>
+<p><strong>Tried with:</strong> Autojump 22.2.4, Fish 2.2 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -61,11 +58,13 @@ $ echo $PATH
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

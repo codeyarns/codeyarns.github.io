@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,27 @@
 <h1 class="title">Why FC weights are in transposed form</h1>
 <p class="date">📅 2020-Aug-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#fc'>fc</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The torch <a href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html"><strong>nn.linear</strong></a> operator is used to implement what is traditionally called the <strong>fully connected</strong> (FC) layer in neural networks. Looking at the nn.linear documentation I noticed that though the weights matrix is used as <code>(in_features, out_features)</code> in the FC, it is stored as its transpose <code>(out_features, in_features)</code>. Why is that?</p>
+<p>The torch <a
+href="https://pytorch.org/docs/stable/generated/torch.nn.Linear.html"><strong>nn.linear</strong></a>
+operator is used to implement what is traditionally called the
+<strong>fully connected</strong> (FC) layer in neural networks. Looking
+at the nn.linear documentation I noticed that though the weights matrix
+is used as <code>(in_features, out_features)</code> in the FC, it is
+stored as its transpose <code>(out_features, in_features)</code>. Why is
+that?</p>
 <p>The consensus seems to be that:</p>
 <ul>
-<li>During matrix multiplication, the weights matrix is read column-by-column, which is typically not as efficient as reading row-by-row. So, it is stored in the transposed form.</li>
-<li>Another reason seems to be that FC is typically mapped down to a BLAS GEMM routine. And in BLAS GEMM, transposes are cheap.</li>
+<li>During matrix multiplication, the weights matrix is read
+column-by-column, which is typically not as efficient as reading
+row-by-row. So, it is stored in the transposed form.</li>
+<li>Another reason seems to be that FC is typically mapped down to a
+BLAS GEMM routine. And in BLAS GEMM, transposes are cheap.</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://discuss.pytorch.org/t/why-does-the-linear-module-seems-to-do-unnecessary-transposing/6277" class="uri">https://discuss.pytorch.org/t/why-does-the-linear-module-seems-to-do-unnecessary-transposing/6277</a></li>
+<li><a
+href="https://discuss.pytorch.org/t/why-does-the-linear-module-seems-to-do-unnecessary-transposing/6277"
+class="uri">https://discuss.pytorch.org/t/why-does-the-linear-module-seems-to-do-unnecessary-transposing/6277</a></li>
 </ul>
 </div>
 
@@ -61,11 +59,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

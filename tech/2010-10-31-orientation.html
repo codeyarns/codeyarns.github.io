@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,153 +95,168 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Orientation</h1>
 <p class="date">📅 2010-Oct-31 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#orientation'>orientation</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Orientation</strong> is a fundamental concept in computational geometry. It is the most important predicate too. Calculating the orientation of a <strong>triangle</strong> (2D), <strong>tetrahedron</strong> (3D) or <strong>pentachoron</strong> (4D) reduces to the calculation of the sign of a determinant. The following code is in C++, but can easily be adapted to any language.</p>
-<p>First, it is helpful to define an <strong>orientation type</strong>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">enum</span> ORIENT_TYPE</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>{</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    ORIENT_NEG  = -<span class="dv">1</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>    ORIENT_ZERO = +<span class="dv">0</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    ORIENT_POS  = +<span class="dv">1</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>};</span></code></pre></div>
-<p><strong>ORIENT_ZERO</strong> indicates a degeneracy in the simplex. For example, in 2D this means that the 3 points are collinear. This is typically not preferred and <strong>symbolic perturbation</strong> techniques like <strong>Simulation of Simplicity</strong> might have to be used to handle such cases.</p>
+<p><strong>Orientation</strong> is a fundamental concept in
+computational geometry. It is the most important predicate too.
+Calculating the orientation of a <strong>triangle</strong> (2D),
+<strong>tetrahedron</strong> (3D) or <strong>pentachoron</strong> (4D)
+reduces to the calculation of the sign of a determinant. The following
+code is in C++, but can easily be adapted to any language.</p>
+<p>First, it is helpful to define an <strong>orientation
+type</strong>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> ORIENT_TYPE</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    ORIENT_NEG  <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    ORIENT_ZERO <span class="op">=</span> <span class="op">+</span><span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ORIENT_POS  <span class="op">=</span> <span class="op">+</span><span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<p><strong>ORIENT_ZERO</strong> indicates a degeneracy in the simplex.
+For example, in 2D this means that the 3 points are collinear. This is
+typically not preferred and <strong>symbolic perturbation</strong>
+techniques like <strong>Simulation of Simplicity</strong> might have to
+be used to handle such cases.</p>
 <p>A helper function to convert a determinant value to orientation:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>ORIENT_TYPE detToOrient( <span class="at">const</span> <span class="dt">int</span> det )</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>{</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>    <span class="cf">return</span> ( det &gt; <span class="dv">0</span> ) ? ORIENT_POS : ( ( det &lt; <span class="dv">0</span> ) ? ORIENT_NEG : ORIENT_ZERO );</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ORIENT_TYPE detToOrient<span class="op">(</span> <span class="at">const</span> <span class="dt">int</span> det <span class="op">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">(</span> det <span class="op">&gt;</span> <span class="dv">0</span> <span class="op">)</span> <span class="op">?</span> ORIENT_POS <span class="op">:</span> <span class="op">(</span> <span class="op">(</span> det <span class="op">&lt;</span> <span class="dv">0</span> <span class="op">)</span> <span class="op">?</span> ORIENT_NEG <span class="op">:</span> ORIENT_ZERO <span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>2D Orientation:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>ORIENT_TYPE orientation2</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p0,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p1,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p2</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>{</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>    <span class="co">// | m00 m01 |</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>    <span class="co">// | m10 m11 |</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m00 = p1[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m01 = p1[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m10 = p2[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m11 = p2[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> det = ( m00 * m11 ) - ( m10 * m01 );</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>    <span class="cf">return</span> detToOrient( det );</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ORIENT_TYPE orientation2</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">(</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p0<span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p1<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p2</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m00 m01 |</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m10 m11 |</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m00 <span class="op">=</span> p1<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m01 <span class="op">=</span> p1<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m10 <span class="op">=</span> p2<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m11 <span class="op">=</span> p2<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> det <span class="op">=</span> <span class="op">(</span> m00 <span class="op">*</span> m11 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m10 <span class="op">*</span> m01 <span class="op">);</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> detToOrient<span class="op">(</span> det <span class="op">);</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>3D Orientation:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>ORIENT_TYPE orientation3</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p0,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p1,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p2,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p3</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>{</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>    <span class="co">// | m00 m01 m02 |</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>    <span class="co">// | m10 m11 m12 |</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a>    <span class="co">// | m20 m21 m22 |</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m00 = p1[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m01 = p1[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m02 = p1[<span class="dv">2</span>] - p0[<span class="dv">2</span>];</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m10 = p2[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m11 = p2[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m12 = p2[<span class="dv">2</span>] - p0[<span class="dv">2</span>];</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m20 = p3[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m21 = p3[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m22 = p3[<span class="dv">2</span>] - p0[<span class="dv">2</span>];</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m00Det = ( m11 * m22 ) - ( m21 * m12 );</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m01Det = ( m10 * m22 ) - ( m20 * m12 );</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m02Det = ( m10 * m21 ) - ( m20 * m11 );</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> det = ( m00 * m00Det ) - ( m01 * m01Det ) + ( m02 * m02Det );</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true"></a>    <span class="cf">return</span> detToOrient( det );</span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ORIENT_TYPE orientation3</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">(</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p0<span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p1<span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p2<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p3</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m00 m01 m02 |</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m10 m11 m12 |</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m20 m21 m22 |</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m00 <span class="op">=</span> p1<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m01 <span class="op">=</span> p1<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m02 <span class="op">=</span> p1<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m10 <span class="op">=</span> p2<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m11 <span class="op">=</span> p2<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m12 <span class="op">=</span> p2<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m20 <span class="op">=</span> p3<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m21 <span class="op">=</span> p3<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m22 <span class="op">=</span> p3<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m00Det <span class="op">=</span> <span class="op">(</span> m11 <span class="op">*</span> m22 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m21 <span class="op">*</span> m12 <span class="op">);</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m01Det <span class="op">=</span> <span class="op">(</span> m10 <span class="op">*</span> m22 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m20 <span class="op">*</span> m12 <span class="op">);</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m02Det <span class="op">=</span> <span class="op">(</span> m10 <span class="op">*</span> m21 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m20 <span class="op">*</span> m11 <span class="op">);</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> det <span class="op">=</span> <span class="op">(</span> m00 <span class="op">*</span> m00Det <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m01 <span class="op">*</span> m01Det <span class="op">)</span> <span class="op">+</span> <span class="op">(</span> m02 <span class="op">*</span> m02Det <span class="op">);</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> detToOrient<span class="op">(</span> det <span class="op">);</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>4D Orientation:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>ORIENT_TYPE orientation4</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p0,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p1,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p2,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p3,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span>* p4</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>{</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>    <span class="co">// | m00 m01 m02 m03 |</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>    <span class="co">// | m10 m11 m12 m13 |</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a>    <span class="co">// | m20 m21 m22 m23 |</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a>    <span class="co">// | m30 m31 m32 m33 |</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m00 = p1[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m01 = p2[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m02 = p3[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m03 = p4[<span class="dv">0</span>] - p0[<span class="dv">0</span>];</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m10 = p1[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m11 = p2[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m12 = p3[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m13 = p4[<span class="dv">1</span>] - p0[<span class="dv">1</span>];</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m20 = p1[<span class="dv">2</span>] - p0[<span class="dv">2</span>];</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m21 = p2[<span class="dv">2</span>] - p0[<span class="dv">2</span>];</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m22 = p3[<span class="dv">2</span>] - p0[<span class="dv">2</span>];</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m23 = p4[<span class="dv">2</span>] - p0[<span class="dv">2</span>];</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m30 = p1[<span class="dv">3</span>] - p0[<span class="dv">3</span>];</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m31 = p2[<span class="dv">3</span>] - p0[<span class="dv">3</span>];</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m32 = p3[<span class="dv">3</span>] - p0[<span class="dv">3</span>];</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m33 = p4[<span class="dv">3</span>] - p0[<span class="dv">3</span>];</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m00m11Det = ( m22 * m33 ) - ( m32 * m23 );</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m00m12Det = ( m21 * m33 ) - ( m31 * m23 );</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m00m13Det = ( m21 * m32 ) - ( m31 * m22 );</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m01m10Det = m00m11Det;</span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m01m12Det = ( m20 * m33 ) - ( m30 * m23 );</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m01m13Det = ( m20 * m32 ) - ( m30 * m22 );</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m02m10Det = m00m12Det;</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m02m11Det = m01m12Det;</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m02m13Det = ( m20 * m31 ) - ( m30 * m21 );</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m03m10Det = m00m13Det;</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m03m11Det = m01m13Det;</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m03m12Det = m02m13Det;</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m00Det =</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true"></a>        + ( m11 * m00m11Det )</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true"></a>        - ( m12 * m00m12Det )</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true"></a>        + ( m13 * m00m13Det );</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true"></a></span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m01Det =</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true"></a>        + ( m10 * m01m10Det )</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true"></a>        - ( m12 * m01m12Det )</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true"></a>        + ( m13 * m01m13Det );</span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true"></a></span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m02Det =</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true"></a>        + ( m10 * m02m10Det )</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true"></a>        - ( m11 * m02m11Det )</span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true"></a>        + ( m13 * m02m13Det );</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true"></a></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> m03Det =</span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true"></a>        + ( m10 * m03m10Det )</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true"></a>        - ( m11 * m03m11Det )</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true"></a>        + ( m12 * m03m12Det );</span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true"></a></span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">int</span> det =</span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true"></a>        + ( m00 * m00Det )</span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true"></a>        - ( m01 * m01Det )</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true"></a>        + ( m02 * m02Det )</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true"></a>        - ( m03 * m03Det );</span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true"></a></span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true"></a>    <span class="cf">return</span> detToOrient( det );</span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ORIENT_TYPE orientation4</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">(</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p0<span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p1<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p2<span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p3<span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span><span class="op">*</span> p4</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m00 m01 m02 m03 |</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m10 m11 m12 m13 |</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m20 m21 m22 m23 |</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// | m30 m31 m32 m33 |</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m00 <span class="op">=</span> p1<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m01 <span class="op">=</span> p2<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m02 <span class="op">=</span> p3<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m03 <span class="op">=</span> p4<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m10 <span class="op">=</span> p1<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m11 <span class="op">=</span> p2<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m12 <span class="op">=</span> p3<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m13 <span class="op">=</span> p4<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">1</span><span class="op">];</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m20 <span class="op">=</span> p1<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m21 <span class="op">=</span> p2<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m22 <span class="op">=</span> p3<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m23 <span class="op">=</span> p4<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">2</span><span class="op">];</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m30 <span class="op">=</span> p1<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">3</span><span class="op">];</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m31 <span class="op">=</span> p2<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">3</span><span class="op">];</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m32 <span class="op">=</span> p3<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">3</span><span class="op">];</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m33 <span class="op">=</span> p4<span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">-</span> p0<span class="op">[</span><span class="dv">3</span><span class="op">];</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m00m11Det <span class="op">=</span> <span class="op">(</span> m22 <span class="op">*</span> m33 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m32 <span class="op">*</span> m23 <span class="op">);</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m00m12Det <span class="op">=</span> <span class="op">(</span> m21 <span class="op">*</span> m33 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m31 <span class="op">*</span> m23 <span class="op">);</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m00m13Det <span class="op">=</span> <span class="op">(</span> m21 <span class="op">*</span> m32 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m31 <span class="op">*</span> m22 <span class="op">);</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m01m10Det <span class="op">=</span> m00m11Det<span class="op">;</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m01m12Det <span class="op">=</span> <span class="op">(</span> m20 <span class="op">*</span> m33 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m30 <span class="op">*</span> m23 <span class="op">);</span></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m01m13Det <span class="op">=</span> <span class="op">(</span> m20 <span class="op">*</span> m32 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m30 <span class="op">*</span> m22 <span class="op">);</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m02m10Det <span class="op">=</span> m00m12Det<span class="op">;</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m02m11Det <span class="op">=</span> m01m12Det<span class="op">;</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m02m13Det <span class="op">=</span> <span class="op">(</span> m20 <span class="op">*</span> m31 <span class="op">)</span> <span class="op">-</span> <span class="op">(</span> m30 <span class="op">*</span> m21 <span class="op">);</span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m03m10Det <span class="op">=</span> m00m13Det<span class="op">;</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m03m11Det <span class="op">=</span> m01m13Det<span class="op">;</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m03m12Det <span class="op">=</span> m02m13Det<span class="op">;</span></span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m00Det <span class="op">=</span></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m11 <span class="op">*</span> m00m11Det <span class="op">)</span></span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="op">(</span> m12 <span class="op">*</span> m00m12Det <span class="op">)</span></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m13 <span class="op">*</span> m00m13Det <span class="op">);</span></span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m01Det <span class="op">=</span></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m10 <span class="op">*</span> m01m10Det <span class="op">)</span></span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="op">(</span> m12 <span class="op">*</span> m01m12Det <span class="op">)</span></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m13 <span class="op">*</span> m01m13Det <span class="op">);</span></span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m02Det <span class="op">=</span></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m10 <span class="op">*</span> m02m10Det <span class="op">)</span></span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="op">(</span> m11 <span class="op">*</span> m02m11Det <span class="op">)</span></span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m13 <span class="op">*</span> m02m13Det <span class="op">);</span></span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> m03Det <span class="op">=</span></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m10 <span class="op">*</span> m03m10Det <span class="op">)</span></span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="op">(</span> m11 <span class="op">*</span> m03m11Det <span class="op">)</span></span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m12 <span class="op">*</span> m03m12Det <span class="op">);</span></span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">int</span> det <span class="op">=</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m00 <span class="op">*</span> m00Det <span class="op">)</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="op">(</span> m01 <span class="op">*</span> m01Det <span class="op">)</span></span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="op">(</span> m02 <span class="op">*</span> m02Det <span class="op">)</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="op">(</span> m03 <span class="op">*</span> m03Det <span class="op">);</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> detToOrient<span class="op">(</span> det <span class="op">);</span></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </div>
 
 <br />
@@ -262,11 +264,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,15 +31,27 @@
 <p class="date">📅 2011-Mar-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#sort'>sort</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>The <strong>cudppSort</strong> function from the <a href="http://code.google.com/p/cudpp/"><strong>CUDPP</strong></a> library can be used to sort an array of keys and an array of values along with it. However, the value types that are supported are only 32-bit. Thus, an array of structures cannot directly be sorted by using cudppSort.</p>
+<p>The <strong>cudppSort</strong> function from the <a
+href="http://code.google.com/p/cudpp/"><strong>CUDPP</strong></a>
+library can be used to sort an array of keys and an array of values
+along with it. However, the value types that are supported are only
+32-bit. Thus, an array of structures cannot directly be sorted by using
+cudppSort.</p>
 <p><strong>Solution</strong></p>
 <p>One way to sort such a structure array is as follows:</p>
 <ol type="1">
-<li><p>Create an index array. Fill it with indices of the array using a simple kernel.</p></li>
-<li><p>Use this index array as the value array and sort the key and value arrays using cudppSort.</p></li>
-<li><p>Pass the sorted index array to a simple kernel and use it write the structures of the array to their sorted destinations.</p></li>
+<li><p>Create an index array. Fill it with indices of the array using a
+simple kernel.</p></li>
+<li><p>Use this index array as the value array and sort the key and
+value arrays using cudppSort.</p></li>
+<li><p>Pass the sorted index array to a simple kernel and use it write
+the structures of the array to their sorted destinations.</p></li>
 </ol>
-<p>This solution assumes that the structure array has an additional array of keys. More details and code on this method can be seen in my post on <a href="https://codeyarns.com/tech/2011/03/09/cudpp-compacting-a-structure-array/"><strong>Compacting a Structure Array</strong></a>.</p>
+<p>This solution assumes that the structure array has an additional
+array of keys. More details and code on this method can be seen in my
+post on <a
+href="https://codeyarns.com/tech/2011/03/09/cudpp-compacting-a-structure-array/"><strong>Compacting
+a Structure Array</strong></a>.</p>
 <p><strong>Tried with</strong>: CUDPP 1.1.1 and CUDA 3.2</p>
 </div>
 
@@ -62,11 +60,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

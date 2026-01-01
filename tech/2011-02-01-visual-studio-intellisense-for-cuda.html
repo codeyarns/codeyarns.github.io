@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,17 +31,37 @@
 <p class="date">📅 2011-Feb-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cuda'>cuda</a>, <a href='index.html#intellisense'>intellisense</a>, <a href='index.html#visual-studio'>visual studio</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Why?</strong></p>
-<p>It is convenient to have <strong>Intellisense</strong> turned on for <strong>CUDA</strong> source files in <strong>Visual Studio</strong>. This enables <strong>autocompletion</strong> while typing code and <strong>navigation</strong> while investigating code. The navigation is especially useful since the programmer can seamlessly navigate between C/C++ and CUDA code using <strong>Go to Definition</strong> and similar commands.</p>
+<p>It is convenient to have <strong>Intellisense</strong> turned on for
+<strong>CUDA</strong> source files in <strong>Visual Studio</strong>.
+This enables <strong>autocompletion</strong> while typing code and
+<strong>navigation</strong> while investigating code. The navigation is
+especially useful since the programmer can seamlessly navigate between
+C/C++ and CUDA code using <strong>Go to Definition</strong> and similar
+commands.</p>
 <p><strong>How?</strong></p>
-<p>To turn on Intellisense in Visual Studio 2008 for CUDA source files:</p>
+<p>To turn on Intellisense in Visual Studio 2008 for CUDA source
+files:</p>
 <ol type="1">
 <li><p>Close all instances of Visual Studio.</p></li>
-<li><p>Open Registry Editor and navigate to <code>HKEY_CURRENT_USER\Software\Microsoft\VisualStudio\9.0\Languages\Language Services\C/C++</code></p></li>
-<li><p>In the value of the name <code>NCB Default C/C++ Extensions</code>, append the text <code>.cu;.cuh;.cl;</code> This instructs Intellisense to build its database for CUDA source files too.</p></li>
-<li><p>Delete the <code>.ncb</code> file in your Visual Studio project directory. Open your CUDA project in Visual Studio, Intellisense will rebuild its database, this time it will include the CUDA source files.</p></li>
+<li><p>Open Registry Editor and navigate to
+<code>HKEY_CURRENT_USER\Software\Microsoft\VisualStudio\9.0\Languages\Language Services\C/C++</code></p></li>
+<li><p>In the value of the name
+<code>NCB Default C/C++ Extensions</code>, append the text
+<code>.cu;.cuh;.cl;</code> This instructs Intellisense to build its
+database for CUDA source files too.</p></li>
+<li><p>Delete the <code>.ncb</code> file in your Visual Studio project
+directory. Open your CUDA project in Visual Studio, Intellisense will
+rebuild its database, this time it will include the CUDA source
+files.</p></li>
 </ol>
-<p>Clicking <strong>Go to Definition</strong> or <strong>F12</strong> on a CUDA runtime function call (like <code>cudaMalloc</code>) may not work. If you want such functionality, include the CUDA header file that has those declarations. For example, <code>cuda_runtime.h</code> needs to be included for most runtime calls.</p>
-<p><strong>Note</strong>: Related information and files can be found in the <code>%CUDA_PATH%\extras\visual_studio_integration</code> directory.</p>
+<p>Clicking <strong>Go to Definition</strong> or <strong>F12</strong> on
+a CUDA runtime function call (like <code>cudaMalloc</code>) may not
+work. If you want such functionality, include the CUDA header file that
+has those declarations. For example, <code>cuda_runtime.h</code> needs
+to be included for most runtime calls.</p>
+<p><strong>Note</strong>: Related information and files can be found in
+the <code>%CUDA_PATH%\extras\visual_studio_integration</code>
+directory.</p>
 <p><strong>Tried with</strong>: Visual Studio 2008</p>
 </div>
 
@@ -64,11 +70,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

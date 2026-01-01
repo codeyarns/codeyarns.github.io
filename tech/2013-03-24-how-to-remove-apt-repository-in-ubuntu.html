@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,23 @@
 <h1 class="title">How to remove APT repository in Ubuntu</h1>
 <p class="date">📅 2013-Mar-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#apt'>apt</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>You can <a href="https://codeyarns.com/2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">install packages</a> from third party sources by <a href="2013-03-23-how-to-add-a-repository-to-ubuntu.html">adding their APT repositories</a> to <strong>Ubuntu</strong>. If you do not want to keep them later, these packages can be removed and the repositories can be removed too. If you remember the name of the repository, say <code>ppa:joe/foobar</code>, use this command:</p>
+<p>You can <a
+href="https://codeyarns.com/2013/01/19/how-to-install-a-package-from-ubuntu-repositories/">install
+packages</a> from third party sources by <a
+href="2013-03-23-how-to-add-a-repository-to-ubuntu.html">adding their
+APT repositories</a> to <strong>Ubuntu</strong>. If you do not want to
+keep them later, these packages can be removed and the repositories can
+be removed too. If you remember the name of the repository, say
+<code>ppa:joe/foobar</code>, use this command:</p>
 <pre><code>$ sudo add-apt-repository --remove ppa:joe/foobar</code></pre>
-<p>The short <code>-r</code> can be used instead of <code>--remove</code>.</p>
-<p>If you do not recall the name of the repository, go to <code>/etc/apt/sources.list.d/</code> directory and remove the filename that matches the repository you want to remove. You will need to use <code>sudo</code> for this.</p>
-<p>After removing the repository in either of the above ways, remember to update:</p>
+<p>The short <code>-r</code> can be used instead of
+<code>--remove</code>.</p>
+<p>If you do not recall the name of the repository, go to
+<code>/etc/apt/sources.list.d/</code> directory and remove the filename
+that matches the repository you want to remove. You will need to use
+<code>sudo</code> for this.</p>
+<p>After removing the repository in either of the above ways, remember
+to update:</p>
 <pre><code>$ sudo apt-get update</code></pre>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
@@ -58,11 +56,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

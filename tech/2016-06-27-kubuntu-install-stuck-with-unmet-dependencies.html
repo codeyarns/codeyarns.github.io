@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,7 +31,8 @@
 <p class="date">📅 2016-Jun-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#dpkg'>dpkg</a>, <a href='index.html#error'>error</a>, <a href='index.html#kubuntu'>kubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I tried to install <strong>Kubuntu</strong> on an existing <strong>Ubuntu</strong> system using this command:</p>
+<p>I tried to install <strong>Kubuntu</strong> on an existing
+<strong>Ubuntu</strong> system using this command:</p>
 <pre><code>$ sudo apt install kubuntu-desktop</code></pre>
 <p>And I got this package dependency error:</p>
 <pre><code>You might want to run &#39;apt-get -f install&#39; to correct these:
@@ -53,9 +40,13 @@ The following packages have unmet dependencies:
  kde-telepathy-minimal : Depends: kde-config-telepathy-accounts (&gt;= 15.04.0) but it is not going to be installed
  unity-scope-gdrive : Depends: account-plugin-google but it is not going to be installed
 E: Unmet dependencies. Try &#39;apt-get -f install&#39; with no packages (or specify a solution).</code></pre>
-<p>However, running <code>sudo apt-get -f install</code> would stop with the same dependency problem.</p>
+<p>However, running <code>sudo apt-get -f install</code> would stop with
+the same dependency problem.</p>
 <h2 id="solution">Solution</h2>
-<p>The key here is to realize that apt itself cannot resolve this cyclic dependency. So, to fix it we need to use a lower-level tool to explicitly take out the offending package. We can do that by using dpkg:</p>
+<p>The key here is to realize that apt itself cannot resolve this cyclic
+dependency. So, to fix it we need to use a lower-level tool to
+explicitly take out the offending package. We can do that by using
+dpkg:</p>
 <pre><code>$ sudo dpkg --purge unity-scope-gdrive
 $ sudo dpkg --purge account-plugin-google
 $ sudo apt-get -f install</code></pre>
@@ -67,11 +58,13 @@ $ sudo apt-get -f install</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

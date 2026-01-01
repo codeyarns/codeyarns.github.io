@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,16 +30,21 @@
 <h1 class="title">How to enable gravity in PhysX</h1>
 <p class="date">📅 2013-Dec-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#gravity'>gravity</a>, <a href='index.html#physx'>physx</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Gravity</strong> is disabled by default in <strong>PhysX</strong>. To enable it, add a gravity vector to the <strong>scene descriptor</strong>:</p>
+<p><strong>Gravity</strong> is disabled by default in
+<strong>PhysX</strong>. To enable it, add a gravity vector to the
+<strong>scene descriptor</strong>:</p>
 <pre><code>physx::PxSceneDesc* sceneDesc;
 // Assuming scene descriptor is created here
 sceneDesc-&gt;gravity = physx::PxVec3(0.0f, -9.81f, 0.0f);</code></pre>
-<p>You can also set the gravity vector in the <strong>scene</strong> itself:</p>
+<p>You can also set the gravity vector in the <strong>scene</strong>
+itself:</p>
 <pre><code>physx::PxScene* scene;
 // Assuming scene is created here
 scene-&gt;setGravity(physx::PxVec3(0.0f, -9.81f, 0.0f));</code></pre>
-<p>To avoid buggy behavior, it is better to enable gravity at the beginning.</p>
-<p><strong>Tried with:</strong> PhysX 3.2.4, Visual Studio 2010 and Windows 8 x64</p>
+<p>To avoid buggy behavior, it is better to enable gravity at the
+beginning.</p>
+<p><strong>Tried with:</strong> PhysX 3.2.4, Visual Studio 2010 and
+Windows 8 x64</p>
 </div>
 
 <br />
@@ -61,11 +52,13 @@ scene-&gt;setGravity(physx::PxVec3(0.0f, -9.81f, 0.0f));</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

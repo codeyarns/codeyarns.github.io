@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,28 +30,84 @@
 <h1 class="title">How to train OpenCV cascade classifier</h1>
 <p class="date">📅 2014-Sep-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cascade-classifier'>cascade classifier</a>, <a href='index.html#opencv'>opencv</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>OpenCV ships with an application that can be used to train a <strong>cascade classifier</strong>. The steps to prepare your data and train the classifier can be quite elaborate. I have detailed the steps that I used below to train the classifier to identify an object (say car):</p>
+<p>OpenCV ships with an application that can be used to train a
+<strong>cascade classifier</strong>. The steps to prepare your data and
+train the classifier can be quite elaborate. I have detailed the steps
+that I used below to train the classifier to identify an object (say
+car):</p>
 <ul>
-<li><p>Two OpenCV programs: <code>opencv_createsamples</code> and <code>opencv_traincascade</code> will be used for this process. They should be installed along with your OpenCV. You can also compile them while compiling OpenCV from source. Make sure to enable the option <code>BUILD_APPS</code> in the CMake GUI. This is the option that builds these applications.</p></li>
-<li><p>Prepare images that have one or more instances of the object of interest. These will be used to generate <strong>positive</strong> samples later. Also, prepare images that do not have the object of interest. These will be used to generate <strong>negative</strong> samples later.</p></li>
-<li><p>It is mandatory to use <code>opencv_createsamples</code> to generate the positive samples for <code>opencv_traincascade</code>. The output of this program is a <code>.vec</code> file that is used as input to <code>opencv_traincascade</code>.</p></li>
-<li><p>If you have image patches of the object and need to generate positive sample images by applying transformations (rotations) on this in 3 dimensions and then superimposing it on a background, you can do that using <code>opencv_createsamples</code>. See its <a href="http://docs.opencv.org/doc/user_guide/ug_traincascade.html">documentation</a> for details.</p></li>
-<li><p>In my case, I already had one or more instances of the object captured with its actual background. So, what I instead had to do was to indicate the patch rectangles in each image where my object was located. You can do this by hand or by writing a simple OpenCV program to display image to you and you mark out the rectangles on the objects and stores these values in a text file. The format of this text file required by <code>opencv_createsamples</code> can be seen in its <a href="http://docs.opencv.org/doc/user_guide/ug_traincascade.html">documentation</a>.</p></li>
-<li><p>To create the positive samples file, I invoked <code>opencv_createsamples</code> as:</p></li>
+<li><p>Two OpenCV programs: <code>opencv_createsamples</code> and
+<code>opencv_traincascade</code> will be used for this process. They
+should be installed along with your OpenCV. You can also compile them
+while compiling OpenCV from source. Make sure to enable the option
+<code>BUILD_APPS</code> in the CMake GUI. This is the option that builds
+these applications.</p></li>
+<li><p>Prepare images that have one or more instances of the object of
+interest. These will be used to generate <strong>positive</strong>
+samples later. Also, prepare images that do not have the object of
+interest. These will be used to generate <strong>negative</strong>
+samples later.</p></li>
+<li><p>It is mandatory to use <code>opencv_createsamples</code> to
+generate the positive samples for <code>opencv_traincascade</code>. The
+output of this program is a <code>.vec</code> file that is used as input
+to <code>opencv_traincascade</code>.</p></li>
+<li><p>If you have image patches of the object and need to generate
+positive sample images by applying transformations (rotations) on this
+in 3 dimensions and then superimposing it on a background, you can do
+that using <code>opencv_createsamples</code>. See its <a
+href="http://docs.opencv.org/doc/user_guide/ug_traincascade.html">documentation</a>
+for details.</p></li>
+<li><p>In my case, I already had one or more instances of the object
+captured with its actual background. So, what I instead had to do was to
+indicate the patch rectangles in each image where my object was located.
+You can do this by hand or by writing a simple OpenCV program to display
+image to you and you mark out the rectangles on the objects and stores
+these values in a text file. The format of this text file required by
+<code>opencv_createsamples</code> can be seen in its <a
+href="http://docs.opencv.org/doc/user_guide/ug_traincascade.html">documentation</a>.</p></li>
+<li><p>To create the positive samples file, I invoked
+<code>opencv_createsamples</code> as:</p></li>
 </ul>
 <pre><code>$ opencv_createsamples -info obj-rects.txt -w 50 -h 50 -vec pos-samples.vec</code></pre>
-<p>Here, <code>obj-rects.txt</code> is a text file that has the information of the rectangles where the object is located in each image. See step above for details. The output of this program is stored in <code>pos-samples.vec</code>.</p>
+<p>Here, <code>obj-rects.txt</code> is a text file that has the
+information of the rectangles where the object is located in each image.
+See step above for details. The output of this program is stored in
+<code>pos-samples.vec</code>.</p>
 <ul>
-<li>To view the positive samples that have been created by this program:</li>
+<li>To view the positive samples that have been created by this
+program:</li>
 </ul>
 <pre><code>$ opencv_createsamples -vec pos-samples.vec -w 50 -h 50</code></pre>
-<p>Note that it switches to viewing mode when you only provide these three parameters and their values should match what you provided to create the positive samples.</p>
+<p>Note that it switches to viewing mode when you only provide these
+three parameters and their values should match what you provided to
+create the positive samples.</p>
 <ul>
-<li>Now we can train the cascade classifier. The details of its parameters can be seen in its documentation. I used this invocation:</li>
+<li>Now we can train the cascade classifier. The details of its
+parameters can be seen in its documentation. I used this
+invocation:</li>
 </ul>
 <pre><code>$ opencv_traincascade -data obj-classifier -vec pos-samples.vec -bg neg-filepaths.txt -precalcValBufSize 2048 -precalcIdxBufSize 2048 -numPos 200 -numNeg 2000 -nstages 20 -minhitrate 0.999 -maxfalsealarm 0.5 -w 50 -h 50 -nonsym -baseFormatSave</code></pre>
-<p><code>obj-classifier</code> is a directory where we are asking the classifier files to be stored. Note that this directory should already be created by you. <code>pos-samples.vec</code> is the file we generated in step above. <code>neg-filepaths.txt</code> is a file with list of paths to negative sample files. <code>2048</code> is the amount of MB of memory we are requesting the program to use. The more the memory, the faster the training. <code>200</code> is the number of positive samples in <code>pos-samples.vec</code>. This number is also reported by <code>opencv_createsamples</code> when it finishes its execution. <code>2000</code> is the number of negative sample image paths we have specified in <code>neg-filepaths.txt</code>. <code>20</code> is the number of stages in the classifier we wish. <code>50x50</code> is the size of object in these images. This should be same as what was specified with <code>opencv_createsamples</code>. <code>0.999</code> and <code>0.5</code> are self-explanatory. Details on all these parameters are found in the <a href="http://docs.opencv.org/doc/user_guide/ug_traincascade.html">documentation</a>.</p>
-<p><strong>Related:</strong> See my <a href="2014/09/30/tips-for-using-opencv-cascade-classifier/">tips</a> and <a href="tag/cascade-classifier/">other posts</a> on using OpenCV Cascade Classifier.</p>
+<p><code>obj-classifier</code> is a directory where we are asking the
+classifier files to be stored. Note that this directory should already
+be created by you. <code>pos-samples.vec</code> is the file we generated
+in step above. <code>neg-filepaths.txt</code> is a file with list of
+paths to negative sample files. <code>2048</code> is the amount of MB of
+memory we are requesting the program to use. The more the memory, the
+faster the training. <code>200</code> is the number of positive samples
+in <code>pos-samples.vec</code>. This number is also reported by
+<code>opencv_createsamples</code> when it finishes its execution.
+<code>2000</code> is the number of negative sample image paths we have
+specified in <code>neg-filepaths.txt</code>. <code>20</code> is the
+number of stages in the classifier we wish. <code>50x50</code> is the
+size of object in these images. This should be same as what was
+specified with <code>opencv_createsamples</code>. <code>0.999</code> and
+<code>0.5</code> are self-explanatory. Details on all these parameters
+are found in the <a
+href="http://docs.opencv.org/doc/user_guide/ug_traincascade.html">documentation</a>.</p>
+<p><strong>Related:</strong> See my <a
+href="2014/09/30/tips-for-using-opencv-cascade-classifier/">tips</a> and
+<a href="tag/cascade-classifier/">other posts</a> on using OpenCV
+Cascade Classifier.</p>
 <p><strong>Tried with:</strong> OpenCV 2.4.9 and Ubuntu 14.04</p>
 </div>
 
@@ -74,11 +116,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

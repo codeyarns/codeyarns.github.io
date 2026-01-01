@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,19 +27,43 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">How to switch GCC version using update-alternatives</h1>
+<h1 class="title">How to switch GCC version using
+update-alternatives</h1>
 <p class="date">📅 2015-Feb-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#gcc'>gcc</a>, <a href='index.html#update-alternatives'>update-alternatives</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Multiple versions of <strong>GCC</strong> can be installed and used on <strong>Ubuntu</strong> as described <a href="2014-05-06-how-to-upgrade-gcc-on-ubuntu.html">here</a>. The <code>update-alternatives</code> tool makes it easy to switch between multiple versions of GCC.</p>
-<p>On Ubuntu, <code>gcc</code> and <code>g++</code> are just symbolic links to the actual binaries of a specific version of GCC. By switching the version, invoking <code>gcc</code> will execute the particular version of the compiler binary that you wish. You can make any of these version as the default at any time effortlessly.</p>
-<p>As an example, I had installed GCC version 4.8 from the Ubuntu repositories. This was the default version of GCC, so <code>gcc</code> was a symlink to <code>gcc-4.8</code> binary. Wanting to use some new C++11 features I installed version 4.9 of GCC. This compiler can be invoked using <code>gcc-4.9</code>. I now want to switch the default <code>gcc</code> to invoke <code>gcc-4.9</code>. I also want the freedom to switch back 4.8 as the default whenever I want. You can switch the symlinks yourself manually, but using this tool makes it easy and clean.</p>
+<p>Multiple versions of <strong>GCC</strong> can be installed and used
+on <strong>Ubuntu</strong> as described <a
+href="2014-05-06-how-to-upgrade-gcc-on-ubuntu.html">here</a>. The
+<code>update-alternatives</code> tool makes it easy to switch between
+multiple versions of GCC.</p>
+<p>On Ubuntu, <code>gcc</code> and <code>g++</code> are just symbolic
+links to the actual binaries of a specific version of GCC. By switching
+the version, invoking <code>gcc</code> will execute the particular
+version of the compiler binary that you wish. You can make any of these
+version as the default at any time effortlessly.</p>
+<p>As an example, I had installed GCC version 4.8 from the Ubuntu
+repositories. This was the default version of GCC, so <code>gcc</code>
+was a symlink to <code>gcc-4.8</code> binary. Wanting to use some new
+C++11 features I installed version 4.9 of GCC. This compiler can be
+invoked using <code>gcc-4.9</code>. I now want to switch the default
+<code>gcc</code> to invoke <code>gcc-4.9</code>. I also want the freedom
+to switch back 4.8 as the default whenever I want. You can switch the
+symlinks yourself manually, but using this tool makes it easy and
+clean.</p>
 <p>Let us begin:</p>
 <ul>
-<li><p>Decide which set of symbolic links you want to group together as one <strong>unit</strong>. I like to switch <code>/usr/bin/gcc</code> and <code>/usr/bin/g++</code> together.</p></li>
-<li><p>Pass <code>update-alternatives</code> the first version of these symbolic links. Here I will inform about the 4.8 version of these tools and links:</p></li>
+<li><p>Decide which set of symbolic links you want to group together as
+one <strong>unit</strong>. I like to switch <code>/usr/bin/gcc</code>
+and <code>/usr/bin/g++</code> together.</p></li>
+<li><p>Pass <code>update-alternatives</code> the first version of these
+symbolic links. Here I will inform about the 4.8 version of these tools
+and links:</p></li>
 </ul>
 <pre><code>$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 100 --slave /usr/bin/g++ g++ /usr/bin/g++-4.8</code></pre>
-<p>Here, we have provided the <code>gcc</code> as the master and <code>g++</code> as slave. Multiple slaves can be appended along with master. When master symbolic link is changed, the slaves will be changed too.</p>
+<p>Here, we have provided the <code>gcc</code> as the master and
+<code>g++</code> as slave. Multiple slaves can be appended along with
+master. When master symbolic link is changed, the slaves will be changed
+too.</p>
 <ul>
 <li>Pass the second version of these tools to be recorded:</li>
 </ul>
@@ -70,11 +80,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

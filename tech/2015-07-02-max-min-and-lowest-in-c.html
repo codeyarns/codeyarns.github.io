@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,23 +95,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Max, min and lowest in C++</h1>
 <p class="date">📅 2015-Jul-02 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cpp'>cpp</a>, <a href='index.html#limits'>limits</a>, <a href='index.html#lowest'>lowest</a>, <a href='index.html#max'>max</a>, <a href='index.html#min'>min</a>, <a href='index.html#numeric_limits'>numeric_limits</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <code>limits</code> header provides template methods to obtain the <strong>maximum</strong>, <strong>minimum</strong> and <strong>lowest</strong> values of any numeric type in C++. The names of these methods and a slight distinction in these methods between integral types and floating point types causes a bit of confusion.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;limits&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">int</span>&gt;::max()    <span class="co">// INT_MAX</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">int</span>&gt;::min()    <span class="co">// INT_MIN</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">int</span>&gt;::lowest() <span class="co">// INT_MIN</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">float</span>&gt;::max()    <span class="co">// FLT_MAX</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">float</span>&gt;::min()    <span class="co">// FLT_MIN</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">float</span>&gt;::lowest() <span class="co">// -FLT_MAX</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">double</span>&gt;::max()    <span class="co">// DBL_MAX</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">double</span>&gt;::min()    <span class="co">// DBL_MIN</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="bu">std::</span>numeric_limits&lt;<span class="dt">double</span>&gt;::lowest() <span class="co">// -DBL_MAX</span></span></code></pre></div>
-<p>For integral types, <code>max</code> is the largest integral value and <code>min</code> is the least representable integral value for that type. That is, all the integral values range from <code>min</code> to <code>max</code>. <code>lowest</code> is the same value as <code>min</code> for integral types.</p>
-<p>For floating point types, <code>max</code> is the largest value that can be represented. That is, no other floating point value lies to the right of this value on the number line. <code>lowest</code> is the least value, no other value lies to the left of this value on the number line. Thus, all the floating point values range from <code>lowest</code> to <code>max</code>.</p>
-<p><code>min</code> is where floating point types differ from integral types. For floating point types, <code>min</code> is the tiniest positive value that can be represented. If <code>min</code> of integral values had been defined similar to floating point types, then that value would have been <code>1</code>.</p>
+<p>The <code>limits</code> header provides template methods to obtain
+the <strong>maximum</strong>, <strong>minimum</strong> and
+<strong>lowest</strong> values of any numeric type in C++. The names of
+these methods and a slight distinction in these methods between integral
+types and floating point types causes a bit of confusion.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;limits&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;::</span>max<span class="op">()</span>    <span class="co">// INT_MAX</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;::</span>min<span class="op">()</span>    <span class="co">// INT_MIN</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;::</span>lowest<span class="op">()</span> <span class="co">// INT_MIN</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;::</span>max<span class="op">()</span>    <span class="co">// FLT_MAX</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;::</span>min<span class="op">()</span>    <span class="co">// FLT_MIN</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">float</span><span class="op">&gt;::</span>lowest<span class="op">()</span> <span class="co">// -FLT_MAX</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;::</span>max<span class="op">()</span>    <span class="co">// DBL_MAX</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;::</span>min<span class="op">()</span>    <span class="co">// DBL_MIN</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">std::</span>numeric_limits<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;::</span>lowest<span class="op">()</span> <span class="co">// -DBL_MAX</span></span></code></pre></div>
+<p>For integral types, <code>max</code> is the largest integral value
+and <code>min</code> is the least representable integral value for that
+type. That is, all the integral values range from <code>min</code> to
+<code>max</code>. <code>lowest</code> is the same value as
+<code>min</code> for integral types.</p>
+<p>For floating point types, <code>max</code> is the largest value that
+can be represented. That is, no other floating point value lies to the
+right of this value on the number line. <code>lowest</code> is the least
+value, no other value lies to the left of this value on the number line.
+Thus, all the floating point values range from <code>lowest</code> to
+<code>max</code>.</p>
+<p><code>min</code> is where floating point types differ from integral
+types. For floating point types, <code>min</code> is the tiniest
+positive value that can be represented. If <code>min</code> of integral
+values had been defined similar to floating point types, then that value
+would have been <code>1</code>.</p>
 <p>I maintain this table for easy lookup of these values:</p>
 <pre><code>2147483647    // int max
 -2147483648   // int min
@@ -145,11 +150,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

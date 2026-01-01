@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -109,25 +96,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="date">📅 2017-Feb-27 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#oop'>oop</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="isinstance">isinstance</h2>
-<p>Use this built-in function to find out if a given object is an instance of a certain class or any of its subclasses. You can even pass a tuple of classes to be checked for the object.</p>
-<p>The only gotcha you will discover is this: in Python a bool object is an instance of int! Yes, not kidding!</p>
+<p>Use this built-in function to find out if a given object is an
+instance of a certain class or any of its subclasses. You can even pass
+a tuple of classes to be checked for the object.</p>
+<p>The only gotcha you will discover is this: in Python a bool object is
+an instance of int! Yes, not kidding!</p>
 <h2 id="issubclass">issubclass</h2>
-<p>This built-in function is similar to isinstance, but to check if a type is an instance of a class or any of its subclasses.</p>
+<p>This built-in function is similar to isinstance, but to check if a
+type is an instance of a class or any of its subclasses.</p>
 <p>Again, the only gotcha is that bool type is subclass of int type.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="va">True</span>, <span class="bu">int</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="va">True</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="va">True</span>, <span class="bu">float</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="va">False</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="dv">3</span>, <span class="bu">int</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="va">True</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="bu">list</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="va">True</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="st">&quot;aa&quot;</span>, <span class="bu">str</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="va">True</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="st">u&quot;as&quot;</span>, <span class="bu">unicode</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="va">True</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">issubclass</span>(<span class="bu">bool</span>, <span class="bu">int</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="va">True</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="va">True</span>, <span class="bu">int</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="va">True</span>, <span class="bu">float</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">False</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="dv">3</span>, <span class="bu">int</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="bu">list</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="st">&quot;aa&quot;</span>, <span class="bu">str</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">isinstance</span>(<span class="st">u&quot;as&quot;</span>, <span class="bu">unicode</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">issubclass</span>(<span class="bu">bool</span>, <span class="bu">int</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="va">True</span></span></code></pre></div>
 </div>
 
 <br />
@@ -135,11 +127,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,15 +30,48 @@
 <h1 class="title">How to get started with Qt on Windows</h1>
 <p class="date">📅 2013-Dec-13 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#qmake'>qmake</a>, <a href='index.html#qt'>qt</a>, <a href='index.html#qt-creator'>qt creator</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Qt</strong> is a popular application framework to develop cross-platform GUI applications. Installing and using it on Windows is quite easy:</p>
+<p><strong>Qt</strong> is a popular application framework to develop
+cross-platform GUI applications. Installing and using it on Windows is
+quite easy:</p>
 <ol type="1">
-<li><p>From the Qt <a href="http://qt-project.org/downloads">downloads page</a>, download a Windows installer. The online installer is the best choice, since it allows you to install Qt built for all types of platforms. However, I found that the online installer was very slow and would stop downloading after a while. So, I decided to go with an offline installer. For Windows offline installers, you need to decide among these parameters: compiler (MinGW or Visual C++), compiler version (Visual Studio 2010 or 2012), architecture (32-bit or 64-bit) and OpenGL support. Depending on the combination you pick, say <code>Visual Studio 2012 32-bit with OpenGL</code>, you can find a corresponding installer for offline installation. Download and run the installer and it will install Qt source, libraries and tools under <code>C:\Qt</code> directory. The actual executables will be placed in a deeper directory. For example, mine were in <code>C:\Qt\Qt5.2.0\5.2.0\msvc2012</code></p></li>
-<li><p>From the Start menu, open <strong>Qt Creator</strong>. This is the IDE that needs to be used to write a Qt application.</p></li>
-<li><p>In Qt Creator, create a new project by choosing <code>File &amp;gt; New File or Project</code>. Choose <code>Applications</code> and <code>Qt Widgets Application</code> if you want to create a GUI program. In the following dialogs, you will be asked to provide a name for the project, directory to store the files and a kit to use for compilation.</p></li>
-<li><p>This creates a project file with extension <code>.pro</code> and three source files: <code>main.cpp</code>, <code>mainwindow.cpp</code> and <code>mainwindow.h</code>.</p></li>
-<li><p>To compile this project, right-click on the project name in Projects section and choose <code>Run qmake</code>. This runs <code>qmake</code> which creates Makefiles relevant to your environment. Right-click on project name again and choose <code>Build</code>. This uses the Makefiles that was created earlier to build an executable. Finally right-click and choose <code>Run</code>. This runs the executable, which should result in an empty window being displayed. From here on, you can add source code to these files or more source files to extend this window into a Qt application.</p></li>
+<li><p>From the Qt <a href="http://qt-project.org/downloads">downloads
+page</a>, download a Windows installer. The online installer is the best
+choice, since it allows you to install Qt built for all types of
+platforms. However, I found that the online installer was very slow and
+would stop downloading after a while. So, I decided to go with an
+offline installer. For Windows offline installers, you need to decide
+among these parameters: compiler (MinGW or Visual C++), compiler version
+(Visual Studio 2010 or 2012), architecture (32-bit or 64-bit) and OpenGL
+support. Depending on the combination you pick, say
+<code>Visual Studio 2012 32-bit with OpenGL</code>, you can find a
+corresponding installer for offline installation. Download and run the
+installer and it will install Qt source, libraries and tools under
+<code>C:\Qt</code> directory. The actual executables will be placed in a
+deeper directory. For example, mine were in
+<code>C:\Qt\Qt5.2.0\5.2.0\msvc2012</code></p></li>
+<li><p>From the Start menu, open <strong>Qt Creator</strong>. This is
+the IDE that needs to be used to write a Qt application.</p></li>
+<li><p>In Qt Creator, create a new project by choosing
+<code>File &amp;gt; New File or Project</code>. Choose
+<code>Applications</code> and <code>Qt Widgets Application</code> if you
+want to create a GUI program. In the following dialogs, you will be
+asked to provide a name for the project, directory to store the files
+and a kit to use for compilation.</p></li>
+<li><p>This creates a project file with extension <code>.pro</code> and
+three source files: <code>main.cpp</code>, <code>mainwindow.cpp</code>
+and <code>mainwindow.h</code>.</p></li>
+<li><p>To compile this project, right-click on the project name in
+Projects section and choose <code>Run qmake</code>. This runs
+<code>qmake</code> which creates Makefiles relevant to your environment.
+Right-click on project name again and choose <code>Build</code>. This
+uses the Makefiles that was created earlier to build an executable.
+Finally right-click and choose <code>Run</code>. This runs the
+executable, which should result in an empty window being displayed. From
+here on, you can add source code to these files or more source files to
+extend this window into a Qt application.</p></li>
 </ol>
-<p><strong>Tried with:</strong> Qt 5.2.0, Visual Studio 2012 and Windows 7 x64</p>
+<p><strong>Tried with:</strong> Qt 5.2.0, Visual Studio 2012 and Windows
+7 x64</p>
 </div>
 
 <br />
@@ -60,11 +79,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

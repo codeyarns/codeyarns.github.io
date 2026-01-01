@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,43 @@
 <h1 class="title">PowerShell: Profile Script</h1>
 <p class="date">📅 2011-Jul-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#powershell'>powershell</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <strong>profile script</strong> is a text file that is executed whenever an instance of <strong>PowerShell</strong> is created. This is similar to the <code>bashrc</code> file for the <strong>bash</strong> shell. The user can store the commands in this file that he wants to be executed whenever PowerShell starts up.</p>
+<p>The <strong>profile script</strong> is a text file that is executed
+whenever an instance of <strong>PowerShell</strong> is created. This is
+similar to the <code>bashrc</code> file for the <strong>bash</strong>
+shell. The user can store the commands in this file that he wants to be
+executed whenever PowerShell starts up.</p>
 <p><strong>Profile Script for Default PowerShell Console</strong></p>
-<p>To find out the filename and path of the profile script for you, type:</p>
+<p>To find out the filename and path of the profile script for you,
+type:</p>
 <pre><code>$profile</code></pre>
-<p>The profile script is typically a file named <code>Microsoft.PowerShell_profile.ps1</code> and its location is <code>C:\Users\AverageJoe\Documents\WindowsPowerShell</code></p>
-<p>This directory and this profile script file is not created by default. If you want to add some startup commands, you will need to create the <code>WindowsPowerShell</code> directory and a text file named <code>Microsoft.PowerShell_profile.ps1</code> within it to store your commands.</p>
-<p><strong>Note:</strong> You might have to change the execution policy to allow unsigned scripts to be executed. To find out more on this go <a href="https://codeyarns.com/tech/2011/07/30/powershell-change-the-execution-policy/">here</a>.</p>
-<p><strong>Profile Script for Other PowerShell Consoles and Users</strong></p>
-<p>PowerShell can be hosted by other console or terminal programs or can be executed by other users. The profile script path for such situations is different. To find out the profile script paths for all these cases, type:</p>
+<p>The profile script is typically a file named
+<code>Microsoft.PowerShell_profile.ps1</code> and its location is
+<code>C:\Users\AverageJoe\Documents\WindowsPowerShell</code></p>
+<p>This directory and this profile script file is not created by
+default. If you want to add some startup commands, you will need to
+create the <code>WindowsPowerShell</code> directory and a text file
+named <code>Microsoft.PowerShell_profile.ps1</code> within it to store
+your commands.</p>
+<p><strong>Note:</strong> You might have to change the execution policy
+to allow unsigned scripts to be executed. To find out more on this go <a
+href="https://codeyarns.com/tech/2011/07/30/powershell-change-the-execution-policy/">here</a>.</p>
+<p><strong>Profile Script for Other PowerShell Consoles and
+Users</strong></p>
+<p>PowerShell can be hosted by other console or terminal programs or can
+be executed by other users. The profile script path for such situations
+is different. To find out the profile script paths for all these cases,
+type:</p>
 <pre><code>$profile | Format-List -force</code></pre>
-<p>The output of this command will have entries for <code>AllUsersAllHosts</code>, <code>AllUsersCurrentHost</code>, <code>CurrentUserAllHosts</code> and <code>CurrentUserCurrentHost</code>. <code>Host</code> is the PowerShell jargon for a console or terminal that executes PowerShell. So, for example if I run PowerShell using a different console, but with the same username, I would place my startup settings in the file given by <code>CurrentUserAllHosts</code>.</p>
-<p>(A hat tip to <a href="http://boeprox.wordpress.com/">Boe Prox</a> for pointing out this useful command! 😊 )</p>
+<p>The output of this command will have entries for
+<code>AllUsersAllHosts</code>, <code>AllUsersCurrentHost</code>,
+<code>CurrentUserAllHosts</code> and
+<code>CurrentUserCurrentHost</code>. <code>Host</code> is the PowerShell
+jargon for a console or terminal that executes PowerShell. So, for
+example if I run PowerShell using a different console, but with the same
+username, I would place my startup settings in the file given by
+<code>CurrentUserAllHosts</code>.</p>
+<p>(A hat tip to <a href="http://boeprox.wordpress.com/">Boe Prox</a>
+for pointing out this useful command! 😊 )</p>
 <p><strong>Tried with:</strong> PowerShell 2.0</p>
 </div>
 
@@ -64,11 +75,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2023 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

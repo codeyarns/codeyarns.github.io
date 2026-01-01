@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,7 +30,10 @@
 <h1 class="title">Floating point rounding modes in C++11</h1>
 <p class="date">📅 2018-Sep-07 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cfenv'>cfenv</a>, <a href='index.html#cpp11'>cpp11</a>, <a href='index.html#floating-point'>floating point</a>, <a href='index.html#rounding-mode'>rounding mode</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The standard C library has 4 floating point <a href="http://www.gnu.org/software/libc/manual/html_node/Rounding.html">rounding modes</a> available through <code>cfenv.h</code>. These are now available in C++11 through the header file <code>cfenv</code>.</p>
+<p>The standard C library has 4 floating point <a
+href="http://www.gnu.org/software/libc/manual/html_node/Rounding.html">rounding
+modes</a> available through <code>cfenv.h</code>. These are now
+available in C++11 through the header file <code>cfenv</code>.</p>
 <ul>
 <li>The 4 floating point rounding modes are:</li>
 </ul>
@@ -53,18 +42,32 @@ FE_DOWNWARD
 FE_UPWARD
 FE_TOWARDZERO</code></pre>
 <ul>
-<li><code>FE_TONEAREST</code> rounds to the nearest integer. If the floating point value is exactly midway between two integers, then it does <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even">round half to even</a>. This rounding mode is also called round-to-nearest-even (RNE). The rest of the rounding modes are self explanatory.</li>
-<li>None of the 4 rounding modes is equivalent to the <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero">round half away from zero</a> which the <code>round</code> method does.</li>
-<li>Anything to do with floating point operations is dependent on the FPU of the processor. So, the availability of these rounding modes and their values are highly dependent on the FPU of your processor.</li>
-<li>On my x86_64 computer, all the 4 rounding modes were available and the values of these rounding modes were found to be:</li>
+<li><code>FE_TONEAREST</code> rounds to the nearest integer. If the
+floating point value is exactly midway between two integers, then it
+does <a
+href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even">round
+half to even</a>. This rounding mode is also called
+round-to-nearest-even (RNE). The rest of the rounding modes are self
+explanatory.</li>
+<li>None of the 4 rounding modes is equivalent to the <a
+href="https://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero">round
+half away from zero</a> which the <code>round</code> method does.</li>
+<li>Anything to do with floating point operations is dependent on the
+FPU of the processor. So, the availability of these rounding modes and
+their values are highly dependent on the FPU of your processor.</li>
+<li>On my x86_64 computer, all the 4 rounding modes were available and
+the values of these rounding modes were found to be:</li>
 </ul>
 <pre><code>#define FE_TONEAREST  0x000
 #define FE_DOWNWARD   0x400
 #define FE_UPWARD     0x800
 #define FE_TOWARDZERO 0xC00</code></pre>
 <ul>
-<li>The FPU of your processor may support many other rounding modes in addition to these 4 modes.</li>
-<li>On my x86_64 computer, I found that <code>FE_TONEAREST</code> was the <strong>default rounding mode</strong> when I used methods like <code>rint</code> and <code>nearbyint</code> to perform rounding.</li>
+<li>The FPU of your processor may support many other rounding modes in
+addition to these 4 modes.</li>
+<li>On my x86_64 computer, I found that <code>FE_TONEAREST</code> was
+the <strong>default rounding mode</strong> when I used methods like
+<code>rint</code> and <code>nearbyint</code> to perform rounding.</li>
 </ul>
 </div>
 
@@ -73,11 +76,13 @@ FE_TOWARDZERO</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

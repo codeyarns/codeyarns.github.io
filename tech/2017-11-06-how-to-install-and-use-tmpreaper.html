@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,22 +30,45 @@
 <h1 class="title">How to install and use tmpreaper</h1>
 <p class="date">📅 2017-Nov-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#tmp'>tmp</a>, <a href='index.html#tmpreaper'>tmpreaper</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The files and directories in the <strong>tmp</strong> directory are cleaned only during a reboot. This can be problematic if you have applications that write a lot to the tmp directory and you do not want to reboot your Linux system. A good solution for periodic cleanup of the tmp directory is the <strong>tmpreaper</strong> tool.</p>
+<p>The files and directories in the <strong>tmp</strong> directory are
+cleaned only during a reboot. This can be problematic if you have
+applications that write a lot to the tmp directory and you do not want
+to reboot your Linux system. A good solution for periodic cleanup of the
+tmp directory is the <strong>tmpreaper</strong> tool.</p>
 <ul>
 <li>Installing it is easy:</li>
 </ul>
 <pre><code>$ sudo apt install tmpreaper</code></pre>
 <ul>
-<li><p>On installation, tmpreader adds a cron job that runs once a day. This can be seen in <code>/etc/cron.daily/tmpreaper</code>. It calls the tmpreaper program with the options you set in <code>/etc/tmpreaper.conf</code></p></li>
-<li><p>The tmpreaper tool will work on any directory passed to it, including the root directory. Since deleting the root directory is catastrophic, tmpreaper shows a warning all the time. You can disable this warning by setting <code>SHOWWARNING=false</code> in <code>/etc/tmpreaper.conf</code></p></li>
-<li><p>When tmpreaper is run once a day by cron, it uses the <code>TMPTIME</code> value set for the tmp directory init scripts as described <a href="2017-11-06-how-tmp-directory-is-cleaned.html">here</a> to decide which files and directories to delete. For example, if <code>TMPTIME=1</code>, then tmpreaper will delete everything in tmp directory that is older than a day.</p></li>
-<li><p>If you want to apply tmpreaper on directories other than <code>/tmp</code>, then add them to the <code>TMPREAPER_DIRS</code> value in <code>/etc/tmpreaper.conf</code>.</p></li>
-<li><p>You can call the tmpreaper program directly at the shell to reap your own directories. For example, to reap all files and directories older than 2 days from the tmp directory:</p></li>
+<li><p>On installation, tmpreader adds a cron job that runs once a day.
+This can be seen in <code>/etc/cron.daily/tmpreaper</code>. It calls the
+tmpreaper program with the options you set in
+<code>/etc/tmpreaper.conf</code></p></li>
+<li><p>The tmpreaper tool will work on any directory passed to it,
+including the root directory. Since deleting the root directory is
+catastrophic, tmpreaper shows a warning all the time. You can disable
+this warning by setting <code>SHOWWARNING=false</code> in
+<code>/etc/tmpreaper.conf</code></p></li>
+<li><p>When tmpreaper is run once a day by cron, it uses the
+<code>TMPTIME</code> value set for the tmp directory init scripts as
+described <a
+href="2017-11-06-how-tmp-directory-is-cleaned.html">here</a> to decide
+which files and directories to delete. For example, if
+<code>TMPTIME=1</code>, then tmpreaper will delete everything in tmp
+directory that is older than a day.</p></li>
+<li><p>If you want to apply tmpreaper on directories other than
+<code>/tmp</code>, then add them to the <code>TMPREAPER_DIRS</code>
+value in <code>/etc/tmpreaper.conf</code>.</p></li>
+<li><p>You can call the tmpreaper program directly at the shell to reap
+your own directories. For example, to reap all files and directories
+older than 2 days from the tmp directory:</p></li>
 </ul>
 <pre><code>$ tmpreaper 2d /tmp</code></pre>
-<p>Note that you might need to run that command as <strong>sudo</strong> to be able to delete files created by other users.</p>
+<p>Note that you might need to run that command as <strong>sudo</strong>
+to be able to delete files created by other users.</p>
 <ul>
-<li>To be sure that you are not deleting important file, make sure you use the <code>--test</code> option to do a dry run:</li>
+<li>To be sure that you are not deleting important file, make sure you
+use the <code>--test</code> option to do a dry run:</li>
 </ul>
 <pre><code>$ tmpreaper --test 2d /tmp</code></pre>
 <p><strong>Tried with:</strong> tmpreaper 1.6.13 and Ubuntu 16.04</p>
@@ -70,11 +79,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

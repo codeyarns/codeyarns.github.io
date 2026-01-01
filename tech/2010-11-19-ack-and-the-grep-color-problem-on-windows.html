@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,17 +31,39 @@
 <p class="date">📅 2010-Nov-19 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ack'>ack</a>, <a href='index.html#colors'>colors</a>, <a href='index.html#grep'>grep</a>, <a href='index.html#windows'>windows</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="http://codeyarns.files.wordpress.com/2010/11/20101119_ack_color.png" alt="" /><figcaption> </figcaption>
+<img
+src="http://codeyarns.files.wordpress.com/2010/11/20101119_ack_color.png"
+alt=" " />
+<figcaption aria-hidden="true"> </figcaption>
 </figure>
 <p><strong>grep –color Problem</strong></p>
-<p><strong>grep</strong> is a very useful tool to have around on Windows. (See <a href="https://codeyarns.com/tech/2010/08/03/gnuwin32/">this post</a> for information on installing it for Windows.) However, the <code>grep --color</code> parameter does not work with the Windows command console. When looking for a search string in long lines, the need for <strong>color</strong> becomes crucial. Sadly, there is no grep clone for Windows that does color output.</p>
+<p><strong>grep</strong> is a very useful tool to have around on
+Windows. (See <a
+href="https://codeyarns.com/tech/2010/08/03/gnuwin32/">this post</a> for
+information on installing it for Windows.) However, the
+<code>grep --color</code> parameter does not work with the Windows
+command console. When looking for a search string in long lines, the
+need for <strong>color</strong> becomes crucial. Sadly, there is no grep
+clone for Windows that does color output.</p>
 <p><strong>Ack Installation</strong></p>
-<p>A good solution for these cases is to use <a href="http://betterthangrep.com/"><strong>Ack</strong></a>. It is a modern rival of Grep and claims to be better. (Its webpage is <a href="http://betterthangrep.com/">betterthangrep.com</a>! ;-) ) It is written in Perl.</p>
-<p>If you do not have Perl, you need to install <a href="http://strawberryperl.com/"><strong>Strawberry Perl</strong></a>. Install Ack using the command <code>cpan App::Ack</code>. This might exit with a few warnings. To force it to install Ack anyway use <code>cpan -f App::Ack</code>.</p>
-<p>Once Ack is installed, it can be used just like grep. For example:</p>
+<p>A good solution for these cases is to use <a
+href="http://betterthangrep.com/"><strong>Ack</strong></a>. It is a
+modern rival of Grep and claims to be better. (Its webpage is <a
+href="http://betterthangrep.com/">betterthangrep.com</a>! ;-) ) It is
+written in Perl.</p>
+<p>If you do not have Perl, you need to install <a
+href="http://strawberryperl.com/"><strong>Strawberry Perl</strong></a>.
+Install Ack using the command <code>cpan App::Ack</code>. This might
+exit with a few warnings. To force it to install Ack anyway use
+<code>cpan -f App::Ack</code>.</p>
+<p>Once Ack is installed, it can be used just like grep. For
+example:</p>
 <pre><code>$ set | ack -i processor</code></pre>
 <p><strong>Enabling Color for Ack</strong></p>
-<p>You will notice that Ack does not display the matched string in color. It does not need a <code>--color</code> parameter since it uses color by default. However, to gain access to the color output capability on Windows, it needs some help. Install the following from CPAN:</p>
+<p>You will notice that Ack does not display the matched string in
+color. It does not need a <code>--color</code> parameter since it uses
+color by default. However, to gain access to the color output capability
+on Windows, it needs some help. Install the following from CPAN:</p>
 <pre><code>$ cpan Win32::Console::ANSI</code></pre>
 <p>Ack will highlight the matched strings in color after this! 😊</p>
 </div>
@@ -65,11 +73,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

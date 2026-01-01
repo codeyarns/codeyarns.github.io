@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,10 +30,21 @@
 <h1 class="title">How to use CMake variables</h1>
 <p class="date">📅 2014-Feb-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cmake'>cmake</a>, <a href='index.html#variable'>variable</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>CMake</strong> uses many <strong>variables</strong> that are officially documented. These have default values or values that are based on your project environment. You are allowed to change the value of these variables in your <code>CMakeLists.txt</code>. In addition, you can also define any variables you need. In fact, defining your own custom variables makes your CMakeLists.txt file easy to read and maintain.</p>
-<p>To list all the variables that are defined and their current values, try this in a directory that has a CMakeLists.txt file:</p>
+<p><strong>CMake</strong> uses many <strong>variables</strong> that are
+officially documented. These have default values or values that are
+based on your project environment. You are allowed to change the value
+of these variables in your <code>CMakeLists.txt</code>. In addition, you
+can also define any variables you need. In fact, defining your own
+custom variables makes your CMakeLists.txt file easy to read and
+maintain.</p>
+<p>To list all the variables that are defined and their current values,
+try this in a directory that has a CMakeLists.txt file:</p>
 <pre><code>$ cmake -LAH</code></pre>
-<p>A list of common variables used internally by CMake can be seen <a href="http://www.cmake.org/Wiki/CMake_Useful_Variables">here</a>. You can change the value of these variables in your CMakeLists.txt to modify the behavior of CMake for your project. See below for how to set variables.</p>
+<p>A list of common variables used internally by CMake can be seen <a
+href="http://www.cmake.org/Wiki/CMake_Useful_Variables">here</a>. You
+can change the value of these variables in your CMakeLists.txt to modify
+the behavior of CMake for your project. See below for how to set
+variables.</p>
 <p>To set a variable to a single value in your CMakeLists.txt file:</p>
 <pre><code>set(JoeLibraries -lfoo)</code></pre>
 <p>A variable can be set a list of values:</p>
@@ -64,7 +61,8 @@
     helloworld
     ${JoeLibraries}
     )</code></pre>
-<p>A variable can also be used to in setting the value of another variable:</p>
+<p>A variable can also be used to in setting the value of another
+variable:</p>
 <pre><code>set(
     BruceLibraries
     -lkungfu
@@ -86,7 +84,9 @@ endif(NOT CurDir)</code></pre>
     message(&quot;Build is Debug type&quot;)
 endif(CMAKE_BUILD_TYPE STREQUAL &quot;Debug&quot;)</code></pre>
 <p>Note that the comparison is case-sensitive.</p>
-<p>If you want case-insensitive compare, you will need to convert the variable value to lowercase, store it in a new variable and compare that:</p>
+<p>If you want case-insensitive compare, you will need to convert the
+variable value to lowercase, store it in a new variable and compare
+that:</p>
 <pre><code>STRING(TOLOWER &quot;${CMAKE_BUILD_TYPE}&quot; CMAKE_BUILD_TYPE_LOWER)
 if(CMAKE_BUILD_TYPE_LOWER STREQUAL &quot;debug&quot;)
     message(&quot;Build is debug type&quot;)
@@ -99,11 +99,13 @@ endif()</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

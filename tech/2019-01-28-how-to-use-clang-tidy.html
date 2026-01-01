@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,12 +30,21 @@
 <h1 class="title">How to use clang-tidy</h1>
 <p class="date">📅 2019-Jan-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#clang-tidy'>clang-tidy</a>, <a href='index.html#llvm'>llvm</a>, <a href='index.html#static-checker'>static checker</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://clang.llvm.org/extra/clang-tidy/"><strong>clang-tidy</strong></a> is a LLVM tool that can be used as a static checker on your C++ codebase and to fix errors it finds. A full list of current checks and their descriptions can be found <a href="http://clang.llvm.org/extra/clang-tidy/checks/list.html">here</a>. The number of checks available to you will depend on the clang-tidy version you are using.</p>
+<p><a
+href="http://clang.llvm.org/extra/clang-tidy/"><strong>clang-tidy</strong></a>
+is a LLVM tool that can be used as a static checker on your C++ codebase
+and to fix errors it finds. A full list of current checks and their
+descriptions can be found <a
+href="http://clang.llvm.org/extra/clang-tidy/checks/list.html">here</a>.
+The number of checks available to you will depend on the clang-tidy
+version you are using.</p>
 <ul>
 <li>Installing this tool is easy:</li>
 </ul>
 <pre><code>$ sudo apt install clang-tidy</code></pre>
-<p>This typically installs a stable but older version of the tool with less number of checks. It is recommended the latest version if you like a larger number of checks to use.</p>
+<p>This typically installs a stable but older version of the tool with
+less number of checks. It is recommended the latest version if you like
+a larger number of checks to use.</p>
 <ul>
 <li>To list the checks it performs by default:</li>
 </ul>
@@ -65,17 +60,22 @@
 </ul>
 <pre><code>$ clang-tidy foobar.cpp</code></pre>
 <ul>
-<li>To check a file using all checks enabled by default and fix the errors using suggested fixes:</li>
+<li>To check a file using all checks enabled by default and fix the
+errors using suggested fixes:</li>
 </ul>
 <pre><code>$ clang-tidy -fix foobar.cpp
 $ clang-tidy -fix-errors foobar.cpp</code></pre>
 <ul>
-<li>To use a specific check, for example to use <code>modernize-use-nullptr</code>:</li>
+<li>To use a specific check, for example to use
+<code>modernize-use-nullptr</code>:</li>
 </ul>
 <pre><code>$ clang-tidy -checks=&quot;-*,modernize-use-nullptr&quot; foobar.cpp</code></pre>
 <ul>
-<li><p>The tool looks for a file named <code>.clang-tidy</code> in any parent directory. You can store checks and settings you want in this file to use by default.</p></li>
-<li><p>To get an idea of how to create the config file, you can use a command that dumps an example config:</p></li>
+<li><p>The tool looks for a file named <code>.clang-tidy</code> in any
+parent directory. You can store checks and settings you want in this
+file to use by default.</p></li>
+<li><p>To get an idea of how to create the config file, you can use a
+command that dumps an example config:</p></li>
 </ul>
 <pre><code>$ clang-tidy -dump-config</code></pre>
 <p><strong>Tried with:</strong> clang-tidy 6.0.0 and Ubuntu 18.04</p>
@@ -86,11 +86,13 @@ $ clang-tidy -fix-errors foobar.cpp</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

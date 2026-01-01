@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,25 +30,42 @@
 <h1 class="title">How to install and use Git LFS</h1>
 <p class="date">📅 2016-Oct-06 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#lfs'>lfs</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><strong>Git</strong> repositories and its hosts like Github have limits on the file size of what can be stored there. While the file size is not really an issue for text files, it becomes a problem if you are trying to use Git to store large binary files. This is usually the case for executable files or libraries, video game assets or deep learning models. <a href="https://git-lfs.github.com/"><strong>Large File Storage (LFS)</strong></a> is an extension to Git that can help you to handle large files. For the rest of this post, we need to assume that your Git server or host (like Github) supports LFS.</p>
+<p><strong>Git</strong> repositories and its hosts like Github have
+limits on the file size of what can be stored there. While the file size
+is not really an issue for text files, it becomes a problem if you are
+trying to use Git to store large binary files. This is usually the case
+for executable files or libraries, video game assets or deep learning
+models. <a href="https://git-lfs.github.com/"><strong>Large File Storage
+(LFS)</strong></a> is an extension to Git that can help you to handle
+large files. For the rest of this post, we need to assume that your Git
+server or host (like Github) supports LFS.</p>
 <h2 id="install">Install</h2>
 <ul>
 <li>Installing is easy:</li>
 </ul>
 <pre><code>$ sudo apt install git-lfs</code></pre>
 <ul>
-<li>In older versions of Ubuntu, you had to install from the LFS repository like this:</li>
+<li>In older versions of Ubuntu, you had to install from the LFS
+repository like this:</li>
 </ul>
 <pre><code>$ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
 $ sudo apt install git-lfs</code></pre>
 <h2 id="clone-repo-with-large-files">Clone repo with large files</h2>
 <ul>
-<li><strong>Clone all the large files</strong>: Cloning a LFS repository uses the same command as always:</li>
+<li><strong>Clone all the large files</strong>: Cloning a LFS repository
+uses the same command as always:</li>
 </ul>
 <pre><code>$ git clone https://github.com/joe/foobar</code></pre>
-<p>However, note that this will download all the large files in their full size. For a large repository, this will take a long time and you need to make sure you have the space to hold the entire repository of files.</p>
+<p>However, note that this will download all the large files in their
+full size. For a large repository, this will take a long time and you
+need to make sure you have the space to hold the entire repository of
+files.</p>
 <ul>
-<li><strong>Clone just the pointer files</strong>: If you just want to clone the pointer files, we need to skip the <strong>smudge</strong> filter used by git-lfs. This is the filter used to look up the large file based on the pointer file. There are a couple of ways to clone just the pointer files.</li>
+<li><strong>Clone just the pointer files</strong>: If you just want to
+clone the pointer files, we need to skip the <strong>smudge</strong>
+filter used by git-lfs. This is the filter used to look up the large
+file based on the pointer file. There are a couple of ways to clone just
+the pointer files.</li>
 </ul>
 <p>Set an environment variable to skip smudge filter and then clone:</p>
 <pre><code>$ GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/joe/foobar</code></pre>
@@ -70,12 +73,16 @@ $ sudo apt install git-lfs</code></pre>
 <pre><code>$ git config --global filter.lfs.smudge &quot;git-lfs smudge --skip&quot;
 $ git clone https://github.com/joe/foobar</code></pre>
 <ul>
-<li><strong>Checkout all large files</strong>: To fetch the latest version of all large files from a remote repository to local repository and checkout a large file:</li>
+<li><strong>Checkout all large files</strong>: To fetch the latest
+version of all large files from a remote repository to local repository
+and checkout a large file:</li>
 </ul>
 <pre><code>$ git lfs fetch
 $ git lfs checkout foobar.bin</code></pre>
 <ul>
-<li><strong>Checkout a single large file</strong>: If you are keeping only pointer files in your repo and want to pull down only a single large file:</li>
+<li><strong>Checkout a single large file</strong>: If you are keeping
+only pointer files in your repo and want to pull down only a single
+large file:</li>
 </ul>
 <pre><code>$ git lfs fetch --include foobar.bin
 $ git lfs checkout foobar.bin</code></pre>
@@ -91,7 +98,8 @@ $ git add foobar.bin</code></pre>
 <ul>
 <li><strong>Check status</strong></li>
 </ul>
-<p>To view which large files are modified or not added to the repository:</p>
+<p>To view which large files are modified or not added to the
+repository:</p>
 <pre><code>$ git lfs status</code></pre>
 <h2 id="push-large-files-to-repo">Push large files to repo</h2>
 <ul>
@@ -104,7 +112,8 @@ $ git lfs track *.large-file-ext</code></pre>
 </ul>
 <pre><code>$ git lfs track</code></pre>
 <ul>
-<li>Add the modified <code>.gitattributes</code> and large files and create a commit:</li>
+<li>Add the modified <code>.gitattributes</code> and large files and
+create a commit:</li>
 </ul>
 <pre><code>$ git add .gitattributes
 $ git add foobar-large-file
@@ -122,11 +131,13 @@ $ git commit -m &quot;Add large files&quot;</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,21 +30,43 @@
 <h1 class="title">How to install Conda</h1>
 <p class="date">📅 2018-Mar-31 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#conda'>conda</a>, <a href='index.html#fish'>fish</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://conda.io/"><strong>Conda</strong></a> is a package and environment management system for Python. To install it on Ubuntu, I used these steps:</p>
+<p><a href="https://conda.io/"><strong>Conda</strong></a> is a package
+and environment management system for Python. To install it on Ubuntu, I
+used these steps:</p>
 <ul>
-<li><p>Download the bash shell script by clicking on the Download button <a href="https://www.anaconda.com/download/#linux">here</a>. For example, when I did this, I got a <code>Anaconda3-5.1.0-Linux-x86_64.sh</code> file.</p></li>
-<li><p>Run the downloaded bash shell script through bash. For example, I did:</p></li>
+<li><p>Download the bash shell script by clicking on the Download button
+<a href="https://www.anaconda.com/download/#linux">here</a>. For
+example, when I did this, I got a
+<code>Anaconda3-5.1.0-Linux-x86_64.sh</code> file.</p></li>
+<li><p>Run the downloaded bash shell script through bash. For example, I
+did:</p></li>
 </ul>
 <pre><code>$ bash Anaconda3-5.1.0-Linux-x86_64.sh</code></pre>
 <ul>
-<li><p>The bash script asks you for a place to install Anaconda. Typically this is <code>$HOME/anaconda3</code>. But you can provide it any alternate location you wish. Conda will store the environments you create in an <code>envs</code> subdirectory inside this base directory.</p></li>
-<li><p>The bash script asks if you want to add the <code>bin</code> subdirectory inside the base directory to your <code>PATH</code> environment variable. You can choose to do this on your own too. In either case, remember to make sure the Conda bin path is <strong>appended</strong> to <code>PATH</code>. If it is instead <strong>prepended</strong> to <code>PATH</code>, then Conda’s Python interpreter will be invoked as the default one at the shell. Typically, you do not want this behavior. You want Conda’s Python to be used only inside a Conda environment.</p></li>
-<li><p>After the script is done, restart your shell, so that your <code>PATH</code> has the Anaconda <code>bin</code> subdirectory.</p></li>
+<li><p>The bash script asks you for a place to install Anaconda.
+Typically this is <code>$HOME/anaconda3</code>. But you can provide it
+any alternate location you wish. Conda will store the environments you
+create in an <code>envs</code> subdirectory inside this base
+directory.</p></li>
+<li><p>The bash script asks if you want to add the <code>bin</code>
+subdirectory inside the base directory to your <code>PATH</code>
+environment variable. You can choose to do this on your own too. In
+either case, remember to make sure the Conda bin path is
+<strong>appended</strong> to <code>PATH</code>. If it is instead
+<strong>prepended</strong> to <code>PATH</code>, then Conda’s Python
+interpreter will be invoked as the default one at the shell. Typically,
+you do not want this behavior. You want Conda’s Python to be used only
+inside a Conda environment.</p></li>
+<li><p>After the script is done, restart your shell, so that your
+<code>PATH</code> has the Anaconda <code>bin</code>
+subdirectory.</p></li>
 <li><p>Run this command to check if everything is working:</p></li>
 </ul>
 <pre><code>$ conda info</code></pre>
 <ul>
-<li>I use the Fish shell, so I need to add this line to the <code>config.fish</code> to be able to use Conda’s environment activate and deactivate commands:</li>
+<li>I use the Fish shell, so I need to add this line to the
+<code>config.fish</code> to be able to use Conda’s environment activate
+and deactivate commands:</li>
 </ul>
 <pre><code>source (conda info --root)/etc/fish/conf.d/conda.fish</code></pre>
 <p>I was able to create environments and use Conda after this.</p>
@@ -70,11 +78,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

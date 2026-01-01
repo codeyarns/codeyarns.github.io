@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,9 +31,16 @@
 <p class="date">📅 2016-Feb-01 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a>, <a href='index.html#stow'>stow</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I had a directory with a <code>.gitignore</code> file in it. When I run <strong>Stow</strong> with this directory as the input, symbolic links to all the files in the directory were created, except for the <code>.gitignore</code> file.</p>
+<p>I had a directory with a <code>.gitignore</code> file in it. When I
+run <strong>Stow</strong> with this directory as the input, symbolic
+links to all the files in the directory were created, except for the
+<code>.gitignore</code> file.</p>
 <h2 id="solution">Solution</h2>
-<p>Stow ignores installing files and directories that are in its <strong>ignore list</strong>. The files and directories to be ignored can be specified as regular expressions in an <strong>ignore file</strong>. Stow looks for a <code>~/.stow-global-ignore</code> file. If it does not find it, it will use an internal default ignore list.</p>
+<p>Stow ignores installing files and directories that are in its
+<strong>ignore list</strong>. The files and directories to be ignored
+can be specified as regular expressions in an <strong>ignore
+file</strong>. Stow looks for a <code>~/.stow-global-ignore</code> file.
+If it does not find it, it will use an internal default ignore list.</p>
 <p>The default ignore list from Stow source code is shown here:</p>
 <pre><code># Comments and blank lines are allowed.
 
@@ -67,8 +60,14 @@ _darcs
 
 .+~          # emacs backup files
 \#.*\#       # emacs autosave files</code></pre>
-<p>It can be seen that <code>.gitignore</code> is one of the files that it will ignore, hence it is not installed. To override the internal ignore list, create a <code>~/.stow-global-ignore</code> file filled with the regex of what files to ignore. If you make this an empty file, Stow will install all files without ignoring any of them.</p>
-<p><strong>Reference:</strong> <a href="http://www.gnu.org/software/stow/manual/stow.html">Stow manual</a></p>
+<p>It can be seen that <code>.gitignore</code> is one of the files that
+it will ignore, hence it is not installed. To override the internal
+ignore list, create a <code>~/.stow-global-ignore</code> file filled
+with the regex of what files to ignore. If you make this an empty file,
+Stow will install all files without ignoring any of them.</p>
+<p><strong>Reference:</strong> <a
+href="http://www.gnu.org/software/stow/manual/stow.html">Stow
+manual</a></p>
 <p><strong>Tried with:</strong> Stow 2.2.0 and Ubuntu 14.04</p>
 </div>
 
@@ -77,11 +76,13 @@ _darcs
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

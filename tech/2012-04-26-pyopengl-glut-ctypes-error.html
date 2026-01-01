@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,19 @@
 <h1 class="title">PyOpenGL GLUT ctypes error</h1>
 <p class="date">📅 2012-Apr-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ctypes'>ctypes</a>, <a href='index.html#error'>error</a>, <a href='index.html#pyopengl'>pyopengl</a>, <a href='index.html#python'>python</a>, <a href='index.html#unicode'>unicode</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Installing <strong>PyOpenGL</strong> can be <a href="https://codeyarns.com/tech/2012/04/27/pyopengl-installation-notes/">quite painful</a> on 64-bit Python 3.x with Windows 7. But, once you that is done, you might face this error in your program:</p>
+<p>Installing <strong>PyOpenGL</strong> can be <a
+href="https://codeyarns.com/tech/2012/04/27/pyopengl-installation-notes/">quite
+painful</a> on 64-bit Python 3.x with Windows 7. But, once you that is
+done, you might face this error in your program:</p>
 <pre><code>glutCreateWindow( &quot;cube&quot; )
 # ctypes.ArgumentError: argument 1: &lt;class &#39;TypeError&#39;&gt;: wrong type</code></pre>
-<p><strong>ctypes</strong> provides the data types to communicate with C libraries. I got the above error when I was passing a string to a GLUT function. The error is caused because underneath the PyOpenGL call is an old-school C function expecting ASCII text, whereas Python 3.x gives it Unicode text by default.</p>
-<p>So, the solution is to pass the string in the bytes format. In the above case, the error was solved by changing it to:</p>
+<p><strong>ctypes</strong> provides the data types to communicate with C
+libraries. I got the above error when I was passing a string to a GLUT
+function. The error is caused because underneath the PyOpenGL call is an
+old-school C function expecting ASCII text, whereas Python 3.x gives it
+Unicode text by default.</p>
+<p>So, the solution is to pass the string in the bytes format. In the
+above case, the error was solved by changing it to:</p>
 <pre><code>glutCreateWindow( b&quot;cube&quot; )</code></pre>
 <p><strong>Tried with:</strong> PyOpenGL-3.0.2a6.win-amd64-py3.2</p>
 </div>
@@ -58,11 +52,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

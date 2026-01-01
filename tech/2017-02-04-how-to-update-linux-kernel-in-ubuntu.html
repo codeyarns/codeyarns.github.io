@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,11 +30,29 @@
 <h1 class="title">How to update Linux kernel in Ubuntu</h1>
 <p class="date">📅 2017-Feb-04 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#kernel'>kernel</a>, <a href='index.html#ubuntu'>ubuntu</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Every version of <strong>Ubuntu LTS</strong> sticks to a particular version of the <strong>Linux kernel</strong>. For example, Ubuntu 16.04 sticks to the 4.4.x series of kernels. Over the months and years you use and update this version of Ubuntu, only newer minor versions of the kernel are updated to maintain stability.</p>
-<p>However, there might be reasons you might want to upgrade to a major new Linux kernel version. For example, to get support for newer hardware and firmware. The first option you can try is to install the latest HWE stack for your LTS release, as described <a href="2017-05-19-the-hwe-stack-for-ubuntu-lts.html">here</a>. That should upgrade your Linux kernel and X to recent versions. If a HWE stack is not available or the versions it provides is not recent enough for you, then Ubuntu developers maintain a series of the Linux mainline kernel which can be downloaded and installed.</p>
+<p>Every version of <strong>Ubuntu LTS</strong> sticks to a particular
+version of the <strong>Linux kernel</strong>. For example, Ubuntu 16.04
+sticks to the 4.4.x series of kernels. Over the months and years you use
+and update this version of Ubuntu, only newer minor versions of the
+kernel are updated to maintain stability.</p>
+<p>However, there might be reasons you might want to upgrade to a major
+new Linux kernel version. For example, to get support for newer hardware
+and firmware. The first option you can try is to install the latest HWE
+stack for your LTS release, as described <a
+href="2017-05-19-the-hwe-stack-for-ubuntu-lts.html">here</a>. That
+should upgrade your Linux kernel and X to recent versions. If a HWE
+stack is not available or the versions it provides is not recent enough
+for you, then Ubuntu developers maintain a series of the Linux mainline
+kernel which can be downloaded and installed.</p>
 <ul>
-<li><p>Go to <code>http://kernel.ubuntu.com/~kernel-ppa/mainline/</code> and decide which version of kernel you want. For example, I decided to upgrade from 4.4.x to 4.9.x.</p></li>
-<li><p>You need to download 3 deb files for a full kernel installation. These will be named in this format: <code>linux-headers-XXX_amd64.deb</code>, <code>linux-headers-XXX_all.deb</code> and <code>linux-image-XXX-generic_XXX_amd64.deb</code>.</p></li>
+<li><p>Go to <code>http://kernel.ubuntu.com/~kernel-ppa/mainline/</code>
+and decide which version of kernel you want. For example, I decided to
+upgrade from 4.4.x to 4.9.x.</p></li>
+<li><p>You need to download 3 deb files for a full kernel installation.
+These will be named in this format:
+<code>linux-headers-XXX_amd64.deb</code>,
+<code>linux-headers-XXX_all.deb</code> and
+<code>linux-image-XXX-generic_XXX_amd64.deb</code>.</p></li>
 <li><p>Install them:</p></li>
 </ul>
 <pre><code>$ sudo dpkg -i *.deb</code></pre>
@@ -57,7 +61,10 @@
 </ul>
 <pre><code>$ uname -r</code></pre>
 <ul>
-<li>Do not delete the kernel provided by Ubuntu even if <code>apt</code> keeps reminding you that you do not need it! If something goes wrong with the new kernel, you might want to keep the older one, so you can boot using that in the GRUB boot screen.</li>
+<li>Do not delete the kernel provided by Ubuntu even if <code>apt</code>
+keeps reminding you that you do not need it! If something goes wrong
+with the new kernel, you might want to keep the older one, so you can
+boot using that in the GRUB boot screen.</li>
 </ul>
 </div>
 
@@ -66,11 +73,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

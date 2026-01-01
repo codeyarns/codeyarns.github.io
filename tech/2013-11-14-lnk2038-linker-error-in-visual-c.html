@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,12 +31,21 @@
 <p class="date">📅 2013-Nov-14 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#error'>error</a>, <a href='index.html#linker'>linker</a>, <a href='index.html#lnk2038'>lnk2038</a>, <a href='index.html#visual-cpp'>visual cpp</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <p><strong>Problem</strong></p>
-<p>I got this error at the linking stage of compiling a Visual C++ project:</p>
+<p>I got this error at the linking stage of compiling a Visual C++
+project:</p>
 <pre><code>Error LNK2038: mismatch detected for &#39;_ITERATOR_DEBUG_LEVEL&#39;: value &#39;0&#39; doesn&#39;t match value &#39;2&#39; in main.obj</code></pre>
-<p>This project was being linked with other libraries and the error referred to the <code>_ITERATOR_DEBUG_LEVEL</code> was defined with different values in my application and the external library.</p>
+<p>This project was being linked with other libraries and the error
+referred to the <code>_ITERATOR_DEBUG_LEVEL</code> was defined with
+different values in my application and the external library.</p>
 <p><strong>Solution</strong></p>
-<p>The difference in the <code>_ITERATOR_DEBUG_LEVEL</code> typically happens if a <strong>Release</strong> version of a library is linked against a <strong>Debug</strong> version of another library or application. Make the two have the same <strong>build type</strong> and this error should go away.</p>
-<p>If you cannot do that, then set the <code>_ITERATOR_DEBUG_LEVEL</code> in your project to match the value used in the other library.</p>
+<p>The difference in the <code>_ITERATOR_DEBUG_LEVEL</code> typically
+happens if a <strong>Release</strong> version of a library is linked
+against a <strong>Debug</strong> version of another library or
+application. Make the two have the same <strong>build type</strong> and
+this error should go away.</p>
+<p>If you cannot do that, then set the
+<code>_ITERATOR_DEBUG_LEVEL</code> in your project to match the value
+used in the other library.</p>
 <p><strong>Tried with:</strong> Visual Studio 2010 and Windows 7 x64</p>
 </div>
 
@@ -59,11 +54,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

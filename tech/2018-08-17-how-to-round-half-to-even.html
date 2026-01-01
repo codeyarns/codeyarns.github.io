@@ -9,8 +9,9 @@
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -45,7 +46,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -58,7 +59,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -74,16 +75,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -91,13 +82,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -108,53 +95,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">How to round half to even</h1>
 <p class="date">📅 2018-Aug-17 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#float'>float</a>, <a href='index.html#round'>round</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>The <a href="https://en.cppreference.com/w/cpp/numeric/math/round"><strong>round</strong></a> function available in C and C++ uses the rounding mode called <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero"><strong>round half away from zero</strong></a>. In this mode, the floating point value is rounded to the nearest integer value. When the floating point value is exactly midway, then the integer value away from zero is picked.</p>
-<p>Many applications require the rounding mode to be <a href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even"><strong>round half to even</strong></a>. In this mode, when the floating point value is midway, the integer value that is even is chosen.</p>
-<p>If you need round half to even, then you use the <strong>nearbyint</strong> or <strong>rint</strong> methods and set the rounding mode to <code>FE_TONEAREST</code> before you use them. For more information on these rounding modes, see <a href="2018-09-07-floating-point-rounding-modes-in-c11.html">this post</a>.</p>
+<p>The <a
+href="https://en.cppreference.com/w/cpp/numeric/math/round"><strong>round</strong></a>
+function available in C and C++ uses the rounding mode called <a
+href="https://en.wikipedia.org/wiki/Rounding#Round_half_away_from_zero"><strong>round
+half away from zero</strong></a>. In this mode, the floating point value
+is rounded to the nearest integer value. When the floating point value
+is exactly midway, then the integer value away from zero is picked.</p>
+<p>Many applications require the rounding mode to be <a
+href="https://en.wikipedia.org/wiki/Rounding#Round_half_to_even"><strong>round
+half to even</strong></a>. In this mode, when the floating point value
+is midway, the integer value that is even is chosen.</p>
+<p>If you need round half to even, then you use the
+<strong>nearbyint</strong> or <strong>rint</strong> methods and set the
+rounding mode to <code>FE_TONEAREST</code> before you use them. For more
+information on these rounding modes, see <a
+href="2018-09-07-floating-point-rounding-modes-in-c11.html">this
+post</a>.</p>
 <pre><code>#include &lt;cfenv&gt;
 #include &lt;cmath&gt;
 std::fesetround(FE_TONEAREST); // This is the default rounding mode for std::nearbyint
 std::nearbyint(3.5f); // Result is 4
 std::nearbyint(4.5f); // Result is 4</code></pre>
-<p><code>FE_TONEAREST</code> is the default rounding mode, so you do not need to actually set it. Unless you believe it was set to some other rounding mode earlier in your code.</p>
-<p>If you wish to do this rounding manually, then here is one possible implementation with test code:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;array&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;cmath&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="dt">float</span> roundHalfToEven(<span class="dt">float</span> f)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>{</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">float</span> r = round(f); <span class="co">// Result is round-half-away-from-zero</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    <span class="at">const</span> <span class="dt">float</span> d = r - f; <span class="co">// Difference</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a>    <span class="co">// Result is not half, RHAFZ result same as RHTE</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    <span class="cf">if</span> ((d != <span class="fl">0.5</span><span class="bu">f</span>) &amp;&amp; (d != -<span class="fl">0.5</span><span class="bu">f</span>))</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    {</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>        <span class="cf">return</span> r;</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>    }</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>    <span class="co">// Check if RHAFZ result is even, then RHAFZ result same as RHTE</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>    <span class="cf">if</span> (fmod(r, <span class="fl">2.0</span><span class="bu">f</span>) == <span class="fl">0.0</span><span class="bu">f</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>    {</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>        <span class="cf">return</span> r;</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>    }</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>    <span class="co">// Switch to even value</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>    <span class="cf">return</span> f - d;</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>}</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a><span class="dt">int</span> main()</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>{</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>    <span class="at">const</span> <span class="bu">std::</span>array&lt;<span class="dt">float</span>, <span class="dv">8</span>&gt; fvals {{-<span class="fl">5.5</span>, -<span class="fl">4.5</span>, -<span class="fl">3.5</span>, -<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, <span class="fl">5.5</span>}};</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>    <span class="cf">for</span> (<span class="dt">float</span> f : fvals)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>    {</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>        <span class="at">const</span> <span class="dt">float</span> r = roundHalfToEven(f);</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a>        <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;roundHalfToEven(&quot;</span> &lt;&lt; f &lt;&lt; <span class="st">&quot;): &quot;</span> &lt;&lt; r &lt;&lt; <span class="bu">std::</span>endl;</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>    }</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true"></a>    <span class="cf">return</span> <span class="dv">0</span>;</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true"></a>}</span></code></pre></div>
+<p><code>FE_TONEAREST</code> is the default rounding mode, so you do not
+need to actually set it. Unless you believe it was set to some other
+rounding mode earlier in your code.</p>
+<p>If you wish to do this rounding manually, then here is one possible
+implementation with test code:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;array&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;cmath&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">float</span> roundHalfToEven<span class="op">(</span><span class="dt">float</span> f<span class="op">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">float</span> r <span class="op">=</span> round<span class="op">(</span>f<span class="op">);</span> <span class="co">// Result is round-half-away-from-zero</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="dt">float</span> d <span class="op">=</span> r <span class="op">-</span> f<span class="op">;</span> <span class="co">// Difference</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Result is not half, RHAFZ result same as RHTE</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">((</span>d <span class="op">!=</span> <span class="fl">0.5</span><span class="bu">f</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">(</span>d <span class="op">!=</span> <span class="op">-</span><span class="fl">0.5</span><span class="bu">f</span><span class="op">))</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> r<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Check if RHAFZ result is even, then RHAFZ result same as RHTE</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>fmod<span class="op">(</span>r<span class="op">,</span> <span class="fl">2.0</span><span class="bu">f</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0.0</span><span class="bu">f</span><span class="op">)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> r<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Switch to even value</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f <span class="op">-</span> d<span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> <span class="bu">std::</span>array<span class="op">&lt;</span><span class="dt">float</span><span class="op">,</span> <span class="dv">8</span><span class="op">&gt;</span> fvals <span class="op">{{-</span><span class="fl">5.5</span><span class="op">,</span> <span class="op">-</span><span class="fl">4.5</span><span class="op">,</span> <span class="op">-</span><span class="fl">3.5</span><span class="op">,</span> <span class="op">-</span><span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="fl">3.5</span><span class="op">,</span> <span class="fl">4.5</span><span class="op">,</span> <span class="fl">5.5</span><span class="op">}};</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">float</span> f <span class="op">:</span> fvals<span class="op">)</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">const</span> <span class="dt">float</span> r <span class="op">=</span> roundHalfToEven<span class="op">(</span>f<span class="op">);</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>cout <span class="op">&lt;&lt;</span> <span class="st">&quot;roundHalfToEven(&quot;</span> <span class="op">&lt;&lt;</span> f <span class="op">&lt;&lt;</span> <span class="st">&quot;): &quot;</span> <span class="op">&lt;&lt;</span> r <span class="op">&lt;&lt;</span> <span class="bu">std::</span>endl<span class="op">;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </div>
 
 <br />
@@ -162,11 +167,13 @@ std::nearbyint(4.5f); // Result is 4</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

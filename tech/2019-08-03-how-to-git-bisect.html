@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,28 @@
 <h1 class="title">How to git bisect</h1>
 <p class="date">📅 2019-Aug-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#git'>git</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Sometimes <strong>bisection</strong> is the fastest or the only way to find out which commit caused a bug or regression. The <code>git bisect</code> command makes the bisection process quite easy by managing the binary search process for you.</p>
+<p>Sometimes <strong>bisection</strong> is the fastest or the only way
+to find out which commit caused a bug or regression. The
+<code>git bisect</code> command makes the bisection process quite easy
+by managing the binary search process for you.</p>
 <p>You start by telling git you want to start bisection:</p>
 <pre><code>$ git bisect start</code></pre>
-<p>Next you indicate the bisection range, by specifying the good and bad commits that bookend the range. For example, if my current checked out commit is bad and some past commit <code>1234567</code> was good:</p>
+<p>Next you indicate the bisection range, by specifying the good and bad
+commits that bookend the range. For example, if my current checked out
+commit is bad and some past commit <code>1234567</code> was good:</p>
 <pre><code>$ git bisect bad
 $ git bisect good 1234567</code></pre>
-<p>Git now does bisection on the range and checks out a commit in the middle of the range. You now figure out if this commit is good or bad and indicate that to git. Say the commit in the middle is bad:</p>
+<p>Git now does bisection on the range and checks out a commit in the
+middle of the range. You now figure out if this commit is good or bad
+and indicate that to git. Say the commit in the middle is bad:</p>
 <pre><code>$ git bisect bad</code></pre>
-<p>Rinse and repeat until the binary search lands on the bad commit that caused the bug.</p>
-<p>Once your investigation is complete, reset the bisection to return to a normal git workflow:</p>
+<p>Rinse and repeat until the binary search lands on the bad commit that
+caused the bug.</p>
+<p>Once your investigation is complete, reset the bisection to return to
+a normal git workflow:</p>
 <pre><code>$ git bisect reset</code></pre>
-<p>Reference: <a href="https://git-scm.com/docs/git-bisect">git-bisect</a></p>
+<p>Reference: <a
+href="https://git-scm.com/docs/git-bisect">git-bisect</a></p>
 </div>
 
 <br />
@@ -63,11 +59,13 @@ $ git bisect good 1234567</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

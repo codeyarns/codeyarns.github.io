@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,18 +30,29 @@
 <h1 class="title">How to add symbolic name for Mercurial repository</h1>
 <p class="date">📅 2014-Feb-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#mercurial'>mercurial</a>, <a href='index.html#repository'>repository</a>, <a href='index.html#symbolic-name'>symbolic name</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>When you clone a repository in Mercurial, it creates a file <code>.hg/hgrc</code> in the new clone repository. Typically, this has the following lines:</p>
+<p>When you clone a repository in Mercurial, it creates a file
+<code>.hg/hgrc</code> in the new clone repository. Typically, this has
+the following lines:</p>
 <pre><code>[paths]
 default = https://joe@someserver.org/joe/foobar</code></pre>
-<p>That is, it has the login, the source location (directory or internet domain), the repository owner and finally the repository name. This assigns a symbolic name of <code>default</code> to this repository. After this any push or pull command is done with this repository.</p>
-<p>If you created a new Mercurial repository and want to push it to another existing repository, then the command is:</p>
+<p>That is, it has the login, the source location (directory or internet
+domain), the repository owner and finally the repository name. This
+assigns a symbolic name of <code>default</code> to this repository.
+After this any push or pull command is done with this repository.</p>
+<p>If you created a new Mercurial repository and want to push it to
+another existing repository, then the command is:</p>
 <pre><code>$ hg push https://joe@someserver.org/joe/foobar</code></pre>
-<p>If you want to push or pull without having to specify the repository, then just create a <code>.hg/hgrc</code> file and add the above lines to it.</p>
-<p>If you want to add other repositories to push-pull from, add them on separate lines with a different symbolic name, not <code>default</code>:</p>
+<p>If you want to push or pull without having to specify the repository,
+then just create a <code>.hg/hgrc</code> file and add the above lines to
+it.</p>
+<p>If you want to add other repositories to push-pull from, add them on
+separate lines with a different symbolic name, not
+<code>default</code>:</p>
 <pre><code>[paths]
 default = https://joe@someserver.org/joe/foobar
 bkp = https://joe@bkpserver.org/joe/foobar</code></pre>
-<p>You can push-pull from that repository using the symbolic name you have given it:</p>
+<p>You can push-pull from that repository using the symbolic name you
+have given it:</p>
 <pre><code>$ hg pull bkp</code></pre>
 <p><strong>Tried with:</strong> Mercurial 2.0.2 and Ubuntu 12.04 LTS</p>
 </div>
@@ -65,11 +62,13 @@ bkp = https://joe@bkpserver.org/joe/foobar</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

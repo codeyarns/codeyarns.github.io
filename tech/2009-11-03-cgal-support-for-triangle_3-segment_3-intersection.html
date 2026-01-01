@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -41,24 +27,42 @@
 
 <div class="contentbox">
 <header>
-<h1 class="title">CGAL: Support for Triangle_3 &amp; Segment_3 intersection</h1>
+<h1 class="title">CGAL: Support for Triangle_3 &amp; Segment_3
+intersection</h1>
 <p class="date">📅 2009-Nov-03 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cgal'>cgal</a>, <a href='index.html#intersections'>intersections</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>CGAL 3.5 is the latest version of the library, but it still does not include support for <em>intersection</em> between <code>Triangle_3</code> and <code>Segment_3</code>. I recently requested for this with the CGAL team on their <em>cgal-discuss</em> mailing list. <a href="http://www-sop.inria.fr/members/Pierre.Alliez/">Pierre Alliez</a>, the INRIA researcher who is working on this was kind enough to share his WIP code on this with me. It supports intersection between the following entities:</p>
+<p>CGAL 3.5 is the latest version of the library, but it still does not
+include support for <em>intersection</em> between
+<code>Triangle_3</code> and <code>Segment_3</code>. I recently requested
+for this with the CGAL team on their <em>cgal-discuss</em> mailing list.
+<a href="http://www-sop.inria.fr/members/Pierre.Alliez/">Pierre
+Alliez</a>, the INRIA researcher who is working on this was kind enough
+to share his WIP code on this with me. It supports intersection between
+the following entities:</p>
 <ol type="1">
 <li><p><code>Triangle_3</code> and <code>Segment_3</code></p></li>
 <li><p><code>Triangle_3</code> and <code>Line_3</code></p></li>
 <li><p><code>Triangle_3</code> and <code>Ray_3</code></p></li>
 <li><p><code>Triangle_3</code> and <code>Plane_3</code></p></li>
 </ol>
-<p>I have made available this code <a href="https://bitbucket.org/ashwin/intersections3">here</a>. This code is still not release ready, so if you run into any problems please email Pierre with your feedback.</p>
+<p>I have made available this code <a
+href="https://bitbucket.org/ashwin/intersections3">here</a>. This code
+is still not release ready, so if you run into any problems please email
+Pierre with your feedback.</p>
 <p>Here is how to use it:</p>
 <ol type="1">
-<li><p>Unzip the 4 header files into your <code>$(CGAL_DIR)\include\CGAL\Intersections_3</code> directory.</p></li>
-<li><p>Open your <code>$(CGAL_DIR)\include\CGAL\intersection_3_1.h</code> file in any editor.</p></li>
-<li><p>At the end of the file (just before the last <code>#endif</code>) add the following includes: <code>cpp #include &lt;CGAL/Intersections_3/Triangle_3_segment_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_line_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_ray_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_plane_3_intersection.h&gt;</code></p></li>
+<li><p>Unzip the 4 header files into your
+<code>$(CGAL_DIR)\include\CGAL\Intersections_3</code>
+directory.</p></li>
+<li><p>Open your
+<code>$(CGAL_DIR)\include\CGAL\intersection_3_1.h</code> file in any
+editor.</p></li>
+<li><p>At the end of the file (just before the last <code>#endif</code>)
+add the following includes:
+<code>cpp #include &lt;CGAL/Intersections_3/Triangle_3_segment_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_line_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_ray_3_intersection.h&gt; #include &lt;CGAL/Intersections_3/Triangle_3_plane_3_intersection.h&gt;</code></p></li>
 </ol>
-<p>You should be able to successfully intersect these geometrical entities in your CGAL code after this.</p>
+<p>You should be able to successfully intersect these geometrical
+entities in your CGAL code after this.</p>
 </div>
 
 <br />
@@ -66,11 +70,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

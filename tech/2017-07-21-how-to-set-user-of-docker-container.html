@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,15 +31,38 @@
 <p class="date">📅 2017-Jul-21 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#docker'>docker</a>, <a href='index.html#gid'>gid</a>, <a href='index.html#uid'>uid</a>, <a href='index.html#user'>user</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>When you <strong>run</strong> a Docker container using <code>docker run</code>, everything inside the container is executed by the <strong>root</strong> user and root group. Its UID is 0 and GID is 0. This can sometimes be a problem.</p>
-<p>For example, I had mounted a directory from the host filesystem into the Docker container using the <code>--volume</code> option. When root creates a new file or directory in this mounted directory, it appears as owned by the user <strong>nobody</strong> and group <strong>nogroup</strong>. This was a problem since I wanted these new files and directories to be created with my username or at least my group.</p>
+<p>When you <strong>run</strong> a Docker container using
+<code>docker run</code>, everything inside the container is executed by
+the <strong>root</strong> user and root group. Its UID is 0 and GID is
+0. This can sometimes be a problem.</p>
+<p>For example, I had mounted a directory from the host filesystem into
+the Docker container using the <code>--volume</code> option. When root
+creates a new file or directory in this mounted directory, it appears as
+owned by the user <strong>nobody</strong> and group
+<strong>nogroup</strong>. This was a problem since I wanted these new
+files and directories to be created with my username or at least my
+group.</p>
 <h2 id="solution">Solution</h2>
-<p>You can set what username or group you want to run as inside a container by using the <code>--user</code> option.</p>
+<p>You can set what username or group you want to run as inside a
+container by using the <code>--user</code> option.</p>
 <ul>
-<li><p>To run as user joe: <code>--user joe</code>. It is highly unlikely that the username <strong>joe</strong> exists in the Docker container. So this will likely fail unless you have added Dockerfile commands to make this so.</p></li>
-<li><p>Instead, set the UID: <code>--user 1005</code>. Docker will warn that the UID does not have a corresponding username inside the container, but it will work. Files created on the mounted directory will have the UID <code>1005</code>. There is a problem: many programs inside the container may not run if root is not running it. For example, you may find that you cannot create files or directories inside the container without being root.</p></li>
-<li><p>Another option is to set the group or GID: <code>--user :1005</code>. Notice the colon. Files created on mounted volumes will have the group GID you set. This solution worked to solve my problem.</p></li>
-<li><p>You can set both UID and GID too: <code>--user 1005:9999</code></p></li>
+<li><p>To run as user joe: <code>--user joe</code>. It is highly
+unlikely that the username <strong>joe</strong> exists in the Docker
+container. So this will likely fail unless you have added Dockerfile
+commands to make this so.</p></li>
+<li><p>Instead, set the UID: <code>--user 1005</code>. Docker will warn
+that the UID does not have a corresponding username inside the
+container, but it will work. Files created on the mounted directory will
+have the UID <code>1005</code>. There is a problem: many programs inside
+the container may not run if root is not running it. For example, you
+may find that you cannot create files or directories inside the
+container without being root.</p></li>
+<li><p>Another option is to set the group or GID:
+<code>--user :1005</code>. Notice the colon. Files created on mounted
+volumes will have the group GID you set. This solution worked to solve
+my problem.</p></li>
+<li><p>You can set both UID and GID too:
+<code>--user 1005:9999</code></p></li>
 </ul>
 <p><strong>Tried with:</strong> Ubuntu 16.04</p>
 </div>
@@ -63,11 +72,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

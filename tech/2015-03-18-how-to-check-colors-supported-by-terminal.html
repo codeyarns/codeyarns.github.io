@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,24 +31,59 @@
 <p class="date">📅 2015-Mar-18 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#colors'>colors</a>, <a href='index.html#terminal'>terminal</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>On the surface it seems like a simple question: how many <strong>colors</strong> are supported by a <strong>terminal</strong> you are using? This is important when configuring or debugging color problems in terminal programs like Vim.</p>
+<p>On the surface it seems like a simple question: how many
+<strong>colors</strong> are supported by a <strong>terminal</strong> you
+are using? This is important when configuring or debugging color
+problems in terminal programs like Vim.</p>
 <h2 id="solution-1">Solution 1</h2>
-<p>The answer should be simple: just query the <strong>terminfo</strong> database. The easiest way to query the terminfo database to find this out is:</p>
+<p>The answer should be simple: just query the <strong>terminfo</strong>
+database. The easiest way to query the terminfo database to find this
+out is:</p>
 <pre><code>$ tput colors</code></pre>
-<p>The problem? The answer reported by this program is wrong! Under a <strong>GNOME Terminal</strong> which I can see rendering 256 colors, this reports 8 as the answer!</p>
-<p>Why is it reporting the wrong answer? It seems to be misled by the <code>TERM</code> environment variable. For reasons which only the Ubuntu/GNOME Gods can answer, the <code>TERM</code> for GNOME Terminal is set to <code>xterm</code> instead of <code>xterm-256color</code>. If you set this manually to <code>xterm-256color</code>, then <code>tput</code> reports 256 correctly. But then what is the point of that?</p>
+<p>The problem? The answer reported by this program is wrong! Under a
+<strong>GNOME Terminal</strong> which I can see rendering 256 colors,
+this reports 8 as the answer!</p>
+<p>Why is it reporting the wrong answer? It seems to be misled by the
+<code>TERM</code> environment variable. For reasons which only the
+Ubuntu/GNOME Gods can answer, the <code>TERM</code> for GNOME Terminal
+is set to <code>xterm</code> instead of <code>xterm-256color</code>. If
+you set this manually to <code>xterm-256color</code>, then
+<code>tput</code> reports 256 correctly. But then what is the point of
+that?</p>
 <h2 id="solution-2">Solution 2</h2>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/03/20150318_terminal_colors.png" alt="" /><figcaption>Left: terminalcolors.py reporting 8 colors for xterm Right: For xterm-256color</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/03/20150318_terminal_colors.png"
+alt="Left: terminalcolors.py reporting 8 colors for xterm Right: For xterm-256color" />
+<figcaption aria-hidden="true">Left: terminalcolors.py reporting 8
+colors for xterm Right: For xterm-256color</figcaption>
 </figure>
-<p>Another solution is to run the <code>terminalcolors.py</code> Python script from <a href="https://github.com/incitat/eran-dotfiles/blob/master/bin/terminalcolors.py">here</a>. This beautifully renders the colors in the shell. However, it also falls for the <code>TERM</code>. Only if it is set to <code>xterm-256color</code> can I see 256 colors rendered. Else only the first 8 colors are shown and the rest are in grey.</p>
-<p>A similar output and behavior is seen by running <code>msgcat --color=test</code>.</p>
+<p>Another solution is to run the <code>terminalcolors.py</code> Python
+script from <a
+href="https://github.com/incitat/eran-dotfiles/blob/master/bin/terminalcolors.py">here</a>.
+This beautifully renders the colors in the shell. However, it also falls
+for the <code>TERM</code>. Only if it is set to
+<code>xterm-256color</code> can I see 256 colors rendered. Else only the
+first 8 colors are shown and the rest are in grey.</p>
+<p>A similar output and behavior is seen by running
+<code>msgcat --color=test</code>.</p>
 <h2 id="solution-3">Solution 3</h2>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/03/20150318_xterm_color_count.png" alt="" /><figcaption>xterm-color-count reporting colors correctly (well almost)</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/03/20150318_xterm_color_count.png"
+alt="xterm-color-count reporting colors correctly (well almost)" />
+<figcaption aria-hidden="true">xterm-color-count reporting colors
+correctly (well almost)</figcaption>
 </figure>
-<p>The final solution that worked for me was <a href="https://github.com/l0b0/xterm-color-count"><strong>xterm-color-count</strong></a>. This Bash script actually tries all the <a href="http://www.xfree86.org/current/ctlseqs.html"><strong>XTerm Control Sequences</strong></a> and examines their responses to report the colors. This script was the only one which reported back 256 correctly for me for <code>xterm</code>.</p>
-<p><strong>Tried with:</strong> GNOME Terminal 3.6.2 and Ubuntu 14.04</p>
+<p>The final solution that worked for me was <a
+href="https://github.com/l0b0/xterm-color-count"><strong>xterm-color-count</strong></a>.
+This Bash script actually tries all the <a
+href="http://www.xfree86.org/current/ctlseqs.html"><strong>XTerm Control
+Sequences</strong></a> and examines their responses to report the
+colors. This script was the only one which reported back 256 correctly
+for me for <code>xterm</code>.</p>
+<p><strong>Tried with:</strong> GNOME Terminal 3.6.2 and Ubuntu
+14.04</p>
 </div>
 
 <br />
@@ -70,11 +91,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

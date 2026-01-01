@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,23 +31,46 @@
 <p class="date">📅 2015-Jan-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#disk'>disk</a>, <a href='index.html#fdisk'>fdisk</a>, <a href='index.html#lshw'>lshw</a>, <a href='index.html#storage'>storage</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <figure>
-<img src="https://codeyarns.files.wordpress.com/2015/01/20150123_fdisk.png" alt="" /><figcaption>Two storage devices found attached to computer</figcaption>
+<img
+src="https://codeyarns.files.wordpress.com/2015/01/20150123_fdisk.png"
+alt="Two storage devices found attached to computer" />
+<figcaption aria-hidden="true">Two storage devices found attached to
+computer</figcaption>
 </figure>
-<p><strong>Storage devices</strong> like hard disks, SSD drives, CD/DVD disks, SD cards and USB thumbdrives can be plugged into a Linux computer. For many operations, we need to know the device name of the storage device. For example, <code>/dev/sda</code>. Partitions created on this device to store data will have characters suffixed to this device name. For example, <code>/dev/sda7</code> might be a partition on the <code>/dev/sda</code> hard disk.</p>
+<p><strong>Storage devices</strong> like hard disks, SSD drives, CD/DVD
+disks, SD cards and USB thumbdrives can be plugged into a Linux
+computer. For many operations, we need to know the device name of the
+storage device. For example, <code>/dev/sda</code>. Partitions created
+on this device to store data will have characters suffixed to this
+device name. For example, <code>/dev/sda7</code> might be a partition on
+the <code>/dev/sda</code> hard disk.</p>
 <h2 id="using-fdisk">Using fdisk</h2>
-<p>I like to find out the device name of storage devices by listing them out using <code>fdisk</code>:</p>
+<p>I like to find out the device name of storage devices by listing them
+out using <code>fdisk</code>:</p>
 <pre><code>$ sudo fdisk -l</code></pre>
-<p>For each storage device, this lists the device name (named after <code>Disk</code>) followed by information about it and its partitions.</p>
+<p>For each storage device, this lists the device name (named after
+<code>Disk</code>) followed by information about it and its
+partitions.</p>
 <h2 id="using-df">Using df</h2>
-<p>The <code>df</code> command lists the mounted partitions on the computer:</p>
+<p>The <code>df</code> command lists the mounted partitions on the
+computer:</p>
 <pre><code>$ df -h</code></pre>
-<p>You will have to guess the name of the storage device from the partition name by removing a few characters of suffix. For example, partitions on a SD card named <code>/dev/mmcblk0</code> might be named as <code>/dev/mmcblk0p1</code> and <code>/dev/mmcblk0p2</code>.</p>
+<p>You will have to guess the name of the storage device from the
+partition name by removing a few characters of suffix. For example,
+partitions on a SD card named <code>/dev/mmcblk0</code> might be named
+as <code>/dev/mmcblk0p1</code> and <code>/dev/mmcblk0p2</code>.</p>
 <h2 id="using-gnome-disk">Using GNOME Disk</h2>
-<p>The <strong>GNOME Disk</strong> utility is typically pre-installed on Ubuntu. It can be invoked from the Dash using its name <strong>Disks</strong> or from the shell as <code>gnome-disks</code>. It shows all the attached storage devices and their name is listed under <code>Device</code>.</p>
+<p>The <strong>GNOME Disk</strong> utility is typically pre-installed on
+Ubuntu. It can be invoked from the Dash using its name
+<strong>Disks</strong> or from the shell as <code>gnome-disks</code>. It
+shows all the attached storage devices and their name is listed under
+<code>Device</code>.</p>
 <h2 id="using-lshw">Using lshw</h2>
-<p>Some people suggest listing the <code>disk</code> class of devices from the <code>lshw</code> command:</p>
+<p>Some people suggest listing the <code>disk</code> class of devices
+from the <code>lshw</code> command:</p>
 <pre><code>$ sudo lshw -class disk</code></pre>
-<p>I do not prefer this since it does not list SD cards and many such storage devices.</p>
+<p>I do not prefer this since it does not list SD cards and many such
+storage devices.</p>
 <p><strong>Tried with:</strong> Ubuntu 14.04</p>
 </div>
 
@@ -70,11 +79,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

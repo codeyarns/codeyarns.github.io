@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -44,21 +30,30 @@
 <h1 class="title">How to build and use GLFW</h1>
 <p class="date">📅 2015-Aug-25 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cmake'>cmake</a>, <a href='index.html#glfw'>glfw</a>, <a href='index.html#glut'>glut</a>, <a href='index.html#ldconfig'>ldconfig</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="http://www.glfw.org/"><strong>GLFW</strong></a> is a library for <strong>OpenGL</strong> created by <strong>Camilla Berglund</strong>. It is a modern replacement to <strong>GLUT</strong>, to draw windows and handle input.</p>
+<p><a href="http://www.glfw.org/"><strong>GLFW</strong></a> is a library
+for <strong>OpenGL</strong> created by <strong>Camilla
+Berglund</strong>. It is a modern replacement to <strong>GLUT</strong>,
+to draw windows and handle input.</p>
 <h2 id="glfw-2x">GLFW 2.x</h2>
-<p>Ubuntu ships with an ancient version of GLFW that can be installed easily:</p>
+<p>Ubuntu ships with an ancient version of GLFW that can be installed
+easily:</p>
 <pre><code>$ sudo apt install libglfw-dev</code></pre>
-<p>However, it is highly recommended to use GLFW 3.x. It has a different API and your source code and build options will need to be changed to use it.</p>
+<p>However, it is highly recommended to use GLFW 3.x. It has a different
+API and your source code and build options will need to be changed to
+use it.</p>
 <p>To remove this ancient GLFW:</p>
 <pre><code>$ sudo apt remove libglfw-dev glfw2</code></pre>
 <h2 id="glfw-3x">GLFW 3.x</h2>
-<p>I like to install GLFW from <strong>Github</strong>. You could also get one of its stable releases, the installation steps would be the same for either.</p>
+<p>I like to install GLFW from <strong>Github</strong>. You could also
+get one of its stable releases, the installation steps would be the same
+for either.</p>
 <ul>
 <li>Get the source:</li>
 </ul>
 <pre><code>$ git clone https://github.com/glfw/glfw.git</code></pre>
 <ul>
-<li>Build the library. Note that we request CMake to create shared library files. Why this is not the default on Linux puzzles me!</li>
+<li>Build the library. Note that we request CMake to create shared
+library files. Why this is not the default on Linux puzzles me!</li>
 </ul>
 <pre><code>$ cd glfw
 $ mkdir build
@@ -68,18 +63,24 @@ $ cmake -D BUILD_SHARED_LIBS=ON ..</code></pre>
 <li>Install the library:</li>
 </ul>
 <pre><code>$ sudo make install</code></pre>
-<p>Note that I highly recommend using <strong>checkinstall</strong> as described <a href="2015-03-11-how-to-use-checkinstall-instead-of-make-install.html">here</a> instead of doing this.</p>
+<p>Note that I highly recommend using <strong>checkinstall</strong> as
+described <a
+href="2015-03-11-how-to-use-checkinstall-instead-of-make-install.html">here</a>
+instead of doing this.</p>
 <ul>
-<li>Update the dynamic linker cache, so that the <code>libglfw.so</code> shared library file can be loaded at runtime:</li>
+<li>Update the dynamic linker cache, so that the <code>libglfw.so</code>
+shared library file can be loaded at runtime:</li>
 </ul>
 <pre><code>$ sudo ldconfig</code></pre>
-<p>If you do not do this, you get an error similar to that described <a href="2014-01-14-how-to-add-library-directory-to-ldconfig-cache.html">here</a>.</p>
+<p>If you do not do this, you get an error similar to that described <a
+href="2014-01-14-how-to-add-library-directory-to-ldconfig-cache.html">here</a>.</p>
 <ul>
 <li>To use GLFW 3.x calls in your code, include the header file:</li>
 </ul>
 <pre><code>#include &lt;GLFW/glfw3.h&gt;</code></pre>
 <ul>
-<li>To link and build your code use the library directive: <code>-lglfw</code> to your build options or CMake.</li>
+<li>To link and build your code use the library directive:
+<code>-lglfw</code> to your build options or CMake.</li>
 </ul>
 <p><strong>Tried with:</strong> GLFW 20150825 and Ubuntu 14.04</p>
 </div>
@@ -89,11 +90,13 @@ $ cmake -D BUILD_SHARED_LIBS=ON ..</code></pre>
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>

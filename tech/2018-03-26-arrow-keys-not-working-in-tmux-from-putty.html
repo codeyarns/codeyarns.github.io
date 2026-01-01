@@ -10,16 +10,6 @@
   <link rel="stylesheet" href="../styles.css">
   <!-- RSS feed -->
   <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143311697-1">
-  </script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-143311697-1');
-  </script>
 </head>
 
 <body>
@@ -27,13 +17,9 @@
 <div class="contentbox">
 <div class="header">
     <a href=".." class="header">Code Yarns ‍👨‍💻</a>
-  </div>
-  <div class="header">
+</div>
+<div class="header">
     <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
-  </div>
-  <div class="header">
-      <script async src="https://cse.google.com/cse.js?cx=69d6be64abfa91ed2"> </script>
-      <div class="gcse-search"></div>
 </div>
 </div>
 
@@ -45,10 +31,21 @@
 <p class="date">📅 2018-Mar-26 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#byobu'>byobu</a>, <a href='index.html#putty'>putty</a>, <a href='index.html#tmux'>tmux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
 <h2 id="problem">Problem</h2>
-<p>I SSH into a Ubuntu computer from a Windows computer using <strong>PuTTY</strong>. I run tmux (actually byobu which runs tmux underneath) and at a shell inside tmux I find that the left and right arrow keys do not work. They are actually detected as shift+left and shift+right arrow keys inside tmux.</p>
+<p>I SSH into a Ubuntu computer from a Windows computer using
+<strong>PuTTY</strong>. I run tmux (actually byobu which runs tmux
+underneath) and at a shell inside tmux I find that the left and right
+arrow keys do not work. They are actually detected as shift+left and
+shift+right arrow keys inside tmux.</p>
 <h2 id="solution">Solution</h2>
-<p>This problem has been discussed <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1369182">here</a>. One of the suggested solutions was to add <code>set enable-keypad on</code> to <code>~/.inputrc</code>. That did not seem to work for me.</p>
-<p>However, the above bug report also mentioned that this was a bug in tmux and it was fixed in tmux 2.4. So, I used this <a href="https://launchpad.net/~hnakamur/+archive/ubuntu/tmux">tmux PPA</a> and updated the tmux 2.1 shipping in Ubuntu 16.04 to a tmux 2.6. The arrow key problem disappeared.</p>
+<p>This problem has been discussed <a
+href="https://bugzilla.redhat.com/show_bug.cgi?id=1369182">here</a>. One
+of the suggested solutions was to add <code>set enable-keypad on</code>
+to <code>~/.inputrc</code>. That did not seem to work for me.</p>
+<p>However, the above bug report also mentioned that this was a bug in
+tmux and it was fixed in tmux 2.4. So, I used this <a
+href="https://launchpad.net/~hnakamur/+archive/ubuntu/tmux">tmux PPA</a>
+and updated the tmux 2.1 shipping in Ubuntu 16.04 to a tmux 2.6. The
+arrow key problem disappeared.</p>
 </div>
 
 <br />
@@ -56,11 +53,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2026 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>
