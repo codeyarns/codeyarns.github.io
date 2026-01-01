@@ -44,14 +44,43 @@
 <h1 class="title">Google Sheets Cheatsheet</h1>
 <p class="date">📅 2020-Sep-29 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cheatsheet'>cheatsheet</a>, <a href='index.html#google-sheets'>google sheets</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p><a href="https://sheets.google.com"><strong>Google Sheets</strong></a> is an online collaborative spreadsheet from Google that tries to be a clone of Microsoft Excel.</p>
-<h2 id="set-default-style-for-current-document">Set default style for current document</h2>
-<p>Compared to <a href="2020-09-18-google-docs-cheatsheet.html">Google Docs</a>, there is very little style that can be set for the current document in Sheets.</p>
-<p>One solution seems to be to choose Format -&gt; Theme and then customize the default theme. There are a mere 6 font choices in the theme: Arial, Comic Sans MS, Courier New, Georgia, Roboto and Verdana. There is no option provided to set the default font size. Apart from this, the theme allows you set some colors.</p>
-<p>Another solution which only works on the current sheet is to select all cells by pressing <code>Ctrl + A</code> and then setting the font, font size, colors and pretty much any style.</p>
-<h2 id="set-default-style-for-all-documents">Set default style for all documents</h2>
-<p>Compared to <a href="2020-09-18-google-docs-cheatsheet.html">Google Docs</a>, there does not seem to be any way to set the default style that is used for all subsequently created documents.</p>
-<p>A partial solution, which is available only in Google Drive corporate accounts, is to set and create from a template: To do this, first create a new document and set the style you wish in it. Try to create a new document using New -&gt; From template and in your organizations template gallery, use the <em>Submit Template</em> option to add the document you created earlier as a template. After this, whenever you choose to create a new document using New -&gt; From Template, your template will be available as an option. The document created from your template will have the style you set.</p>
+<p><a href="https://sheets.google.com"><strong>Google
+Sheets</strong></a> is an online collaborative spreadsheet from Google
+that tries to be a clone of Microsoft Excel.</p>
+<h2 id="set-default-style-for-current-document">Set default style for
+current document</h2>
+<p>Compared to <a href="2020-09-18-google-docs-cheatsheet.html">Google
+Docs</a>, there is very little style that can be set for the current
+document in Sheets.</p>
+<p>One solution seems to be to choose Format -&gt; Theme and then
+customize the default theme. There are a mere 6 font choices in the
+theme: Arial, Comic Sans MS, Courier New, Georgia, Roboto and Verdana.
+There is no option provided to set the default font size. Apart from
+this, the theme allows you set some colors.</p>
+<p>Another solution which only works on the current sheet is to select
+all cells by pressing <code>Ctrl + A</code> and then setting the font,
+font size, colors and pretty much any style.</p>
+<h2 id="set-default-style-for-all-documents">Set default style for all
+documents</h2>
+<p>Compared to <a href="2020-09-18-google-docs-cheatsheet.html">Google
+Docs</a>, there does not seem to be any way to set the default style
+that is used for all subsequently created documents.</p>
+<p>A partial solution, which is available only in Google Drive corporate
+accounts, is to set and create from a template: To do this, first create
+a new document and set the style you wish in it. Try to create a new
+document using New -&gt; From template and in your organizations
+template gallery, use the <em>Submit Template</em> option to add the
+document you created earlier as a template. After this, whenever you
+choose to create a new document using New -&gt; From Template, your
+template will be available as an option. The document created from your
+template will have the style you set.</p>
+<h2 id="refer-to-cells-around-the-current-cell">Refer to cells around
+the current cell</h2>
+<p>Use <a
+href="https://support.google.com/docs/answer/3093377?hl=en"><code>INDIRECT</code></a>
+function with <code>R1C1</code> notation. For example, to sum the cell
+above with the cell to the left:
+<code>=INDIRECT("R[-1]C", FALSE) + INDIRECT("RC[-1]", FALSE)</code>.</p>
 </div>
 
 <br />
@@ -59,11 +88,13 @@
 <div class="contentbox">
 
 <div style="text-align: center">
-© 2024 Ashwin Nanjappa
+© 2025 Ashwin Nanjappa
 •
 All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
 •
 <a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
 •
 <a href="mailto:codeyarns@gmail.com">📧 Email</a>
 </div>
