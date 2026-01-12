@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Oracle Cloud Infrastructure</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+</div>
+<div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Oracle Cloud Infrastructure</h1>
+<p class="date">📅 2026-Jan-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#cloud'>cloud</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a href="https://www.oracle.com/cloud/"><strong>Oracle Cloud
+Infrastructure (OCI)</strong></a> is one of the largest Cloud Service
+Providers (CSP) of the world. It offers a <a
+href="https://www.oracle.com/cloud/free/"><strong>Free Tier</strong></a>
+that is great for home users who have minimal need of a cloud instance.
+The rest of the information on this page is based on my experience with
+the Free Tier.</p>
+<h2 id="create-an-account">Create an account</h2>
+<p>From the Free Tier page, follow the online direction to create a new
+account. You will be required to provide details of a valid credit card,
+but it will not be charged. You will need to associate an <em>email
+address</em>, but also create an <em>account name</em>.</p>
+<p>Note that the account creation was not immediate, it took a day and I
+could verify my login worked only after a day.</p>
+<h2 id="create-an-instance">Create an instance</h2>
+<p>An instance is the first step to get access to a compute node where
+we can install and run software.</p>
+<ul>
+<li><p>From top-left menu, go to Compute -&gt; Instances and choose
+<em>Create instance</em>.</p></li>
+<li><p>In <strong>Placement</strong>, I let it pick the default that was
+<code>pamH:US-SANJOSE-1-AD-1</code>.</p></li>
+<li><p>In <strong>Image</strong>, I chose
+<code>Canonical Ubuntu 24.04</code>. I noticed that both Oracle Linux
+and Canoncial Ubuntu images were all listed as <em>Free</em>.</p></li>
+<li><p>In <strong>Shape</strong>, I let it pick the default
+<code>VM.Standard.E2.1.Micro</code> since that was the only one marked
+as <em>Always Free-eligible</em>. This came with a 1-core CPU, 1 GB
+memory and 0.48 Gbps network bandwidth.</p></li>
+<li><p>In <strong>Networking</strong> section, under <em>Primary
+VNIC</em> I used the default options of <em>Select existing virtual
+cloud network</em> and <em>Select existing subnet</em>. Since we need a
+public IP address to SSH to, I enabled the <em>Automatically assign
+public IPv4 address</em> option. In the <em>Add SSH keys</em> section, I
+pasted my public SSH key.</p></li>
+<li><p>The instance creation took 5 minutes and the instance was listed
+as <em>Running</em>. Note the username (default was <code>ubuntu</code>
+in my case) and the <em>public IP</em> address.</p></li>
+</ul>
+<p><strong>Note:</strong> The first instance I created did not have the
+public IP option enabled for choosing. I messed with the firewall (see
+below), deleted this instance, created a new instance and it had the
+public IP option. Go figure!</p>
+<h2 id="configure-the-firewall">Configure the firewall</h2>
+<p>All incoming web traffic is blocked by default. To enable incoming
+traffic at certain ports, we must open them in the OCI firewall.</p>
+<ul>
+<li><p>From top-left menu, go to Networking -&gt; Virtual cloud
+networks.</p></li>
+<li><p>From the list, choose your VCN and go to its <em>Security</em>
+-&gt; <em>Security Lists</em> section.</p></li>
+<li><p>Click on the <em>Default Security List</em> -&gt; Security
+rules.</p></li>
+<li><p>Click on <em>Add Ingress Rules</em> and provide <em>Source
+CIDR</em> as <code>0.0.0.0/0</code>, IP protocol as <code>TCP</code>,
+Destination ports as <code>80,443</code> (or the ports required by your
+web application) and allow both HTTP and HTTPS traffic.</p></li>
+</ul>
+<h2 id="sss-to-the-instance">SSS to the instance</h2>
+<p>To SSH to the public IP address of the instance:</p>
+<pre><code>$ ssh -i &lt;path-to-private-key&gt; ubuntu@&lt;public-ip&gt;</code></pre>
+<p>You can now work in this compute instance by installing Ubuntu
+packages, install Docker images and work as if at a local Ubuntu
+computer.</p>
+<h2 id="access-web-application">Access web application</h2>
+<p>To run a web application, install it and then access it through the
+browser at the address <code>http://&lt;public-ip&gt;/</code>. If there
+a API exposed by the app, then
+<code>http://&lt;public-ip&gt;/&lt;api-path&gt;</code>.</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2026 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
