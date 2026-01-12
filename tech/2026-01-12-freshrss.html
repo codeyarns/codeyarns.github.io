@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – FreshRSS</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+</div>
+<div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">FreshRSS</h1>
+<p class="date">📅 2026-Jan-12 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#rss'>rss</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a href="https://www.freshrss.org/"><strong>FreshRSS</strong></a> is
+a free RSS feed aggregator that can be used to read RSS feeds online and
+also exposes an API that can be used with desktop/mobile RSS apps. Its
+source code can be <a href="https://github.com/FreshRSS/FreshRSS">seen
+on Github</a>.</p>
+<h2 id="install">Install</h2>
+<p>Instead of using it from source code, I find it easier to use its
+pre-built Docker container. To get it running from Docker container:</p>
+<ul>
+<li>Prepare the Docker packages and user setup:</li>
+</ul>
+<pre><code>$ sudo apt install -y docker.io docker-compose
+$ sudo usermod -aG docker $USER</code></pre>
+<p>Log out and log back in for group changes to take effect.</p>
+<ul>
+<li>Create a directory for it and enter it:</li>
+</ul>
+<pre><code>$ mkdir ~/freshrss
+$ cd ~/freshrss</code></pre>
+<ul>
+<li>Create a <code>~/freshrss/docker-compose.yml</code> file and add
+these lines to it:</li>
+</ul>
+<pre><code>version: &#39;2.4&#39;
+services:
+  freshrss:
+    image: freshrss/freshrss:latest
+    container_name: freshrss
+    hostname: freshrss
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    volumes:
+      - ./data:/var/www/FreshRSS/data
+      - ./extensions:/var/www/FreshRSS/extensions
+    environment:
+      TZ: America/Los_Angeles  # Change to your timezone
+      CRON_MIN: &#39;*/20&#39;         # Checks for updates every 20 mins
+    ports:
+      - &quot;80:80&quot;</code></pre>
+<ul>
+<li>Launch the container:</li>
+</ul>
+<pre><code>$ docker-compose up -d</code></pre>
+<ul>
+<li>Go to <code>http://&lt;public-ip&gt;</code> to access the FreshRSS
+online setup wizard for the first time. You will need to provide a
+<em>login</em> and <em>password</em>. Go with default options and let it
+pick <code>SQLite</code> as the database to make life easy.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>In your browser, go to <code>http://&lt;public-ip&gt;</code>. You can
+add feeds, that appear under <em>Uncategorized</em> category unless you
+create and move them to new categories.</p>
+<h2 id="api-access">API access</h2>
+<p>To read RSS feeds from desktop and mobile apps through FreshRSS, we
+need to enable API access.</p>
+<ul>
+<li><p>In the online interface go to the gear icon in the top-right
+corner.</p></li>
+<li><p>In <em>Authentication</em>, enable <em>Allow API
+access</em>.</p></li>
+<li><p>In <em>Profile</em>, go to API password and add a password. Go to
+<code>http://&lt;public-ip&gt;/api/</code> to check the API access is
+working.</p></li>
+<li><p>Go to your RSS application and provide the username, API password
+and the API path. For Google Reader compatible API, the path is
+<code>http://&lt;public-ip&gt;/api/greader.php</code>.</p></li>
+</ul>
+<p>API access can be used by your favorite application to add or remove
+feeds, mark as read or favorite and all other normal operations possible
+through the FreshRSS UI.</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2026 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
