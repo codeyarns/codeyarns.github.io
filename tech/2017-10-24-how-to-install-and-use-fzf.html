@@ -46,6 +46,8 @@ shells:</li>
 </ul>
 <pre><code>$ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 $ ~/.fzf/install</code></pre>
+<p>Add a call to it to <code>~/.config/fish/config.fish</code>:</p>
+<pre><code>fzf --fish | source</code></pre>
 <ul>
 <li><p><strong>Find files and directories:</strong> At the shell prompt,
 press <code>Ctrl+T</code> and FZF scans the files and directories inside
@@ -80,9 +82,10 @@ be inline in the results list using the option
 <code>--info=inline</code>. These and other commandline options to fzf
 can be set to the <code>FZF_CTRL_T_OPTS</code> shell variable. For the
 Fish shell for example, I set this in
-<code>~/.config/fish/config.fish</code>.</p></li>
+<code>~/.config/fish/config.fish</code> by adding this line:</p></li>
 </ul>
-<p><strong>Tried with:</strong> FZF 0.17.1 and Ubuntu 16.04</p>
+<pre><code>set --export FZF_CTRL_T_OPTS &quot; --border --info=inline &quot;</code></pre>
+<p><strong>Tried with:</strong> FZF 0.67.0 and Ubuntu 24.04</p>
 </div>
 
 <br />
