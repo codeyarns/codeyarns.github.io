@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Slurm</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+</div>
+<div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Slurm</h1>
+<p class="date">📅 2026-Jan-28 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#linux'>linux</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a
+href="https://en.wikipedia.org/wiki/Slurm_Workload_Manager"><strong>Slurm
+(Simple Linux Utility for Resource Management)</strong></a> is a Linux
+job scheduler commonly used on compute clusters and supercomputers.</p>
+<h2 id="common-options">Common options</h2>
+<ul>
+<li><code>-A</code> or <code>--account</code>: Use the specified account
+for the Slurm command. For example
+<code>--account=biology_team</code>.</li>
+</ul>
+<h2 id="sinfo">sinfo</h2>
+<p>This command prints information about the nodes in the cluster.</p>
+<ul>
+<li><p>List all nodes: <code>sinfo</code>.</p></li>
+<li><p>Print total number of nodes: <code>sinfo -o "%D"</code>.</p></li>
+<li><p>Print all possible <strong>states</strong> of nodes in the
+cluster: <code>sinfo -h -o "%T" | sort -u</code>.</p></li>
+<li><p>List the nodes in a specified state. For example, to list idle
+nodes: <code>sinfo -t idle</code>.</p></li>
+</ul>
+<h2 id="sbatch">sbatch</h2>
+<p>This is the command to submit a script to Slurm to run on the next
+node that becomes available. This command exits immediately printing out
+the Slurm job ID.</p>
+<p>Common options passed to this command:</p>
+<ul>
+<li><p><code>-o</code> or <code>--output</code>: File to write standard
+output to. For example <code>-o out-%j.txt</code> writes to a filename
+with the current Slurm job ID.</p></li>
+<li><p><code>-e</code> or <code>--error</code>: File to write standard
+error to. For example <code>-e err-%j.txt</code> writes to a filename
+with the current Slurm job ID.</p></li>
+<li><p><code>-G</code> or <code>--gpus</code>: Specify the number of
+GPUs required. For example <code>--gpus=4</code>.</p></li>
+<li><p><code>--wrap</code>: Specify the command to wrap into a dummy
+script. Since Slurm looks for a script file by default,
+<code>--wrap</code> is a trick to use when you just want to run a
+command on the node. For example <code>--wrap="hostname"</code> prints
+the hostname in the node we get and exits.</p></li>
+</ul>
+<h2 id="squeue">squeue</h2>
+<p>This command prints out the entire list of Slurm jobs in the queue
+right now.</p>
+<ul>
+<li><code>-u</code> or <code>--user</code>: List the jobs of the
+specified user. For example <code>--user=joe</code>.</li>
+</ul>
+<h2 id="scct">scct</h2>
+<p>This command can be used to find information about jobs that are
+already completed.</p>
+<ul>
+<li><code>-j</code> or <code>--jobs</code>: Find information of the
+specified jobs. For example <code>-j 123456</code>.</li>
+</ul>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2026 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>

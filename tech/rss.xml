@@ -7,7 +7,62 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Wed, 21 Jan 2026 22:46:46 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jan 2026 22:54:48 +0000</lastBuildDate>
+    <item>
+      <title>Slurm</title>
+      <link>https://codeyarns.com/tech/2026-01-28-slurm.html</link>
+      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Slurm_Workload_Manager"&gt;&lt;strong&gt;Slurm (Simple Linux Utility for Resource Management)&lt;/strong&gt;&lt;/a&gt; is a Linux job scheduler commonly used on compute clusters and supercomputers.&lt;/p&gt;
+&lt;h1&gt;Common options&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-A&lt;/code&gt; or &lt;code&gt;--account&lt;/code&gt;: Use the specified account for the Slurm command. For example &lt;code&gt;--account=biology_team&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;sinfo&lt;/h1&gt;
+&lt;p&gt;This command prints information about the nodes in the cluster.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;List all nodes: &lt;code&gt;sinfo&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Print total number of nodes: &lt;code&gt;sinfo -o "%D"&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Print all possible &lt;strong&gt;states&lt;/strong&gt; of nodes in the cluster: &lt;code&gt;sinfo -h -o "%T" | sort -u&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;List the nodes in a specified state. For example, to list idle nodes: &lt;code&gt;sinfo -t idle&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;sbatch&lt;/h1&gt;
+&lt;p&gt;This is the command to submit a script to Slurm to run on the next node that becomes available.
+This command exits immediately printing out the Slurm job ID.&lt;/p&gt;
+&lt;p&gt;Common options passed to this command:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-o&lt;/code&gt; or &lt;code&gt;--output&lt;/code&gt;: File to write standard output to. For example &lt;code&gt;-o out-%j.txt&lt;/code&gt; writes to a filename with the current Slurm job ID.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-e&lt;/code&gt; or &lt;code&gt;--error&lt;/code&gt;: File to write standard error to. For example &lt;code&gt;-e err-%j.txt&lt;/code&gt; writes to a filename with the current Slurm job ID.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;-G&lt;/code&gt; or &lt;code&gt;--gpus&lt;/code&gt;: Specify the number of GPUs required. For example &lt;code&gt;--gpus=4&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;--wrap&lt;/code&gt;: Specify the command to wrap into a dummy script. Since Slurm looks for a script file by default, &lt;code&gt;--wrap&lt;/code&gt; is a trick to use when you just want to run a command on the node. For example &lt;code&gt;--wrap="hostname"&lt;/code&gt; prints the hostname in the node we get and exits.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;squeue&lt;/h1&gt;
+&lt;p&gt;This command prints out the entire list of Slurm jobs in the queue right now.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-u&lt;/code&gt; or &lt;code&gt;--user&lt;/code&gt;: List the jobs of the specified user. For example &lt;code&gt;--user=joe&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;scct&lt;/h1&gt;
+&lt;p&gt;This command can be used to find information about jobs that are already completed.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-j&lt;/code&gt; or &lt;code&gt;--jobs&lt;/code&gt;: Find information of the specified jobs. For example &lt;code&gt;-j 123456&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <guid isPermaLink="true">https://codeyarns.com/tech/2026-01-28-slurm.html</guid>
+      <pubDate>Wed, 28 Jan 2026 21:56:55 +0000</pubDate>
+    </item>
     <item>
       <title>Google Gemini</title>
       <link>https://codeyarns.com/tech/2026-01-21-google-gemini.html</link>
@@ -22,10 +77,14 @@ It has quickly become my replacement of search engines.&lt;/p&gt;
 Install from the App Store &lt;a href="https://apps.apple.com/us/app/google-gemini/id6477489729"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;MacOS app&lt;/strong&gt;:
+&lt;p&gt;&lt;strong&gt;MacOS/Linux app&lt;/strong&gt;:
 There is no official app, so I create a web app instead.
-Open &lt;a href="https://gemini.google.com/app"&gt;gemini.google.com&lt;/a&gt; in Google Chrome, choose Save and Share -&amp;gt; Install Page as App.
+Open &lt;a href="https://gemini.google.com/app"&gt;gemini.google.com&lt;/a&gt; in Google Chrome, and choose ⋮ -&amp;gt; Cast, Save and Share -&amp;gt; Install Page as App.
 After this Google Gemini is available as a MacOS app to open and run.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;New chat&lt;/strong&gt;:
+Keyboard shortcut on Linux is &lt;code&gt;Ctrl Shift o&lt;/code&gt; and on MacOS it is &lt;code&gt;Cmd Shift o&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-01-21-google-gemini.html</guid>
@@ -614,18 +673,34 @@ Under &lt;em&gt;Show these items on the desktop&lt;/em&gt;, uncheck all the type
     <item>
       <title>MacOS Terminal</title>
       <link>https://codeyarns.com/tech/2025-04-29-macos-terminal.html</link>
-      <description>&lt;p&gt;&lt;strong&gt;Terminal&lt;/strong&gt; is the default terminal application on MacOS.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Terminal_(macOS)"&gt;&lt;strong&gt;Terminal&lt;/strong&gt;&lt;/a&gt; is the default terminal emulator on MacOS.&lt;/p&gt;
+&lt;h1&gt;Keyboard shortcuts&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;New tab: &lt;code&gt;command t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Close tab: &lt;code&gt;command w&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Increase font size: &lt;code&gt;command +&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Decrease font size: &lt;code&gt;command -&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Reset font size: &lt;code&gt;command 0&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Tricks&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Change font size temporarily&lt;/strong&gt;:
-Press &lt;code&gt;command +&lt;/code&gt; to increase, &lt;code&gt;command -&lt;/code&gt; to decrease and &lt;code&gt;command 0&lt;/code&gt; to reset the font size.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Support Page Up/Down&lt;/strong&gt;:
+By default, terminal does not support the Page Up/Down keys.
+Open Settings -&amp;gt; Profiles -&amp;gt; Keyboard.
+Add key setting with Key as &lt;code&gt;Page Up&lt;/code&gt;, Modifier as &lt;code&gt;None&lt;/code&gt;, Action as &lt;code&gt;Send Text&lt;/code&gt; and add control character &lt;code&gt;\033[5~&lt;/code&gt;.
+Add key setting with Key as &lt;code&gt;Page Down&lt;/code&gt;, Modifier as &lt;code&gt;None&lt;/code&gt;, Action as &lt;code&gt;Send Text&lt;/code&gt; and add control character &lt;code&gt;\033[6~&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Change font size persistently&lt;/strong&gt;:
-Go to Settings -&amp;gt; Profiles and change the font size for the profile you use.
-The font size change is not yet applied, until you right-click on the terminal window, choose Inspector and choose the profile again.
-The change will also be applied the next time Terminal is opened.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Change font and font size&lt;/strong&gt;:
+Go to Settings -&amp;gt; Profiles -&amp;gt; Text -&amp;gt; Font and set the font and font size.
+The font changes are not applied immediately (why!), until you right-click on the terminal window, choose Inspector and choose the profile again.
+Alternatively, restart the Terminal to see the changes.&lt;/p&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;References&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://support.apple.com/guide/terminal/welcome/mac"&gt;Terminal User Guide for MacOS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; Terminal 2.14 and MacOS Sequoia 15.2&lt;/p&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2025-04-29-macos-terminal.html</guid>
@@ -1352,32 +1427,6 @@ $ dive alpine
 &lt;p&gt;&lt;strong&gt;Tried with&lt;/strong&gt;: Dive 0.11.0, Docker 25.0.5 and Ubuntu 22.04&lt;/p&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2024-01-09-dive.html</guid>
       <pubDate>Tue, 09 Jan 2024 03:41:50 +0000</pubDate>
-    </item>
-    <item>
-      <title>AI Search extension for Firefox</title>
-      <link>https://codeyarns.com/tech/2024-01-09-ai-search.html</link>
-      <description>&lt;p&gt;&lt;a href="https://www.perplexity.ai/"&gt;&lt;strong&gt;Perplexity&lt;/strong&gt;&lt;/a&gt; is one of the many new startups that offer web search powered by LLMs and DL.
-The &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/ai-search/"&gt;&lt;strong&gt;AI Search&lt;/strong&gt;&lt;/a&gt; extension for Firefox brings that search capability directly into the browser.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Install&lt;/strong&gt;:
-Install the extension from &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/ai-search/"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Usage&lt;/strong&gt;:
-Clicking the extension's button from the toolbar opens a sidebar where your search query to Perplexity can be entered.
-There does not seem to be any way to set a keyboard shortcut for this.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Search engine&lt;/strong&gt;:
-The extension also adds Perplexity into the list of Firefox search engines.
-Go to the Firefox search settings to set Perplexity as the default search engine from the dropdown or move its position among the rest of the engines.
-Perplexity can also be used for searching by typing &lt;code&gt;@AI&lt;/code&gt; in the addressbar and then type in the rest of the search query.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tried with&lt;/strong&gt;: AI Search 0.2 and Firefox 121.0&lt;/p&gt;</description>
-      <guid isPermaLink="true">https://codeyarns.com/tech/2024-01-09-ai-search.html</guid>
-      <pubDate>Tue, 09 Jan 2024 03:26:32 +0000</pubDate>
     </item>
   </channel>
 </rss>
