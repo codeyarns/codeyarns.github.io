@@ -36,53 +36,44 @@ accounts</h1>
 remote <strong>Github</strong> account using SSH authentication. This is
 typically configured by adding your SSH key to your Github account. If
 you have two or more Github accounts and try to use the same SSH public
-key for them, Github rejects the key with the error <em>Key is already
-in use</em>.</p>
+key for them, Github rejects the key with the error
+<code>Key is already in use</code>.</p>
 <h2 id="solution">Solution</h2>
 <p>This problem can be solved by following these steps:</p>
 <ul>
-<li><p>Generate a second SSH key as described <a
+<li><p>Generate a SSH key for each Github account as described <a
 href="2016-01-20-how-to-ssh-without-username-or-password.html">here</a>.
-But instead of overwriting the default <code>~/.ssh/id_rsa</code> file,
-write this key to a separate file. For example:
-<code>~/.ssh/second_id_rsa</code>.</p></li>
-<li><p>Login to the Github website with the second Github account
-credentials. Add the second SSH public key
-<code>~/.ssh/second_id_rsa.pub</code> generated in the above step to
-this account.</p></li>
-<li><p>Add host entries in <code>~/.ssh/config</code> for the main
-Github host and a second Github host name of your own creation. For
-example, let us name the second host: <code>github.com-second</code>. We
-point the main Github host to the default SSH key file and the second
-host to the second SSH key file. For example, you might need to add
-these lines:</p></li>
+For example, generate <code>~/.ssh/id_ed25519.github.com-joe1</code> and
+<code>~/.ssh/id_ed25519.github.com-joe2</code>.</p></li>
+<li><p>Add the respective <code>.pub</code> keys to each of the Github
+accounts.</p></li>
+<li><p>Add host entries in <code>~/.ssh/config</code> for each Github
+account separately and associate it with its SSH key. For
+example:</p></li>
 </ul>
-<pre><code># Main Github host
-Host github.com
+<pre><code># Github account: joe1
+Host github.com-joe1
     HostName github.com
     User git
     AddKeysToAgent yes
-    IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/id_ed25519.github.com-joe1
 
-# Second Github host
+# Github account: joe2
 Host github.com-second
     HostName github.com
     User git
     AddKeysToAgent yes
-    IdentityFile ~/.ssh/second_id_rsa</code></pre>
+    IdentityFile ~/.ssh/id_ed25519.github.com-joe2</code></pre>
 <ul>
-<li><p>Git clone, push or pull in repositories from the main Github host
-should operate normally as before now.</p></li>
-<li><p>To clone the second repo, use <code>github.com-second</code>
-instead of <code>github.com</code> in the SSH remote URL:</p></li>
+<li>Clone repos using the new host names shown above. For example:</li>
 </ul>
-<pre><code>$ git clone git@github.com-second:joe/some_repo.git</code></pre>
-<p>This stores the <code>git@github.com-second:joe/some_repo.git</code>
-URL as the origin in <code>.git/config</code> in the newly created local
-clone. So all subsequent fetch and push commands will work
-seamlessly.</p>
-<p>For an existing local clone, you can also modify the SSH URL in its
-<code>.git/config</code> in the same way to obtain the same result.</p>
+<pre><code>$ git clone git@github.com-joe1:joe1/some_repo.git
+
+$ git clone git@github.com-joe2:joe2/some_other_repo.git</code></pre>
+<ul>
+<li>For existing repos, change the SSH path in the
+<code>.git/config</code> file.</li>
+</ul>
 <p><strong>Tried with:</strong> Git 2.17.1 and Ubuntu 18.04</p>
 </div>
 
