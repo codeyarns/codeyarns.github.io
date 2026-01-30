@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – vLLM</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+</div>
+<div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">vLLM</h1>
+<p class="date">📅 2026-Jan-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#llm'>llm</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a href="https://vllm.ai/"><strong>vLLM</strong></a> is an
+open-source LLM framework built on PyTorch.</p>
+<h2 id="build-and-run-from-source">Build and run from source</h2>
+<ul>
+<li>Get the code:</li>
+</ul>
+<pre><code>$ git clone https://github.com/vllm-project/vllm.git
+
+$ cd vllm</code></pre>
+<ul>
+<li>Create a Python virtual environment:</li>
+</ul>
+<pre><code>$ python3 -m venv vllm_venv
+
+$ source vllm_venv/bin/activate</code></pre>
+<ul>
+<li>Install the requirements:</li>
+</ul>
+<pre><code>$ python3 -m pip install -r requirements/common.txt
+
+$ python3 -m pip install -r requirements/cuda.txt</code></pre>
+<ul>
+<li>Build vLLM:</li>
+</ul>
+<pre><code>$ python3 -m pip install -e .</code></pre>
+<ul>
+<li>Run the vLLM server with a small model:</li>
+</ul>
+<pre><code>$ python3 -m vllm.entrypoints.openai.api_server \
+    --model HuggingFaceTB/SmolLM2-135M-Instruct \
+    --dtype float16 \
+    --gpu-memory-utilization 0.5 \
+    --max-model-len 128 \
+    --enforce-eager \
+    --disable-log-stats \
+    --kv-cache-dtype fp8</code></pre>
+<p>The server is now running and listening on port 8000.</p>
+<ul>
+<li>In a separate shell, send a query to the vLLM server:</li>
+</ul>
+<pre><code>$ vllm chat --model HuggingFaceTB/SmolLM2-135M-Instruct \
+    --quick &quot;How many letters are in the English alphabet?&quot;
+
+Using model: HuggingFaceTB/SmolLM2-135M-Instruct
+The English alphabet has 26 letters.</code></pre>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2026 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>

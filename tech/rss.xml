@@ -7,7 +7,68 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Fri, 30 Jan 2026 01:54:19 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Jan 2026 02:51:47 +0000</lastBuildDate>
+    <item>
+      <title>vLLM</title>
+      <link>https://codeyarns.com/tech/2026-01-30-vllm.html</link>
+      <description>&lt;p&gt;&lt;a href="https://vllm.ai/"&gt;&lt;strong&gt;vLLM&lt;/strong&gt;&lt;/a&gt; is an open-source LLM framework built on PyTorch.&lt;/p&gt;
+&lt;h1&gt;Build and run from source&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Get the code:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ git clone https://github.com/vllm-project/vllm.git
+
+$ cd vllm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a Python virtual environment:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ python3 -m venv vllm_venv
+
+$ source vllm_venv/bin/activate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install the requirements:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ python3 -m pip install -r requirements/common.txt
+
+$ python3 -m pip install -r requirements/cuda.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Build vLLM:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ python3 -m pip install -e .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run the vLLM server with a small model:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ python3 -m vllm.entrypoints.openai.api_server \
+    --model HuggingFaceTB/SmolLM2-135M-Instruct \
+    --dtype float16 \
+    --gpu-memory-utilization 0.5 \
+    --max-model-len 128 \
+    --enforce-eager \
+    --disable-log-stats \
+    --kv-cache-dtype fp8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The server is now running and listening on port 8000.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In a separate shell, send a query to the vLLM server:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ vllm chat --model HuggingFaceTB/SmolLM2-135M-Instruct \
+    --quick &amp;quot;How many letters are in the English alphabet?&amp;quot;
+
+Using model: HuggingFaceTB/SmolLM2-135M-Instruct
+The English alphabet has 26 letters.
+&lt;/code&gt;&lt;/pre&gt;</description>
+      <guid isPermaLink="true">https://codeyarns.com/tech/2026-01-30-vllm.html</guid>
+      <pubDate>Fri, 30 Jan 2026 02:23:04 +0000</pubDate>
+    </item>
     <item>
       <title>Slurm</title>
       <link>https://codeyarns.com/tech/2026-01-28-slurm.html</link>
@@ -1410,38 +1471,6 @@ In the Family Safety app, choose the child, go to Screen Time and choose &lt;em&
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2024-01-15-microsoft-family-safety.html</guid>
       <pubDate>Mon, 15 Jan 2024 19:05:43 +0000</pubDate>
-    </item>
-    <item>
-      <title>Dive tool for Docker</title>
-      <link>https://codeyarns.com/tech/2024-01-09-dive.html</link>
-      <description>&lt;p&gt;&lt;a href="https://github.com/wagoodman/dive"&gt;&lt;strong&gt;Dive&lt;/strong&gt;&lt;/a&gt; is a visual tool to explore the layers and contents of a Docker image.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Install&lt;/strong&gt;:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The &lt;a href="https://github.com/wagoodman/dive#installation"&gt;installation instructions&lt;/a&gt; for Ubuntu from the Github README is:&lt;/p&gt;
-&lt;pre class="codehilite"&gt;&lt;code&gt;$ export DIVE_VERSION=$(curl -sL &amp;quot;https://api.github.com/repos/wagoodman/dive/releases/latest&amp;quot; | grep '&amp;quot;tag_name&amp;quot;:' | sed -E 's/.*&amp;quot;v([^&amp;quot;]+)&amp;quot;.*/\1/')
-$ curl -OL https://github.com/wagoodman/dive/releases/download/v${DIVE_VERSION}/dive_${DIVE_VERSION}_linux_amd64.deb
-$ sudo apt install ./dive_${DIVE_VERSION}_linux_amd64.deb
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Usage&lt;/strong&gt;:
-Invoke on any image name that you have already pulled to your computer.
-For example:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="codehilite"&gt;&lt;code&gt;$ docker pull alpine
-
-$ dive alpine
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Layers are displayed on the left. Use arrow keys to move up and down.&lt;/li&gt;
-&lt;li&gt;Contents of the selected layer are displayed on the right. Use arrow keys to move, &lt;code&gt;Space&lt;/code&gt; to collapse or expand a directory.&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;Tab&lt;/code&gt; to switch between layers and contents views.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tried with&lt;/strong&gt;: Dive 0.11.0, Docker 25.0.5 and Ubuntu 22.04&lt;/p&gt;</description>
-      <guid isPermaLink="true">https://codeyarns.com/tech/2024-01-09-dive.html</guid>
-      <pubDate>Tue, 09 Jan 2024 03:41:50 +0000</pubDate>
     </item>
   </channel>
 </rss>
