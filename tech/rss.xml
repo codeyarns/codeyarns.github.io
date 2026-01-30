@@ -7,7 +7,7 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Wed, 28 Jan 2026 22:54:48 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Jan 2026 01:54:19 +0000</lastBuildDate>
     <item>
       <title>Slurm</title>
       <link>https://codeyarns.com/tech/2026-01-28-slurm.html</link>
@@ -59,7 +59,13 @@ This command exits immediately printing out the Slurm job ID.&lt;/p&gt;
 &lt;p&gt;This command can be used to find information about jobs that are already completed.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;-j&lt;/code&gt; or &lt;code&gt;--jobs&lt;/code&gt;: Find information of the specified jobs. For example &lt;code&gt;-j 123456&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/ul&gt;
+&lt;h1&gt;sacctmgr&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;To find which accounts you have access to on a cluster:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ sacctmgr -nP show assoc where user=$(whoami) format=account
+&lt;/code&gt;&lt;/pre&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-01-28-slurm.html</guid>
       <pubDate>Wed, 28 Jan 2026 21:56:55 +0000</pubDate>
     </item>
@@ -684,6 +690,15 @@ Under &lt;em&gt;Show these items on the desktop&lt;/em&gt;, uncheck all the type
 &lt;/ul&gt;
 &lt;h1&gt;Tricks&lt;/h1&gt;
 &lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Change shell&lt;/strong&gt;:
+The default shell used by Terminal is &lt;em&gt;zsh&lt;/em&gt;.
+To set a different shell for a particular profile, go to Settings -&amp;gt; Profiles -&amp;gt; Shell.
+Check the &lt;em&gt;Run command&lt;/em&gt; option and enter the path to the shell.
+For example, &lt;code&gt;/opt/homebrew/bin/fish&lt;/code&gt; for the Fish shell.
+Uncheck the &lt;em&gt;Run inside shell&lt;/em&gt; option.
+Restart Terminal.&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Support Page Up/Down&lt;/strong&gt;:
 By default, terminal does not support the Page Up/Down keys.

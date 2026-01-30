@@ -35,11 +35,18 @@ href="https://en.wikipedia.org/wiki/Rsync"><strong>Rsync</strong></a> is
 a tool that makes it easy to copy or sync contents across local and
 remote computers.</p>
 <ul>
+<li>To one-way sync a file:</li>
+</ul>
+<pre><code>$ rsync -av /home/joe/from-dir/specific-file /media/backup/to-dir</code></pre>
+<ul>
 <li>To one-way sync between local or remote directories:</li>
 </ul>
 <pre><code>$ rsync -av /home/joe/from-dir /media/backup/to-dir
+
 $ rsync -av /home/joe/from-dir chetan@some-remote:/media/backup/to-dir
+
 $ rsync -av chetan@some-remote:/home/chetan/from-dir /media/backup/to-dir
+
 $ rsync -av joe@some-remote-1:/home/joe/from-dir chetan@some-remote-2:/media/backup/to-dir</code></pre>
 <p>This recursively copies over all the files and directories in the
 source directory.</p>
@@ -52,6 +59,13 @@ source directory.</p>
 modification times, <code>-g</code> preserve group, <code>-o</code>
 preserve owner and <code>-D</code> preserve device files and special
 files.</p>
+<ul>
+<li>When source file is a symlink, it will be copied over to destination
+as a symlink. Add <code>-L</code> option to copy the
+<strong>contents</strong> from the file that the source symlink points
+to, to the destination:</li>
+</ul>
+<pre><code>$ rsync -avL /home/joe/from-dir/specific-file /media/backup/to-dir</code></pre>
 <ul>
 <li>To one-way sync such that the destination is a strict <strong>mirror
 copy</strong>, thus deleting any extra files (<code>--delete</code>) it
