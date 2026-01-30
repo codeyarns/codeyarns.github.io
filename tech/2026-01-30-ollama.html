@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Ollama</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+</head>
+
+<body>
+
+<div class="contentbox">
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+</div>
+<div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+</div>
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Ollama</h1>
+<p class="date">📅 2026-Jan-30 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#llm'>llm</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a href="https://ollama.com/"><strong>Ollama</strong></a> is an
+inference program to download and run LLM models on your local
+computer.</p>
+<h2 id="download-and-run">Download and run</h2>
+<ul>
+<li>Download and install:</li>
+</ul>
+<pre><code>$ curl -fsSL https://ollama.com/install.sh | sh</code></pre>
+<ul>
+<li>Pull a model and run it:</li>
+</ul>
+<pre><code>$ ./ollama pull smollm:135m
+
+$ ./ollama run smollm:135m
+
+&gt;&gt;&gt; Is cat an animal?
+Yes
+
+&gt;&gt;&gt; /bye</code></pre>
+<h2 id="build-and-run">Build and run</h2>
+<ul>
+<li>Install golang if you do not have it already:</li>
+</ul>
+<pre><code>$ sudo apt golang-go</code></pre>
+<ul>
+<li>Download the code:</li>
+</ul>
+<pre><code>$ git clone https://github.com/ollama/ollama.git
+
+$ cd ollama</code></pre>
+<ul>
+<li>Build it:</li>
+</ul>
+<pre><code>$ go generate .
+
+$ go build .</code></pre>
+<ul>
+<li>Pull a model and run it:</li>
+</ul>
+<pre><code>$ ./ollama pull smollm:135m
+
+$ ./ollama run smollm:135m
+
+&gt;&gt;&gt; Is cat an animal?
+Yes
+
+&gt;&gt;&gt; /bye</code></pre>
+<p>Ready to rock!</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2026 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
