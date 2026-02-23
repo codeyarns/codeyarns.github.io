@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – PageFind</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+</head>
+
+<body>
+
+<div class="contentbox">
+<!-- BEGIN before body -->
+
+<!-- Website title -->
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+</div>
+
+<!-- Blog links -->
+<div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+</div>
+
+<!-- Search box -->
+<br />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+
+<!-- END before body -->
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">PageFind</h1>
+<p class="date">📅 2026-Feb-23 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#search'>search</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a href="https://pagefind.app/"><strong>PageFind</strong></a> can be
+used to add search capability to any static website.</p>
+<ul>
+<li><strong>Install</strong>:</li>
+</ul>
+<pre><code>$ python3 -m pip install &#39;pagefind[extended]&#39;</code></pre>
+<ul>
+<li><strong>Index</strong>:</li>
+</ul>
+<p>To index the HTML webpages located in a local directory:</p>
+<pre><code>$ python3 -m pagefind --site ../my_website_files</code></pre>
+<p>This adds the index files and also the required JS files in
+<code>../my_website_files/pagefind</code> directory.</p>
+<ul>
+<li><strong>Add search box</strong>:</li>
+</ul>
+<p>Add this HTML code to all the website HTML files to get the search
+box:</p>
+<pre><code>&lt;link href=&quot;/pagefind/pagefind-ui.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;/pagefind/pagefind-ui.js&quot;&gt;&lt;/script&gt;
+&lt;div id=&quot;search&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+    window.addEventListener(&#39;DOMContentLoaded&#39;, (event) =&gt; {
+        new PagefindUI({ element: &quot;#search&quot;, showSubResults: true });
+    });
+&lt;/script&gt;</code></pre>
+<p>Upload the new HMTL files and also all the contents of the
+<code>../my_website_files/pagefind</code> directory online to have your
+website with search.</p>
+<p><strong>Tried with:</strong> PageFind 1.4.0</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2026 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
