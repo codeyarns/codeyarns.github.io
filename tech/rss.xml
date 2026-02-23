@@ -7,7 +7,44 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Sun, 15 Feb 2026 20:41:08 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Feb 2026 01:54:58 +0000</lastBuildDate>
+    <item>
+      <title>PageFind</title>
+      <link>https://codeyarns.com/tech/2026-02-23-pagefind.html</link>
+      <description>&lt;p&gt;&lt;a href="https://pagefind.app/"&gt;&lt;strong&gt;PageFind&lt;/strong&gt;&lt;/a&gt; can be used to add search capability to any static website.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Install&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ python3 -m pip install 'pagefind[extended]'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Index&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To index the HTML webpages located in a local directory:&lt;/p&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ python3 -m pagefind --site ../my_website_files
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This adds the index files and also the required JS files in &lt;code&gt;../my_website_files/pagefind&lt;/code&gt; directory.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Add search box&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Add this HTML code to all the website HTML files to get the search box:&lt;/p&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;&amp;lt;link href=&amp;quot;/pagefind/pagefind-ui.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt;
+&amp;lt;script src=&amp;quot;/pagefind/pagefind-ui.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;div id=&amp;quot;search&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&amp;lt;script&amp;gt;
+    window.addEventListener('DOMContentLoaded', (event) =&amp;gt; {
+        new PagefindUI({ element: &amp;quot;#search&amp;quot;, showSubResults: true });
+    });
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Upload the new HMTL files and also all the contents of the &lt;code&gt;../my_website_files/pagefind&lt;/code&gt; directory online to have your website with search.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; PageFind 1.4.0&lt;/p&gt;</description>
+      <guid isPermaLink="true">https://codeyarns.com/tech/2026-02-23-pagefind.html</guid>
+      <pubDate>Mon, 23 Feb 2026 01:46:18 +0000</pubDate>
+    </item>
     <item>
       <title>Wallbox Pulsar Plus</title>
       <link>https://codeyarns.com/tech/2026-02-15-wallbox-pulsar-plus.html</link>
@@ -32,7 +69,8 @@ The &lt;a href="https://wallbox.com/en_us/wallbox-app"&gt;Wallbox app&lt;/a&gt; 
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Changing ownership&lt;/strong&gt;:
 We could not use the Wallbox app since the Pular Plus charger was already linked to the email address of our previous owner.
-To change ownership, we had to contact &lt;a href="mailto:service.na@wallbox.com"&gt;service.na@wallbox.com&lt;/a&gt;.&lt;/p&gt;
+To change ownership, we had to contact &lt;a href="mailto:service.na@wallbox.com"&gt;service.na@wallbox.com&lt;/a&gt; with proof of home ownership and the serial number of our unit.
+In 24 hours, they promptly unlinked the previous owner and associated this unit with our email address.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-02-15-wallbox-pulsar-plus.html</guid>
@@ -189,7 +227,21 @@ This means that clicking on any ULR in any non-browser application will go throu
       <title>Tech links of February 2026</title>
       <link>https://codeyarns.com/tech/2026-02-01-tech-links-of-february-2026.html</link>
       <description>&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://www.smbc-comics.com/comic/version"&gt;SMBC funny take on the naming and versioning of AI models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://www.smbc-comics.com/comic/version"&gt;Naming and versioning of AI models&lt;/a&gt; (SMBC)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://world.hey.com/jason/the-obvious-the-easy-and-the-possible-2e11a3fb"&gt;The Obvious, the Easy, and the Possible&lt;/a&gt; (Jason Fried):
+Much of the tension in product development and interface design comes from trying to balance the obvious, the easy, and the possible.
+The thing(s) people do all the time, the always stuff, should be obvious.
+The things that should be easy are the things that people do frequently, but not always.
+[Possible] these are things people do sometimes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://blog.jim-nielsen.com/2025/icons-in-menus/"&gt;Icons in Menus Everywhere — Send Help&lt;/a&gt;:
+MacOS Tahoe has broken Apple's own guidelines by adding an icon for &lt;em&gt;every&lt;/em&gt; menu item.
+This is just visual clutter and increased my cognitive load when looking at menu items.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-02-01-tech-links-of-february-2026.html</guid>
       <pubDate>Sun, 01 Feb 2026 18:52:47 +0000</pubDate>
@@ -837,7 +889,7 @@ Choose &lt;em&gt;Sensors &amp;amp; Accessories&lt;/em&gt; -&amp;gt; Wrist Heart 
     <item>
       <title>Apple Watch SE 3</title>
       <link>https://codeyarns.com/tech/2025-09-21-apple-watch-se-3.html</link>
-      <description>&lt;p&gt;&lt;strong&gt;Apple Watch SE 3&lt;/strong&gt; is a smartwatch launched by Apple in 2025.
+      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Apple_Watch"&gt;&lt;strong&gt;Apple Watch SE 3&lt;/strong&gt;&lt;/a&gt; is a smartwatch launched by Apple in 2025.
 Of the 2 sizes available for this watch, I picked the 40mm case for my small wrist.
 I used the watch for a week and decided to return it due to reasons detailed later below.&lt;/p&gt;
 &lt;ul&gt;
@@ -1297,54 +1349,6 @@ Subway diagram of placement of Northbridge, Southbridge and FSB (Front Side Bus)
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2024-12-24-tech-links-of-december-2024.html</guid>
       <pubDate>Tue, 24 Dec 2024 20:35:35 +0000</pubDate>
-    </item>
-    <item>
-      <title>BlueSky</title>
-      <link>https://codeyarns.com/tech/2024-11-27-bluesky.html</link>
-      <description>&lt;p&gt;&lt;strong&gt;BlueSky&lt;/strong&gt; is an online service similar to Twitter to read, repost and share small posts.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Signup&lt;/strong&gt;:
-Sign up for an account at &lt;a href="https://bsky.app/"&gt;bsky.app&lt;/a&gt;.
-Choose &lt;em&gt;Bluesky&lt;/em&gt; as the &lt;em&gt;service&lt;/em&gt; and your Bluesky ID will be &lt;code&gt;@codeyarns.bluesky.social&lt;/code&gt;.
-If you are able to provide a custom service provider, then your Bluesky ID will be &lt;code&gt;@codeyarns.&amp;lt;something&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Online webpage&lt;/strong&gt;:
-Once signed up, you can read, repost and share posts online at &lt;a href="https://bsky.app/profile/codeyarns.bsky.social"&gt;&lt;code&gt;bsky.app/profile/codeyarns.bsky.social&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Follow&lt;/strong&gt;:
-The accounts you follow will appear as &lt;em&gt;following&lt;/em&gt; on your profile.
-The accounts that follow you will appear as &lt;em&gt;followers&lt;/em&gt; on your profile.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Feeds&lt;/strong&gt;:
-Posts from your &lt;em&gt;following&lt;/em&gt; accounts will appear in the default &lt;em&gt;Following&lt;/em&gt; feed.
-You can also find and add other custom feeds like &lt;em&gt;Followers&lt;/em&gt; (posts of your followers), &lt;em&gt;Mutuals&lt;/em&gt; (posts from mutually following accounts), &lt;em&gt;Mentions&lt;/em&gt; (only posts that mention you).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Lists&lt;/strong&gt;:
-You can add accounts to one or more lists you create at &lt;a href="https://bsky.app/lists"&gt;bsky.app/lists&lt;/a&gt;.
-Even accounts that you do not follow can be added to lists.
-I find this a handy way to categorize my following into lists and not have their posts appear in the main Following feed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Posts&lt;/strong&gt;:
-Posts have a 300 character limit and they cannot be edited once posted.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt;:
-Posts can have hashtags.
-Posts of a specific hashtag can be viewed at &lt;a href="https://bsky.app/hashtag/TheEconomist"&gt;bsky.app/hashtag/TheEconomist&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Bridging&lt;/strong&gt;:
-For details on how to bridge from Bluesky to Mastodon or from Mastodon to Bluesky, see &lt;a href="2022-11-06-mastodon.html"&gt;my Mastodon post&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
-      <guid isPermaLink="true">https://codeyarns.com/tech/2024-11-27-bluesky.html</guid>
-      <pubDate>Wed, 27 Nov 2024 17:53:09 +0000</pubDate>
     </item>
   </channel>
 </rss>
