@@ -7,7 +7,20 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Fri, 27 Feb 2026 18:40:35 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Feb 2026 00:29:44 +0000</lastBuildDate>
+    <item>
+      <title>iTerm2</title>
+      <link>https://codeyarns.com/tech/2026-02-28-iterm2.html</link>
+      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/ITerm2"&gt;&lt;strong&gt;iTerm2&lt;/strong&gt;&lt;/a&gt; is an open-source alternative to the &lt;a href="2025-04-29-macos-terminal.html"&gt;&lt;strong&gt;Terminal&lt;/strong&gt;&lt;/a&gt; app that ships with MacOS.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Split windows&lt;/strong&gt;:
+Press &lt;code&gt;command d&lt;/code&gt; to split the window horizontally into 2 panes.
+So, a new session is created in the new pane that is created.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; iTerm2 and MacOS Tahoe 26.3&lt;/p&gt;</description>
+      <guid isPermaLink="true">https://codeyarns.com/tech/2026-02-28-iterm2.html</guid>
+      <pubDate>Sat, 28 Feb 2026 00:23:02 +0000</pubDate>
+    </item>
     <item>
       <title>Batteries</title>
       <link>https://codeyarns.com/tech/2026-02-27-batteries.html</link>
@@ -135,7 +148,7 @@ That needs to be done later in the webpage.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Install a package&lt;/strong&gt;:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;A package is called &lt;em&gt;bottle&lt;/em&gt; and installing it is called &lt;em&gt;pouring&lt;/em&gt;.&lt;/p&gt;
-&lt;pre class="codehilite"&gt;&lt;code&gt;$ brew install some_app
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ brew install foobar_app
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;The binaries installed by Homebrew can be seen at &lt;code&gt;/opt/Homebrew/opt&lt;/code&gt;.&lt;/p&gt;
@@ -143,7 +156,7 @@ That needs to be done later in the webpage.&lt;/p&gt;
 &lt;li&gt;&lt;strong&gt;Add a package repository&lt;/strong&gt;:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Online package repository is called a &lt;em&gt;tap&lt;/em&gt;.&lt;/p&gt;
-&lt;pre class="codehilite"&gt;&lt;code&gt;$ brew tap some_repo
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ brew tap foobar_repo
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -156,8 +169,19 @@ That needs to be done later in the webpage.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Upgrade packages&lt;/strong&gt;:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;To actually upgrade the installed Homebrew and packages:&lt;/p&gt;
+&lt;p&gt;To actually upgrade all the installed Homebrew and packages:&lt;/p&gt;
 &lt;pre class="codehilite"&gt;&lt;code&gt;$ brew upgrade
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To upgrade a specific package:&lt;/p&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ brew upgrade foobar_pkg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Search&lt;/strong&gt;:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To search for a package name in the repositories:&lt;/p&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ brew search foobar_pkg
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;ul&gt;
@@ -1075,7 +1099,7 @@ Under &lt;em&gt;Show these items on the desktop&lt;/em&gt;, uncheck all the type
 &lt;li&gt;Decrease font size: &lt;code&gt;command -&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Reset font size: &lt;code&gt;command 0&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1&gt;Tricks&lt;/h1&gt;
+&lt;h1&gt;Usage&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Change shell&lt;/strong&gt;:
@@ -1098,6 +1122,13 @@ Add key setting with Key as &lt;code&gt;Page Down&lt;/code&gt;, Modifier as &lt;
 Go to Settings -&amp;gt; Profiles -&amp;gt; Text -&amp;gt; Font and set the font and font size.
 The font changes are not applied immediately (why!), until you right-click on the terminal window, choose Inspector and choose the profile again.
 Alternatively, restart the Terminal to see the changes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Split windows&lt;/strong&gt;:
+Press &lt;code&gt;command d&lt;/code&gt; to split the current window vertically into 2 panes.
+Terminal duplicates the same terminal session in the 2 panes, making it easier to scroll back and compare something in the same session.
+Note that Terminal &lt;strong&gt;cannot show 2 separate sessions in split windows&lt;/strong&gt;, that feature does not exist.
+This is the primary reason I switched to &lt;a href="2026-02-28-iterm2.html"&gt;&lt;strong&gt;iTerm2&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1&gt;References&lt;/h1&gt;
@@ -1311,38 +1342,6 @@ A good example is people choosing Youtube's recommendation feed (the default) in
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2025-02-01-tech-links-of-february-2025.html</guid>
       <pubDate>Sat, 01 Feb 2025 17:31:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>Tech links of January 2025</title>
-      <link>https://codeyarns.com/tech/2025-01-02-tech-links-of-january-2025.html</link>
-      <description>&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://ubc.ca.panopto.com/Panopto/Pages/Viewer.aspx?id=880a1d92-30d7-4683-80e7-b1e000f501d3"&gt;Death and Life in Silicon Valley&lt;/a&gt;:
-Erik Lindholm's retirement talk about his 35-year career at SGI and NVIDIA.
-Covers his early personal life, work in Japan, SGI and move to NVIDIA.
-Creation of T&amp;amp;L unit in GPU (instead of CPU), launch of GeForce 256 (Geometry Force) GPU, vertex/pixel shaders, unified shaders, warp to work on packed 16 vertices/pixels and road to SIMT/CUDA.
-Highly recommended watch for graphics and CUDA enthusiasts.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.xyplorer.com/faq-topic.php?id=VB6"&gt;Is XYplorer really written in VB6?&lt;/a&gt;:
-Short history of Visual Basic, why XYplorer is written (and successful) in it to this day and some of its real limitations.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://matduggan.com/stop-trying-to-schedule-a-call-with-me/"&gt;Stop Trying To Schedule A Call With Me&lt;/a&gt;:
-Humorous telling of the journey of a typical relationship between an engineer and the startup whose product he tries out to solve a problem.
-I have been on &lt;em&gt;both&lt;/em&gt; sides of this relationship, so I know it's true.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=3IESh12AQw4"&gt;Furnace - How to Relight a Pilot Light&lt;/a&gt;:
-This video shows the pilot light and thermocouple in a gas furnace used for heating homes in the US and how they work.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="https://www.youtube.com/watch?v=n76kz1tcjtw"&gt;How A Gas Furnace Works&lt;/a&gt;:
-Animated schematic of how a gas furnace works at home.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
-      <guid isPermaLink="true">https://codeyarns.com/tech/2025-01-02-tech-links-of-january-2025.html</guid>
-      <pubDate>Thu, 02 Jan 2025 21:04:38 +0000</pubDate>
     </item>
   </channel>
 </rss>
