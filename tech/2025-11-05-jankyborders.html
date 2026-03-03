@@ -48,13 +48,14 @@
 <h1 class="title">JankyBorders</h1>
 <p class="date">📅 2025-Nov-05 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#macos'>macos</a> ⬩ 📚 <a href="index.html">Archive</a></p>
 </header>
-<p>Something I miss from older versions of Windows is clear indication
-of which window is currently in focus. In MacOS Tahoe, the only
-indication of the window in focus is that its traffic light buttons are
-in color, while they are greyed out for the rest of the windows. <a
+<p>In MacOS Tahoe, there is no clear indication of which window is
+currently in focus. The only indication is that the traffic light
+buttons of the active window are in color, while they are greyed out for
+the rest of the windows.</p>
+<p><a
 href="https://github.com/FelixKratz/JankyBorders"><strong>JankyBorders</strong></a>
 is an open-source app that helps draw a colored border around the
-currently focused window.</p>
+currently focused window and it solved this problem I had.</p>
 <ul>
 <li><strong>Install</strong>:</li>
 </ul>
@@ -63,8 +64,9 @@ $ brew install borders</code></pre>
 <ul>
 <li><strong>Test the app</strong>:</li>
 </ul>
-<p>To test the app from the terminal with a thick green border:</p>
-<pre><code>$ borders width=10 active_color=0xFF00FF00</code></pre>
+<p>To test the app from the terminal with a thick orange border:</p>
+<pre><code>$ borders width=10 active_color=0xFFFF7F50</code></pre>
+<p>Note that the first hex is the transparency, followed by RGB hex.</p>
 <ul>
 <li><strong>To run as service</strong>:</li>
 </ul>
@@ -74,12 +76,15 @@ $ brew install borders</code></pre>
 
 options=(
     width=10
-    active_color=0xFF00FF00
+    active_color=0xFFFF7F50
 )
 
 borders &quot;${options[@]}&quot;</code></pre>
 <p>Next run as service in the background:</p>
 <pre><code>$ brew services start borders</code></pre>
+<p>If you make any changes to the config file, restart the borders
+service:</p>
+<pre><code>$ brew services restart borders</code></pre>
 <p><strong>Tried with:</strong> JankyBorders 1.8.4 and MacOS Tahoe
 26.0.1</p>
 </div>
