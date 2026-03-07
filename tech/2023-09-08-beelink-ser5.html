@@ -116,13 +116,15 @@ it.</li>
 <li>Close the cover and screw in. Reboot and enjoy.</li>
 </ul>
 <h2 id="bluetooth">Bluetooth</h2>
-<p>After a Ubuntu upgrade, I found that the Bluetooth settings dialog
-was saying <code>No Bluetooth found</code>. It turned out that the Linux
-kernel module for Bluetooth devices <code>btusb</code> was not
-loaded.</p>
-<p>I loaded it using this command and Bluetooth started working
-immediately:</p>
-<pre><code>$ sudo modprobe btusb</code></pre>
+<p>An irritating problem is that after an Ubuntu update, I usually find
+that the Bluetooth is OFF and the Bluetooth settings says
+<code>No default controller available</code>.</p>
+<p>The following commands usually restore Bluetooth for me:</p>
+<pre><code>$ sudo modprobe -r btusb
+
+$ sudo modprobe btusb
+
+$ bluetoothctl power on</code></pre>
 <h2 id="disconnecting-wifi">Disconnecting Wifi</h2>
 <p>After a recent Ubuntu upgrade, the wifi connection with my home
 router started to disconnect and reconnect every 2 minutes.</p>
