@@ -152,6 +152,79 @@ when the charge appears. The purchase isn’t the end of anything. It’s
 the first day of a relationship you didn’t agree to, with no clean way
 out.</p>
 </blockquote>
+<h2
+id="my-fireside-chat-about-agentic-engineering-at-the-pragmatic-summit"><a
+href="https://simonwillison.net/2026/Mar/14/pragmatic-summit/">My
+fireside chat about agentic engineering at the Pragmatic Summit</a></h2>
+<p>Highlights from this Simon Willison interview is full of practical
+advise for vide coding and agentic engineering</p>
+<h2 id="what-is-agentic-engineering"><a
+href="https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/">What
+is agentic engineering?</a></h2>
+<blockquote>
+<p>I use the term agentic engineering to describe the practice of
+developing software with the assistance of coding agents.</p>
+</blockquote>
+<blockquote>
+<p>What are coding agents? They’re agents that can both write and
+execute code.</p>
+</blockquote>
+<blockquote>
+<p>What’s an agent? Agents run tools in a loop to achieve a goal.</p>
+</blockquote>
+<h2 id="how-coding-agents-work"><a
+href="https://simonwillison.net/guides/agentic-engineering-patterns/how-coding-agents-work/">How
+coding agents work</a></h2>
+<blockquote>
+<p>A coding agent is a piece of software that acts as a harness for an
+LLM, extending that LLM with additional capabilities that are powered by
+invisible prompts and implemented as callable tools.</p>
+</blockquote>
+<blockquote>
+<p>Coding agents are designed with this optimization in mind - they
+avoid modifying earlier conversation content to ensure the cache is used
+as efficiently as possible.</p>
+</blockquote>
+<blockquote>
+<p>The defining feature of an LLM agent is that agents can call tools. A
+tool is a function that the agent harness makes available to the
+LLM.</p>
+</blockquote>
+<blockquote>
+<p>Coding agents usually start every conversation with a system prompt,
+which is not shown to the user but provides instructions telling the
+model how it should behave.</p>
+</blockquote>
+<blockquote>
+<p>Reasoning, sometimes presented as thinking in the UI, is when a model
+spends additional time generating text that talks through the problem
+and its potential solutions before presenting a reply to the user.</p>
+</blockquote>
+<h2 id="subagents"><a
+href="https://simonwillison.net/guides/agentic-engineering-patterns/subagents/">Subagents</a></h2>
+<blockquote>
+<p>LLMs are restricted by their context limit - how many tokens they can
+fit in their working memory at any given time. These values have not
+increased much over the past two years even as the LLMs themselves have
+seen dramatic improvements in their abilities - they generally top out
+at around 1,000,000, and benchmarks frequently report better quality
+results below 200,000.</p>
+</blockquote>
+<blockquote>
+<p>Carefully managing the context such that it fits within those limits
+is critical to getting great results out of a model.</p>
+</blockquote>
+<blockquote>
+<p>Subagents provide a simple but effective way to handle larger tasks
+without burning through too much of the coding agent’s valuable
+top-level context. When a coding agent uses a subagent it effectively
+dispatches a fresh copy of itself to achieve a specified goal, with a
+new context window that starts with a fresh prompt.</p>
+</blockquote>
+<h2 id="openai-tokenizer"><a
+href="https://platform.openai.com/tokenizer">OpenAI Tokenizer</a></h2>
+<p>Online visualization tool to view the tokens and token IDs of any
+input text.</p>
 </div>
 
 <br />
