@@ -7,12 +7,75 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Tue, 17 Mar 2026 04:25:43 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Mar 2026 06:15:47 +0000</lastBuildDate>
+    <item>
+      <title>How to make a Firefox addon</title>
+      <link>https://codeyarns.com/tech/2026-03-20-how-to-make-a-firefox-addon.html</link>
+      <description>&lt;p&gt;One of the best features of Firefox is the availability of a large number of addons.
+It is pretty easy to create a Firefox addon and with AI tools the bar is lowered to create addons to enhance your browsing experience in many little ways.&lt;/p&gt;
+&lt;h1&gt;Develop the addon&lt;/h1&gt;
+&lt;p&gt;Developing an addon involves at least a &lt;code&gt;manifest.json&lt;/code&gt; and additional HTML/JS/CSS files they pull in.&lt;/p&gt;
+&lt;p&gt;Example of &lt;code&gt;manifest.json&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;{
+  &amp;quot;manifest_version&amp;quot;: 2,
+  &amp;quot;name&amp;quot;: &amp;quot;BoostMyWebpage&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;1.0&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;Boost my webpage with EXTRA power!&amp;quot;,
+  &amp;quot;browser_specific_settings&amp;quot;: {
+    &amp;quot;gecko&amp;quot;: {
+      &amp;quot;id&amp;quot;: &amp;quot;boostmywebpage@extension-without-data-collection&amp;quot;,
+      &amp;quot;data_collection_permissions&amp;quot;: {
+        &amp;quot;required&amp;quot;: [&amp;quot;none&amp;quot;]
+      }
+    }
+  },
+  &amp;quot;permissions&amp;quot;: [
+    &amp;quot;activeTab&amp;quot;
+  ],
+  &amp;quot;browser_action&amp;quot;: {
+    &amp;quot;default_popup&amp;quot;: &amp;quot;boostmywepage.html&amp;quot;,
+    &amp;quot;default_title&amp;quot;: &amp;quot;Boost My Webpage&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;Test the addon&lt;/h1&gt;
+&lt;p&gt;To test the addon, you can temporarily add the addon to the current sessio of Firefox.
+To do this go to &lt;code&gt;about:debugging&lt;/code&gt; and choose the link to add the &lt;code&gt;manifest.json&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Once the addon is added to the Firefox session, test and debug it.
+The addon is automatically removed the next time Firefox is restarted.&lt;/p&gt;
+&lt;h1&gt;Submit the addon&lt;/h1&gt;
+&lt;p&gt;For permanent use, the addon needs to be verified and signed by Mozilla into a &lt;code&gt;.xpi&lt;/code&gt; file.
+You can additionally also choose to publish it publicly to the online Firefox addons registry.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Zip up the addon files:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ zip -r boostmywebpage.zip manifest.json boostmywebpage.html boostmywebpage.js boostmywebpage.css
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Go to &lt;a href="https://addons.mozilla.org/developers"&gt;Mozilla Addons Developers&lt;/a&gt; page.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Login and choose to Submit a new addon.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Upload the &lt;code&gt;.zip&lt;/code&gt; file for validation and signing.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;You receive an email once they approve and you can download the &lt;code&gt;.xpi&lt;/code&gt; file to install into Firefox.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Bingo! You have your own Firefox addon.&lt;/p&gt;</description>
+      <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-20-how-to-make-a-firefox-addon.html</guid>
+      <pubDate>Fri, 20 Mar 2026 05:55:55 +0000</pubDate>
+    </item>
     <item>
       <title>Kensington SlimBlade Pro EQ Trackball</title>
       <link>https://codeyarns.com/tech/2026-03-16-kensington-slimblade-pro-eq-trackball.html</link>
       <description>&lt;p&gt;I have been using trackballs instead of mice for almost 18 years now.
-Last year, I upgraded to a &lt;a href="https://www.kensington.com/p/products/electronic-control-solutions/trackball-products/slimblade-pro-eq-trackball/"&gt;&lt;strong&gt;Kensington SlimBlade Pro EQ Trackball&lt;/strong&gt;&lt;/a&gt; from my trusty &lt;a href="2020-04-19-kensington-expert-mouse-wireless-trackball.html"&gt;**Kensington Expert Mouse Wireless Trackball&lt;/a&gt;.&lt;/p&gt;
+Last year, I upgraded to a &lt;a href="https://www.kensington.com/p/products/electronic-control-solutions/trackball-products/slimblade-pro-eq-trackball/"&gt;&lt;strong&gt;Kensington SlimBlade Pro EQ Trackball&lt;/strong&gt;&lt;/a&gt; from my trusty &lt;a href="2020-04-19-kensington-expert-mouse-wireless-trackball.html"&gt;Kensington Expert Mouse Wireless Trackball&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;SKU: K72084NA&lt;/p&gt;
@@ -29,11 +92,11 @@ So, between the Bluetooth and wifi, it can only connect to 2 computers.&lt;/p&gt
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Charging&lt;/strong&gt;:
-Use a USB cable to charge the trackball.&lt;/p&gt;
+A USB cable can be used to charge the trackball.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Wired&lt;/strong&gt;:
-It can also be used as a wired trackball when connected by USB.&lt;/p&gt;
+When connected by a USB cable to a computer, it can also be used as a wired trackball with that computer.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-16-kensington-slimblade-pro-eq-trackball.html</guid>
@@ -124,6 +187,48 @@ Who is going to take what’s available and push it until it breaks and learn so
 &lt;p&gt;Nothing you own is finished. Everything exists in a state of permanent incompletion, permanently needing. Your phone needs updates, needs charging, needs storage cleared, needs passwords rotated.
 Your apps need permissions reviewed, terms accepted, preferences re-configured after every update.
 Your subscriptions need evaluating, need renewing, need canceling, need justifying to yourself every month when the charge appears. The purchase isn't the end of anything. It's the first day of a relationship you didn't agree to, with no clean way out.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://simonwillison.net/2026/Mar/14/pragmatic-summit/"&gt;My fireside chat about agentic engineering at the Pragmatic Summit&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Highlights from this Simon Willison interview is full of practical advise for vide coding and agentic engineering &lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/"&gt;What is agentic engineering?&lt;/a&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I use the term agentic engineering to describe the practice of developing software with the assistance of coding agents.&lt;/p&gt;
+&lt;p&gt;What are coding agents? They're agents that can both write and execute code.&lt;/p&gt;
+&lt;p&gt;What's an agent? Agents run tools in a loop to achieve a goal.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://simonwillison.net/guides/agentic-engineering-patterns/how-coding-agents-work/"&gt;How coding agents work&lt;/a&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A coding agent is a piece of software that acts as a harness for an LLM, extending that LLM with additional capabilities that are powered by invisible prompts and implemented as callable tools.&lt;/p&gt;
+&lt;p&gt;Coding agents are designed with this optimization in mind - they avoid modifying earlier conversation content to ensure the cache is used as efficiently as possible.&lt;/p&gt;
+&lt;p&gt;The defining feature of an LLM agent is that agents can call tools.
+A tool is a function that the agent harness makes available to the LLM.&lt;/p&gt;
+&lt;p&gt;Coding agents usually start every conversation with a system prompt, which is not shown to the user but provides instructions telling the model how it should behave.&lt;/p&gt;
+&lt;p&gt;Reasoning, sometimes presented as thinking in the UI, is when a model spends additional time generating text that talks through the problem and its potential solutions before presenting a reply to the user.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://simonwillison.net/guides/agentic-engineering-patterns/subagents/"&gt;Subagents&lt;/a&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;LLMs are restricted by their context limit - how many tokens they can fit in their working memory at any given time. These values have not increased much over the past two years even as the LLMs themselves have seen dramatic improvements in their abilities - they generally top out at around 1,000,000, and benchmarks frequently report better quality results below 200,000.&lt;/p&gt;
+&lt;p&gt;Carefully managing the context such that it fits within those limits is critical to getting great results out of a model.&lt;/p&gt;
+&lt;p&gt;Subagents provide a simple but effective way to handle larger tasks without burning through too much of the coding agent’s valuable top-level context.
+When a coding agent uses a subagent it effectively dispatches a fresh copy of itself to achieve a specified goal, with a new context window that starts with a fresh prompt.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://platform.openai.com/tokenizer"&gt;OpenAI Tokenizer&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Online visualization tool to view the tokens and token IDs of any input text.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://www.nytimes.com/2026/03/12/magazine/ai-coding-programming-jobs-claude-chatgpt.html"&gt;Coding After Coders: The End of Computer Programming as We Know It&lt;/a&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When you behold the prompt file of a coder using A.I., you are viewing a record of the developer’s attempts to restrain the agents’ generally competent, but unpredictably deviant, actions.&lt;/p&gt;
+&lt;p&gt;If you want to put a number on how much more productive A.I. is making the programmers at mature tech firms like Google, it’s 10 percent, Sundar Pichai, Google’s chief executive, has said.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://simonwillison.net/2026/Feb/21/claws/"&gt;Andrej Karpathy talks about "Claws"&lt;/a&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"Claw" is becoming a term of art for the entire category of OpenClaw-like agent systems - AI agents that generally run on personal hardware, communicate via messaging protocols and can both act on direct instructions and schedule tasks.
+It even comes with an established emoji 🦞&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://thatshubham.com/blog/news-audit"&gt;The 49MB Web Page&lt;/a&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Taking a cursory look at the network waterfall for a single article load reveals a sprawling, unregulated programmatic ad auction happening entirely in the client's browser.
+Before the user finishes reading the headline, the browser is forced to process dozens of concurrent bidding requests to exchanges like Rubicon Project (fastlane.json) and Amazon Ad Systems.&lt;/p&gt;
+&lt;p&gt;The background invisible pixel drops and redirects to doubleclick.net and casalemedia help stitch the user's cross-site identity together across different ad networks.&lt;/p&gt;
 &lt;/blockquote&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-10-tech-links-of-march-2026.html</guid>
       <pubDate>Tue, 10 Mar 2026 05:25:37 +0000</pubDate>
@@ -1306,134 +1411,6 @@ This is the primary reason I switched to &lt;a href="2026-02-28-iterm2.html"&gt;
 &lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; Terminal 2.14 and MacOS Sequoia 15.2&lt;/p&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2025-04-29-macos-terminal.html</guid>
       <pubDate>Tue, 29 Apr 2025 05:33:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>MacOS Cheatsheet</title>
-      <link>https://codeyarns.com/tech/2025-04-24-macos-cheatsheet.html</link>
-      <description>&lt;h1&gt;Keyboard Shortcuts&lt;/h1&gt;
-&lt;p&gt;MacOS keyboard shortcuts use the special 4 keys on the Apple keyboard (L to R): &lt;code&gt;fn&lt;/code&gt;, &lt;code&gt;control&lt;/code&gt;, &lt;code&gt;option&lt;/code&gt; and &lt;code&gt;command&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Most of the keyboard shortcuts are visible beside the toolbar menu option when you choose them.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;command space&lt;/code&gt;: Opens Spotlight, that can be used to launch applications and open files by typing their name.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;command tab&lt;/code&gt;: Switch between currently open applications.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;control command f&lt;/code&gt;: Maximize the current application.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;command w&lt;/code&gt;: Close the window. Other windows of an application will still be open and the application will continue to run in the background (even if its final window is closed).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;command q&lt;/code&gt;: Quit the application and all its windows.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;control command q&lt;/code&gt;: Lock the screen&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Dock&lt;/h1&gt;
-&lt;p&gt;Located at the bottom of the desktop and holds the pinned applications and open applications.
-The running applications have a dot displayed under them.
-There are some default applications like Finder (leftmost icon) and Downloads and Trash (rightmost icons).&lt;/p&gt;
-&lt;h1&gt;Mission Control&lt;/h1&gt;
-&lt;p&gt;Spaces is the MacOS name for &lt;em&gt;virtual desktops&lt;/em&gt;.
-Mission Control is the view where MacOS shows all the virtual desktops and the windows in them.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;To open Mission Control use &lt;code&gt;control up&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To move between spaces use &lt;code&gt;control right&lt;/code&gt; and &lt;code&gt;control left&lt;/code&gt;. On a MacBook, swiping 3 fingers left or right on the trackpad does the same.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To create a new space, open Mission Control and click the &lt;code&gt;+&lt;/code&gt; at the top-right corner.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;To move a window to a different space, open Mission Control and drag window to the destination space in the top bar.  There are no keyboard shortcuts for this, unlike Windows.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Tiling&lt;/h1&gt;
-&lt;p&gt;The options to tile windows can be found by holding the pointer over the top-left &lt;em&gt;green&lt;/em&gt; button of the current window.
-In the &lt;em&gt;Move &amp;amp; Resize&lt;/em&gt; section, we can choose to tile the window to the left or right &lt;strong&gt;vertical half&lt;/strong&gt;.
-If the &lt;strong&gt;Displays have separate Spaces&lt;/strong&gt; option in MacOS settings is enabled, then we get additional options here to tile the window to top or botton &lt;strong&gt;horizontal half&lt;/strong&gt; or to any of the 4 &lt;strong&gt;quarters&lt;/strong&gt; (need to hold down the &lt;code&gt;option&lt;/code&gt; button to see this).&lt;/p&gt;
-&lt;p&gt;The keyboard shortcuts for moving windows to any of these 4 halves or 4 quarters can be viewed and set in Settings -&amp;gt; Keyboard -&amp;gt; Keyboard Shortcuts -&amp;gt; Windows.&lt;/p&gt;
-&lt;h1&gt;Common operations&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Uninstall application&lt;/strong&gt;:
-The currently installed applications are listed in the &lt;em&gt;Applications&lt;/em&gt; folder in Finder.
-To uninstall, right-click on the application and choose &lt;em&gt;Move to Trash&lt;/em&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Full screen window&lt;/strong&gt;:
-To toggle the current window to full screen and back use &lt;code&gt;control command f&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Maximize window&lt;/strong&gt;:
-Window can be maximized (or &lt;em&gt;Zoom&lt;/em&gt; as MacOS calls it) by double-clicking on the titlebar.
-The keyboard shortcut is &lt;code&gt;fn control f&lt;/code&gt;, but weirdly it only maximizes, but does not toggle back the window shape.
-I prefer going to Settings -&amp;gt; Keyboard -&amp;gt; Keyboard Shortcuts -&amp;gt; App Shortcuts and under &lt;em&gt;All Applications&lt;/em&gt;, add a keyboard shortcut with Menu title &lt;code&gt;Zoom&lt;/code&gt; and a custom keyboard shortcut such as &lt;code&gt;shift command m&lt;/code&gt;.
-This keyboard shortcut both maximizes and toggles back the window shape.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Insert emoji&lt;/strong&gt;:
-On the Macbook Pro keyboard, the &lt;code&gt;🌐&lt;/code&gt; or &lt;code&gt;Fn&lt;/code&gt; key brings up the emoji picker.
-When using a keyboard without that key, pressing &lt;code&gt;control command space&lt;/code&gt; does the same.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Show scroll bars&lt;/strong&gt;:
-To always show a scroll bar in windows, go to System Settings -&amp;gt; Appearance.
-For &lt;em&gt;Show scroll bars&lt;/em&gt; choose the option &lt;em&gt;Always&lt;/em&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Moving in text&lt;/strong&gt;:
-Macbook Pro keyboard does not have Home and End buttons.
-So, use &lt;code&gt;command left&lt;/code&gt; and &lt;code&gt;command right&lt;/code&gt; to move to start and end of current line of text.
-Similarly, use &lt;code&gt;shift command left&lt;/code&gt; and &lt;code&gt;shift command right&lt;/code&gt; to mark up to left or right end of line of text.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Take screenshot&lt;/strong&gt;:
-There are multiple keyboard shortcuts dealing with different kinds of screenshots.
-I found that the most convenient is &lt;code&gt;shift command 5&lt;/code&gt; which shows a rectangle.
-The rectangle can be resized to any region of the screen and press the Capture button at the bottom of the display to do the deed.
-The screenshot images are saved to the Desktop.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Find IP address&lt;/strong&gt;:
-Open Terminal and type &lt;code&gt;ifconfig&lt;/code&gt;.
-Look for the IP address listed for the &lt;code&gt;en0&lt;/code&gt; network interface.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Lock the screen when lid is closed&lt;/strong&gt;:
-Go to System Settings -&amp;gt; Lock Screen.
-Set the option &lt;em&gt;Require password after screen saver begins or display is turned off&lt;/em&gt; to &lt;em&gt;Immediately&lt;/em&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Remap Windows keyboard keys&lt;/strong&gt;:
-When I connect a USB Windows keyboard, its Win key is mapped to Command and its Alt key is mapped to Option.
-To swap the Win and Alt key mappings, go to System Settings -&amp;gt; Keyboard -&amp;gt; Keyboard Shortcuts.
-In the dialog, choose Modifier Keys and in the Select keyboard option choose &lt;em&gt;USB keyboard&lt;/em&gt;.
-For Option key, pick Command.
-For Command key, pick Option.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Change default mail application&lt;/strong&gt;:
-Apple Mail is the default mail application.
-To change the default to a different mail application (like Outlook) you still need to open Apple Mail and have an account in there.
-Go to menu bar, choose Mail -&amp;gt; Settings.
-Go to General -&amp;gt; Default email reader and set to a different mail app.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Switch between windows&lt;/strong&gt;:
-The &lt;code&gt;cmd tab&lt;/code&gt; keyboard shortcut only switches between apps, not the individual windows, while I prefer to switch between windows (just like in Windows).
-&lt;a href="https://alt-tab-macos.netlify.app/"&gt;&lt;strong&gt;AltTab&lt;/strong&gt;&lt;/a&gt; is a fantastic open-source tool that can be used to switch between all windows.
-It can be customized to run at startup from the menubar, work with any keyboard shortcut (I like to replace &lt;code&gt;cmd tab&lt;/code&gt; with this) and it can display the windows as thumbnails, app icons or titles, all in 3 different sizes (small/medium/large).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Change name of Bluetooth device&lt;/strong&gt;:
-Some Bluetooth devices have associated software that can be used to change their name.
-If they do not, then their name to MacOS at least can be changed in the OS.
-To do this, open the Bluetooth settings, and click the (i) to the right of the device name.
-In the dialog that pops up, change the device name and press Return.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://support.apple.com/guide/mac-help/work-in-multiple-spaces-mh14112/mac"&gt;Work in multiple spaces on MacOS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; MacOS Tahoe 26.3.2&lt;/p&gt;</description>
-      <guid isPermaLink="true">https://codeyarns.com/tech/2025-04-24-macos-cheatsheet.html</guid>
-      <pubDate>Thu, 24 Apr 2025 05:47:54 +0000</pubDate>
     </item>
   </channel>
 </rss>
