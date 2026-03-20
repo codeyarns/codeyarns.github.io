@@ -7,7 +7,99 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Fri, 20 Mar 2026 06:15:47 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 20 Mar 2026 22:18:55 +0000</lastBuildDate>
+    <item>
+      <title>Claude Code</title>
+      <link>https://codeyarns.com/tech/2026-03-20-claude-code.html</link>
+      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Claude_(language_model)#Claude_Code"&gt;&lt;strong&gt;Claude Code&lt;/strong&gt;&lt;/a&gt; is the CLI agentic AI tool by Anthropic designed to aid in software development.
+At the shell, this tool is invoked as &lt;code&gt;claude&lt;/code&gt;.&lt;/p&gt;
+&lt;h1&gt;Basics&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Invoke&lt;/strong&gt; &lt;code&gt;claude&lt;/code&gt; at the root of any project directory.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ask&lt;/strong&gt; it questions in natural language about the codebase in that directory to learn more about the project.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Implement&lt;/strong&gt; code changes by asking it in natural language.
+It will show you the diff before writing the changes to the files.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Commit&lt;/strong&gt; the code changes to Git using natural language.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Drop into shell&lt;/strong&gt; by suspending Claude Code using &lt;code&gt;ctrl z&lt;/code&gt;.
+This is useful to run shell commands.
+Jump back into the suspended Claude session using &lt;code&gt;fg&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Clear&lt;/strong&gt; the current conversation history with &lt;code&gt;/clear&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Everytime Claude Code is invoked, it does not remember the previous session.
+To make it &lt;strong&gt;resume&lt;/strong&gt; the most recent session in that directory, use &lt;code&gt;claude -c&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;&lt;a href="https://code.claude.com/docs/en/commands"&gt;Built-in commands&lt;/a&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/btw&lt;/code&gt;: Ask a side question that does not add to the current context window.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/compact&lt;/code&gt;: Compress the context window by replacing with a summary.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/context&lt;/code&gt;: Display visualization of current model info, context window usage, memory used by &lt;code&gt;CLAUDE.md&lt;/code&gt;, &lt;code&gt;AGENTS.md&lt;/code&gt; and skills.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/cost&lt;/code&gt;: Show total cost in $ from token usage.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/fast&lt;/code&gt;: Check if fast mode is ON or OFF. Also use to toggle it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/init&lt;/code&gt;: Initialize the project with &lt;code&gt;CLAUDE.md&lt;/code&gt; if it does not exist already.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;/insights&lt;/code&gt;: Generates a report of your Claude Code usage at &lt;code&gt;~/.claude/usage-data/report.html&lt;/code&gt;.
+Be prepared to be severely judged and reviewed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;&lt;a href="https://code.claude.com/docs/en/skills"&gt;Skills&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;A &lt;strong&gt;skill&lt;/strong&gt; is a way for the user to extend the toolkit of Claude Code with additional and specific functionality.&lt;/p&gt;
+&lt;p&gt;A skill is specified in a &lt;code&gt;SKILL.md&lt;/code&gt; file like this:&lt;/p&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;---
+name: use-super-power
+description: Use the super power of Unix tools to answer my query.
+---
+
+Here is a list of Unix tools you should invoke when answering the query:
+- du
+- df
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;name&lt;/code&gt; is the name of the skill, written typically in lowercase, no spaces and separated by hyphens.
+For example &lt;code&gt;use-super-power&lt;/code&gt;.
+User can explicitly invoke it as &lt;code&gt;/use-super-power&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;description&lt;/code&gt; is a user-friendly description of the skill in English.
+The skill will be used by Claude Code automatically if user asks something that is similar to what is in the description.&lt;/p&gt;
+&lt;p&gt;This file can be located for use by any project as &lt;code&gt;~/.claude/skills/use-super-power/SKILL.md&lt;/code&gt;.
+Or it can be located inside a specific directory for use only by that project: &lt;code&gt;/home/joe/my-gnu-kernel/.claude/skills/use-super-power/SKILL.md&lt;/code&gt;.
+Other files required by the skill can be placed alongside in its directory.&lt;/p&gt;
+&lt;p&gt;To invoke a skill explicitly, use its name: &lt;code&gt;/use-super-power&lt;/code&gt;.
+This loads the skill and also runs its with any input argument provided.&lt;/p&gt;
+&lt;p&gt;If the skill is loaded based on user's textual description, Claude Code shows that the skill is being loaded:&lt;/p&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;Skill(use-super-power)
+  ⎿  Successfully loaded skill
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The loaded skills at any point in time can be seen by typing &lt;code&gt;/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Currently there is no way to ask Claude to load skills located in a specific random directory.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; Claude Code 2.1.79&lt;/p&gt;</description>
+      <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-20-claude-code.html</guid>
+      <pubDate>Fri, 20 Mar 2026 20:39:14 +0000</pubDate>
+    </item>
     <item>
       <title>How to make a Firefox addon</title>
       <link>https://codeyarns.com/tech/2026-03-20-how-to-make-a-firefox-addon.html</link>
@@ -228,7 +320,13 @@ It even comes with an established emoji 🦞&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Taking a cursory look at the network waterfall for a single article load reveals a sprawling, unregulated programmatic ad auction happening entirely in the client's browser.
 Before the user finishes reading the headline, the browser is forced to process dozens of concurrent bidding requests to exchanges like Rubicon Project (fastlane.json) and Amazon Ad Systems.&lt;/p&gt;
-&lt;p&gt;The background invisible pixel drops and redirects to doubleclick.net and casalemedia help stitch the user's cross-site identity together across different ad networks.&lt;/p&gt;
+&lt;p&gt;The background invisible pixel drops and redirects to doubleclick.net and casalemedia help stitch the user's cross-site identity together across different ad networks. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://www.augmentcode.com/blog/how-we-hire-ai-native-engineers-now"&gt;How we hire AI-native engineers now: our criteria | Augment Code&lt;/a&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Coding still matters. But increasingly, it’s the part machines can help with.
+More important now is judgment: the ability to choose the right problems, make sound architectural decisions, and direct both humans and agents toward meaningful outcomes.&lt;/p&gt;
+&lt;p&gt;“It works” is easy. “It will keep working in production” is much harder.&lt;/p&gt;
 &lt;/blockquote&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-10-tech-links-of-march-2026.html</guid>
       <pubDate>Tue, 10 Mar 2026 05:25:37 +0000</pubDate>
@@ -238,9 +336,17 @@ Before the user finishes reading the headline, the browser is forced to process 
       <link>https://codeyarns.com/tech/2026-02-28-iterm2.html</link>
       <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/ITerm2"&gt;&lt;strong&gt;iTerm2&lt;/strong&gt;&lt;/a&gt; is an open-source alternative to the &lt;a href="2025-04-29-macos-terminal.html"&gt;&lt;strong&gt;Terminal&lt;/strong&gt;&lt;/a&gt; app that ships with MacOS.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Split windows&lt;/strong&gt;:
-Press &lt;code&gt;command d&lt;/code&gt; to split the window horizontally into 2 panes.
-So, a new session is created in the new pane that is created.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Split&lt;/strong&gt;:
+The window can be split to create a new terminal session.
+Press &lt;code&gt;command d&lt;/code&gt; to split vertically or &lt;code&gt;shift command d&lt;/code&gt; to split horizontally.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Change shell&lt;/strong&gt;:
+To set a different shell as the default one, go to Settings -&amp;gt; Profiles -&amp;gt; General -&amp;gt; Command.
+Choose &lt;em&gt;Custom Shell&lt;/em&gt; and provide the full path to the shell binary.
+For example: &lt;code&gt;/opt/homebrew/bin/fish&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; iTerm2 and MacOS Tahoe 26.3&lt;/p&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-02-28-iterm2.html</guid>
@@ -1359,58 +1465,6 @@ Once added this local computer will be listed under &lt;em&gt;Locations&lt;/em&g
 &lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; Finder 26.3 and MacOS Tahoe 26.3.2&lt;/p&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2025-05-07-finder-cheatsheet.html</guid>
       <pubDate>Wed, 07 May 2025 13:09:01 +0000</pubDate>
-    </item>
-    <item>
-      <title>MacOS Terminal</title>
-      <link>https://codeyarns.com/tech/2025-04-29-macos-terminal.html</link>
-      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Terminal_(macOS)"&gt;&lt;strong&gt;Terminal&lt;/strong&gt;&lt;/a&gt; is the default terminal emulator on MacOS.&lt;/p&gt;
-&lt;h1&gt;Keyboard shortcuts&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;New tab: &lt;code&gt;command t&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Close tab: &lt;code&gt;command w&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Increase font size: &lt;code&gt;command +&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Decrease font size: &lt;code&gt;command -&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Reset font size: &lt;code&gt;command 0&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Usage&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Change shell&lt;/strong&gt;:
-The default shell used by Terminal is &lt;em&gt;zsh&lt;/em&gt;.
-To set a different shell for a particular profile, go to Settings -&amp;gt; Profiles -&amp;gt; Shell.
-Check the &lt;em&gt;Run command&lt;/em&gt; option and enter the path to the shell.
-For example, &lt;code&gt;/opt/homebrew/bin/fish&lt;/code&gt; for the Fish shell.
-Uncheck the &lt;em&gt;Run inside shell&lt;/em&gt; option.
-Restart Terminal.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Support Page Up/Down&lt;/strong&gt;:
-By default, terminal does not support the Page Up/Down keys.
-Open Settings -&amp;gt; Profiles -&amp;gt; Keyboard.
-Add key setting with Key as &lt;code&gt;Page Up&lt;/code&gt;, Modifier as &lt;code&gt;None&lt;/code&gt;, Action as &lt;code&gt;Send Text&lt;/code&gt; and add control character &lt;code&gt;\033[5~&lt;/code&gt;.
-Add key setting with Key as &lt;code&gt;Page Down&lt;/code&gt;, Modifier as &lt;code&gt;None&lt;/code&gt;, Action as &lt;code&gt;Send Text&lt;/code&gt; and add control character &lt;code&gt;\033[6~&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Change font and font size&lt;/strong&gt;:
-Go to Settings -&amp;gt; Profiles -&amp;gt; Text -&amp;gt; Font and set the font and font size.
-The font changes are not applied immediately (why!), until you right-click on the terminal window, choose Inspector and choose the profile again.
-Alternatively, restart the Terminal to see the changes.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Split windows&lt;/strong&gt;:
-Press &lt;code&gt;command d&lt;/code&gt; to split the current window vertically into 2 panes.
-Terminal duplicates the same terminal session in the 2 panes, making it easier to scroll back and compare something in the same session.
-Note that Terminal &lt;strong&gt;cannot show 2 separate sessions in split windows&lt;/strong&gt;, that feature does not exist.
-This is the primary reason I switched to &lt;a href="2026-02-28-iterm2.html"&gt;&lt;strong&gt;iTerm2&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://support.apple.com/guide/terminal/welcome/mac"&gt;Terminal User Guide for MacOS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; Terminal 2.14 and MacOS Sequoia 15.2&lt;/p&gt;</description>
-      <guid isPermaLink="true">https://codeyarns.com/tech/2025-04-29-macos-terminal.html</guid>
-      <pubDate>Tue, 29 Apr 2025 05:33:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

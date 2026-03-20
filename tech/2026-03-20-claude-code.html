@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Ashwin Nanjappa">
+  <title>Code Yarns – Claude Code</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../styles.css">
+  <!-- RSS feed -->
+  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+</head>
+
+<body>
+
+<div class="contentbox">
+<!-- BEGIN before body -->
+
+<!-- Website title -->
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+</div>
+
+<!-- Blog links -->
+<div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+</div>
+
+<!-- Search box -->
+<br />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+
+<!-- END before body -->
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">Claude Code</h1>
+<p class="date">📅 2026-Mar-20 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#ai'>ai</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a
+href="https://en.wikipedia.org/wiki/Claude_(language_model)#Claude_Code"><strong>Claude
+Code</strong></a> is the CLI agentic AI tool by Anthropic designed to
+aid in software development. At the shell, this tool is invoked as
+<code>claude</code>.</p>
+<h2 id="basics">Basics</h2>
+<ul>
+<li><p><strong>Invoke</strong> <code>claude</code> at the root of any
+project directory.</p></li>
+<li><p><strong>Ask</strong> it questions in natural language about the
+codebase in that directory to learn more about the project.</p></li>
+<li><p><strong>Implement</strong> code changes by asking it in natural
+language. It will show you the diff before writing the changes to the
+files.</p></li>
+<li><p><strong>Commit</strong> the code changes to Git using natural
+language.</p></li>
+<li><p><strong>Drop into shell</strong> by suspending Claude Code using
+<code>ctrl z</code>. This is useful to run shell commands. Jump back
+into the suspended Claude session using <code>fg</code>.</p></li>
+<li><p><strong>Clear</strong> the current conversation history with
+<code>/clear</code>.</p></li>
+<li><p>Everytime Claude Code is invoked, it does not remember the
+previous session. To make it <strong>resume</strong> the most recent
+session in that directory, use <code>claude -c</code>.</p></li>
+</ul>
+<h2 id="built-in-commands"><a
+href="https://code.claude.com/docs/en/commands">Built-in
+commands</a></h2>
+<ul>
+<li><p><code>/btw</code>: Ask a side question that does not add to the
+current context window.</p></li>
+<li><p><code>/compact</code>: Compress the context window by replacing
+with a summary.</p></li>
+<li><p><code>/context</code>: Display visualization of current model
+info, context window usage, memory used by <code>CLAUDE.md</code>,
+<code>AGENTS.md</code> and skills.</p></li>
+<li><p><code>/cost</code>: Show total cost in $ from token
+usage.</p></li>
+<li><p><code>/fast</code>: Check if fast mode is ON or OFF. Also use to
+toggle it.</p></li>
+<li><p><code>/init</code>: Initialize the project with
+<code>CLAUDE.md</code> if it does not exist already.</p></li>
+<li><p><code>/insights</code>: Generates a report of your Claude Code
+usage at <code>~/.claude/usage-data/report.html</code>. Be prepared to
+be severely judged and reviewed.</p></li>
+</ul>
+<h2 id="skills"><a
+href="https://code.claude.com/docs/en/skills">Skills</a></h2>
+<p>A <strong>skill</strong> is a way for the user to extend the toolkit
+of Claude Code with additional and specific functionality.</p>
+<p>A skill is specified in a <code>SKILL.md</code> file like this:</p>
+<pre><code>---
+name: use-super-power
+description: Use the super power of Unix tools to answer my query.
+---
+
+Here is a list of Unix tools you should invoke when answering the query:
+- du
+- df</code></pre>
+<p>The <code>name</code> is the name of the skill, written typically in
+lowercase, no spaces and separated by hyphens. For example
+<code>use-super-power</code>. User can explicitly invoke it as
+<code>/use-super-power</code>.</p>
+<p>The <code>description</code> is a user-friendly description of the
+skill in English. The skill will be used by Claude Code automatically if
+user asks something that is similar to what is in the description.</p>
+<p>This file can be located for use by any project as
+<code>~/.claude/skills/use-super-power/SKILL.md</code>. Or it can be
+located inside a specific directory for use only by that project:
+<code>/home/joe/my-gnu-kernel/.claude/skills/use-super-power/SKILL.md</code>.
+Other files required by the skill can be placed alongside in its
+directory.</p>
+<p>To invoke a skill explicitly, use its name:
+<code>/use-super-power</code>. This loads the skill and also runs its
+with any input argument provided.</p>
+<p>If the skill is loaded based on user’s textual description, Claude
+Code shows that the skill is being loaded:</p>
+<pre><code>Skill(use-super-power)
+  ⎿  Successfully loaded skill</code></pre>
+<p>The loaded skills at any point in time can be seen by typing
+<code>/</code>.</p>
+<p>Currently there is no way to ask Claude to load skills located in a
+specific random directory.</p>
+<p><strong>Tried with:</strong> Claude Code 2.1.79</p>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2026 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
