@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="author" content="Ashwin Nanjappa">
-  <title>Code Yarns – Tech links of March 2026</title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
-  <link rel="stylesheet" href="../styles.css">
-  <!-- RSS feed -->
-  <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="author" content="Ashwin Nanjappa">
+    <title>Code Yarns – Tech links of March 2026</title>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- RSS feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+    <link rel="human-json" href="/human.json">
 </head>
 
 <body>
@@ -336,6 +337,34 @@ keeping an engine alive - YouTube</a></h2>
 <p>Technology Connections gem uses the car engine <em>oil pressure</em>
 warning to delve into the workings of the internal combustion engine,
 engine block, pistons, crankshaft and oil pump.</p>
+<h2
+id="daniel-woods---2026---flash-moe-streaming-a-397b-parameter-mixture-of-experts-model-from-nvme-at-57-tokenssecond-on-consumer-hardware"><a
+href="https://github.com/danveloper/flash-moe/blob/main/paper/flash_moe.pdf">Daniel
+Woods - 2026 - Flash-MoE: Streaming a 397B Parameter Mixture-of-Experts
+Model from NVMe at 5.7 Tokens/Second on Consumer Hardware</a></h2>
+<ul>
+<li>Developed using autoresearch protocol. Author and Claude Code. AI
+generated the Metal shaders, Objective-C pipeline.</li>
+<li>Qwen3.5-397B-A17B runs on Macbook Pro (M3 Max) with 48GB unified
+memory at 5 TPS. Weights streaming from NVMe SSD for experts, 2-bit
+experts and inference engine in Objective-C calling Metal GPU compute
+shaders.</li>
+<li>LPDDR has 400GB/s and NVMeSSD has 17GB/s.</li>
+<li>Unified memory means a Metal buffer allocated by GPU can be accessed
+by CPU and vice versa.</li>
+<li>Choose Top-4 experts instead of Top-10.</li>
+<li>Non-expert weights use 5.5GB.</li>
+<li>Expert weights are 200 GB for 4-bit and 120 GB for 2-bit. Stored in
+format that enables direct access to expert weights by expert
+index.</li>
+<li>Both 4-bit and 2-bit weights are quantized in groups of 64 values,
+with BF16 float+bias for each 64 and actual quantized values stored in
+UINT32 chunks.</li>
+<li>Attention, softmax and Top-K, tokenizer on CPU, rest on GPU with 5
+Metal compute shaders.</li>
+<li>pread to directly read from expert weight file to memory buffer used
+by Metal shader.</li>
+</ul>
 </div>
 
 <br />
