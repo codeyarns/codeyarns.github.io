@@ -7,7 +7,54 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Fri, 20 Mar 2026 22:18:55 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2026 04:22:56 +0000</lastBuildDate>
+    <item>
+      <title>human.json</title>
+      <link>https://codeyarns.com/tech/2026-03-24-humanjson.html</link>
+      <description>&lt;p&gt;&lt;a href="https://codeberg.org/robida/human.json"&gt;&lt;strong&gt;human.json&lt;/strong&gt;&lt;/a&gt; is a simple decentralized mechanism to discover human-authored websites and for owners of such sites to declare authorship.
+It essentially helps build a human-curated network of trusted sites.&lt;/p&gt;
+&lt;h1&gt;For website owner&lt;/h1&gt;
+&lt;p&gt;To assert that your website is human-authored, follow 2 simple steps:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a &lt;code&gt;human.json&lt;/code&gt; at the root of your domain in this format:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;{
+    &amp;quot;url&amp;quot;: &amp;quot;https://codeyarns.com&amp;quot;,
+    &amp;quot;version&amp;quot;: &amp;quot;0.1.1&amp;quot;,
+    &amp;quot;vouches&amp;quot;: [
+        {&amp;quot;url&amp;quot;: &amp;quot;https://nedbatchelder.com&amp;quot;, &amp;quot;vouched_at&amp;quot;: &amp;quot;2026-03-22&amp;quot;},
+        {&amp;quot;url&amp;quot;: &amp;quot;https://daringfireball.net&amp;quot;, &amp;quot;vouched_at&amp;quot;: &amp;quot;2026-03-22&amp;quot;},
+        {&amp;quot;url&amp;quot;: &amp;quot;https://stratechery.com&amp;quot;, &amp;quot;vouched_at&amp;quot;: &amp;quot;2026-03-23&amp;quot;}
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The contents of the JSON file describe the domain of your own site and also list the other websites which you believe are human-authored.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add this line in the header of your HTML files:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;&amp;lt;link rel=&amp;quot;human-json&amp;quot; href=&amp;quot;/human.json&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;For web users&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install the Firefox extension from &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/human-json-verifier/"&gt;here&lt;/a&gt;.
+Make sure the addon is pinned to the toolbar, so that its traffic light icon is visible.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Toolbar icon is ⚪️ when there is no information on the website you are visiting.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Toolbar icon is 🟢 or 🟡 or 🟠 depending on whether it is 1/2/3 hops away from a website you trust as human-authored.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When you visit a website which has human.json, you can click on the addon button and click &lt;em&gt;Trust this site&lt;/em&gt; to add it and the list of sites in its human.json file to your network (being tracked by your addon).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-24-humanjson.html</guid>
+      <pubDate>Tue, 24 Mar 2026 04:04:57 +0000</pubDate>
+    </item>
     <item>
       <title>Claude Code</title>
       <link>https://codeyarns.com/tech/2026-03-20-claude-code.html</link>
@@ -327,7 +374,44 @@ Before the user finishes reading the headline, the browser is forced to process 
 &lt;p&gt;Coding still matters. But increasingly, it’s the part machines can help with.
 More important now is judgment: the ability to choose the right problems, make sound architectural decisions, and direct both humans and agents toward meaningful outcomes.&lt;/p&gt;
 &lt;p&gt;“It works” is easy. “It will keep working in production” is much harder.&lt;/p&gt;
-&lt;/blockquote&gt;</description>
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://arxiv.org/abs/2409.12941v3"&gt;Satyapriya Krishna - 2024 - Fact, Fetch, and Reason: A Unified Evaluation of Retrieval-Augmented Generation&lt;/a&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Proposes FRAMES (Factuality, Retrieval, And reasoning MEasurement Set), a dataset and unified framework designed to assess LLM performance in end-to-end RAG scenarios.&lt;/li&gt;
+&lt;li&gt;Dataset is 824 samples, each question requiring 2-15 Wikipedia articles.&lt;/li&gt;
+&lt;li&gt;For multi-step evaluation, model is asked a question and instruction to generate k search queries used to extract the top Wiki articles. This is appended to the context and repeated n times and asked the question with this final appended context.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;&lt;a href="https://gerrit-review.googlesource.com/Documentation/user-attention-set.html"&gt;Gerrit Code Review - Attention Set&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;2 principles for good team velocity in code reviews:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Reviewers are expected to respond in a timely manner when it is their turn. If you don’t plan to respond within ~24h, then you should either remove yourself from the attention set or you should at least send a clarification message to the change owner.&lt;/p&gt;
+&lt;p&gt;Change owners are expected to manage the attention set of their changes carefully. They should make sure that reviewers are only in the attention set when the owner waits for a response from them.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://shkspr.mobi/blog/2026/03/im-ok-being-left-behind-thanks/"&gt;I’m OK being left behind, thanks! – Terence Eden’s Blog&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;An alternate perspective.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I'm utterly content to wait until their hype has been realised.
+Why should I invest in learning the equivalent of WordStar for DOS when Google Docs is coming any-day-now?
+If this tech is as amazing as you say it is, I'll be able to pick it up and become productive on a timescale of my choosing not yours.
+It is 100% OK to wait and see if something is actually useful.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://shkspr.mobi/blog/2025/06/gadget-review-treedix-usb-cable-tester/"&gt;Gadget Review: Treedix USB Cable Tester – Terence Eden’s Blog&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Fantastic gadget to use with all the USB cables at home and work to learn about the myriad details of USB and to separate the good cables from the bad.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://www.youtube.com/watch"&gt;Oil pressure is the only thing keeping an engine alive - YouTube&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Technology Connections gem uses the car engine &lt;em&gt;oil pressure&lt;/em&gt; warning to delve into the workings of the internal combustion engine, engine block, pistons, crankshaft and oil pump.&lt;/p&gt;
+&lt;h1&gt;&lt;a href="https://github.com/danveloper/flash-moe/blob/main/paper/flash_moe.pdf"&gt;Daniel Woods - 2026 - Flash-MoE: Streaming a 397B Parameter Mixture-of-Experts Model from NVMe at 5.7 Tokens/Second on Consumer Hardware&lt;/a&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Developed using autoresearch protocol. Author and Claude Code. AI generated the Metal shaders, Objective-C pipeline.&lt;/li&gt;
+&lt;li&gt;Qwen3.5-397B-A17B runs on Macbook Pro (M3 Max) with 48GB unified memory at 5 TPS. Weights streaming from NVMe SSD for experts, 2-bit experts and inference engine in Objective-C calling Metal GPU compute shaders.&lt;/li&gt;
+&lt;li&gt;LPDDR has 400GB/s and NVMeSSD has 17GB/s.&lt;/li&gt;
+&lt;li&gt;Unified memory means a Metal buffer allocated by GPU can be accessed by CPU and vice versa.&lt;/li&gt;
+&lt;li&gt;Choose Top-4 experts instead of Top-10.&lt;/li&gt;
+&lt;li&gt;Non-expert weights use 5.5GB.&lt;/li&gt;
+&lt;li&gt;Expert weights are 200 GB for 4-bit and 120 GB for 2-bit. Stored in format that enables direct access to expert weights by expert index.&lt;/li&gt;
+&lt;li&gt;Both 4-bit and 2-bit weights are quantized in groups of 64 values, with BF16 float+bias for each 64 and actual quantized values stored in UINT32 chunks.&lt;/li&gt;
+&lt;li&gt;Attention, softmax and Top-K, tokenizer on CPU, rest on GPU with 5 Metal compute shaders.&lt;/li&gt;
+&lt;li&gt;pread to directly read from expert weight file to memory buffer used by Metal shader.&lt;/li&gt;
+&lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-10-tech-links-of-march-2026.html</guid>
       <pubDate>Tue, 10 Mar 2026 05:25:37 +0000</pubDate>
     </item>
@@ -1198,13 +1282,17 @@ borders &amp;quot;${options[@]}&amp;quot;
     <item>
       <title>Preview Cheatsheet</title>
       <link>https://codeyarns.com/tech/2025-10-30-preview-cheatsheet.html</link>
-      <description>&lt;p&gt;&lt;strong&gt;Preview&lt;/strong&gt; is the default application in MacOS to view images and PDF files.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Preview_(Apple)"&gt;&lt;strong&gt;Preview&lt;/strong&gt;&lt;/a&gt; is the default application in MacOS to view images and PDF files.&lt;/p&gt;
 &lt;h1&gt;PDF files&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Highlight&lt;/strong&gt;:
 Choose View -&amp;gt; Show Markup toolbar so that it is visible at the top.
 Mark the lines with the mouse cursor and choose the &lt;em&gt;Highlight&lt;/em&gt; button in the Markup toolbar.
 Keyboard shortcut is to mark the lines and press &lt;code&gt;control command h&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Resources&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://support.apple.com/guide/preview/welcome/mac"&gt;Preview User Guide for Mac - Apple Support&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2025-10-30-preview-cheatsheet.html</guid>
       <pubDate>Thu, 30 Oct 2025 19:43:51 +0000</pubDate>
@@ -1414,57 +1502,6 @@ I prefer a round or hexagonal shape for a watch and though Apple has so many wat
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2025-09-21-apple-watch-se-3.html</guid>
       <pubDate>Sun, 21 Sep 2025 03:44:58 +0000</pubDate>
-    </item>
-    <item>
-      <title>Finder Cheatsheet</title>
-      <link>https://codeyarns.com/tech/2025-05-07-finder-cheatsheet.html</link>
-      <description>&lt;p&gt;The &lt;a href="https://en.wikipedia.org/wiki/Finder_(software)"&gt;&lt;strong&gt;Finder&lt;/strong&gt;&lt;/a&gt; is the file manager in MacOS.
-Its logo is a smiling face and called the &lt;em&gt;Happy Mac&lt;/em&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Search&lt;/strong&gt;:
-To search for files or directories, click the 🔍 or press &lt;code&gt;command f&lt;/code&gt;.
-Finder searches the entire Mac by default.
-To restrict the search under the current folder, click the current folder name in the &lt;em&gt;Search&lt;/em&gt; field.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Cut and paste files&lt;/strong&gt;:
-Files cannot be cut in Finder.
-Instead, copy the files (&lt;code&gt;command c&lt;/code&gt;) and while pasting in the destination directory use &lt;code&gt;option command v&lt;/code&gt;.
-This special paste moves the files instead of copying them over.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Quit Finder from Dock&lt;/strong&gt;:
-Finder always seems to be running in the Dock.
-Apparently, it cannot be quit and will always be running in the Dock.
-Even when killed, it will be respawned.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Hide disks from desktop&lt;/strong&gt;:
-Go to Finder -&amp;gt; Settings -&amp;gt; General.
-Under &lt;em&gt;Show these items on the desktop&lt;/em&gt;, uncheck all the types of disks and servers you would like to be hidden on the desktop.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;View path bar&lt;/strong&gt;:
-To display the path of any directory that Finder is showing, choose View -&amp;gt; Show Path Bar.
-Finder shows the path at the bottom, and makes it easy to click and jump to any directory that is part of that path.
-Note how this is different from Windows Explorer, which shows the path at the top.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Mount Samba share&lt;/strong&gt;:
-Samba is a convenient way to &lt;a href="2014-07-07-how-to-share-directory-using-smb.html"&gt;share a directory&lt;/a&gt; from a local Linux computer to our Mac.
-To access that Samba share in Finder, choose Go -&amp;gt; Connect to Server and use &lt;code&gt;smb://&amp;lt;local-ip&amp;gt;&lt;/code&gt;.
-You will be asked to enter the login and password of that Samba share.
-Once added this local computer will be listed under &lt;em&gt;Locations&lt;/em&gt; on the left side.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;References&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://support.apple.com/guide/mac-help/organize-your-files-in-the-finder-mchlp2605/mac"&gt;Use the Finder on Mac&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; Finder 26.3 and MacOS Tahoe 26.3.2&lt;/p&gt;</description>
-      <guid isPermaLink="true">https://codeyarns.com/tech/2025-05-07-finder-cheatsheet.html</guid>
-      <pubDate>Wed, 07 May 2025 13:09:01 +0000</pubDate>
     </item>
   </channel>
 </rss>

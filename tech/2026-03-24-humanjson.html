@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="author" content="Ashwin Nanjappa">
+    <title>Code Yarns – human.json</title>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- RSS feed -->
+    <link rel="alternate" type="application/rss+xml" href="https://codeyarns.com/tech/rss.xml" />
+    <link rel="human-json" href="/human.json">
+</head>
+
+<body>
+
+<div class="contentbox">
+<!-- BEGIN before body -->
+
+<!-- Website title -->
+<div class="header">
+    <a href=".." class="header">Code Yarns ‍👨‍💻</a>
+</div>
+
+<!-- Blog links -->
+<div class="header">
+    <a class="header2" href="https://codeyarns.com/tech/">Tech Blog</a> ❖ <a class="header2" href="https://codeyarns.com/personal/">Personal Blog</a>
+</div>
+
+<!-- Search box -->
+<br />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search", showSubResults: true });
+    });
+</script>
+
+<!-- END before body -->
+</div>
+
+<br />
+
+<div class="contentbox">
+<header>
+<h1 class="title">human.json</h1>
+<p class="date">📅 2026-Mar-24 ⬩ ✍️ Ashwin Nanjappa ⬩ 🏷️ <a href='index.html#web'>web</a> ⬩ 📚 <a href="index.html">Archive</a></p>
+</header>
+<p><a
+href="https://codeberg.org/robida/human.json"><strong>human.json</strong></a>
+is a simple decentralized mechanism to discover human-authored websites
+and for owners of such sites to declare authorship. It essentially helps
+build a human-curated network of trusted sites.</p>
+<h2 id="for-website-owner">For website owner</h2>
+<p>To assert that your website is human-authored, follow 2 simple
+steps:</p>
+<ul>
+<li>Add a <code>human.json</code> at the root of your domain in this
+format:</li>
+</ul>
+<pre><code>{
+    &quot;url&quot;: &quot;https://codeyarns.com&quot;,
+    &quot;version&quot;: &quot;0.1.1&quot;,
+    &quot;vouches&quot;: [
+        {&quot;url&quot;: &quot;https://nedbatchelder.com&quot;, &quot;vouched_at&quot;: &quot;2026-03-22&quot;},
+        {&quot;url&quot;: &quot;https://daringfireball.net&quot;, &quot;vouched_at&quot;: &quot;2026-03-22&quot;},
+        {&quot;url&quot;: &quot;https://stratechery.com&quot;, &quot;vouched_at&quot;: &quot;2026-03-23&quot;}
+    ]
+}</code></pre>
+<p>The contents of the JSON file describe the domain of your own site
+and also list the other websites which you believe are
+human-authored.</p>
+<ul>
+<li>Add this line in the header of your HTML files:</li>
+</ul>
+<pre><code>&lt;link rel=&quot;human-json&quot; href=&quot;/human.json&quot;&gt;</code></pre>
+<h2 id="for-web-users">For web users</h2>
+<ul>
+<li><p>Install the Firefox extension from <a
+href="https://addons.mozilla.org/en-US/firefox/addon/human-json-verifier/">here</a>.
+Make sure the addon is pinned to the toolbar, so that its traffic light
+icon is visible.</p></li>
+<li><p>Toolbar icon is ⚪️ when there is no information on the website
+you are visiting.</p></li>
+<li><p>Toolbar icon is 🟢 or 🟡 or 🟠 depending on whether it is 1/2/3
+hops away from a website you trust as human-authored.</p></li>
+<li><p>When you visit a website which has human.json, you can click on
+the addon button and click <em>Trust this site</em> to add it and the
+list of sites in its human.json file to your network (being tracked by
+your addon).</p></li>
+</ul>
+</div>
+
+<br />
+
+<div class="contentbox">
+
+<div style="text-align: center">
+© 2026 Ashwin Nanjappa
+•
+All writing under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA</a> license
+•
+<a href="https://mastodon.social/@codeyarns">🐘 Mastodon</a>
+•
+<a href="https://bsky.app/profile/codeyarns.bsky.social">🦋 Bluesky</a>
+•
+<a href="mailto:codeyarns@gmail.com">📧 Email</a>
+</div>
+</div>
+
+</body>
+</html>
