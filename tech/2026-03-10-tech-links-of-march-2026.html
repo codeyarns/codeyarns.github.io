@@ -365,6 +365,31 @@ Metal compute shaders.</li>
 <li>pread to directly read from expert weight file to memory buffer used
 by Metal shader.</li>
 </ul>
+<h2
+id="feng-liu---2024---timestep-embedding-tells-its-time-to-cache-for-video-diffusion-model"><a
+href="https://arxiv.org/abs/2411.19108v2">Feng Liu - 2024 - Timestep
+Embedding Tells: It’s Time to Cache for Video Diffusion Model</a></h2>
+<ul>
+<li>Diffusion models are the backbone of video generation. Their
+performance bottleneck is sequential nature of denoising steps.</li>
+<li>Uniform caching relies on observation that model outputs are similar
+between consecutive timesteps. But fails if output varies between
+timesteps.</li>
+<li>Figure 4 is a good illustration of the transformer diffusion module,
+its inputs and outputs.</li>
+<li>None of the 3 inputs are ideal by themselves: text embedding remains
+constant, timestep embedding does not reflect the input and noisy input
+is not sensitive to time.</li>
+<li>So, the timestep embedding modulated noisy input is used by TEACache
+(Timestep Embedding Aware Cache).</li>
+<li>Graphs in Figure 3 show a strong correlation between model output
+and the timestep-modulated-noisy-input chosen by TEACache.</li>
+<li>TEACache checks if accumulated relative L1-distance of this signal
+is less than a threshold to decide whether to use cached output.</li>
+<li>To resolve scaling bias, a polynomial fitting is applied on the L1
+distance computation using Numpy poly1d.</li>
+<li>Results show 2-4x speedup with a small drop in visual quality.</li>
+</ul>
 </div>
 
 <br />
