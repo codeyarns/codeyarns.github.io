@@ -7,11 +7,144 @@
     <atom:link href="https://codeyarns.com/tech/" rel="self" type="application/rss+xml"/>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
-    <lastBuildDate>Tue, 24 Mar 2026 04:22:56 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Mar 2026 06:53:17 +0000</lastBuildDate>
+    <item>
+      <title>uv</title>
+      <link>https://codeyarns.com/tech/2026-03-27-uv.html</link>
+      <description>&lt;p&gt;&lt;a href="https://github.com/astral-sh/uv"&gt;&lt;strong&gt;uv&lt;/strong&gt;&lt;/a&gt; is a package and project manager for Python projects.
+It fully replaces two things: manually using virtual environments and managing packages.
+It is super fast, ironically because it is written in Rust!&lt;/p&gt;
+&lt;h1&gt;Install&lt;/h1&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ curl -LsSf https://astral.sh/uv/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;Usage&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Initialize the directory of the Python project by invoking this inside the directory:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This creates a &lt;code&gt;pyproject.toml&lt;/code&gt; with project metadata and &lt;code&gt;.python-version&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add a package that this project depends on:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv add markdown
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Remove a package from this project:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv remove markdown
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run the program:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv run foobar.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This automatically creates a virtual environment with directory &lt;code&gt;.venv&lt;/code&gt; (if it does not already exist) and &lt;code&gt;uv.lock&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To commit the uv files in the project directory to Git:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ git add pyproject.toml uv.lock
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To migrate an older project (that uses explicit venv and pip) to uv:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ /bin/rm -f old_venv_dir
+
+$ uv init
+
+$ uv add -r requirements.txt
+
+$ /bin/rm requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To remove uv from a project directory:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ rm -rf pyproject.toml uv.lock .python-version .venv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;List the Python versions and their locations:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv python list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Update itself:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv self update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;Self contained scripts&lt;/h1&gt;
+&lt;p&gt;For single file scripts, it is easier to put the package dependencies metadata in the script itself.
+uv can support this in a way that is compliant with &lt;a href="https://peps.python.org/pep-0723/"&gt;PEP 723&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Add this at the top of the script:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;#/usr/bin/env -S uv run
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use uv to add the packages to the script:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv add --script foobar.py markdown
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This adds the &lt;code&gt;markdown&lt;/code&gt; package as a dependency at the top of the &lt;code&gt;foobar.py&lt;/code&gt; script.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make the script executable and running it is as simple as:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ ./foobar.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;How is this working with no extra directories and files added in our project directory?
+uv manages all the metadata and packages for this script in a global cache, separately for each script.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To remove a package as dependency of the script:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv remove --script foobar.py markdown
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To view tree of package dependencies:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv tree --script foobar.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1&gt;Cache&lt;/h1&gt;
+&lt;p&gt;The cache is where uv maintains the package and Python information for scripts where we inline the metadata.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;To see where this cache is located:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv cache dir
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To prune the cache:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv cache prune
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;To empty the cache:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ uv cache clean
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Tried with:&lt;/strong&gt; uv 0.11.2&lt;/p&gt;</description>
+      <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-27-uv.html</guid>
+      <pubDate>Fri, 27 Mar 2026 03:59:14 +0000</pubDate>
+    </item>
     <item>
       <title>human.json</title>
       <link>https://codeyarns.com/tech/2026-03-24-humanjson.html</link>
-      <description>&lt;p&gt;&lt;a href="https://codeberg.org/robida/human.json"&gt;&lt;strong&gt;human.json&lt;/strong&gt;&lt;/a&gt; is a simple decentralized mechanism to discover human-authored websites and for owners of such sites to declare authorship.
+      <description>&lt;p&gt;&lt;a href="https://codeberg.org/robida/human.json"&gt;&lt;strong&gt;human.json&lt;/strong&gt;&lt;/a&gt; is a simple decentralized mechanism created by &lt;a href="https://robida.net/"&gt;Beto Dealmeida&lt;/a&gt; to discover human-authored websites and for owners of such sites to declare authorship.
 It essentially helps build a human-curated network of trusted sites.&lt;/p&gt;
 &lt;h1&gt;For website owner&lt;/h1&gt;
 &lt;p&gt;To assert that your website is human-authored, follow 2 simple steps:&lt;/p&gt;
@@ -58,8 +191,11 @@ Make sure the addon is pinned to the toolbar, so that its traffic light icon is 
     <item>
       <title>Claude Code</title>
       <link>https://codeyarns.com/tech/2026-03-20-claude-code.html</link>
-      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Claude_(language_model)#Claude_Code"&gt;&lt;strong&gt;Claude Code&lt;/strong&gt;&lt;/a&gt; is the CLI agentic AI tool by Anthropic designed to aid in software development.
-At the shell, this tool is invoked as &lt;code&gt;claude&lt;/code&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Claude_(language_model)#Claude_Code"&gt;&lt;strong&gt;Claude Code&lt;/strong&gt;&lt;/a&gt; is the CLI agentic AI tool by Anthropic designed to aid in software development.&lt;/p&gt;
+&lt;h1&gt;Install&lt;/h1&gt;
+&lt;pre class="codehilite"&gt;&lt;code&gt;$ brew install --cask claude-code
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h1&gt;Basics&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -411,6 +547,18 @@ It is 100% OK to wait and see if something is actually useful.&lt;/p&gt;
 &lt;li&gt;Both 4-bit and 2-bit weights are quantized in groups of 64 values, with BF16 float+bias for each 64 and actual quantized values stored in UINT32 chunks.&lt;/li&gt;
 &lt;li&gt;Attention, softmax and Top-K, tokenizer on CPU, rest on GPU with 5 Metal compute shaders.&lt;/li&gt;
 &lt;li&gt;pread to directly read from expert weight file to memory buffer used by Metal shader.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;&lt;a href="https://arxiv.org/abs/2411.19108v2"&gt;Feng Liu - 2024 - Timestep Embedding Tells: It's Time to Cache for Video Diffusion Model&lt;/a&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Diffusion models are the backbone of video generation. Their performance bottleneck is sequential nature of denoising steps.&lt;/li&gt;
+&lt;li&gt;Uniform caching relies on observation that model outputs are similar between consecutive timesteps. But fails if output varies between timesteps.&lt;/li&gt;
+&lt;li&gt;Figure 4 is a good illustration of the transformer diffusion module, its inputs and outputs.&lt;/li&gt;
+&lt;li&gt;None of the 3 inputs are ideal by themselves: text embedding remains constant, timestep embedding does not reflect the input and noisy input is not sensitive to time.&lt;/li&gt;
+&lt;li&gt;So, the timestep embedding modulated noisy input is used by TEACache (Timestep Embedding Aware Cache).&lt;/li&gt;
+&lt;li&gt;Graphs in Figure 3 show a strong correlation between model output and the timestep-modulated-noisy-input chosen by TEACache.&lt;/li&gt;
+&lt;li&gt;TEACache checks if accumulated relative L1-distance of this signal is less than a threshold to decide whether to use cached output.&lt;/li&gt;
+&lt;li&gt;To resolve scaling bias, a polynomial fitting is applied on the L1 distance computation using Numpy poly1d.&lt;/li&gt;
+&lt;li&gt;Results show 2-4x speedup with a small drop in visual quality.&lt;/li&gt;
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2026-03-10-tech-links-of-march-2026.html</guid>
       <pubDate>Tue, 10 Mar 2026 05:25:37 +0000</pubDate>
@@ -1377,131 +1525,6 @@ Choose &lt;em&gt;Sensors &amp;amp; Accessories&lt;/em&gt; -&amp;gt; Wrist Heart 
 &lt;/ul&gt;</description>
       <guid isPermaLink="true">https://codeyarns.com/tech/2025-09-27-garmin-instinct-2s-solar.html</guid>
       <pubDate>Sat, 27 Sep 2025 03:44:15 +0000</pubDate>
-    </item>
-    <item>
-      <title>Apple Watch SE 3</title>
-      <link>https://codeyarns.com/tech/2025-09-21-apple-watch-se-3.html</link>
-      <description>&lt;p&gt;&lt;a href="https://en.wikipedia.org/wiki/Apple_Watch"&gt;&lt;strong&gt;Apple Watch SE 3&lt;/strong&gt;&lt;/a&gt; is a smartwatch launched by Apple in 2025.
-Of the 2 sizes available for this watch, I picked the 40mm case for my small wrist.
-I used the watch for a week and decided to return it due to reasons detailed later below.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Digital crown&lt;/strong&gt;:
-Press to see the watch screen or Home screen.
-Double-click to open the App Switcher.
-Turn to scroll what is on the screen.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Side button&lt;/strong&gt;:
-Press to use Control Center.
-Double-click for Apple Pay.
-Press and hold to power down or power up the watch.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Change watch face&lt;/strong&gt;:
-Long press on the watch face.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;View date and day&lt;/strong&gt;:
-A surprisingly few watch faces show the date and day.
-In the default screen, swipe up from the bottom to see the date and day.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;View widgets&lt;/strong&gt;:
-Swipe up from the bottom.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Silent mode&lt;/strong&gt;:
-Press the side button to open Control Center.
-Press the bell icon to enable silent mode.
-Only vibrations will be allowed.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Get hourly vibration&lt;/strong&gt;:
-On the watch go to Settings -&amp;gt; Accessibility -&amp;gt; Chimes.
-Enable Chimes and schedule for once an hour/30/15 minutes.
-This plays a sound, but will use a haptic vibration if the watch is set to silent.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Display the Activity app&lt;/strong&gt;:
-Confusingly the Activity app is also displayed as Fitness app in some places in the watch.
-This app was missing in my watch and it took a while to figure out why.
-I had disabled this app on my iPhone and so it was also hidden on my watch.
-On the iPhone, go to Settings -&amp;gt; Screen Time -&amp;gt; Content &amp;amp; Privacy Restrictions -&amp;gt; Allowed Apps &amp;amp; Features and enable the Fitness app.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Sync the alarms from iPhone&lt;/strong&gt;:
-The only alarms that are synced from iPhone are the special &lt;em&gt;sleep&lt;/em&gt; and &lt;em&gt;wake up&lt;/em&gt; alarms.
-None of the normal alarms from the iPhone are synced to the phone.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Google TV remote&lt;/strong&gt;:
-On the iPhone, I like controlling our smart TV using the remote in the Google TV app.
-It would have been super useful if the Google TV remote was also available on the Apple Watch, unfortunately it is not.
-There is no other means to use a remote on the watch to control Google TV devices.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1&gt;Return&lt;/h1&gt;
-&lt;p&gt;The Apple Watch is a beautifully crafted product, but I felt like its current version was just not working for me due to these reasons:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Apps install requires password typing:
-The biggest absurdity of the Apple Watch is that I can only install apps from the watch, not from its Watch app on the iPhone.
-And it asks for my Apple password to install - there is no way I am going to try to enter my cryptic random-generated password using that handwriting input on the watch!&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Way too much stuff going on with its UI:
-there are Live Actions, widgets if you swipe from below, apps if you click the crown and the Control Center if you click the side button.
-Just think about it for a moment - this device display UI has more complexity than MacOS (on computer) and iOS (on the phone/tablet).
-I am surprised that Apple does not realize how complex the UI/UX is in this device.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Battery life:
-Sucks.
-Apple expects me to wear this all day and night, but it does not last more than a day - so Apple when do I charge it?
-I am absolutely not going to charge a watch every day.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Step count:
-All I wanted to track was a step count, but Apple seems to hate the step count.
-They have these weird 3 color bars that show your activity for the day.
-Just by looking at the color and a minimalistic icon they have, how am I supposed to know what each color is tracking?
-And the step count is always hidden, making you step through multiple screens to view it.
-There is no watch face where Apple will show the step count.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Strap:
-I spent an hour at the Apple store and the least worst strap I could pick was the Nike velcro one.
-The rubber ones are soft, but they have a weird clasp that is super hard to use.
-I cannot fathom why they could not provide at least one strap that uses the normal watch clasp.
-The leather and metal ones are all too irritating for my skin, so I avoid those.
-So, there we are with Nike velcro and even after a week it still felt itchy and don't even get me started on how ugly this strap is.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Apps picking is tiresome:
-You get 2 views of the apps - a beehive-like hexagonal grid or a scroll list of apps.
-The hexagonal grid is irritating, I would have preferred a regular grid (like on the phone) and bigger icons (they are way too small).
-The scroll list of apps is frustrating because while Apple allows me to reorder the hexagonal grid, I cannot reorder the app list - so I need to scroll in alphabetical order to reach the bottom apps.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Widgets:
-I could not figure out how to control the order of badges or which apps they are originating from.
-And Apple suddenly uses AI to add some Live Actions.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Crown:
-This is super hard to use - because in an analog watch you remove the watch from your wrist to wind it up or change the time using the crown.
-Apple borrowed the crown idea without thinking through that they are making the crown a primary interface though it is hard to turn it while the watch is on the wrist.
-Also, I can already scroll with touch on the display, so why do I need the crown again?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Shape:
-I could not get over the chunky squarish shape of the watch.
-I prefer a round or hexagonal shape for a watch and though Apple has so many watches, not a single one is round.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</description>
-      <guid isPermaLink="true">https://codeyarns.com/tech/2025-09-21-apple-watch-se-3.html</guid>
-      <pubDate>Sun, 21 Sep 2025 03:44:58 +0000</pubDate>
     </item>
   </channel>
 </rss>
