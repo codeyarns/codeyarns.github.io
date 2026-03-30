@@ -390,6 +390,35 @@ is less than a threshold to decide whether to use cached output.</li>
 distance computation using Numpy poly1d.</li>
 <li>Results show 2-4x speedup with a small drop in visual quality.</li>
 </ul>
+<h2
+id="jiacheng-liu---2025---from-reusing-to-forecasting-accelerating-diffusion-models-with-taylorseers"><a
+href="https://arxiv.org/abs/2503.06923v2">Jiacheng Liu - 2025 - From
+Reusing to Forecasting: Accelerating Diffusion Models with
+TaylorSeers</a></h2>
+<ul>
+<li>Introduces TaylorSeer specifically for DIT models: method to
+approximate higher-order derivatives of features and predict features in
+future timesteps.</li>
+<li>It argues that features over timesteps have a stable trajectory, so
+can instead of cache-then-reuse of feature caching, this paper proposes
+cache-then-forecast. Depending on the forecast, cached features are
+reused or computed from scratch.</li>
+<li>Figure 3 compares naive caching to TaylorSeer, with use of
+increasing O (orders of finite differences).</li>
+<li>Cache stores a feature and its 1 to m-th order finite differences.
+Taylor’s series expansion is used to predict feature at next timestep
+using these cached data (Eq 10).</li>
+<li>Experiments for T2I and T2V use
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒩</mi><annotation encoding="application/x-tex">\mathcal{N}</annotation></semantics></math>
+<em>unified forced activation period</em> (aka how many steps to run
+before full recompute) and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝒪</mi><annotation encoding="application/x-tex">\mathcal{O}</annotation></semantics></math>
+(order of Taylor expansion). Results show 5x speedup on
+FLUX/HunyuanVideo. Ironically, the best results (Table 2) use just
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒪</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\mathcal{O} = 1</annotation></semantics></math>,
+but good
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝒩</mi><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">\mathcal{N} = 6</annotation></semantics></math>.</li>
+</ul>
 </div>
 
 <br />
