@@ -434,6 +434,35 @@ TTFT.</li>
 <li>Binary search is used to determine the maximum number of users that
 can be supported for each SLO.</li>
 </ul>
+<h2
+id="lingjiao-chen---2026---the-price-reversal-phenomenon-when-cheaper-reasoning-models-end-up-costing-more"><a
+href="https://arxiv.org/abs/2603.23971v1">Lingjiao Chen - 2026 - The
+Price Reversal Phenomenon: When Cheaper Reasoning Models End Up Costing
+More</a></h2>
+<ul>
+<li>Study that compares the API prices of reasoning language models
+(RLM) to their actual usage cost. Found pricing reversal phenomenon:
+lower unit price RLM costs more on work. Root caused to disparity in
+thinking token consumption between RLM.</li>
+<li>Figure 1 shows graphs of listed price versus actual cost of popular
+RLM.</li>
+<li>RLM produce both visible response tokens and invisible thinking
+tokens, the latter varies by order of magnitude among RLM for the same
+query and dominates the actual cost.</li>
+<li>Tests 8 RLM on 8 datasets covering math, puzzles, chat, science, QA,
+coding.</li>
+<li>User pays separately for each query. Cost to user is price of
+input/output tokens weighted by number of input/output tokens - Eq
+1.</li>
+<li>Found that price reversal is pervasive and can be as much as 28x for
+certain model-test pairs. Rankings can vary based on task/test.</li>
+<li>Removal of thinking token cost restores the ranking of models to be
+consistent with price.</li>
+<li>Code: <a href="https://github.com/lchen001/pricing-reversal"
+class="uri">https://github.com/lchen001/pricing-reversal</a></li>
+<li>Online app: <a href="https://price-reversal.streamlit.app/"
+class="uri">https://price-reversal.streamlit.app/</a></li>
+</ul>
 </div>
 
 <br />
